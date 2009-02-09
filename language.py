@@ -3,7 +3,7 @@ import codecs
 import os
 import re
 
-class language:
+class Language:
 	def __init__(self):
 		self.__clear()
 		

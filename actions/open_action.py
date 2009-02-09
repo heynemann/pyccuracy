@@ -1,7 +1,7 @@
 import re
 from selenium_browser_driver import *
 
-class open_action:
+class OpenAction:
 	def __init__(self, browser_driver, language):
 		self.browser_driver = browser_driver
 		self.language = language
@@ -20,4 +20,4 @@ class open_action:
 		self.browser_driver.wait_for_page()
 		
 	def __call__(browser_driver):
-		return open_action(browser_driver)
+		return OpenAction(browser_driver)

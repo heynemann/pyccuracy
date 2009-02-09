@@ -1,17 +1,17 @@
 from test_fixture import *
 
-class story_runner:
+class StoryRunner:
 	def __init__(self, browser_driver, test_fixture):
-		self.current_browser_driver = browser_driver
+		self.browser_driver = browser_driver
 		self.test_fixture = test_fixture
 	
 	def run_stories(self):
-		self.current_browser_driver.start_test("http://www.google.com")
+		self.browser_driver.start_test("http://www.google.com")
 		try:
 			for current_story in self.test_fixture.stories:
 				self.__run_scenarios(current_story)
 		finally:
-			self.current_browser_driver.stop_test()
+			self.browser_driver.stop_test()
 			
 	def __run_scenarios(self, current_story):
 		for current_scenario in current_story.scenarios:

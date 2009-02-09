@@ -2,7 +2,7 @@ import re
 from selenium_browser_driver import *
 from errors import *
 
-class see_title_action:
+class SeeTitleAction:
 	def __init__(self, browser_driver, language):
 		self.browser_driver = browser_driver
 		self.language = language
@@ -22,4 +22,4 @@ class see_title_action:
 			raise TestFailedError()
 	
 	def __call__(browser_driver):
-		return see_title_action(browser_driver)
+		return SeeTitleAction(browser_driver)

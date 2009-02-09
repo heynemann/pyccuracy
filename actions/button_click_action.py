@@ -1,7 +1,7 @@
 import re
 from selenium_browser_driver import *
 
-class button_click_action:
+class ButtonClickAction:
 	def __init__(self, browser_driver, language):
 		self.browser_driver = browser_driver
 		self.language = language
@@ -20,4 +20,4 @@ class button_click_action:
 		self.browser_driver.wait_for_page()
 
 	def __call__(browser_driver):
-		return button_click_action(browser_driver)
+		return ButtonClickAction(browser_driver)

@@ -5,7 +5,7 @@ from sys import platform
 import time
 import threading
 
-class selenium_server(threading.Thread):
+class SeleniumServer(threading.Thread):
 	out_file = None
 	
 	def run(self, log_file="out.txt"):
@@ -20,9 +20,9 @@ class selenium_server(threading.Thread):
 		else:
 			os.kill(self.current_process.pid, signal.SIGKILL)
 
-class selenium_browser_driver:
+class SeleniumBrowserDriver:
 	def start(self):
-		self.selenium_server = selenium_server()
+		self.selenium_server = SeleniumServer()
 		self.selenium_server.start()
 	
 	def start_test(self, url = "http://www.someurl.com"):
