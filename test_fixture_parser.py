@@ -89,7 +89,8 @@ class test_fixture_parser:
 		all_actions = []
 		for action_name in locate("*_action.py"):
 			action_module_name = os.path.splitext(os.path.split(action_name)[-1])[0]
-			action_module = __import__(action_module_name)
+			action_package = __import__("actions." + action_module_name)
+			action_module = getattr(action_package, action_module_name)
 			action = getattr(action_module, action_module_name)
 			all_actions.append(action)
 		return all_actions

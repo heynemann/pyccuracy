@@ -14,7 +14,6 @@ class selenium_server(threading.Thread):
 			
 	def stop(self):
 		self.out_file.close()
-		print platform
 		if platform == 'win32': 
 			import ctypes
 			ctypes.windll.kernel32.TerminateProcess(int(self.current_process._handle), -1)

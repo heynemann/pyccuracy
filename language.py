@@ -12,18 +12,20 @@ class language:
 	def load(self, culture):
 		self.__clear()
 		file_name = "language_" + culture + ".txt"
-		file_path = os.path.join(os.path.abspath(os.curdir), file_name)
+		languages_path = os.path.join(os.path.abspath(os.curdir), "languages")
+		file_path = os.path.join(languages_path, file_name)
 		
 		try:
 			fsock = open(file_path)
-			lines = fsock.readlines()
+			lines = [line.strip() for line in fsock.readlines() if line.strip() != ""]
 			fsock.close()
 		except ValueError:
 			raise LanguageParseError(culture)
 		
 		for line in lines:
-			key, value = line.split("=")			
-			self.language_items[key.strip()] = value.strip()
+			if not line.startswith("#"):
+				key, value = line.split("=")			
+				self.language_items[key.strip()] = value.strip()
 	
 	def __getitem__(self, key): 
 		if self.language_items.has_key(key):

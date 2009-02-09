@@ -28,5 +28,5 @@ class Pyccuracy:
 
 if __name__ == "__main__":
 	pyc = Pyccuracy()
-	#pyc.run_tests(root=os.path.join(os.curdir, "en_us_tests"))
+	pyc.run_tests(root=os.path.join(os.curdir, "en_us_tests"))
 	pyc.run_tests(root=os.path.join(os.curdir, "pt_br_tests"), default_language="pt-br")

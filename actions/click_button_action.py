@@ -1,13 +1,13 @@
 import re
 from selenium_browser_driver import *
 
-class click_action:
+class click_button_action:
 	def __init__(self, browser_driver, language):
 		self.browser_driver = browser_driver
 		self.language = language
 	
 	def matches(self, line):
-		reg = re.compile(self.language["click_regex"])
+		reg = re.compile(self.language["click_button_regex"])
 		self.last_match = reg.search(line)
 		return self.last_match
 	
@@ -20,4 +20,4 @@ class click_action:
 		self.browser_driver.wait_for_page()
 
 	def __call__(browser_driver):
-		return click_action(browser_driver)
+		return click_button_action(browser_driver)
