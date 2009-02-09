@@ -7,7 +7,7 @@ class open_action:
 		self.language = language
 	
 	def matches(self, line):
-		reg = re.compile(self.language["open_regex"])
+		reg = self.language["open_regex"]
 		self.last_match = reg.search(line)
 		return self.last_match
 	

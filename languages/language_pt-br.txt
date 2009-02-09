@@ -7,7 +7,6 @@ scenario = Cenario
 given = Dado que
 when = Quando
 then = Entao
-scenario_starter_regex = ^Cenario (\d+) - ([\w\s]+)$
 invalid_test_files = arquivos de teste invalidos
 files_without_header = arquivos de teste sem o cabeçalho correto
 story_status = Status da Story
@@ -17,3 +16,6 @@ open_regex = ^(E )?[eE]u navego para [\"]([\w:/.]+)[\"]$
 see_title_regex = ^(E )?[eE]u vejo o titulo como [\"](.+)[\"]$
 click_button_regex = ^(E )?[eE]u clico no botao [\"](.+)[\"]$
 type_regex = ^(E )?[eE]u preencho a caixa de texto [\"](.+)[\"] com [\"](.+)[\"]$
+
+#Regular Expression que Inicia Cenario
+scenario_starter_regex = ^Cenario (\d+) - ([\w\s]+)$

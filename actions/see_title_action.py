@@ -8,7 +8,7 @@ class see_title_action:
 		self.language = language
 	
 	def matches(self, line):
-		reg = re.compile(self.language["see_title_regex"])
+		reg = self.language["see_title_regex"]
 		self.last_match = reg.search(line)
 		return self.last_match
 	

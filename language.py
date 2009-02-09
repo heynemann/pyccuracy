@@ -1,6 +1,7 @@
 from errors import *
 import codecs
 import os
+import re
 
 class language:
 	def __init__(self):
@@ -24,8 +25,12 @@ class language:
 		
 		for line in lines:
 			if not line.startswith("#"):
-				key, value = line.split("=")			
-				self.language_items[key.strip()] = value.strip()
+				key, value = line.split("=")
+				key = key.strip()
+				value = value.strip()
+				if key.endswith("_regex"):
+					value = re.compile(value)
+				self.language_items[key.strip()] = value
 	
 	def __getitem__(self, key): 
 		if self.language_items.has_key(key):

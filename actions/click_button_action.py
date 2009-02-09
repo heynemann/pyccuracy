@@ -7,7 +7,7 @@ class click_button_action:
 		self.language = language
 	
 	def matches(self, line):
-		reg = re.compile(self.language["click_button_regex"])
+		reg = self.language["click_button_regex"]
 		self.last_match = reg.search(line)
 		return self.last_match
 	

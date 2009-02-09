@@ -59,7 +59,7 @@ class test_fixture_parser:
 								   so_that.replace(self.story_lines[2],""))
 	
 	def __process_scenario_starter_line(self, fixture, current_story, line):
-		reg = re.compile(self.language["scenario_starter_regex"])
+		reg = self.language["scenario_starter_regex"]
 		match = reg.search(line)
 		values = match.groups()
 		scenario_index = values[0]
