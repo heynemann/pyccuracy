@@ -1,0 +1,16 @@
+default_pattern = *.acc
+as_a = As a
+i_want_to = I want to
+so_that = So that
+scenario = Scenario
+given = Given
+when = When
+then = Then
+open_regex = ^(And )?I go to [\"]([\w:/.]+)[\"]$
+see_title_regex = ^(And )?I see [\"](.+)[\"] title$
+click_regex = ^(And )?I click [\"](.+)[\"] button$
+type_regex = ^(And )?I fill [\"](.+)[\"] textbox with [\"](.+)[\"]$
+scenario_starter_regex = ^Scenario (\d+) - ([\w\s]+)$
+invalid_test_files = invalid test files
+files_without_header = test files without the proper header
+story_status = Story Status
