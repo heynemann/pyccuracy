@@ -1,7 +1,7 @@
 import re
 from selenium_browser_driver import *
 
-class type_action:
+class textbox_type_action:
 	def __init__(self, browser_driver, language):
 		self.browser_driver = browser_driver
 		self.language = language
@@ -20,4 +20,4 @@ class type_action:
 		self.browser_driver.type(textbox, text)
 		
 	def __call__(browser_driver):
-		return type_action(browser_driver)
+		return textbox_type_action(browser_driver)
