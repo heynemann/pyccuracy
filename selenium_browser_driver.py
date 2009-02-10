@@ -4,13 +4,15 @@ import os
 from sys import platform
 import time
 import threading
+import signal
 
 class SeleniumServer(threading.Thread):
 	out_file = None
 	
-	def run(self, log_file="out.txt"):
+	def run(self, log_file="./out.txt"):
 		self.out_file = open(log_file, mode='a')
-		self.current_process = subprocess.Popen("java -jar ./lib/selenium-server/selenium-server.jar", stdout=self.out_file)
+		serverJar = os.path.dirname(__file__) + "/lib/selenium-server/selenium-server.jar"
+		self.current_process = subprocess.Popen("java -jar %s" %(serverJar), stdout=self.out_file, shell=True)
 			
 	def stop(self):
 		self.out_file.close()
@@ -18,7 +20,7 @@ class SeleniumServer(threading.Thread):
 			import ctypes
 			ctypes.windll.kernel32.TerminateProcess(int(self.current_process._handle), -1)
 		else:
-			os.kill(self.current_process.pid, signal.SIGKILL)
+			os.kill(os.getpid(), signal.SIGKILL)
 
 class SeleniumBrowserDriver:
 	def start(self):
