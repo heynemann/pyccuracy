@@ -1,13 +1,14 @@
 import re
 from selenium_browser_driver import *
+from errors import *
 
-class OpenAction:
+class PageSeeTitleAction:
 	def __init__(self, browser_driver, language):
 		self.browser_driver = browser_driver
 		self.language = language
 	
 	def matches(self, line):
-		reg = self.language["open_regex"]
+		reg = self.language["see_title_regex"]
 		self.last_match = reg.search(line)
 		return self.last_match
 	
@@ -15,9 +16,10 @@ class OpenAction:
 		return self.last_match and (self.last_match.groups()[1],) or tuple([])
 		
 	def execute(self, values):
-		url = values[0]
-		self.browser_driver.open(url)
-		self.browser_driver.wait_for_page()
-		
+		expected_title = values[0]
+		title = self.browser_driver.get_title()
+		if (title != expected_title):
+			raise TestFailedError()
+	
 	def __call__(browser_driver):
-		return OpenAction(browser_driver)
+		return PageSeeTitleAction(browser_driver)
