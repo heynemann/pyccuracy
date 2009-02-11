@@ -2,19 +2,15 @@
 Welcome to Pyccuracy Docs
 =========================
 
-Documentation Contents
-----------------------
-
-.. toctree::
-   :maxdepth: 1
-
-   overview
-   tutorial
-   
-.. toctree::
-   :maxdepth: 3
-   
-   actions
++-----------------------------------+
+| Documentation Contents            |
++=================+=================+
+| .. toctree::    | .. toctree::    |
+|    :maxdepth: 1 |    :maxdepth: 3 |
+|                 |                 |
+|    overview     |    actions      |
+|    tutorial     |                 |
++-----------------+-----------------+
    
 Introduction
 ------------
