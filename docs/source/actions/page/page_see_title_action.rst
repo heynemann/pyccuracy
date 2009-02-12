@@ -17,7 +17,7 @@ Asserts that the currently loaded document in the web browser has the specified 
 	
 Raises
 ------
-Raises TestFailedError if the current document's title is not the specified.
+Raises ActionFailedError if the current document's title is not the specified.
 This Exception is captured by Pyccuracy to assert that the test failed.
 	
 Example
