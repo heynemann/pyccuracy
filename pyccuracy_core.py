@@ -3,7 +3,7 @@ from story_runner import *
 from test_fixture_parser import *
 from language import *
 	
-class Pyccuracy:
+class Pyccuracy(object):
 	def run_tests(self, root=os.curdir, pattern="to_be_defined_by_language", browser_driver = SeleniumBrowserDriver(), default_language="en-us"):
 		lang = Language()
 		lang.load(default_language)

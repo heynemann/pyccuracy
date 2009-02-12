@@ -1,6 +1,6 @@
 from errors import *
 
-class TestFixture:
+class TestFixture(object):
 	def __init__(self, language):
 		self.clear()
 		self.language = language
@@ -52,7 +52,7 @@ class TestFixture:
 			
 		return "\n\n".join(messages)
 		
-class Story:
+class Story(object):
 	def __init__(self, as_a, i_want_to, so_that):
 		self.as_a = as_a
 		self.i_want_to = i_want_to
@@ -71,7 +71,7 @@ class Story:
 	def mark_as_successful(self):
 		self.status = "SUCCESSFUL"
 	
-class Scenario:
+class Scenario(object):
 	def __init__(self, story, index, title):
 		self.story = story
 		self.index = index
@@ -104,7 +104,7 @@ class Scenario:
 		self.status = "SUCCESSFUL"
 		self.story.mark_as_successful()
 		
-class Action:
+class Action(object):
 	def __init__(self, scenario, description, execute_function, arguments):
 		self.scenario = scenario
 		self.description = description
