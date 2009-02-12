@@ -8,7 +8,7 @@ class PageSeeTitleAction(object):
 		self.language = language
 	
 	def matches(self, line):
-		reg = self.language["see_title_regex"]
+		reg = self.language["page_see_title_regex"]
 		self.last_match = reg.search(line)
 		return self.last_match
 	
@@ -19,7 +19,7 @@ class PageSeeTitleAction(object):
 		expected_title = values[0]
 		title = self.browser_driver.get_title()
 		if (title != expected_title):
-			raise ActionFailedError("The expected title (%s) does not match the specified title (%s)" % (title, expected_title))
+			raise ActionFailedError(self.language["page_see_title_failure"] % (title, expected_title))
 	
 	def __call__(browser_driver):
 		return PageSeeTitleAction(browser_driver)

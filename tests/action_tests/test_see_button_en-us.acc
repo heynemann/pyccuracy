@@ -1,0 +1,11 @@
+As a Pyccuracy User
+I want to test see button action
+So that I can make sure Pyccuracy works
+
+Scenario 1 - Checking that google's search button is there
+Given
+	I go to "http://www.google.com"
+When
+	The page finishes loading
+Then
+	I see "btnG" button

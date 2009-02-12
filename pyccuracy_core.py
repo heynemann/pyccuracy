@@ -4,15 +4,21 @@ from test_fixture_parser import *
 from language import *
 	
 class Pyccuracy(object):
-	def run_tests(self, root=os.curdir, pattern="to_be_defined_by_language", browser_driver = SeleniumBrowserDriver(), default_language="en-us"):
-		lang = Language()
+	def run_tests(self, 
+				  root=os.curdir, 
+				  action_root=os.path.join(os.curdir,"actions"),
+				  pattern="to_be_defined_by_language", 
+				  browser_driver = SeleniumBrowserDriver(), 
+				  default_language="en-us", 
+				  languages_dir=os.path.join(os.curdir, "languages")):
+		lang = Language(languages_dir)
 		lang.load(default_language)
 		if (pattern == "to_be_defined_by_language"): pattern = lang["default_pattern"]
 		self.current_browser_driver = browser_driver
 		self.current_browser_driver.start()
 		
 		#parsing the tests
-		fixture_parser = TestFixtureParser(self.current_browser_driver, lang)
+		fixture_parser = TestFixtureParser(self.current_browser_driver, lang, action_root)
 		self.test_fixture = fixture_parser.get_fixture([file_path for file_path in locate(pattern, root)])
 		
 		#running the tests

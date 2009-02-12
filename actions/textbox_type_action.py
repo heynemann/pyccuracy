@@ -7,7 +7,7 @@ class TextboxTypeAction(object):
 		self.language = language
 	
 	def matches(self, line):
-		reg = self.language["type_regex"]
+		reg = self.language["textbox_type_regex"]
 		self.last_match = reg.search(line)
 		return self.last_match
 	

@@ -4,8 +4,9 @@ import os
 import re
 
 class Language(object):
-	def __init__(self):
+	def __init__(self, languages_dir):
 		self.__clear()
+		self.languages_dir = languages_dir
 		
 	def __clear(self):
 		self.language_items = {}
@@ -13,9 +14,9 @@ class Language(object):
 	def load(self, culture):
 		self.__clear()
 		file_name = "language_" + culture + ".txt"
-		languages_path = os.path.join(os.path.abspath(os.curdir), "languages")
-		file_path = os.path.join(languages_path, file_name)
-		
+		file_path = os.path.join(self.languages_dir, file_name)
+
+		if not os.path.exists(file_path): raise LanguageParseError(culture)
 		try:
 			fsock = open(file_path)
 			lines = [line.strip() for line in fsock.readlines() if line.strip() != ""]

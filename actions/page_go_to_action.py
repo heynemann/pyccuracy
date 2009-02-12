@@ -7,7 +7,7 @@ class PageGoToAction:
 		self.language = language
 	
 	def matches(self, line):
-		reg = self.language["open_regex"]
+		reg = self.language["page_go_to_regex"]
 		self.last_match = reg.search(line)
 		return self.last_match
 	

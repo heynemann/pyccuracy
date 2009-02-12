@@ -3,12 +3,13 @@ from test_fixture import *
 import re
 
 class TestFixtureParser(object):
-	def __init__(self, browser_driver, language):
+	def __init__(self, browser_driver, language, action_root):
 		self.language = language
 		self.story_lines = (language["as_a"], language["i_want_to"], language["so_that"],)
 		self.scenario_starter_lines = (language["scenario"],)
 		self.scenario_lines = (language["given"], language["when"], language["then"],)
 		self.browser_driver = browser_driver
+		self.action_root = action_root
 		
 	#helper methods for defining special cases
 	def __is_story_line(self, line):
@@ -75,7 +76,8 @@ class TestFixtureParser(object):
 	def __process_action_line(self, fixture, scenario, action_under, line):
 		method = getattr(scenario, "add_" + action_under)
 		action = self.__get_action(line)
-		method(line, action[0], action[1])
+		if (action != None):
+			method(line, action[0], action[1])
 
 	def __get_action(self, line):
 		if not hasattr(self, "all_actions"): self.all_actions = self.__get_actions()
@@ -84,10 +86,12 @@ class TestFixtureParser(object):
 			act = action(self.browser_driver, self.language)
 			if act.matches(line):
 				return (act.execute, act.values_for(line))
+		
+		return None
 	
 	def __get_actions(self):
 		all_actions = []
-		for action_name in locate("*_action.py"):
+		for action_name in locate("*_action.py", root=self.action_root):
 			action_module_name = os.path.splitext(os.path.split(action_name)[-1])[0]
 			action_package = __import__("actions." + action_module_name)
 			

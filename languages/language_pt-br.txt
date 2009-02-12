@@ -19,10 +19,17 @@ scenarios_ran_successfully = %d cenarios tiveram sucesso (%.2f%%)
 scenarios_that_failed = %d cenarios falharam (%.2f%%)
 
 #Regular Expression que Inicia Cenario
-scenario_starter_regex = ^Cenario (\d+) - ([\w\s]+)$
+scenario_starter_regex = ^Cenario (\d+) - (.+)$
 
 #Regular Expressions de Acoes
-open_regex = ^(E )?[eE]u navego para [\"]([\w:/.]+)[\"]$
-see_title_regex = ^(E )?[eE]u vejo o titulo como [\"](.+)[\"]$
-click_button_regex = ^(E )?[eE]u clico no botao [\"](.+)[\"]$
-type_regex = ^(E )?[eE]u preencho a caixa de texto [\"](.+)[\"] com [\"](.+)[\"]$
+page_go_to_regex = ^(E )?[eE]u navego para [\"]([\w:/.]+)[\"]$
+page_see_title_regex = ^(E )?[eE]u vejo o titulo como [\"](.+)[\"]$
+
+button_click_regex = ^(E )?[eE]u clico no botao [\"](.+)[\"]$
+button_is_visible_regex = ^(E )?[eE]u vejo o botao [\"](.+)[\"]$
+
+textbox_type_regex = ^(E )?[eE]u preencho a caixa de texto [\"](.+)[\"] com [\"](.+)[\"]$
+
+#Action Failure Messages
+page_see_title_failure = O titulo da pagina (%s) nao bate com o titulo esperado (%s)
+button_is_visible_failure = O botao com nome %s não existe ou não esta visivel.

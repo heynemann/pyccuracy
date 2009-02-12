@@ -1,0 +1,11 @@
+Como um usuario do Pyccuracy
+Eu quero testar a acao de ver um botao
+Para garantir que o Pyccuracy funciona em outras linguas
+
+Cenario 1 - Garantindo que o botao de pesquisa do google esta la
+Dado que
+	Eu navego para "http://www.google.com"
+Quando
+	A pagina termina de carregar
+Entao
+	Eu vejo o botao "btnG"
