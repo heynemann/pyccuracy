@@ -6,6 +6,7 @@ class SeleniumBrowserDriver(object):
     def start(self):
         self.selenium_server = SeleniumServer()
         self.selenium_server.start()
+        time.sleep(2) # hackish: used to work on Mac OS
     
     def start_test(self, url = "http://www.someurl.com"):
         self.selenium = selenium("localhost", 4444, "*firefox", url)
