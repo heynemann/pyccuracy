@@ -9,7 +9,7 @@ class Pyccuracy(object):
 				  root=os.curdir, 
 				  action_root=os.path.join(os.curdir,"actions"),
 				  pattern="to_be_defined_by_language", 
-				  browser_driver = SeleniumBrowserDriver(), 
+				  browser_driver = SeleniumBrowserDriver(root_dir=os.curdir), 
 				  default_language="en-us", 
 				  languages_dir=os.path.join(os.curdir, "languages")):
 		lang = Language(languages_dir)

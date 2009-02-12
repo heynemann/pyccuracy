@@ -28,8 +28,13 @@ page_see_title_regex = ^(And )?I see [\"](.+)[\"] title$
 button_click_regex = ^(And )?I click [\"](.+)[\"] button$
 button_is_visible_regex = ^(And )?I see [\"](.+)[\"] button$
 
+checkbox_is_visible_regex = ^(And )?I see [\"](.+)[\"] checkbox$
+
 textbox_type_regex = ^(And )?I fill [\"](.+)[\"] textbox with [\"](.+)[\"]$
 
 #Action Failure Messages
 page_see_title_failure = The page title (%s) does not match the expected title (%s)
+
 button_is_visible_failure = The button with name %s does not exist or is not visible.
+
+checkbox_is_visible_failure = The checkbox with name %s does not exist or is not visible.

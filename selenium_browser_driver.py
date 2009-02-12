@@ -1,14 +1,16 @@
 from selenium import *
 from selenium_server import SeleniumServer
 import time
+import os
 import urllib
 
 class SeleniumBrowserDriver(object):
-    def __init__(self, browser = "*firefox"):
+    def __init__(self, browser = "*firefox", root_dir = os.curdir):
         self.__host = "localhost"
         self.__port = 4444
         self.__browser = browser
-    
+        self.root_dir = root_dir
+		
     def __wait_for_server_to_start(self):
         server_started = False
         while server_started == False: 
@@ -31,7 +33,12 @@ class SeleniumBrowserDriver(object):
         self.selenium.start()
         
     def page_open(self, url):
-        self.selenium.open(url)
+		if self.is_url(url):
+			self.selenium.open(url)
+		else:
+			new_url = os.path.join("file://" + os.path.abspath(self.root_dir), url)
+			print new_url
+			self.selenium.open(new_url)
     
     def type(self, input_selector, text):
         self.selenium.type(input_selector, text)
@@ -39,7 +46,7 @@ class SeleniumBrowserDriver(object):
     def click_button(self, button_selector):
         self.selenium.click(button_selector)
 	
-    def button_is_visible(self, button_selector):
+    def is_element_visible(self, button_selector):
         return self.selenium.is_element_present(button_selector) and self.selenium.is_visible(button_selector)
 	
     def wait_for_page(self, timeout = 20000):
@@ -53,3 +60,9 @@ class SeleniumBrowserDriver(object):
     
     def stop(self):
         self.selenium_server.stop()
+
+    def is_url(self, url):
+        url_regex = re.compile(r"^(?#Protocol)(?:(?:ht|f)tp(?:s?)\:\/\/|~/|/)?(?#Username:Password)(?:\w+:\w+@)?(?#Subdomains)(?:(?:[-\w]+\.)+(?#TopLevel Domains)(?:com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum|travel|[a-z]{2}))(?#Port)(?::[\d]{1,5})?(?#Directories)(?:(?:(?:/(?:[-\w~!$+|.,=]|%[a-f\d]{2})+)+|/)+|\?|#)?(?#Query)(?:(?:\?(?:[-\w~!$+|.,*:]|%[a-f\d{2}])+=(?:[-\w~!$+|.,*:=]|%[a-f\d]{2})*)(?:&(?:[-\w~!$+|.,*:]|%[a-f\d{2}])+=(?:[-\w~!$+|.,*:=]|%[a-f\d]{2})*)*)*(?#Anchor)(?:#(?:[-\w~!$+|.,*:=]|%[a-f\d]{2})*)?$")
+        return url_regex.match(url)
+
+		

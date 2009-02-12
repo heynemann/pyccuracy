@@ -24,3 +24,10 @@ class ActionTestBase(unittest.TestCase):
 	def get_pattern(self, culture):
 		return "*.acc"
 	
+	def run_tests(self):
+	    for language in self.languages_to_test:
+		    self.pyccuracy.run_tests(root = self.get_root_dir(language), 
+									 default_language = language, 
+									 pattern = self.get_pattern(language), 
+									 languages_dir = self.get_languages_dir(),
+									 action_root = self.get_actions_path())
