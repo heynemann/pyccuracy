@@ -24,7 +24,8 @@ class Pyccuracy(object):
 		self.__print_results()
 	
 	def __print_results(self):
-		print self.test_fixture
+		print self.test_fixture.get_results()
+		print "\n"
 
 if __name__ == "__main__":
 	pyc = Pyccuracy()

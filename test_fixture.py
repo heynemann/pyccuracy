@@ -1,4 +1,6 @@
 from errors import *
+from test_result import *
+from story import *
 
 class TestFixture(object):
 	def __init__(self, language):
@@ -21,11 +23,14 @@ class TestFixture(object):
 		self.stories.append(story)
 		return story
 		
-	def __str__(self):
-		messages = []
-		messages.append("%d %s:\n%s" % (len(self.invalid_test_files), self.language["invalid_test_files"], "\n-".join(self.invalid_test_files)))
-		messages.append("%d %s:\n%s" % (len(self.no_story_definition), self.language["files_without_header"], "\n-".join(self.no_story_definition)))
+	def get_results(self):
+		return TestResult(self.language, self.stories, self.invalid_test_files, self.no_story_definition)
 		
+	def __str__(self):
+		return self.get_results()
+		
+	def get_stories_string():
+		messages = []
 		for story in self.stories:
 			messages.append("%s %s\n%s %s\n%s %s \n%s: %s" % 
 												(self.language["as_a"],
@@ -49,90 +54,8 @@ class TestFixture(object):
 				for action in scenario.thens:
 					str = str + (template % (action.description, action.status))
 				messages.append(str)
-			
-		return "\n\n".join(messages)
-		
-class Story(object):
-	def __init__(self, as_a, i_want_to, so_that):
-		self.as_a = as_a
-		self.i_want_to = i_want_to
-		self.so_that = so_that
-		self.scenarios = []
-		self.status = "UNKNOWN"
-		
-	def start_scenario(self, scenario_index, scenario_title):
-		scenario = Scenario(self, scenario_index, scenario_title)
-		self.scenarios.append(scenario)
-		return scenario
-		
-	def mark_as_failed(self):
-		self.status = "FAILED"
-	
-	def mark_as_successful(self):
-		self.status = "SUCCESSFUL"
-	
-class Scenario(object):
-	def __init__(self, story, index, title):
-		self.story = story
-		self.index = index
-		self.title = title
-		self.givens = []
-		self.whens = []
-		self.thens = []
-		self.status = "UNKNOWN"
-	
-	def add_given(self, action_description, execute_function, arguments):
-		action = Action(self, action_description, execute_function, arguments)
-		self.givens.append(action)
-		return action
-		
-	def add_when(self, action_description, execute_function, arguments):
-		action = Action(self, action_description, execute_function, arguments)
-		self.whens.append(action)
-		return action
-	
-	def add_then(self, action_description, execute_function, arguments):
-		action = Action(self, action_description, execute_function, arguments)
-		self.thens.append(action)
-		return action
-		
-	def mark_as_failed(self):
-		self.status = "FAILED"
-		self.story.mark_as_failed()
-	
-	def mark_as_successful(self):
-		self.status = "SUCCESSFUL"
-		self.story.mark_as_successful()
-		
-class Action(object):
-	def __init__(self, scenario, description, execute_function, arguments):
-		self.scenario = scenario
-		self.description = description
-		self.execute_function = execute_function
-		self.arguments = arguments
-		self.status = "UNKNOWN"
-	
-	def execute(self):
-		try:
-			if (self.arguments):
-				self.execute_function(self.arguments)
-			else:
-				self.execute_function()
-		except TestFailedError:
-			self.mark_as_failed()
-			return 0
-		
-		self.mark_as_successful()
-		return 1
-		
-	def mark_as_failed(self):
-		self.status = "FAILED"
-		self.scenario.mark_as_failed()
-	
-	def mark_as_successful(self):
-		self.status = "SUCCESSFUL"
-		self.scenario.mark_as_successful()
-		
+		return messages
+
 if __name__ == "__main__":
 	fixture = test_fixture()
 	fixture.add_invalid_test_file("some invalid path")

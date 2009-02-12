@@ -11,11 +11,19 @@ invalid_test_files = invalid test files
 files_without_header = test files without the proper header
 story_status = Story Status
 
+#Test Run Summary
+test_run_summary = Test run Summary
+stories_ran_successfully = %d stories ran successfully (%.2f%%)
+stories_that_failed = %d stories had failures (%.2f%%)
+scenarios_ran_successfully = %d scenarios ran successfully (%.2f%%)
+scenarios_that_failed = %d scenarios had failures (%.2f%%)
+
+#Scenario Starter Regex
+scenario_starter_regex = ^Scenario (\d+) - ([\w\s]+)$
+
 #Actions Regular Expressions
 open_regex = ^(And )?I go to [\"]([\w:/.]+)[\"]$
 see_title_regex = ^(And )?I see [\"](.+)[\"] title$
 click_button_regex = ^(And )?I click [\"](.+)[\"] button$
 type_regex = ^(And )?I fill [\"](.+)[\"] textbox with [\"](.+)[\"]$
 
-#Scenario Starter Regex
-scenario_starter_regex = ^Scenario (\d+) - ([\w\s]+)$

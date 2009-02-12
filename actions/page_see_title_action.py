@@ -19,7 +19,7 @@ class PageSeeTitleAction(object):
 		expected_title = values[0]
 		title = self.browser_driver.get_title()
 		if (title != expected_title):
-			raise TestFailedError()
+			raise ActionFailedError("The expected title (%s) does not match the specified title (%s)" % (title, expected_title))
 	
 	def __call__(browser_driver):
 		return PageSeeTitleAction(browser_driver)

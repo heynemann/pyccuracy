@@ -8,14 +8,21 @@ given = Dado que
 when = Quando
 then = Entao
 invalid_test_files = arquivos de teste invalidos
-files_without_header = arquivos de teste sem o cabeçalho correto
+files_without_header = arquivos de teste sem o cabecalho correto
 story_status = Status da Story
+
+#Sumario dos Testes
+test_run_summary = Sumario dos Testes
+stories_ran_successfully = %d stories tiveram sucesso (%.2f%%)
+stories_that_failed = %d stories falharam (%.2f%%)
+scenarios_ran_successfully = %d cenarios tiveram sucesso (%.2f%%)
+scenarios_that_failed = %d cenarios falharam (%.2f%%)
+
+#Regular Expression que Inicia Cenario
+scenario_starter_regex = ^Cenario (\d+) - ([\w\s]+)$
 
 #Regular Expressions de Acoes
 open_regex = ^(E )?[eE]u navego para [\"]([\w:/.]+)[\"]$
 see_title_regex = ^(E )?[eE]u vejo o titulo como [\"](.+)[\"]$
 click_button_regex = ^(E )?[eE]u clico no botao [\"](.+)[\"]$
 type_regex = ^(E )?[eE]u preencho a caixa de texto [\"](.+)[\"] com [\"](.+)[\"]$
-
-#Regular Expression que Inicia Cenario
-scenario_starter_regex = ^Cenario (\d+) - ([\w\s]+)$

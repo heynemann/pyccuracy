@@ -18,4 +18,4 @@ When
 	I fill "q" textbox with "Monty Python"
 	And I click "btnG" button
 Then
-	I see "Monty Python - Pesquisa Google" title
+	I see "Monty Python - Pesuisa Google" title
