@@ -10,13 +10,9 @@ class SeleniumServer(threading.Thread):
     out_file = None
     
     def run(self, log_file="./out.txt"):
-        print "selenium server run -- 1"
-        
         self.out_file = open(log_file, mode='a')
         serverJar = os.path.dirname(__file__) + "/lib/selenium-server/selenium-server.jar"
         self.current_process = subprocess.Popen("java -jar %s" %(serverJar), stdout=self.out_file, shell=True)
-        
-        print "selenium server -- fim"
             
     def stop(self):
         self.out_file.close()

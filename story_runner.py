@@ -1,6 +1,6 @@
 from test_fixture import *
 
-class StoryRunner:
+class StoryRunner(object):
 	def __init__(self, browser_driver, test_fixture):
 		self.browser_driver = browser_driver
 		self.test_fixture = test_fixture

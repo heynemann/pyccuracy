@@ -2,7 +2,7 @@ from locator import *
 from test_fixture import *
 import re
 
-class TestFixtureParser:
+class TestFixtureParser(object):
 	def __init__(self, browser_driver, language):
 		self.language = language
 		self.story_lines = (language["as_a"], language["i_want_to"], language["so_that"],)
