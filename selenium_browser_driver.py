@@ -11,8 +11,15 @@ class SeleniumServer(threading.Thread):
     
     def run(self, log_file="./out.txt"):
         self.out_file = open(log_file, mode='a')
+        self.current_process = self.__get_subprocess_for_os(self.out_file)
+        
+    def __get_subprocess_for_os(self,log_file):
         serverJar = os.path.dirname(__file__) + "/lib/selenium-server/selenium-server.jar"
-        self.current_process = subprocess.Popen("java -jar %s" %(serverJar), stdout=self.out_file, shell=True)
+
+        if platform == 'win32': 
+            return subprocess.Popen("java -jar %s" %(serverJar), stdout=log_file)
+        else:
+            return subprocess.Popen("java -jar %s" %(serverJar), stdout=self.out_file, shell=True)
             
     def stop(self):
         self.out_file.close()
