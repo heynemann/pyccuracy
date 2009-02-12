@@ -1,7 +1,7 @@
 import re
 from selenium_browser_driver import *
 
-class PageGoToAction(object):
+class PageGoToAction:
 	def __init__(self, browser_driver, language):
 		self.browser_driver = browser_driver
 		self.language = language
