@@ -7,7 +7,7 @@ class TestStoryRunner(unittest.TestCase):
     svr = None
     
     def setUp(self):
-        self.svr = selenium_server()        
+        self.svr = SeleniumServer()        
         self.svr.run()
         
     def test_runner(self):
