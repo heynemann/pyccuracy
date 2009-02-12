@@ -16,8 +16,7 @@ class TestStoryRunner(unittest.TestCase):
         self.assertNotEquals(pyc,None)
         
     def tearDown(self):
-        #self.svr.stop()
-        pass
+        self.svr.stop()
 
 if __name__ == "__main__":
     unittest.main()
