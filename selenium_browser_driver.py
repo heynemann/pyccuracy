@@ -1,15 +1,33 @@
 from selenium import *
 from selenium_server import SeleniumServer
 import time
+import urllib
 
 class SeleniumBrowserDriver(object):
+    def __init__(self, browser = "*firefox"):
+        self.__host = "localhost"
+        self.__port = 4444
+        self.__browser = browser
+    
+    def __wait_for_server_to_start(self):
+        server_started = False
+        while server_started == False: 
+            try:
+                url = "http://%s:%s/" % (self.__host, self.__port)
+                request = urllib.urlopen(url)
+                server_started = True
+                request.close()
+            except IOError, e:
+                server_started = False
+            time.sleep(2)
+
     def start(self):
         self.selenium_server = SeleniumServer()
         self.selenium_server.start()
-        time.sleep(2) # hackish: used to work on Mac OS
+        self.__wait_for_server_to_start()
     
     def start_test(self, url = "http://www.someurl.com"):
-        self.selenium = selenium("localhost", 4444, "*firefox", url)
+        self.selenium = selenium(self.__host, self.__port, self.__browser, url)
         self.selenium.start()
         
     def open(self, url):
