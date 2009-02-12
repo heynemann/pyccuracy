@@ -9,17 +9,20 @@ class TestResult(object):
 		self.failed_stories = 0
 		self.successful_scenarios = 0
 		self.failed_scenarios = 0
+		self.status = "SUCCESSFUL"
 		self.__parse_results()
 		
 	def __parse_results(self):
 		self.invalid_files = len(self.invalid_test_files) + len(self.no_story_definition)
 		for story in self.stories:
 			if story.status == "SUCCESSFUL": self.successful_stories+=1
-			if story.status == "FAILED": self.failed_stories+=1
+			if story.status == "FAILED": 
+			    self.failed_stories+=1
+			    self.status = "FAILED"
 			for scenario in story.scenarios:
 				if scenario.status == "SUCCESSFUL": self.successful_scenarios+=1
 				if scenario.status == "FAILED": self.failed_scenarios+=1
-				
+	
 	def __str__(self):
 		messages = []
 		

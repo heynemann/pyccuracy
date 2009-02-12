@@ -2,6 +2,7 @@ from selenium_browser_driver import *
 from story_runner import *
 from test_fixture_parser import *
 from language import *
+from errors import *
 	
 class Pyccuracy(object):
 	def run_tests(self, 
@@ -28,6 +29,9 @@ class Pyccuracy(object):
 		finally:
 			self.current_browser_driver.stop()
 		self.__print_results()
+		
+		if self.test_fixture.get_results().status == "FAILED":
+			raise TestFailedError("The test failed!")
 	
 	def __print_results(self):
 		print self.test_fixture.get_results()

@@ -1,5 +1,6 @@
 import re
 from selenium_browser_driver import *
+from errors import *
 
 class ButtonIsVisibleAction(object):
 	def __init__(self, browser_driver, language):
@@ -16,8 +17,8 @@ class ButtonIsVisibleAction(object):
 		
 	def execute(self, values):
 		button_name = values[0]
-		is_visible = self.browser_driver.is_button_visible(button_name)
-		if (is_visible):
+		is_visible = self.browser_driver.button_is_visible(button_name)
+		if not is_visible:
 			raise ActionFailedError(self.language["button_is_visible_failure"] % (button_name))
 
 	def __call__(browser_driver):

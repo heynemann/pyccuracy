@@ -30,7 +30,7 @@ class SeleniumBrowserDriver(object):
         self.selenium = selenium(self.__host, self.__port, self.__browser, url)
         self.selenium.start()
         
-    def open(self, url):
+    def page_open(self, url):
         self.selenium.open(url)
     
     def type(self, input_selector, text):
@@ -38,10 +38,10 @@ class SeleniumBrowserDriver(object):
         
     def click_button(self, button_selector):
         self.selenium.click(button_selector)
-		
-	def is_button_visible(self, button_selector):
-		return self.selenium.is_element_present(button_selector) and self.selenium.is_visible(button_selector)
-    
+	
+    def button_is_visible(self, button_selector):
+        return self.selenium.is_element_present(button_selector) and self.selenium.is_visible(button_selector)
+	
     def wait_for_page(self, timeout = 20000):
         self.selenium.wait_for_page_to_load(timeout)
     

@@ -16,7 +16,7 @@ class PageGoToAction:
 		
 	def execute(self, values):
 		url = values[0]
-		self.browser_driver.open(url)
+		self.browser_driver.page_open(url)
 		self.browser_driver.wait_for_page()
 		
 	def __call__(browser_driver):

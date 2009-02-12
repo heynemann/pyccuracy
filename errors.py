@@ -3,14 +3,14 @@ class TestFailedError(Exception):
 		self.message = message
 		
 	def __str__(self):
-		return message
+		return self.message
 	
 class ActionFailedError(Exception):
 	def __init__(self, message):
 		self.message = message
 		
 	def __str__(self):
-		return message
+		return self.message
 	
 class LanguageParseError(Exception):
 	def __init__(self, culture, error_message = "The language file for the specified culture could not be parsed!"):
