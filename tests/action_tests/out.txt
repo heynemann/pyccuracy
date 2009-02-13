@@ -1,30 +1,31 @@
-17:03:46.115 INFO - Java: Sun Microsystems Inc. 11.0-b16
-17:03:46.116 INFO - OS: Windows Vista 6.0 x86
-17:03:46.117 INFO - v1.0-beta-2 [2571], with Core v1.0-beta-2 [2330]
-17:03:46.171 INFO - Version Jetty/5.1.x
-17:03:46.172 INFO - Started HttpContext[/selenium-server/driver,/selenium-server/driver]
-17:03:46.173 INFO - Started HttpContext[/selenium-server,/selenium-server]
-17:03:46.173 INFO - Started HttpContext[/,/]
-17:03:46.185 INFO - Started SocketListener on 0.0.0.0:4444
-17:03:46.186 INFO - Started org.mortbay.jetty.Server@3a6727
-17:03:48.563 INFO - Checking Resource aliases
-17:03:48.566 INFO - Command request: getNewBrowserSession[*firefox, http://www.google.com, ] on session null
-17:03:48.566 INFO - creating new remote session
-17:03:48.637 INFO - Allocated session 962c581289674f9bb5a607248f5fb4bb for http://www.google.com, launching...
-17:03:48.675 INFO - Preparing Firefox profile...
-17:03:51.440 INFO - Launching Firefox...
-17:03:54.609 INFO - Got result: OK,962c581289674f9bb5a607248f5fb4bb on session 962c581289674f9bb5a607248f5fb4bb
-17:03:54.616 INFO - Command request: open[file://D:\Development\Net\Stormwind\Pyccuracy\Trunk\Baseline\tests\action_tests\checkbox_tests.htm, ] on session 962c581289674f9bb5a607248f5fb4bb
-17:03:54.669 INFO - Got result: OK on session 962c581289674f9bb5a607248f5fb4bb
-17:03:54.672 INFO - Command request: waitForPageToLoad[20000, ] on session 962c581289674f9bb5a607248f5fb4bb
-17:03:54.677 INFO - Got result: OK on session 962c581289674f9bb5a607248f5fb4bb
-17:03:54.680 INFO - Command request: isElementPresent[chkSomething, ] on session 962c581289674f9bb5a607248f5fb4bb
-17:03:54.687 INFO - Got result: OK,true on session 962c581289674f9bb5a607248f5fb4bb
-17:03:54.690 INFO - Command request: isVisible[chkSomething, ] on session 962c581289674f9bb5a607248f5fb4bb
-17:03:54.695 INFO - Got result: OK,true on session 962c581289674f9bb5a607248f5fb4bb
-17:03:54.698 INFO - Command request: testComplete[, ] on session 962c581289674f9bb5a607248f5fb4bb
-17:03:54.698 INFO - Killing Firefox...
-17:03:54.752 INFO - Got result: OK on session 962c581289674f9bb5a607248f5fb4bb
+22:24:20.647 INFO - Java: Sun Microsystems Inc. 11.0-b16
+22:24:20.648 INFO - OS: Windows Vista 6.0 x86
+22:24:20.649 INFO - v1.0-beta-2 [2571], with Core v1.0-beta-2 [2330]
+22:24:20.703 INFO - Version Jetty/5.1.x
+22:24:20.703 INFO - Started HttpContext[/selenium-server/driver,/selenium-server/driver]
+22:24:20.704 INFO - Started HttpContext[/selenium-server,/selenium-server]
+22:24:20.704 INFO - Started HttpContext[/,/]
+22:24:20.717 INFO - Started SocketListener on 0.0.0.0:4444
+22:24:20.717 INFO - Started org.mortbay.jetty.Server@665753
+22:24:23.084 INFO - Checking Resource aliases
+22:24:23.087 INFO - Command request: getNewBrowserSession[*firefox, http://www.google.com, ] on session null
+22:24:23.087 INFO - creating new remote session
+22:24:23.159 INFO - Allocated session d6db412f65464b499c481dabe5474ca8 for http://www.google.com, launching...
+22:24:23.187 INFO - Preparing Firefox profile...
+22:24:26.191 INFO - Launching Firefox...
+22:24:29.701 INFO - Got result: OK,d6db412f65464b499c481dabe5474ca8 on session d6db412f65464b499c481dabe5474ca8
+22:24:29.708 INFO - Command request: open[file://D:\Development\Net\Stormwind\Pyccuracy\Trunk\Baseline\tests\action_tests\link_tests.htm, ] on session d6db412f65464b499c481dabe5474ca8
+22:24:29.770 INFO - Got result: OK on session d6db412f65464b499c481dabe5474ca8
+22:24:29.773 INFO - Command request: waitForPageToLoad[20000, ] on session d6db412f65464b499c481dabe5474ca8
+22:24:29.777 INFO - Got result: OK on session d6db412f65464b499c481dabe5474ca8
+22:24:29.781 INFO - Command request: isElementPresent[lnkSomething, ] on session d6db412f65464b499c481dabe5474ca8
+22:24:29.787 INFO - Got result: OK,true on session d6db412f65464b499c481dabe5474ca8
+22:24:29.789 INFO - Command request: isVisible[lnkSomething, ] on session d6db412f65464b499c481dabe5474ca8
+22:24:29.795 INFO - Got result: OK,true on session d6db412f65464b499c481dabe5474ca8
+22:24:29.797 INFO - Command request: testComplete[, ] on session d6db412f65464b499c481dabe5474ca8
+22:24:29.797 INFO - Killing Firefox...
+22:24:29.855 INFO - Got result: OK on session d6db412f65464b499c481dabe5474ca8
+4bb
 b8b
 16:33:22.313 INFO - Command request: open[http://www.google.com, ] on session 141235391d1244ddbdb07d0a66d7cb8b
 16:33:23.949 INFO - Got result: OK on session 141235391d1244ddbdb07d0a66d7cb8b
