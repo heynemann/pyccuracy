@@ -1,64 +1,132 @@
-01:57:28.577 INFO - Java: Sun Microsystems Inc. 11.0-b16
-01:57:28.578 INFO - OS: Windows Vista 6.0 x86
-01:57:28.579 INFO - v1.0-beta-2 [2571], with Core v1.0-beta-2 [2330]
-01:57:28.634 INFO - Version Jetty/5.1.x
-01:57:28.634 INFO - Started HttpContext[/selenium-server/driver,/selenium-server/driver]
-01:57:28.635 INFO - Started HttpContext[/selenium-server,/selenium-server]
-01:57:28.635 INFO - Started HttpContext[/,/]
-01:56:35.196 INFO - Started SocketListener on 0.0.0.0:4444
-01:56:35.196 INFO - Started org.mortbay.jetty.Server@3a6727
-01:57:22.643 INFO - Checking Resource aliases
-01:57:22.646 INFO - Command request: getNewBrowserSession[*firefox, http://www.google.com, ] on session null
-01:57:22.646 INFO - creating new remote session
-01:57:22.716 INFO - Allocated session 77ede2d76b03428294656f3e47e52557 for http://www.google.com, launching...
-01:57:22.746 INFO - Preparing Firefox profile...
-01:57:25.281 INFO - Launching Firefox...
-01:57:28.276 INFO - Got result: OK,77ede2d76b03428294656f3e47e52557 on session 77ede2d76b03428294656f3e47e52557
-01:57:28.283 INFO - Command request: open[file://D:\Development\Net\Stormwind\Pyccuracy\Trunk\Baseline\tests\action_tests\select_tests.htm, ] on session 77ede2d76b03428294656f3e47e52557
-01:57:28.354 INFO - Got result: OK on session 77ede2d76b03428294656f3e47e52557
-01:57:28.357 INFO - Command request: waitForPageToLoad[20000, ] on session 77ede2d76b03428294656f3e47e52557
-01:57:28.374 INFO - Got result: OK on session 77ede2d76b03428294656f3e47e52557
-01:57:28.378 INFO - Command request: isElementPresent[//select[@name='selSomething' or @id='selSomething'], ] on session 77ede2d76b03428294656f3e47e52557
-01:57:28.387 INFO - Got result: OK,true on session 77ede2d76b03428294656f3e47e52557
-01:57:28.389 INFO - Command request: isVisible[//select[@name='selSomething' or @id='selSomething'], ] on session 77ede2d76b03428294656f3e47e52557
-01:57:28.396 INFO - Got result: OK,true on session 77ede2d76b03428294656f3e47e52557
-01:57:28.399 INFO - Command request: isElementPresent[//select[@name='selSomethingElse' or @id='selSomethingElse'], ] on session 77ede2d76b03428294656f3e47e52557
-01:57:28.404 INFO - Got result: OK,true on session 77ede2d76b03428294656f3e47e52557
-01:57:28.407 INFO - Command request: isVisible[//select[@name='selSomethingElse' or @id='selSomethingElse'], ] on session 77ede2d76b03428294656f3e47e52557
-01:57:28.412 INFO - Got result: OK,true on session 77ede2d76b03428294656f3e47e52557
-01:57:28.416 INFO - Command request: testComplete[, ] on session 77ede2d76b03428294656f3e47e52557
-01:57:28.416 INFO - Killing Firefox...
-01:57:28.465 INFO - Got result: OK on session 77ede2d76b03428294656f3e47e52557
-01:57:30.496 INFO - Command request: getNewBrowserSession[*firefox, http://www.google.com, ] on session null
-01:57:30.496 INFO - creating new remote session
-01:57:30.496 INFO - Allocated session af926bbe95f74986b34fa67f96e673b2 for http://www.google.com, launching...
-01:57:30.519 INFO - Preparing Firefox profile...
-01:57:34.125 INFO - Launching Firefox...
-01:57:38.407 INFO - Got result: OK,af926bbe95f74986b34fa67f96e673b2 on session af926bbe95f74986b34fa67f96e673b2
-01:57:38.410 INFO - Command request: open[file://D:\Development\Net\Stormwind\Pyccuracy\Trunk\Baseline\tests\action_tests\select_tests.htm, ] on session af926bbe95f74986b34fa67f96e673b2
-01:57:38.470 INFO - Got result: OK on session af926bbe95f74986b34fa67f96e673b2
-01:57:38.474 INFO - Command request: waitForPageToLoad[20000, ] on session af926bbe95f74986b34fa67f96e673b2
-01:57:38.479 INFO - Got result: OK on session af926bbe95f74986b34fa67f96e673b2
-01:57:38.482 INFO - Command request: isElementPresent[//select[@name='selSomething' or @id='selSomething'], ] on session af926bbe95f74986b34fa67f96e673b2
-01:57:38.491 INFO - Got result: OK,true on session af926bbe95f74986b34fa67f96e673b2
-01:57:38.494 INFO - Command request: isVisible[//select[@name='selSomething' or @id='selSomething'], ] on session af926bbe95f74986b34fa67f96e673b2
-01:57:38.504 INFO - Got result: OK,true on session af926bbe95f74986b34fa67f96e673b2
-01:57:38.506 INFO - Command request: isElementPresent[//select[@name='selSomethingElse' or @id='selSomethingElse'], ] on session af926bbe95f74986b34fa67f96e673b2
-01:57:38.518 INFO - Got result: OK,true on session af926bbe95f74986b34fa67f96e673b2
-01:57:38.521 INFO - Command request: isVisible[//select[@name='selSomethingElse' or @id='selSomethingElse'], ] on session af926bbe95f74986b34fa67f96e673b2
-01:57:38.534 INFO - Got result: OK,true on session af926bbe95f74986b34fa67f96e673b2
-01:57:38.537 INFO - Command request: testComplete[, ] on session af926bbe95f74986b34fa67f96e673b2
-01:57:38.537 INFO - Killing Firefox...
-01:57:38.574 INFO - Got result: OK on session af926bbe95f74986b34fa67f96e673b2
-ion e9d9c3da4c034531aed538078aa09e34
-01:44:06.437 INFO - Got result: OK,true on session e9d9c3da4c034531aed538078aa09e34
-01:44:06.440 INFO - Command request: isElementPresent[//input[(@name='btnSomethingElse33' or @id='btnSomethingElse33') and (@type='button' or @type='submit')] | //button[@name='btnSomethingElse33' or @id='btnSomethingElse33'], ] on session e9d9c3da4c034531aed538078aa09e34
-01:44:06.452 INFO - Got result: OK,false on session e9d9c3da4c034531aed538078aa09e34
-01:44:06.455 INFO - Command request: testComplete[, ] on session e9d9c3da4c034531aed538078aa09e34
-01:44:06.455 INFO - Killing Firefox...
-01:44:06.511 INFO - Got result: OK on session e9d9c3da4c034531aed538078aa09e34
-session a322ba4d5a0e4a8281910a5d686b60ea
-01:43:57.585 INFO - Got result: OK,true on session a322ba4d5a0e4a8281910a5d686b60ea
-01:43:57.588 INFO - Command request: testComplete[, ] on session a322ba4d5a0e4a8281910a5d686b60ea
-01:43:57.589 INFO - Killing Firefox...
-01:43:57.634 INFO - Got result: OK on session a322ba4d5a0e4a8281910a5d686b60ea
+03:17:49.037 INFO - Java: Sun Microsystems Inc. 11.0-b16
+03:17:49.037 INFO - OS: Windows Vista 6.0 x86
+03:17:49.038 INFO - v1.0-beta-2 [2571], with Core v1.0-beta-2 [2330]
+03:17:49.094 INFO - Version Jetty/5.1.x
+03:17:49.094 INFO - Started HttpContext[/selenium-server/driver,/selenium-server/driver]
+03:17:49.095 INFO - Started HttpContext[/selenium-server,/selenium-server]
+03:17:49.095 INFO - Started HttpContext[/,/]
+03:17:49.108 INFO - Started SocketListener on 0.0.0.0:4444
+03:17:49.108 INFO - Started org.mortbay.jetty.Server@4a65e0
+03:17:51.487 INFO - Checking Resource aliases
+03:17:51.490 INFO - Command request: getNewBrowserSession[*firefox, http://www.google.com, ] on session null
+03:17:51.490 INFO - creating new remote session
+03:17:51.563 INFO - Allocated session 3b6e0ca5356e440db91ecbb2cee7cbfb for http://www.google.com, launching...
+03:17:51.591 INFO - Preparing Firefox profile...
+03:17:54.109 INFO - Launching Firefox...
+03:17:57.135 INFO - Got result: OK,3b6e0ca5356e440db91ecbb2cee7cbfb on session 3b6e0ca5356e440db91ecbb2cee7cbfb
+03:17:57.138 INFO - Command request: open[file://D:\Development\Net\Stormwind\Pyccuracy\Trunk\Baseline\tests\action_tests\button_tests.htm, ] on session 3b6e0ca5356e440db91ecbb2cee7cbfb
+03:17:57.231 INFO - Got result: OK on session 3b6e0ca5356e440db91ecbb2cee7cbfb
+03:17:57.234 INFO - Command request: waitForPageToLoad[20000, ] on session 3b6e0ca5356e440db91ecbb2cee7cbfb
+03:17:57.246 INFO - Got result: OK on session 3b6e0ca5356e440db91ecbb2cee7cbfb
+03:17:57.251 INFO - Command request: isElementPresent[//input[(@name='btnSend' or @id='btnSend') and (@type='button' or @type='submit')] | //button[@name='btnSend' or @id='btnSend'], ] on session 3b6e0ca5356e440db91ecbb2cee7cbfb
+03:17:57.260 INFO - Got result: OK,true on session 3b6e0ca5356e440db91ecbb2cee7cbfb
+03:17:57.262 INFO - Command request: isVisible[//input[(@name='btnSend' or @id='btnSend') and (@type='button' or @type='submit')] | //button[@name='btnSend' or @id='btnSend'], ] on session 3b6e0ca5356e440db91ecbb2cee7cbfb
+03:17:57.275 INFO - Got result: OK,true on session 3b6e0ca5356e440db91ecbb2cee7cbfb
+03:17:57.277 INFO - Command request: click[//input[(@name='btnSend' or @id='btnSend') and (@type='button' or @type='submit')] | //button[@name='btnSend' or @id='btnSend'], ] on session 3b6e0ca5356e440db91ecbb2cee7cbfb
+03:17:57.290 INFO - Got result: OK on session 3b6e0ca5356e440db91ecbb2cee7cbfb
+03:17:57.292 INFO - Command request: waitForPageToLoad[20000, ] on session 3b6e0ca5356e440db91ecbb2cee7cbfb
+03:17:57.311 INFO - Got result: OK on session 3b6e0ca5356e440db91ecbb2cee7cbfb
+03:17:57.314 INFO - Command request: testComplete[, ] on session 3b6e0ca5356e440db91ecbb2cee7cbfb
+03:17:57.315 INFO - Killing Firefox...
+03:17:57.365 INFO - Got result: OK on session 3b6e0ca5356e440db91ecbb2cee7cbfb
+: OK,true on session 7e434091dd2d4ef2a3f42ba39d282023
+02:58:14.476 INFO - Command request: isVisible[btnSomethingElse, ] on session 7e434091dd2d4ef2a3f42ba39d282023
+02:58:14.487 INFO - Got result: OK,true on session 7e434091dd2d4ef2a3f42ba39d282023
+02:58:14.490 INFO - Command request: isElementPresent[btnSomethingElse2, ] on session 7e434091dd2d4ef2a3f42ba39d282023
+02:58:14.502 INFO - Got result: OK,true on session 7e434091dd2d4ef2a3f42ba39d282023
+02:58:14.505 INFO - Command request: isVisible[btnSomethingElse2, ] on session 7e434091dd2d4ef2a3f42ba39d282023
+02:58:14.517 INFO - Got result: OK,true on session 7e434091dd2d4ef2a3f42ba39d282023
+02:58:14.520 INFO - Command request: isElementPresent[btnSomethingElse3, ] on session 7e434091dd2d4ef2a3f42ba39d282023
+02:58:14.532 INFO - Got result: OK,true on session 7e434091dd2d4ef2a3f42ba39d282023
+02:58:14.535 INFO - Command request: isVisible[btnSomethingElse3, ] on session 7e434091dd2d4ef2a3f42ba39d282023
+02:58:14.547 INFO - Got result: OK,true on session 7e434091dd2d4ef2a3f42ba39d282023
+02:58:14.550 INFO - Command request: testComplete[, ] on session 7e434091dd2d4ef2a3f42ba39d282023
+02:58:14.550 INFO - Killing Firefox...
+02:58:14.596 INFO - Got result: OK on session 7e434091dd2d4ef2a3f42ba39d282023
+ession c37f4f5a554340bea2dd3822dc6a4bed
+02:57:17.455 INFO - Command request: type[//input[(@name='txtSomething3' or @id='txtSomething3') and (@type='text' or not(@type))] | //textarea[@name='txtSomething3' or @id='txtSomething3'], Monty Python] on session c37f4f5a554340bea2dd3822dc6a4bed
+02:57:17.471 INFO - Got result: OK on session c37f4f5a554340bea2dd3822dc6a4bed
+02:57:17.474 INFO - Command request: isElementPresent[//input[(@name='txtSomethingElse' or @id='txtSomethingElse') and (@type='text' or not(@type))] | //textarea[@name='txtSomethingElse' or @id='txtSomethingElse'], ] on session c37f4f5a554340bea2dd3822dc6a4bed
+02:57:17.488 INFO - Got result: OK,true on session c37f4f5a554340bea2dd3822dc6a4bed
+02:57:17.491 INFO - Command request: isVisible[//input[(@name='txtSomethingElse' or @id='txtSomethingElse') and (@type='text' or not(@type))] | //textarea[@name='txtSomethingElse' or @id='txtSomethingElse'], ] on session c37f4f5a554340bea2dd3822dc6a4bed
+02:57:17.505 INFO - Got result: OK,true on session c37f4f5a554340bea2dd3822dc6a4bed
+02:57:17.508 INFO - Command request: type[//input[(@name='txtSomethingElse' or @id='txtSomethingElse') and (@type='text' or not(@type))] | //textarea[@name='txtSomethingElse' or @id='txtSomethingElse'], Monty Python] on session c37f4f5a554340bea2dd3822dc6a4bed
+02:57:17.522 INFO - Got result: OK on session c37f4f5a554340bea2dd3822dc6a4bed
+02:57:17.525 INFO - Command request: isElementPresent[//input[(@name='txtSomethingElse2' or @id='txtSomethingElse2') and (@type='text' or not(@type))] | //textarea[@name='txtSomethingElse2' or @id='txtSomethingElse2'], ] on session c37f4f5a554340bea2dd3822dc6a4bed
+02:57:17.540 INFO - Got result: OK,true on session c37f4f5a554340bea2dd3822dc6a4bed
+02:57:17.543 INFO - Command request: isVisible[//input[(@name='txtSomethingElse2' or @id='txtSomethingElse2') and (@type='text' or not(@type))] | //textarea[@name='txtSomethingElse2' or @id='txtSomethingElse2'], ] on session c37f4f5a554340bea2dd3822dc6a4bed
+02:57:17.559 INFO - Got result: OK,true on session c37f4f5a554340bea2dd3822dc6a4bed
+02:57:17.561 INFO - Command request: type[//input[(@name='txtSomethingElse2' or @id='txtSomethingElse2') and (@type='text' or not(@type))] | //textarea[@name='txtSomethingElse2' or @id='txtSomethingElse2'], Monty Python] on session c37f4f5a554340bea2dd3822dc6a4bed
+02:57:17.579 INFO - Got result: OK on session c37f4f5a554340bea2dd3822dc6a4bed
+02:57:17.582 INFO - Command request: isElementPresent[//input[(@name='txtSomethingElse3' or @id='txtSomethingElse3') and (@type='text' or not(@type))] | //textarea[@name='txtSomethingElse3' or @id='txtSomethingElse3'], ] on session c37f4f5a554340bea2dd3822dc6a4bed
+02:57:17.598 INFO - Got result: OK,true on session c37f4f5a554340bea2dd3822dc6a4bed
+02:57:17.601 INFO - Command request: isVisible[//input[(@name='txtSomethingElse3' or @id='txtSomethingElse3') and (@type='text' or not(@type))] | //textarea[@name='txtSomethingElse3' or @id='txtSomethingElse3'], ] on session c37f4f5a554340bea2dd3822dc6a4bed
+02:57:17.619 INFO - Got result: OK,true on session c37f4f5a554340bea2dd3822dc6a4bed
+02:57:17.622 INFO - Command request: type[//input[(@name='txtSomethingElse3' or @id='txtSomethingElse3') and (@type='text' or not(@type))] | //textarea[@name='txtSomethingElse3' or @id='txtSomethingElse3'], Monty Python] on session c37f4f5a554340bea2dd3822dc6a4bed
+02:57:17.641 INFO - Got result: OK on session c37f4f5a554340bea2dd3822dc6a4bed
+02:57:17.643 INFO - Command request: testComplete[, ] on session c37f4f5a554340bea2dd3822dc6a4bed
+02:57:17.644 INFO - Killing Firefox...
+02:57:17.711 INFO - Got result: OK on session c37f4f5a554340bea2dd3822dc6a4bed
+ble[//input[(@name='btnSomething2' or @id='btnSomething2') and (@type='button' or @type='submit')] | //button[@name='btnSomething2' or @id='btnSomething2'], ] on session 07ea4803d0334f79b086d0ec57afae90
+02:20:01.118 INFO - Got result: OK,true on session 07ea4803d0334f79b086d0ec57afae90
+02:20:01.120 INFO - Command request: isElementPresent[//input[(@name='btnSomething3' or @id='btnSomething3') and (@type='button' or @type='submit')] | //button[@name='btnSomething3' or @id='btnSomething3'], ] on session 07ea4803d0334f79b086d0ec57afae90
+02:20:01.134 INFO - Got result: OK,true on session 07ea4803d0334f79b086d0ec57afae90
+02:20:01.136 INFO - Command request: isVisible[//input[(@name='btnSomething3' or @id='btnSomething3') and (@type='button' or @type='submit')] | //button[@name='btnSomething3' or @id='btnSomething3'], ] on session 07ea4803d0334f79b086d0ec57afae90
+02:20:01.149 INFO - Got result: OK,true on session 07ea4803d0334f79b086d0ec57afae90
+02:20:01.152 INFO - Command request: isElementPresent[//input[(@name='btnSomethingElse' or @id='btnSomethingElse') and (@type='button' or @type='submit')] | //button[@name='btnSomethingElse' or @id='btnSomethingElse'], ] on session 07ea4803d0334f79b086d0ec57afae90
+02:20:01.166 INFO - Got result: OK,true on session 07ea4803d0334f79b086d0ec57afae90
+02:20:01.168 INFO - Command request: isVisible[//input[(@name='btnSomethingElse' or @id='btnSomethingElse') and (@type='button' or @type='submit')] | //button[@name='btnSomethingElse' or @id='btnSomethingElse'], ] on session 07ea4803d0334f79b086d0ec57afae90
+02:20:01.182 INFO - Got result: OK,true on session 07ea4803d0334f79b086d0ec57afae90
+02:20:01.185 INFO - Command request: isElementPresent[//input[(@name='btnSomethingElse2' or @id='btnSomethingElse2') and (@type='button' or @type='submit')] | //button[@name='btnSomethingElse2' or @id='btnSomethingElse2'], ] on session 07ea4803d0334f79b086d0ec57afae90
+02:20:01.197 INFO - Got result: OK,true on session 07ea4803d0334f79b086d0ec57afae90
+02:20:01.200 INFO - Command request: isVisible[//input[(@name='btnSomethingElse2' or @id='btnSomethingElse2') and (@type='button' or @type='submit')] | //button[@name='btnSomethingElse2' or @id='btnSomethingElse2'], ] on session 07ea4803d0334f79b086d0ec57afae90
+02:20:01.214 INFO - Got result: OK,true on session 07ea4803d0334f79b086d0ec57afae90
+02:20:01.216 INFO - Command request: isElementPresent[//input[(@name='btnSomethingElse3' or @id='btnSomethingElse3') and (@type='button' or @type='submit')] | //button[@name='btnSomethingElse3' or @id='btnSomethingElse3'], ] on session 07ea4803d0334f79b086d0ec57afae90
+02:20:01.229 INFO - Got result: OK,true on session 07ea4803d0334f79b086d0ec57afae90
+02:20:01.232 INFO - Command request: isVisible[//input[(@name='btnSomethingElse3' or @id='btnSomethingElse3') and (@type='button' or @type='submit')] | //button[@name='btnSomethingElse3' or @id='btnSomethingElse3'], ] on session 07ea4803d0334f79b086d0ec57afae90
+02:20:01.245 INFO - Got result: OK,true on session 07ea4803d0334f79b086d0ec57afae90
+02:20:01.248 INFO - Command request: testComplete[, ] on session 07ea4803d0334f79b086d0ec57afae90
+02:20:01.248 INFO - Killing Firefox...
+02:20:01.312 INFO - Got result: OK on session 07ea4803d0334f79b086d0ec57afae90
+02:22:04.337 INFO - Command request: getNewBrowserSession[*firefox, http://www.google.com, ] on session null
+02:22:04.337 INFO - creating new remote session
+02:22:04.337 INFO - Allocated session 67eee934f3094d1ba0b47bdf711d38e4 for http://www.google.com, launching...
+02:22:04.377 INFO - Preparing Firefox profile...
+02:22:09.887 INFO - Launching Firefox...
+02:22:15.682 INFO - Got result: OK,67eee934f3094d1ba0b47bdf711d38e4 on session 67eee934f3094d1ba0b47bdf711d38e4
+02:22:15.688 INFO - Command request: open[file://D:\Development\Net\Stormwind\Pyccuracy\Trunk\Baseline\tests\action_tests\select_tests.htm, ] on session 67eee934f3094d1ba0b47bdf711d38e4
+02:22:15.742 INFO - Got result: OK on session 67eee934f3094d1ba0b47bdf711d38e4
+02:22:15.745 INFO - Command request: waitForPageToLoad[20000, ] on session 67eee934f3094d1ba0b47bdf711d38e4
+02:22:15.750 INFO - Got result: OK on session 67eee934f3094d1ba0b47bdf711d38e4
+02:22:15.752 INFO - Command request: isElementPresent[//select[@name='selSomething' or @id='selSomething'], ] on session 67eee934f3094d1ba0b47bdf711d38e4
+02:22:15.758 INFO - Got result: OK,true on session 67eee934f3094d1ba0b47bdf711d38e4
+02:22:15.760 INFO - Command request: isVisible[//select[@name='selSomething' or @id='selSomething'], ] on session 67eee934f3094d1ba0b47bdf711d38e4
+02:22:15.770 INFO - Got result: OK,true on session 67eee934f3094d1ba0b47bdf711d38e4
+02:22:15.772 INFO - Command request: isElementPresent[//select[@name='selSomethingElse' or @id='selSomethingElse'], ] on session 67eee934f3094d1ba0b47bdf711d38e4
+02:22:15.782 INFO - Got result: OK,true on session 67eee934f3094d1ba0b47bdf711d38e4
+02:22:15.785 INFO - Command request: isVisible[//select[@name='selSomethingElse' or @id='selSomethingElse'], ] on session 67eee934f3094d1ba0b47bdf711d38e4
+02:22:15.795 INFO - Got result: OK,true on session 67eee934f3094d1ba0b47bdf711d38e4
+02:22:15.798 INFO - Command request: testComplete[, ] on session 67eee934f3094d1ba0b47bdf711d38e4
+02:22:15.798 INFO - Killing Firefox...
+02:22:15.845 INFO - Got result: OK on session 67eee934f3094d1ba0b47bdf711d38e4
+02:22:17.876 INFO - Command request: getNewBrowserSession[*firefox, http://www.google.com, ] on session null
+02:22:17.876 INFO - creating new remote session
+02:22:17.876 INFO - Allocated session 9f7a978349204c1898c22a49ce58d124 for http://www.google.com, launching...
+02:22:17.926 INFO - Preparing Firefox profile...
+02:22:22.390 INFO - Launching Firefox...
+02:22:26.464 INFO - Got result: OK,9f7a978349204c1898c22a49ce58d124 on session 9f7a978349204c1898c22a49ce58d124
+02:22:26.466 INFO - Command request: open[file://D:\Development\Net\Stormwind\Pyccuracy\Trunk\Baseline\tests\action_tests\select_tests.htm, ] on session 9f7a978349204c1898c22a49ce58d124
+02:22:26.530 INFO - Got result: OK on session 9f7a978349204c1898c22a49ce58d124
+02:22:26.533 INFO - Command request: waitForPageToLoad[20000, ] on session 9f7a978349204c1898c22a49ce58d124
+02:22:26.539 INFO - Got result: OK on session 9f7a978349204c1898c22a49ce58d124
+02:22:26.542 INFO - Command request: isElementPresent[//select[@name='selSomething' or @id='selSomething'], ] on session 9f7a978349204c1898c22a49ce58d124
+02:22:26.551 INFO - Got result: OK,true on session 9f7a978349204c1898c22a49ce58d124
+02:22:26.553 INFO - Command request: isVisible[//select[@name='selSomething' or @id='selSomething'], ] on session 9f7a978349204c1898c22a49ce58d124
+02:22:26.560 INFO - Got result: OK,true on session 9f7a978349204c1898c22a49ce58d124
+02:22:26.563 INFO - Command request: isElementPresent[//select[@name='selSomethingElse' or @id='selSomethingElse'], ] on session 9f7a978349204c1898c22a49ce58d124
+02:22:26.568 INFO - Got result: OK,true on session 9f7a978349204c1898c22a49ce58d124
+02:22:26.570 INFO - Command request: isVisible[//select[@name='selSomethingElse' or @id='selSomethingElse'], ] on session 9f7a978349204c1898c22a49ce58d124
+02:22:26.578 INFO - Got result: OK,true on session 9f7a978349204c1898c22a49ce58d124
+02:22:26.580 INFO - Command request: testComplete[, ] on session 9f7a978349204c1898c22a49ce58d124
+02:22:26.580 INFO - Killing Firefox...
+02:22:26.627 INFO - Got result: OK on session 9f7a978349204c1898c22a49ce58d124

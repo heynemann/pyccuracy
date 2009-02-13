@@ -1,12 +1,13 @@
 import re
-from element_is_visible_helper import *
+from element_is_visible_base import *
+from element_selector import *
 
-class SelectIsVisibleAction(ElementIsVisibleHelper):
+class SelectIsVisibleAction(ElementIsVisibleBase):
 	def __init__(self, browser_driver, language):
-		ElementIsVisibleHelper.__init__(self, browser_driver, language)
+		ElementIsVisibleBase.__init__(self, browser_driver, language)
 		
 	def get_selector(self, element_name):
-		return r"//select[@name='%s' or @id='%s']" % (element_name, element_name)		
+		return ElementSelector.select(element_name)
 	
 	def matches(self, line):
 		reg = self.language["select_is_visible_regex"]

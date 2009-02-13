@@ -46,3 +46,5 @@ checkbox_is_visible_failure = A checkbox com nome ou id %s nao existe ou nao est
 link_is_visible_failure = O link com nome ou id %s nao existe ou nao esta visivel.
 
 select_is_visible_failure = A select com nome ou id %s nao existe ou nao esta visivel.
+
+textbox_is_visible_failure = A caixa de texto com nome ou id %s nao existe ou nao esta visivel.

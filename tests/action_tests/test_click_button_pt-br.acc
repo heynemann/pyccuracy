@@ -1,0 +1,11 @@
+Como um usuario do Pyccuracy
+Eu quero testar a acao de clicar um botao
+Para garantir que o Pyccuracy funciona em outras linguas
+
+Cenario 1 - Clicando em um botao
+Dado que
+	Eu navego para "button_tests.htm"
+Quando
+	Eu clico no botao "btnSend"
+Entao
+	A pagina eh recarregada

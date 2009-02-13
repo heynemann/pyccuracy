@@ -1,0 +1,16 @@
+As a Pyccuracy User
+I want to test type text action
+So that I can make sure Pyccuracy works
+
+Scenario 1 - Checking that we can type the text in the textboxes
+Given
+	I go to "textbox_tests.htm"
+When
+	I fill "txtSomething" textbox with "Monty Python"
+	And I fill "txtSomething2" textbox with "Monty Python"
+	And I fill "txtSomething3" textbox with "Monty Python"
+	And I fill "txtSomethingElse" textbox with "Monty Python"
+	And I fill "txtSomethingElse2" textbox with "Monty Python"
+	And I fill "txtSomethingElse3" textbox with "Monty Python"
+Then
+	The textboxes are filled

@@ -1,0 +1,16 @@
+Como um usuario do Pyccuracy
+Eu quero testar a acao de digitar um texto
+Para garantir que o Pyccuracy funciona em outras linguas
+
+Cenario 1 - Garantindo que se pode digitar em caixas de texto
+Dado que
+	Eu navego para "textbox_tests.htm"
+Quando
+	Eu preencho a caixa de texto "txtSomething" com "Monty Python"
+	E eu preencho a caixa de texto "txtSomething2" com "Monty Python"
+	E eu preencho a caixa de texto "txtSomething3" com "Monty Python"
+	E eu preencho a caixa de texto "txtSomethingElse" com "Monty Python"
+	E eu preencho a caixa de texto "txtSomethingElse2" com "Monty Python"
+	E eu preencho a caixa de texto "txtSomethingElse3" com "Monty Python"
+Entao
+	As caixas de texto estao preenchidas

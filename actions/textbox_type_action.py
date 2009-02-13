@@ -1,10 +1,15 @@
 import re
 from selenium_browser_driver import *
+from element_selector import *
+from action_base import *
 
-class TextboxTypeAction(object):
+class TextboxTypeAction(ActionBase):
 	def __init__(self, browser_driver, language):
 		self.browser_driver = browser_driver
 		self.language = language
+	
+	def get_selector(self, element_name):
+		return ElementSelector.textbox(element_name)
 	
 	def matches(self, line):
 		reg = self.language["textbox_type_regex"]
@@ -15,8 +20,10 @@ class TextboxTypeAction(object):
 		return self.last_match and (self.last_match.groups()[1],self.last_match.groups()[2]) or tuple([])
 		
 	def execute(self, values):
-		textbox = values[0]
+		textbox_name = values[0]
 		text = values[1]
+		textbox = self.get_selector(textbox_name)
+		self.assert_element_is_visible(textbox, self.language["textbox_is_visible_failure"] % textbox_name)
 		self.browser_driver.type(textbox, text)
 		
 	def __call__(browser_driver):

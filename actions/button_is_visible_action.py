@@ -1,12 +1,13 @@
 import re
-from element_is_visible_helper import *
+from element_is_visible_base import *
+from element_selector import *
 
-class ButtonIsVisibleAction(ElementIsVisibleHelper):
+class ButtonIsVisibleAction(ElementIsVisibleBase):
 	def __init__(self, browser_driver, language):
-		ElementIsVisibleHelper.__init__(self, browser_driver, language)
+		ElementIsVisibleBase.__init__(self, browser_driver, language)
 	
 	def get_selector(self, element_name):
-		return r"//input[(@name='%s' or @id='%s') and (@type='button' or @type='submit')] | //button[@name='%s' or @id='%s']" % (element_name, element_name, element_name, element_name)		
+		return ElementSelector.button(element_name)
 	
 	def matches(self, line):
 		reg = self.language["button_is_visible_regex"]

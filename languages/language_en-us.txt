@@ -46,3 +46,5 @@ checkbox_is_visible_failure = The checkbox with name or id %s does not exist or 
 link_is_visible_failure = The link with name or id %s does not exist or is not visible.
 
 select_is_visible_failure = The select with name or id %s does not exist or is not visible.
+
+textbox_is_visible_failure = The textbox with name or id %s does not exist or is not visible.
