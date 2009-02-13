@@ -9,7 +9,7 @@ Syntax
 	I see "<title>" title
 
 where:
-	<title> - title for the document currently loaded in the web browser
+	``<title>`` - title for the document currently loaded in the web browser
 	
 Description
 -----------
@@ -20,8 +20,8 @@ Raises
 Raises ActionFailedError if the current document's title is not the specified.
 This Exception is captured by Pyccuracy to assert that the test failed.
 	
-Example
--------
+Examples
+--------
 ::
 
 	...
@@ -30,5 +30,7 @@ Example
 
 *Rest of the test ommitted for clarity*
 
+Changelog
+---------
 .. versionadded:: 0.1
    Page See Title action.

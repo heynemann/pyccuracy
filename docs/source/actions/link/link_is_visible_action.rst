@@ -9,7 +9,7 @@ Syntax
 	I see "<link name>" link
 
 where:
-	<link name> - name for the desired link (anchor)
+	``<link name>`` - name for the desired link (anchor)
 	
 Description
 -----------
@@ -24,8 +24,8 @@ Raises
 Raises ActionFailedError if the link does not exist or is not visible.
 This Exception is captured by Pyccuracy to assert that the test failed.
 	
-Example
--------
+Examples
+--------
 ::
 
 	...
@@ -34,5 +34,7 @@ Example
 	
 *Rest of the test ommitted for clarity*
 
+Changelog
+---------
 .. versionadded:: 0.1
    Link Is Visible action.

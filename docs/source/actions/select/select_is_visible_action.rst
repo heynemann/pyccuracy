@@ -9,7 +9,7 @@ Syntax
 	I see "<select name>" select
 
 where:
-	<select name> - name for the desired select element
+	``<select name>`` - name for the desired select element
 	
 Description
 -----------
@@ -25,15 +25,17 @@ Raises
 Raises ActionFailedError if the select does not exist or is not visible.
 This Exception is captured by Pyccuracy to assert that the test failed.
 	
-Example
--------
+Examples
+--------
 ::
 
 	...
 	Then
-		I see "chkSomething" checkbox
+		I see "selSomething" select
 	
 *Rest of the test ommitted for clarity*
 
+Changelog
+---------
 .. versionadded:: 0.1
-   Checkbox Is Visible action.
+   Select Is Visible action.

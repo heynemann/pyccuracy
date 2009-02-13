@@ -9,7 +9,7 @@ Syntax
 	I see "<checkbox name>" checkbox
 
 where:
-	<checkbox name> - name for the desired input type="checkbox"
+	``<checkbox name>`` - name for the desired input type="checkbox"
 	
 Description
 -----------
@@ -24,8 +24,8 @@ Raises
 Raises ActionFailedError if the checkbox does not exist or is not visible.
 This Exception is captured by Pyccuracy to assert that the test failed.
 	
-Example
--------
+Examples
+--------
 ::
 
 	...
@@ -34,5 +34,7 @@ Example
 	
 *Rest of the test ommitted for clarity*
 
+Changelog
+---------
 .. versionadded:: 0.1
    Checkbox Is Visible action.
