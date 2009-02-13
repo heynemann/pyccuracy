@@ -4,6 +4,9 @@ from element_is_visible_helper import *
 class LinkIsVisibleAction(ElementIsVisibleHelper):
 	def __init__(self, browser_driver, language):
 		ElementIsVisibleHelper.__init__(self, browser_driver, language)
+
+	def get_selector(self, element_name):
+		return r"//a[(@name='%s' or @id='%s')]" % (element_name, element_name)
 	
 	def matches(self, line):
 		reg = self.language["link_is_visible_regex"]

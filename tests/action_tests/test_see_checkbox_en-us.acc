@@ -9,3 +9,4 @@ When
 	The page finishes loading
 Then
 	I see "chkSomething" checkbox
+	And I see "chkSomethingElse" checkbox

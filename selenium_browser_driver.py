@@ -37,7 +37,6 @@ class SeleniumBrowserDriver(object):
 			self.selenium.open(url)
 		else:
 			new_url = os.path.join("file://" + os.path.abspath(self.root_dir), url)
-			print new_url
 			self.selenium.open(new_url)
     
     def type(self, input_selector, text):

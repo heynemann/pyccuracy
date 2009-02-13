@@ -1,57 +1,64 @@
-22:24:20.647 INFO - Java: Sun Microsystems Inc. 11.0-b16
-22:24:20.648 INFO - OS: Windows Vista 6.0 x86
-22:24:20.649 INFO - v1.0-beta-2 [2571], with Core v1.0-beta-2 [2330]
-22:24:20.703 INFO - Version Jetty/5.1.x
-22:24:20.703 INFO - Started HttpContext[/selenium-server/driver,/selenium-server/driver]
-22:24:20.704 INFO - Started HttpContext[/selenium-server,/selenium-server]
-22:24:20.704 INFO - Started HttpContext[/,/]
-22:24:20.717 INFO - Started SocketListener on 0.0.0.0:4444
-22:24:20.717 INFO - Started org.mortbay.jetty.Server@665753
-22:24:23.084 INFO - Checking Resource aliases
-22:24:23.087 INFO - Command request: getNewBrowserSession[*firefox, http://www.google.com, ] on session null
-22:24:23.087 INFO - creating new remote session
-22:24:23.159 INFO - Allocated session d6db412f65464b499c481dabe5474ca8 for http://www.google.com, launching...
-22:24:23.187 INFO - Preparing Firefox profile...
-22:24:26.191 INFO - Launching Firefox...
-22:24:29.701 INFO - Got result: OK,d6db412f65464b499c481dabe5474ca8 on session d6db412f65464b499c481dabe5474ca8
-22:24:29.708 INFO - Command request: open[file://D:\Development\Net\Stormwind\Pyccuracy\Trunk\Baseline\tests\action_tests\link_tests.htm, ] on session d6db412f65464b499c481dabe5474ca8
-22:24:29.770 INFO - Got result: OK on session d6db412f65464b499c481dabe5474ca8
-22:24:29.773 INFO - Command request: waitForPageToLoad[20000, ] on session d6db412f65464b499c481dabe5474ca8
-22:24:29.777 INFO - Got result: OK on session d6db412f65464b499c481dabe5474ca8
-22:24:29.781 INFO - Command request: isElementPresent[lnkSomething, ] on session d6db412f65464b499c481dabe5474ca8
-22:24:29.787 INFO - Got result: OK,true on session d6db412f65464b499c481dabe5474ca8
-22:24:29.789 INFO - Command request: isVisible[lnkSomething, ] on session d6db412f65464b499c481dabe5474ca8
-22:24:29.795 INFO - Got result: OK,true on session d6db412f65464b499c481dabe5474ca8
-22:24:29.797 INFO - Command request: testComplete[, ] on session d6db412f65464b499c481dabe5474ca8
-22:24:29.797 INFO - Killing Firefox...
-22:24:29.855 INFO - Got result: OK on session d6db412f65464b499c481dabe5474ca8
-4bb
-b8b
-16:33:22.313 INFO - Command request: open[http://www.google.com, ] on session 141235391d1244ddbdb07d0a66d7cb8b
-16:33:23.949 INFO - Got result: OK on session 141235391d1244ddbdb07d0a66d7cb8b
-16:33:23.951 INFO - Command request: waitForPageToLoad[20000, ] on session 141235391d1244ddbdb07d0a66d7cb8b
-16:33:23.965 INFO - Got result: OK on session 141235391d1244ddbdb07d0a66d7cb8b
-16:33:23.968 INFO - Command request: isElementPresent[btnG, ] on session 141235391d1244ddbdb07d0a66d7cb8b
-16:33:23.982 INFO - Got result: OK,true on session 141235391d1244ddbdb07d0a66d7cb8b
-16:33:23.985 INFO - Command request: isVisible[btnG, ] on session 141235391d1244ddbdb07d0a66d7cb8b
-16:33:24.000 INFO - Got result: OK,true on session 141235391d1244ddbdb07d0a66d7cb8b
-16:33:24.003 INFO - Command request: testComplete[, ] on session 141235391d1244ddbdb07d0a66d7cb8b
-16:33:24.003 INFO - Killing Firefox...
-16:33:24.040 INFO - Got result: OK on session 141235391d1244ddbdb07d0a66d7cb8b
-16:33:26.074 INFO - Command request: getNewBrowserSession[*firefox, http://www.google.com, ] on session null
-16:33:26.074 INFO - creating new remote session
-16:33:26.074 INFO - Allocated session 36ec22552a9f46a0b6e414c1961ce948 for http://www.google.com, launching...
-16:33:26.096 INFO - Preparing Firefox profile...
-16:33:28.597 INFO - Launching Firefox...
-16:33:31.761 INFO - Got result: OK,36ec22552a9f46a0b6e414c1961ce948 on session 36ec22552a9f46a0b6e414c1961ce948
-16:33:31.763 INFO - Command request: open[http://www.google.com, ] on session 36ec22552a9f46a0b6e414c1961ce948
-16:33:33.327 INFO - Got result: OK on session 36ec22552a9f46a0b6e414c1961ce948
-16:33:33.330 INFO - Command request: waitForPageToLoad[20000, ] on session 36ec22552a9f46a0b6e414c1961ce948
-16:33:33.343 INFO - Got result: OK on session 36ec22552a9f46a0b6e414c1961ce948
-16:33:33.345 INFO - Command request: isElementPresent[btnG, ] on session 36ec22552a9f46a0b6e414c1961ce948
-16:33:33.360 INFO - Got result: OK,true on session 36ec22552a9f46a0b6e414c1961ce948
-16:33:33.363 INFO - Command request: isVisible[btnG, ] on session 36ec22552a9f46a0b6e414c1961ce948
-16:33:33.378 INFO - Got result: OK,true on session 36ec22552a9f46a0b6e414c1961ce948
-16:33:33.382 INFO - Command request: testComplete[, ] on session 36ec22552a9f46a0b6e414c1961ce948
-16:33:33.382 INFO - Killing Firefox...
-16:33:33.421 INFO - Got result: OK on session 36ec22552a9f46a0b6e414c1961ce948
+01:57:28.577 INFO - Java: Sun Microsystems Inc. 11.0-b16
+01:57:28.578 INFO - OS: Windows Vista 6.0 x86
+01:57:28.579 INFO - v1.0-beta-2 [2571], with Core v1.0-beta-2 [2330]
+01:57:28.634 INFO - Version Jetty/5.1.x
+01:57:28.634 INFO - Started HttpContext[/selenium-server/driver,/selenium-server/driver]
+01:57:28.635 INFO - Started HttpContext[/selenium-server,/selenium-server]
+01:57:28.635 INFO - Started HttpContext[/,/]
+01:56:35.196 INFO - Started SocketListener on 0.0.0.0:4444
+01:56:35.196 INFO - Started org.mortbay.jetty.Server@3a6727
+01:57:22.643 INFO - Checking Resource aliases
+01:57:22.646 INFO - Command request: getNewBrowserSession[*firefox, http://www.google.com, ] on session null
+01:57:22.646 INFO - creating new remote session
+01:57:22.716 INFO - Allocated session 77ede2d76b03428294656f3e47e52557 for http://www.google.com, launching...
+01:57:22.746 INFO - Preparing Firefox profile...
+01:57:25.281 INFO - Launching Firefox...
+01:57:28.276 INFO - Got result: OK,77ede2d76b03428294656f3e47e52557 on session 77ede2d76b03428294656f3e47e52557
+01:57:28.283 INFO - Command request: open[file://D:\Development\Net\Stormwind\Pyccuracy\Trunk\Baseline\tests\action_tests\select_tests.htm, ] on session 77ede2d76b03428294656f3e47e52557
+01:57:28.354 INFO - Got result: OK on session 77ede2d76b03428294656f3e47e52557
+01:57:28.357 INFO - Command request: waitForPageToLoad[20000, ] on session 77ede2d76b03428294656f3e47e52557
+01:57:28.374 INFO - Got result: OK on session 77ede2d76b03428294656f3e47e52557
+01:57:28.378 INFO - Command request: isElementPresent[//select[@name='selSomething' or @id='selSomething'], ] on session 77ede2d76b03428294656f3e47e52557
+01:57:28.387 INFO - Got result: OK,true on session 77ede2d76b03428294656f3e47e52557
+01:57:28.389 INFO - Command request: isVisible[//select[@name='selSomething' or @id='selSomething'], ] on session 77ede2d76b03428294656f3e47e52557
+01:57:28.396 INFO - Got result: OK,true on session 77ede2d76b03428294656f3e47e52557
+01:57:28.399 INFO - Command request: isElementPresent[//select[@name='selSomethingElse' or @id='selSomethingElse'], ] on session 77ede2d76b03428294656f3e47e52557
+01:57:28.404 INFO - Got result: OK,true on session 77ede2d76b03428294656f3e47e52557
+01:57:28.407 INFO - Command request: isVisible[//select[@name='selSomethingElse' or @id='selSomethingElse'], ] on session 77ede2d76b03428294656f3e47e52557
+01:57:28.412 INFO - Got result: OK,true on session 77ede2d76b03428294656f3e47e52557
+01:57:28.416 INFO - Command request: testComplete[, ] on session 77ede2d76b03428294656f3e47e52557
+01:57:28.416 INFO - Killing Firefox...
+01:57:28.465 INFO - Got result: OK on session 77ede2d76b03428294656f3e47e52557
+01:57:30.496 INFO - Command request: getNewBrowserSession[*firefox, http://www.google.com, ] on session null
+01:57:30.496 INFO - creating new remote session
+01:57:30.496 INFO - Allocated session af926bbe95f74986b34fa67f96e673b2 for http://www.google.com, launching...
+01:57:30.519 INFO - Preparing Firefox profile...
+01:57:34.125 INFO - Launching Firefox...
+01:57:38.407 INFO - Got result: OK,af926bbe95f74986b34fa67f96e673b2 on session af926bbe95f74986b34fa67f96e673b2
+01:57:38.410 INFO - Command request: open[file://D:\Development\Net\Stormwind\Pyccuracy\Trunk\Baseline\tests\action_tests\select_tests.htm, ] on session af926bbe95f74986b34fa67f96e673b2
+01:57:38.470 INFO - Got result: OK on session af926bbe95f74986b34fa67f96e673b2
+01:57:38.474 INFO - Command request: waitForPageToLoad[20000, ] on session af926bbe95f74986b34fa67f96e673b2
+01:57:38.479 INFO - Got result: OK on session af926bbe95f74986b34fa67f96e673b2
+01:57:38.482 INFO - Command request: isElementPresent[//select[@name='selSomething' or @id='selSomething'], ] on session af926bbe95f74986b34fa67f96e673b2
+01:57:38.491 INFO - Got result: OK,true on session af926bbe95f74986b34fa67f96e673b2
+01:57:38.494 INFO - Command request: isVisible[//select[@name='selSomething' or @id='selSomething'], ] on session af926bbe95f74986b34fa67f96e673b2
+01:57:38.504 INFO - Got result: OK,true on session af926bbe95f74986b34fa67f96e673b2
+01:57:38.506 INFO - Command request: isElementPresent[//select[@name='selSomethingElse' or @id='selSomethingElse'], ] on session af926bbe95f74986b34fa67f96e673b2
+01:57:38.518 INFO - Got result: OK,true on session af926bbe95f74986b34fa67f96e673b2
+01:57:38.521 INFO - Command request: isVisible[//select[@name='selSomethingElse' or @id='selSomethingElse'], ] on session af926bbe95f74986b34fa67f96e673b2
+01:57:38.534 INFO - Got result: OK,true on session af926bbe95f74986b34fa67f96e673b2
+01:57:38.537 INFO - Command request: testComplete[, ] on session af926bbe95f74986b34fa67f96e673b2
+01:57:38.537 INFO - Killing Firefox...
+01:57:38.574 INFO - Got result: OK on session af926bbe95f74986b34fa67f96e673b2
+ion e9d9c3da4c034531aed538078aa09e34
+01:44:06.437 INFO - Got result: OK,true on session e9d9c3da4c034531aed538078aa09e34
+01:44:06.440 INFO - Command request: isElementPresent[//input[(@name='btnSomethingElse33' or @id='btnSomethingElse33') and (@type='button' or @type='submit')] | //button[@name='btnSomethingElse33' or @id='btnSomethingElse33'], ] on session e9d9c3da4c034531aed538078aa09e34
+01:44:06.452 INFO - Got result: OK,false on session e9d9c3da4c034531aed538078aa09e34
+01:44:06.455 INFO - Command request: testComplete[, ] on session e9d9c3da4c034531aed538078aa09e34
+01:44:06.455 INFO - Killing Firefox...
+01:44:06.511 INFO - Got result: OK on session e9d9c3da4c034531aed538078aa09e34
+session a322ba4d5a0e4a8281910a5d686b60ea
+01:43:57.585 INFO - Got result: OK,true on session a322ba4d5a0e4a8281910a5d686b60ea
+01:43:57.588 INFO - Command request: testComplete[, ] on session a322ba4d5a0e4a8281910a5d686b60ea
+01:43:57.589 INFO - Killing Firefox...
+01:43:57.634 INFO - Got result: OK on session a322ba4d5a0e4a8281910a5d686b60ea

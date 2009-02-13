@@ -4,8 +4,13 @@ Para garantir que o Pyccuracy funciona em outras linguas
 
 Cenario 1 - Garantindo que o botao de pesquisa do google esta la
 Dado que
-	Eu navego para "http://www.google.com"
+	Eu navego para "button_tests.htm"
 Quando
 	A pagina termina de carregar
 Entao
-	Eu vejo o botao "btnG"
+	Eu vejo o botao "btnSomething"
+	E eu vejo o botao "btnSomething2"
+	E eu vejo o botao "btnSomething3"
+	E eu vejo o botao "btnSomethingElse"
+	E eu vejo o botao "btnSomethingElse2"
+	E eu vejo o botao "btnSomethingElse3"

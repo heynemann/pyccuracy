@@ -4,6 +4,9 @@ from element_is_visible_helper import *
 class CheckboxIsVisibleAction(ElementIsVisibleHelper):
 	def __init__(self, browser_driver, language):
 		ElementIsVisibleHelper.__init__(self, browser_driver, language)
+		
+	def get_selector(self, element_name):
+		return r"//input[(@name='%s' or @id='%s') and @type='checkbox']" % (element_name, element_name)		
 	
 	def matches(self, line):
 		reg = self.language["checkbox_is_visible_regex"]

@@ -1,0 +1,12 @@
+Como um usuario do Pyccuracy
+Eu quero testar a acao de ver uma select
+Para garantir que o Pyccuracy funciona em outras linguas
+
+Cenario 1 - Garantindo que a select da pagina de testes esta la
+Dado que
+	Eu navego para "select_tests.htm"
+Quando
+	A pagina termina de carregar
+Entao
+	Eu vejo a select "selSomething"
+	E eu vejo a select "selSomethingElse"

@@ -1,27 +1,28 @@
-=================
-I see "some" link
-=================
+===================
+I see "some" select
+===================
 
 Syntax
 ------
 ::
 
-	I see "<link name>" link
+	I see "<select name>" select
 
 where:
-	<link name> - name for the desired link (anchor)
+	<select name> - name for the desired select element
 	
 Description
 -----------
-Asserts that the specified link(anchor) exists **AND** is visible.
+Asserts that the specified select exists **AND** is visible.
 
 .. note::
 
    The specified name will be checked against both "name" and "id" values. Only if neither of those match, the element is deemed not available.
 
+
 Raises
 ------
-Raises ActionFailedError if the link does not exist or is not visible.
+Raises ActionFailedError if the select does not exist or is not visible.
 This Exception is captured by Pyccuracy to assert that the test failed.
 	
 Example
@@ -30,9 +31,9 @@ Example
 
 	...
 	Then
-		I see "lnkSomething" link
+		I see "chkSomething" checkbox
 	
 *Rest of the test ommitted for clarity*
 
 .. versionadded:: 0.1
-   Link Is Visible action.
+   Checkbox Is Visible action.

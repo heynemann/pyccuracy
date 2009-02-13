@@ -32,13 +32,17 @@ checkbox_is_visible_regex = ^(E )?[eE]u vejo a checkbox [\"](.+)[\"]$
 
 link_is_visible_regex = ^(E )?[eE]u vejo o link [\"](.+)[\"]$
 
+select_is_visible_regex = ^(E )?[eE]u vejo a select [\"](.+)[\"]$
+
 textbox_type_regex = ^(E )?[eE]u preencho a caixa de texto [\"](.+)[\"] com [\"](.+)[\"]$
 
 #Action Failure Messages
 page_see_title_failure = O titulo da pagina (%s) nao bate com o titulo esperado (%s)
 
-button_is_visible_failure = O botao com nome %s nao existe ou nao esta visivel.
+button_is_visible_failure = O botao com nome ou id %s nao existe ou nao esta visivel.
 
-checkbox_is_visible_failure = A checkbox com nome %s nao existe ou nao esta visivel.
+checkbox_is_visible_failure = A checkbox com nome ou id %s nao existe ou nao esta visivel.
 
-link_is_visible_failure = O link com nome %s nao existe ou nao esta visivel.
+link_is_visible_failure = O link com nome ou id %s nao existe ou nao esta visivel.
+
+select_is_visible_failure = A select com nome ou id %s nao existe ou nao esta visivel.

@@ -9,3 +9,4 @@ When
 	The page finishes loading
 Then
 	I see "lnkSomething" link
+	And I see "lnkSomethingElse" link

@@ -9,3 +9,4 @@ Quando
 	A pagina termina de carregar
 Entao
 	Eu vejo a checkbox "chkSomething"
+	E eu vejo a checkbox "chkSomethingElse"
