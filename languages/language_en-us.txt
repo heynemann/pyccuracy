@@ -24,6 +24,7 @@ scenario_starter_regex = ^Scenario (\d+) - (.+)$
 #Actions Regular Expressions
 page_go_to_regex = ^(And )?I go to [\"]([\w:/.]+)[\"]$
 page_see_title_regex = ^(And )?I see [\"](.+)[\"] title$
+page_wait_for_page_to_load_regex = ^(And )?I wait for the page to load( for (\d+) seconds)?$
 
 button_click_regex = ^(And )?I click [\"](.+)[\"] button$
 button_is_visible_regex = ^(And )?I see [\"](.+)[\"] button$

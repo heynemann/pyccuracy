@@ -1,0 +1,21 @@
+Como um usuario do Pyccuracy
+Eu quero testar a acao de esperar a pagina carregar
+Para garantir que o Pyccuracy funciona em outras linguas
+
+Cenario 1 - Aguardando a pagina de resultados carregar
+Dado que
+	Eu navego para "page_tests.htm"
+Quando
+	Eu clico na imagem "imgSubmit"
+	E eu espero a pagina ser carregada
+Entao
+	Eu vejo o titulo "It Works!"
+	
+Cenario 2 - Aguardando a pagina de resultados carregar por 10 segundos
+Dado que
+	Eu navego para "page_tests.htm"
+Quando
+	Eu clico na imagem "imgSubmit"
+	E eu espero a pagina ser carregada por 10 segundos
+Entao
+	Eu vejo o titulo "It Works!"

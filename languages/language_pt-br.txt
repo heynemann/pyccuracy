@@ -24,6 +24,7 @@ scenario_starter_regex = ^Cenario (\d+) - (.+)$
 #Regular Expressions de Acoes
 page_go_to_regex = ^(E )?[eE]u navego para [\"]([\w:/.]+)[\"]$
 page_see_title_regex = ^(E )?[eE]u vejo o titulo como [\"](.+)[\"]$
+page_wait_for_page_to_load_regex = ^(E )?[eE] espero a pagina ser carregada( por (\d+) segundos)?$
 
 button_click_regex = ^(E )?[eE]u clico no botao [\"](.+)[\"]$
 button_is_visible_regex = ^(E )?[eE]u vejo o botao [\"](.+)[\"]$
