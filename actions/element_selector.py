@@ -23,3 +23,8 @@ class ElementSelector(object):
 		return r"//input[(@name='%s' or @id='%s') and (@type='text' or not(@type))] | //textarea[@name='%s' or @id='%s']" % (element_name, element_name, element_name, element_name)
 		
 	textbox = staticmethod(textbox)
+	
+	def image(element_name):
+		return r"//img[@name='%s' or @id='%s']" % (element_name, element_name)
+		
+	image = staticmethod(image)

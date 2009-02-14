@@ -42,8 +42,8 @@ class SeleniumBrowserDriver(object):
     def type(self, input_selector, text):
         self.selenium.type(input_selector, text)
         
-    def click_button(self, button_selector):
-        self.selenium.click(button_selector)
+    def click_element(self, element_selector):
+        self.selenium.click(element_selector)
 	
     def is_element_visible(self, button_selector):
         return self.selenium.is_element_present(button_selector) and self.selenium.is_visible(button_selector)

@@ -1,0 +1,19 @@
+As a Pyccuracy User
+I want to test the click image action
+So that I can make sure Pyccuracy works
+
+Scenario 1 - Checking that we can click an image by name
+Given
+	I go to "image_tests.htm"
+When
+	I click "imgChangeTitle" image
+Then
+	I see "different title" title
+	
+Scenario 2 - Checking that we can click an image by id
+Given
+	I go to "image_tests.htm"
+When
+	I click "imgChangeTitle2" image
+Then
+	I see "different title 2" title

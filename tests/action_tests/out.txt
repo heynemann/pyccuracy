@@ -1,57 +1,62 @@
-22:26:30.371 INFO - Java: Sun Microsystems Inc. 11.0-b16
-22:26:30.371 INFO - OS: Windows Vista 6.0 x86
-22:26:30.372 INFO - v1.0-beta-2 [2571], with Core v1.0-beta-2 [2330]
-22:26:30.427 INFO - Version Jetty/5.1.x
-22:26:30.427 INFO - Started HttpContext[/selenium-server/driver,/selenium-server/driver]
-22:26:30.428 INFO - Started HttpContext[/selenium-server,/selenium-server]
-22:26:30.428 INFO - Started HttpContext[/,/]
-22:26:30.442 INFO - Started SocketListener on 0.0.0.0:4444
-22:26:30.442 INFO - Started org.mortbay.jetty.Server@4a65e0
-22:26:32.827 INFO - Checking Resource aliases
-22:26:32.830 INFO - Command request: getNewBrowserSession[*firefox, http://www.google.com, ] on session null
-22:26:32.830 INFO - creating new remote session
-22:26:32.903 INFO - Allocated session 326183061b8e424792629d8d45c218c5 for http://www.google.com, launching...
-22:26:32.932 INFO - Preparing Firefox profile...
-22:26:35.425 INFO - Launching Firefox...
-22:26:38.097 INFO - Got result: OK,326183061b8e424792629d8d45c218c5 on session 326183061b8e424792629d8d45c218c5
-22:26:38.100 INFO - Command request: open[file://D:\Development\Net\Stormwind\Pyccuracy\Trunk\Baseline\tests\action_tests\select_tests.htm, ] on session 326183061b8e424792629d8d45c218c5
-22:26:38.153 INFO - Got result: OK on session 326183061b8e424792629d8d45c218c5
-22:26:38.156 INFO - Command request: waitForPageToLoad[20000, ] on session 326183061b8e424792629d8d45c218c5
-22:26:38.163 INFO - Got result: OK on session 326183061b8e424792629d8d45c218c5
-22:26:38.167 INFO - Command request: isElementPresent[//select[@name='invisibleSelect1' or @id='invisibleSelect1'], ] on session 326183061b8e424792629d8d45c218c5
-22:26:38.174 INFO - Got result: OK,true on session 326183061b8e424792629d8d45c218c5
-22:26:38.177 INFO - Command request: isVisible[//select[@name='invisibleSelect1' or @id='invisibleSelect1'], ] on session 326183061b8e424792629d8d45c218c5
-22:26:38.182 INFO - Got result: OK,false on session 326183061b8e424792629d8d45c218c5
-22:26:38.185 INFO - Command request: isElementPresent[//select[@name='invisibleSelect2' or @id='invisibleSelect2'], ] on session 326183061b8e424792629d8d45c218c5
-22:26:38.192 INFO - Got result: OK,true on session 326183061b8e424792629d8d45c218c5
-22:26:38.194 INFO - Command request: isVisible[//select[@name='invisibleSelect2' or @id='invisibleSelect2'], ] on session 326183061b8e424792629d8d45c218c5
-22:26:38.203 INFO - Got result: OK,false on session 326183061b8e424792629d8d45c218c5
-22:26:38.205 INFO - Command request: isElementPresent[//select[@name='invisibleSelect3' or @id='invisibleSelect3'], ] on session 326183061b8e424792629d8d45c218c5
-22:26:38.216 INFO - Got result: OK,true on session 326183061b8e424792629d8d45c218c5
-22:26:38.219 INFO - Command request: isVisible[//select[@name='invisibleSelect3' or @id='invisibleSelect3'], ] on session 326183061b8e424792629d8d45c218c5
-22:26:38.230 INFO - Got result: OK,false on session 326183061b8e424792629d8d45c218c5
-22:26:38.233 INFO - Command request: isElementPresent[//select[@name='invisibleSelect4' or @id='invisibleSelect4'], ] on session 326183061b8e424792629d8d45c218c5
-22:26:38.245 INFO - Got result: OK,true on session 326183061b8e424792629d8d45c218c5
-22:26:38.248 INFO - Command request: isVisible[//select[@name='invisibleSelect4' or @id='invisibleSelect4'], ] on session 326183061b8e424792629d8d45c218c5
-22:26:38.259 INFO - Got result: OK,false on session 326183061b8e424792629d8d45c218c5
-22:26:38.262 INFO - Command request: isElementPresent[//select[@name='invisibleSelect5' or @id='invisibleSelect5'], ] on session 326183061b8e424792629d8d45c218c5
-22:26:38.273 INFO - Got result: OK,false on session 326183061b8e424792629d8d45c218c5
-22:26:38.277 INFO - Command request: testComplete[, ] on session 326183061b8e424792629d8d45c218c5
-22:26:38.277 INFO - Killing Firefox...
-22:26:38.340 INFO - Got result: OK on session 326183061b8e424792629d8d45c218c5
-Complete[, ] on session 7e434091dd2d4ef2a3f42ba39d282023
-02:58:14.550 INFO - Killing Firefox...
-02:58:14.596 INFO - Got result: OK on session 7e434091dd2d4ef2a3f42ba39d282023
-ession c37f4f5a554340bea2dd3822dc6a4bed
-02:57:17.455 INFO - Command request: type[//input[(@name='txtSomething3' or @id='txtSomething3') and (@type='text' or not(@type))] | //textarea[@name='txtSomething3' or @id='txtSomething3'], Monty Python] on session c37f4f5a554340bea2dd3822dc6a4bed
-02:57:17.471 INFO - Got result: OK on session c37f4f5a554340bea2dd3822dc6a4bed
-02:57:17.474 INFO - Command request: isElementPresent[//input[(@name='txtSomethingElse' or @id='txtSomethingElse') and (@type='text' or not(@type))] | //textarea[@name='txtSomethingElse' or @id='txtSomethingElse'], ] on session c37f4f5a554340bea2dd3822dc6a4bed
-02:57:17.488 INFO - Got result: OK,true on session c37f4f5a554340bea2dd3822dc6a4bed
-02:57:17.491 INFO - Command request: isVisible[//input[(@name='txtSomethingElse' or @id='txtSomethingElse') and (@type='text' or not(@type))] | //textarea[@name='txtSomethingElse' or @id='txtSomethingElse'], ] on session c37f4f5a554340bea2dd3822dc6a4bed
-02:57:17.505 INFO - Got result: OK,true on session c37f4f5a554340bea2dd3822dc6a4bed
-02:57:17.508 INFO - Command request: type[//input[(@name='txtSomethingElse' or @id='txtSomethingElse') and (@type='text' or not(@type))] | //textarea[@name='txtSomethingElse' or @id='txtSomethingElse'], Monty Python] on session c37f4f5a554340bea2dd3822dc6a4bed
-02:57:17.522 INFO - Got result: OK on session c37f4f5a554340bea2dd3822dc6a4bed
-02:57:17.525 INFO - Command request: isElementPresent[//input[(@name='txtSomethingElse2' or @id='txtSomethingElse2') and (@type='text' or not(@type))] | //textarea[@name='txtSomethingElse2' or @id='txtSomethingElse2'], ] on session c37f4f5a554340bea2dd3822dc6a4bed
+22:51:01.351 INFO - Java: Sun Microsystems Inc. 11.0-b16
+22:51:01.351 INFO - OS: Windows Vista 6.0 x86
+22:51:01.352 INFO - v1.0-beta-2 [2571], with Core v1.0-beta-2 [2330]
+22:51:01.406 INFO - Version Jetty/5.1.x
+22:51:01.407 INFO - Started HttpContext[/selenium-server/driver,/selenium-server/driver]
+22:51:01.407 INFO - Started HttpContext[/selenium-server,/selenium-server]
+22:51:01.407 INFO - Started HttpContext[/,/]
+22:51:01.421 INFO - Started SocketListener on 0.0.0.0:4444
+22:51:01.421 INFO - Started org.mortbay.jetty.Server@4a65e0
+22:51:03.795 INFO - Checking Resource aliases
+22:51:03.798 INFO - Command request: getNewBrowserSession[*firefox, http://www.google.com, ] on session null
+22:51:03.798 INFO - creating new remote session
+22:51:03.871 INFO - Allocated session f766800f8d294622959afc90af7d2ccb for http://www.google.com, launching...
+22:51:03.899 INFO - Preparing Firefox profile...
+22:51:06.387 INFO - Launching Firefox...
+22:51:09.202 INFO - Got result: OK,f766800f8d294622959afc90af7d2ccb on session f766800f8d294622959afc90af7d2ccb
+22:51:09.206 INFO - Command request: open[file://D:\Development\Net\Stormwind\Pyccuracy\Trunk\Baseline\tests\action_tests\image_tests.htm, ] on session f766800f8d294622959afc90af7d2ccb
+22:51:09.271 INFO - Got result: OK on session f766800f8d294622959afc90af7d2ccb
+22:51:09.275 INFO - Command request: waitForPageToLoad[20000, ] on session f766800f8d294622959afc90af7d2ccb
+22:51:09.279 INFO - Got result: OK on session f766800f8d294622959afc90af7d2ccb
+22:51:09.283 INFO - Command request: isElementPresent[//img[@name='imgChangeTitle' or @id='imgChangeTitle'], ] on session f766800f8d294622959afc90af7d2ccb
+22:51:09.290 INFO - Got result: OK,true on session f766800f8d294622959afc90af7d2ccb
+22:51:09.293 INFO - Command request: isVisible[//img[@name='imgChangeTitle' or @id='imgChangeTitle'], ] on session f766800f8d294622959afc90af7d2ccb
+22:51:09.298 INFO - Got result: OK,true on session f766800f8d294622959afc90af7d2ccb
+22:51:09.301 INFO - Command request: click[//img[@name='imgChangeTitle' or @id='imgChangeTitle'], ] on session f766800f8d294622959afc90af7d2ccb
+22:51:09.309 INFO - Got result: OK on session f766800f8d294622959afc90af7d2ccb
+22:51:09.312 INFO - Command request: getTitle[, ] on session f766800f8d294622959afc90af7d2ccb
+22:51:09.322 INFO - Got result: OK,different title on session f766800f8d294622959afc90af7d2ccb
+22:51:09.325 INFO - Command request: open[file://D:\Development\Net\Stormwind\Pyccuracy\Trunk\Baseline\tests\action_tests\image_tests.htm, ] on session f766800f8d294622959afc90af7d2ccb
+22:51:09.358 INFO - Got result: OK on session f766800f8d294622959afc90af7d2ccb
+22:51:09.361 INFO - Command request: waitForPageToLoad[20000, ] on session f766800f8d294622959afc90af7d2ccb
+22:51:09.372 INFO - Got result: OK on session f766800f8d294622959afc90af7d2ccb
+22:51:09.375 INFO - Command request: isElementPresent[//img[@name='imgChangeTitle2' or @id='imgChangeTitle2'], ] on session f766800f8d294622959afc90af7d2ccb
+22:51:09.388 INFO - Got result: OK,true on session f766800f8d294622959afc90af7d2ccb
+22:51:09.391 INFO - Command request: isVisible[//img[@name='imgChangeTitle2' or @id='imgChangeTitle2'], ] on session f766800f8d294622959afc90af7d2ccb
+22:51:09.405 INFO - Got result: OK,true on session f766800f8d294622959afc90af7d2ccb
+22:51:09.408 INFO - Command request: click[//img[@name='imgChangeTitle2' or @id='imgChangeTitle2'], ] on session f766800f8d294622959afc90af7d2ccb
+22:51:09.423 INFO - Got result: OK on session f766800f8d294622959afc90af7d2ccb
+22:51:09.426 INFO - Command request: getTitle[, ] on session f766800f8d294622959afc90af7d2ccb
+22:51:09.440 INFO - Got result: OK,different title 2 on session f766800f8d294622959afc90af7d2ccb
+22:51:09.443 INFO - Command request: testComplete[, ] on session f766800f8d294622959afc90af7d2ccb
+22:51:09.443 INFO - Killing Firefox...
+22:51:09.490 INFO - Got result: OK on session f766800f8d294622959afc90af7d2ccb
+50:23.283 INFO - Command request: open[file://D:\Development\Net\Stormwind\Pyccuracy\Trunk\Baseline\tests\action_tests\image_tests.htm, ] on session 2583988e312b42adb9eb4c26e274459a
+22:50:23.319 INFO - Got result: OK on session 2583988e312b42adb9eb4c26e274459a
+22:50:23.322 INFO - Command request: waitForPageToLoad[20000, ] on session 2583988e312b42adb9eb4c26e274459a
+22:50:23.331 INFO - Got result: OK on session 2583988e312b42adb9eb4c26e274459a
+22:50:23.335 INFO - Command request: isElementPresent[//img[@name='imgChangeTitle2' or @id='imgChangeTitle2'], ] on session 2583988e312b42adb9eb4c26e274459a
+22:50:23.346 INFO - Got result: OK,true on session 2583988e312b42adb9eb4c26e274459a
+22:50:23.348 INFO - Command request: isVisible[//img[@name='imgChangeTitle2' or @id='imgChangeTitle2'], ] on session 2583988e312b42adb9eb4c26e274459a
+22:50:23.361 INFO - Got result: OK,true on session 2583988e312b42adb9eb4c26e274459a
+22:50:23.363 INFO - Command request: click[//img[@name='imgChangeTitle2' or @id='imgChangeTitle2'], ] on session 2583988e312b42adb9eb4c26e274459a
+22:50:23.376 INFO - Got result: OK on session 2583988e312b42adb9eb4c26e274459a
+22:50:23.379 INFO - Command request: getTitle[, ] on session 2583988e312b42adb9eb4c26e274459a
+22:50:23.389 INFO - Got result: OK,different title 2 on session 2583988e312b42adb9eb4c26e274459a
+22:50:23.392 INFO - Command request: testComplete[, ] on session 2583988e312b42adb9eb4c26e274459a
+22:50:23.392 INFO - Killing Firefox...
+22:50:23.439 INFO - Got result: OK on session 2583988e312b42adb9eb4c26e274459a
+mmand request: isElementPresent[//input[(@name='txtSomethingElse2' or @id='txtSomethingElse2') and (@type='text' or not(@type))] | //textarea[@name='txtSomethingElse2' or @id='txtSomethingElse2'], ] on session c37f4f5a554340bea2dd3822dc6a4bed
 02:57:17.540 INFO - Got result: OK,true on session c37f4f5a554340bea2dd3822dc6a4bed
 02:57:17.543 INFO - Command request: isVisible[//input[(@name='txtSomethingElse2' or @id='txtSomethingElse2') and (@type='text' or not(@type))] | //textarea[@name='txtSomethingElse2' or @id='txtSomethingElse2'], ] on session c37f4f5a554340bea2dd3822dc6a4bed
 02:57:17.559 INFO - Got result: OK,true on session c37f4f5a554340bea2dd3822dc6a4bed

@@ -1,0 +1,19 @@
+Como um usuario do Pyccuracy
+Eu quero testar a acao de clicar um botao
+Para garantir que o Pyccuracy funciona em outras linguas
+	
+Cenario 1 - Clicando em uma imagem pelo atributo name
+Dado que
+	Eu navego para "image_tests.htm"
+Quando
+	Eu clico na imagem "imgChangeTitle"
+Entao
+	Eu vejo o titulo como "different title"
+	
+Cenario 2 - Clicando em uma imagem pelo atributo id
+Dado que
+	Eu navego para "image_tests.htm"
+Quando
+	Eu clico na imagem "imgChangeTitle2"
+Entao
+	Eu vejo o titulo como "different title 2"
