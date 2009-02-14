@@ -22,6 +22,12 @@ Clicks the specified button.
 .. warning::
 
    If the specified element is not found this action will fail.
+   
+.. warning::
+
+   After executing this action, the browser driver waits for the page to finish loading.
+   
+   If you have a button click that does not post (AJAX or Javascript), please use the Button Click No Wait action.
 	
 Examples
 --------

@@ -1,0 +1,19 @@
+Como um usuario do Pyccuracy
+Eu quero testar a acao de clicar um link
+Para garantir que o Pyccuracy funciona em outras linguas
+	
+Cenario 1 - Clicando em um link pelo atributo name
+Dado que
+	Eu navego para "link_tests.htm"
+Quando
+	Eu clico no link "lnkItWorks"
+Entao
+	Eu vejo o titulo como "It Works!"
+	
+Cenario 2 - Clicando em um link pelo atributo id
+Dado que
+	Eu navego para "link_tests.htm"
+Quando
+	Eu clico no link "lnkItWorks2"
+Entao
+	Eu vejo o titulo como "It Works!"

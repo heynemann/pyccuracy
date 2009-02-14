@@ -1,5 +1,5 @@
 Como um usuario do Pyccuracy
-Eu quero testar a acao de clicar um botao
+Eu quero testar a acao de clicar em uma imagem
 Para garantir que o Pyccuracy funciona em outras linguas
 	
 Cenario 1 - Clicando em uma imagem pelo atributo name

@@ -1,49 +1,51 @@
-22:51:01.351 INFO - Java: Sun Microsystems Inc. 11.0-b16
-22:51:01.351 INFO - OS: Windows Vista 6.0 x86
-22:51:01.352 INFO - v1.0-beta-2 [2571], with Core v1.0-beta-2 [2330]
-22:51:01.406 INFO - Version Jetty/5.1.x
-22:51:01.407 INFO - Started HttpContext[/selenium-server/driver,/selenium-server/driver]
-22:51:01.407 INFO - Started HttpContext[/selenium-server,/selenium-server]
-22:51:01.407 INFO - Started HttpContext[/,/]
-22:51:01.421 INFO - Started SocketListener on 0.0.0.0:4444
-22:51:01.421 INFO - Started org.mortbay.jetty.Server@4a65e0
-22:51:03.795 INFO - Checking Resource aliases
-22:51:03.798 INFO - Command request: getNewBrowserSession[*firefox, http://www.google.com, ] on session null
-22:51:03.798 INFO - creating new remote session
-22:51:03.871 INFO - Allocated session f766800f8d294622959afc90af7d2ccb for http://www.google.com, launching...
-22:51:03.899 INFO - Preparing Firefox profile...
-22:51:06.387 INFO - Launching Firefox...
-22:51:09.202 INFO - Got result: OK,f766800f8d294622959afc90af7d2ccb on session f766800f8d294622959afc90af7d2ccb
-22:51:09.206 INFO - Command request: open[file://D:\Development\Net\Stormwind\Pyccuracy\Trunk\Baseline\tests\action_tests\image_tests.htm, ] on session f766800f8d294622959afc90af7d2ccb
-22:51:09.271 INFO - Got result: OK on session f766800f8d294622959afc90af7d2ccb
-22:51:09.275 INFO - Command request: waitForPageToLoad[20000, ] on session f766800f8d294622959afc90af7d2ccb
-22:51:09.279 INFO - Got result: OK on session f766800f8d294622959afc90af7d2ccb
-22:51:09.283 INFO - Command request: isElementPresent[//img[@name='imgChangeTitle' or @id='imgChangeTitle'], ] on session f766800f8d294622959afc90af7d2ccb
-22:51:09.290 INFO - Got result: OK,true on session f766800f8d294622959afc90af7d2ccb
-22:51:09.293 INFO - Command request: isVisible[//img[@name='imgChangeTitle' or @id='imgChangeTitle'], ] on session f766800f8d294622959afc90af7d2ccb
-22:51:09.298 INFO - Got result: OK,true on session f766800f8d294622959afc90af7d2ccb
-22:51:09.301 INFO - Command request: click[//img[@name='imgChangeTitle' or @id='imgChangeTitle'], ] on session f766800f8d294622959afc90af7d2ccb
-22:51:09.309 INFO - Got result: OK on session f766800f8d294622959afc90af7d2ccb
-22:51:09.312 INFO - Command request: getTitle[, ] on session f766800f8d294622959afc90af7d2ccb
-22:51:09.322 INFO - Got result: OK,different title on session f766800f8d294622959afc90af7d2ccb
-22:51:09.325 INFO - Command request: open[file://D:\Development\Net\Stormwind\Pyccuracy\Trunk\Baseline\tests\action_tests\image_tests.htm, ] on session f766800f8d294622959afc90af7d2ccb
-22:51:09.358 INFO - Got result: OK on session f766800f8d294622959afc90af7d2ccb
-22:51:09.361 INFO - Command request: waitForPageToLoad[20000, ] on session f766800f8d294622959afc90af7d2ccb
-22:51:09.372 INFO - Got result: OK on session f766800f8d294622959afc90af7d2ccb
-22:51:09.375 INFO - Command request: isElementPresent[//img[@name='imgChangeTitle2' or @id='imgChangeTitle2'], ] on session f766800f8d294622959afc90af7d2ccb
-22:51:09.388 INFO - Got result: OK,true on session f766800f8d294622959afc90af7d2ccb
-22:51:09.391 INFO - Command request: isVisible[//img[@name='imgChangeTitle2' or @id='imgChangeTitle2'], ] on session f766800f8d294622959afc90af7d2ccb
-22:51:09.405 INFO - Got result: OK,true on session f766800f8d294622959afc90af7d2ccb
-22:51:09.408 INFO - Command request: click[//img[@name='imgChangeTitle2' or @id='imgChangeTitle2'], ] on session f766800f8d294622959afc90af7d2ccb
-22:51:09.423 INFO - Got result: OK on session f766800f8d294622959afc90af7d2ccb
-22:51:09.426 INFO - Command request: getTitle[, ] on session f766800f8d294622959afc90af7d2ccb
-22:51:09.440 INFO - Got result: OK,different title 2 on session f766800f8d294622959afc90af7d2ccb
-22:51:09.443 INFO - Command request: testComplete[, ] on session f766800f8d294622959afc90af7d2ccb
-22:51:09.443 INFO - Killing Firefox...
-22:51:09.490 INFO - Got result: OK on session f766800f8d294622959afc90af7d2ccb
-50:23.283 INFO - Command request: open[file://D:\Development\Net\Stormwind\Pyccuracy\Trunk\Baseline\tests\action_tests\image_tests.htm, ] on session 2583988e312b42adb9eb4c26e274459a
-22:50:23.319 INFO - Got result: OK on session 2583988e312b42adb9eb4c26e274459a
-22:50:23.322 INFO - Command request: waitForPageToLoad[20000, ] on session 2583988e312b42adb9eb4c26e274459a
+01:40:45.835 INFO - Java: Sun Microsystems Inc. 11.0-b16
+01:40:45.835 INFO - OS: Windows Vista 6.0 x86
+01:40:45.836 INFO - v1.0-beta-2 [2571], with Core v1.0-beta-2 [2330]
+01:40:45.892 INFO - Version Jetty/5.1.x
+01:40:45.892 INFO - Started HttpContext[/selenium-server/driver,/selenium-server/driver]
+01:40:45.893 INFO - Started HttpContext[/selenium-server,/selenium-server]
+01:40:45.893 INFO - Started HttpContext[/,/]
+01:40:45.907 INFO - Started SocketListener on 0.0.0.0:4444
+01:40:45.907 INFO - Started org.mortbay.jetty.Server@665753
+01:40:48.282 INFO - Checking Resource aliases
+01:40:48.285 INFO - Command request: getNewBrowserSession[*firefox, http://www.google.com, ] on session null
+01:40:48.285 INFO - creating new remote session
+01:40:48.358 INFO - Allocated session 2fc5e071f2684fdf922bbbf206f0283b for http://www.google.com, launching...
+01:40:48.387 INFO - Preparing Firefox profile...
+01:40:51.459 INFO - Launching Firefox...
+01:40:54.419 INFO - Got result: OK,2fc5e071f2684fdf922bbbf206f0283b on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.422 INFO - Command request: open[file://D:\Development\Net\Stormwind\Pyccuracy\Trunk\Baseline\tests\action_tests\link_tests.htm, ] on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.492 INFO - Got result: OK on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.494 INFO - Command request: waitForPageToLoad[20000, ] on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.499 INFO - Got result: OK on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.503 INFO - Command request: isElementPresent[//a[(@name='lnkItWorks' or @id='lnkItWorks')], ] on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.511 INFO - Got result: OK,true on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.513 INFO - Command request: isVisible[//a[(@name='lnkItWorks' or @id='lnkItWorks')], ] on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.520 INFO - Got result: OK,true on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.523 INFO - Command request: click[//a[(@name='lnkItWorks' or @id='lnkItWorks')], ] on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.530 INFO - Got result: OK on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.533 INFO - Command request: waitForPageToLoad[20000, ] on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.565 INFO - Got result: OK on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.568 INFO - Command request: getTitle[, ] on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.581 INFO - Got result: OK,It Works! on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.583 INFO - Command request: open[file://D:\Development\Net\Stormwind\Pyccuracy\Trunk\Baseline\tests\action_tests\link_tests.htm, ] on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.628 INFO - Got result: OK on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.631 INFO - Command request: waitForPageToLoad[20000, ] on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.645 INFO - Got result: OK on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.648 INFO - Command request: isElementPresent[//a[(@name='lnkItWorks2' or @id='lnkItWorks2')], ] on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.664 INFO - Got result: OK,true on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.666 INFO - Command request: isVisible[//a[(@name='lnkItWorks2' or @id='lnkItWorks2')], ] on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.681 INFO - Got result: OK,true on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.685 INFO - Command request: click[//a[(@name='lnkItWorks2' or @id='lnkItWorks2')], ] on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.701 INFO - Got result: OK on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.704 INFO - Command request: waitForPageToLoad[20000, ] on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.744 INFO - Got result: OK on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.747 INFO - Command request: getTitle[, ] on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.761 INFO - Got result: OK,It Works! on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.764 INFO - Command request: testComplete[, ] on session 2fc5e071f2684fdf922bbbf206f0283b
+01:40:54.764 INFO - Killing Firefox...
+01:40:54.822 INFO - Got result: OK on session 2fc5e071f2684fdf922bbbf206f0283b
+oLoad[20000, ] on session 2583988e312b42adb9eb4c26e274459a
 22:50:23.331 INFO - Got result: OK on session 2583988e312b42adb9eb4c26e274459a
 22:50:23.335 INFO - Command request: isElementPresent[//img[@name='imgChangeTitle2' or @id='imgChangeTitle2'], ] on session 2583988e312b42adb9eb4c26e274459a
 22:50:23.346 INFO - Got result: OK,true on session 2583988e312b42adb9eb4c26e274459a

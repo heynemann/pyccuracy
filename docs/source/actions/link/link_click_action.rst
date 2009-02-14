@@ -1,19 +1,19 @@
-====================
-I click "some" image
-====================
+===================
+I click "some" link
+===================
 
 Syntax
 ------
 ::
 
-	I click "<image name>" image
+	I click "<link name>" link
 
 where:
-	``<image name>`` - name for the desired image
+	``<link name>`` - name for the desired link (anchor)
 	
 Description
 -----------
-Clicks the specified image.
+Clicks the specified link.
 
 .. note::
 
@@ -25,7 +25,9 @@ Clicks the specified image.
    
 .. warning::
 
-   This action **DOES NOT** wait for the page to load afterwards. If your image posts or redirects the page somewhere use the Wait For Page To Load Action.
+   After executing this action, the browser driver waits for the page to finish loading.
+   
+   If you have a link that does not redirect the page (AJAX or Javascript), please use the Link Click No Wait action.
 	
 Examples
 --------
@@ -33,7 +35,7 @@ Examples
 
 	...
 	When
-		I click "imgDoSomething" image
+		I click "lnkSomewhere" link
 	...
 	
 *Rest of the test ommitted for clarity*
@@ -41,4 +43,4 @@ Examples
 Changelog
 ---------
 .. versionadded:: 0.1
-   Image Click action.
+   Link Click action.
