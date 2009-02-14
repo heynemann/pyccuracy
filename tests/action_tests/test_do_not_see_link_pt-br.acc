@@ -1,0 +1,15 @@
+Como um usuario do Pyccuracy
+Eu quero testar a acao de ver um link
+Para garantir que o Pyccuracy funciona em outras linguas
+
+Cenario 1 - Garantindo que o link da pagina de testes esta la
+Dado que
+	Eu navego para "link_tests.htm"
+Quando
+	A pagina termina de carregar
+Entao
+	Eu nao vejo o link "invisibleLink1"
+	E eu nao vejo o link "invisibleLink2"
+	E eu nao vejo o link "invisibleLink3"
+	E eu nao vejo o link "invisibleLink4"
+	E eu nao vejo o link "invisibleLink5"

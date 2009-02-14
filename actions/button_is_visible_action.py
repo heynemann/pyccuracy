@@ -21,6 +21,3 @@ class ButtonIsVisibleAction(ElementIsVisibleBase):
 		button_name = values[0]
 		error_message = self.language["button_is_visible_failure"]
 		self.execute_is_visible(button_name, error_message)
-
-	def __call__(browser_driver):
-		return ButtonClickAction(browser_driver)

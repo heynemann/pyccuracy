@@ -1,0 +1,15 @@
+As a Pyccuracy User
+I want to test see select action
+So that I can make sure Pyccuracy works
+
+Scenario 1 - Checking that some page's select is there
+Given
+	I go to "select_tests.htm"
+When
+	The page finishes loading
+Then
+	I do not see "invisibleSelect1" select
+	And I do not see "invisibleSelect2" select
+	And I do not see "invisibleSelect3" select
+	And I do not see "invisibleSelect4" select
+	And I do not see "invisibleSelect5" select

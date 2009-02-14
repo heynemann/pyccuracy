@@ -1,46 +1,45 @@
-03:17:49.037 INFO - Java: Sun Microsystems Inc. 11.0-b16
-03:17:49.037 INFO - OS: Windows Vista 6.0 x86
-03:17:49.038 INFO - v1.0-beta-2 [2571], with Core v1.0-beta-2 [2330]
-03:17:49.094 INFO - Version Jetty/5.1.x
-03:17:49.094 INFO - Started HttpContext[/selenium-server/driver,/selenium-server/driver]
-03:17:49.095 INFO - Started HttpContext[/selenium-server,/selenium-server]
-03:17:49.095 INFO - Started HttpContext[/,/]
-03:17:49.108 INFO - Started SocketListener on 0.0.0.0:4444
-03:17:49.108 INFO - Started org.mortbay.jetty.Server@4a65e0
-03:17:51.487 INFO - Checking Resource aliases
-03:17:51.490 INFO - Command request: getNewBrowserSession[*firefox, http://www.google.com, ] on session null
-03:17:51.490 INFO - creating new remote session
-03:17:51.563 INFO - Allocated session 3b6e0ca5356e440db91ecbb2cee7cbfb for http://www.google.com, launching...
-03:17:51.591 INFO - Preparing Firefox profile...
-03:17:54.109 INFO - Launching Firefox...
-03:17:57.135 INFO - Got result: OK,3b6e0ca5356e440db91ecbb2cee7cbfb on session 3b6e0ca5356e440db91ecbb2cee7cbfb
-03:17:57.138 INFO - Command request: open[file://D:\Development\Net\Stormwind\Pyccuracy\Trunk\Baseline\tests\action_tests\button_tests.htm, ] on session 3b6e0ca5356e440db91ecbb2cee7cbfb
-03:17:57.231 INFO - Got result: OK on session 3b6e0ca5356e440db91ecbb2cee7cbfb
-03:17:57.234 INFO - Command request: waitForPageToLoad[20000, ] on session 3b6e0ca5356e440db91ecbb2cee7cbfb
-03:17:57.246 INFO - Got result: OK on session 3b6e0ca5356e440db91ecbb2cee7cbfb
-03:17:57.251 INFO - Command request: isElementPresent[//input[(@name='btnSend' or @id='btnSend') and (@type='button' or @type='submit')] | //button[@name='btnSend' or @id='btnSend'], ] on session 3b6e0ca5356e440db91ecbb2cee7cbfb
-03:17:57.260 INFO - Got result: OK,true on session 3b6e0ca5356e440db91ecbb2cee7cbfb
-03:17:57.262 INFO - Command request: isVisible[//input[(@name='btnSend' or @id='btnSend') and (@type='button' or @type='submit')] | //button[@name='btnSend' or @id='btnSend'], ] on session 3b6e0ca5356e440db91ecbb2cee7cbfb
-03:17:57.275 INFO - Got result: OK,true on session 3b6e0ca5356e440db91ecbb2cee7cbfb
-03:17:57.277 INFO - Command request: click[//input[(@name='btnSend' or @id='btnSend') and (@type='button' or @type='submit')] | //button[@name='btnSend' or @id='btnSend'], ] on session 3b6e0ca5356e440db91ecbb2cee7cbfb
-03:17:57.290 INFO - Got result: OK on session 3b6e0ca5356e440db91ecbb2cee7cbfb
-03:17:57.292 INFO - Command request: waitForPageToLoad[20000, ] on session 3b6e0ca5356e440db91ecbb2cee7cbfb
-03:17:57.311 INFO - Got result: OK on session 3b6e0ca5356e440db91ecbb2cee7cbfb
-03:17:57.314 INFO - Command request: testComplete[, ] on session 3b6e0ca5356e440db91ecbb2cee7cbfb
-03:17:57.315 INFO - Killing Firefox...
-03:17:57.365 INFO - Got result: OK on session 3b6e0ca5356e440db91ecbb2cee7cbfb
-: OK,true on session 7e434091dd2d4ef2a3f42ba39d282023
-02:58:14.476 INFO - Command request: isVisible[btnSomethingElse, ] on session 7e434091dd2d4ef2a3f42ba39d282023
-02:58:14.487 INFO - Got result: OK,true on session 7e434091dd2d4ef2a3f42ba39d282023
-02:58:14.490 INFO - Command request: isElementPresent[btnSomethingElse2, ] on session 7e434091dd2d4ef2a3f42ba39d282023
-02:58:14.502 INFO - Got result: OK,true on session 7e434091dd2d4ef2a3f42ba39d282023
-02:58:14.505 INFO - Command request: isVisible[btnSomethingElse2, ] on session 7e434091dd2d4ef2a3f42ba39d282023
-02:58:14.517 INFO - Got result: OK,true on session 7e434091dd2d4ef2a3f42ba39d282023
-02:58:14.520 INFO - Command request: isElementPresent[btnSomethingElse3, ] on session 7e434091dd2d4ef2a3f42ba39d282023
-02:58:14.532 INFO - Got result: OK,true on session 7e434091dd2d4ef2a3f42ba39d282023
-02:58:14.535 INFO - Command request: isVisible[btnSomethingElse3, ] on session 7e434091dd2d4ef2a3f42ba39d282023
-02:58:14.547 INFO - Got result: OK,true on session 7e434091dd2d4ef2a3f42ba39d282023
-02:58:14.550 INFO - Command request: testComplete[, ] on session 7e434091dd2d4ef2a3f42ba39d282023
+22:26:30.371 INFO - Java: Sun Microsystems Inc. 11.0-b16
+22:26:30.371 INFO - OS: Windows Vista 6.0 x86
+22:26:30.372 INFO - v1.0-beta-2 [2571], with Core v1.0-beta-2 [2330]
+22:26:30.427 INFO - Version Jetty/5.1.x
+22:26:30.427 INFO - Started HttpContext[/selenium-server/driver,/selenium-server/driver]
+22:26:30.428 INFO - Started HttpContext[/selenium-server,/selenium-server]
+22:26:30.428 INFO - Started HttpContext[/,/]
+22:26:30.442 INFO - Started SocketListener on 0.0.0.0:4444
+22:26:30.442 INFO - Started org.mortbay.jetty.Server@4a65e0
+22:26:32.827 INFO - Checking Resource aliases
+22:26:32.830 INFO - Command request: getNewBrowserSession[*firefox, http://www.google.com, ] on session null
+22:26:32.830 INFO - creating new remote session
+22:26:32.903 INFO - Allocated session 326183061b8e424792629d8d45c218c5 for http://www.google.com, launching...
+22:26:32.932 INFO - Preparing Firefox profile...
+22:26:35.425 INFO - Launching Firefox...
+22:26:38.097 INFO - Got result: OK,326183061b8e424792629d8d45c218c5 on session 326183061b8e424792629d8d45c218c5
+22:26:38.100 INFO - Command request: open[file://D:\Development\Net\Stormwind\Pyccuracy\Trunk\Baseline\tests\action_tests\select_tests.htm, ] on session 326183061b8e424792629d8d45c218c5
+22:26:38.153 INFO - Got result: OK on session 326183061b8e424792629d8d45c218c5
+22:26:38.156 INFO - Command request: waitForPageToLoad[20000, ] on session 326183061b8e424792629d8d45c218c5
+22:26:38.163 INFO - Got result: OK on session 326183061b8e424792629d8d45c218c5
+22:26:38.167 INFO - Command request: isElementPresent[//select[@name='invisibleSelect1' or @id='invisibleSelect1'], ] on session 326183061b8e424792629d8d45c218c5
+22:26:38.174 INFO - Got result: OK,true on session 326183061b8e424792629d8d45c218c5
+22:26:38.177 INFO - Command request: isVisible[//select[@name='invisibleSelect1' or @id='invisibleSelect1'], ] on session 326183061b8e424792629d8d45c218c5
+22:26:38.182 INFO - Got result: OK,false on session 326183061b8e424792629d8d45c218c5
+22:26:38.185 INFO - Command request: isElementPresent[//select[@name='invisibleSelect2' or @id='invisibleSelect2'], ] on session 326183061b8e424792629d8d45c218c5
+22:26:38.192 INFO - Got result: OK,true on session 326183061b8e424792629d8d45c218c5
+22:26:38.194 INFO - Command request: isVisible[//select[@name='invisibleSelect2' or @id='invisibleSelect2'], ] on session 326183061b8e424792629d8d45c218c5
+22:26:38.203 INFO - Got result: OK,false on session 326183061b8e424792629d8d45c218c5
+22:26:38.205 INFO - Command request: isElementPresent[//select[@name='invisibleSelect3' or @id='invisibleSelect3'], ] on session 326183061b8e424792629d8d45c218c5
+22:26:38.216 INFO - Got result: OK,true on session 326183061b8e424792629d8d45c218c5
+22:26:38.219 INFO - Command request: isVisible[//select[@name='invisibleSelect3' or @id='invisibleSelect3'], ] on session 326183061b8e424792629d8d45c218c5
+22:26:38.230 INFO - Got result: OK,false on session 326183061b8e424792629d8d45c218c5
+22:26:38.233 INFO - Command request: isElementPresent[//select[@name='invisibleSelect4' or @id='invisibleSelect4'], ] on session 326183061b8e424792629d8d45c218c5
+22:26:38.245 INFO - Got result: OK,true on session 326183061b8e424792629d8d45c218c5
+22:26:38.248 INFO - Command request: isVisible[//select[@name='invisibleSelect4' or @id='invisibleSelect4'], ] on session 326183061b8e424792629d8d45c218c5
+22:26:38.259 INFO - Got result: OK,false on session 326183061b8e424792629d8d45c218c5
+22:26:38.262 INFO - Command request: isElementPresent[//select[@name='invisibleSelect5' or @id='invisibleSelect5'], ] on session 326183061b8e424792629d8d45c218c5
+22:26:38.273 INFO - Got result: OK,false on session 326183061b8e424792629d8d45c218c5
+22:26:38.277 INFO - Command request: testComplete[, ] on session 326183061b8e424792629d8d45c218c5
+22:26:38.277 INFO - Killing Firefox...
+22:26:38.340 INFO - Got result: OK on session 326183061b8e424792629d8d45c218c5
+Complete[, ] on session 7e434091dd2d4ef2a3f42ba39d282023
 02:58:14.550 INFO - Killing Firefox...
 02:58:14.596 INFO - Got result: OK on session 7e434091dd2d4ef2a3f42ba39d282023
 ession c37f4f5a554340bea2dd3822dc6a4bed

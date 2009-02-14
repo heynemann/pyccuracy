@@ -21,6 +21,3 @@ class SelectIsVisibleAction(ElementIsVisibleBase):
 		select_name = values[0]
 		error_message = self.language["select_is_visible_failure"]
 		self.execute_is_visible(select_name, error_message)
-
-	def __call__(browser_driver):
-		return SelectIsVisibleAction(browser_driver)

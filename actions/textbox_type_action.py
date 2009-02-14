@@ -25,6 +25,3 @@ class TextboxTypeAction(ActionBase):
 		textbox = self.get_selector(textbox_name)
 		self.assert_element_is_visible(textbox, self.language["textbox_is_visible_failure"] % textbox_name)
 		self.browser_driver.type(textbox, text)
-		
-	def __call__(browser_driver):
-		return TextboxTypeAction(browser_driver)

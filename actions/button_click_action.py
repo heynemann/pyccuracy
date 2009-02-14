@@ -22,6 +22,3 @@ class ButtonClickAction(ActionBase):
 		self.assert_element_is_visible(button, self.language["button_is_visible_failure"] % button_name)
 		self.browser_driver.click_button(button)
 		self.browser_driver.wait_for_page()
-
-	def __call__(browser_driver):
-		return ButtonClickAction(browser_driver)
