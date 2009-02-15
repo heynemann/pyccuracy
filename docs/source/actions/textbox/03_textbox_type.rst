@@ -9,7 +9,7 @@ Syntax
 	I fill "<textbox name>" textbox with "<text>"
 
 where:
-	``<textbox name>`` - name for the desired input type="text" or textarea.
+	``<textbox name>`` - name or id for the desired input type="text" or textarea.
 	
 	``<text>`` - text to fill the textbox with. 
 	

@@ -9,7 +9,7 @@ Syntax
 	I do not see "<link name>" link
 
 where:
-	``<link name>`` - name for the desired link (anchor)
+	``<link name>`` - name or id for the desired link (anchor)
 	
 Description
 -----------

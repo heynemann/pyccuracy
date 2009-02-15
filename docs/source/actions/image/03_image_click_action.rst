@@ -9,7 +9,7 @@ Syntax
 	I click "<image name>" image
 
 where:
-	``<image name>`` - name for the desired image
+	``<image name>`` - name or id for the desired image
 	
 Description
 -----------

@@ -9,7 +9,7 @@ Syntax
 	I see "<select name>" select
 
 where:
-	``<select name>`` - name for the desired select element
+	``<select name>`` - name or id for the desired select element
 	
 Description
 -----------

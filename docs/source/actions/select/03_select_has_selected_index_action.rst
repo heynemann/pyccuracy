@@ -9,7 +9,7 @@ Syntax
 	I see "<select name>" select has selected index of <index>
 
 where:
-	``<select name>`` - name for the desired select element
+	``<select name>`` - name or id for the desired select element
 	
 	``<index>`` - index to check against
 	

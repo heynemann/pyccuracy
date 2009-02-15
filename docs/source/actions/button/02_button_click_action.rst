@@ -9,7 +9,7 @@ Syntax
 	I click "<button name>" button
 
 where:
-	``<button name>`` - name for the desired input type="button" or input type="submit" or button
+	``<button name>`` - name or id for the desired input type="button" or input type="submit" or button
 	
 Description
 -----------

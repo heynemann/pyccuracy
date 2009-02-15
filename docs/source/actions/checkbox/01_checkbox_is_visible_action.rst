@@ -9,7 +9,7 @@ Syntax
 	I see "<checkbox name>" checkbox
 
 where:
-	``<checkbox name>`` - name for the desired input type="checkbox"
+	``<checkbox name>`` - name or id for the desired input type="checkbox"
 	
 Description
 -----------
