@@ -1,0 +1,13 @@
+Como um usuario do Pyccuracy
+Eu quero testar a acao de verificar o item selecionado de uma select por indice
+Para garantir que o Pyccuracy funciona em outras linguas
+
+Cenario 1 - Garantindo que a select da pagina de testes esta com o indice selecionado de 1
+Dado que
+	Eu navego para "select_tests.htm"
+Quando
+	Eu seleciono o item de indice 1 na select "selSecondIndex"
+	E eu seleciono o item de indice 1 na select "selSecondIndex2"
+Entao
+	Eu vejo que o indice selecionado da select "selSecondIndex" eh 1
+	E eu vejo que o indice selecionado da select "selSecondIndex2" eh 1

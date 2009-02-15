@@ -71,6 +71,9 @@ class SeleniumBrowserDriver(object):
 
     def get_selected_text(self, checkbox_selector):
 	return self.selenium.get_selected_text(checkbox_selector)
+
+    def select_option_by_index(self, checkbox_selector, index):
+        self.selenium.select(checkbox_selector, "index=%d" % index)
     
     def stop_test(self):
         self.selenium.stop()        
