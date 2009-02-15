@@ -1,0 +1,12 @@
+As a Pyccuracy User
+I want to test see select has selected index of action
+So that I can make sure Pyccuracy works
+
+Scenario 1 - Checking that some page's select has selected index of 1
+Given
+	I go to "select_tests.htm"
+When
+	The page finishes loading
+Then
+	I see "selFirstIndex" select has selected index of 1
+	And I see "selFirstIndex2" select has selected index of 1

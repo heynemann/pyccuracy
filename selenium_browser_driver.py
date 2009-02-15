@@ -33,11 +33,11 @@ class SeleniumBrowserDriver(object):
         self.selenium.start()
         
     def page_open(self, url):
-		if self.is_url(url):
-			self.selenium.open(url)
-		else:
-			new_url = os.path.join("file://" + os.path.abspath(self.root_dir), url)
-			self.selenium.open(new_url)
+	if self.is_url(url):
+            self.selenium.open(url)
+        else:
+	    new_url = os.path.join("file://" + os.path.abspath(self.root_dir), url)
+	    self.selenium.open(new_url)
     
     def type(self, input_selector, text):
         self.selenium.type(input_selector, text)
@@ -62,6 +62,15 @@ class SeleniumBrowserDriver(object):
 		
     def checkbox_uncheck(self, checkbox_selector):
 	self.selenium.uncheck(checkbox_selector)
+
+    def get_selected_index(self, checkbox_selector):
+	return int(self.selenium.get_selected_index(checkbox_selector))
+
+    def get_selected_value(self, checkbox_selector):
+	return self.selenium.get_selected_value(checkbox_selector)
+
+    def get_selected_text(self, checkbox_selector):
+	return self.selenium.get_selected_text(checkbox_selector)
     
     def stop_test(self):
         self.selenium.stop()        
