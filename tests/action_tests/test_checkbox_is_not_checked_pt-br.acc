@@ -1,0 +1,12 @@
+Como um usuario do Pyccuracy
+Eu quero testar a acao de verificar se uma checkbox esta desmarcada
+Para garantir que o Pyccuracy funciona em outras linguas
+
+Cenario 1 - Verificando que as checkbox estão desmarcadas
+Dado que
+	Eu navego para "checkbox_tests.htm"
+Quando
+	A pagina termina de carregar
+Entao
+	Eu vejo que a checkbox "chkUnchecked" esta desmarcada
+	E eu vejo que a checkbox "chkUnchecked2" esta desmarcada

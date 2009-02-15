@@ -56,6 +56,12 @@ class SeleniumBrowserDriver(object):
 		
     def checkbox_is_checked(self, checkbox_selector):
         return self.selenium.is_checked(checkbox_selector)
+		
+    def checkbox_check(self, checkbox_selector):
+	self.selenium.check(checkbox_selector)
+		
+    def checkbox_uncheck(self, checkbox_selector):
+	self.selenium.uncheck(checkbox_selector)
     
     def stop_test(self):
         self.selenium.stop()        

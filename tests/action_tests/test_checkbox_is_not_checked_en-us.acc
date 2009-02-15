@@ -1,0 +1,12 @@
+As a Pyccuracy User
+I want to test the checkbox is not checked action
+So that I can make sure Pyccuracy works
+
+Scenario 1 - Checking that a given checkbox is not checked
+Given
+	I go to "checkbox_tests.htm"
+When
+	The Page finishes loading
+Then
+	I see the "chkUnchecked" checkbox is not checked
+	And I see the "chkUnchecked2" checkbox is not checked

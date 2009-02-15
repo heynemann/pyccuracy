@@ -6,7 +6,8 @@ Cenario 1 - Verificando que as checkbox estão checadas
 Dado que
 	Eu navego para "checkbox_tests.htm"
 Quando
-	A pagina termina de carregar
+	Eu marco a checkbox "chkUnchecked"
+	E eu marco a checkbox "chkUnchecked2"
 Entao
-	Eu vejo que a checkbox "chkChecked" esta marcada
-	E eu vejo que a checkbox "chkChecked2" esta marcada
+	Eu vejo que a checkbox "chkUnchecked" esta checada
+	E eu vejo que a checkbox "chkUnchecked2" esta checada
