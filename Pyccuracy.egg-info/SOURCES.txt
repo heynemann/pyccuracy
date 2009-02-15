@@ -1,3 +1,5 @@
+MANIFEST.in
+rebuild_egg.bat
 setup.cfg
 setup.py
 Pyccuracy.egg-info/PKG-INFO
@@ -7,7 +9,6 @@ Pyccuracy.egg-info/entry_points.txt
 Pyccuracy.egg-info/requires.txt
 Pyccuracy.egg-info/top_level.txt
 Pyccuracy.egg-info/zip-safe
-dist/Pyccuracy-0.1dev_r877-py2.5.egg
 docs/Makefile
 docs/build_docs.bat
 docs/rebuild_docs.bat
@@ -83,7 +84,6 @@ pyccuracy/actions/select_option_by_index_action.py
 pyccuracy/actions/textbox_type_action.py
 pyccuracy/languages/language_en-us.txt
 pyccuracy/languages/language_pt-br.txt
-pyccuracy/lib/selenium-server/javadoc.zip
 pyccuracy/lib/selenium-server/selenium-server-coreless.jar
 pyccuracy/lib/selenium-server/selenium-server-sources.jar
 pyccuracy/lib/selenium-server/selenium-server-test-sources.jar

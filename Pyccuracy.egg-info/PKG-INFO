@@ -1,12 +1,33 @@
 Metadata-Version: 1.0
 Name: Pyccuracy
-Version: 0.1dev-r878
+Version: 0.1dev-r879
 Summary: Pyccuracy is a BDD style Acceptance Testing framework
 Home-page: http://www.pyccuracy.org
 Author: Bernardo Heynemann
 Author-email: heynemann@gmail.com
 License: OSI
-Description: Pyccuracy is a BDD style Acceptance Testing framework
+Description: ============
+        Introduction
+        ============
+        
+        Pyccuracy is a BDD style Acceptance Testing framework.
+        
+        ===================
+        Project Cheat Sheet
+        ===================
+        
+        Project Google Groups Page - http://groups.google.com/group/pyccuracy
+        Project Conventions: Conventions
+        
+        Links and Blog Posts: Links and Blog Posts
+        
+        Project JIRA (Issue and Version Management) - http://jira.stormwindproject.org:8080/browse/PYCCURACY
+        
+        Project Subversion Server: http://svn.stormwindproject.org/svn/Pyccuracy (``svn co http://svn.stormwindproject.org/svn/Pyccuracy Pyccuracy``)
+        
+        **PyPI Page**: http://pypi.python.org/pypi/Pyccuracy/0.1dev-r879
+        
+        **Docs for current version**: http://packages.python.org/Pyccuracy/
 Keywords: Acceptance Testing Accuracy Behavior Driven Development
 Platform: UNKNOWN
 Classifier: Development Status :: 2 - Pre-Alpha

@@ -7,7 +7,28 @@ setup(name='Pyccuracy',
       version=version,
       description="Pyccuracy is a BDD style Acceptance Testing framework",
       long_description="""\
-Pyccuracy is a BDD style Acceptance Testing framework""",
+============
+Introduction
+============
+
+Pyccuracy is a BDD style Acceptance Testing framework.
+
+===================
+Project Cheat Sheet
+===================
+
+Project Google Groups Page - http://groups.google.com/group/pyccuracy
+Project Conventions: Conventions
+
+Links and Blog Posts: Links and Blog Posts
+
+Project JIRA (Issue and Version Management) - http://jira.stormwindproject.org:8080/browse/PYCCURACY
+
+Project Subversion Server: http://svn.stormwindproject.org/svn/Pyccuracy (``svn co http://svn.stormwindproject.org/svn/Pyccuracy Pyccuracy``)
+
+**PyPI Page**: http://pypi.python.org/pypi/Pyccuracy/0.1dev-r879
+
+**Docs for current version**: http://packages.python.org/Pyccuracy/""",
       classifiers=["Development Status :: 2 - Pre-Alpha",
 				   "Intended Audience :: Developers",
 				   "License :: OSI Approved",
