@@ -7,6 +7,7 @@ Pyccuracy.egg-info/entry_points.txt
 Pyccuracy.egg-info/requires.txt
 Pyccuracy.egg-info/top_level.txt
 Pyccuracy.egg-info/zip-safe
+dist/Pyccuracy-0.1dev_r877-py2.5.egg
 docs/Makefile
 docs/build_docs.bat
 docs/rebuild_docs.bat
@@ -80,6 +81,15 @@ pyccuracy/actions/select_is_not_visible_action.py
 pyccuracy/actions/select_is_visible_action.py
 pyccuracy/actions/select_option_by_index_action.py
 pyccuracy/actions/textbox_type_action.py
+pyccuracy/languages/language_en-us.txt
+pyccuracy/languages/language_pt-br.txt
+pyccuracy/lib/selenium-server/javadoc.zip
+pyccuracy/lib/selenium-server/selenium-server-coreless.jar
+pyccuracy/lib/selenium-server/selenium-server-sources.jar
+pyccuracy/lib/selenium-server/selenium-server-test-sources.jar
+pyccuracy/lib/selenium-server/selenium-server-tests.jar
+pyccuracy/lib/selenium-server/selenium-server.jar
+pyccuracy/lib/selenium-server/sslSupport/cybervillainsCA.cer
 tests/__init__.py
 tests/test.py
 tests/test_runner.py
@@ -92,6 +102,8 @@ tests/action_tests/link_tests.htm
 tests/action_tests/logo_pyccuracy.gif
 tests/action_tests/page_tests.htm
 tests/action_tests/result_worked.htm
+tests/action_tests/run_all_tests.bat
+tests/action_tests/run_test.bat
 tests/action_tests/select_tests.htm
 tests/action_tests/test_checkbox_check.py
 tests/action_tests/test_checkbox_check_en-us.acc
