@@ -1,5 +1,6 @@
 MANIFEST.in
 rebuild_egg.bat
+release_to_pypi.bat
 setup.cfg
 setup.py
 Pyccuracy.egg-info/PKG-INFO
