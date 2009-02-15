@@ -5,7 +5,7 @@ from action_base import *
 
 class ElementIsVisibleBase(ActionBase):
 	def __init__(self, browser_driver, language):
-		ActionBase.__init__(self, browser_driver, language)
+		super(ElementIsVisibleBase, self).__init__(browser_driver, language)
 	
 	def get_selector(self, element_name):
 		return element_name

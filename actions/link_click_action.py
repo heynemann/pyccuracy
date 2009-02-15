@@ -5,8 +5,7 @@ from action_base import *
 
 class LinkClickAction(ActionBase):
 	def __init__(self, browser_driver, language):
-		self.browser_driver = browser_driver
-		self.language = language
+		super(LinkClickAction, self).__init__(browser_driver, language)
 	
 	def matches(self, line):
 		reg = self.language["link_click_regex"]

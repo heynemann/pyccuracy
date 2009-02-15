@@ -45,14 +45,17 @@ class SeleniumBrowserDriver(object):
     def click_element(self, element_selector):
         self.selenium.click(element_selector)
 	
-    def is_element_visible(self, button_selector):
-        return self.selenium.is_element_present(button_selector) and self.selenium.is_visible(button_selector)
+    def is_element_visible(self, element_selector):
+        return self.selenium.is_element_present(element_selector) and self.selenium.is_visible(element_selector)
 	
     def wait_for_page(self, timeout = 20000):
         self.selenium.wait_for_page_to_load(timeout)
     
     def get_title(self):
         return self.selenium.get_title()
+		
+    def checkbox_is_checked(self, checkbox_selector):
+        return self.selenium.is_checked(checkbox_selector)
     
     def stop_test(self):
         self.selenium.stop()        

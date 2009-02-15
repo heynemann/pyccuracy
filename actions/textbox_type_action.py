@@ -5,8 +5,7 @@ from action_base import *
 
 class TextboxTypeAction(ActionBase):
 	def __init__(self, browser_driver, language):
-		self.browser_driver = browser_driver
-		self.language = language
+		super(TextboxTypeAction, self).__init__(browser_driver, language)
 	
 	def get_selector(self, element_name):
 		return ElementSelector.textbox(element_name)

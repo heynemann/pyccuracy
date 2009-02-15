@@ -1,11 +1,11 @@
 import re
 from selenium_browser_driver import *
 from errors import *
+from action_base import *
 
-class PageSeeTitleAction(object):
+class PageSeeTitleAction(ActionBase):
 	def __init__(self, browser_driver, language):
-		self.browser_driver = browser_driver
-		self.language = language
+		super(PageSeeTitleAction, self).__init__(browser_driver, language)
 	
 	def matches(self, line):
 		reg = self.language["page_see_title_regex"]

@@ -5,8 +5,7 @@ from action_base import *
 
 class ImageClickAction(ActionBase):
 	def __init__(self, browser_driver, language):
-		self.browser_driver = browser_driver
-		self.language = language
+		super(ImageClickAction, self).__init__(browser_driver, language)
 	
 	def matches(self, line):
 		reg = self.language["image_click_regex"]

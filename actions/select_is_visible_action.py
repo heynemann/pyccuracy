@@ -1,10 +1,11 @@
 import re
 from element_is_visible_base import *
 from element_selector import *
+from action_base import *
 
 class SelectIsVisibleAction(ElementIsVisibleBase):
 	def __init__(self, browser_driver, language):
-		ElementIsVisibleBase.__init__(self, browser_driver, language)
+		super(SelectIsVisibleAction, self).__init__(browser_driver, language)
 		
 	def get_selector(self, element_name):
 		return ElementSelector.select(element_name)

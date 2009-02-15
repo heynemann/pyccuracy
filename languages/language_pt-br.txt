@@ -30,6 +30,7 @@ button_click_regex = ^(E )?[eE]u clico no botao [\"](.+)[\"]$
 button_is_visible_regex = ^(E )?[eE]u vejo o botao [\"](.+)[\"]$
 
 checkbox_is_visible_regex = ^(E )?[eE]u vejo a checkbox [\"](.+)[\"]$
+checkbox_is_checked_regex = ^(E )?[eE]u vejo que a checkbox [\"](.+)[\"] esta checada$
 
 image_click_regex = ^(E )?[eE]u clico na imagem [\"](.+)[\"]$
 
@@ -48,6 +49,7 @@ page_see_title_failure = O titulo da pagina (%s) nao bate com o titulo esperado 
 button_is_visible_failure = O botao com nome ou id %s nao existe ou nao esta visivel.
 
 checkbox_is_visible_failure = A checkbox com nome ou id %s nao existe ou nao esta visivel.
+checkbox_is_checked_failure = A checkbox com nome ou id %s nao esta checado e deveria estar.
 
 image_is_visible_failure = A imagem com nome ou id %s nao existe ou nao esta visivel.
 

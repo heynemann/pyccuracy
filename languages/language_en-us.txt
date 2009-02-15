@@ -30,6 +30,7 @@ button_click_regex = ^(And )?I click [\"](.+)[\"] button$
 button_is_visible_regex = ^(And )?I see [\"](.+)[\"] button$
 
 checkbox_is_visible_regex = ^(And )?I see [\"](.+)[\"] checkbox$
+checkbox_is_checked_regex = ^(And )?I see the [\"](.+)[\"] checkbox is checked$
 
 image_click_regex = ^(And )?I click [\"](.+)[\"] image$
 
@@ -48,6 +49,7 @@ page_see_title_failure = The page title (%s) does not match the expected title (
 button_is_visible_failure = The button with name or id %s does not exist or is not visible.
 
 checkbox_is_visible_failure = The checkbox with name or id %s does not exist or is not visible.
+checkbox_is_checked_failure = The checkbox with name or id %s is not checked and should be.
 
 image_is_visible_failure = The image with name or id %s does not exist or is not visible.
 

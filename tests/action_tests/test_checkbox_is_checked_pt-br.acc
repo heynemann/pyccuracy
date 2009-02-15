@@ -1,0 +1,12 @@
+Como um usuario do Pyccuracy
+Eu quero testar a acao de verificar se uma checkbox esta checada
+Para garantir que o Pyccuracy funciona em outras linguas
+
+Cenario 1 - Verificando que as checkbox estão checadas
+Dado que
+	Eu navego para "checkbox_tests.htm"
+Quando
+	A pagina termina de carregar
+Entao
+	Eu vejo que a checkbox "chkChecked" esta checada
+	E eu vejo que a checkbox "chkChecked2" esta checada

@@ -1,11 +1,11 @@
 import re
 from selenium_browser_driver import *
 from errors import *
+from action_base import *
 
-class PageWaitForPageToLoadAction(object):
+class PageWaitForPageToLoadAction(ActionBase):
 	def __init__(self, browser_driver, language):
-		self.browser_driver = browser_driver
-		self.language = language
+		super(PageWaitForPageToLoadAction, self).__init__(browser_driver, language)
 	
 	def matches(self, line):
 		reg = self.language["page_wait_for_page_to_load_regex"]

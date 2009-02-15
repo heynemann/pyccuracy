@@ -1,10 +1,10 @@
 import re
 from selenium_browser_driver import *
+from action_base import *
 
-class PageGoToAction:
+class PageGoToAction(ActionBase):
 	def __init__(self, browser_driver, language):
-		self.browser_driver = browser_driver
-		self.language = language
+		super(PageGoToAction, self).__init__(browser_driver, language)
 	
 	def matches(self, line):
 		reg = self.language["page_go_to_regex"]
