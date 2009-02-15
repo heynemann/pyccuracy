@@ -2,7 +2,7 @@ import unittest
 import sys
 import os
 sys.path.insert(0,os.path.abspath(__file__+"/../../../"))
-from pyccuracy_core import *
+from pyccuracy.pyccuracy_core import *
 
 class ActionTestBase(unittest.TestCase):
 	def setUp(self):
@@ -13,7 +13,7 @@ class ActionTestBase(unittest.TestCase):
 		return os.curdir
 		
 	def get_root_path(self):
-		return os.path.abspath(__file__+"/../../../")
+		return os.path.abspath(__file__+"/../../../pyccuracy/")
 		
 	def get_languages_dir(self):
 		return os.path.join(self.get_root_path(), "languages")

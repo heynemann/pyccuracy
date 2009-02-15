@@ -1,0 +1,17 @@
+Metadata-Version: 1.0
+Name: Pyccuracy
+Version: 0.1dev-r877
+Summary: Pyccuracy is a BDD style Acceptance Testing framework
+Home-page: http://www.pyccuracy.org
+Author: Bernardo Heynemann
+Author-email: heynemann@gmail.com
+License: OSI
+Description: Pyccuracy is a BDD style Acceptance Testing framework
+Keywords: Acceptance Testing Accuracy Behavior Driven Development
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2.5
+Classifier: Topic :: Software Development :: Testing

@@ -1,0 +1,69 @@
+#Palavras-Chave de BDD
+default_pattern = *.acc
+as_a = Como um
+i_want_to = Eu quero
+so_that = Para
+scenario = Cenario
+given = Dado que
+when = Quando
+then = Entao
+invalid_test_files = arquivos de teste invalidos
+files_without_header = arquivos de teste sem o cabecalho correto
+story_status = Status da Story
+
+#Sumario dos Testes
+test_run_summary = Sumario dos Testes
+stories_ran_successfully = %d stories tiveram sucesso (%.2f%%)
+stories_that_failed = %d stories falharam (%.2f%%)
+scenarios_ran_successfully = %d cenarios tiveram sucesso (%.2f%%)
+scenarios_that_failed = %d cenarios falharam (%.2f%%)
+
+#Regular Expression que Inicia Cenario
+scenario_starter_regex = ^Cenario (\d+) - (.+)$
+
+#Regular Expressions de Acoes
+page_go_to_regex = ^(E )?[eE]u navego para [\"]([\w:/.]+)[\"]$
+page_see_title_regex = ^(E )?[eE]u vejo o titulo como [\"](.+)[\"]$
+page_wait_for_page_to_load_regex = ^(E )?[eE] espero a pagina ser carregada( por (\d+) segundos)?$
+
+button_click_regex = ^(E )?[eE]u clico no botao [\"](.+)[\"]$
+button_is_visible_regex = ^(E )?[eE]u vejo o botao [\"](.+)[\"]$
+
+checkbox_is_visible_regex = ^(E )?[eE]u vejo a checkbox [\"](.+)[\"]$
+checkbox_is_checked_regex = ^(E )?[eE]u vejo que a checkbox [\"](.+)[\"] esta marcada$
+checkbox_is_not_checked_regex = ^(E )?[eE]u vejo que a checkbox [\"](.+)[\"] esta desmarcada$
+checkbox_check_regex = ^(E )?[eE]u marco a checkbox [\"](.+)[\"]$
+checkbox_uncheck_regex = ^(E )?[eE]u desmarco a checkbox [\"](.+)[\"]$
+
+image_click_regex = ^(E )?[eE]u clico na imagem [\"](.+)[\"]$
+
+link_is_visible_regex = ^(E )?[eE]u vejo o link [\"](.+)[\"]$
+link_is_not_visible_regex = ^(E )?[eE]u nao vejo o link [\"](.+)[\"]$
+link_click_regex = ^(E )?[eE]u clico no link [\"](.+)[\"]$
+
+select_is_visible_regex = ^(E )?[eE]u vejo a select [\"](.+)[\"]$
+select_is_not_visible_regex = ^(E )?[eE]u nao vejo a select [\"](.+)[\"]$
+select_has_selected_index_regex = ^(E )?[eE]u vejo que o indice selecionado da select [\"](.+)[\"] eh (\d+)$
+select_option_by_index_regex = ^(E )?[eE]u seleciono o item de indice (\d+) na select [\"](.+)[\"]$
+
+textbox_type_regex = ^(E )?[eE]u preencho a caixa de texto [\"](.+)[\"] com [\"](.+)[\"]$
+
+#Action Failure Messages
+page_see_title_failure = O titulo da pagina (%s) nao bate com o titulo esperado (%s)
+
+button_is_visible_failure = O botao com nome ou id %s nao existe ou nao esta visivel.
+
+checkbox_is_visible_failure = A checkbox com nome ou id %s nao existe ou nao esta visivel.
+checkbox_is_checked_failure = A checkbox com nome ou id %s esta desmarcada e deveria estar marcada.
+checkbox_is_not_checked_failure = A checkbox com nome ou id %s esta marcada e deveria estar desmarcada.
+
+image_is_visible_failure = A imagem com nome ou id %s nao existe ou nao esta visivel.
+
+link_is_visible_failure = O link com nome ou id %s nao existe ou nao esta visivel.
+link_is_not_visible_failure = O link com nome ou id %s esta visivel, quando deveria não existir ou estar invisivel.
+
+select_is_visible_failure = A select com nome ou id %s nao existe ou nao esta visivel.
+select_is_not_visible_failure = A select com nome ou id %s esta visivel, quando deveria não existir ou estar invisivel.
+select_has_selected_index_failure = O indice selecionado da select com nome ou id %s deveria ser %d, mas eh %d.
+
+textbox_is_visible_failure = A caixa de texto com nome ou id %s nao existe ou nao esta visivel.
