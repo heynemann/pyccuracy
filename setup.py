@@ -145,7 +145,7 @@ Add tests for See Title""",
       keywords='Acceptance Testing Accuracy Behavior Driven Development',
       author='Bernardo Heynemann',
       author_email='heynemann@gmail.com',
-      url='http://www.pyccuracy.org',
+      url='http://groups.google.com/group/pyccuracy',
       license='OSI',
       packages=["pyccuracy", "pyccuracy.actions"],
 	  package_data = {
