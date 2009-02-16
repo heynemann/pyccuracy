@@ -18,6 +18,9 @@ stories_that_failed = %d stories had failures (%.2f%%)
 scenarios_ran_successfully = %d scenarios ran successfully (%.2f%%)
 scenarios_that_failed = %d scenarios had failures (%.2f%%)
 
+#Test Run Timing
+test_run_timing = Test Run Timings
+
 #Scenario Starter Regex
 scenario_starter_regex = ^Scenario (\d+) - (.+)$
 

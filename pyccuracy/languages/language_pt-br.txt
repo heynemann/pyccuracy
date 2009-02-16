@@ -18,6 +18,9 @@ stories_that_failed = %d stories falharam (%.2f%%)
 scenarios_ran_successfully = %d cenarios tiveram sucesso (%.2f%%)
 scenarios_that_failed = %d cenarios falharam (%.2f%%)
 
+#Tempos dos Testes
+test_run_timing = Tempo dos Testes
+
 #Regular Expression que Inicia Cenario
 scenario_starter_regex = ^Cenario (\d+) - (.+)$
 

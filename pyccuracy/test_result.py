@@ -1,9 +1,13 @@
+import time
+
 class TestResult(object):
-    def __init__(self, language, stories, invalid_test_files, no_story_definition):
+    def __init__(self, language, stories, invalid_test_files, no_story_definition, start_time, end_time):
         self.language = language
         self.stories = stories
         self.invalid_test_files = invalid_test_files
         self.no_story_definition = no_story_definition
+        self.start_time = start_time
+        self.end_time = end_time
 
         self.successful_stories = 0
         self.failed_stories = 0
@@ -42,6 +46,7 @@ class TestResult(object):
         messages.append(self.language["scenarios_that_failed"] % (self.failed_scenarios, percentage_failed_scenarios * 100))
         messages.append("")
         messages.append("Test Run Status: %s" % (self.failed_stories > 0 and "FAILED" or "SUCCESSFUL"))
+        messages.append("Ran all stories in %0.2f s" % (self.end_time - self.start_time))
 
         if (self.failed_stories > 0):
             messages.append("")
@@ -65,7 +70,7 @@ class TestResult(object):
                     messages.append("%s: " % self.language["then"])
                     self.render_actions(messages, scenario.thens)
 
-            return "\n".join(messages)
+        return "\n".join(messages)
 
     def render_actions(self, messages, action_collection):
         for action in action_collection:
