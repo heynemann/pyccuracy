@@ -43,6 +43,8 @@ image_click_regex = ^(And )?I click [\"](.+)[\"] image$
 link_is_visible_regex = ^(And )?I see [\"](.+)[\"] link$
 link_is_not_visible_regex = ^(And )?I do not see [\"](.+)[\"] link$
 link_click_regex = ^(And )?I click [\"](.+)[\"] link$
+link_is_enabled_regex = ^(And )?I see [\"](.+)[\"] link is enabled$
+link_is_disabled_regex = ^(And )?I see [\"](.+)[\"] link is disabled$
 
 select_is_visible_regex = ^(And )?I see [\"](.+)[\"] select$
 select_is_not_visible_regex = ^(And )?I do not see [\"](.+)[\"] select$
@@ -66,6 +68,8 @@ image_is_visible_failure = The image with name or id %s does not exist or is not
 
 link_is_visible_failure = The link with name or id %s does not exist or is not visible.
 link_is_not_visible_failure = The link with name or id %s is visible, when it should not exist or be visible.
+link_is_enabled_failure = The link with name or id %s is disabled, when it should be enabled.
+link_is_disabled_failure = The link with name or id %s is enabled, when it should be disabled.
 
 select_is_visible_failure = The select with name or id %s does not exist or is not visible.
 select_is_not_visible_failure = The select with name or id %s is visible, when it should not exist or be visible.

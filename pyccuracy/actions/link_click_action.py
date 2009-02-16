@@ -18,6 +18,6 @@ class LinkClickAction(ActionBase):
     def execute(self, values):
         link_name = values[0]
         link = ElementSelector.link(link_name)
-        self.assert_element_is_visible(link, self.language["link_is_visible_failure"] % link_name)		
+        self.assert_element_is_visible(link, self.language["link_is_visible_failure"] % link_name)
         self.browser_driver.click_element(link)
         self.browser_driver.wait_for_page()

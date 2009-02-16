@@ -1,0 +1,12 @@
+As a Pyccuracy User
+I want to test see link is enabled action
+So that I can make sure Pyccuracy works
+
+Scenario 1 - Checking that some page link is enabled
+Given
+	I go to "link_tests.htm"
+When
+	The page finishes loading
+Then
+	I see "lnkEnabled" link is enabled
+	And I see "lnkEnabled2" link is enabled

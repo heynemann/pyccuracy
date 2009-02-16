@@ -53,6 +53,10 @@ class SeleniumBrowserDriver(object):
 
     def get_title(self):
         return self.selenium.get_title()
+    
+    def is_enabled(self, element):
+        attr_value = self.__get_attribute_value(element, "disabled")
+        return attr_value == None
 
     def checkbox_is_checked(self, checkbox_selector):
         return self.selenium.is_checked(checkbox_selector)
@@ -80,6 +84,17 @@ class SeleniumBrowserDriver(object):
 
     def stop(self):
         self.selenium_server.stop()
+        
+    def __get_attribute_value(self, element, attribute):
+        try:
+            locator = element + "/@" + attribute
+            attr_value = self.selenium.get_attribute(locator)
+        except Exception, inst:
+            if "Could not find element attribute" in str(inst):
+                attr_value = None
+            else:
+                raise
+        return attr_value
 
     def is_url(self, url):
         url_regex = re.compile(r"^(?#Protocol)(?:(?:ht|f)tp(?:s?)\:\/\/|~/|/)?(?#Username:Password)(?:\w+:\w+@)?(?#Subdomains)(?:(?:[-\w]+\.)+(?#TopLevel Domains)(?:com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum|travel|[a-z]{2}))(?#Port)(?::[\d]{1,5})?(?#Directories)(?:(?:(?:/(?:[-\w~!$+|.,=]|%[a-f\d]{2})+)+|/)+|\?|#)?(?#Query)(?:(?:\?(?:[-\w~!$+|.,*:]|%[a-f\d{2}])+=(?:[-\w~!$+|.,*:=]|%[a-f\d]{2})*)(?:&(?:[-\w~!$+|.,*:]|%[a-f\d{2}])+=(?:[-\w~!$+|.,*:=]|%[a-f\d]{2})*)*)*(?#Anchor)(?:#(?:[-\w~!$+|.,*:=]|%[a-f\d]{2})*)?$")
