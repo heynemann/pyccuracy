@@ -49,6 +49,8 @@ select_is_not_visible_regex = ^(E )?[eE]u nao vejo a select [\"](.+)[\"]$
 select_has_selected_index_regex = ^(E )?[eE]u vejo que o indice selecionado da select [\"](.+)[\"] eh (\d+)$
 select_option_by_index_regex = ^(E )?[eE]u seleciono o item de indice (\d+) na select [\"](.+)[\"]$
 
+textbox_is_visible_regex = ^(E )?[eE]u vejo a caixa de texto [\"](.+)[\"]$
+textbox_is_not_visible_regex = ^(E )?[eE]u nao vejo a caixa de texto [\"](.+)[\"]$
 textbox_type_regex = ^(E )?[eE]u preencho a caixa de texto [\"](.+)[\"] com [\"](.+)[\"]$
 
 #Action Failure Messages
@@ -69,4 +71,6 @@ select_is_visible_failure = A select com nome ou id %s nao existe ou nao esta vi
 select_is_not_visible_failure = A select com nome ou id %s esta visivel, quando deveria não existir ou estar invisivel.
 select_has_selected_index_failure = O indice selecionado da select com nome ou id %s deveria ser %d, mas eh %d.
 
+textbox_is_visible_failure = A caixa de texto com nome ou id %s nao existe ou nao esta visivel.
+textbox_is_not_visible_failure = A caixa de texto com nome ou id %s esta visivel, quando deveria não existir ou estar invisivel.
 textbox_is_visible_failure = A caixa de texto com nome ou id %s nao existe ou nao esta visivel.
