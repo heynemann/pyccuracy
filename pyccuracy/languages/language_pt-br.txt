@@ -31,6 +31,8 @@ page_wait_for_page_to_load_regex = ^(E )?[eE] espero a pagina ser carregada( por
 
 button_click_regex = ^(E )?[eE]u clico no botao [\"](.+)[\"]$
 button_is_visible_regex = ^(E )?[eE]u vejo o botao [\"](.+)[\"]$
+button_is_enabled_regex = ^(E )?[eE]u vejo que o botao [\"](.+)[\"] esta habilitado$
+button_is_disabled_regex = ^(E )?[eE]u vejo que o botao [\"](.+)[\"] esta desabilitado$
 
 checkbox_is_visible_regex = ^(E )?[eE]u vejo a checkbox [\"](.+)[\"]$
 checkbox_is_checked_regex = ^(E )?[eE]u vejo que a checkbox [\"](.+)[\"] esta marcada$

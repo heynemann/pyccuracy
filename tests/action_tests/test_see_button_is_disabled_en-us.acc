@@ -1,0 +1,16 @@
+As a Pyccuracy User
+I want to test see button is disabled action
+So that I can make sure Pyccuracy works
+
+Scenario 1 - Checking that some button is disabled
+Given
+	I go to "button_tests.htm"
+When
+	The page finishes loading
+Then
+	I see "btnDisabled" button is disabled
+	And I see "btnDisabled2" button is disabled
+	And I see "btnDisabled3" button is disabled
+	And I see "btnDisabled4" button is disabled
+	And I see "btnDisabled5" button is disabled
+	And I see "btnDisabled6" button is disabled

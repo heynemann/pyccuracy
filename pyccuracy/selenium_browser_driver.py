@@ -54,7 +54,7 @@ class SeleniumBrowserDriver(object):
     def get_title(self):
         return self.selenium.get_title()
     
-    def is_enabled(self, element):
+    def is_element_enabled(self, element):
         attr_value = self.__get_attribute_value(element, "disabled")
         return attr_value == None
 

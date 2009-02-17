@@ -1,0 +1,16 @@
+Como um usuario do Pyccuracy
+Eu quero testar a acao de ver se um botao esta desabilitado
+Para garantir que o Pyccuracy funciona em outras linguas
+
+Cenario 1 - Garantindo que o botao esta desabilitado
+Dado que
+	Eu navego para "button_tests.htm"
+Quando
+	A pagina termina de carregar
+Entao
+	Eu vejo que o botao "btnDisabled" esta desabilitado
+	E eu vejo que o botao "btnDisabled2" esta desabilitado
+	E eu vejo que o botao "btnDisabled3" esta desabilitado
+	E eu vejo que o botao "btnDisabled4" esta desabilitado
+	E eu vejo que o botao "btnDisabled5" esta desabilitado
+	E eu vejo que o botao "btnDisabled6" esta desabilitado

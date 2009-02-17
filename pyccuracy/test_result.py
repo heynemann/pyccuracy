@@ -46,8 +46,10 @@ class TestResult(object):
         messages.append(self.language["scenarios_that_failed"] % (self.failed_scenarios, percentage_failed_scenarios * 100))
         messages.append("")
         messages.append("Test Run Status: %s" % (self.failed_stories > 0 and "FAILED" or "SUCCESSFUL"))
-        messages.append("Ran all stories in %0.2f s" % (self.end_time - self.start_time))
-
+        period = (self.end_time - self.start_time)
+        threshold = total_scenarios / period
+        messages.append("Ran all %d scenarios in %0.2f s" % (total_scenarios, period))
+        messages.append("Test run threshold: %0.2f scenarios/second" % threshold)
         if (self.failed_stories > 0):
             messages.append("")
             messages.append("=" * 80)

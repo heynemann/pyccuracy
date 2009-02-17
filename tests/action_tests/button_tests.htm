@@ -4,15 +4,29 @@
 		<title>Pyccuracy Tests - Button</title>
 	</head>
 	<body>
-		<input type="button" name="btnSomething">Something</input>
-		<input type="button" id="btnSomethingElse">Something Else</input>
-		<input type="submit" name="btnSomething2">Something</input>
-		<input type="submit" id="btnSomethingElse2">Something Else</input>
+		<input type="button" name="btnSomething" value="Something" />
+		<input type="button" id="btnSomethingElse" value="Something" />
+		<input type="submit" name="btnSomething2" value="Something" />
+		<input type="submit" id="btnSomethingElse2" value="Something" />
 		<button name="btnSomething3">Something</button>
 		<button id="btnSomethingElse3">Something Else</button>
 		
 		<form action="button_tests.htm" method="post">
 			<input type="submit" name="btnSend" value="Submit"></input>
 		</form>
+		
+		<input type="button" name="btnEnabled" value="Something" />
+		<input type="button" id="btnEnabled2" value="Something" />
+		<input type="submit" name="btnEnabled3" value="Something" />
+		<input type="submit" id="btnEnabled4" value="Something" />
+		<button name="btnEnabled5">Something</button>
+		<button id="btnEnabled6">Something Else</button>
+		
+		<input type="button" name="btnDisabled" disabled="disabled" value="Something" />
+		<input type="button" id="btnDisabled2" disabled="disabled" value="Something Else" />
+		<input type="submit" name="btnDisabled3" disabled="disabled" value="Something" />
+		<input type="submit" id="btnDisabled4" disabled="disabled" value="Something" />
+		<button name="btnDisabled5" disabled="disabled">Something</button>
+		<button id="btnDisabled6" disabled="disabled">Something Else</button>
 	</body>
 </html>

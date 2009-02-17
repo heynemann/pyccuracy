@@ -1,0 +1,16 @@
+Como um usuario do Pyccuracy
+Eu quero testar a acao de ver se um botao esta habilitado
+Para garantir que o Pyccuracy funciona em outras linguas
+
+Cenario 1 - Garantindo que o botao esta habilitado
+Dado que
+	Eu navego para "button_tests.htm"
+Quando
+	A pagina termina de carregar
+Entao
+	Eu vejo que o botao "btnEnabled" esta habilitado
+	E eu vejo que o botao "btnEnabled2" esta habilitado
+	E eu vejo que o botao "btnEnabled3" esta habilitado
+	E eu vejo que o botao "btnEnabled4" esta habilitado
+	E eu vejo que o botao "btnEnabled5" esta habilitado
+	E eu vejo que o botao "btnEnabled6" esta habilitado
