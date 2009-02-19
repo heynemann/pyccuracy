@@ -2,14 +2,14 @@ from locator import *
 from test_fixture import *
 import re
 
-class TestFixtureParser(object):
-    def __init__(self, browser_driver, language, action_root):
+class FileTestFixtureParser(object):
+    def __init__(self, browser_driver, language, all_actions):
         self.language = language
         self.story_lines = (language["as_a"], language["i_want_to"], language["so_that"],)
         self.scenario_starter_lines = (language["scenario"],)
         self.scenario_lines = (language["given"], language["when"], language["then"],)
         self.browser_driver = browser_driver
-        self.action_root = action_root
+        self.all_actions = all_actions
 
     #helper methods for defining special cases
     def __is_story_line(self, line):
@@ -80,33 +80,9 @@ class TestFixtureParser(object):
             method(line, action[0], action[1])
 
     def __get_action(self, line):
-        if not hasattr(self, "all_actions"): self.all_actions = self.__get_actions()
-
         for action in self.all_actions:
             act = action(self.browser_driver, self.language)
             if act.matches(line):
                 return (act.execute, act.values_for(line))
 
         return None
-
-    def __get_actions(self):
-        all_actions = []
-        for action_name in locate("*_action.py", root=self.action_root):
-            action_module_name = os.path.splitext(os.path.split(action_name)[-1])[0]
-
-            pyccuracy_package = __import__("pyccuracy.actions." + action_module_name)
-            action_package = getattr(pyccuracy_package, "actions")
-
-            action_module = getattr(action_package, action_module_name)
-
-            class_name = self.__get_class_name_for(action_module_name)
-            action = getattr(action_module, class_name)
-            all_actions.append(action)
-        return all_actions
-
-    def __get_class_name_for(self, module_name):
-        names = module_name.split("_")
-        newName = []
-        for name in names:
-            newName.append(name[:1].upper() + name[1:])
-        return "".join(newName)

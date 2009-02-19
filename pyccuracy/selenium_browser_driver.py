@@ -5,11 +5,11 @@ import os
 import urllib
 
 class SeleniumBrowserDriver(object):
-    def __init__(self, browser = "*firefox", root_dir = os.curdir):
+    def __init__(self, browser_to_run, tests_path):
         self.__host = "localhost"
         self.__port = 4444
-        self.__browser = browser
-        self.root_dir = root_dir
+        self.__browser = browser_to_run
+        self.root_dir = tests_path
 
     def __wait_for_server_to_start(self):
         server_started = False
