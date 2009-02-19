@@ -53,7 +53,7 @@ http://jira.stormwindproject.org:8080/browse/PYCCURACY
 Project Subversion Server: http://svn.stormwindproject.org/svn/Pyccuracy (``svn 
 co http://svn.stormwindproject.org/svn/Pyccuracy Pyccuracy``)
 
-**PyPI Page**: http://pypi.python.org/pypi/Pyccuracy/0.1dev-r879
+**PyPI Page**: http://pypi.python.org/pypi/Pyccuracy/
 
 **Docs for current version**: http://packages.python.org/Pyccuracy/
 
