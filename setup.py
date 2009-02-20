@@ -155,7 +155,7 @@ Add tests for See Title""",
       zip_safe=True,
       install_requires=[
           "selenium>=0.9.2",
-		  "pyoc>=0.1"
+          "PyoC>=0.1"
       ],
       entry_points="""
       # -*- Entry points: -*-
