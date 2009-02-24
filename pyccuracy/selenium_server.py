@@ -4,6 +4,7 @@ import os
 from sys import platform
 import threading
 import signal
+import time
 
 class SeleniumServer(threading.Thread):
     out_file = None
@@ -25,5 +26,12 @@ class SeleniumServer(threading.Thread):
         if platform == 'win32': 
             import ctypes
             ctypes.windll.kernel32.TerminateProcess(int(self.current_process._handle), -1)
+        elif platform == 'linux2':
+            os.kill(self.current_process.pid + 1, signal.SIGKILL)
+            while self.is_process_running(self.current_process.pid + 1):
+                time.sleep(2)
         else:
-            os.kill(os.getpid(), signal.SIGKILL)
+            os.kill(self.current_process.pid, signal.SIGKILL)
+                
+    def is_process_running(self, pid):
+        return os.path.exists("/proc/%s" % pid)
