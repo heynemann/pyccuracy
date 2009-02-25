@@ -1,0 +1,12 @@
+Como um usuario do Pyccuracy
+Eu quero testar a acao de ver se uma select esta desabilitada
+Para garantir que o Pyccuracy funciona em outras linguas
+
+Cenario 1 - Garantindo que a select da pagina de testes esta desabilitada
+Dado que
+	Eu navego para "select_tests.htm"
+Quando
+	A pagina termina de carregar
+Entao
+	Eu vejo que a select "selDisabled" esta desabilitada
+	
