@@ -58,6 +58,7 @@ select_is_disabled_regex = ^(And )?I see [\"](.+)[\"] select is disabled$
 textbox_is_visible_regex = ^(And )?I see [\"](.+)[\"] textbox$
 textbox_is_not_visible_regex = ^(And )?I do not see [\"](.+)[\"] textbox$
 textbox_type_regex = ^(And )?I fill [\"](.+)[\"] textbox with [\"](.+)[\"]$
+textbox_contains_text_regex = ^(And )?I see [\"](.+)[\"] textbox contains [\"](.+)[\"]$
 
 #Action Failure Messages
 page_see_title_failure = The page title (%s) does not match the expected title (%s)
@@ -86,3 +87,4 @@ select_is_disabled_failure = The select with name or id %s is enabled, when it s
 textbox_is_visible_failure = The textbox with name or id %s does not exist or is not visible.
 textbox_is_visible_failure = The textbox with name or id %s does not exist or is not visible.
 textbox_is_not_visible_failure = The textbox with name or id %s is visible, when it should not exist or be visible.
+textbox_contains_text_failure = The textbox with name or id %s should contain "%s", but it's current text is "%s".

@@ -58,6 +58,7 @@ select_is_disabled_regex = ^(E )?[eE]u vejo que a select [\"](.+)[\"] esta desab
 textbox_is_visible_regex = ^(E )?[eE]u vejo a caixa de texto [\"](.+)[\"]$
 textbox_is_not_visible_regex = ^(E )?[eE]u nao vejo a caixa de texto [\"](.+)[\"]$
 textbox_type_regex = ^(E )?[eE]u preencho a caixa de texto [\"](.+)[\"] com [\"](.+)[\"]$
+textbox_contains_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] contem [\"](.+)[\"]$
 
 #Action Failure Messages
 page_see_title_failure = O titulo da pagina (%s) nao bate com o titulo esperado (%s)
@@ -84,3 +85,4 @@ select_is_disabled_failure = A select com nome ou id %s esta habilitada, quando 
 textbox_is_visible_failure = A caixa de texto com nome ou id %s nao existe ou nao esta visivel.
 textbox_is_not_visible_failure = A caixa de texto com nome ou id %s esta visivel, quando deveria não existir ou estar invisivel.
 textbox_is_visible_failure = A caixa de texto com nome ou id %s nao existe ou nao esta visivel.
+textbox_contains_text_failure = A caixa de texto com nome ou id %s deveria conter "%s", mas o seu texto atual eh "%s".

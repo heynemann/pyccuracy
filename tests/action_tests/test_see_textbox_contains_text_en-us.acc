@@ -1,0 +1,16 @@
+As a Pyccuracy User
+I want to test see textbox contains text action
+So that I can make sure Pyccuracy works
+
+Scenario 1 - Checking that some page textbox contains text
+Given
+	I go to "textbox_tests.htm"
+When
+	The page finishes loading
+Then
+	I see "txtContains1" textbox contains "large"
+	And I see "txtContains2" textbox contains "large"
+	And I see "txtContains3" textbox contains "large"
+	And I see "txtContains4" textbox contains "large"
+	And I see "txtContains5" textbox contains "large"
+	And I see "txtContains6" textbox contains "large"
