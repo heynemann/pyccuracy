@@ -1,6 +1,5 @@
 from locator import *
 from test_fixture import *
-import re
 
 class FileTestFixtureParser(object):
     def __init__(self, browser_driver, language, all_actions):

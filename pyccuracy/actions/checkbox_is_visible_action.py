@@ -1,4 +1,3 @@
-import re
 from element_is_visible_base import *
 from element_selector import *
 from action_base import *

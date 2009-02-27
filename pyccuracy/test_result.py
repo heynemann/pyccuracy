@@ -1,5 +1,3 @@
-import time
-
 class TestResult(object):
     def __init__(self, language, stories, invalid_test_files, no_story_definition, start_time, end_time):
         self.language = language

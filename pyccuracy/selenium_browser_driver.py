@@ -33,6 +33,9 @@ class SeleniumBrowserDriver(object):
         self.selenium.start()
 
     def page_open(self, url):
+        '''
+        Navigates to the specified url using the current browser instance.
+        '''
         if self.is_url(url):
             self.selenium.open(url)
         else:

@@ -1,5 +1,4 @@
 from errors import *
-import codecs
 import os
 import re
 

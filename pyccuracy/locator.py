@@ -1,4 +1,5 @@
-import os, fnmatch
+import os
+import fnmatch
 
 def locate(pattern, root=os.curdir):
     root_path = os.path.abspath(root)

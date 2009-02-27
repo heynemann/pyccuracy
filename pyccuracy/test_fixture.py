@@ -1,5 +1,4 @@
 from errors import *
-import datetime
 import time
 from test_result import *
 from test_fixture_items import *

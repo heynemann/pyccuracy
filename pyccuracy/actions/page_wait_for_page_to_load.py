@@ -1,4 +1,3 @@
-import re
 from pyccuracy.selenium_browser_driver import *
 from pyccuracy.errors import *
 from action_base import *
