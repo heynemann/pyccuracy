@@ -40,6 +40,8 @@ checkbox_is_not_checked_regex = ^(E )?[eE]u vejo que a checkbox [\"](.+)[\"] est
 checkbox_check_regex = ^(E )?[eE]u marco a checkbox [\"](.+)[\"]$
 checkbox_uncheck_regex = ^(E )?[eE]u desmarco a checkbox [\"](.+)[\"]$
 
+div_is_visible_regex = ^(E )?[eE]u vejo o div [\"](.+)[\"]$
+
 image_click_regex = ^(E )?[eE]u clico na imagem [\"](.+)[\"]$
 
 link_is_visible_regex = ^(E )?[eE]u vejo o link [\"](.+)[\"]$
@@ -69,6 +71,8 @@ button_is_visible_failure = O botao com nome ou id %s nao existe ou nao esta vis
 checkbox_is_visible_failure = A checkbox com nome ou id %s nao existe ou nao esta visivel.
 checkbox_is_checked_failure = A checkbox com nome ou id %s esta desmarcada e deveria estar marcada.
 checkbox_is_not_checked_failure = A checkbox com nome ou id %s esta marcada e deveria estar desmarcada.
+
+div_is_visible_failure = O div com nome ou id %s nao existe ou nao esta visivel.
 
 image_is_visible_failure = A imagem com nome ou id %s nao existe ou nao esta visivel.
 

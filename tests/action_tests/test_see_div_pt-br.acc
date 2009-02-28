@@ -1,0 +1,12 @@
+Como um usuario do Pyccuracy
+Eu quero testar a acao de ver um div
+Para garantir que o Pyccuracy funciona em outras linguas
+
+Cenario 1 - Garantindo que o div da pagina de testes esta la
+Dado que
+	Eu navego para "div_tests.htm"
+Quando
+	A pagina termina de carregar
+Entao
+	Eu vejo o div "divSomething"
+	E eu vejo o div "divSomething2"
