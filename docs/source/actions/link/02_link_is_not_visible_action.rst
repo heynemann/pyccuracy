@@ -19,6 +19,10 @@ Asserts that the specified link(anchor) does not exist **OR** is not visible.
 
    The specified name will be checked against both "name" and "id" values. Only if neither of those match, the element is deemed not available.
 
+.. note::
+
+   Invisible here means style="display:none" or style="visibility:hidden".
+   
 Raises
 ------
 Raises ActionFailedError if the link exists AND is visible.

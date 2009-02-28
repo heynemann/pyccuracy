@@ -29,8 +29,9 @@ page_go_to_regex = ^(And )?I go to [\"]([\w:/.]+)[\"]$
 page_see_title_regex = ^(And )?I see [\"](.+)[\"] title$
 page_wait_for_page_to_load_regex = ^(And )?I wait for the page to load( for (\d+) seconds)?$
 
-button_click_regex = ^(And )?I click [\"](.+)[\"] button$
 button_is_visible_regex = ^(And )?I see [\"](.+)[\"] button$
+button_is_not_visible_regex = ^(And )?I do not see [\"](.+)[\"] button$
+button_click_regex = ^(And )?I click [\"](.+)[\"] button$
 button_is_enabled_regex = ^(And )?I see [\"](.+)[\"] button is enabled$
 button_is_disabled_regex = ^(And )?I see [\"](.+)[\"] button is disabled$
 
@@ -41,6 +42,7 @@ checkbox_check_regex = ^(And )?I check the [\"](.+)[\"] checkbox$
 checkbox_uncheck_regex = ^(And )?I uncheck the [\"](.+)[\"] checkbox$
 
 div_is_visible_regex = ^(And )?I see [\"](.+)[\"] div$
+div_is_not_visible_regex = ^(And )?I do not see [\"](.+)[\"] div$
 
 image_click_regex = ^(And )?I click [\"](.+)[\"] image$
 
@@ -67,6 +69,7 @@ textbox_matches_text_regex = ^(And )?I see [\"](.+)[\"] textbox matches [\"](.+)
 page_see_title_failure = The page title (%s) does not match the expected title (%s)
 
 button_is_visible_failure = The button with name or id %s does not exist or is not visible.
+button_is_not_visible_failure = The button with name or id %s is visible, when it should not exist or be visible.
 button_is_enabled_failure = The button with name or id %s is disabled, when it should be enabled.
 button_is_disabled_failure = The button with name or id %s is enabled, when it should be enabled.
 
@@ -75,6 +78,7 @@ checkbox_is_checked_failure = The checkbox with name or id %s is not checked and
 checkbox_is_not_checked_failure = The checkbox with name or id %s is checked and should not be.
 
 div_is_visible_failure = The div with name or id %s does not exist or is not visible.
+div_is_not_visible_failure = The div with name or id %s is visible, when it should not exist or be visible.
 
 image_is_visible_failure = The image with name or id %s does not exist or is not visible.
 

@@ -1,0 +1,15 @@
+Como um usuario do Pyccuracy
+Eu quero testar a acao de nao ver um div
+Para garantir que o Pyccuracy funciona em outras linguas
+
+Cenario 1 - Garantindo que o div da pagina de testes esta invisivel
+Dado que
+	Eu navego para "div_tests.htm"
+Quando
+	A pagina termina de carregar
+Entao
+	Eu nao vejo o div "divHidden1"
+	E eu nao vejo o div "divHidden2"
+	E eu nao vejo o div "divHidden3"
+	E eu nao vejo o div "divHidden4"
+	E eu nao vejo o div "divHidden5"

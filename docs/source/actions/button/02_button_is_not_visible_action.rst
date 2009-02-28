@@ -1,19 +1,19 @@
 ==========================
-I do not see "some" select
+I do not see "some" button
 ==========================
 
 Syntax
 ------
 ::
 
-	I do not see "<select name>" select
+	I do not see "<button name>" button
 
 where:
-	``<select name>`` - name or id for the desired select element
+	``<button name>`` - name or id for the desired input type="button" or input type="submit" or button
 	
 Description
 -----------
-Asserts that the specified select does not exist **OR** is not visible.
+Asserts that the specified button does not exist or is invisible.
 
 .. note::
 
@@ -22,10 +22,10 @@ Asserts that the specified select does not exist **OR** is not visible.
 .. note::
 
    Invisible here means style="display:none" or style="visibility:hidden".
-   
+
 Raises
 ------
-Raises ActionFailedError if the select exists AND is visible.
+Raises ActionFailedError if the button exists **AND** is visible.
 This Exception is captured by Pyccuracy to assert that the test failed.
 	
 Examples
@@ -34,11 +34,11 @@ Examples
 
 	...
 	Then
-		I do not see "selSomething" select
+		I do not see "btnDoSomething" button
 	
 *Rest of the test ommitted for clarity*
 
 Changelog
 ---------
-.. versionadded:: 0.1
-   Select Is Not Visible action.
+.. versionadded:: 0.2
+   Button Is Not Visible action.

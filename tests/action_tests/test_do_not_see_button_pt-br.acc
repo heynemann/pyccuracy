@@ -1,0 +1,22 @@
+Como um usuario do Pyccuracy
+Eu quero testar a acao de nao ver um botao
+Para garantir que o Pyccuracy funciona em outras linguas
+
+Cenario 1 - Garantindo que o botao da pagina de testes esta invisivel
+Dado que
+	Eu navego para "button_tests.htm"
+Quando
+	A pagina termina de carregar
+Entao
+	Eu nao vejo o botao "btnHidden1"
+	E eu nao vejo o botao "btnHidden2"
+	E eu nao vejo o botao "btnHidden3"
+	E eu nao vejo o botao "btnHidden4"
+	E eu nao vejo o botao "btnHidden5"
+	E eu nao vejo o botao "btnHidden6"
+	E eu nao vejo o botao "btnHidden7"
+	E eu nao vejo o botao "btnHidden8"
+	E eu nao vejo o botao "btnHidden9"
+	E eu nao vejo o botao "btnHidden10"
+	E eu nao vejo o botao "btnHidden11"
+	E eu nao vejo o botao "btnHidden12"
