@@ -36,6 +36,7 @@ button_is_enabled_regex = ^(E )?[eE]u vejo que o botao [\"](.+)[\"] esta habilit
 button_is_disabled_regex = ^(E )?[eE]u vejo que o botao [\"](.+)[\"] esta desabilitado$
 
 checkbox_is_visible_regex = ^(E )?[eE]u vejo a checkbox [\"](.+)[\"]$
+checkbox_is_not_visible_regex = ^(E )?[eE]u nao vejo a checkbox [\"](.+)[\"]$
 checkbox_is_checked_regex = ^(E )?[eE]u vejo que a checkbox [\"](.+)[\"] esta marcada$
 checkbox_is_not_checked_regex = ^(E )?[eE]u vejo que a checkbox [\"](.+)[\"] esta desmarcada$
 checkbox_check_regex = ^(E )?[eE]u marco a checkbox [\"](.+)[\"]$
@@ -72,6 +73,7 @@ button_is_visible_failure = O botao com nome ou id %s nao existe ou nao esta vis
 button_is_not_visible_failure = O botao com nome ou id %s esta visivel, quando deveria nao existir ou estar invisivel.
 
 checkbox_is_visible_failure = A checkbox com nome ou id %s nao existe ou nao esta visivel.
+checkbox_is_not_visible_failure = A checkbox com nome ou id %s esta visivel, quando deveria nao existir ou estar invisivel.
 checkbox_is_checked_failure = A checkbox com nome ou id %s esta desmarcada e deveria estar marcada.
 checkbox_is_not_checked_failure = A checkbox com nome ou id %s esta marcada e deveria estar desmarcada.
 
