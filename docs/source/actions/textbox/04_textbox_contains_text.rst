@@ -28,7 +28,7 @@ Asserts that the specified textbox current text contains the expected text.
 
 Raises
 ------
-Raises ActionFailedError if the textbox does not contain the expected text.
+Raises ActionFailedError if the textbox's text does not contain the expected text.
 This Exception is captured by Pyccuracy to assert that the test failed.
 	
 Examples
