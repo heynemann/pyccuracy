@@ -1,0 +1,4 @@
+*.*~
+*.pyc
+docs/build
+out.txt
