@@ -77,7 +77,15 @@ class FileTestFixtureParser(object):
         action = self.__get_action(line)
         if (action != None):
             method(line, action[0], action[1])
+        else:
+            method(line, self.blank_execute, self.blank_values_for)
 
+    def blank_values_for(self, line):
+        return tuple([])
+
+    def blank_execute(self, values, context):
+        pass
+        
     def __get_action(self, line):
         for action in self.all_actions:
             if action.matches(line):

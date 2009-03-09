@@ -26,10 +26,15 @@ class PageGoToAction(ActionBase):
 
     def execute(self, values, context):
         url = values[0]
+        
+        if url.replace(" ", "") in context.all_pages:
+            context.current_page = context.all_pages[url.replace(" ", "")]
+            url = context.current_page.url
+        
         if self.is_url(url):
             new_url = url
         else:            new_url = os.path.join("file://" + os.path.abspath(context.tests_path), url)
-        
+                
         self.browser_driver.page_open(new_url)
         self.browser_driver.wait_for_page()
         

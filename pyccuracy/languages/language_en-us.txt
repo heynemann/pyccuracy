@@ -25,7 +25,7 @@ test_run_timing = Test Run Timings
 scenario_starter_regex = ^Scenario (\d+) - (.+)$
 
 #Actions Regular Expressions
-page_go_to_regex = ^(And )?I go to ([\"]([\w:/.]+)[\"]|([\w:/.]+))$
+page_go_to_regex = ^(And )?I go to ([\"]([\w:/.]+)[\"]|([\w\s]+))$
 page_see_title_regex = ^(And )?I see [\"](.+)[\"] title$
 page_wait_for_page_to_load_regex = ^(And )?I wait for the page to load( for (\d+) seconds)?$
 

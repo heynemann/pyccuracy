@@ -17,6 +17,8 @@ class PyccuracyCore(object):
                   languages_dir=os.path.join(os.path.dirname(__file__), "languages"),
                   context = None):
 
+        IoC.reset()
+        
         self.configure_ioc(languages_dir, default_culture, tests_path, file_pattern, actions_root, page_folder)
 
         if context == None:
@@ -29,6 +31,7 @@ class PyccuracyCore(object):
             results = self.context.story_runner.run_stories(self.context)
         finally:
             self.context.browser_driver.stop()
+
         self.__print_results()
 
         if self.context.test_fixture.get_results().status == "FAILED":
