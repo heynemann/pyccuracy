@@ -7,4 +7,4 @@ class TestCustomPage (Page):
     def __init__(self):
         super(TestCustomPage, self).__init__()
         self.url = "test_custom_page.htm"
-        
+        self.register_button("My Button", "//div[@class='something']/button[@class='button']")

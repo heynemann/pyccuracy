@@ -9,3 +9,11 @@ When
 	The page finishes loading
 Then
 	I see "Pyccuracy Tests - Custom Page" title
+	
+Scenario 2 - Clicking a registered button
+Given
+	I go to Test Custom Page
+When
+	I click "My Button" button
+Then
+	I see "It Works!" title
