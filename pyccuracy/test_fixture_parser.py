@@ -80,8 +80,7 @@ class FileTestFixtureParser(object):
 
     def __get_action(self, line):
         for action in self.all_actions:
-            act = action(self.browser_driver, self.language)
-            if act.matches(line):
-                return (act.execute, act.values_for(line))
+            if action.matches(line):
+                return (action.execute, action.values_for(line))
 
         return None

@@ -1,6 +1,7 @@
-from pyccuracy.selenium_browser_driver import *
-from element_selector import *
-from action_base import *
+from pyccuracy.errors import *
+from pyccuracy.actions.element_selector import *
+from pyccuracy.actions.action_base import *
+from pyccuracy.actions.element_is_visible_base import *
 
 class ButtonClickAction(ActionBase):
     def __init__(self, browser_driver, language):
@@ -14,7 +15,7 @@ class ButtonClickAction(ActionBase):
     def values_for(self, line):
         return self.last_match and (self.last_match.groups()[1],) or tuple([])
 
-    def execute(self, values):
+    def execute(self, values, context):
         button_name = values[0]
         button = ElementSelector.button(button_name)
         self.assert_element_is_visible(button, self.language["button_is_visible_failure"] % button_name)

@@ -33,14 +33,7 @@ class SeleniumBrowserDriver(object):
         self.selenium.start()
 
     def page_open(self, url):
-        '''
-        Navigates to the specified url using the current browser instance.
-        '''
-        if self.is_url(url):
-            self.selenium.open(url)
-        else:
-            new_url = os.path.join("file://" + os.path.abspath(self.root_dir), url)
-            self.selenium.open(new_url)
+        self.selenium.open(url)
 
     def type(self, input_selector, text):
         self.selenium.type(input_selector, text)
@@ -105,7 +98,4 @@ class SeleniumBrowserDriver(object):
             else:
                 raise
         return attr_value
-
-    def is_url(self, url):
-        url_regex = re.compile(r"^(?#Protocol)(?:(?:ht|f)tp(?:s?)\:\/\/|~/|/)?(?#Username:Password)(?:\w+:\w+@)?(?#Subdomains)(?:(?:[-\w]+\.)+(?#TopLevel Domains)(?:com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum|travel|[a-z]{2}))(?#Port)(?::[\d]{1,5})?(?#Directories)(?:(?:(?:/(?:[-\w~!$+|.,=]|%[a-f\d]{2})+)+|/)+|\?|#)?(?#Query)(?:(?:\?(?:[-\w~!$+|.,*:]|%[a-f\d{2}])+=(?:[-\w~!$+|.,*:=]|%[a-f\d]{2})*)(?:&(?:[-\w~!$+|.,*:]|%[a-f\d{2}])+=(?:[-\w~!$+|.,*:=]|%[a-f\d]{2})*)*)*(?#Anchor)(?:#(?:[-\w~!$+|.,*:=]|%[a-f\d]{2})*)?$")
-        return url_regex.match(url)
+        

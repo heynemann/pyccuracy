@@ -5,17 +5,19 @@ from language import *
 from errors import *
 from pyoc.ioc import IoC
 from pyoc.config import InPlaceConfig
+from page import Page
 
-class Pyccuracy(object):
+class PyccuracyCore(object):
     def run_tests(self, 
                   tests_path=os.curdir, 
                   actions_root=os.path.join(os.path.dirname(__file__), "actions"),
                   file_pattern="to_be_defined_by_language", 
                   default_culture="en-us", 
+                  page_folder = None,
                   languages_dir=os.path.join(os.path.dirname(__file__), "languages"),
                   context = None):
 
-        self.configure_ioc(languages_dir, default_culture, tests_path, file_pattern, actions_root)
+        self.configure_ioc(languages_dir, default_culture, tests_path, file_pattern, actions_root, page_folder)
 
         if context == None:
             self.context = IoC.resolve(PyccuracyContext)
@@ -24,7 +26,7 @@ class Pyccuracy(object):
 
         #running the tests
         try:
-            results = self.context.story_runner.run_stories(self.context.test_fixture)
+            results = self.context.story_runner.run_stories(self.context)
         finally:
             self.context.browser_driver.stop()
         self.__print_results()
@@ -32,7 +34,7 @@ class Pyccuracy(object):
         if self.context.test_fixture.get_results().status == "FAILED":
             raise TestFailedError("The test failed!")
         
-    def configure_ioc(self, languages_dir, culture, tests_path, file_pattern, actions_root):
+    def configure_ioc(self, languages_dir, culture, tests_path, file_pattern, actions_root, page_folder):
         config = InPlaceConfig()
         config.register("selenium_server", SeleniumServer)
         config.register("browser_driver", SeleniumBrowserDriver)
@@ -47,6 +49,11 @@ class Pyccuracy(object):
         config.register("tests_path", tests_path)
         
         config.register_files("all_actions", actions_root, "*_action.py", lifestyle_type = "singleton")
+        
+        if page_folder != None:
+            config.register_inheritors("all_pages", page_folder, Page)
+        else:
+            config.register("all_pages", [])
 
         config.register("story_runner", StoryRunner)
         
@@ -66,16 +73,22 @@ class Pyccuracy(object):
         print "\n"
 
 class PyccuracyContext:
-    def __init__(self, browser_driver, language, test_fixture_parser, tests_path, file_pattern, story_runner, all_actions):
+    def __init__(self, browser_driver, language, test_fixture_parser, tests_path, file_pattern, story_runner, all_actions, all_pages):
         self.browser_driver = browser_driver
         self.language = language
         self.test_fixture_parser = test_fixture_parser
         self.test_fixture = self.test_fixture_parser.get_fixture([file_path for file_path in locate(file_pattern, tests_path)])
         self.tests_path = tests_path
+        self.all_pages = dict(
+                            zip(
+                                [klass.__class__.__name__ for klass in all_pages],
+                                [klass for klass in all_pages]
+                                )
+                            )
         self.file_pattern = file_pattern
         self.story_runner = story_runner
         
 if __name__ == "__main__":
     pyc = Pyccuracy()
-    pyc.run_tests(root=os.path.join(os.curdir, "tests/en_us"))
-    pyc.run_tests(root=os.path.join(os.curdir, "tests/pt_br"), default_language="pt-br")
+    pyc.run_tests(tests_path=os.path.join(os.curdir, "tests/en_us"))
+    pyc.run_tests(tests_path=os.path.join(os.curdir, "tests/pt_br"), default_language="pt-br")

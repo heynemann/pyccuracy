@@ -73,12 +73,12 @@ class Action(object):
         self.arguments = arguments
         self.status = "UNKNOWN"
 
-    def execute(self):
+    def execute(self, context):
         try:
             if (self.arguments):
-                self.execute_function(self.arguments)
+                self.execute_function(self.arguments, context)
             else:
-                self.execute_function()
+                self.execute_function(context)
         except ActionFailedError, error:
             self.mark_as_failed(error)
             return 0

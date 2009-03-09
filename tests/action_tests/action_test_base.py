@@ -7,10 +7,10 @@ from pyccuracy.pyccuracy_core import *
 class ActionTestBase(unittest.TestCase):
     def setUp(self):
         self.languages_to_test = ("en-us","pt-br") #add more here as languages grow
-        self.pyccuracy = Pyccuracy()
+        self.pyccuracy = PyccuracyCore()
 
     def get_root_dir(self, culture):
-        return os.curdir
+        return os.path.abspath(os.path.split(__file__)[0])
 
     def get_root_path(self):
         return os.path.abspath(__file__+"/../../../pyccuracy/")

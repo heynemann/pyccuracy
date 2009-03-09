@@ -1,6 +1,7 @@
-from element_is_visible_base import *
-from element_selector import *
-from action_base import *
+from pyccuracy.errors import *
+from pyccuracy.actions.element_selector import *
+from pyccuracy.actions.action_base import *
+from pyccuracy.actions.element_is_visible_base import *
 
 class CheckboxIsNotVisibleAction(ElementIsVisibleBase):
     def __init__(self, browser_driver, language):
@@ -17,7 +18,7 @@ class CheckboxIsNotVisibleAction(ElementIsVisibleBase):
     def values_for(self, line):
         return self.last_match and (self.last_match.groups()[1],) or tuple([])
 
-    def execute(self, values):
+    def execute(self, values, context):
         checkbox_name = values[0]
         error_message = self.language["checkbox_is_not_visible_failure"]
         self.execute_is_not_visible(checkbox_name, error_message)

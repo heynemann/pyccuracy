@@ -1,5 +1,9 @@
-from pyccuracy.selenium_browser_driver import *
-from action_base import *
+from pyccuracy.errors import *
+from pyccuracy.actions.element_selector import *
+from pyccuracy.actions.action_base import *
+from pyccuracy.actions.element_is_visible_base import *
+import re
+import os
 
 class PageGoToAction(ActionBase):
     def __init__(self, browser_driver, language):
@@ -11,9 +15,24 @@ class PageGoToAction(ActionBase):
         return self.last_match
 
     def values_for(self, line):
-        return self.last_match and (self.last_match.groups()[1],) or tuple([])
+        if not self.last_match: return tuple([])
+        
+        groups = self.last_match.groups()
 
-    def execute(self, values):
+        if groups[1] != None: 
+            return (groups[1].replace("\"", ""),)
+        else:
+            return (groups[2],)
+
+    def execute(self, values, context):
         url = values[0]
-        self.browser_driver.page_open(url)
+        if self.is_url(url):
+            new_url = url
+        else:            new_url = os.path.join("file://" + os.path.abspath(context.tests_path), url)
+        
+        self.browser_driver.page_open(new_url)
         self.browser_driver.wait_for_page()
+        
+    def is_url(self, url):
+        url_regex = re.compile(r"^(?#Protocol)(?:(?:ht|f)tp(?:s?)\:\/\/|~/|/)?(?#Username:Password)(?:\w+:\w+@)?(?#Subdomains)(?:(?:[-\w]+\.)+(?#TopLevel Domains)(?:com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum|travel|[a-z]{2}))(?#Port)(?::[\d]{1,5})?(?#Directories)(?:(?:(?:/(?:[-\w~!$+|.,=]|%[a-f\d]{2})+)+|/)+|\?|#)?(?#Query)(?:(?:\?(?:[-\w~!$+|.,*:]|%[a-f\d{2}])+=(?:[-\w~!$+|.,*:=]|%[a-f\d]{2})*)(?:&(?:[-\w~!$+|.,*:]|%[a-f\d{2}])+=(?:[-\w~!$+|.,*:=]|%[a-f\d]{2})*)*)*(?#Anchor)(?:#(?:[-\w~!$+|.,*:=]|%[a-f\d]{2})*)?$")
+        return url_regex.match(url)

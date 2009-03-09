@@ -1,6 +1,7 @@
-from pyccuracy.selenium_browser_driver import *
 from pyccuracy.errors import *
-from action_base import *
+from pyccuracy.actions.element_selector import *
+from pyccuracy.actions.action_base import *
+from pyccuracy.actions.element_is_visible_base import *
 
 class ElementIsVisibleBase(ActionBase):
     def __init__(self, browser_driver, language):

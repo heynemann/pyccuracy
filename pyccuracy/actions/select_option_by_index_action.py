@@ -1,5 +1,7 @@
-from element_selector import *
-from action_base import *
+from pyccuracy.errors import *
+from pyccuracy.actions.element_selector import *
+from pyccuracy.actions.action_base import *
+from pyccuracy.actions.element_is_visible_base import *
 
 class SelectOptionByIndexAction(ActionBase):
     def __init__(self, browser_driver, language):
@@ -16,7 +18,7 @@ class SelectOptionByIndexAction(ActionBase):
     def values_for(self, line):
         return self.last_match and (int(self.last_match.groups()[1]), self.last_match.groups()[2],) or tuple([])
 
-    def execute(self, values):
+    def execute(self, values, context):
         select_name = values[1]
         index = values[0]
 
