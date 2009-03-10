@@ -1,5 +1,4 @@
 from pyccuracy.errors import *
-from pyccuracy.actions.element_selector import *
 from pyccuracy.actions.action_base import *
 from pyccuracy.actions.element_is_visible_base import *
 

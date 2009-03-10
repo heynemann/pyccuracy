@@ -2,7 +2,7 @@ import unittest
 import sys
 import os
 sys.path.insert(0,os.path.abspath(__file__+"/../../"))
-from pyccuracy.pyccuracy_core import PyccuracyCore
+from pyccuracy.pyccuracy_core import *
 
 class TestCustomPage(unittest.TestCase):
     

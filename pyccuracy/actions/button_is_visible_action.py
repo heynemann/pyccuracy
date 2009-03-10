@@ -1,15 +1,11 @@
 from pyccuracy.errors import *
-from pyccuracy.actions.element_selector import *
 from pyccuracy.actions.action_base import *
+from pyccuracy.page import Page
 from pyccuracy.actions.element_is_visible_base import *
 
 class ButtonIsVisibleAction(ElementIsVisibleBase):
     def __init__(self, browser_driver, language):
-        super(ButtonIsVisibleAction, self).__init__(browser_driver, language)
-
-    def get_selector(self, element_name):
-        return ElementSelector.button(element_name)
-
+        super(ButtonIsVisibleAction, self).__init__(browser_driver, language)
     def matches(self, line):
         reg = self.language["button_is_visible_regex"]
         self.last_match = reg.search(line)
@@ -21,4 +17,4 @@ class ButtonIsVisibleAction(ElementIsVisibleBase):
     def execute(self, values, context):
         button_name = values[0]
         error_message = self.language["button_is_visible_failure"]
-        self.execute_is_visible(button_name, error_message)
+        self.execute_is_visible(context, Page.Button, button_name, error_message)

@@ -1,5 +1,5 @@
 from pyccuracy.errors import *
-from pyccuracy.actions.element_selector import *
+from pyccuracy.page import Page
 from pyccuracy.actions.action_base import *
 from pyccuracy.actions.element_is_visible_base import *
 
@@ -17,7 +17,7 @@ class ImageClickAction(ActionBase):
 
     def execute(self, values, context):
         image_name = values[0]
-        image = ElementSelector.image(image_name)
+        image = self.resolve_element_key(context, Page.Image, image_name)
 
         self.assert_element_is_visible(image, self.language["image_is_visible_failure"] % image_name)		
         self.browser_driver.click_element(image)

@@ -1,14 +1,11 @@
 from pyccuracy.errors import *
-from pyccuracy.actions.element_selector import *
+from pyccuracy.page import Page
 from pyccuracy.actions.action_base import *
 from pyccuracy.actions.element_is_visible_base import *
 
 class SelectIsDisabledAction(ActionBase):
     def __init__(self, browser_driver, language):
         super(SelectIsDisabledAction, self).__init__(browser_driver, language)
-
-    def get_selector(self, element_name):
-        return ElementSelector.select(element_name)
 
     def matches(self, line):
         reg = self.language["select_is_disabled_regex"]
@@ -19,10 +16,10 @@ class SelectIsDisabledAction(ActionBase):
         return self.last_match and (self.last_match.groups()[1],) or tuple([])
 
     def execute(self, values, context):
-        link_name = values[0]		
-        link = self.get_selector(link_name)
-        self.assert_element_is_visible(link, self.language["select_is_visible_failure"] % link_name)        
+        select_name = values[0]		
+        select = self.resolve_element_key(context, Page.Select, select_name)
+        self.assert_element_is_visible(select, self.language["select_is_visible_failure"] % select_name)        
         
         error_message = self.language["select_is_disabled_failure"]
-        if not self.browser_driver.is_element_enabled(link):
-            self.raise_action_failed_error(error_message % link_name)
+        if not self.browser_driver.is_element_enabled(select):
+            self.raise_action_failed_error(error_message % select_name)

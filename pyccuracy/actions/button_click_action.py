@@ -1,5 +1,5 @@
 from pyccuracy.errors import *
-from pyccuracy.actions.element_selector import *
+from pyccuracy.page import Page
 from pyccuracy.actions.action_base import *
 from pyccuracy.actions.element_is_visible_base import *
 
@@ -17,7 +17,7 @@ class ButtonClickAction(ActionBase):
 
     def execute(self, values, context):
         button_name = values[0]
-        button = ElementSelector.button(button_name)
+        button = self.resolve_element_key(context, Page.Button, button_name)
         self.assert_element_is_visible(button, self.language["button_is_visible_failure"] % button_name)
         self.browser_driver.click_element(button)
         self.browser_driver.wait_for_page()

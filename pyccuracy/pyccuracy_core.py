@@ -88,6 +88,7 @@ class PyccuracyContext:
                                 [klass for klass in all_pages]
                                 )
                             )
+        self.current_page = None
         self.file_pattern = file_pattern
         self.story_runner = story_runner
         

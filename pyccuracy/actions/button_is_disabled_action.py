@@ -1,14 +1,11 @@
 from pyccuracy.errors import *
-from pyccuracy.actions.element_selector import *
+from pyccuracy.page import Page
 from pyccuracy.actions.action_base import *
 from pyccuracy.actions.element_is_visible_base import *
 
 class ButtonIsDisabledAction(ActionBase):
     def __init__(self, browser_driver, language):
         super(ButtonIsDisabledAction, self).__init__(browser_driver, language)
-
-    def get_selector(self, element_name):
-        return ElementSelector.button(element_name)
 
     def matches(self, line):
         reg = self.language["button_is_disabled_regex"]
@@ -20,7 +17,7 @@ class ButtonIsDisabledAction(ActionBase):
 
     def execute(self, values, context):
         button_name = values[0]		
-        button = self.get_selector(button_name)
+        button = self.resolve_element_key(context, Page.Button, button_name)
         
         self.assert_element_is_visible(button_name, self.language["button_is_visible_failure"] % button_name)        
         

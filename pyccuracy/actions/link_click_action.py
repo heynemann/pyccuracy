@@ -1,5 +1,5 @@
 from pyccuracy.errors import *
-from pyccuracy.actions.element_selector import *
+from pyccuracy.page import Page
 from pyccuracy.actions.action_base import *
 from pyccuracy.actions.element_is_visible_base import *
 
@@ -17,7 +17,7 @@ class LinkClickAction(ActionBase):
 
     def execute(self, values, context):
         link_name = values[0]
-        link = ElementSelector.link(link_name)
+        link = self.resolve_element_key(context, Page.Link, link_name)
         self.assert_element_is_visible(link, self.language["link_is_visible_failure"] % link_name)
         self.browser_driver.click_element(link)
         self.browser_driver.wait_for_page()

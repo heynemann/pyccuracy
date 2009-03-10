@@ -1,14 +1,11 @@
 from pyccuracy.errors import *
-from pyccuracy.actions.element_selector import *
+from pyccuracy.page import Page
 from pyccuracy.actions.action_base import *
 from pyccuracy.actions.element_is_visible_base import *
 
 class CheckboxUncheckAction(ActionBase):
     def __init__(self, browser_driver, language):
         super(CheckboxUncheckAction, self).__init__(browser_driver, language)
-
-    def get_selector(self, element_name):
-        return ElementSelector.checkbox(element_name)
 
     def matches(self, line):
         reg = self.language["checkbox_uncheck_regex"]
@@ -20,6 +17,6 @@ class CheckboxUncheckAction(ActionBase):
 
     def execute(self, values, context):
         checkbox_name = values[0]
-        checkbox = self.get_selector(checkbox_name)
+        checkbox = self.resolve_element_key(context, Page.Checkbox, checkbox_name)
         self.assert_element_is_visible(checkbox, self.language["checkbox_is_visible_failure"] % checkbox_name)
         self.browser_driver.checkbox_uncheck(checkbox)

@@ -19,3 +19,7 @@ class ActionBase(object):
     def assert_element_is_not_visible(self, selector, message):
         if self.is_element_visible(selector):
             self.raise_action_failed_error(message)
+    
+    def resolve_element_key(self, context, element_type, element_key):
+        if context.current_page == None: return self.browser_driver.resolve_element_key(context, element_type, element_key)
+        return context.current_page.get_registered_element(element_type, element_key)

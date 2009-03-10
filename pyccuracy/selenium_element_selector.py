@@ -1,4 +1,10 @@
-class ElementSelector(object):
+from page import Page
+class SeleniumElementSelector(object):
+    @staticmethod
+    def element(element_type, element_name):
+        method = getattr(SeleniumElementSelector, element_type)
+        return method(element_name)
+        
     @staticmethod
     def button(element_name):
         '''

@@ -1,14 +1,11 @@
 from pyccuracy.errors import *
-from pyccuracy.actions.element_selector import *
+from pyccuracy.page import Page
 from pyccuracy.actions.action_base import *
 from pyccuracy.actions.element_is_visible_base import *
 
 class SelectOptionByIndexAction(ActionBase):
     def __init__(self, browser_driver, language):
         super(SelectOptionByIndexAction, self).__init__(browser_driver, language)
-
-    def get_selector(self, element_name):
-        return ElementSelector.select(element_name)
 
     def matches(self, line):
         reg = self.language["select_option_by_index_regex"]
@@ -22,6 +19,9 @@ class SelectOptionByIndexAction(ActionBase):
         select_name = values[1]
         index = values[0]
 
-        select = self.get_selector(select_name)
+        select = self.resolve_element_key(context, Page.Select, select_name)
         error_message = self.language["select_is_visible_failure"]
+        self.assert_element_is_visible(select, error_message % select_name)        
+        
         self.browser_driver.select_option_by_index(select, index)
+        

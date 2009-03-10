@@ -2,6 +2,13 @@ class Page(object):
     '''Class that defines a page model.'''
     
     Button = "button"
+    Checkbox = "checkbox"
+    Div = "div"
+    Image = "image"
+    Link = "link"
+    Page = "page"
+    Select = "select"
+    Textbox = "textbox"
     
     def __init__(self):
         '''Initializes the page with the given url.'''

@@ -1,14 +1,11 @@
 from pyccuracy.errors import *
-from pyccuracy.actions.element_selector import *
+from pyccuracy.page import Page
 from pyccuracy.actions.action_base import *
 from pyccuracy.actions.element_is_visible_base import *
 
 class SelectIsVisibleAction(ElementIsVisibleBase):
     def __init__(self, browser_driver, language):
         super(SelectIsVisibleAction, self).__init__(browser_driver, language)
-
-    def get_selector(self, element_name):
-        return ElementSelector.select(element_name)
 
     def matches(self, line):
         reg = self.language["select_is_visible_regex"]
@@ -21,4 +18,4 @@ class SelectIsVisibleAction(ElementIsVisibleBase):
     def execute(self, values, context):
         select_name = values[0]
         error_message = self.language["select_is_visible_failure"]
-        self.execute_is_visible(select_name, error_message)
+        self.execute_is_visible(context, Page.Select, select_name, error_message)

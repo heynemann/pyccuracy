@@ -1,5 +1,6 @@
 from selenium import *
 from selenium_server import SeleniumServer
+from selenium_element_selector import SeleniumElementSelector
 import time
 import os
 import urllib
@@ -10,6 +11,11 @@ class SeleniumBrowserDriver(object):
         self.__port = 4444
         self.__browser = browser_to_run
         self.root_dir = tests_path
+        
+    def resolve_element_key(self, context, element_type, element_key):
+        if context == None: return element_key
+        
+        return SeleniumElementSelector.element(element_type, element_key)
 
     def __wait_for_server_to_start(self):
         server_started = False
