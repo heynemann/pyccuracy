@@ -91,8 +91,4 @@ class PyccuracyContext:
         self.current_page = None
         self.file_pattern = file_pattern
         self.story_runner = story_runner
-        
-if __name__ == "__main__":
-    pyc = Pyccuracy()
-    pyc.run_tests(tests_path=os.path.join(os.curdir, "tests/en_us"))
-    pyc.run_tests(tests_path=os.path.join(os.curdir, "tests/pt_br"), default_language="pt-br")
+
