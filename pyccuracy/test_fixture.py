@@ -27,6 +27,10 @@ class TestFixture(object):
     def get_results(self):
         return TestResult(self.language, self.stories, self.invalid_test_files, self.no_story_definition, self.start_time, self.end_time)
 
+    def did_not_run(self):
+        self.start_time = time.time()
+        self.end_time = time.time()
+
     def start_run(self):
         self.start_time = time.time()
         

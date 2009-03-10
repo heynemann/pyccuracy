@@ -7,6 +7,12 @@ class StoryRunner(object):
     def run_stories(self, context):
         self.context = context
         test_fixture = context.test_fixture
+
+        #No tests to run
+        if len(test_fixture.stories) == 0:
+            test_fixture.did_not_run() 
+            return
+            
         self.browser_driver.start_test("http://www.google.com")
         try:
             test_fixture.start_run()

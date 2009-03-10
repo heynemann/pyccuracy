@@ -17,3 +17,51 @@ When
 	I click "My Button" button
 Then
 	I see "It Works!" title
+	
+Scenario 3 - Verifying a registered checkbox is checked
+Given
+	I go to Test Custom Page
+When
+	The page finishes loading
+Then
+    I see the "My Custom Checkbox" checkbox is checked
+    
+Scenario 4 - Verifying a registered div is visible
+Given
+	I go to Test Custom Page
+When
+	The page finishes loading
+Then
+    I see "Some Div" div
+    
+Scenario 5 - Clicking a registered image
+Given
+	I go to Test Custom Page
+When
+	I click "Some Image" image
+Then
+	I see "It Works!" title
+	
+Scenario 6 - Checking if a registered link is there
+Given
+	I go to Test Custom Page
+When
+	The page finishes loading
+Then
+    I see "My Link" link
+    
+Scenario 7 - Checking if a registered select is there
+Given
+	I go to Test Custom Page
+When
+	The page finishes loading
+Then
+    I see "Some Select" select
+    
+Scenario 8 - Checking if a registered textbox is there
+Given
+	I go to Test Custom Page
+When
+	The page finishes loading
+Then
+    I see "Some Textbox" textbox
