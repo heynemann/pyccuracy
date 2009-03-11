@@ -1,3 +1,8 @@
+import os
+import sys
+sys.path.insert(0,os.path.abspath(__file__+"/../../../"))
+from pyccuracy.errors import ActionFailedError
+
 class ActionBase(object):
     def __init__(self, browser_driver, language):
         self.browser_driver = browser_driver

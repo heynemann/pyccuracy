@@ -54,8 +54,9 @@ class TestResult(object):
             messages.append("Failures")
             messages.append("=" * 80)
             for story in [story for story in self.stories if story.status == "FAILED"]:
-                messages.append("%s %s %s %s %s %s" % (self.language["as_a"], self.language["i_want_to"], self.language["so_that"],
-                                                       story.as_a, story.i_want_to, story.so_that))
+                messages.append("%s %s %s %s %s %s" % (self.language["as_a"], story.as_a, 
+                                                       self.language["i_want_to"], story.i_want_to, 
+                                                       self.language["so_that"], story.so_that))
                 messages.append("-" * 80)
                 for scenario in [scenario for scenario in story.scenarios if scenario.status == "FAILED"]:
                     messages.append("Scenario %s - %s" % (scenario.index, scenario.title))
