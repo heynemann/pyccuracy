@@ -1,5 +1,3 @@
-from pyccuracy.errors import *
-
 class ActionBase(object):
     def __init__(self, browser_driver, language):
         self.browser_driver = browser_driver

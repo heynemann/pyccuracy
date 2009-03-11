@@ -1,8 +1,11 @@
-from pyccuracy.errors import *
-from pyccuracy.actions.action_base import *
-from pyccuracy.actions.element_is_visible_base import *
-import re
 import os
+import sys
+sys.path.insert(0,os.path.abspath(__file__+"/../../../"))
+from pyccuracy.page import Page
+from pyccuracy.actions.action_base import ActionBase
+from pyccuracy.actions.element_is_visible_base import *
+
+import re
 
 class PageGoToAction(ActionBase):
     def __init__(self, browser_driver, language):

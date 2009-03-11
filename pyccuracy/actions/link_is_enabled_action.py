@@ -1,6 +1,8 @@
-from pyccuracy.errors import *
+import sys
+import os
+sys.path.insert(0,os.path.abspath(__file__+"/../../../"))
 from pyccuracy.page import Page
-from pyccuracy.actions.action_base import *
+from pyccuracy.actions.action_base import ActionBase
 from pyccuracy.actions.element_is_visible_base import *
 
 class LinkIsEnabledAction(ActionBase):
@@ -23,3 +25,4 @@ class LinkIsEnabledAction(ActionBase):
         error_message = self.language["link_is_enabled_failure"]
         if not self.browser_driver.is_element_enabled(link):
             self.raise_action_failed_error(error_message % link_name)
+
