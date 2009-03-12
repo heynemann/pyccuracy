@@ -5,12 +5,12 @@ from pyccuracy.page import Page
 from pyccuracy.actions.action_base import ActionBase
 from pyccuracy.actions.element_is_visible_base import *
 
-class SelectHasSelectedValueAction(ActionBase):
+class SelectHasSelectedTextAction(ActionBase):
     def __init__(self, browser_driver, language):
-        super(SelectHasSelectedValueAction, self).__init__(browser_driver, language)
+        super(SelectHasSelectedTextAction, self).__init__(browser_driver, language)
 
     def matches(self, line):
-        reg = self.language["select_has_selected_value_regex"]
+        reg = self.language["select_has_selected_text_regex"]
         self.last_match = reg.search(line)
         return self.last_match
 
@@ -19,13 +19,13 @@ class SelectHasSelectedValueAction(ActionBase):
 
     def execute(self, values, context):
         select_name = values[0]
-        value = values[1]
+        text = values[1]
 
         select = self.resolve_element_key(context, Page.Select, select_name)
         error_message = self.language["select_is_visible_failure"]
         self.assert_element_is_visible(select, self.language["select_is_visible_failure"] % select_name)
         
-        selected_value = self.browser_driver.get_selected_value(select)
+        selected_text = self.browser_driver.get_selected_text(select)
 
-        if (str(selected_value) != str(value)):
-            self.raise_action_failed_error(self.language["select_has_selected_value_failure"] % (select_name, value, selected_value))
+        if (selected_text != text):
+            self.raise_action_failed_error(self.language["select_has_selected_text_failure"] % (select_name, text, selected_text))

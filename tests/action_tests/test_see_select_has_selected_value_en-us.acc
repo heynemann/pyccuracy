@@ -8,4 +8,4 @@ Given
 When
 	The page finishes loading
 Then
-	I see "selSelectedByValue" select has selected value of 20
+	I see "selSelectedByValue" select has selected value of "20"

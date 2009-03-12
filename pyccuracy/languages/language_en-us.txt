@@ -56,7 +56,8 @@ link_is_disabled_regex = ^(And )?I see [\"](.+)[\"] link is disabled$
 select_is_visible_regex = ^(And )?I see [\"](.+)[\"] select$
 select_is_not_visible_regex = ^(And )?I do not see [\"](.+)[\"] select$
 select_has_selected_index_regex = ^(And )?I see [\"](.+)[\"] select has selected index of (\d+)$
-select_has_selected_value_regex = ^(And )?I see [\"](.+)[\"] select has selected value of ([\w\s]+)$
+select_has_selected_value_regex = ^(And )?I see [\"](.+)[\"] select has selected value of [\"](.+)[\"]$
+select_has_selected_text_regex = ^(And )?I see [\"](.+)[\"] select has selected text of [\"](.+)[\"]$
 select_option_by_index_regex = ^(And )?I select the option with index of (\d+) in [\"](.+)[\"] select$
 select_is_enabled_regex = ^(And )?I see [\"](.+)[\"] select is enabled$
 select_is_disabled_regex = ^(And )?I see [\"](.+)[\"] select is disabled$
@@ -96,6 +97,7 @@ select_is_visible_failure = The select with name or id %s does not exist or is n
 select_is_not_visible_failure = The select with name or id %s is visible, when it should not exist or be visible.
 select_has_selected_index_failure = The selected index for select with name or id %s should be %d, but is %d.
 select_has_selected_value_failure = The selected value for select with name or id %s should be %s, but is %s.
+select_has_selected_text_failure = The selected text for select with name or id %s should be %s, but is %s.
 select_is_enabled_failure = The select with name or id %s is disabled, when it should be enabled.
 select_is_disabled_failure = The select with name or id %s is enabled, when it should be disabled.
 

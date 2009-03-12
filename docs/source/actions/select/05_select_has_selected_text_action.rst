@@ -1,21 +1,21 @@
-=============================================
-I see "some" select has selected value of "1"
-=============================================
+====================================================
+I see "some" select has selected text of "Something"
+====================================================
 
 Syntax
 ------
 ::
 
-	I see "<select name>" select has selected value of "<value>"
+	I see "<select name>" select has selected text of "<text>"
 
 where:
 	``<select name>`` - name or id for the desired select element
 	
-	``<value>`` - value to check against (string)
+	``<text>`` - text to check against
 	
 Description
 -----------
-Asserts that the specified select has the specified value as currently selected value.
+Asserts that the specified select has the specified text as currently selected item's text.
 
 .. note::
 
@@ -32,11 +32,11 @@ Examples
 
 	...
 	Then
-		I see "selSelectedValue" select has selected value of "1"
+		I see "selSelectedText" select has selected text of "Shrubbery"
 	
 *Rest of the test ommitted for clarity*
 
 Changelog
 ---------
 .. versionadded:: 0.3
-   Select Has Selected Value action.
+   Select Has Selected Text Action.

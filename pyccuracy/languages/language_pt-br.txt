@@ -56,7 +56,8 @@ link_is_disabled_regex = ^(E )?[eE]u vejo que o link [\"](.+)[\"] esta desabilit
 select_is_visible_regex = ^(E )?[eE]u vejo a select [\"](.+)[\"]$
 select_is_not_visible_regex = ^(E )?[eE]u nao vejo a select [\"](.+)[\"]$
 select_has_selected_index_regex = ^(E )?[eE]u vejo que o indice selecionado da select [\"](.+)[\"] eh (\d+)$
-select_has_selected_value_regex = ^(E )?[eE]u vejo que o valor selecionado da select [\"](.+)[\"] eh (\d+)$
+select_has_selected_value_regex = ^(E )?[eE]u vejo que o valor selecionado da select [\"](.+)[\"] eh [\"](.+)[\"]$
+select_has_selected_text_regex = ^(E )?[eE]u vejo que o texto selecionado da select [\"](.+)[\"] eh [\"](.+)[\"]$
 select_option_by_index_regex = ^(E )?[eE]u seleciono o item de indice (\d+) na select [\"](.+)[\"]$
 select_is_enabled_regex = ^(E )?[eE]u vejo que a select [\"](.+)[\"] esta habilitada$
 select_is_disabled_regex = ^(E )?[eE]u vejo que a select [\"](.+)[\"] esta desabilitada$
@@ -94,6 +95,7 @@ select_is_visible_failure = A select com nome ou id %s nao existe ou nao esta vi
 select_is_not_visible_failure = A select com nome ou id %s esta visivel, quando deveria nao existir ou estar invisivel.
 select_has_selected_index_failure = O indice selecionado da select com nome ou id %s deveria ser %d, mas eh %d.
 select_has_selected_value_failure = O valor selecionado da select com nome ou id %s deveria ser %s, mas eh %s.
+select_has_selected_text_failure = O texto selecionado da select com nome ou id %s deveria ser %s, mas eh %s.
 select_is_enabled_failure = A select com nome ou id %s esta desabilitada, quando deveria estar habilitada.
 select_is_disabled_failure = A select com nome ou id %s esta habilitada, quando deveria estar desabilitada.
 

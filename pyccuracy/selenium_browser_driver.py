@@ -69,14 +69,14 @@ class SeleniumBrowserDriver(object):
     def checkbox_uncheck(self, checkbox_selector):
         self.selenium.uncheck(checkbox_selector)
 
-    def get_selected_index(self, checkbox_selector):
-        return int(self.selenium.get_selected_index(checkbox_selector))
+    def get_selected_index(self, element_selector):
+        return int(self.selenium.get_selected_index(element_selector))
 
-    def get_selected_value(self, checkbox_selector):
-        return self.selenium.get_selected_value(checkbox_selector)
+    def get_selected_value(self, element_selector):
+        return self.selenium.get_selected_value(element_selector)
 
-    def get_selected_text(self, checkbox_selector):
-        return self.selenium.get_selected_text(checkbox_selector)
+    def get_selected_text(self, element_selector):
+        return self.selenium.get_selected_label(element_selector)
         
     def get_element_text(self, element_selector):
         text = self.__get_attribute_value(element_selector, "value")
