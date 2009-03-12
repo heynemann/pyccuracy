@@ -1,0 +1,12 @@
+Como um usuario do Pyccuracy
+Eu quero testar a acao de ver uma imagem
+Para garantir que o Pyccuracy funciona em outras linguas
+
+Cenario 1 - Garantindo que a imagem da pagina de testes esta la
+Dado que
+	Eu navego para "image_tests.htm"
+Quando
+	A pagina termina de carregar
+Entao
+	Eu vejo a imagem "imgSomething"
+	E eu vejo a imagem "imgSomething2"
