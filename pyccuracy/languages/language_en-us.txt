@@ -54,6 +54,7 @@ link_is_not_visible_regex = ^(And )?I do not see [\"](.+)[\"] link$
 link_click_regex = ^(And )?I click [\"](.+)[\"] link$
 link_is_enabled_regex = ^(And )?I see [\"](.+)[\"] link is enabled$
 link_is_disabled_regex = ^(And )?I see [\"](.+)[\"] link is disabled$
+link_has_href_regex = ^(And )?I see [\"](.+)[\"] link has [\"](.+)[\"] href$
 
 select_is_visible_regex = ^(And )?I see [\"](.+)[\"] select$
 select_is_not_visible_regex = ^(And )?I do not see [\"](.+)[\"] select$
@@ -95,6 +96,7 @@ link_is_visible_failure = The link with name or id %s does not exist or is not v
 link_is_not_visible_failure = The link with name or id %s is visible, when it should not exist or be visible.
 link_is_enabled_failure = The link with name or id %s is disabled, when it should be enabled.
 link_is_disabled_failure = The link with name or id %s is enabled, when it should be disabled.
+link_has_href_failure = The link with name or id %s should have "%s" as href, but has "%s".
 
 select_is_visible_failure = The select with name or id %s does not exist or is not visible.
 select_is_not_visible_failure = The select with name or id %s is visible, when it should not exist or be visible.

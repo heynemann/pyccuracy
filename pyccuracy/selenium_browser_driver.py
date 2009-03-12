@@ -87,6 +87,9 @@ class SeleniumBrowserDriver(object):
 
     def select_option_by_index(self, checkbox_selector, index):
         self.selenium.select(checkbox_selector, "index=%d" % index)
+        
+    def get_link_href(self, link_selector):
+        return self.__get_attribute_value(link_selector, "href")
 
     def stop_test(self):
         self.selenium.stop()        
