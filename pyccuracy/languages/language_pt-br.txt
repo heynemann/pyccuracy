@@ -65,6 +65,7 @@ textbox_is_visible_regex = ^(E )?[eE]u vejo a caixa de texto [\"](.+)[\"]$
 textbox_is_not_visible_regex = ^(E )?[eE]u nao vejo a caixa de texto [\"](.+)[\"]$
 textbox_type_regex = ^(E )?[eE]u preencho a caixa de texto [\"](.+)[\"] com [\"](.+)[\"]$
 textbox_contains_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] contem [\"](.+)[\"]$
+textbox_does_not_contain_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] nao contem [\"](.+)[\"]$
 textbox_matches_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] contem exatamente [\"](.+)[\"]$
 textbox_does_not_match_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] nao contem exatamente [\"](.+)[\"]$
 
@@ -100,5 +101,6 @@ textbox_is_visible_failure = A caixa de texto com nome ou id %s nao existe ou na
 textbox_is_not_visible_failure = A caixa de texto com nome ou id %s esta visivel, quando deveria nao existir ou estar invisivel.
 textbox_is_visible_failure = A caixa de texto com nome ou id %s nao existe ou nao esta visivel.
 textbox_contains_text_failure = A caixa de texto com nome ou id %s deveria conter "%s", mas o seu texto atual eh "%s".
+textbox_does_not_contain_text_failure = A caixa de texto com nome ou id %s não deveria conter "%s", mas o seu texto atual eh "%s".
 textbox_matches_text_failure = A caixa de texto com nome ou id %s deveria conter exatamente "%s", mas o seu texto atual eh "%s".
 textbox_does_not_match_text_failure = A caixa de texto com nome ou id %s nao deveria conter exatamente "%s", mas o seu texto atual eh "%s".
