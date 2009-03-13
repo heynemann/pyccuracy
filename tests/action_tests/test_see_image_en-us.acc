@@ -6,7 +6,7 @@ Scenario 1 - Checking that some page image is there
 Given
 	I go to "image_tests.htm"
 When
-	The page finishes loading
+	#The page finishes loading
 Then
 	I see "imgSomething" image
 	And I see "imgSomething2" image

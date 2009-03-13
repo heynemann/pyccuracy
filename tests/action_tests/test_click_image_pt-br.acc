@@ -8,7 +8,7 @@ Dado que
 Quando
 	Eu clico na imagem "imgChangeTitle"
 Entao
-	Eu vejo o titulo como "different title"
+	Eu vejo o titulo "different title"
 	
 Cenario 2 - Clicando em uma imagem pelo atributo id
 Dado que
@@ -16,4 +16,4 @@ Dado que
 Quando
 	Eu clico na imagem "imgChangeTitle2"
 Entao
-	Eu vejo o titulo como "different title 2"
+	Eu vejo o titulo "different title 2"

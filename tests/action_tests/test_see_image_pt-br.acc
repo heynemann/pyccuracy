@@ -6,7 +6,7 @@ Cenario 1 - Garantindo que a imagem da pagina de testes esta la
 Dado que
 	Eu navego para "image_tests.htm"
 Quando
-	A pagina termina de carregar
+	#A pagina termina de carregar
 Entao
 	Eu vejo a imagem "imgSomething"
 	E eu vejo a imagem "imgSomething2"

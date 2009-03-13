@@ -51,7 +51,7 @@ class FileTestFixtureParser(object):
                 if (self.__is_story_line(line)): pass
                 elif (self.__is_scenario_starter_line(line)): scenario = self.__process_scenario_starter_line(fixture, story, line)
                 elif (self.__is_scenario_line(line)): action_under = self.__process_given_when_then_line(line)
-                else: self.__process_action_line(fixture, scenario, action_under, line)
+                else: self.__process_action_line(file_path, fixture, scenario, action_under, line)
 
     def __process_story_lines(self, fixture, as_a, i_want_to, so_that):
         return fixture.start_story(as_a.replace(self.story_lines[0],""), 
@@ -72,13 +72,16 @@ class FileTestFixtureParser(object):
         if (line == self.language["when"]): return "when"
         if (line == self.language["then"]): return "then"
 
-    def __process_action_line(self, fixture, scenario, action_under, line):
+    def __process_action_line(self, file_path, fixture, scenario, action_under, line):
         method = getattr(scenario, "add_" + action_under)
         action = self.__get_action(line)
         if (action != None):
             method(line, action[0], action[1])
         else:
-            method(line, self.blank_execute, self.blank_values_for)
+            if line.strip().startswith("#"):
+                method(line, self.blank_execute, self.blank_values_for)
+            else:
+                raise InvalidScenarioError("\n\n>> \"%s\"\nThe line above does not match any actions. If you just need a text like \"I wait for the page to finish loading\" or something like this, prefix your line with a # sign. \nFilename: %s\nScenario: %s - %s" % (line, file_path, scenario.index, scenario.title))
 
     def blank_values_for(self, line):
         return tuple([])

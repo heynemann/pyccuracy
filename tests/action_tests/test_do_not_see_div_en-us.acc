@@ -6,7 +6,7 @@ Scenario 1 - Checking that some page div is not there
 Given
 	I go to "div_tests.htm"
 When
-	The page finishes loading
+	#The page finishes loading
 Then
 	I do not see "divHidden1" div
 	And I do not see "divHidden2" div

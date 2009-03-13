@@ -6,7 +6,7 @@ Scenario 1 - Checking that some page checkbox is not there
 Given
 	I go to "checkbox_tests.htm"
 When
-	The page finishes loading
+	#The page finishes loading
 Then
 	I do not see "chkHidden1" checkbox
     And I do not see "chkHidden2" checkbox

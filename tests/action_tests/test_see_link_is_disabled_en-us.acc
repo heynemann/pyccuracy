@@ -6,7 +6,7 @@ Scenario 1 - Checking that some page link is disabled
 Given
 	I go to "link_tests.htm"
 When
-	The page finishes loading
+	#The page finishes loading
 Then
 	I see "lnkDisabled" link is disabled
 	And I see "lnkDisabled2" link is disabled

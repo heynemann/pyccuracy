@@ -6,7 +6,7 @@ Scenario 1 - Checking that some button is enabled
 Given
 	I go to "button_tests.htm"
 When
-	The page finishes loading
+	#The page finishes loading
 Then
 	I see "btnEnabled" button is enabled
 	And I see "btnEnabled2" button is enabled

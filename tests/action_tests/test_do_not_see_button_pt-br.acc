@@ -6,7 +6,7 @@ Cenario 1 - Garantindo que o botao da pagina de testes esta invisivel
 Dado que
 	Eu navego para "button_tests.htm"
 Quando
-	A pagina termina de carregar
+	#A pagina termina de carregar
 Entao
 	Eu nao vejo o botao "btnHidden1"
 	E eu nao vejo o botao "btnHidden2"

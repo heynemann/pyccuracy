@@ -6,7 +6,7 @@ Cenario 1 - Garantindo que o link da pagina de testes esta la
 Dado que
 	Eu navego para "link_tests.htm"
 Quando
-	A pagina termina de carregar
+	#A pagina termina de carregar
 Entao
 	Eu vejo o link "lnkSomething"
 	E eu vejo o link "lnkSomethingElse"

@@ -6,7 +6,7 @@ Scenario 1 - Checking that some page textbox is there
 Given
 	I go to "textbox_tests.htm"
 When
-	The page finishes loading
+	#The page finishes loading
 Then
 	I see "txtSomething" textbox
 	And I see "txtSomethingElse" textbox

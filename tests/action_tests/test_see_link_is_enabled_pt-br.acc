@@ -6,7 +6,7 @@ Cenario 1 - Garantindo que o link da pagina de testes esta habilitado
 Dado que
 	Eu navego para "link_tests.htm"
 Quando
-	A pagina termina de carregar
+	#A pagina termina de carregar
 Entao
 	Eu vejo que o link "lnkEnabled" esta habilitado
 	E eu vejo que o link "lnkEnabled2" esta habilitado

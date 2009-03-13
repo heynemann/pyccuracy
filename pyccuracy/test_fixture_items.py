@@ -80,7 +80,7 @@ class Action(object):
             else:
                 self.execute_function(context)
         except Exception, error:
-            if error.__class__.__name__ != "ActionFailedError": throw
+            if error.__class__.__name__ != "ActionFailedError": raise
             self.mark_as_failed(error)
             return 0
 

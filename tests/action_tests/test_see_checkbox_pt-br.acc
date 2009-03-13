@@ -6,7 +6,7 @@ Cenario 1 - Garantindo que a checkbox da pagina de testes esta la
 Dado que
 	Eu navego para "checkbox_tests.htm"
 Quando
-	A pagina termina de carregar
+	#A pagina termina de carregar
 Entao
 	Eu vejo a checkbox "chkSomething"
 	E eu vejo a checkbox "chkSomethingElse"

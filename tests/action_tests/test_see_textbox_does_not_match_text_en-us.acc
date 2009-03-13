@@ -6,7 +6,7 @@ Scenario 1 - Checking that some page textbox does not match text
 Given
 	I go to "textbox_tests.htm"
 When
-	The page finishes loading
+	#The page finishes loading
 Then
 	I see "txtMatches1" textbox does not match "Invalid text"
 	And I see "txtMatches2" textbox does not match "Invalid text"

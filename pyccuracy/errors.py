@@ -11,7 +11,14 @@ class ActionFailedError(Exception):
 
     def __str__(self):
         return self.message
+        
+class InvalidScenarioError(Exception):
+    def __init__(self, message):
+        self.message = message
 
+    def __str__(self):
+        return self.message
+        
 class LanguageParseError(Exception):
     def __init__(self, culture, file_path, error_message = "The language file for %s could not be parsed at %s!"):
         self.culture = culture

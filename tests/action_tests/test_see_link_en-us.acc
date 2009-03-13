@@ -6,7 +6,7 @@ Scenario 1 - Checking that some page link is there
 Given
 	I go to "link_tests.htm"
 When
-	The page finishes loading
+	#The page finishes loading
 Then
 	I see "lnkSomething" link
 	And I see "lnkSomethingElse" link

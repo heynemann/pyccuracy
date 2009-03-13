@@ -6,7 +6,7 @@ Scenario 1 - Checking that some page link is enabled
 Given
 	I go to "link_tests.htm"
 When
-	The page finishes loading
+	#The page finishes loading
 Then
 	I see "lnkEnabled" link is enabled
 	And I see "lnkEnabled2" link is enabled

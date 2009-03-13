@@ -6,7 +6,7 @@ Scenario 1 - Checking that google's search button is there
 Given
 	I go to "button_tests.htm"
 When
-	The page finishes loading
+	#The page finishes loading
 Then
 	I see "btnSomething" button
 	And I see "btnSomething2" button

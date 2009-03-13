@@ -2,12 +2,12 @@ Como um usuario do Pyccuracy
 Eu quero testar a acao de verificar se uma checkbox esta checada
 Para garantir que o Pyccuracy funciona em outras linguas
 
-Cenario 1 - Verificando que as checkbox estão checadas
+Cenario 1 - Verificando que as checkbox estao checadas
 Dado que
 	Eu navego para "checkbox_tests.htm"
 Quando
 	Eu marco a checkbox "chkUnchecked"
 	E eu marco a checkbox "chkUnchecked2"
 Entao
-	Eu vejo que a checkbox "chkUnchecked" esta checada
-	E eu vejo que a checkbox "chkUnchecked2" esta checada
+	Eu vejo que a checkbox "chkUnchecked" esta marcada
+	E eu vejo que a checkbox "chkUnchecked2" esta marcada

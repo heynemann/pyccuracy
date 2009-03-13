@@ -6,6 +6,6 @@ Scenario 1 - Checking that some page's select has selected value of 20
 Given
 	I go to "select_tests.htm"
 When
-	The page finishes loading
+	#The page finishes loading
 Then
 	I see "selSelectedByValue" select has selected value of "20"

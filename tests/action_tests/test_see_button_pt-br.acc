@@ -6,7 +6,7 @@ Cenario 1 - Garantindo que o botao de pesquisa do google esta la
 Dado que
 	Eu navego para "button_tests.htm"
 Quando
-	A pagina termina de carregar
+	#A pagina termina de carregar
 Entao
 	Eu vejo o botao "btnSomething"
 	E eu vejo o botao "btnSomething2"

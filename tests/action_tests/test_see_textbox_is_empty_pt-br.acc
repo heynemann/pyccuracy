@@ -6,6 +6,6 @@ Cenario 1 - Garantindo que a caixa de texto da pagina de testes esta vazia
 Dado que
 	Eu navego para "textbox_tests.htm"
 Quando
-	A pagina termina de carregar
+	#A pagina termina de carregar
 Entao
 	Eu vejo que a caixa de texto "txtSomething" esta vazia

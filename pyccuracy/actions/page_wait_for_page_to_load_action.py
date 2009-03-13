@@ -15,14 +15,16 @@ class PageWaitForPageToLoadAction(ActionBase):
         return self.last_match
 
     def values_for(self, line):
-        if not self.last_match: return ()
-
-        timeout = float(self.last_match.groups()[2])
+        if not self.last_match: return (-1,)
+        found_groups = self.last_match.groups()
+        if len(found_groups) < 4: return (-1,)
+        timeout = float(found_groups[3])
         return (timeout,)
 
     def execute(self, values, context):
-        if (values):
-            timeout = values[0]
+        timeout = values[0]
+        if timeout == -1: timeout = None
+        if timeout:
             self.browser_driver.wait_for_page(timeout * 1000)
         else:
             self.browser_driver.wait_for_page()

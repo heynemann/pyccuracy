@@ -6,7 +6,7 @@ Scenario 1 - Checking that some page button is not there
 Given
 	I go to "button_tests.htm"
 When
-	The page finishes loading
+	#The page finishes loading
 Then
 	I do not see "btnHidden1" button
 	And I do not see "btnHidden2" button

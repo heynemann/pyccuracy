@@ -6,7 +6,7 @@ Scenario 1 - Checking that some page's select is there
 Given
 	I go to "select_tests.htm"
 When
-	The page finishes loading
+	#The page finishes loading
 Then
 	I do not see "invisibleSelect1" select
 	And I do not see "invisibleSelect2" select

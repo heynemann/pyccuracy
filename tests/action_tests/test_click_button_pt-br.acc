@@ -8,4 +8,4 @@ Dado que
 Quando
 	Eu clico no botao "btnSend"
 Entao
-	A pagina eh recarregada
+	#A pagina eh recarregada

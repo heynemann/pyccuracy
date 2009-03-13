@@ -6,7 +6,7 @@ Cenario 1 - Garantindo que o botao esta habilitado
 Dado que
 	Eu navego para "button_tests.htm"
 Quando
-	A pagina termina de carregar
+	#A pagina termina de carregar
 Entao
 	Eu vejo que o botao "btnEnabled" esta habilitado
 	E eu vejo que o botao "btnEnabled2" esta habilitado

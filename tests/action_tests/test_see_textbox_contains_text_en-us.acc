@@ -6,7 +6,7 @@ Scenario 1 - Checking that some page textbox contains text
 Given
 	I go to "textbox_tests.htm"
 When
-	The page finishes loading
+	#The page finishes loading
 Then
 	I see "txtContains1" textbox contains "large"
 	And I see "txtContains2" textbox contains "large"

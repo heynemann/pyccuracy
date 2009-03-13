@@ -6,7 +6,7 @@ Cenario 1 - Garantindo que o botao esta desabilitado
 Dado que
 	Eu navego para "button_tests.htm"
 Quando
-	A pagina termina de carregar
+	#A pagina termina de carregar
 Entao
 	Eu vejo que o botao "btnDisabled" esta desabilitado
 	E eu vejo que o botao "btnDisabled2" esta desabilitado

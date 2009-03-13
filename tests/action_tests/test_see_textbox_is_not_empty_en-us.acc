@@ -6,6 +6,6 @@ Scenario 1 - Checking that we can see if a textbox does not contain any text
 Given
 	I go to "textbox_tests.htm"
 When
-    The page loads
+    #The page loads
 Then
 	I see "txtContains1" textbox is not empty

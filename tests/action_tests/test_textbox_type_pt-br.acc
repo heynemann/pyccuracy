@@ -13,4 +13,4 @@ Quando
 	E eu preencho a caixa de texto "txtSomethingElse2" com "Monty Python"
 	E eu preencho a caixa de texto "txtSomethingElse3" com "Monty Python"
 Entao
-	As caixas de texto estao preenchidas
+	#As caixas de texto estao preenchidas

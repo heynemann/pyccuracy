@@ -8,7 +8,7 @@ Dado que
 Quando
 	Eu clico no link "lnkItWorks"
 Entao
-	Eu vejo o titulo como "It Works!"
+	Eu vejo o titulo "It Works!"
 	
 Cenario 2 - Clicando em um link pelo atributo id
 Dado que
@@ -16,4 +16,4 @@ Dado que
 Quando
 	Eu clico no link "lnkItWorks2"
 Entao
-	Eu vejo o titulo como "It Works!"
+	Eu vejo o titulo "It Works!"

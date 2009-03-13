@@ -8,4 +8,4 @@ Given
 When
 	I click "btnSend" button
 Then
-	The page loads again
+	#The page loads again
