@@ -16,6 +16,7 @@ class PyccuracyCore(object):
                   page_folder = None,
                   languages_dir=os.path.join(os.path.dirname(__file__), "languages"),
                   base_url= None,
+                  should_throw = False,
                   context = None):
 
         IoC.reset()
@@ -35,7 +36,7 @@ class PyccuracyCore(object):
 
         self.__print_results()
 
-        if self.context.test_fixture.get_results().status == "FAILED":
+        if should_throw and self.context.test_fixture.get_results().status == "FAILED":
             raise TestFailedError("The test failed!")
         
     def configure_ioc(self, languages_dir, culture, tests_path, file_pattern, actions_root, page_folder, base_url):

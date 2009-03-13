@@ -2,6 +2,7 @@ import os
 import sys
 sys.path.insert(0,os.path.abspath(__file__+"/../../../"))
 from pyccuracy.page import Page
+from pyccuracy.errors import *
 from pyccuracy.actions.action_base import ActionBase
 from pyccuracy.actions.element_is_visible_base import *
 
@@ -21,4 +22,4 @@ class PageSeeTitleAction(ActionBase):
         expected_title = values[0]
         title = self.browser_driver.get_title()
         if (title != expected_title):
-            raise ActionFailedError(self.language["page_see_title_failure"] % (title, expected_title))
+            self.raise_action_failed_error(self.language["page_see_title_failure"] % (title, expected_title))

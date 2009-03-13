@@ -79,7 +79,8 @@ class Action(object):
                 self.execute_function(self.arguments, context)
             else:
                 self.execute_function(context)
-        except ActionFailedError, error:
+        except Exception, error:
+            if error.__class__.__name__ != "ActionFailedError": throw
             self.mark_as_failed(error)
             return 0
 
