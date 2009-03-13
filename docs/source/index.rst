@@ -19,4 +19,6 @@ For more information check the overview.
 |                 |                 |
 |    overview     |    actions      |
 |    tutorial     |                 |
+|    console      |                 |
+|    prepost      |                 |
 +-----------------+-----------------+

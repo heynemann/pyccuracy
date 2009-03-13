@@ -35,6 +35,8 @@ class PageGoToAction(ActionBase):
         
         if self.is_url(url):
             new_url = url
+        elif context.base_url != None:
+            new_url = os.path.join("file://" + os.path.abspath(context.base_url), url)
         else:            new_url = os.path.join("file://" + os.path.abspath(context.tests_path), url)
                 
         self.browser_driver.page_open(new_url)
