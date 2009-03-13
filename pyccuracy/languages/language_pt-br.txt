@@ -72,6 +72,8 @@ textbox_contains_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"]
 textbox_does_not_contain_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] nao contem [\"](.+)[\"]$
 textbox_matches_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] contem exatamente [\"](.+)[\"]$
 textbox_does_not_match_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] nao contem exatamente [\"](.+)[\"]$
+textbox_is_empty_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] esta vazia$
+textbox_is_not_empty_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] nao esta vazia$
 
 #Action Failure Messages
 page_see_title_failure = O titulo da pagina (%s) nao bate com o titulo esperado (%s)
@@ -111,3 +113,6 @@ textbox_contains_text_failure = A caixa de texto com nome ou id %s deveria conte
 textbox_does_not_contain_text_failure = A caixa de texto com nome ou id %s não deveria conter "%s", mas o seu texto atual eh "%s".
 textbox_matches_text_failure = A caixa de texto com nome ou id %s deveria conter exatamente "%s", mas o seu texto atual eh "%s".
 textbox_does_not_match_text_failure = A caixa de texto com nome ou id %s nao deveria conter exatamente "%s", mas o seu texto atual eh "%s".
+textbox_is_empty_failure = A caixa de texto com nome ou id %s não esta vazia e deveria estar.
+textbox_is_not_empty_failure = A caixa de texto com nome ou id %s esta vazia e nao deveria estar.
+

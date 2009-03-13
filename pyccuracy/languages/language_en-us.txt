@@ -72,6 +72,8 @@ textbox_contains_text_regex = ^(And )?I see [\"](.+)[\"] textbox contains [\"](.
 textbox_does_not_contain_text_regex = ^(And )?I see [\"](.+)[\"] textbox does not contain [\"](.+)[\"]$
 textbox_matches_text_regex = ^(And )?I see [\"](.+)[\"] textbox matches [\"](.+)[\"]$
 textbox_does_not_match_text_regex = ^(And )?I see [\"](.+)[\"] textbox does not match [\"](.+)[\"]$
+textbox_is_empty_regex = ^(And )?I see [\"](.+)[\"] textbox is empty$
+textbox_is_not_empty_regex = ^(And )?I see [\"](.+)[\"] textbox is not empty$
 
 #Action Failure Messages
 page_see_title_failure = The page title (%s) does not match the expected title (%s)
@@ -113,3 +115,6 @@ textbox_contains_text_failure = The textbox with name or id %s should contain "%
 textbox_does_not_contain_text_failure = The textbox with name or id %s shouldn't contain "%s", but it's current text is "%s".
 textbox_matches_text_failure = The textbox with name or id %s should match "%s", but it's current text is "%s".
 textbox_does_not_match_text_failure = The textbox with name or id %s shouldn't match "%s", but it's current text is "%s".
+textbox_is_empty_failure = The textbox with name or id %s is not empty.
+textbox_is_not_empty_failure = The textbox with name or id %s is empty.
+
