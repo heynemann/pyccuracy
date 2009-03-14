@@ -91,6 +91,9 @@ class SeleniumBrowserDriver(object):
     def get_link_href(self, link_selector):
         return self.__get_attribute_value(link_selector, "href")
 
+    def get_link_text(self, link_selector):
+        return self.selenium.get_text(link_selector)
+
     def is_element_empty(self, element_selector):
         return self.get_element_text(element_selector) == ""
 

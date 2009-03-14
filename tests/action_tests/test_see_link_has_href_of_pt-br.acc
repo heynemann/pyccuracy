@@ -1,12 +1,12 @@
 Como um usuario do Pyccuracy
-Eu quero testar a acao de verificar o href de um link
+Eu quero testar a acao de verificar o texto de um link
 Para garantir que o Pyccuracy funciona em outras linguas
 
-Cenario 1 - Garantindo que o link da pagina de testes tem o href correto
+Cenario 1 - Garantindo que o link da pagina de testes tem o texto correto
 Dado que
 	Eu navego para "link_tests.htm"
 Quando
 	#A pagina termina de carregar
 Entao
-	Eu vejo que o link "lnkGoogle" tem href "http://www.google.com"
-	E eu vejo que o link "lnkGoogle2" tem href "http://www.google.com"
+	Eu vejo que o link "lnkGoogle" tem texto "Google 1"
+	E eu vejo que o link "lnkGoogle2" tem texto "Google 2"
