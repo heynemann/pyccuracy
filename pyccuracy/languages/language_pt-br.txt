@@ -56,6 +56,7 @@ link_is_enabled_regex = ^(E )?[eE]u vejo que o link [\"](.+)[\"] esta habilitado
 link_is_disabled_regex = ^(E )?[eE]u vejo que o link [\"](.+)[\"] esta desabilitado$
 link_has_href_regex = ^(E )?[eE]u vejo que o link [\"](.+)[\"] tem href [\"](.+)[\"]$
 link_has_text_regex = ^(E )?[eE]u vejo que o link [\"](.+)[\"] tem texto [\"](.+)[\"]$
+link_mouseover_regex = ^(E )?[eE]u passo o mouse no link [\"](.+)[\"]$
 
 select_is_visible_regex = ^(E )?[eE]u vejo a select [\"](.+)[\"]$
 select_is_not_visible_regex = ^(E )?[eE]u nao vejo a select [\"](.+)[\"]$

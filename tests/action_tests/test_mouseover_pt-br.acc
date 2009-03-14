@@ -1,0 +1,11 @@
+Como um usuario do Pyccuracy
+Eu quero testar a acao de passar o mouse um link
+Para garantir que o Pyccuracy funciona em outras linguas
+	
+Cenario 1 - Passando o mouse em um link
+Dado que
+	Eu navego para "link_tests.htm"
+Quando
+	Eu passo o mouse no link "lnkMouseOver"
+Entao
+	Eu vejo o div "divMouseOverLink"

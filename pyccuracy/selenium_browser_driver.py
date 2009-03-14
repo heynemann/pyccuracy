@@ -93,6 +93,9 @@ class SeleniumBrowserDriver(object):
 
     def get_link_text(self, link_selector):
         return self.selenium.get_text(link_selector)
+        
+    def mouseover_element(self, element_selector):
+        self.selenium.mouse_over(element_selector)
 
     def is_element_empty(self, element_selector):
         return self.get_element_text(element_selector) == ""
