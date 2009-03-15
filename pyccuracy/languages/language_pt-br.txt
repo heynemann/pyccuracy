@@ -34,6 +34,7 @@ button_is_not_visible_regex = ^(E )?[eE]u nao vejo o botao [\"](.+)[\"]$
 button_click_regex = ^(E )?[eE]u clico no botao [\"](.+)[\"]$
 button_is_enabled_regex = ^(E )?[eE]u vejo que o botao [\"](.+)[\"] esta habilitado$
 button_is_disabled_regex = ^(E )?[eE]u vejo que o botao [\"](.+)[\"] esta desabilitado$
+button_mouseover_regex = ^(E )?[eE]u passo o mouse no botao [\"](.+)[\"]$
 
 checkbox_is_visible_regex = ^(E )?[eE]u vejo a checkbox [\"](.+)[\"]$
 checkbox_is_not_visible_regex = ^(E )?[eE]u nao vejo a checkbox [\"](.+)[\"]$
@@ -44,10 +45,12 @@ checkbox_uncheck_regex = ^(E )?[eE]u desmarco a checkbox [\"](.+)[\"]$
 
 div_is_visible_regex = ^(E )?[eE]u vejo o div [\"](.+)[\"]$
 div_is_not_visible_regex = ^(E )?[eE]u nao vejo o div [\"](.+)[\"]$
+div_mouseover_regex = ^(E )?[eE]u passo o mouse no div [\"](.+)[\"]$
 
 image_click_regex = ^(E )?[eE]u clico na imagem [\"](.+)[\"]$
 image_is_visible_regex = ^(E )?[eE]u vejo a imagem [\"](.+)[\"]$
 image_is_not_visible_regex = ^(E )?[eE]u nao vejo a imagem [\"](.+)[\"]$
+image_mouseover_regex = ^(E )?[eE]u passo o mouse na imagem [\"](.+)[\"]$
 
 link_is_visible_regex = ^(E )?[eE]u vejo o link [\"](.+)[\"]$
 link_is_not_visible_regex = ^(E )?[eE]u nao vejo o link [\"](.+)[\"]$

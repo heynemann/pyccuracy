@@ -34,6 +34,7 @@ button_is_not_visible_regex = ^(And )?I do not see [\"](.+)[\"] button$
 button_click_regex = ^(And )?I click [\"](.+)[\"] button$
 button_is_enabled_regex = ^(And )?I see [\"](.+)[\"] button is enabled$
 button_is_disabled_regex = ^(And )?I see [\"](.+)[\"] button is disabled$
+button_mouseover_regex = ^(And )?I mouseover [\"](.+)[\"] button$
 
 checkbox_is_visible_regex = ^(And )?I see [\"](.+)[\"] checkbox$
 checkbox_is_not_visible_regex = ^(And )?I do not see [\"](.+)[\"] checkbox$
@@ -44,10 +45,12 @@ checkbox_uncheck_regex = ^(And )?I uncheck the [\"](.+)[\"] checkbox$
 
 div_is_visible_regex = ^(And )?I see [\"](.+)[\"] div$
 div_is_not_visible_regex = ^(And )?I do not see [\"](.+)[\"] div$
+div_mouseover_regex = ^(And )?I mouseover [\"](.+)[\"] div$
 
 image_click_regex = ^(And )?I click [\"](.+)[\"] image$
 image_is_visible_regex = ^(And )?I see [\"](.+)[\"] image$
 image_is_not_visible_regex = ^(And )?I do not see [\"](.+)[\"] image$
+image_mouseover_regex = ^(And )?I mouseover [\"](.+)[\"] image$
 
 link_is_visible_regex = ^(And )?I see [\"](.+)[\"] link$
 link_is_not_visible_regex = ^(And )?I do not see [\"](.+)[\"] link$

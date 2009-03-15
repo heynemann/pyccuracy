@@ -1,0 +1,11 @@
+Como um usuario do Pyccuracy
+Eu quero testar a acao de passar o mouse um botao
+Para garantir que o Pyccuracy funciona em outras linguas
+	
+Cenario 1 - Passando o mouse em um botao
+Dado que
+	Eu navego para "button_tests.htm"
+Quando
+	Eu passo o mouse no botao "btnMouseOver"
+Entao
+	Eu vejo o div "divMouseOverButton"
