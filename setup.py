@@ -1,4 +1,3 @@
-# -*- coding: UTF-8 -*-
 from setuptools import setup, find_packages
 import sys, os
 
@@ -128,7 +127,7 @@ point you in the right direction.
 Currently Supported Languages:
 
     1.  English
-    2.  Português Brasil sem acentos (Portuguese Brazil)
+    2.  Portugues Brasil sem acentos (Portuguese Brazil)
 
 Sample Test
 -----------
@@ -212,86 +211,7 @@ co http://svn.stormwindproject.org/svn/Pyccuracy Pyccuracy``)
 .. [#tdd] Test-Driven Development - Know more in http://en.wikipedia.org/wiki/Test-driven_development.
 .. [#allaboutbehavior] It's all about behavior - http://behaviour-driven.org/ItsAllBehaviour
 .. [#emailgroup] Google Group for Pyccuracy - http://groups.google.com/group/pyccuracy
-
-=============
-Release Notes
-=============
-
-Release Notes - Pyccuracy - Version 0.1
----------------------------------------
-
-**Bug**
-
-[http://jira.stormwindproject.org:8080/browse/PYCCURACY-66] - Fix 
-running the 
-pyccuracy_core on nix machines.
-
-**New Feature**
-
-[http://jira.stormwindproject.org:8080/browse/PYCCURACY-14] - 
-Check/Uncheck Checkbox Action
-
-[http://jira.stormwindproject.org:8080/browse/PYCCURACY-15] - 
-Checkbox Is Checked Action
-
-[http://jira.stormwindproject.org:8080/browse/PYCCURACY-16] - 
-Checkbox Is Not Checked Action
-
-[http://jira.stormwindproject.org:8080/browse/PYCCURACY-17] - 
-See Checkbox Action
-
-[http://jira.stormwindproject.org:8080/browse/PYCCURACY-21] - 
-See Button Action
-
-[http://jira.stormwindproject.org:8080/browse/PYCCURACY-40] - 
-See Select Action
-
-[http://jira.stormwindproject.org:8080/browse/PYCCURACY-41] - 
-Do Not See Select Action
-
-[http://jira.stormwindproject.org:8080/browse/PYCCURACY-42] - 
-See Select Has Selected Index of Action
-
-[http://jira.stormwindproject.org:8080/browse/PYCCURACY-50] - 
-Select Option By Index
-
-[http://jira.stormwindproject.org:8080/browse/PYCCURACY-57] - 
-Click Image Action
-
-[http://jira.stormwindproject.org:8080/browse/PYCCURACY-58] - 
-See Link Action
-
-[http://jira.stormwindproject.org:8080/browse/PYCCURACY-63] - 
-Do Not See Link Action
-
-[http://jira.stormwindproject.org:8080/browse/PYCCURACY-64] - 
-Click Link Action
-
-[http://jira.stormwindproject.org:8080/browse/PYCCURACY-80] - 
-Render a summary of the run after the run
-
-[http://jira.stormwindproject.org:8080/browse/PYCCURACY-87] - 
-Wait for Page To Load Action
-
-**Task**
-
-[http://jira.stormwindproject.org:8080/browse/PYCCURACY-4] - 
-Create documentation for current release
-
-[http://jira.stormwindproject.org:8080/browse/PYCCURACY-9] - 
-Encapsulate Pyccuracy on a .egg
-
-[http://jira.stormwindproject.org:8080/browse/PYCCURACY-10] - 
-Create index page for Pyccuracy.egg distribution
-
-[http://jira.stormwindproject.org:8080/browse/PYCCURACY-84] - 
-Add tests for Click Button
-
-[http://jira.stormwindproject.org:8080/browse/PYCCURACY-85] - 
-Add tests for Type Text
-
-[http://jira.stormwindproject.org:8080/browse/PYCCURACY-86] - 
-Add tests for See Title""",
+""",
       classifiers=["Development Status :: 2 - Pre-Alpha",
 				   "Intended Audience :: Developers",
 				   "License :: OSI Approved",

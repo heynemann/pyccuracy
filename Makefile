@@ -42,6 +42,6 @@ upload:
 	@echo "Running a build..."
 	@echo off
 	@rm -f -r ./pyccuracy/build
-	@setup.py sdist upload
+	@python setup.py sdist upload
 	@echo "Build finished and uploaded!"
 	
