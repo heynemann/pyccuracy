@@ -1,5 +1,6 @@
 from locator import *
 from test_fixture import *
+import pyoc.reflection as reflection
 
 class FileTestFixtureParser(object):
     def __init__(self, browser_driver, language, all_actions):
@@ -40,13 +41,23 @@ class FileTestFixtureParser(object):
         except IoError:
             fixture.add_invalid_test_file(file_path)
 
-        self.__process_lines(fixture, file_path, [line.strip() for line in lines if line.strip()])
+        compiled_conditions_file = os.path.join(os.path.split(file_path)[0], os.path.splitext(file_path)[0] + ".pyc")
+        conditions_file = os.path.join(os.path.split(file_path)[0], os.path.splitext(file_path)[0] + ".py")
+        if os.path.exists(compiled_conditions_file):
+            conditions_module = reflection.get_module_from_path(compiled_conditions_file)
+        elif os.path.exists(conditions_file):
+            conditions_module = reflection.get_module_from_path(conditions_file)
+        else:
+            conditions_module = None
 
-    def __process_lines(self, fixture, file_path, lines):
+        self.__process_lines(fixture, file_path, [line.strip() for line in lines if line.strip()], conditions_module)
+
+    def __process_lines(self, fixture, file_path, lines, conditions_module):
         if not self.__is_story_line(lines[0]) and not self.__is_story_line(lines[1]) and not self.__is_story_line(lines[2]): 
             fixture.add_no_story_definition(file_path)
         else:
             story = self.__process_story_lines(fixture, lines[0], lines[1], lines[2])
+            story.conditions_module = conditions_module
             for line in lines:
                 if (self.__is_story_line(line)): pass
                 elif (self.__is_scenario_starter_line(line)): scenario = self.__process_scenario_starter_line(fixture, story, line)

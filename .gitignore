@@ -2,3 +2,5 @@
 *.pyc
 docs/build
 out.txt
+Makefile~
+dist/
