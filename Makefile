@@ -7,13 +7,14 @@
 # Internal variables.
 
 
-.PHONY: help build tests upload
+.PHONY: help build tests upload docs
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
 	@echo "  build     to run a build"
 	@echo "  tests     to run all the tests"
 	@echo "  upload    to run a build and upload to PyPI"
+	@echo "  docs      to build documentation"
 
 build:
 	@echo "=================="
@@ -44,4 +45,8 @@ upload:
 	@rm -f -r ./pyccuracy/build
 	@python setup.py sdist upload
 	@echo "Build finished and uploaded!"
-	
+
+docs:
+	@$(MAKE) -C ./docs -f Makefile clean
+	@$(MAKE) -C ./docs -f Makefile html
+	tar -cf ./docs/current_docs.tar ./docs/build/html/*
