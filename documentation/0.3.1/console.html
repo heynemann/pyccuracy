@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Pyccuracy Console &mdash; Pyccuracy v0.3.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="Pyccuracy v0.3.0 documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="index.html">Pyccuracy v0.3.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  
+  <div class="section" id="pyccuracy-console">
+<h1>Pyccuracy Console<a class="headerlink" href="#pyccuracy-console" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The pyccuracy console app is provided as means of executing pyccuracy files (.acc).</p>
+<p>It is just a regular python app (pyccuracy_console.py) and thus can be run like other python apps.</p>
+<p>The only difference is that it takes command-line arguments in the form of:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pyccuracy_console</span><span class="o">.</span><span class="n">py</span> <span class="p">[</span><span class="n">option</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>If no options are specified it gets executed with the defaults and runs all the tests in the given folder (you can learn more about the defaults in each of the accepted arguments).</p>
+<p>The options can be specified in two forms:</p>
+<div class="highlight-python"><pre>-&lt;short_option_name&gt; &lt;value&gt;</pre>
+</div>
+<p>Or:</p>
+<div class="highlight-python"><pre>--&lt;long_option_name&gt;=&lt;value&gt;</pre>
+</div>
+<p>Both forms specify exactly the same configuration. Choose the one you&#8217;re more comfortable with.</p>
+</div>
+<div class="section" id="arguments">
+<h2>Arguments<a class="headerlink" href="#arguments" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="d-or-dir">
+<h3>-d or &#8211;dir<a class="headerlink" href="#d-or-dir" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="description">
+<h4>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h4>
+<p>This is the tests root directory.</p>
+<p>Defines where the tests to be executed are.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The test execution is recursive, so all the tests under the specified directory (even in sub-directories) get executed.</p>
+</div>
+</div>
+<div class="section" id="default">
+<h4>Default<a class="headerlink" href="#default" title="Permalink to this headline">¶</a></h4>
+<p>Defaults to the current shell directory.</p>
+</div>
+<div class="section" id="example">
+<h4>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python"><pre>pyccuracy_console.py -d /path/to/tests
+pyccuracy_console.py --dir=/path/to/tests</pre>
+</div>
+</div>
+</div>
+<div class="section" id="p-or-pattern">
+<h3>-p or &#8211;pattern<a class="headerlink" href="#p-or-pattern" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h4>Description<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p>Test File naming pattern.</p>
+<p>Defines which tests will get executed.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This parameter can use wildcards supported by the OS.</p>
+</div>
+</div>
+<div class="section" id="id2">
+<h4>Default<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p>Defaults to &#8220;<a href="#id3"><span class="problematic" id="id4">*</span></a>.acc&#8221;.</p>
+</div>
+<div class="section" id="id5">
+<h4>Example<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python"><pre>pyccuracy_console.py -p some_test.acc
+pyccuracy_console.py --pattern=some_test.acc</pre>
+</div>
+<p><em>This will only execute the some_test.acc test.</em></p>
+</div>
+</div>
+<div class="section" id="u-or-url">
+<h3>-u or &#8211;url<a class="headerlink" href="#u-or-url" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id6">
+<h4>Description<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<p>This is the website being tested base URL.</p>
+<p>When the user navigates to a given page that page will be joined with this url.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This parameter can be specified with a physical url (/some/path/to/pages) or a web url (<a class="reference external" href="http://www.google.com">http://www.google.com</a>).</p>
+</div>
+</div>
+<div class="section" id="id7">
+<h4>Default<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+<p>Defaults to None.</p>
+</div>
+<div class="section" id="id8">
+<h4>Example<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python"><pre>pyccuracy_console.py -u http://www.mysite.com
+pyccuracy_console.py --url=http://www.mysite.com</pre>
+</div>
+<p>This means that if some user navigates to &#8220;some_page.htm&#8221; Pyccuracy will actually navigate to &#8220;<a class="reference external" href="http://www.mysite.com/some_page.htm">http://www.mysite.com/some_page.htm</a>&#8220;.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo_pyccuracy_blue.gif" alt="Logo"/>
+            </a></p>
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Pyccuracy Console</a><ul>
+<li><a class="reference external" href="#introduction">Introduction</a></li>
+<li><a class="reference external" href="#arguments">Arguments</a><ul>
+<li><a class="reference external" href="#d-or-dir">-d or &#8211;dir</a><ul>
+<li><a class="reference external" href="#description">Description</a></li>
+<li><a class="reference external" href="#default">Default</a></li>
+<li><a class="reference external" href="#example">Example</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#p-or-pattern">-p or &#8211;pattern</a><ul>
+<li><a class="reference external" href="#id1">Description</a></li>
+<li><a class="reference external" href="#id2">Default</a></li>
+<li><a class="reference external" href="#id5">Example</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#u-or-url">-u or &#8211;url</a><ul>
+<li><a class="reference external" href="#id6">Description</a></li>
+<li><a class="reference external" href="#id7">Default</a></li>
+<li><a class="reference external" href="#id8">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/console.txt">Show Source</a></li>
+            </ul>
+          <h3>Quick search</h3>
+            <form class="search" action="search.html" method="get">
+              <input type="text" name="q" size="18" /> <input type="submit" value="Go" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="index.html">Pyccuracy v0.3.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Bernardo Heynemann.
+      Last updated on Mar 16, 2009.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.5.1.
+    </div>
+  </body>
+</html>
