@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Pyccuracy - Home</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="css/layout.css" rel="stylesheet" type="text/css" />
+<link href="css/custom.css" rel="stylesheet" type="text/css" />
+</head>
+<body id="page1">
+<div id="main">
+	{% include header.html %}
+	<!-- content -->
+		<div class="section">
+			Overview
+		</div>
+		
+		<div class="subsection">
+			Introduction
+		</div>
+		<br />
+		<p>Pyccuracy is a Behavior-Driven Acceptance Testing framework (more on that in the next section).</p><br />
+		<p>It serves two crystal clear, yet very hard to achieve, purposes:</p><br />
+		<ol style="margin-left:20px;">
+			<li>
+				<p><strong>Encouraging Test-Driven Acceptance Testing</strong></p>
+				<p>
+					This means writing acceptance tests prior to the tasks that describe them.
+					This way you take Test-Driven-Development one step further and push yourself
+					towards the right direction when it comes to the application UI (user interface).
+				</p>
+			</li>
+			<li>
+				<p><strong>Providing an easy and clear language to write tests</strong></p>
+				<p>
+					It&#8217;s really important to write acceptance tests that prove your app works.
+					Most of the time people don&#8217;t do it using some (or all) of the excuses below:
+				</p>
+				<ol style="margin-left:42px;">
+					<li>Acceptance Tests are fragile - People say they don&#8217;t do them because they break easily.</li>
+					<li>Acceptance Tests are slow - Running the acceptance tests take more time than we can afford.</li>
+					<li>Acceptance Tests are hard to write - The xyz acceptance testing framework being used is too hard to write tests on.</li>
+					<li>Unit Test Coverage is good enough - We have unit test coverage anyway, so why do Acceptance tests anyway?</li>
+				</ol>
+			</li>
+		</ol><br />
+		<p>Well, all of the above are just lame excuses on why not to write Acceptance tests.</p><br />
+		<p>
+			In my point of view, if you can&#8217;t prove that something works as expected, then it doesn&#8217;t.
+			Acceptance tests serve one purpose: Demonstrating, beyond shadow of doubt, that your application
+			works as the customer expects.
+		</p><br />
+		<p>They are real concerns, though. Let&#8217;s tackle each of them individually.</p><br />
+		
+		<div class="subsubsection">
+			Fragility
+		</div>
+		<div class="subsubsection_content">
+			<p>
+				First, the fragility issue. To determine if your tests are fragile, you first need to define a proper fragile test.
+				In my opinion a fragile acceptance test is one that breaks even though you haven&#8217;t changed the behavior of the UI
+				the test works on.
+			</p><br />
+			<p>
+				Fragility is often a problem with how you are writing your tests, other than the actual tests.
+				Acceptance tests need to test behavior. It&#8217;s ok to write acceptance tests that verify that the UI is in accordance to
+				any number of standards you define (Pyccuracy even supports that concept). Just bare in mind that these tests
+				are not acceptance tests. They are smoke tests or whatever you want to call them, and they are going to 
+				be <strong>VERY</strong> fragile, because that&#8217;s their purpose: breaking if the UI changes. 
+				So it&#8217;s best to have as few of those as you possibly can.
+			</p><br />
+			<p>
+				Pyccuracy encourages less-fragile tests by having a concise language, yet expressful, for writing your tests.
+			</p>
+		</div>
+		<br />
+		
+		<div class="subsubsection">
+			Running Speed
+		</div>
+		<div class="subsubsection_content">
+			<p>
+				Running acceptance tests is always going to be slower than unit tests,
+				for the simple fact that they are wired tests (meaning they connect to 
+				real resources, which are always slower than mocks or stubs).
+			</p><br />
+			<p>
+				The key thing here is that slower does not need to translate into slow. Even though we rely a lot 
+				on the underlying testing framework (i.e. Selenium), we&#8217;ve optimised Pyccuracy quite a lot 
+				in order to have great performance.
+			</p><br />
+			<p>
+				We still need <em>real</em> project data in order to determine how slow or fast 
+				Pyccuracy really is, since our test scenarios are too simple for that purpose.
+			</p>
+		</div>
+		<br />
+		
+		<div class="subsubsection">
+			Language
+		</div>
+		<div class="subsubsection_content">
+			<p>
+				With Pyccuracy, the proposition is that general-purpose programming languages 
+				might not be the best language to describe acceptance tests.
+			</p><br />
+			<p>
+				Pyccuracy provides a domain-specific language (DSL) for 
+				writing acceptance tests (you can see an example at the <em>Sample Test</em> section). 
+				The purpose of using a DSL is to have clear easy-to-write tests.
+			</p>
+			<p>
+				This enables scenarios such as a wiki that holds all your tests as well-organized 
+				pages or using the acceptance tests to enable better discussion with clients 
+				on what a story should cover.
+			</p>
+			<p>
+				Pyccuracy uses a Regular-Expression driven approach to the DSL, which makes it really 
+				easy to improve and refine the language.
+			</p>
+		</div>
+		<br />
+
+		<div class="subsubsection">
+			Unit Test Coverage
+		</div>
+		<div class="subsubsection_content">
+			<p>
+				Even with good unit test coverage, you still need acceptance tests.
+			</p><br />
+			<p>
+				The reason behind this is that they aim at different targets. 
+				While unit tests aim at proving that your code does 
+				what it should do, acceptance tests prove that your application 
+				does what the client expects.
+			</p>
+			<p>
+				Aside from that, unit tests are mocked tests, meaning that they can&#8217;t 
+				depend on any external resources, while acceptance tests are <em>wired</em> tests, 
+				meaning they use your application in the same way the client is going to use it.
+			</p>
+			<p>
+				So, saying you don&#8217;t need acceptance tests because you got good unit test coverage is nonsense.
+			</p>
+		</div>
+		<br />
+
+		<div class="subsection">
+			Behavior-Driven Testing
+		</div>
+		<br />
+		<p>
+			Behavior-Driven Testing (BDT) is a concept derived from 
+			Behavior-Driven Development <a class="footnote-reference" href="#bdd" id="id1">[1]</a>.
+			The information in the Behavior-Driven Development website is well worth your time.
+		</p><br />
+		<p>
+			Whereas BDD uses a parallel to Test-Driven Development <a class="footnote-reference" href="#tdd" id="id2">[2]</a> 
+			to specify unit tests as scenarios, BDT uses the same ubiquitous language to describe acceptance tests.
+		</p><br />
+		<p>
+			Defining the acceptance tests in a language that&#8217;s common 
+			for both developers and clients alike has many benefits:
+		</p>
+		<ol class="arabic simple" style="margin-left:20px;">
+			<li>It&#8217;s very easy to define what a story really represents in terms of business value with the client.</li>
+			<li>There&#8217;s no impedance mismatch between what the developers think a story is and what the client expects.</li>
+			<li>
+				The stories get auto-documented as to what their behavior is 
+				<a class="footnote-reference" href="#allaboutbehavior" id="id3">[3]</a>.
+				This is really important as to get new members in the team up to speed faster, as well
+				as to increase confidence when performing refactoring to the UI.
+			</li>
+		</ol>		<br />
+		
+		<div class="subsection">
+			Language Support
+		</div>
+		<br />
+		<p>
+			Pyccuracy also supports multiple languages. 
+			This has been a really important goal for Pyccuracy team since release 0.1.
+		</p><br />
+		<p>
+			If you want to write clear tests, what clearer language to use than the one you currently speak?
+		</p><br />
+		<p>
+			We understand that there are non-english speakers out there doing amazing things, 
+			and we want to empower that (the team behind Pyccuracy 0.1 is composed only 
+			of Brazilians - but we encourage anyone anywhere to join).
+		</p><br />
+		<p>
+			If your language is not covered in Pyccuracy yet, it&#8217;s really 
+			easy to create a language file. Shouldn&#8217;t take more than half an hour. 
+			Just contact us using Pyccuracy&#8217;s e-mail group 
+			<a class="footnote-reference" href="#emailgroup" id="id4">[4]</a>, and we&#8217;ll
+			point you in the right direction.
+		</p><br />
+		<p>Currently Supported Languages:</p>
+		<ol class="arabic simple" style="margin-left:20px;">
+			<li>English</li>
+			<li>Português Brasil sem acentos (Portuguese Brazil)</li>
+		</ol>
+		<br />
+
+		<div class="subsection">
+			Sample Test
+		</div>
+		<br />
+		<p>
+			A typical Pyccuracy test would be something like:
+		</p><br />
+		{% highlight python %}
+			As a Google User
+			I want to search Google
+			So that I can test Pyccuracy
+
+			Scenario 1 - Searching for Hello World
+			Given
+			  I go to "http://www.google.com"
+			When
+			  I fill "q" textbox with "Hello World"
+			  And I click "btnG" button
+			Then
+			  I see "Hello World - Google Search" title
+
+			Scenario 2 - Searching for Monty Python
+			Given
+			  I go to "http://www.google.com"
+			When
+			  I fill "q" textbox with "Monty Python"
+			  And I click "btnG" button
+			Then
+			  I see "Monty Python - Google Search" title
+		{% endhighlight %}
+
+		<p>
+			As you can see, that&#8217;s pretty clear and yet, very intentful.
+			Without resorting to anything other than the test you could understand what&#8217;s happening.
+		</p><br />
+		<p>
+			Other than that, this test proves an aspect of google
+			(that the specified search text should be in the title).
+		</p><br />
+		<p>
+			With a good test suite you can easily cover all business value of your application 
+			and use that as proof that your app does what it should be doing.
+		</p><br />
+
+		<div class="subsection">
+			Conclusion
+		</div>
+		<br />
+		<p>
+			Pyccuracy should speed up the creation of acceptance tests and 
+			improve on the way your dev team communicates with the client 
+			when related to what business value and behavior the stories contain.
+		</p>
+		  
+	{% include footer.html %}
+</div>
+
+	{% include google_analytics.html %}
+
+</body>
+</html>

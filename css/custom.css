@@ -1,0 +1,34 @@
+div.section {
+	text-align: right;
+	font-size: 24px;
+	font-weight: bold;
+	color: orange;
+	border-bottom: 1px dotted #ababab;
+	width:100%;
+	margin-bottom: 8px;
+}
+
+div.subsection {
+	font-size: 16px;
+	font-weight: bold;
+	color: #0060ff;
+	border-bottom: 1px dotted #ababab;
+	width:100%;
+}
+
+div.subsubsection {
+	font-size: 12px;
+	font-weight: bold;
+	color: #0060ff;
+	border-bottom: 1px dotted #ababab;
+	width:100%;
+	margin-left:12px;
+}
+
+div.subsubsection_content {
+	width:100%;
+	background-color: #efefef;
+	margin-left:12px;
+	padding-left: 6px;
+	border-left: 1px solid #0060ff;
+}
