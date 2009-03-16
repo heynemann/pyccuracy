@@ -25,13 +25,14 @@ def main():
     """ Main function - parses args and runs action """
     parser = optparse.OptionParser(usage="%prog or type %prog -h (--help) for help", description=__doc__, version="%prog" + __revision__)
     parser.add_option("-p", "--pattern", dest="pattern", default="*.acc", help="File pattern. Defines which files will get executed [default: %%default].")
+    parser.add_option("-l", "--language", dest="language", default="en-us", help="Language. Defines which language the dictionary will be loaded with  [default: %%default].")
     parser.add_option("-d", "--dir", dest="dir", default=os.curdir, help="Tests directory. Defines where the tests to be executed are [default: %%default]. Note: this is recursive, so all the tests under the current directory get executed.")
     parser.add_option("-u", "--url", dest="url", default=None, help="Base URL. Defines a base url against which the tests will get executed. For more details check the documentation [default: %%default].")
      
     (options, args) = parser.parse_args()
 
     pyc = PyccuracyCore()
-    pyc.run_tests(file_pattern=options.pattern, tests_path=options.dir, base_url = options.url)
+    pyc.run_tests(file_pattern=options.pattern, tests_path=options.dir, base_url = options.url, default_culture=options.language)
  
 if __name__ == "__main__":
     main()

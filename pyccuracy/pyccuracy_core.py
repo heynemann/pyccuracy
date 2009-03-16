@@ -20,6 +20,9 @@ class PyccuracyCore(object):
                   context = None):
 
         IoC.reset()
+
+        if not page_folder:
+            page_folder = tests_path
         
         self.configure_ioc(languages_dir, default_culture, tests_path, file_pattern, actions_root, page_folder, base_url)
 
@@ -55,10 +58,7 @@ class PyccuracyCore(object):
         
         config.register_files("all_actions", actions_root, "*_action.py", lifestyle_type = "singleton")
         
-        if page_folder != None:
-            config.register_inheritors("all_pages", page_folder, Page)
-        else:
-            config.register("all_pages", [])
+        config.register_inheritors("all_pages", page_folder, Page)
 
         config.register("story_runner", StoryRunner)
         
