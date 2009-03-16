@@ -22,11 +22,11 @@ p{ padding:0;}
 /*header*/
 #header{ color:#666666; font-size:14px;}
 #header a{ color:#040b12;}
-#header .col_1{ width:325px; background:url(../images/menu_img1.gif) no-repeat 47px 28px; padding:47px 0 0 0;}
+#header .col_1{ width:325px; padding:47px 0 0 0;}
 /**#header .col_1 span{ margin:0 57px 0 46px;}*/
 #header .col_1 b{ margin-left:47px;}
 #header .col_2{ width:317px;}
-#header .col_3{ width:347px; background:url(../images/menu_img2.gif) no-repeat 42px 30px; padding:47px 0 0 0;}
+#header .col_3{ width:347px; padding:47px 0 0 0;}
 /*#header .col_3 span{ margin:0 46px 0 49px;}*/
 #header .col_3 b{ margin-left:42px;}
 
