@@ -228,10 +228,10 @@ co http://svn.stormwindproject.org/svn/Pyccuracy Pyccuracy``)
         'pyccuracy': ['languages/*.txt', 'lib/*/*.*', 'lib/*/*/*.*', 'lib/*/*/*/*.*'],
 	  },
       include_package_data=True,
+      scripts = ['pyccuracy/pyccuracy_console.py'],
       zip_safe=True,
       install_requires=[
           "selenium>=0.9.2",
-          "PyoC>=0.1"
       ],
       entry_points="""
       # -*- Entry points: -*-

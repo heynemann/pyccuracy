@@ -1,2 +1,1 @@
 selenium>=0.9.2
-PyoC>=0.1

@@ -19,7 +19,7 @@ __revision__ = "$Id$"
 __docformat__ = 'restructuredtext en'
  
 import os, sys, optparse 
-from pyccuracy_core import PyccuracyCore
+from pyccuracy.pyccuracy_core import PyccuracyCore
  
 def main():
     """ Main function - parses args and runs action """
