@@ -32,3 +32,5 @@ div.subsubsection_content {
 	padding-left: 6px;
 	border-left: 1px solid #0060ff;
 }
+
+#acc span { font-weight: bold; 	color: #0060ff; }

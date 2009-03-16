@@ -9,7 +9,64 @@
 </head>
 <body id="page1">
 <div id="main">
-	{% include header.html %}
+
+	
+	
+	
+	
+	<!-- header -->
+	
+	<div id="header">
+		<div class="col_1">
+			<table border="0" cellspacing="0" cellpadding="0" width="100%">
+				<colgroup>
+					<col style="width:33%; text-align:center;" />
+					<col style="width:33%; text-align:center;" />
+					<col style="width:33%; text-align:center;" />
+				<tr>
+					<td align="center"><a href="index.html"><img src="images/home.jpg" border="0" /></a></td>
+					<td align="center"><a href="overview.html"><img src="images/overview.jpg" border="0" /></a></td>
+					<td align="center"><a href="tutorial.html"><img src="images/contact.jpg" border="0" /></a></td>
+				</tr>
+				<tr>
+					<td align="center"><a href="index.html">Home</a></td>
+					<td align="center"><a href="overview.html">Overview</a></td>
+					<td align="center"><a href="tutorial.html">Getting Started</a></td>
+				</tr>
+			</table>
+		</div>
+		<div class="col_2"><a href="index.html"><img alt="" src="images/logo.jpg" /></a></div>
+		<div class="col_3">
+			<table border="0" cellspacing="0" cellpadding="0" width="100%">
+				<colgroup>
+					<col style="width:33%; text-align:center;" />
+					<col style="width:33%; text-align:center;" />
+					<col style="width:33%; text-align:center;" />
+				<tr>
+					<td align="center"><a href="docs.html"><img src="images/tutorial.jpg" border="0" /></a></td>
+					<td align="center"><a href="projectinfo.html"><img src="images/projectinfo.gif" border="0" /></a></td>
+					<td align="center"><a href="downloads.html"><img src="images/downloads.jpg" border="0" /></a></td>
+				</tr>
+				<tr>
+					<td align="center"><a href="docs.html">Docs</a></td>
+					<td align="center"><a href="projectinfo.html">Project Info</a></td>
+					<td align="center"><a href="downloads.html">Downloads</a></td>
+				</tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+	
+	<!-- end header -->
+	
+	
+	
+	
+	
+	
+	
+	
+
 	<!-- content -->
 		<div class="section">
 			Overview
@@ -193,7 +250,7 @@
 			If your language is not covered in Pyccuracy yet, it&#8217;s really 
 			easy to create a language file. Shouldn&#8217;t take more than half an hour. 
 			Just contact us using Pyccuracy&#8217;s e-mail group 
-			<a class="footnote-reference" href="#emailgroup" id="id4">[4]</a>, and we&#8217;ll
+			<a class="footnote-reference" href="#mailgroup" id="id4">[4]</a>, and we&#8217;ll
 			point you in the right direction.
 		</p><br />
 		<p>Currently Supported Languages:</p>
@@ -210,29 +267,29 @@
 		<p>
 			A typical Pyccuracy test would be something like:
 		</p><br />
-		{% highlight python %}
-			As a Google User
-			I want to search Google
-			So that I can test Pyccuracy
+		<pre id="acc">
+			<span>As a</span> Google User
+			<span>I want to</span> search Google
+			<span>So that</span> I can test Pyccuracy
 
-			Scenario 1 - Searching for Hello World
-			Given
+			<span>Scenario</span> 1 - Searching for Hello World
+			<span>Given</span>
 			  I go to "http://www.google.com"
-			When
+			<span>When</span>
 			  I fill "q" textbox with "Hello World"
 			  And I click "btnG" button
-			Then
+			<span>Then</span>
 			  I see "Hello World - Google Search" title
 
-			Scenario 2 - Searching for Monty Python
-			Given
+			<span>Scenario</span> 2 - Searching for Monty Python
+			<span>Given</span>
 			  I go to "http://www.google.com"
-			When
+			<span>When</span>
 			  I fill "q" textbox with "Monty Python"
 			  And I click "btnG" button
-			Then
+			<span>Then</span>
 			  I see "Monty Python - Google Search" title
-		{% endhighlight %}
+		</pre>
 
 		<p>
 			As you can see, that&#8217;s pretty clear and yet, very intentful.
@@ -255,12 +312,107 @@
 			Pyccuracy should speed up the creation of acceptance tests and 
 			improve on the way your dev team communicates with the client 
 			when related to what business value and behavior the stories contain.
-		</p>
+		</p><br />
 		  
-	{% include footer.html %}
+		<div class="subsection">
+			Footnotes
+		</div>
+		<br />
+
+		<table class="docutils footnote" frame="void" id="bdd" rules="none">
+			<colgroup>
+				<col class="label" style="width:30px;" />
+				<col />
+			</colgroup>
+			<tbody valign="top">
+				<tr>
+					<td class="label">
+						<a class="fn-backref" name="bdd">[1]</a>
+					</td>
+					<td>
+						Behavior-Driven Development - Know more in 
+						<a class="reference external" href="http://behaviour-driven.org/">http://behaviour-driven.org/</a>.
+					</td>
+				</tr>
+				<tr>
+					<td class="label">
+						<a class="fn-backref" name="tdd">[2]</a>
+					</td>
+					<td>
+						Test-Driven Development - Know more in 
+						<a class="reference external" href="http://en.wikipedia.org/wiki/Test-driven_development">
+						http://en.wikipedia.org/wiki/Test-driven_development</a>.
+					</td>
+				</tr>
+				<tr>
+					<td class="label">
+						<a class="fn-backref" name="allaboutbehavior">[3]</a>
+					</td>
+					<td>
+						It&#8217;s all about behavior - 
+						<a class="reference external" href="http://behaviour-driven.org/ItsAllBehaviour">
+							http://behaviour-driven.org/ItsAllBehaviour</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="label">
+						<a class="fn-backref" name="mailgroup">[4]</a>
+					</td>
+					<td>
+						Google Group for Pyccuracy - <a class="reference external" href="http://groups.google.com/group/pyccuracy">
+						http://groups.google.com/group/pyccuracy</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<br />
+	
+	
+	
+		
+	<!-- footer -->
+<div id="content_wrapper" class="wrapper_color">
+		<div class="height">&nbsp;</div>
+		<div class="col_1">
+			<div class="indent">
+				<img alt="" src="images/1f1.jpg" class="indent_img" />
+				<strong>Pyccuracy is an open-source Python project with an OSI license.</strong><br  />
+				<p>Being an open-source project, we need all the help we can get.</p>
+				<p>If you think you can contribute, join our <a href="http://groups.google.com/group/pyccuracy">dev list</a>, check our <a href="">JIRA server</a> for the open tickets for the current release and start coding.</p>
+				<p>The entry barrier for coding in Pyccuracy is really small, since the codebase is itself small. If you need any help, just ask in the development list and we'll be happy to answer if we can</p>
+			</div>
+		</div>
+		<div class="col_2">
+			<img alt="" src="images/1title5.gif" class="title" />
+			<strong>Pyccuracy Cheat Sheet</strong><br  />
+			<ul>
+				<li><a href="http://groups.google.com/group/pyccuracy">Project Google Groups Page</a></li>
+				<li><a href="conventions.html">Project Conventions</a></li>
+				<li><a href="blogposts.html">Links and Blog Posts</a></li>
+				<li><a href="http://jira.stormwindproject.org:8080/browse/PYCCURACY">Jira (Issue and Version Management)</a></li>
+				<li><a href="http://github.com/heynemann/pyccuracy">GitHub page for Pyccuracy</a></li>
+				<li><a href="http://pypi.python.org/pypi/Pyccuracy/">Python Package Index (PyPI) Page</a></li>
+			</ul>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div id="footer">Pyccuracy &copy; 2009 | <a href="license.html">OSI License</a></div>
+	<!-- end footer -->
+	
+	
+	
+	
 </div>
 
-	{% include google_analytics.html %}
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-7926792-1");
+pageTracker._trackPageview();
+s} catch(err) {}</script>
 
 </body>
 </html>
