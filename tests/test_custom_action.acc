@@ -8,4 +8,4 @@ Given
 When
 	I search google for "Some Text"
 Then
-	I see "Some Text - Google Search" title
+	I see "Some Text - Pesquisa Google" title

@@ -13,6 +13,7 @@ class Page(object):
     def __init__(self):
         '''Initializes the page with the given url.'''
         self.registered_elements = {}
+        if hasattr(self, "register"): self.register()
     
     def get_registered_element(self, element_type, element_key):
         if not element_type in self.registered_elements: return None

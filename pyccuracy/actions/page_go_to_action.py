@@ -42,7 +42,7 @@ class PageGoToAction(ActionBase):
         protocol, page_name, file_name, complement, querystring, anchor = urllib2.urlparse.urlparse(url)
         
         if not protocol and not base_url:
-        	url = "file://" + os.path.abspath(os.path.join(context.tests_path, url))
+        	url = "file://" + os.path.abspath(os.path.join(context.tests_dir, url))
         elif not protocol:
         	url = "file://" + os.path.abspath(url)
         

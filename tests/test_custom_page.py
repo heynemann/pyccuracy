@@ -14,7 +14,7 @@ class TestCustomPage(unittest.TestCase):
         pyc = PyccuracyCore()
         for language in self.languages_to_test:
             lang_pattern = "test_custom_page_%s.acc" % (language)
-            self.pyccuracy.run_tests(file_pattern=lang_pattern, page_folder=os.path.split(__file__)[0], should_throw = True)
+            self.pyccuracy.run_tests(file_pattern=lang_pattern, pages_dir=os.path.split(__file__)[0], should_throw = True)
     
 if __name__ == "__main__":
     unittest.main()

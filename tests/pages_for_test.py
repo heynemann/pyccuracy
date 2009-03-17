@@ -4,8 +4,7 @@ sys.path.insert(0,os.path.abspath(__file__+"/../../"))
 from pyccuracy.page import Page
 
 class TestCustomPage (Page):
-    def __init__(self):
-        super(TestCustomPage, self).__init__()
+    def register(self):
         self.url = "test_custom_page.htm"
         self.register_button("My Button", "//div[@class='something']/button[@class='button']")
         self.register_checkbox("My Custom Checkbox", "//div[@class='something']/div[@name='other']/input[@type='checkbox' and @value='1']")

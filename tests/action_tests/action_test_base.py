@@ -23,7 +23,7 @@ class ActionTestBase(unittest.TestCase):
 
     def run_tests(self):
         for language in self.languages_to_test:
-            self.pyccuracy.run_tests(tests_path = self.get_root_dir(language), 
+            self.pyccuracy.run_tests(tests_dir = self.get_root_dir(language), 
                                      default_culture = language, 
                                      file_pattern = self.get_pattern(language), 
                                      languages_dir = self.get_languages_dir(),
