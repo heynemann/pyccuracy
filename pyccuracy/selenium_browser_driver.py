@@ -33,7 +33,7 @@ class SeleniumBrowserDriver(object):
             request.close()
         except IOError, e:
             server_started = False
-        
+
         urllib2.socket.setdefaulttimeout(timeout)
         return server_started
 
@@ -69,8 +69,8 @@ class SeleniumBrowserDriver(object):
         return self.selenium.get_title()
 
     def is_element_enabled(self, element):
-        attr_value = self.__get_attribute_value(element, "disabled")
-        return attr_value == None
+        is_disabled = int(self.selenium.get_xpath_count(element + "/@disabled"))
+        return not is_disabled
 
     def checkbox_is_checked(self, checkbox_selector):
         return self.selenium.is_checked(checkbox_selector)
@@ -93,7 +93,7 @@ class SeleniumBrowserDriver(object):
     def get_element_text(self, element_selector):
         text = self.__get_attribute_value(element_selector, "value")
         if text == None:
-            text = str(self.selenium.get_text(element_selector))
+            text = self.selenium.get_text(element_selector)
 
         return text
 

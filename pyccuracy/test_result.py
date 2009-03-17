@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 class TestResult(object):
     def __init__(self, language, stories, invalid_test_files, no_story_definition, start_time, end_time):
         self.language = language
@@ -18,14 +20,14 @@ class TestResult(object):
         self.invalid_files = len(self.invalid_test_files) + len(self.no_story_definition)
         for story in self.stories:
             if story.status == "SUCCESSFUL": self.successful_stories+=1
-            if story.status == "FAILED": 
+            if story.status == "FAILED":
                 self.failed_stories+=1
                 self.status = "FAILED"
             for scenario in story.scenarios:
                 if scenario.status == "SUCCESSFUL": self.successful_scenarios+=1
                 if scenario.status == "FAILED": self.failed_scenarios+=1
 
-    def __str__(self):
+    def __unicode__(self):
         messages = []
 
         total_stories = float(self.successful_stories + self.failed_stories)
@@ -54,12 +56,12 @@ class TestResult(object):
             messages.append("Failures")
             messages.append("=" * 80)
             for story in [story for story in self.stories if story.status == "FAILED"]:
-                messages.append("%s %s %s %s %s %s" % (self.language["as_a"], story.as_a, 
-                                                       self.language["i_want_to"], story.i_want_to, 
+                messages.append("%s %s %s %s %s %s" % (self.language["as_a"], story.as_a,
+                                                       self.language["i_want_to"], story.i_want_to,
                                                        self.language["so_that"], story.so_that))
                 messages.append("-" * 80)
                 for scenario in [scenario for scenario in story.scenarios if scenario.status == "FAILED"]:
-                    messages.append("Scenario %s - %s" % (scenario.index, scenario.title))
+                    messages.append(u"Scenario %s - %s" % (scenario.index, scenario.title))
                     messages.append("-" * 80)
 
                     messages.append("%s: " % self.language["given"])
@@ -71,11 +73,13 @@ class TestResult(object):
                     messages.append("%s: " % self.language["then"])
                     self.render_actions(messages, scenario.thens)
 
-        return "\n".join(messages)
+        return u"\n".join(messages)
 
     def render_actions(self, messages, action_collection):
         for action in action_collection:
-            messages.append("	%s - %s" % (action.description, action.status))
+            messages.append(u"	%s - %s" % (action.description, action.status))
             if (action.status == "FAILED"):
                 if (action.error):
-                    messages[-1] += (" - %s" % action.error)
+                    messages[-1] += (u" - %s" % action.error)
+
+    __str__ = __unicode__

@@ -17,10 +17,10 @@ class LinkIsDisabledAction(ActionBase):
         return self.last_match and (self.last_match.groups()[1],) or tuple([])
 
     def execute(self, values, context):
-        link_name = values[0]		
+        link_name = values[0]
         link = self.resolve_element_key(context, Page.Link, link_name)
-        self.assert_element_is_visible(link, self.language["link_is_visible_failure"] % link_name)        
-        
-        error_message = self.language["link_is_disabled_failure"]        
+        self.assert_element_is_visible(link, self.language["link_is_visible_failure"] % link_name)
+
+        error_message = self.language["link_is_disabled_failure"]
         if self.browser_driver.is_element_enabled(link):
             self.raise_action_failed_error(error_message % link_name)

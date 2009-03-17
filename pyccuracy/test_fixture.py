@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from errors import *
 import time
 from test_result import *
@@ -25,7 +27,12 @@ class TestFixture(object):
         return story
 
     def get_results(self):
-        return TestResult(self.language, self.stories, self.invalid_test_files, self.no_story_definition, self.start_time, self.end_time)
+        return TestResult(self.language,
+                          self.stories,
+                          self.invalid_test_files,
+                          self.no_story_definition,
+                          self.start_time,
+                          self.end_time)
 
     def did_not_run(self):
         self.start_time = time.time()
@@ -33,7 +40,7 @@ class TestFixture(object):
 
     def start_run(self):
         self.start_time = time.time()
-        
+
     def end_run(self):
         self.end_time = time.time()
 

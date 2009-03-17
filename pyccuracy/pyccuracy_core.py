@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from selenium_browser_driver import *
 from story_runner import *
 from test_fixture_parser import *
@@ -9,13 +11,13 @@ from page import Page
 from actions.action_base import ActionBase
 
 class PyccuracyCore(object):
-    def run_tests(self, 
-                  tests_dir=os.curdir, 
+    def run_tests(self,
+                  tests_dir=os.curdir,
                   actions_dir=os.path.join(os.path.dirname(__file__), "actions"),
                   custom_actions_dir=None,
                   pages_dir = None,
-                  file_pattern="to_be_defined_by_language", 
-                  default_culture="en-us", 
+                  file_pattern="to_be_defined_by_language",
+                  default_culture="en-us",
                   languages_dir=os.path.join(os.path.dirname(__file__), "languages"),
                   base_url= None,
                   should_throw = False,
@@ -25,15 +27,15 @@ class PyccuracyCore(object):
 
         if not pages_dir:
             pages_dir = tests_dir
-        
+
         if not custom_actions_dir:
             custom_actions_dir = tests_dir
-        
+
         self.configure_ioc(languages_dir, default_culture, tests_dir, file_pattern, actions_dir, pages_dir, base_url, custom_actions_dir)
 
         if context == None:
             self.context = IoC.resolve(PyccuracyContext)
-        
+
         self.context.browser_driver.start()
 
         #running the tests
@@ -46,7 +48,7 @@ class PyccuracyCore(object):
 
         if should_throw and self.context.test_fixture.get_results().status == "FAILED":
             raise TestFailedError("The test failed!")
-        
+
     def configure_ioc(self, languages_dir, culture, tests_dir, file_pattern, actions_dir, pages_dir, base_url, custom_actions_dir):
         config = InPlaceConfig()
         config.register("selenium_server", SeleniumServer)
@@ -54,34 +56,34 @@ class PyccuracyCore(object):
 
         lang = self.load_language(languages_dir, culture)
         config.register_instance("language", lang)
-        
+
         if (file_pattern == "to_be_defined_by_language"): file_pattern = lang["default_pattern"]
         config.register("file_pattern", file_pattern)
-        
+
         config.register("test_fixture_parser", FileTestFixtureParser)
         config.register("tests_dir", tests_dir)
-        
+
         config.register_files("all_actions", actions_dir, "*_action.py", lifestyle_type = "singleton")
-        
+
         config.register_inheritors("all_pages", pages_dir, Page)
         config.register_inheritors("all_custom_actions", custom_actions_dir, ActionBase)
 
         config.register("story_runner", StoryRunner)
-        
+
         config.register("browser_to_run", "*firefox")
         config.register("scripts_path", os.path.abspath(__file__))
         config.register("base_url", base_url)
-        
+
         IoC.configure(config)
-        
+
     def load_language(self, languages_dir, culture):
         lang = Language(languages_dir)
         lang.load(culture)
-        
+
         return lang
-        
+
     def __print_results(self):
-        print self.context.test_fixture.get_results()
+        print unicode(self.context.test_fixture.get_results())
         print "\n"
 
 class PyccuracyContext:

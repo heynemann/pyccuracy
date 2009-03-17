@@ -11,12 +11,13 @@ class PageWaitForSecondsAction(ActionBase):
     def matches(self, line):
         reg = self.language["page_wait_for_seconds_regex"]
         self.last_match = reg.search(line)
+
         return self.last_match
 
     def values_for(self, line):
         found_groups = self.last_match.groups()
-        timeout = float(found_groups[2])
-        return (timeout,)
+        timeout = float(found_groups[1])
+        return (timeout, )
 
     def execute(self, values, context):
         timeout = values[0]

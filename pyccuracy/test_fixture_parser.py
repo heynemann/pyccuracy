@@ -104,9 +104,12 @@ class FileTestFixtureParser(object):
     def __get_action(self, line):
         if self.all_custom_actions:
             for action in self.all_custom_actions:
-                if action.__class__.__name__ != "ActionBase" and action.matches(line):
+                action_name = action.__class__.__name__
+                if action_name != "ActionBase" and action.matches(line):
                     return (action.execute, action.values_for(line))
         for action in self.all_actions:
-            if action.__class__.__name__ != "ActionBase" and action.matches(line):                return (action.execute, action.values_for(line))
+            action_name = action.__class__.__name__
+            if action_name != "ActionBase" and action.matches(line):
+                return (action.execute, action.values_for(line))
 
         return None

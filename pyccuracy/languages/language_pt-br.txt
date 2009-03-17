@@ -47,6 +47,7 @@ checkbox_uncheck_regex = ^(E )?[eE]u desmarco a checkbox [\"](.+)[\"]$
 div_is_visible_regex = ^(E )?[eE]u vejo o div [\"](.+)[\"]$
 div_is_not_visible_regex = ^(E )?[eE]u nao vejo o div [\"](.+)[\"]$
 div_mouseover_regex = ^(E )?[eE]u passo o mouse no div [\"](.+)[\"]$
+div_contains_text_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] contem [\"](.+)[\"]$
 
 image_click_regex = ^(E )?[eE]u clico na imagem [\"](.+)[\"]$
 image_is_visible_regex = ^(E )?[eE]u vejo a imagem [\"](.+)[\"]$
@@ -80,6 +81,8 @@ textbox_matches_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] 
 textbox_does_not_match_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] nao contem exatamente [\"](.+)[\"]$
 textbox_is_empty_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] esta vazia$
 textbox_is_not_empty_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] nao esta vazia$
+textbox_is_enabled_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] esta habilitado$
+textbox_is_disabled_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] esta desabilitado$
 
 #Action Failure Messages
 page_see_title_failure = O titulo da pagina (%s) nao bate com o titulo esperado (%s)
@@ -94,6 +97,7 @@ checkbox_is_not_checked_failure = A checkbox com nome ou id %s esta marcada e de
 
 div_is_visible_failure = O div com nome ou id %s nao existe ou nao esta visivel.
 div_is_not_visible_failure = O div com nome ou id %s esta visivel, quando deveria nao existir ou estar invisivel.
+div_contains_text_failure = O div com nome ou id %s deveria conter "%s", mas o seu texto atual eh "%s".
 
 image_is_visible_failure = A imagem com nome ou id %s nao existe ou nao esta visivel.
 image_is_not_visible_failure = A imagem com nome ou id %s esta visivel, quando deveria nao existir ou estar invisivel.
@@ -122,4 +126,5 @@ textbox_matches_text_failure = A caixa de texto com nome ou id %s deveria conter
 textbox_does_not_match_text_failure = A caixa de texto com nome ou id %s nao deveria conter exatamente "%s", mas o seu texto atual eh "%s".
 textbox_is_empty_failure = A caixa de texto com nome ou id %s não esta vazia e deveria estar.
 textbox_is_not_empty_failure = A caixa de texto com nome ou id %s esta vazia e nao deveria estar.
-
+textbox_is_enabled_failure = A caixa de texto com nome ou id %s esta desabilitado, quando deveria estar habilitado.
+textbox_is_disabled_failure = A caixa de texto com nome ou id %s esta habilitado, quando deveria estar desabilitado.
