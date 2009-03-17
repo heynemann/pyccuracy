@@ -3,7 +3,7 @@ from selenium_server import SeleniumServer
 from selenium_element_selector import SeleniumElementSelector
 import time
 import os
-import urllib
+import urllib2
 
 class SeleniumBrowserDriver(object):
     def __init__(self, browser_to_run, tests_dir):
@@ -24,22 +24,27 @@ class SeleniumBrowserDriver(object):
             time.sleep(2)
 
     def __is_server_started(self):
+        timeout = urllib2.socket.getdefaulttimeout()
         try:
+            urllib2.socket.setdefaulttimeout(5)
             url = "http://%s:%s/" % (self.__host, self.__port)
-            request = urllib.urlopen(url)
+            request = urllib2.urlopen(url)
             server_started = True
             request.close()
         except IOError, e:
             server_started = False
+        
+        urllib2.socket.setdefaulttimeout(timeout)
         return server_started
 
     def start(self):
-        if self.__is_server_started():
-            self.selenium_server = None
-            return
-        self.selenium_server = SeleniumServer()
-        self.selenium_server.start()
-        self.__wait_for_server_to_start()
+        #if self.__is_server_started():
+            #self.selenium_server = None
+            #return
+        #self.selenium_server = SeleniumServer()
+        #self.selenium_server.start()
+        #self.__wait_for_server_to_start()
+        pass
 
     def start_test(self, url = "http://www.someurl.com"):
         self.selenium = selenium(self.__host, self.__port, self.__browser, url)
@@ -111,8 +116,9 @@ class SeleniumBrowserDriver(object):
         self.selenium.stop()
 
     def stop(self):
-        if self.selenium_server:
-            self.selenium_server.stop()
+        #if self.selenium_server:
+            #self.selenium_server.stop()
+        pass
 
     def __get_attribute_value(self, element, attribute):
         try:
