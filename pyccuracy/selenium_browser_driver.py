@@ -20,16 +20,23 @@ class SeleniumBrowserDriver(object):
     def __wait_for_server_to_start(self):
         server_started = False
         while server_started == False: 
-            try:
-                url = "http://%s:%s/" % (self.__host, self.__port)
-                request = urllib.urlopen(url)
-                server_started = True
-                request.close()
-            except IOError, e:
-                server_started = False
+            server_started = self.__is_server_started()
             time.sleep(2)
-
+            
+    def __is_server_started(self):
+        try:
+            url = "http://%s:%s/" % (self.__host, self.__port)
+            request = urllib.urlopen(url)
+            server_started = True
+            request.close()
+        except IOError, e:
+            server_started = False
+        return server_started
+        
     def start(self):
+        if self.__is_server_started(): 
+            self.selenium_server = None
+            return
         self.selenium_server = SeleniumServer()
         self.selenium_server.start()
         self.__wait_for_server_to_start()
@@ -104,7 +111,8 @@ class SeleniumBrowserDriver(object):
         self.selenium.stop()        
 
     def stop(self):
-        self.selenium_server.stop()
+        if self.selenium_server:
+            self.selenium_server.stop()
         
     def __get_attribute_value(self, element, attribute):
         try:
