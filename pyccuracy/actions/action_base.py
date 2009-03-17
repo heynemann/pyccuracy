@@ -38,4 +38,12 @@ class ActionBase(object):
     def assert_element_is_not_empty(self, selector, message):
         if self.is_element_empty(selector):
             self.raise_action_failed_error(message) 
-            
+    
+    def execute_action(self, action_text, context):
+        for action in context.all_custom_actions:
+            if action.matches(action_text):
+                action.execute(action.values_for(action_text), context)
+        for action in context.all_actions:
+            if action.matches(action_text):
+                action.execute(action.values_for(action_text), context)
+    

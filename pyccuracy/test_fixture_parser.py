@@ -3,13 +3,14 @@ from test_fixture import *
 import pyoc.reflection as reflection
 
 class FileTestFixtureParser(object):
-    def __init__(self, browser_driver, language, all_actions):
+    def __init__(self, browser_driver, language, all_actions, all_custom_actions):
         self.language = language
         self.story_lines = (language["as_a"], language["i_want_to"], language["so_that"],)
         self.scenario_starter_lines = (language["scenario"],)
         self.scenario_lines = (language["given"], language["when"], language["then"],)
         self.browser_driver = browser_driver
         self.all_actions = all_actions
+        self.all_custom_actions = all_custom_actions
 
     #helper methods for defining special cases
     def __is_story_line(self, line):
@@ -101,8 +102,12 @@ class FileTestFixtureParser(object):
         pass
         
     def __get_action(self, line):
+        if self.all_custom_actions:
+            for action in self.all_custom_actions:
+                if action.matches(line):
+                    return (action.execute, action.values_for(line))
         for action in self.all_actions:
             if action.matches(line):
-                    return (action.execute, action.values_for(line))
+                return (action.execute, action.values_for(line))
 
         return None

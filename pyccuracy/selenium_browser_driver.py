@@ -6,11 +6,11 @@ import os
 import urllib
 
 class SeleniumBrowserDriver(object):
-    def __init__(self, browser_to_run, tests_path):
+    def __init__(self, browser_to_run, tests_dir):
         self.__host = "localhost"
         self.__port = 4444
         self.__browser = browser_to_run
-        self.root_dir = tests_path
+        self.root_dir = tests_dir
         
     def resolve_element_key(self, context, element_type, element_key):
         if context == None: return element_key

@@ -7,11 +7,11 @@ from pyccuracy.pyccuracy_core import *
 class TestCustomActions(unittest.TestCase):
 
     def setUp(self):
-        self.pyccuracy = Pyccuracy()
+        self.pyccuracy = PyccuracyCore()
                 
-    def __test_hello_world(self):
-        custom_actions_dir = os.path.join(__file__, "custom_actions")
-        self.pyccuracy.run_tests(custom_actions_dirs=(custom_actions_dir))
+    def test_search_google(self):
+        custom_actions_dir = os.path.join(os.path.split(__file__)[0], "custom_actions")
+        self.pyccuracy.run_tests(custom_actions_dir=custom_actions_dir, file_pattern="test_custom_action.acc")
 
 if __name__ == "__main__":
     unittest.main()

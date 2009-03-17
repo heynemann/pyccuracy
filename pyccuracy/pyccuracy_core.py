@@ -6,14 +6,16 @@ from errors import *
 from pyoc.ioc import IoC
 from pyoc.config import InPlaceConfig
 from page import Page
+from actions.action_base import ActionBase
 
 class PyccuracyCore(object):
     def run_tests(self, 
-                  tests_path=os.curdir, 
-                  actions_root=os.path.join(os.path.dirname(__file__), "actions"),
+                  tests_dir=os.curdir, 
+                  actions_dir=os.path.join(os.path.dirname(__file__), "actions"),
+                  custom_actions_dir=None,
+                  pages_dir = None,
                   file_pattern="to_be_defined_by_language", 
                   default_culture="en-us", 
-                  page_folder = None,
                   languages_dir=os.path.join(os.path.dirname(__file__), "languages"),
                   base_url= None,
                   should_throw = False,
@@ -21,10 +23,13 @@ class PyccuracyCore(object):
 
         IoC.reset()
 
-        if not page_folder:
-            page_folder = tests_path
+        if not pages_dir:
+            pages_dir = tests_dir
         
-        self.configure_ioc(languages_dir, default_culture, tests_path, file_pattern, actions_root, page_folder, base_url)
+        if not custom_actions_dir:
+            custom_actions_dir = tests_dir
+        
+        self.configure_ioc(languages_dir, default_culture, tests_dir, file_pattern, actions_dir, pages_dir, base_url, custom_actions_dir)
 
         if context == None:
             self.context = IoC.resolve(PyccuracyContext)
@@ -42,7 +47,7 @@ class PyccuracyCore(object):
         if should_throw and self.context.test_fixture.get_results().status == "FAILED":
             raise TestFailedError("The test failed!")
         
-    def configure_ioc(self, languages_dir, culture, tests_path, file_pattern, actions_root, page_folder, base_url):
+    def configure_ioc(self, languages_dir, culture, tests_dir, file_pattern, actions_dir, pages_dir, base_url, custom_actions_dir):
         config = InPlaceConfig()
         config.register("selenium_server", SeleniumServer)
         config.register("browser_driver", SeleniumBrowserDriver)
@@ -54,11 +59,12 @@ class PyccuracyCore(object):
         config.register("file_pattern", file_pattern)
         
         config.register("test_fixture_parser", FileTestFixtureParser)
-        config.register("tests_path", tests_path)
+        config.register("tests_dir", tests_dir)
         
-        config.register_files("all_actions", actions_root, "*_action.py", lifestyle_type = "singleton")
+        config.register_files("all_actions", actions_dir, "*_action.py", lifestyle_type = "singleton")
         
-        config.register_inheritors("all_pages", page_folder, Page)
+        config.register_inheritors("all_pages", pages_dir, Page)
+        config.register_inheritors("all_custom_actions", custom_actions_dir, ActionBase)
 
         config.register("story_runner", StoryRunner)
         
@@ -79,15 +85,17 @@ class PyccuracyCore(object):
         print "\n"
 
 class PyccuracyContext:
-    def __init__(self, browser_driver, language, test_fixture_parser, tests_path, file_pattern, story_runner, all_actions, all_pages, base_url):
+    def __init__(self, browser_driver, language, test_fixture_parser, tests_dir, file_pattern, story_runner, all_actions, all_pages, all_custom_actions, base_url):
         self.browser_driver = browser_driver
         self.language = language
         self.test_fixture_parser = test_fixture_parser
-        self.test_fixture = self.test_fixture_parser.get_fixture([file_path for file_path in locate(file_pattern, tests_path)])
-        self.tests_path = tests_path
+        self.test_fixture = self.test_fixture_parser.get_fixture([file_path for file_path in locate(file_pattern, tests_dir)])
+        self.tests_dir = tests_dir
         self.all_pages = dict(zip([klass.__class__.__name__ for klass in all_pages], [klass for klass in all_pages]))
         self.current_page = None
         self.file_pattern = file_pattern
         self.story_runner = story_runner
         self.base_url = base_url
+        self.all_custom_actions = all_custom_actions
+        self.all_actions = all_actions
 
