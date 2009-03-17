@@ -54,7 +54,7 @@ class FileTestFixtureParser(object):
         self.__process_lines(fixture, file_path, [line.strip() for line in lines if line.strip()], conditions_module)
 
     def __process_lines(self, fixture, file_path, lines, conditions_module):
-        if not self.__is_story_line(lines[0]) and not self.__is_story_line(lines[1]) and not self.__is_story_line(lines[2]): 
+        if not self.__is_story_line(lines[0]) and not self.__is_story_line(lines[1]) and not self.__is_story_line(lines[2]):
             fixture.add_no_story_definition(file_path)
         else:
             story = self.__process_story_lines(fixture, lines[0], lines[1], lines[2])
@@ -66,8 +66,8 @@ class FileTestFixtureParser(object):
                 else: self.__process_action_line(file_path, fixture, scenario, action_under, line)
 
     def __process_story_lines(self, fixture, as_a, i_want_to, so_that):
-        return fixture.start_story(as_a.replace(self.story_lines[0],""), 
-                                   i_want_to.replace(self.story_lines[1],""), 
+        return fixture.start_story(as_a.replace(self.story_lines[0],""),
+                                   i_want_to.replace(self.story_lines[1],""),
                                    so_that.replace(self.story_lines[2],""))
 
     def __process_scenario_starter_line(self, fixture, story, line):
@@ -100,14 +100,13 @@ class FileTestFixtureParser(object):
 
     def blank_execute(self, values, context):
         pass
-        
+
     def __get_action(self, line):
         if self.all_custom_actions:
             for action in self.all_custom_actions:
-                if action.matches(line):
+                if action.__class__.__name__ != "ActionBase" and action.matches(line):
                     return (action.execute, action.values_for(line))
         for action in self.all_actions:
-            if action.matches(line):
-                return (action.execute, action.values_for(line))
+            if action.__class__.__name__ != "ActionBase" and action.matches(line):                return (action.execute, action.values_for(line))
 
         return None

@@ -32,7 +32,7 @@ def main():
     (options, args) = parser.parse_args()
 
     pyc = PyccuracyCore()
-    pyc.run_tests(file_pattern=options.pattern, tests_path=options.dir, base_url = options.url, default_culture=options.language)
+    pyc.run_tests(file_pattern=options.pattern, tests_dir=options.dir, base_url=options.url, default_culture=options.language)
  
 if __name__ == "__main__":
     main()

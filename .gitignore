@@ -4,3 +4,4 @@ docs/build
 out.txt
 Makefile~
 dist/
+build/

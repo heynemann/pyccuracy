@@ -24,5 +24,5 @@ class SearchGoogleAction(ActionBase):
         search_text = values[0]
         
         self.execute_action("I fill \"q\" textbox with \"%s\"" % search_text, context)
-        self.execute_action("I click \"btnG\" button", context)
+        self.execute_action("I click \"btnG\" button and wait", context)
 

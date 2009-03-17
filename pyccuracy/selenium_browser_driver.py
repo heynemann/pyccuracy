@@ -11,18 +11,18 @@ class SeleniumBrowserDriver(object):
         self.__port = 4444
         self.__browser = browser_to_run
         self.root_dir = tests_dir
-        
+
     def resolve_element_key(self, context, element_type, element_key):
         if context == None: return element_key
-        
+
         return SeleniumElementSelector.element(element_type, element_key)
 
     def __wait_for_server_to_start(self):
         server_started = False
-        while server_started == False: 
+        while server_started == False:
             server_started = self.__is_server_started()
             time.sleep(2)
-            
+
     def __is_server_started(self):
         try:
             url = "http://%s:%s/" % (self.__host, self.__port)
@@ -32,9 +32,9 @@ class SeleniumBrowserDriver(object):
         except IOError, e:
             server_started = False
         return server_started
-        
+
     def start(self):
-        if self.__is_server_started(): 
+        if self.__is_server_started():
             self.selenium_server = None
             return
         self.selenium_server = SeleniumServer()
@@ -62,7 +62,7 @@ class SeleniumBrowserDriver(object):
 
     def get_title(self):
         return self.selenium.get_title()
-    
+
     def is_element_enabled(self, element):
         attr_value = self.__get_attribute_value(element, "disabled")
         return attr_value == None
@@ -84,23 +84,23 @@ class SeleniumBrowserDriver(object):
 
     def get_selected_text(self, element_selector):
         return self.selenium.get_selected_label(element_selector)
-        
+
     def get_element_text(self, element_selector):
         text = self.__get_attribute_value(element_selector, "value")
         if text == None:
             text = str(self.selenium.get_text(element_selector))
-        
+
         return text
 
     def select_option_by_index(self, checkbox_selector, index):
         self.selenium.select(checkbox_selector, "index=%d" % index)
-        
+
     def get_link_href(self, link_selector):
         return self.__get_attribute_value(link_selector, "href")
 
     def get_link_text(self, link_selector):
         return self.selenium.get_text(link_selector)
-        
+
     def mouseover_element(self, element_selector):
         self.selenium.mouse_over(element_selector)
 
@@ -108,12 +108,12 @@ class SeleniumBrowserDriver(object):
         return self.get_element_text(element_selector) == ""
 
     def stop_test(self):
-        self.selenium.stop()        
+        self.selenium.stop()
 
     def stop(self):
         if self.selenium_server:
             self.selenium_server.stop()
-        
+
     def __get_attribute_value(self, element, attribute):
         try:
             locator = element + "/@" + attribute
@@ -124,4 +124,4 @@ class SeleniumBrowserDriver(object):
             else:
                 raise
         return attr_value
-        
+

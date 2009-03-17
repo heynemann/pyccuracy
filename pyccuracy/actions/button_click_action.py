@@ -15,11 +15,17 @@ class ButtonClickAction(ActionBase):
         return self.last_match
 
     def values_for(self, line):
-        return self.last_match and (self.last_match.groups()[1],) or tuple([])
+        if self.last_match:
+            groups = self.last_match.groups()
+            return (groups[1], groups[2] is not None)
+        else:
+            return tuple([])
 
     def execute(self, values, context):
         button_name = values[0]
         button = self.resolve_element_key(context, Page.Button, button_name)
         self.assert_element_is_visible(button, self.language["button_is_visible_failure"] % button_name)
         self.browser_driver.click_element(button)
-        self.browser_driver.wait_for_page()
+
+        if (values[1]):
+            self.browser_driver.wait_for_page()

@@ -15,11 +15,17 @@ class LinkClickAction(ActionBase):
         return self.last_match
 
     def values_for(self, line):
-        return self.last_match and (self.last_match.groups()[1],) or tuple([])
+        if self.last_match:
+            groups = self.last_match.groups()
+            return (groups[1], groups[2] is not None)
+        else:
+            return tuple([])
 
     def execute(self, values, context):
         link_name = values[0]
         link = self.resolve_element_key(context, Page.Link, link_name)
         self.assert_element_is_visible(link, self.language["link_is_visible_failure"] % link_name)
         self.browser_driver.click_element(link)
-        self.browser_driver.wait_for_page()
+
+        if values[1]:
+            self.browser_driver.wait_for_page()
