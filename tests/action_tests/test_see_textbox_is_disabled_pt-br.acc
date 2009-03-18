@@ -1,0 +1,16 @@
+Como um usuario do Pyccuracy
+Eu quero testar a acao de ver se uma caixa de texto esta desabilitada
+Para garantir que o Pyccuracy funciona em outras linguas
+
+Cenario 1 - Garantindo que as caixas de texto estao desabilitadas
+Dado que
+	Eu navego para "textbox_tests.htm"
+Quando
+	#A pagina termina de carregar
+Entao
+	Eu vejo que a caixa de texto "txtDisabled1" esta desabilitada
+	E eu vejo que a caixa de texto "txtDisabled2" esta desabilitada
+	E eu vejo que a caixa de texto "txtDisabled3" esta desabilitada
+	E eu vejo que a caixa de texto "txtDisabled4" esta desabilitada
+	E eu vejo que a caixa de texto "txtDisabled5" esta desabilitada
+	E eu vejo que a caixa de texto "txtDisabled6" esta desabilitada

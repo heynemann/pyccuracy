@@ -48,6 +48,7 @@ div_is_visible_regex = ^(And )?I see [\"](.+)[\"] div$
 div_is_not_visible_regex = ^(And )?I do not see [\"](.+)[\"] div$
 div_mouseover_regex = ^(And )?I mouseover [\"](.+)[\"] div$
 div_contains_text_regex = ^(And )?I see [\"](.+)[\"] div contains [\"](.+)[\"]$
+div_does_not_contain_text_regex = ^(And )?I see [\"](.+)[\"] div does not contain [\"](.+)[\"]$
 
 image_click_regex = ^(And )?I click [\"](.+)[\"] image$
 image_is_visible_regex = ^(And )?I see [\"](.+)[\"] image$
@@ -100,6 +101,7 @@ checkbox_is_not_checked_failure = The checkbox with name or id %s is checked and
 div_is_visible_failure = The div with name or id %s does not exist or is not visible.
 div_is_not_visible_failure = The div with name or id %s is visible, when it should not exist or be visible.
 div_contains_text_failure = The div with name or id %s should contain "%s", but it's current text is "%s".
+div_does_not_contain_text_failure = The div with name or id %s should not contain "%s", but it's current text is "%s".
 
 image_is_visible_failure = The image with name or id %s does not exist or is not visible.
 image_is_not_visible_failure = The image with name or id %s is visible, when it should not exist or be visible.
