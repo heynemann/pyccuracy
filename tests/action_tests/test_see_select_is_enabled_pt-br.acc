@@ -1,12 +1,12 @@
 Como um usuario do Pyccuracy
-Eu quero testar a acao de ver se uma select esta habilitada
+Eu quero testar a acao de ver se uma select está habilitada
 Para garantir que o Pyccuracy funciona em outras linguas
 
-Cenario 1 - Garantindo que a select da pagina de testes esta habilitada
+Cenário 1 - Garantindo que a select da pagina de testes está habilitada
 Dado que
 	Eu navego para "select_tests.htm"
 Quando
 	#A pagina termina de carregar
-Entao
-	Eu vejo que a select "selEnabled" esta habilitada
+Então
+	Eu vejo que a select "selEnabled" está habilitada
 	

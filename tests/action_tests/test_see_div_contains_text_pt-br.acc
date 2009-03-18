@@ -2,10 +2,10 @@ Como um usuario do Pyccuracy
 Eu quero testar a acao de ver que um div contem texto
 Para garantir que o Pyccuracy funciona em outras linguas
 
-Cenario 1 - Garantindo que o div da pagina de testes contem o texto "large"
+Cenário 1 - Garantindo que o div da pagina de testes contem o texto "large"
 Dado que
 	Eu navego para "div_tests.htm"
 Quando
 	#A pagina termina de carregar
-Entao
+Então
 	Eu vejo que o div "divContains" contem "large"

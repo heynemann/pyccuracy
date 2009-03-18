@@ -40,7 +40,7 @@ class FileTestFixtureParser(object):
             fsock = open(file_path)
             lines = [unicode(x) for x in fsock.readlines()]
             fsock.close()
-        except IoError:
+        except IOError:
             fixture.add_invalid_test_file(file_path)
 
         compiled_conditions_file = os.path.join(os.path.split(file_path)[0], os.path.splitext(file_path)[0] + ".pyc")

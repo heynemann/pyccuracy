@@ -2,18 +2,18 @@ Como um usuario do Pyccuracy
 Eu quero testar a acao de clicar em uma imagem
 Para garantir que o Pyccuracy funciona em outras linguas
 	
-Cenario 1 - Clicando em uma imagem pelo atributo name
+Cenário 1 - Clicando em uma imagem pelo atributo name
 Dado que
 	Eu navego para "image_tests.htm"
 Quando
 	Eu clico na imagem "imgChangeTitle"
-Entao
-	Eu vejo o titulo "different title"
+Então
+	Eu vejo o título "different title"
 	
-Cenario 2 - Clicando em uma imagem pelo atributo id
+Cenário 2 - Clicando em uma imagem pelo atributo id
 Dado que
 	Eu navego para "image_tests.htm"
 Quando
 	Eu clico na imagem "imgChangeTitle2"
-Entao
-	Eu vejo o titulo "different title 2"
+Então
+	Eu vejo o título "different title 2"

@@ -1,11 +1,11 @@
 Como um usuario do Pyccuracy
-Eu quero testar a acao de ver que uma caixa de texto nao esta vazia
+Eu quero testar a acao de ver que uma caixa de texto não está vazia
 Para garantir que o Pyccuracy funciona em outras linguas
 
-Cenario 1 - Garantindo que a caixa de texto da pagina de testes nao esta vazia
+Cenário 1 - Garantindo que a caixa de texto da pagina de testes não está vazia
 Dado que
 	Eu navego para "textbox_tests.htm"
 Quando
 	#A pagina termina de carregar
-Entao
-	Eu vejo que a caixa de texto "txtContains1" nao esta vazia
+Então
+	Eu vejo que a caixa de texto "txtContains1" não está vazia

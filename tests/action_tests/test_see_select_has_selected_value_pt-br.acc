@@ -2,10 +2,10 @@ Como um usuario do Pyccuracy
 Eu quero testar a acao de verificar o item selecionado de uma select por valor
 Para garantir que o Pyccuracy funciona em outras linguas
 
-Cenario 1 - Garantindo que a select da pagina de testes esta com o valor selecionado de 20
+Cenário 1 - Garantindo que a select da pagina de testes está com o valor selecionado de 20
 Dado que
 	Eu navego para "select_tests.htm"
 Quando
 	#A pagina termina de carregar
-Entao
+Então
 	Eu vejo que o valor selecionado da select "selSelectedByValue" eh "20"

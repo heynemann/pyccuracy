@@ -2,11 +2,11 @@ Como um usuario do Pyccuracy
 Eu quero testar a acao de ver uma checkbox
 Para garantir que o Pyccuracy funciona em outras linguas
 
-Cenario 1 - Garantindo que a checkbox da pagina de testes esta la
+Cenário 1 - Garantindo que a checkbox da pagina de testes está la
 Dado que
 	Eu navego para "checkbox_tests.htm"
 Quando
 	#A pagina termina de carregar
-Entao
+Então
 	Eu vejo a checkbox "chkSomething"
 	E eu vejo a checkbox "chkSomethingElse"
