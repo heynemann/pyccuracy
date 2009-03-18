@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>I wait for the page to load &mdash; Pyccuracy v0.3.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="top" title="Pyccuracy v0.3.0 documentation" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../../index.html">Pyccuracy v0.3.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  
+  <div class="section" id="i-wait-for-the-page-to-load">
+<h1>I wait for the page to load<a class="headerlink" href="#i-wait-for-the-page-to-load" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="syntax">
+<h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><pre>I wait for the page to load[ for &lt;timeout&gt; seconds]</pre>
+</div>
+<dl class="docutils">
+<dt>where:</dt>
+<dd><tt class="docutils literal"><span class="pre">&lt;timeout&gt;</span></tt> - optional argument that specifies maximum time to wait for page to load. <strong>Defaults to 20 seconds</strong>.</dd>
+</dl>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>Waits for the page to load after some action, like clicking an image or any other action that changes the current page to another one (redirection or post).</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Waits for the page to load using default timeout (20 seconds)</li>
+</ol>
+<div class="highlight-python"><pre>...
+When
+        I click "some" image
+        And I wait for the page to load
+Then
+        ...</pre>
+</div>
+<ol class="arabic simple" start="2">
+<li>Waits for the page to load using a specific timeout</li>
+</ol>
+<div class="highlight-python"><pre>...
+When
+        I click "some" image
+        And I wait for the page to load for 10 seconds
+Then
+        ...</pre>
+</div>
+<p><em>Rest of the test ommitted for clarity</em></p>
+</div>
+<div class="section" id="changelog">
+<h2>Changelog<a class="headerlink" href="#changelog" title="Permalink to this headline">¶</a></h2>
+<p>
+<span class="versionmodified">New in version 0.1: </span>Wait For Page To Load action.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/logo_pyccuracy_blue.gif" alt="Logo"/>
+            </a></p>
+            <h3><a href="../../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">I wait for the page to load</a><ul>
+<li><a class="reference external" href="#syntax">Syntax</a></li>
+<li><a class="reference external" href="#description">Description</a></li>
+<li><a class="reference external" href="#examples">Examples</a></li>
+<li><a class="reference external" href="#changelog">Changelog</a></li>
+</ul>
+</li>
+</ul>
+
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../../_sources/actions/page/02_page_wait_for_page_to_load_action.txt">Show Source</a></li>
+            </ul>
+          <h3>Quick search</h3>
+            <form class="search" action="../../search.html" method="get">
+              <input type="text" name="q" size="18" /> <input type="submit" value="Go" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../../index.html">Pyccuracy v0.3.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Bernardo Heynemann.
+      Last updated on Mar 18, 2009.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.5.1.
+    </div>
+  </body>
+</html>

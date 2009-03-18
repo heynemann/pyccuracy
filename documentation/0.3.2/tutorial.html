@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial &mdash; Pyccuracy v0.3.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="Pyccuracy v0.3.0 documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="index.html">Pyccuracy v0.3.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  
+  <div class="section" id="tutorial">
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="installing">
+<h2>Installing<a class="headerlink" href="#installing" title="Permalink to this headline">¶</a></h2>
+<p>Assuming you have easy_install installed, all you need to do is:</p>
+<div class="highlight-python"><pre>easy_install pyccuracy (or sudo easy_install pyccuracy in unix)</pre>
+</div>
+</div>
+<div class="section" id="creating-your-acc-tests">
+<h2>Creating your .acc tests<a class="headerlink" href="#creating-your-acc-tests" title="Permalink to this headline">¶</a></h2>
+<p>Even though you can create tests using any extension you&#8217;d like and any file format
+(since Pyccuracy let&#8217;s you override), you&#8217;re better off using the defaults.</p>
+<p>Just name your files with the .acc extension and name your tests whatever you want, so for example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">see_that_google_works</span><span class="o">.</span><span class="n">acc</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="running-the-tests">
+<h2>Running the tests<a class="headerlink" href="#running-the-tests" title="Permalink to this headline">¶</a></h2>
+<p>First, import Pyccuracy, using:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyccuracy.pyccuracy_core</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+<p>Then create an instance of Pyccuracy using:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pyccuracy</span> <span class="o">=</span> <span class="n">Pyccuracy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The easiest form is:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pyccuracy</span><span class="o">.</span><span class="n">run_tests</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This means running all test files with the .acc extension in the same folder as the test being run,
+using en-us language (default).</p>
+<p>If you need to specify the path to your tests, use:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pyccuracy</span><span class="o">.</span><span class="n">run_tests</span><span class="p">(</span><span class="n">tests_path</span> <span class="o">=</span> <span class="s">&quot;/path/to/tests&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For a specific language, use:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pyccuracy</span><span class="o">.</span><span class="n">run_tests</span><span class="p">(</span><span class="n">default_culture</span> <span class="o">=</span> <span class="s">&quot;pt-br&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This runs all the tests using Portuguese Brazil language.</p>
+<p>The other options in the run_tests method will be explained in later releases.</p>
+</div>
+<div class="section" id="reading-the-results">
+<h2>Reading the results<a class="headerlink" href="#reading-the-results" title="Permalink to this headline">¶</a></h2>
+<p>To be written.</p>
+</div>
+<div class="section" id="custom-actions">
+<h2>Custom actions<a class="headerlink" href="#custom-actions" title="Permalink to this headline">¶</a></h2>
+<p>To be written.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo_pyccuracy_blue.gif" alt="Logo"/>
+            </a></p>
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Tutorial</a><ul>
+<li><a class="reference external" href="#installing">Installing</a></li>
+<li><a class="reference external" href="#creating-your-acc-tests">Creating your .acc tests</a></li>
+<li><a class="reference external" href="#running-the-tests">Running the tests</a></li>
+<li><a class="reference external" href="#reading-the-results">Reading the results</a></li>
+<li><a class="reference external" href="#custom-actions">Custom actions</a></li>
+</ul>
+</li>
+</ul>
+
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/tutorial.txt">Show Source</a></li>
+            </ul>
+          <h3>Quick search</h3>
+            <form class="search" action="search.html" method="get">
+              <input type="text" name="q" size="18" /> <input type="submit" value="Go" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="index.html">Pyccuracy v0.3.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Bernardo Heynemann.
+      Last updated on Mar 18, 2009.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.5.1.
+    </div>
+  </body>
+</html>
