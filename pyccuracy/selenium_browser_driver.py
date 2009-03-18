@@ -69,7 +69,14 @@ class SeleniumBrowserDriver(object):
         return self.selenium.get_title()
 
     def is_element_enabled(self, element):
-        is_disabled = int(self.selenium.get_xpath_count(element + "/@disabled"))
+        script = """this.page().findElement("%s").disabled;"""
+        
+        script_return = self.selenium.get_eval(script % element)
+        if script_return == "null":
+            is_disabled = self.__get_attribute_value(element, "disabled")
+        else:
+            is_disabled = script_return[0].upper()=="T"
+        
         return not is_disabled
 
     def checkbox_is_checked(self, checkbox_selector):
