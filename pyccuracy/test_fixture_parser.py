@@ -1,3 +1,4 @@
+import re
 from locator import *
 from test_fixture import *
 import pyoc.reflection as reflection
@@ -37,7 +38,7 @@ class FileTestFixtureParser(object):
     def __process_file(self, fixture, file_path):
         try:
             fsock = open(file_path)
-            lines = fsock.readlines()
+            lines = [unicode(x) for x in fsock.readlines()]
             fsock.close()
         except IoError:
             fixture.add_invalid_test_file(file_path)
@@ -54,16 +55,28 @@ class FileTestFixtureParser(object):
         self.__process_lines(fixture, file_path, [line.strip() for line in lines if line.strip()], conditions_module)
 
     def __process_lines(self, fixture, file_path, lines, conditions_module):
-        if not self.__is_story_line(lines[0]) and not self.__is_story_line(lines[1]) and not self.__is_story_line(lines[2]):
+        if not self.__is_story_line(lines[0]) \
+               and not self.__is_story_line(lines[1]) \
+               and not self.__is_story_line(lines[2]):
+
             fixture.add_no_story_definition(file_path)
         else:
+
             story = self.__process_story_lines(fixture, lines[0], lines[1], lines[2])
             story.conditions_module = conditions_module
+            scenario = None
+
             for line in lines:
-                if (self.__is_story_line(line)): pass
-                elif (self.__is_scenario_starter_line(line)): scenario = self.__process_scenario_starter_line(fixture, story, line)
-                elif (self.__is_scenario_line(line)): action_under = self.__process_given_when_then_line(line)
-                else: self.__process_action_line(file_path, fixture, scenario, action_under, line)
+                if (self.__is_story_line(line)):
+                    pass
+                elif (self.__is_scenario_starter_line(line)):
+                    scenario = self.__process_scenario_starter_line(fixture, story, line)
+                elif (self.__is_scenario_line(line)):
+                    action_under = self.__process_given_when_then_line(line)
+                else:
+                    if not scenario:
+                        raise RuntimeError("There is no scenario line before current action: %s" % line)
+                    self.__process_action_line(file_path, fixture, scenario, action_under, line)
 
     def __process_story_lines(self, fixture, as_a, i_want_to, so_that):
         return fixture.start_story(as_a.replace(self.story_lines[0],""),
@@ -72,8 +85,13 @@ class FileTestFixtureParser(object):
 
     def __process_scenario_starter_line(self, fixture, story, line):
         reg = self.language["scenario_starter_regex"]
-        match = reg.search(line)
-        values = match.groups()
+        match = reg.search(unicode(line))
+        try:
+            values = match.groups()
+        except AttributeError, e:
+            raise RuntimeError(u'Could not match the line:' \
+                               ' %s\n with the regex of scenario_starter_regex - %r' % (line, unicode(e)))
+
         scenario_index = values[0]
         scenario_title = values[1]
         scenario = story.start_scenario(scenario_index, scenario_title)

@@ -3,60 +3,60 @@ default_pattern = *.acc
 as_a = Como um
 i_want_to = Eu quero
 so_that = Para
-scenario = Cenario
+scenario = Cenário
 given = Dado que
 when = Quando
-then = Entao
-invalid_test_files = arquivos de teste invalidos
-files_without_header = arquivos de teste sem o cabecalho correto
+then = Então
+invalid_test_files = arquivos de teste inválidos
+files_without_header = arquivos de teste sem o cabeçalho correto
 story_status = Status da Story
 
 #Sumario dos Testes
 test_run_summary = Sumario dos Testes
 stories_ran_successfully = %d stories tiveram sucesso (%.2f%%)
 stories_that_failed = %d stories falharam (%.2f%%)
-scenarios_ran_successfully = %d cenarios tiveram sucesso (%.2f%%)
-scenarios_that_failed = %d cenarios falharam (%.2f%%)
+scenarios_ran_successfully = %d cenários tiveram sucesso (%.2f%%)
+scenarios_that_failed = %d cenários falharam (%.2f%%)
 
 #Tempos dos Testes
-test_run_timing = Tempo dos Testes
+test_run_timing = Duração dos Testes
 
-#Regular Expression que Inicia Cenario
-scenario_starter_regex = ^Cenario (\d+) - (.+)$
+#Regular Expression que Inicia Cenário
+scenario_starter_regex = ^Cenário (\d+) - (.+)$
 
 #Regular Expressions de Acoes
 page_go_to_regex = ^(E )?[eE]u navego para ([\"]([\w:/.]+)[\"]|([\w\s]+))$
-page_see_title_regex = ^(E )?[eE]u vejo o titulo [\"](.+)[\"]$
+page_see_title_regex = ^(E )?[eE]u vejo o título [\"](.+)[\"]$
 page_wait_for_page_to_load_regex = ^(E )?[eE]u espero a pagina ser carregada( por (\d+) segundos)?$
 page_wait_for_seconds_regex = ^(E )?[eE]u espero por (\d+([.]\d+)?) segundo[s]?$
 
-button_is_visible_regex = ^(E )?[eE]u vejo o botao [\"](.+)[\"]$
-button_is_not_visible_regex = ^(E )?[eE]u nao vejo o botao [\"](.+)[\"]$
-button_click_regex = ^(E )?[eE]u clico no botao [\"](.+)[\"]( e espero)?$
-button_is_enabled_regex = ^(E )?[eE]u vejo que o botao [\"](.+)[\"] esta habilitado$
-button_is_disabled_regex = ^(E )?[eE]u vejo que o botao [\"](.+)[\"] esta desabilitado$
-button_mouseover_regex = ^(E )?[eE]u passo o mouse no botao [\"](.+)[\"]$
+button_is_visible_regex = ^(E )?[eE]u vejo o botão [\"](.+)[\"]$
+button_is_not_visible_regex = ^(E )?[eE]u não vejo o botão [\"](.+)[\"]$
+button_click_regex = ^(E )?[eE]u clico no botão [\"](.+)[\"]( e espero)?$
+button_is_enabled_regex = ^(E )?[eE]u vejo que o botão [\"](.+)[\"] esta habilitado$
+button_is_disabled_regex = ^(E )?[eE]u vejo que o botão [\"](.+)[\"] esta desabilitado$
+button_mouseover_regex = ^(E )?[eE]u passo o mouse no botão [\"](.+)[\"]$
 
 checkbox_is_visible_regex = ^(E )?[eE]u vejo a checkbox [\"](.+)[\"]$
-checkbox_is_not_visible_regex = ^(E )?[eE]u nao vejo a checkbox [\"](.+)[\"]$
+checkbox_is_not_visible_regex = ^(E )?[eE]u não vejo a checkbox [\"](.+)[\"]$
 checkbox_is_checked_regex = ^(E )?[eE]u vejo que a checkbox [\"](.+)[\"] esta marcada$
 checkbox_is_not_checked_regex = ^(E )?[eE]u vejo que a checkbox [\"](.+)[\"] esta desmarcada$
 checkbox_check_regex = ^(E )?[eE]u marco a checkbox [\"](.+)[\"]$
 checkbox_uncheck_regex = ^(E )?[eE]u desmarco a checkbox [\"](.+)[\"]$
 
 div_is_visible_regex = ^(E )?[eE]u vejo o div [\"](.+)[\"]$
-div_is_not_visible_regex = ^(E )?[eE]u nao vejo o div [\"](.+)[\"]$
+div_is_not_visible_regex = ^(E )?[eE]u não vejo o div [\"](.+)[\"]$
 div_mouseover_regex = ^(E )?[eE]u passo o mouse no div [\"](.+)[\"]$
 div_contains_text_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] contem [\"](.+)[\"]$
-div_does_not_contain_text_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] nao contem [\"](.+)[\"]$
+div_does_not_contain_text_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] não contem [\"](.+)[\"]$
 
 image_click_regex = ^(E )?[eE]u clico na imagem [\"](.+)[\"]$
 image_is_visible_regex = ^(E )?[eE]u vejo a imagem [\"](.+)[\"]$
-image_is_not_visible_regex = ^(E )?[eE]u nao vejo a imagem [\"](.+)[\"]$
+image_is_not_visible_regex = ^(E )?[eE]u não vejo a imagem [\"](.+)[\"]$
 image_mouseover_regex = ^(E )?[eE]u passo o mouse na imagem [\"](.+)[\"]$
 
 link_is_visible_regex = ^(E )?[eE]u vejo o link [\"](.+)[\"]$
-link_is_not_visible_regex = ^(E )?[eE]u nao vejo o link [\"](.+)[\"]$
+link_is_not_visible_regex = ^(E )?[eE]u não vejo o link [\"](.+)[\"]$
 link_click_regex = ^(E )?[eE]u clico no link [\"](.+)[\"]( e espero)?$
 link_is_enabled_regex = ^(E )?[eE]u vejo que o link [\"](.+)[\"] esta habilitado$
 link_is_disabled_regex = ^(E )?[eE]u vejo que o link [\"](.+)[\"] esta desabilitado$
@@ -65,7 +65,7 @@ link_has_text_regex = ^(E )?[eE]u vejo que o link [\"](.+)[\"] tem texto [\"](.+
 link_mouseover_regex = ^(E )?[eE]u passo o mouse no link [\"](.+)[\"]$
 
 select_is_visible_regex = ^(E )?[eE]u vejo a select [\"](.+)[\"]$
-select_is_not_visible_regex = ^(E )?[eE]u nao vejo a select [\"](.+)[\"]$
+select_is_not_visible_regex = ^(E )?[eE]u não vejo a select [\"](.+)[\"]$
 select_has_selected_index_regex = ^(E )?[eE]u vejo que o indice selecionado da select [\"](.+)[\"] eh (\d+)$
 select_has_selected_value_regex = ^(E )?[eE]u vejo que o valor selecionado da select [\"](.+)[\"] eh [\"](.+)[\"]$
 select_has_selected_text_regex = ^(E )?[eE]u vejo que o texto selecionado da select [\"](.+)[\"] eh [\"](.+)[\"]$
@@ -74,59 +74,59 @@ select_is_enabled_regex = ^(E )?[eE]u vejo que a select [\"](.+)[\"] esta habili
 select_is_disabled_regex = ^(E )?[eE]u vejo que a select [\"](.+)[\"] esta desabilitada$
 
 textbox_is_visible_regex = ^(E )?[eE]u vejo a caixa de texto [\"](.+)[\"]$
-textbox_is_not_visible_regex = ^(E )?[eE]u nao vejo a caixa de texto [\"](.+)[\"]$
+textbox_is_not_visible_regex = ^(E )?[eE]u não vejo a caixa de texto [\"](.+)[\"]$
 textbox_type_regex = ^(E )?[eE]u preencho a caixa de texto [\"](.+)[\"] com [\"](.+)[\"]$
 textbox_contains_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] contem [\"](.+)[\"]$
-textbox_does_not_contain_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] nao contem [\"](.+)[\"]$
+textbox_does_not_contain_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] não contem [\"](.+)[\"]$
 textbox_matches_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] contem exatamente [\"](.+)[\"]$
-textbox_does_not_match_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] nao contem exatamente [\"](.+)[\"]$
+textbox_does_not_match_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] não contem exatamente [\"](.+)[\"]$
 textbox_is_empty_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] esta vazia$
-textbox_is_not_empty_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] nao esta vazia$
+textbox_is_not_empty_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] não esta vazia$
 textbox_is_enabled_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] esta habilitada$
 textbox_is_disabled_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] esta desabilitada$
 
 #Action Failure Messages
-page_see_title_failure = O titulo da pagina (%s) nao bate com o titulo esperado (%s)
+page_see_title_failure = O título da pagina (%s) não bate com o título esperado (%s)
 
-button_is_visible_failure = O botao com nome ou id %s nao existe ou nao esta visivel.
-button_is_not_visible_failure = O botao com nome ou id %s esta visivel, quando deveria nao existir ou estar invisivel.
+button_is_visible_failure = O botão com nome ou id %s não existe ou não esta visível.
+button_is_not_visible_failure = O botão com nome ou id %s esta visível, quando deveria não existir ou estar invisível.
 
-checkbox_is_visible_failure = A checkbox com nome ou id %s nao existe ou nao esta visivel.
-checkbox_is_not_visible_failure = A checkbox com nome ou id %s esta visivel, quando deveria nao existir ou estar invisivel.
+checkbox_is_visible_failure = A checkbox com nome ou id %s não existe ou não esta visível.
+checkbox_is_not_visible_failure = A checkbox com nome ou id %s esta visível, quando deveria não existir ou estar invisível.
 checkbox_is_checked_failure = A checkbox com nome ou id %s esta desmarcada e deveria estar marcada.
 checkbox_is_not_checked_failure = A checkbox com nome ou id %s esta marcada e deveria estar desmarcada.
 
-div_is_visible_failure = O div com nome ou id %s nao existe ou nao esta visivel.
-div_is_not_visible_failure = O div com nome ou id %s esta visivel, quando deveria nao existir ou estar invisivel.
+div_is_visible_failure = O div com nome ou id %s não existe ou não esta visível.
+div_is_not_visible_failure = O div com nome ou id %s esta visível, quando deveria não existir ou estar invisível.
 div_contains_text_failure = O div com nome ou id %s deveria conter "%s", mas o seu texto atual eh "%s".
-div_does_not_contain_text_failure = O div com nome ou id %s nao deveria conter "%s", mas o seu texto atual eh "%s".
+div_does_not_contain_text_failure = O div com nome ou id %s não deveria conter "%s", mas o seu texto atual eh "%s".
 
-image_is_visible_failure = A imagem com nome ou id %s nao existe ou nao esta visivel.
-image_is_not_visible_failure = A imagem com nome ou id %s esta visivel, quando deveria nao existir ou estar invisivel.
+image_is_visible_failure = A imagem com nome ou id %s não existe ou não esta visível.
+image_is_not_visible_failure = A imagem com nome ou id %s esta visível, quando deveria não existir ou estar invisível.
 
-link_is_visible_failure = O link com nome ou id %s nao existe ou nao esta visivel.
-link_is_not_visible_failure = O link com nome ou id %s esta visivel, quando deveria nao existir ou estar invisivel.
+link_is_visible_failure = O link com nome ou id %s não existe ou não esta visível.
+link_is_not_visible_failure = O link com nome ou id %s esta visível, quando deveria não existir ou estar invisível.
 link_is_enabled_failure = O link com nome ou id %s esta desabilitado, quando deveria estar habilitado.
 link_is_disabled_failure = O link com nome ou id %s esta habilitado, quando deveria estar desabilitado.
 link_has_href_failure = O link com nome ou id %s deveria ter href "%s", mas tem "%s".
 link_has_text_failure = O link com nome ou id %s deveria ter texto "%s", mas tem "%s".
 
-select_is_visible_failure = A select com nome ou id %s nao existe ou nao esta visivel.
-select_is_not_visible_failure = A select com nome ou id %s esta visivel, quando deveria nao existir ou estar invisivel.
+select_is_visible_failure = A select com nome ou id %s não existe ou não esta visível.
+select_is_not_visible_failure = A select com nome ou id %s esta visível, quando deveria não existir ou estar invisível.
 select_has_selected_index_failure = O indice selecionado da select com nome ou id %s deveria ser %d, mas eh %d.
 select_has_selected_value_failure = O valor selecionado da select com nome ou id %s deveria ser %s, mas eh %s.
 select_has_selected_text_failure = O texto selecionado da select com nome ou id %s deveria ser %s, mas eh %s.
 select_is_enabled_failure = A select com nome ou id %s esta desabilitada, quando deveria estar habilitada.
 select_is_disabled_failure = A select com nome ou id %s esta habilitada, quando deveria estar desabilitada.
 
-textbox_is_visible_failure = A caixa de texto com nome ou id %s nao existe ou nao esta visivel.
-textbox_is_not_visible_failure = A caixa de texto com nome ou id %s esta visivel, quando deveria nao existir ou estar invisivel.
-textbox_is_visible_failure = A caixa de texto com nome ou id %s nao existe ou nao esta visivel.
+textbox_is_visible_failure = A caixa de texto com nome ou id %s não existe ou não esta visível.
+textbox_is_not_visible_failure = A caixa de texto com nome ou id %s esta visível, quando deveria não existir ou estar invisível.
+textbox_is_visible_failure = A caixa de texto com nome ou id %s não existe ou não esta visível.
 textbox_contains_text_failure = A caixa de texto com nome ou id %s deveria conter "%s", mas o seu texto atual eh "%s".
 textbox_does_not_contain_text_failure = A caixa de texto com nome ou id %s não deveria conter "%s", mas o seu texto atual eh "%s".
 textbox_matches_text_failure = A caixa de texto com nome ou id %s deveria conter exatamente "%s", mas o seu texto atual eh "%s".
-textbox_does_not_match_text_failure = A caixa de texto com nome ou id %s nao deveria conter exatamente "%s", mas o seu texto atual eh "%s".
+textbox_does_not_match_text_failure = A caixa de texto com nome ou id %s não deveria conter exatamente "%s", mas o seu texto atual eh "%s".
 textbox_is_empty_failure = A caixa de texto com nome ou id %s não esta vazia e deveria estar.
-textbox_is_not_empty_failure = A caixa de texto com nome ou id %s esta vazia e nao deveria estar.
+textbox_is_not_empty_failure = A caixa de texto com nome ou id %s esta vazia e não deveria estar.
 textbox_is_enabled_failure = A caixa de texto com nome ou id %s esta desabilitada, quando deveria estar habilitada.
 textbox_is_disabled_failure = A caixa de texto com nome ou id %s esta habilitada, quando deveria estar desabilitada.

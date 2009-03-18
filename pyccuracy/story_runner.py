@@ -10,10 +10,10 @@ class StoryRunner(object):
 
         #No tests to run
         if len(test_fixture.stories) == 0:
-            test_fixture.did_not_run() 
+            test_fixture.did_not_run()
             return
-            
-        self.browser_driver.start_test("http://www.google.com")
+
+        self.browser_driver.start_test("http://www.pyccuracy.org")
         try:
             test_fixture.start_run()
             for current_story in test_fixture.stories:
@@ -35,7 +35,7 @@ class StoryRunner(object):
                 if not result: return 0
             current_scenario.end_run()
             self.raise_post_scenario(context, current_story, current_scenario, current_scenario.status)
-            
+
     def raise_pre_story(self, context, story):
         conditions = story.conditions_module
         if conditions and hasattr(conditions, "pre_story"):
@@ -53,5 +53,5 @@ class StoryRunner(object):
 
     def raise_post_scenario(self, context, story, scenario, result):
         conditions = story.conditions_module
-        if conditions and hasattr(conditions, "pre_scenario"):            
+        if conditions and hasattr(conditions, "pre_scenario"):
             conditions.post_scenario(context, story, scenario, result)

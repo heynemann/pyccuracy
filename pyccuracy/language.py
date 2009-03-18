@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from errors import *
 import os
 import re
@@ -15,11 +17,14 @@ class Language(object):
         file_name = "language_" + culture + ".txt"
         file_path = os.path.join(self.languages_dir, file_name)
 
-        if not os.path.exists(file_path): raise LanguageParseError(culture, file_path)
+        if not os.path.exists(file_path):
+            raise LanguageParseError(culture, file_path)
+
         try:
             fsock = open(file_path)
-            lines = [line.strip() for line in fsock.readlines() if line.strip() != ""]
+            lines = [unicode(line.strip()) for line in fsock.readlines() if line.strip() != ""]
             fsock.close()
+
         except ValueError:
             raise LanguageParseError(culture)
 
@@ -29,13 +34,11 @@ class Language(object):
                 key = key.strip()
                 value = value.strip()
                 if key.endswith("_regex"):
-                    value = re.compile(value)
+                    value = re.compile(value, re.U)
                 self.language_items[key.strip()] = value
 
-    def __getitem__(self, key): 
-        if self.language_items.has_key(key):
-            return self.language_items[key]
-        return None
+    def __getitem__(self, key):
+        return self.language_items.get(key, None)
 
 if __name__ == "__main__":
     lang = language()
