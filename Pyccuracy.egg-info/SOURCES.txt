@@ -80,6 +80,8 @@ pyccuracy/actions/checkbox_is_not_checked_action.py
 pyccuracy/actions/checkbox_is_not_visible_action.py
 pyccuracy/actions/checkbox_is_visible_action.py
 pyccuracy/actions/checkbox_uncheck_action.py
+pyccuracy/actions/div_contains_text_action.py
+pyccuracy/actions/div_does_not_contain_text_action.py
 pyccuracy/actions/div_is_not_visible_action.py
 pyccuracy/actions/div_is_visible_action.py
 pyccuracy/actions/div_mouseover_action.py
@@ -98,6 +100,7 @@ pyccuracy/actions/link_mouseover_action.py
 pyccuracy/actions/page_go_to_action.py
 pyccuracy/actions/page_see_title_action.py
 pyccuracy/actions/page_wait_for_page_to_load_action.py
+pyccuracy/actions/page_wait_for_seconds_action.py
 pyccuracy/actions/select_has_selected_index_action.py
 pyccuracy/actions/select_has_selected_text_action.py
 pyccuracy/actions/select_has_selected_value_action.py
@@ -109,7 +112,9 @@ pyccuracy/actions/select_option_by_index_action.py
 pyccuracy/actions/textbox_contains_text_action.py
 pyccuracy/actions/textbox_does_not_contain_text_action.py
 pyccuracy/actions/textbox_does_not_match_text_action.py
+pyccuracy/actions/textbox_is_disabled_action.py
 pyccuracy/actions/textbox_is_empty_action.py
+pyccuracy/actions/textbox_is_enabled_action.py
 pyccuracy/actions/textbox_is_not_empty_action.py
 pyccuracy/actions/textbox_is_visible_action.py
 pyccuracy/actions/textbox_matches_text_action.py
