@@ -7,12 +7,12 @@
 # Internal variables.
 
 
-.PHONY: help build tests upload docs
+.PHONY: help build test upload docs
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
 	@echo "  build     to run a build"
-	@echo "  tests     to run all the tests"
+	@echo "  test      to run all the tests"
 	@echo "  upload    to run a build and upload to PyPI"
 	@echo "  docs      to build documentation"
 
@@ -28,7 +28,7 @@ build:
 	@echo "Build finished!"
 	@echo "==============="
     
-tests: build
+test: build
 	@echo "================="
 	@echo "Starting tests..."
 	@echo "================="

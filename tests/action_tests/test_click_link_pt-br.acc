@@ -1,6 +1,6 @@
-Como um usuario do Pyccuracy
-Eu quero testar a acao de clicar um link
-Para garantir que o Pyccuracy funciona em outras linguas
+Como um usuário do Pyccuracy
+Eu quero testar a ação de clicar um link
+Para garantir que o Pyccuracy funciona em outras línguas
 	
 Cenário 1 - Clicando em um link pelo atributo name
 Dado que

@@ -1,8 +1,8 @@
-Como um usuario do Pyccuracy
-Eu quero testar a acao de verificar se uma checkbox está checada
-Para garantir que o Pyccuracy funciona em outras linguas
+Como um usuário do Pyccuracy
+Eu quero testar a ação de verificar se uma checkbox está checada
+Para garantir que o Pyccuracy funciona em outras línguas
 
-Cenário 1 - Verificando que as checkbox estao checadas
+Cenário 1 - Verificando que as checkbox estão checadas
 Dado que
 	Eu navego para "checkbox_tests.htm"
 Quando
