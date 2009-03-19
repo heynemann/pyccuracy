@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import re
 from locator import *
 from test_fixture import *
@@ -37,9 +39,8 @@ class FileTestFixtureParser(object):
 
     def __process_file(self, fixture, file_path):
         try:
-            fsock = open(file_path)
-            lines = [unicode(x) for x in fsock.readlines()]
-            fsock.close()
+            content = unicode(open(file_path).read(), encoding='utf-8')
+            lines = [line.strip() for line in content.split("\n") if len(line)]
         except IOError:
             fixture.add_invalid_test_file(file_path)
 

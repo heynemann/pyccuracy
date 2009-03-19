@@ -76,7 +76,6 @@ class SeleniumBrowserDriver(object):
             is_disabled = self.__get_attribute_value(element, "disabled")
         else:
             is_disabled = script_return[0].upper()=="T"
-        
         return not is_disabled
 
     def checkbox_is_checked(self, checkbox_selector):
