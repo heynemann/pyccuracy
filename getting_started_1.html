@@ -1,0 +1,350 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Pyccuracy - Getting Started</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="css/layout.css" rel="stylesheet" type="text/css" />
+<link href="css/custom.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body id="page1">
+<div id="main">
+
+	
+	
+	
+	
+	<!-- header -->
+	
+	<div id="header">
+		<div class="col_1">
+			<table border="0" cellspacing="0" cellpadding="0" width="100%">
+				<colgroup>
+					<col style="width:33%; text-align:center;" />
+					<col style="width:33%; text-align:center;" />
+					<col style="width:33%; text-align:center;" />
+				<tr>
+					<td align="center"><a href="index.html"><img src="images/home.jpg" border="0" /></a></td>
+					<td align="center"><a href="overview.html"><img src="images/overview.jpg" border="0" /></a></td>
+					<td align="center"><a href="tutorial.html"><img src="images/contact.jpg" border="0" /></a></td>
+				</tr>
+				<tr>
+					<td align="center"><a href="index.html">Home</a></td>
+					<td align="center"><a href="overview.html">Overview</a></td>
+					<td align="center"><a href="tutorial.html">Getting Started</a></td>
+				</tr>
+			</table>
+		</div>
+		<div class="col_2"><a href="index.html"><img alt="" src="images/logo.jpg" /></a></div>
+		<div class="col_3">
+			<table border="0" cellspacing="0" cellpadding="0" width="100%">
+				<colgroup>
+					<col style="width:33%; text-align:center;" />
+					<col style="width:33%; text-align:center;" />
+					<col style="width:33%; text-align:center;" />
+				<tr>
+					<td align="center"><a href="docs.html"><img src="images/tutorial.jpg" border="0" /></a></td>
+					<td align="center"><a href="projectinfo.html"><img src="images/projectinfo.gif" border="0" /></a></td>
+					<td align="center"><a href="downloads.html"><img src="images/downloads.jpg" border="0" /></a></td>
+				</tr>
+				<tr>
+					<td align="center"><a href="docs.html">Docs</a></td>
+					<td align="center"><a href="projectinfo.html">Project Info</a></td>
+					<td align="center"><a href="downloads.html">Downloads</a></td>
+				</tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+	
+	<!-- end header -->
+	
+	
+	
+	
+	
+	
+	
+	
+
+	<!-- content -->
+	<div class="section" id="main_title">
+        Getting Started
+    </div>
+    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tr>
+            <td align="right">
+        		<div class="list1" id="toc" style="text-align:left; background-color:#dedede; padding: 4px 4px 4px 4px; width:300px; border: 1px solid #c0c0c0;">
+	                <b>TOC</b>
+	                <ul>
+	                    <li><a href="#where_to">Where to get Pyccuracy from?</a></li>
+	                    <li><a href="#dependencies">Dependencies</a></li>
+                        <li><a href="#source_code">Pyccuracy Source Code</a></li>
+	                </ul>
+	            </div>            
+            </td>
+        </tr>	        
+    </table>
+
+	<div class="subsection">
+		<a name="where_to"></a>
+		Where to get Pyccuracy from?
+	</div>
+	<br />
+	<p>Pyccuracy is officially hosted in <a href="http://www.github.com" target="_blank">github</a>.</p><br />
+	<p>The repository can be found at <a href="http://github.com/heynemann/pyccuracy/" target="_blank">http://github.com/heynemann/pyccuracy/</a>.</p><br />
+	<p>
+	<b>Right now Pyccuracy only supports usage from the source code</b>.<br /><br />
+	You can get ahold of the source code using git to get it or get the latest stable version from <a href="http://pypi.python.org/pypi/Pyccuracy/" target="_blank">Pyccuracy PyPI page</a> (<b>be advised that even though Pyccuracy has releases in PyPI it won't work with easy_install</b>).</p><br />
+	<p>Before we get the source code for Pyccuracy, though, we need to setup some dependencies.</p><br />
+	<p>If you need any git-related help, <a href="http://www.github.com" target="_blank">github</a> has a lot of resources <a href="http://github.com/guides" target="_blank">here</a>.</p><br />
+	
+    <div class="subsection">
+		<a name="dependencies"></a>
+		Dependencies
+	</div>
+	<p>
+		Pyccuracy is dependent on PyoC, which is an IoC Container for Python. It is also dependent on Selenium.
+		You have two ways of installing both PyoC and Selenium: easy_install or creating a symbollic link for the source code (or adding to PYTHONPATH in Windows).
+	</p><br />
+	
+	<div class="subsubsection">
+    	Easy Install
+	</div>
+	<div class="subsubsection_content">
+	    <p>
+	        To install using easy_install you need to have setuptools installed. There's a whole guide on how to do it <a href="http://peak.telecommunity.com/DevCenter/EasyInstall" target="_blank">here</a>.
+	    </p><br />
+	    <p>
+	        After having it properly installed, just run:
+	    </p><br />
+	    <p style="margin-left:50px;">
+	        <b>Linux</b>
+	    </p>
+        <pre id="acc">
+	        <span>sudo easy_install</span> selenium        
+	        <span>sudo easy_install</span> pyoc
+        </pre>
+	    <p style="margin-left:50px;">
+	        <b>Windows</b>
+	    </p>
+        <pre id="acc">
+	        <span>easy_install</span> selenium
+	        <span>easy_install</span> pyoc
+        </pre>    
+	</div>
+	<br />
+	
+	<div class="subsubsection">
+    	Source Code
+	</div>
+	<div class="subsubsection_content">
+	    <p>
+	        To install using the source code you'll need to download the source code for PyoC and Selenium.
+	        <br /><br />
+	        This guide assumes you have git up and running. For more info on how to do that, just check the <a href="http://github.com/guides" target="_blank">github guides page</a>.
+	    </p><br />
+	    <b><u>PyoC Source Code</u></b><br />
+	    <p>
+	        For PyoC you can clone the git repository at <a href="http://github.com/heynemann/pyoc/" target="_blank">http://github.com/heynemann/pyoc/</a>.</p><br />
+	    <p>
+    	    In order to clone the git repository, do:
+    	</p><br />
+        <p style="margin-left:50px;">
+	        <b>Linux</b>
+	        <br />
+	    </p>
+        <pre id="acc">
+            In a terminal window:
+            <span>cd</span> /folder/with/sources/
+            <span>git clone</span> git://github.com/heynemann/pyoc.git pyoc
+        </pre>
+	    <p style="margin-left:50px;">
+	        <b>Windows</b>
+	    </p>
+        <pre id="acc">
+            In a command window:
+            <span>cd</span> c:\folder\with\sources\
+            <span>git clone</span> git://github.com/heynemann/pyoc.git pyoc
+        </pre>
+        <b><u>Selenium Source Code</u></b><br />
+	    <p>
+	        Selenium source code can be retrieved from their website at <a href="http://seleniumhq.org/download/" target="_blank">Selenium HQ</a>. Download Selenium RC, and inside it you can find the <i>selenium.py</i> file. This is the file we'll have to link to Python.
+	    </p><br />
+	    
+	    <b><u>Linking Source to Python</u></b><br />
+	    <p>
+	        After having both source trees for PyoC and Selenium, do:
+	    </p><br />
+	    <p style="margin-left:50px;">
+	        <b>Linux</b>
+	        <br />
+	        The shell script below assumes <i>/usr/lib/python2.5/site-packages</i> as your site-packages folder for the current python install. 
+	        <br />
+	        It also assumes <i>/folder/with/sources/pyoc</i> as the folder where you're keeping the pyoc source code, 
+	        and <i>/folder/with/sources/selenium</i> as the folder that contains <i>selenium.py</i>.
+	        <br /><br />
+	        Also, the comments enclosed in parenthesis <b>ARE NOT</b> part of the commands and have clarification purposes.
+	    </p><br />
+        <pre id="acc">
+            In a terminal window:
+            <span>cd</span> /usr/lib/python2.5/site-packages	        
+            <span>sudo ln -s</span> /folder/with/sources/pyoc/pyoc <i>(yeah that's right, pyoc appears twice here)</i>
+            <span>sudo ln -s</span> /folder/with/sources/selenium <i>(again, this is the folder where selenium.py is)</i>
+        </pre>
+	    <p style="margin-left:50px;">
+	        <b>Windows</b>
+	    </p><br />
+        <p style="margin-left:50px;">
+            In Windows, the easiest way to do this is to add the folders where you have both source codes to the PYTHONPATH environment variable.
+        <br /><br />
+        If you are not sure how to do that, <a href="http://www.cs.usask.ca/~wew036/latex/env.html" target="_blank">here</a> you can find a tutorial on setting environment variables in windows.</p><br />
+	</div>
+	<br />	
+	
+	<div class="subsection">
+		<a name="source_code"></a>
+		Pyccuracy Source Code
+	</div>
+	<p>
+		Assuming you have all the dependencies working so far, we'll now get Pyccuracy Source code. As I said before, it can be retrieved from the git repository or PyPI. Let's explore each.
+	</p><br />
+	
+	<div class="subsubsection">
+    	Git Repository
+	</div>
+	<div class="subsubsection_content">
+	    <p>
+	        To retrieve the source code from the git repository, we'll just issue some git commands. This guide assumes you have git up and running. For more info on how to do that, just check the <a href="http://github.com/guides" target="_blank">github guides page</a>.
+	    </p><br />
+	    <p style="margin-left:50px;">
+	        <b>Linux</b>
+	        <br />
+	    </p>
+        <pre id="acc">
+            In a terminal window:
+            <span>cd</span> /folder/with/sources/
+            <span>git clone</span> git://github.com/heynemann/pyccuracy.git pyccuracy
+        </pre>
+	    <p style="margin-left:50px;">
+	        <b>Windows</b>
+	    </p>
+        <pre id="acc">
+            In a command window:
+            <span>cd</span> c:\folder\with\sources\
+            <span>git clone</span> git://github.com/heynemann/pyccuracy.git pyccuracy
+        </pre>
+	</div>
+	<br />
+	
+	<div class="subsubsection">
+    	PyPI - Python Package Index
+	</div>
+	<div class="subsubsection_content">
+	    <p>
+	        To get the content from PyPI, just access 
+	        <a href="http://pypi.python.org/pypi/Pyccuracy/" target="_blank">Pyccuracy's PyPI page</a>
+	        and download the .tar.gz file with the whatever version source code you want.
+		</p>
+		<br />
+		<p>
+	        Then unzip it to the <i>/folder/with/sources/pyccuracy</i> (or <i>c:\folder\with\sources\pyccuracy</i> in windows) folder and you're done.
+		</p>
+	</div>
+    <br />
+
+	<div class="subsubsection">
+    	Linking Pyccuracy to Python
+	</div>
+	<div class="subsubsection_content">
+	    <p>
+	        The last step to have Pyccuracy installed is having its code linked to Python. 
+	        This step is very similar to the PyoC one.
+		</p>
+		<br />
+		<p>
+	        After having the source trees for Pyccuracy in the right place, do:
+	    </p><br />
+	    <p style="margin-left:50px;">
+	        <b>Linux</b>
+	        <br />
+	        The shell script below assumes <i>/usr/lib/python2.5/site-packages</i> as your site-packages folder for the current python install. 
+	        <br />
+	        It also assumes <i>/folder/with/sources/pyccuracy</i> as the folder where you're keeping the pyccuracy source code.
+	        <br /><br />
+	        Also, the comments enclosed in parenthesis <b>ARE NOT</b> part of the commands and have clarification purposes.
+	        <br /><br />
+	        The last step is so you can use pyccuracy_console.py easily anywhere in your OS.
+	    </p><br />
+        <pre id="acc">
+            In a terminal window:
+            <span>cd</span> /usr/lib/python2.5/site-packages	        
+            <span>sudo ln -s</span> /folder/with/sources/pyccuracy/pyccuracy <i>(yeah that's right, pyccuracy appears twice here)</i>
+            <span>cd</span> /usr/bin
+            <span>sudo ln -s</span> /folder/with/sources/pyccuracy/pyccuracy/pyccuracy-console.py pyccuracy-console
+        </pre>
+	    <p style="margin-left:50px;">
+	        <b>Windows</b>
+	    </p><br />
+        <p style="margin-left:50px;">
+            In Windows, the easiest way to do this is to add the folders where you have pyccuracy source code to both the PYTHONPATH and PATH environment variables.
+        <br /><br />
+        If you are not sure how to do that, <a href="http://www.cs.usask.ca/~wew036/latex/env.html" target="_blank">here</a> you can find a tutorial on setting environment variables in windows.</p><br />
+	</div>
+    <br />
+    
+    <div class="subsection">
+		<a name="dependencies"></a>
+		Conclusion
+	</div>
+	<p>At this point you should have Pyccuracy up and running.</p><br />
+
+	<p align="right"><a href="getting_started_2.html">Next Step - Browser Driver Dependencies</a></p>
+	<br /><br />
+	<!-- footer -->
+<div id="content_wrapper" class="wrapper_color">
+		<div class="height">&nbsp;</div>
+		<div class="col_1">
+			<div class="indent">
+				<img alt="" src="images/1f1.jpg" class="indent_img" />
+				<strong>Pyccuracy is an open-source Python project with an OSI license.</strong><br  />
+				<p>Being an open-source project, we need all the help we can get.</p>
+				<p>If you think you can contribute, join our <a href="http://groups.google.com/group/pyccuracy" target="_blank">dev list</a>, check our <a href="">JIRA server</a> for the open tickets for the current release and start coding.</p>
+				<p>The entry barrier for coding in Pyccuracy is really small, since the codebase is itself small. If you need any help, just ask in the development list and we'll be happy to answer if we can</p>
+			</div>
+		</div>
+		<div class="col_2">
+			<img alt="" src="images/1title5.gif" class="title" />
+			<strong>Pyccuracy Cheat Sheet</strong><br  />
+			<ul>
+				<li><a href="http://groups.google.com/group/pyccuracy" target="_blank">Project Google Groups Page</a></li>
+				<li><a href="conventions.html">Project Conventions</a></li>
+				<li><a href="blogposts.html">Links and Blog Posts</a></li>
+				<li><a href="http://jira.stormwindproject.org:8080/browse/PYCCURACY" target="_blank">Jira (Issue and Version Management)</a></li>
+				<li><a href="http://github.com/heynemann/pyccuracy" target="_blank">GitHub page for Pyccuracy</a></li>
+				<li><a href="http://pypi.python.org/pypi/Pyccuracy/" target="_blank">Python Package Index (PyPI) Page</a></li>
+			</ul>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div id="footer">Pyccuracy &copy; 2009 | <a href="license.html">OSI License</a></div>
+	<!-- end footer -->
+	
+	
+	
+	
+</div>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-7926792-1");
+pageTracker._trackPageview();
+s} catch(err) {}</script>
+
+</body>
+</html>
