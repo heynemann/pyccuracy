@@ -44,10 +44,16 @@ class ActionBase(object):
             self.raise_action_failed_error(message)
 
     def execute_action(self, action_text, context):
+        found = False
         for action in context.all_custom_actions:
             if action.__class__.__name__!="ActionBase" and action.matches(action_text):
                 action.execute(action.values_for(action_text), context)
+                found = True
         for action in context.all_actions:
             if action.__class__.__name__!="ActionBase" and action.matches(action_text):
                 action.execute(action.values_for(action_text), context)
+                found = True
+                
+        if not found:
+            raise RuntimeError('The specified line("%s") didn\'t match any custom or built-in actions.' % (action_text,))
 
