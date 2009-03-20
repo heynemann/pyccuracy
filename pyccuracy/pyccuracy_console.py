@@ -42,7 +42,7 @@ def main():
                   base_url=options.url, 
                   default_culture=options.language,
                   write_report = options.write_report.lower() == "true",
-                  report_file_dir = options.report_file_dir,
+                  report_file_dir = options.report_dir,
                   report_file_name = options.report_file_name)
  
 if __name__ == "__main__":
