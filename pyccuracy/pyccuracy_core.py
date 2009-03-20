@@ -25,7 +25,8 @@ class PyccuracyCore(object):
                   should_throw = False,
                   context = None,
                   write_report = True,
-                  report_file_dir = None):
+                  report_file_dir = None,
+                  report_file_name="report.html"):
 
         IoC.reset()
 
@@ -58,7 +59,7 @@ class PyccuracyCore(object):
         self.__print_results(results)
         
         if write_report:
-            report.generate_report(join(report_file_dir, "report.html"), results, lang)
+            report.generate_report(join(report_file_dir, report_file_name), results, lang)
 
         if should_throw and self.context.test_fixture.get_results().status == "FAILED":
             raise TestFailedError("The test failed!")
