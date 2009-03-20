@@ -96,7 +96,7 @@ def __generate_story(story, story_index, language):
     return story_doc
 
 def __generate_scenario(scenario, language):
-    if scenario.status == "SUCCESS":
+    if scenario.status == "SUCCESSFUL":
         scenario_total_time = (scenario.end_time - scenario.start_time)
         scenario_finish_time = time.asctime(time.localtime(scenario.end_time))
     else:
