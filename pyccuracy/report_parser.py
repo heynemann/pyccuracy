@@ -96,8 +96,12 @@ def __generate_story(story, story_index, language):
     return story_doc
 
 def __generate_scenario(scenario, language):
-    scenario_total_time = (scenario.end_time - scenario.start_time)
-    scenario_finish_time = time.asctime(time.localtime(scenario.end_time))
+    if scenario.status == "SUCCESS":
+        scenario_total_time = (scenario.end_time - scenario.start_time)
+        scenario_finish_time = time.asctime(time.localtime(scenario.end_time))
+    else:
+        scenario_total_time = 0.0
+        scenario_finish_time = "FAILED"
     
     actions = []
     odd = True
@@ -160,11 +164,20 @@ def __generate_condition(condition_name, odd):
     return condition_doc
     
 def __generate_action(action, language, odd):
+    description = action.description
+    if action.status == "FAILED":
+        description += " - %s" % unicode(action.error)
+        
+    actionTime = "Unknown"
+    if action.status == "SUCCESSFUL" or action.status == "FAILED":
+        actionTime = time.asctime(time.localtime(action.start_time))
+        
     action_doc = E.action(
                         {
                             "type":"action",
-                            "description":action.description,
-                            "actionTime":time.asctime(time.localtime(action.start_time)),
+                            "status":action.status,
+                            "description": description,
+                            "actionTime":actionTime,
                             "oddOrEven":(odd and "odd" or "even")
                         }
                  )

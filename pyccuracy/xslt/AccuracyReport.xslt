@@ -7,12 +7,18 @@
   <xsl:template match="/">
     <html>
       <head>
+        <title>
+            Pyccuracy - Tests Run Report -
+            <span class="date">
+              <xsl:value-of select ="@date"/>
+            </span>
+        </title>
         <style>
           <![CDATA[
           .header
           {
           font-size: medium;
-          font-family: Verdana;
+          font-family: Helvetica;
           }
           td.header
           {
@@ -23,7 +29,7 @@
           .footer
           {
           font-size: xx-small;
-          font-family: Verdana;
+          font-family: Helvetica;
           }
           td.footer
           {
@@ -38,7 +44,7 @@
           .report
           {
           font-size: x-small;
-          font-family: Verdana;
+          font-family: Helvetica;
           }
           td.report
           {
@@ -62,7 +68,7 @@
           .summary
           {
           font-size: x-small;
-          font-family: Verdana;
+          font-family: Helvetica;
           }
           td.summary
           {
@@ -73,7 +79,7 @@
           {
           font-size: small;
           font-weight: bold;
-          font-family: Verdana;
+          font-family: Helvetica;
           }
           td.storiesHeader
           {
@@ -82,7 +88,7 @@
           .storiesBody
           {
           font-size: x-small;
-          font-family: Verdana;
+          font-family: Helvetica;
           }
           td.storiesBody
           {
@@ -358,7 +364,25 @@
           </b>
         </xsl:if>
         <xsl:if test ="@type='action'">
-          <xsl:value-of select ="@description"/>
+            <xsl:if test ="@status='FAILED'">
+                <b>
+                    <font color="red">
+                        <xsl:value-of select ="@description"/>
+                    </font>
+                </b>
+            </xsl:if>
+            <xsl:if test ="@status='SUCCESSFUL'">
+                <b>
+                    <xsl:value-of select ="@description"/>
+                </b>
+            </xsl:if>
+            <xsl:if test ="@status='UNKNOWN'">
+                <b>
+                    <font color="#555555">
+                        <xsl:value-of select ="@description"/>
+                    </font>
+                </b>
+            </xsl:if>
         </xsl:if>
       </td>
       <td>

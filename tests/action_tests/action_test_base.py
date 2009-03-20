@@ -28,4 +28,4 @@ class ActionTestBase(unittest.TestCase):
                                      file_pattern = self.get_pattern(language), 
                                      languages_dir = self.get_languages_dir(),
                                      should_throw = True,
-                                     report_file_name = "actions_report.html")
+                                     report_file_name = "actions_report_%s.html" % language)

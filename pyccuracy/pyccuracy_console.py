@@ -30,9 +30,9 @@ def main():
     parser.add_option("-u", "--url", dest="url", default=None, help="Base URL. Defines a base url against which the tests will get executed. For more details check the documentation [default: %%default].")
     
     #reporter
-    parser.add_option("-r", "--report", dest="write_report", default="true", help="Should write report. Defines if Pyccuracy should write an html report after each run [default: %%default].")
-    parser.add_option("-rd", "--reportdir", dest="report_dir", default=os.curdir, help="Report directory. Defines the directory to write the report in [default: %%default].")
-    parser.add_option("-rf", "--reportfile", dest="report_file_name", default="report.html", help="Report file. Defines the file name to write the report with [default: %%default].")
+    parser.add_option("-R", "--report", dest="write_report", default="true", help="Should write report. Defines if Pyccuracy should write an html report after each run [default: %%default].")
+    parser.add_option("-D", "--reportdir", dest="report_dir", default=os.curdir, help="Report directory. Defines the directory to write the report in [default: %%default].")
+    parser.add_option("-F", "--reportfile", dest="report_file_name", default="report.html", help="Report file. Defines the file name to write the report with [default: %%default].")
      
     (options, args) = parser.parse_args()
 

@@ -97,9 +97,17 @@ class SeleniumBrowserDriver(object):
         return self.selenium.get_selected_label(element_selector)
 
     def get_element_text(self, element_selector):
+        text = ""
+        
         text = self.__get_attribute_value(element_selector, "value")
-        if text == None:
+        if not text:
             text = self.selenium.get_text(element_selector)
+            if not text:
+                script = """this.page().findElement("%s").value;"""
+                script_return = self.selenium.get_eval(script % element_selector)
+            
+                if script_return != "null":
+                    text = script_return
 
         return text
 
