@@ -49,6 +49,7 @@ div_is_not_visible_regex = ^(E )?[eE]u não vejo o div [\"](.+)[\"]$
 div_mouseover_regex = ^(E )?[eE]u passo o mouse no div [\"](.+)[\"]$
 div_contains_text_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] contém [\"](.+)[\"]$
 div_does_not_contain_text_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] não contém [\"](.+)[\"]$
+div_click_regex = ^(E )?[eE]u clico no div [\"](.+)[\"]( e espero)?$
 
 image_click_regex = ^(E )?[eE]u clico na imagem [\"](.+)[\"]$
 image_is_visible_regex = ^(E )?[eE]u vejo a imagem [\"](.+)[\"]$
