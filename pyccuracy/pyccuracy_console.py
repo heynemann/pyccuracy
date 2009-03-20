@@ -28,11 +28,22 @@ def main():
     parser.add_option("-l", "--language", dest="language", default="en-us", help="Language. Defines which language the dictionary will be loaded with  [default: %%default].")
     parser.add_option("-d", "--dir", dest="dir", default=os.curdir, help="Tests directory. Defines where the tests to be executed are [default: %%default]. Note: this is recursive, so all the tests under the current directory get executed.")
     parser.add_option("-u", "--url", dest="url", default=None, help="Base URL. Defines a base url against which the tests will get executed. For more details check the documentation [default: %%default].")
+    
+    #reporter
+    parser.add_option("-r", "--report", dest="write_report", default="true", help="Should write report. Defines if Pyccuracy should write an html report after each run [default: %%default].")
+    parser.add_option("-rd", "--reportdir", dest="report_dir", default=os.curdir, help="Report directory. Defines the directory to write the report in [default: %%default].")
+    parser.add_option("-rf", "--reportfile", dest="report_file_name", default="report.html", help="Report file. Defines the file name to write the report with [default: %%default].")
      
     (options, args) = parser.parse_args()
 
     pyc = PyccuracyCore()
-    pyc.run_tests(file_pattern=options.pattern, tests_dir=options.dir, base_url=options.url, default_culture=options.language)
+    pyc.run_tests(file_pattern=options.pattern, 
+                  tests_dir=options.dir, 
+                  base_url=options.url, 
+                  default_culture=options.language,
+                  write_report = options.write_report.lower() == "true",
+                  report_file_dir = options.report_file_dir,
+                  report_file_name = options.report_file_name)
  
 if __name__ == "__main__":
     main()

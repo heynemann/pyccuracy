@@ -27,4 +27,5 @@ class ActionTestBase(unittest.TestCase):
                                      default_culture = language, 
                                      file_pattern = self.get_pattern(language), 
                                      languages_dir = self.get_languages_dir(),
-                                     should_throw = True)
+                                     should_throw = True,
+                                     report_file_name = "actions_report.html")

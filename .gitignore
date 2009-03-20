@@ -6,3 +6,9 @@ Makefile~
 dist/
 build/
 report.html
+tests/action_tests/actions_report.html
+tests/baseurlreport.html
+tests/customactionsreport.html
+tests/custompagereport.html
+tests/prepostscriptsreport.html
+

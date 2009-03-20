@@ -11,7 +11,7 @@ class TestCustomActions(unittest.TestCase):
                 
     def test_search_google(self):
         custom_actions_dir = os.path.join(os.path.split(__file__)[0], "custom_actions")
-        self.pyccuracy.run_tests(custom_actions_dir=custom_actions_dir, file_pattern="test_custom_action.acc", should_throw=True)
+        self.pyccuracy.run_tests(custom_actions_dir=custom_actions_dir, file_pattern="test_custom_action.acc", should_throw=True, report_file_name = "customactionsreport.html")
 
 if __name__ == "__main__":
     unittest.main()

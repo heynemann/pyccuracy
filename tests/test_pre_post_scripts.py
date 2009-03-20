@@ -14,7 +14,7 @@ class TestPrePostScripts(unittest.TestCase):
         self.clear_log_file(log_file)
             
         pyc = PyccuracyCore()
-        self.pyccuracy.run_tests(file_pattern="pre_post_scripts_test.acc", pages_dir=os.path.split(__file__)[0], should_throw = True)
+        self.pyccuracy.run_tests(file_pattern="pre_post_scripts_test.acc", pages_dir=os.path.split(__file__)[0], should_throw = True, report_file_name = "prepostscriptsreport.html")
     
         self.failUnless(os.path.exists(log_file), "The log file " + log_file + " was not found!")
         
