@@ -9,6 +9,8 @@ from pyoc.ioc import IoC
 from pyoc.config import InPlaceConfig
 from page import Page
 from actions.action_base import ActionBase
+import report_parser as report
+from os.path import join
 
 class PyccuracyCore(object):
     def run_tests(self,
@@ -21,7 +23,9 @@ class PyccuracyCore(object):
                   languages_dir=os.path.join(os.path.dirname(__file__), "languages"),
                   base_url= None,
                   should_throw = False,
-                  context = None):
+                  context = None,
+                  write_report = True,
+                  report_file_dir = None):
 
         IoC.reset()
 
@@ -30,8 +34,13 @@ class PyccuracyCore(object):
 
         if not custom_actions_dir:
             custom_actions_dir = tests_dir
+        
+        if not report_file_dir:
+            report_file_dir = tests_dir
 
-        self.configure_ioc(languages_dir, default_culture, tests_dir, file_pattern, actions_dir, pages_dir, base_url, custom_actions_dir)
+        lang = self.load_language(languages_dir, default_culture)
+
+        self.configure_ioc(languages_dir, default_culture, tests_dir, file_pattern, actions_dir, pages_dir, base_url, custom_actions_dir, lang)
 
         if context == None:
             self.context = IoC.resolve(PyccuracyContext)
@@ -44,17 +53,21 @@ class PyccuracyCore(object):
         finally:
             self.context.browser_driver.stop()
 
-        self.__print_results()
+        results = self.context.test_fixture.get_results()
+
+        self.__print_results(results)
+        
+        if write_report:
+            report.generate_report(join(report_file_dir, "report.html"), results, lang)
 
         if should_throw and self.context.test_fixture.get_results().status == "FAILED":
             raise TestFailedError("The test failed!")
 
-    def configure_ioc(self, languages_dir, culture, tests_dir, file_pattern, actions_dir, pages_dir, base_url, custom_actions_dir):
+    def configure_ioc(self, languages_dir, culture, tests_dir, file_pattern, actions_dir, pages_dir, base_url, custom_actions_dir, lang):
         config = InPlaceConfig()
         config.register("selenium_server", SeleniumServer)
         config.register("browser_driver", SeleniumBrowserDriver)
-
-        lang = self.load_language(languages_dir, culture)
+        
         config.register_instance("language", lang)
 
         if (file_pattern == "to_be_defined_by_language"): file_pattern = lang["default_pattern"]
@@ -82,8 +95,8 @@ class PyccuracyCore(object):
 
         return lang
 
-    def __print_results(self):
-        print unicode(self.context.test_fixture.get_results())
+    def __print_results(self, results):
+        print unicode(results)
         print "\n"
 
 class PyccuracyContext:
