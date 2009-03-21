@@ -77,22 +77,62 @@
             <td align="right">
         		<div class="list1" id="toc" style="text-align:left; background-color:#dedede; padding: 4px 4px 4px 4px; width:300px; border: 1px solid #c0c0c0;">
 	                <b>TOC</b>
-	                <!--<ul>
-	                    <li><a href="#installing">Installing Pyccuracy</a></li>
-	                    <li><a href="#browser_driver_dependencies">Browser Driver Dependencies</a></li>
-                        <li><a href="#first_test">Creating your first test</a></li>
-                        <li><a href="#more_resources">More resources</a></li>
-	                </ul>-->
+	                <ul>
+	                    <li><a href="#creating_first_test">Creating your first test</a></li>
+	                </ul>
 	            </div>            
             </td>
         </tr>	        
     </table>
 
 	<div class="subsection">
-		<a name="installing"></a>
+		<a name="creating_first_test"></a>
 		Creating your first test
 	</div>
-	<p>To be written.</p><br />
+	<p>Now you should have everything set-up. So it's time to have some fun!</p><br />
+	<p>Save a file called hello_world.acc in any folder you want and type the following in it:</p><br />
+	
+	<pre id="acc">
+		<span>As a</span> Google User
+		<span>I want to</span> search Google for Hello World
+		<span>So that</span> I can feel happy about writing tests
+
+		<span>Scenario</span> 1 - Searching for Hello World
+		<span>Given</span>
+		  I go to "http://www.google.com"
+		<span>When</span>
+		  I fill "q" textbox with "Hello World"
+		  And I click "btnG" button
+		<span>Then</span>
+		  I see "Hello World - Google Search" title
+
+		<span>Scenario</span> 2 - Searching for Monty Python - Time for some fun after work
+		<span>Given</span>
+		  I go to "http://www.google.com"
+		<span>When</span>
+		  I fill "q" textbox with "Monty Python"
+		  And I click "btnG" button
+		<span>Then</span>
+		  I see "Monty Python - Google Search" title
+	</pre>
+	
+	<div class="subsection">
+		<a name="creating_first_test"></a>
+		Running the test
+	</div>
+	<p>In order to run the test, just open a terminal in the folder you created the test in and type:</p><br />
+	<pre id="acc">
+		<span>pyccuracy_console</span>
+
+		If you haven't installed lXml, do <span>pyccuracy_console -R false</span> - this runs Pyccuracy with no after-test HTML report. <br /> 
+		If you need help type <span>pyccuracy_console -h</span>.
+	</pre>
+	<br />
+	<p>You should see the test running aqnd then the result of your test.</p>
+	<br />
+	<p>Just make sure Selenium Server is running before running pyccuracy_console.</p>
+	<br />
+	
 	
 	<p align="right"><a href="getting_started_4.html">Next Step - More Resources</a></p>
 	<br /><br />

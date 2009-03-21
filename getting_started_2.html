@@ -77,23 +77,37 @@
             <td align="right">
         		<div class="list1" id="toc" style="text-align:left; background-color:#dedede; padding: 4px 4px 4px 4px; width:300px; border: 1px solid #c0c0c0;">
 	                <b>TOC</b>
-	                <!--<ul>
-	                    <li><a href="#installing">Installing Pyccuracy</a></li>
-	                    <li><a href="#browser_driver_dependencies">Browser Driver Dependencies</a></li>
-                        <li><a href="#first_test">Creating your first test</a></li>
-                        <li><a href="#more_resources">More resources</a></li>
-	                </ul>-->
+	                <ul>
+	                    <li><a href="#download">Downloading Selenium server</a></li>
+	                </ul>
 	            </div>            
             </td>
         </tr>	        
     </table>
 
 	<div class="subsection">
-		<a name="installing"></a>
-		Browser Dependencies
+		Selenium Browser Driver
 	</div>
-	<p>To be written.</p><br />
-	
+	<p>Selenium Browser Driver is the current default in Pyccuracy.</p><br />
+	<p>In order to use it in your tests you need to run the Selenium Server prior to running your tests.</p><br />
+    <p>Let's see how we can download Selenium server.</p><br />
+    
+    <div class="subsubsection">
+        <a name="download"></a>
+        Downloading Selenium server
+    </div>
+    <div class="subsubsection_content">
+        <p>
+            To download Selenium server, visit Selenium HQ download area at <a href="http://seleniumhq.org/download/">http://seleniumhq.org/download/</a> and get Selenium-RC last release.
+        </p><br />
+        <p>
+            To run selenium server, you need a compatible java version, but this is out of the scope of this tutorial. Just locate the folder where selenium_server.jar is and run the following command inside it.
+        </p><br />
+        <pre id="acc">
+            <span>java -jar</span> selenium_server.jar
+        </p>
+    </div>
+    
 	<p align="right"><a href="getting_started_3.html">Next Step - Creating your first test</a></p>
 	<br /><br />
 	

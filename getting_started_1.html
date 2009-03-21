@@ -79,7 +79,8 @@
 	                <b>TOC</b>
 	                <ul>
 	                    <li><a href="#where_to">Where to get Pyccuracy from?</a></li>
-	                    <li><a href="#dependencies">Dependencies</a></li>
+	                    <li><a href="#dependencies_1">lXml Dependency</a></li>
+	                    <li><a href="#dependencies_2">PyoC and Selenium Dependencies</a></li>
                         <li><a href="#source_code">Pyccuracy Source Code</a></li>
 	                </ul>
 	            </div>            
@@ -101,9 +102,31 @@
 	<p>If you need any git-related help, <a href="http://www.github.com" target="_blank">github</a> has a lot of resources <a href="http://github.com/guides" target="_blank">here</a>.</p><br />
 	
     <div class="subsection">
-		<a name="dependencies"></a>
-		Dependencies
+		<a name="dependencies_1"></a>
+        lXml Dependency
 	</div>
+    <p>
+        In order to generate reports Pyccuracy is dependent on lXml, a library used for parsing, generating XML files and for XSLT transformations.
+    </p><br />
+    <div class="subsubsection">
+        Install using apt-get
+    </div>
+    <div class="subsubsection_content">
+        <p>
+            In order to obtain lXml, in Debian do:
+        </p><br />	
+        <pre id="acc">
+            <span>sudo apt-get install</span> lxml
+        </pre>	
+    </div>
+    <p>
+        That should be it. For other OS's or distributions, we still have to figure out how to install lXml (<a href="http://groups.google.com/group/pyccuracy" target="_blank">want to contribute the tutorial?</a>).
+    </p><br />
+	
+    <div class="subsection">
+		<a name="dependencies_2"></a>
+        PyoC and Selenium Dependencies
+	</div><br />
 	<p>
 		Pyccuracy is dependent on PyoC, which is an IoC Container for Python. <br /><br />
 		It is also dependent on Selenium, which is a browser automation framework in Java with Python Bindings. <br /><br />
