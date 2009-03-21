@@ -18,7 +18,6 @@ For more information check the overview.
 |    :maxdepth: 1 |    :maxdepth: 3 |
 |                 |                 |
 |    overview     |    actions      |
-|    tutorial     |                 |
 |    console      |                 |
 |    prepost      |                 |
 +-----------------+-----------------+

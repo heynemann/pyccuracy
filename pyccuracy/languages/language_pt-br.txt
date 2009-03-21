@@ -55,6 +55,7 @@ image_click_regex = ^(E )?[eE]u clico na imagem [\"](.+)[\"]$
 image_is_visible_regex = ^(E )?[eE]u vejo a imagem [\"](.+)[\"]$
 image_is_not_visible_regex = ^(E )?[eE]u não vejo a imagem [\"](.+)[\"]$
 image_mouseover_regex = ^(E )?[eE]u passo o mouse na imagem [\"](.+)[\"]$
+image_has_src_regex = ^(E )?[eE]u vejo que a imagem [\"](.+)[\"] tem src de [\"](.+)[\"]$
 
 link_is_visible_regex = ^(E )?[eE]u vejo o link [\"](.+)[\"]$
 link_is_not_visible_regex = ^(E )?[eE]u não vejo o link [\"](.+)[\"]$
@@ -104,6 +105,7 @@ div_does_not_contain_text_failure = O div com nome ou id %s não deveria conter 
 
 image_is_visible_failure = A imagem com nome ou id %s não existe ou não está visível.
 image_is_not_visible_failure = A imagem com nome ou id %s está visível, quando deveria não existir ou estar invisível.
+image_has_src_failure = A imagem com nome ou id %s deveria ter src de "%s", mas tem "%s".
 
 link_is_visible_failure = O link com nome ou id %s não existe ou não está visível.
 link_is_not_visible_failure = O link com nome ou id %s está visível, quando deveria não existir ou estar invisível.

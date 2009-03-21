@@ -117,6 +117,9 @@ class SeleniumBrowserDriver(object):
     def get_link_href(self, link_selector):
         return self.__get_attribute_value(link_selector, "href")
 
+    def get_image_src(self, image_selector):
+        return self.__get_attribute_value(image_selector, "src")
+
     def get_link_text(self, link_selector):
         return self.selenium.get_text(link_selector)
 

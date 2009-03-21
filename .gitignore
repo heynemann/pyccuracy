@@ -11,4 +11,5 @@ tests/baseurlreport.html
 tests/customactionsreport.html
 tests/custompagereport.html
 tests/prepostscriptsreport.html
-
+tests/action_tests/actions_report_en-us.html
+tests/action_tests/actions_report_pt-br.html

@@ -36,7 +36,9 @@ class Language(object):
                 self.language_items[key.strip()] = value
 
     def __getitem__(self, key):
-        return self.language_items.get(key, None)
+        item = self.language_items.get(key, None)
+        if item is None: raise RuntimeError("The key %s was not found in the language definitions." % key)
+        return item
 
 if __name__ == "__main__":
     lang = language()

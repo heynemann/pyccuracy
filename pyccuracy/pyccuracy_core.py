@@ -105,7 +105,7 @@ class PyccuracyContext:
         self.browser_driver = browser_driver
         self.language = language
         self.test_fixture_parser = test_fixture_parser
-        self.test_fixture = self.test_fixture_parser.get_fixture([file_path for file_path in locate(file_pattern, tests_dir)])
+        self.test_fixture = self.test_fixture_parser.get_fixture([file_path for file_path in list(locate(file_pattern, tests_dir))])
         self.tests_dir = tests_dir
         self.all_pages = dict(zip([klass.__class__.__name__ for klass in all_pages], [klass for klass in all_pages]))
         self.current_page = None
