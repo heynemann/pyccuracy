@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>I go to &#8220;some url&#8221; &mdash; Pyccuracy v0.3.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.3.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="top" title="Pyccuracy v0.3.0 documentation" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../../index.html">Pyccuracy v0.3.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  
+  <div class="section" id="i-go-to-some-url">
+<h1>I go to &#8220;some url&#8221;<a class="headerlink" href="#i-go-to-some-url" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="syntax">
+<h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><pre>I go to "&lt;url&gt;"</pre>
+</div>
+<dl class="docutils">
+<dt>where:</dt>
+<dd><tt class="docutils literal"><span class="pre">&lt;url&gt;</span></tt> - url to navigate to.</dd>
+</dl>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>Navigate the browser to the specified url.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>The <tt class="docutils literal"><span class="pre">url</span></tt> parameter can take an url in the form of &#8220;<a class="reference external" href="http://www.google.com">http://www.google.com</a>&#8221; or a path.</p>
+<p class="last">If a path is used it will be joined with the directory specified by <tt class="docutils literal"><span class="pre">root_dir</span></tt> when Pyccuracy was called.
+This usually means the folder where the tests are being run.</p>
+</div>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>1) Navigate to <a class="reference external" href="http://www.google.com">http://www.google.com</a></p>
+<div class="highlight-python"><pre>Given
+        I go to "http://www.google.com"
+When
+        ...</pre>
+</div>
+<p>2) Navigate to my_shiny_page.htm in the current folder.</p>
+<div class="highlight-python"><pre>Given
+        I go to "my_shiny_page.htm"
+When
+        ...</pre>
+</div>
+<p>What happens is that, since we are running from c:\my\special\path (windows) and
+Pyccuracy gets a value that&#8217;s not an url (<tt class="docutils literal"><span class="pre">I</span> <span class="pre">go</span> <span class="pre">to</span> <span class="pre">&quot;my_shiny_page.htm&quot;</span></tt>),
+it will navigate to <tt class="docutils literal"><span class="pre">file://c:/my/special/path/my_shiny_page.htm</span></tt>.</p>
+<p><em>Rest of the tests ommitted for clarity</em></p>
+</div>
+<div class="section" id="changelog">
+<h2>Changelog<a class="headerlink" href="#changelog" title="Permalink to this headline">¶</a></h2>
+<p>
+<span class="versionmodified">New in version 0.1: </span>Page Go To action.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/logo_pyccuracy_blue.gif" alt="Logo"/>
+            </a></p>
+            <h3><a href="../../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">I go to &#8220;some url&#8221;</a><ul>
+<li><a class="reference external" href="#syntax">Syntax</a></li>
+<li><a class="reference external" href="#description">Description</a></li>
+<li><a class="reference external" href="#examples">Examples</a></li>
+<li><a class="reference external" href="#changelog">Changelog</a></li>
+</ul>
+</li>
+</ul>
+
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../../_sources/actions/page/01_page_goto_action.txt">Show Source</a></li>
+            </ul>
+          <h3>Quick search</h3>
+            <form class="search" action="../../search.html" method="get">
+              <input type="text" name="q" size="18" /> <input type="submit" value="Go" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../../index.html">Pyccuracy v0.3.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Bernardo Heynemann.
+      Last updated on Mar 21, 2009.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.5.1.
+    </div>
+  </body>
+</html>
