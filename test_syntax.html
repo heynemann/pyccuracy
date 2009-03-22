@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Pyccuracy - Test Syntax</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="css/layout.css" rel="stylesheet" type="text/css" />
+<link href="css/custom.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body id="page1">
+<div id="main">
+
+	
+	
+	
+	
+	<!-- header -->
+	
+	<div id="header">
+		<div class="col_1">
+			<table border="0" cellspacing="0" cellpadding="0" width="100%">
+				<colgroup>
+					<col style="width:33%; text-align:center;" />
+					<col style="width:33%; text-align:center;" />
+					<col style="width:33%; text-align:center;" />
+				<tr>
+					<td align="center"><a href="index.html"><img src="images/home.jpg" border="0" /></a></td>
+					<td align="center"><a href="overview.html"><img src="images/overview.jpg" border="0" /></a></td>
+					<td align="center"><a href="tutorial.html"><img src="images/contact.jpg" border="0" /></a></td>
+				</tr>
+				<tr>
+					<td align="center"><a href="index.html">Home</a></td>
+					<td align="center"><a href="overview.html">Overview</a></td>
+					<td align="center"><a href="tutorial.html">Getting Started</a></td>
+				</tr>
+			</table>
+		</div>
+		<div class="col_2"><a href="index.html"><img alt="" src="images/logo.jpg" /></a></div>
+		<div class="col_3">
+			<table border="0" cellspacing="0" cellpadding="0" width="100%">
+				<colgroup>
+					<col style="width:33%; text-align:center;" />
+					<col style="width:33%; text-align:center;" />
+					<col style="width:33%; text-align:center;" />
+				<tr>
+					<td align="center"><a href="docs.html"><img src="images/tutorial.jpg" border="0" /></a></td>
+					<td align="center"><a href="projectinfo.html"><img src="images/projectinfo.gif" border="0" /></a></td>
+					<td align="center"><a href="downloads.html"><img src="images/downloads.jpg" border="0" /></a></td>
+				</tr>
+				<tr>
+					<td align="center"><a href="docs.html">Docs</a></td>
+					<td align="center"><a href="projectinfo.html">Project Info</a></td>
+					<td align="center"><a href="downloads.html">Downloads</a></td>
+				</tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+	
+	<!-- end header -->
+	
+	
+	
+	
+	
+	
+	
+	
+
+	<!-- content -->
+	<div class="section" id="main_title">
+        Test Syntax
+    </div><br />
+    <p>Here we discuss Pyccuracy's tests syntax.</p><br />
+    
+    <div class="subsection">
+        Overall test structure
+	</div><br />
+	
+    <p>The best way to learn about the test structure is to look at an example test.</p><br />
+    
+    <pre id="acc">
+<span>As a</span> Google User
+<span>I want to</span> search Google
+<span>So that</span> I can test Pyccuracy
+
+<span>Scenario</span> 1 - Searching for Hello World
+<span>Given</span>
+  I go to "http://www.google.com"
+<span>When</span>
+  I fill "q" textbox with "Hello World"
+  And I click "btnG" button
+<span>Then</span>
+  I see "Hello World - Google Search" title
+
+<span>Scenario</span> 2 - Searching for Monty Python
+<span>Given</span>
+  I go to "http://www.google.com"
+<span>When</span>
+  I fill "q" textbox with "Monty Python"
+  And I click "btnG" button
+<span>Then</span>
+  I see "Monty Python - Google Search" title
+	</pre> <br />
+    
+    <p>All the words in blue are keywords and each of them will be explained in the sections below.</p><br />
+    <p>The important thing to notice here is how Pyccuracy test files are organized.</p><br />
+    <p>Each file can contain one and only one story. That story is identified by the header (As a/I want to/So that).</p><br />
+    <p>It can, though, contain as many scenarios as you want. Each scenario needs to feature a title that identifies it and an index. You can see the lines identifying scenarios like "Scenario 2 - Searching for Monty Python".</p><br />
+    <p>Each scenario is divided in three areas: givens, whens and thens. Each of those areas can have as many actions as you want.</p><br />
+    <p>If all those names feel weird, keep reading and you'll understand each of the concepts.</p><br /><br />
+	<div class="subsection">
+        Tests Header - As a / I want to / So that
+	</div><br />
+	
+    <p>Following BDD's structure all Pyccuracy's stories need to begin with a As a/I want to/So that header. More about that is discussed in the <a href="test_conventions.html">test conventions page</a>.</p><br />
+
+	<div class="subsection">
+        Scenarios
+	</div><br />
+	
+    <p>Each story (test file) can contain as much scenarios as you want/need.</p><br />
+    <p>Scenarios are the executable pieces of your test. They will get executed by Pyccuracy in the order that you defined them, even though you should <b>TRY REALLY HARD</b> not to have scenarios that depend on the order they are executed.</p><br />
+    <p>Every scenario begins with a line that says the index and purpose of this scenario, like "Scenario 1 - Testing something".</p><br />
+    <p>Having proper naming of your scenarios not only improves your tests, but makes the end-run report more readable.</p><br />
+
+	<div class="subsection">
+        Given / When / Then
+	</div><br />
+	
+    <p>Each scenario is composed of three sections: given, when, then.</p><br />
+    <p>These sections correspond to the pre-conditions, the value being tested and the post-conditions, respectively.</p><br />
+    <p>Even though Pyccuracy will run the actions independently of which section you put them in, it's of major importance to have them in the proper section.</p><br />
+    <p>The impact of having actions in the wrong section are unreadable and unmaintainable tests.</p><br />
+
+	<div class="subsection">
+        Actions
+	</div><br />
+	
+    <p>Actions are the cream and butter of Pyccuracy.</p><br />
+    <p>They are the language bits that drive the browser for you. Actions are things like clicking a button or typing some text.</p><br />
+    <p>They are expressed in a much more natural language so you can have more readable tests.</p><br />
+    <p>Let's look at an example, the click of a button.</p><br />    
+    <pre id="acc">
+<span>I click</span> "some" <span>button</span>
+	</pre>
+	<p>Notice how natural that reads, even though you are just executing python code.</p><br />
+	<p>There are loads of actions to learn. In order to know which have been implemented so far just go to the <a href="docs.html">docs</a> for the release you are using and you can learn details of each action.</p><br />
+    <br />
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- footer -->
+<div id="content_wrapper" class="wrapper_color">
+		<div class="height">&nbsp;</div>
+		<div class="col_1">
+			<div class="indent">
+				<img alt="" src="images/1f1.jpg" class="indent_img" />
+				<strong>Pyccuracy is an open-source Python project with an OSI license.</strong><br  />
+				<p>Being an open-source project, we need all the help we can get.</p>
+				<p>If you think you can contribute, join our <a href="http://groups.google.com/group/pyccuracy" target="_blank">dev list</a>, check our <a href="">JIRA server</a> for the open tickets for the current release and start coding.</p>
+				<p>The entry barrier for coding in Pyccuracy is really small, since the codebase is itself small. If you need any help, just ask in the development list and we'll be happy to answer if we can</p>
+			</div>
+		</div>
+		<div class="col_2">
+			<img alt="" src="images/1title5.gif" class="title" />
+			<strong>Pyccuracy Cheat Sheet</strong><br  />
+			<ul>
+				<li><a href="http://groups.google.com/group/pyccuracy" target="_blank">Project Google Groups Page</a></li>
+				<li><a href="conventions.html">Project Conventions</a></li>
+				<li><a href="blogposts.html">Links and Blog Posts</a></li>
+				<li><a href="http://jira.stormwindproject.org:8080/browse/PYCCURACY" target="_blank">Jira (Issue and Version Management)</a></li>
+				<li><a href="http://github.com/heynemann/pyccuracy" target="_blank">GitHub page for Pyccuracy</a></li>
+				<li><a href="http://pypi.python.org/pypi/Pyccuracy/" target="_blank">Python Package Index (PyPI) Page</a></li>
+			</ul>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div id="footer">Pyccuracy &copy; 2009 | <a href="license.html">OSI License</a></div>
+	<!-- end footer -->
+	
+	
+	
+	
+</div>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-7926792-1");
+pageTracker._trackPageview();
+s} catch(err) {}</script>
+
+</body>
+</html>
