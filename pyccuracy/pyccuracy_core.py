@@ -3,9 +3,9 @@
 # Licensed under the Open Software License ("OSL") v. 3.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
- 
+
 #     http://www.opensource.org/licenses/osl-3.0.php
- 
+
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -38,7 +38,8 @@ class PyccuracyCore(object):
                   context = None,
                   write_report = True,
                   report_file_dir = None,
-                  report_file_name="report.html"):
+                  report_file_name="report.html",
+                  browser_to_run="firefox"):
 
         IoC.reset()
 
@@ -47,13 +48,21 @@ class PyccuracyCore(object):
 
         if not custom_actions_dir:
             custom_actions_dir = tests_dir
-        
+
         if not report_file_dir:
             report_file_dir = tests_dir
 
         lang = self.load_language(languages_dir, default_culture)
 
-        self.configure_ioc(languages_dir, default_culture, tests_dir, file_pattern, actions_dir, pages_dir, base_url, custom_actions_dir, lang)
+        self.configure_ioc(languages_dir,
+                           default_culture,
+                           tests_dir,
+                           file_pattern,
+                           actions_dir,
+                           pages_dir,
+                           base_url,
+                           custom_actions_dir,
+                           lang, browser_to_run)
 
         if context == None:
             self.context = IoC.resolve(PyccuracyContext)
@@ -69,20 +78,20 @@ class PyccuracyCore(object):
         results = self.context.test_fixture.get_results()
 
         self.__print_results(results)
-        
+
         if write_report:
             report.generate_report(join(report_file_dir, report_file_name), results, lang)
 
         if should_throw and self.context.test_fixture.get_results().status == "FAILED":
             raise TestFailedError("The test failed!")
-        
+
         return results
 
-    def configure_ioc(self, languages_dir, culture, tests_dir, file_pattern, actions_dir, pages_dir, base_url, custom_actions_dir, lang):
+    def configure_ioc(self, languages_dir, culture, tests_dir, file_pattern, actions_dir, pages_dir, base_url, custom_actions_dir, lang, browser_to_run):
         config = InPlaceConfig()
         config.register("selenium_server", SeleniumServer)
         config.register("browser_driver", SeleniumBrowserDriver)
-        
+
         config.register_instance("language", lang)
 
         if (file_pattern == "to_be_defined_by_language"): file_pattern = lang["default_pattern"]
@@ -98,7 +107,7 @@ class PyccuracyCore(object):
 
         config.register("story_runner", StoryRunner)
 
-        config.register("browser_to_run", "*firefox")
+        config.register("browser_to_run", "*%s" % browser_to_run)
         config.register("scripts_path", os.path.abspath(__file__))
         config.register("base_url", base_url)
 

@@ -1,9 +1,11 @@
+import os
+import sys
+import time
+import urllib2
+
 from selenium import *
 from selenium_server import SeleniumServer
 from selenium_element_selector import SeleniumElementSelector
-import time
-import os
-import urllib2
 
 class SeleniumBrowserDriver(object):
     def __init__(self, browser_to_run, tests_dir):
@@ -48,7 +50,11 @@ class SeleniumBrowserDriver(object):
 
     def start_test(self, url = "http://www.someurl.com"):
         self.selenium = selenium(self.__host, self.__port, self.__browser, url)
-        self.selenium.start()
+        try:
+            self.selenium.start()
+        except Exception, e:
+            sys.stderr.write("Error when starting selenium. Is it running ?\n")
+            sys.exit(1)
 
     def page_open(self, url):
         self.selenium.open(url)
@@ -70,7 +76,7 @@ class SeleniumBrowserDriver(object):
 
     def is_element_enabled(self, element):
         script = """this.page().findElement("%s").disabled;"""
-        
+
         script_return = self.selenium.get_eval(script % element)
         if script_return == "null":
             is_disabled = self.__get_attribute_value(element, "disabled")
@@ -98,14 +104,14 @@ class SeleniumBrowserDriver(object):
 
     def get_element_text(self, element_selector):
         text = ""
-        
+
         text = self.__get_attribute_value(element_selector, "value")
         if not text:
             text = self.selenium.get_text(element_selector)
             if not text:
                 script = """this.page().findElement("%s").value;"""
                 script_return = self.selenium.get_eval(script % element_selector)
-            
+
                 if script_return != "null":
                     text = script_return
 
@@ -118,13 +124,13 @@ class SeleniumBrowserDriver(object):
 
     def select_option_by_index(self, element_selector, index):
         return self.__select_option(element_selector, "index", index)
-        
+
     def select_option_by_value(self, element_selector, value):
         return self.__select_option(element_selector, "value", value)
-        
+
     def select_option_by_text(self, element_selector, text):
         return self.__select_option(element_selector, "label", text)
-        
+
     def __select_option(self, element_selector, option_selector, option_value):
         error_message = "Option with %s '%s' not found" % (option_selector, option_value)
         try:

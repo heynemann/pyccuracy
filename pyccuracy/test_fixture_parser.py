@@ -43,6 +43,7 @@ class FileTestFixtureParser(object):
             lines = [line.strip() for line in content.split("\n") if len(line)]
         except IOError:
             fixture.add_invalid_test_file(file_path)
+            return
 
         compiled_conditions_file = os.path.join(os.path.split(file_path)[0], os.path.splitext(file_path)[0] + ".pyc")
         conditions_file = os.path.join(os.path.split(file_path)[0], os.path.splitext(file_path)[0] + ".py")
