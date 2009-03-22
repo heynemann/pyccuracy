@@ -112,13 +112,24 @@ class SeleniumBrowserDriver(object):
         return text
 
     def select_option_by_index(self, element_selector, index):
-        self.selenium.select(element_selector, "index=%d" % index)
+        return self.__select_option(element_selector, "index", index)
         
     def select_option_by_value(self, element_selector, value):
-        self.selenium.select(element_selector, "value=%s" % value)
+        return self.__select_option(element_selector, "value", value)
         
     def select_option_by_text(self, element_selector, text):
-        self.selenium.select(element_selector, "label=%s" % text)
+        return self.__select_option(element_selector, "label", text)
+        
+    def __select_option(self, element_selector, option_selector, option_value):
+        error_message = "Option with %s '%s' not found" % (option_selector, option_value)
+        try:
+            self.selenium.select(element_selector, "%s=%s" % (option_selector, option_value))
+        except Exception, error:
+            if error.message == error_message:
+                return False
+            else:
+                raise
+        return True
 
     def get_link_href(self, link_selector):
         return self.__get_attribute_value(link_selector, "href")

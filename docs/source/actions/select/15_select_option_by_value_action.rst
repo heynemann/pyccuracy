@@ -9,7 +9,7 @@ Syntax
 	I select the option with value of "<value>" in "<select name>" select 
 
 where:
-	``<value>`` - value to select
+	``<value>`` - value of the option to select
 	
 	``<select name>`` - name or id for the desired select element
 	

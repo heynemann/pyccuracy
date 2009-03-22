@@ -5,12 +5,12 @@ from pyccuracy.page import Page
 from pyccuracy.actions.action_base import ActionBase
 from pyccuracy.actions.element_is_visible_base import *
 
-class SelectDoesNotHaveSelectedIndexAction(ActionBase):
+class SelectHasSelectedIndexAction(ActionBase):
     def __init__(self, browser_driver, language):
-        super(SelectDoesNotHaveSelectedIndexAction, self).__init__(browser_driver, language)
+        super(SelectHasSelectedIndexAction, self).__init__(browser_driver, language)
 
     def matches(self, line):
-        reg = self.language["select_does_not_have_selected_index_regex"]
+        reg = self.language["select_has_selected_index_regex"]
         self.last_match = reg.search(line)
         return self.last_match
 
@@ -27,5 +27,5 @@ class SelectDoesNotHaveSelectedIndexAction(ActionBase):
         
         selected_index = self.browser_driver.get_selected_index(select)
 
-        if (selected_index == index):
-            self.raise_action_failed_error(self.language["select_does_not_have_selected_index_failure"] % (select_name, index, selected_index))
+        if (selected_index != index):
+            self.raise_action_failed_error(self.language["select_has_selected_index_failure"] % (select_name, index, selected_index))

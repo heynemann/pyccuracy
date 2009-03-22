@@ -5,12 +5,12 @@ from pyccuracy.page import Page
 from pyccuracy.actions.action_base import ActionBase
 from pyccuracy.actions.element_is_visible_base import *
 
-class SelectHasSelectedValueAction(ActionBase):
+class SelectDoesNotHaveSelectedValueAction(ActionBase):
     def __init__(self, browser_driver, language):
-        super(SelectHasSelectedValueAction, self).__init__(browser_driver, language)
+        super(SelectDoesNotHaveSelectedValueAction, self).__init__(browser_driver, language)
 
     def matches(self, line):
-        reg = self.language["select_has_selected_value_regex"]
+        reg = self.language["select_does_not_have_selected_value_regex"]
         self.last_match = reg.search(line)
         return self.last_match
 
@@ -27,5 +27,5 @@ class SelectHasSelectedValueAction(ActionBase):
         
         selected_value = self.browser_driver.get_selected_value(select)
 
-        if (unicode(selected_value) != unicode(value)):
-            self.raise_action_failed_error(self.language["select_has_selected_value_failure"] % (select_name, value, selected_value))
+        if (unicode(selected_value).lower() == unicode(value).lower()):
+            self.raise_action_failed_error(self.language["select_does_not_have_selected_value_failure"] % (select_name, value, selected_value))

@@ -9,7 +9,7 @@ Syntax
 	I select the option with index of <index> in "<select name>" select 
 
 where:
-	``<index>`` - index to select
+	``<index>`` - index of the option to select
 	
 	``<select name>`` - name or id for the desired select element
 	

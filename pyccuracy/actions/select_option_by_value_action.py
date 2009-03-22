@@ -2,6 +2,7 @@ import os
 import sys
 sys.path.insert(0,os.path.abspath(__file__+"/../../../"))
 from pyccuracy.page import Page
+from pyccuracy.errors import *
 from pyccuracy.actions.action_base import ActionBase
 from pyccuracy.actions.element_is_visible_base import *
 
@@ -25,5 +26,8 @@ class SelectOptionByValueAction(ActionBase):
         error_message = self.language["select_is_visible_failure"]
         self.assert_element_is_visible(select, error_message % select_name)        
         
-        self.browser_driver.select_option_by_value(select, value)
+        result = self.browser_driver.select_option_by_value(select, value)
+        
+        if not result:
+            raise SelectOptionError(self.language["select_option_by_value_failure"] % (select_name, value))
         
