@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Pyccuracy - Downloads</title>
+<title>Pyccuracy - Test File Conventions</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <link href="css/layout.css" rel="stylesheet" type="text/css" />
 <link href="css/custom.css" rel="stylesheet" type="text/css" />
@@ -70,62 +70,50 @@
 
 	<!-- content -->
 	<div class="section" id="main_title">
-        Downloads
-    </div>
+        Test File Conventions
+    </div><br />
+    <p>If you follow a series of conventions in Pyccuracy, it will make your life a lot easier.</p><br />
+    
 	<div class="subsection">
-		<a name="source"></a>
-        Download Pyccuracy Source Code
+        File Naming
+	</div><br />
+	
+    <p>Pyccuracy's default file naming is test_&lt;whatever_your_test_does&gt;.acc.</p><br />
+    <p>The .acc extension comes from Accuracy, the father project to Pyccuracy.</p><br />
+    <p>We thought of using .pyc, but that's for compiled python files.</p><br />
+    <p>So why using .acc as an extension so important? Because if you do, pyccuracy_console will find your files "automagically". "*.acc" is the default value for test file pattern in pyccuracy.</p><br />
+
+	<div class="subsection">
+        Test Files Header
+	</div><br />
+	
+    <p>Pyccuracy's test files need to feature a proper header.</p><br />
+    <p>Here are the headers for each language:.</p><br />
+
+    <div class="subsubsection">
+    	English (en-us)
+	</div>
+	<div class="subsubsection_content">
+        <pre id="acc">
+<span>As a</span> &lt;persona&gt;
+<span>I want to</span> &lt;story description&gt;
+<span>So that</span> &lt;business value&gt;
+        </pre>    
 	</div><br />
 	
 	<div class="subsubsection">
-	    Linux
+    	Português Brasil (pt-br)
 	</div>
 	<div class="subsubsection_content">
-	    Open up a terminal window, go to the folder you want the source code to be and type:<br />
         <pre id="acc">
-            <span>git clone</a> git://github.com/heynemann/pyccuracy.git
-        </pre>
-    </div><br />
-    
-    <div class="subsubsection">
-	    Windows
+<span>Como um</span> &lt;persona&gt;
+<span>Eu quero</span> &lt;descrição da story&gt;
+<span>Para</span> &lt;valor de negócio&gt;
+        </pre>    
 	</div>
-	<div class="subsubsection_content">
-	    Open up a command window, go to the folder you want the source code to be and type:<br />
-        <pre id="acc">
-            <span>git clone</a> git://github.com/heynemann/pyccuracy.git
-        </pre>
-    </div><br /><br />
-    
-	<div class="subsection">
-		<a name="stable"></a>
-        Download Stable Source Code
-	</div><br />
-    
-    <div class="subsubsection">
-	    Python Package Index
-	</div>
-	<div class="subsubsection_content">
-        You can use <a href="http://pypi.python.org/" target="_blank">Python Package Index</a> (PyPI) to download Pyccuracy's latest stable release.<br /><br />
-        
-        Just go to <a href="http://pypi.python.org/pypi/Pyccuracy/" target="_blank">Pyccuracy's PyPI page</a> and download the release.
-    </div><br /><br />
 
-	<div class="subsection">
-		<a name="releases"></a>
-        Releases (From newer to older)
-	</div>
+    <br />
     
-	<div class="list1">
-        <ul>
-            <li><a href="releases/Pyccuracy-0.3.2dev.tar.gz">Release 0.3.2 (18th March 2009)</a></li>
-            <li><a href="releases/Pyccuracy-0.3.1dev.tar.gz">Release 0.3.1 (16th March 2009)</a></li>
-        </ul>
-    </div><br /><br />
-    
-	<br />
-	
-	
 	
 	
 	
