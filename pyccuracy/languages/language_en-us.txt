@@ -75,6 +75,9 @@ select_option_by_index_regex = ^(And )?I select the option with index of (\d+) i
 select_option_by_value_regex = ^(And )?I select the option with value of [\"](.+)[\"] in [\"](.+)[\"] select$
 select_is_enabled_regex = ^(And )?I see [\"](.+)[\"] select is enabled$
 select_is_disabled_regex = ^(And )?I see [\"](.+)[\"] select is disabled$
+select_does_not_have_selected_index_regex = ^(And )?I see [\"](.+)[\"] select does not have selected index of (\d+)$
+select_does_not_have_selected_value_regex = ^(And )?I see [\"](.+)[\"] select does not have selected value of [\"](.+)[\"]$
+select_does_not_have_selected_text_regex = ^(And )?I see [\"](.+)[\"] select does not have selected text of [\"](.+)[\"]$
 
 textbox_is_visible_regex = ^(And )?I see [\"](.+)[\"] textbox$
 textbox_is_not_visible_regex = ^(And )?I do not see [\"](.+)[\"] textbox$
@@ -124,6 +127,9 @@ select_has_selected_value_failure = The selected value for select with name or i
 select_has_selected_text_failure = The selected text for select with name or id %s should be %s, but is %s.
 select_is_enabled_failure = The select with name or id %s is disabled, when it should be enabled.
 select_is_disabled_failure = The select with name or id %s is enabled, when it should be disabled.
+select_does_not_have_selected_index_failure = The selected index for select with name or id %s should be %d, but is %d.
+select_does_not_have_selected_value_failure = The selected value for select with name or id %s should be %s, but is %s.
+select_does_not_have_selected_text_failure = The selected text for select with name or id %s should be %s, but is %s.
 
 textbox_is_visible_failure = The textbox with name or id %s does not exist or is not visible.
 textbox_is_visible_failure = The textbox with name or id %s does not exist or is not visible.
