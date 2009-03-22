@@ -1,0 +1,126 @@
+import sys
+import time
+import urllib2
+
+
+class BrowserDriver(object):
+    __not_implemented_exception_message__ = "This method has not been implemented"
+    
+    def __init__(self, browser_to_run, tests_dir):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+    
+    def resolve_element_key(self, context, element_type, element_key):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+    
+    def __wait_for_server_to_start(self):
+        server_started = False
+        while server_started == False:
+            server_started = self.__is_server_started()
+            time.sleep(2)
+
+    def __is_server_started(self):
+        timeout = urllib2.socket.getdefaulttimeout()
+        try:
+            urllib2.socket.setdefaulttimeout(5)
+            url = "http://%s:%s/" % (self.__host, self.__port)
+            request = urllib2.urlopen(url)
+            server_started = True
+            request.close()
+        except IOError, e:
+            server_started = False
+
+        urllib2.socket.setdefaulttimeout(timeout)
+        return server_started
+
+    def start(self):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+
+    def start_test(self, url = "http://www.someurl.com"):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+    
+    def page_open(self, url):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+
+    def type(self, input_selector, text):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+
+    def click_element(self, element_selector):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+
+    def is_element_visible(self, element_selector):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+
+    def wait_for_page(self, timeout = 20000):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+
+    def get_title(self):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+
+    def is_element_enabled(self, element):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+
+    def checkbox_is_checked(self, checkbox_selector):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+
+    def checkbox_check(self, checkbox_selector):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+
+    def checkbox_uncheck(self, checkbox_selector):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+
+    def get_selected_index(self, element_selector):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+
+    def get_selected_value(self, element_selector):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+
+    def get_selected_text(self, element_selector):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+
+    def get_element_text(self, element_selector):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+
+    def get_element_markup(self, element_selector):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+
+    def select_option_by_index(self, element_selector, index):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+
+    def select_option_by_value(self, element_selector, value):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+
+    def select_option_by_text(self, element_selector, text):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+
+    def __select_option(self, element_selector, option_selector, option_value):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+
+    def get_link_href(self, link_selector):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+
+    def get_image_src(self, image_selector):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+
+    def get_link_text(self, link_selector):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+
+    def mouseover_element(self, element_selector):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+
+    def is_element_empty(self, element_selector):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+
+    def stop_test(self):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+
+    def stop(self):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+
+    def __get_attribute_value(self, element, attribute):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+
+class ExceptionNotImplemented(Exception):
+    """
+    Exception raised for not implemented methods
+    """
+    pass

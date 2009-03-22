@@ -1,13 +1,15 @@
+from browser_driver import BrowserDriver
 import os
 import sys
 import time
 import urllib2
 
 from selenium import *
+from browser_driver import *
 from selenium_server import SeleniumServer
 from selenium_element_selector import SeleniumElementSelector
 
-class SeleniumBrowserDriver(object):
+class SeleniumBrowserDriver(BrowserDriver):
     def __init__(self, browser_to_run, tests_dir):
         self.__host = "localhost"
         self.__port = 4444
@@ -18,26 +20,6 @@ class SeleniumBrowserDriver(object):
         if context == None: return element_key
 
         return SeleniumElementSelector.element(element_type, element_key)
-
-    def __wait_for_server_to_start(self):
-        server_started = False
-        while server_started == False:
-            server_started = self.__is_server_started()
-            time.sleep(2)
-
-    def __is_server_started(self):
-        timeout = urllib2.socket.getdefaulttimeout()
-        try:
-            urllib2.socket.setdefaulttimeout(5)
-            url = "http://%s:%s/" % (self.__host, self.__port)
-            request = urllib2.urlopen(url)
-            server_started = True
-            request.close()
-        except IOError, e:
-            server_started = False
-
-        urllib2.socket.setdefaulttimeout(timeout)
-        return server_started
 
     def start(self):
         #if self.__is_server_started():
