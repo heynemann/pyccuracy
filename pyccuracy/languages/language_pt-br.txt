@@ -72,6 +72,7 @@ select_has_selected_index_regex = ^(E )?[eE]u vejo que o índice selecionado da 
 select_has_selected_value_regex = ^(E )?[eE]u vejo que o valor selecionado da select [\"](.+)[\"] é [\"](.+)[\"]$
 select_has_selected_text_regex = ^(E )?[eE]u vejo que o texto selecionado da select [\"](.+)[\"] é [\"](.+)[\"]$
 select_option_by_index_regex = ^(E )?[eE]u seleciono o item de índice (\d+) na select [\"](.+)[\"]$
+select_option_by_value_regex = ^(E )?[eE]u seleciono o item de valor [\"](.+)[\"] na select [\"](.+)[\"]$
 select_is_enabled_regex = ^(E )?[eE]u vejo que a select [\"](.+)[\"] está habilitada$
 select_is_disabled_regex = ^(E )?[eE]u vejo que a select [\"](.+)[\"] está desabilitada$
 
@@ -92,6 +93,8 @@ page_see_title_failure = O título da página (%s) não bate com o título esper
 
 button_is_visible_failure = O botão com nome ou id %s não existe ou não está visível.
 button_is_not_visible_failure = O botão com nome ou id %s está visível, quando deveria não existir ou estar invisível.
+button_is_enabled_failure = O botão com nome ou id %s está desabilitado, quando deveria estar habilitado.
+button_is_disabled_failure = O botão com nome ou id %s está habilitado, quando deveria estar desabilitado.
 
 checkbox_is_visible_failure = A checkbox com nome ou id %s não existe ou não está visível.
 checkbox_is_not_visible_failure = A checkbox com nome ou id %s está visível, quando deveria não existir ou estar invisível.

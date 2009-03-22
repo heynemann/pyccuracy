@@ -72,6 +72,7 @@ select_has_selected_index_regex = ^(And )?I see [\"](.+)[\"] select has selected
 select_has_selected_value_regex = ^(And )?I see [\"](.+)[\"] select has selected value of [\"](.+)[\"]$
 select_has_selected_text_regex = ^(And )?I see [\"](.+)[\"] select has selected text of [\"](.+)[\"]$
 select_option_by_index_regex = ^(And )?I select the option with index of (\d+) in [\"](.+)[\"] select$
+select_option_by_value_regex = ^(And )?I select the option with value of [\"](.+)[\"] in [\"](.+)[\"] select$
 select_is_enabled_regex = ^(And )?I see [\"](.+)[\"] select is enabled$
 select_is_disabled_regex = ^(And )?I see [\"](.+)[\"] select is disabled$
 

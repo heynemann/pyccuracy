@@ -111,8 +111,14 @@ class SeleniumBrowserDriver(object):
 
         return text
 
-    def select_option_by_index(self, checkbox_selector, index):
-        self.selenium.select(checkbox_selector, "index=%d" % index)
+    def select_option_by_index(self, element_selector, index):
+        self.selenium.select(element_selector, "index=%d" % index)
+        
+    def select_option_by_value(self, element_selector, value):
+        self.selenium.select(element_selector, "value=%s" % value)
+        
+    def select_option_by_text(self, element_selector, text):
+        self.selenium.select(element_selector, "label=%s" % text)
 
     def get_link_href(self, link_selector):
         return self.__get_attribute_value(link_selector, "href")

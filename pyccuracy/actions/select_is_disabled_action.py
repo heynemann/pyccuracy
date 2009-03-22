@@ -23,5 +23,5 @@ class SelectIsDisabledAction(ActionBase):
         self.assert_element_is_visible(select, self.language["select_is_visible_failure"] % select_name)        
         
         error_message = self.language["select_is_disabled_failure"]
-        if not self.browser_driver.is_element_enabled(select):
+        if self.browser_driver.is_element_enabled(select):
             self.raise_action_failed_error(error_message % select_name)
