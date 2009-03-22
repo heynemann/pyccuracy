@@ -37,13 +37,18 @@ def main():
     (options, args) = parser.parse_args()
 
     pyc = PyccuracyCore()
-    pyc.run_tests(file_pattern=options.pattern, 
+
+    result = pyc.run_tests(file_pattern=options.pattern, 
                   tests_dir=options.dir, 
                   base_url=options.url, 
                   default_culture=options.language,
                   write_report = options.write_report.lower() == "true",
                   report_file_dir = options.report_dir,
                   report_file_name = options.report_file_name)
+
+    if result.status != "SUCCESSFUL":
+        sys.exit(1)
+    sys.exit(0)
  
 if __name__ == "__main__":
     main()

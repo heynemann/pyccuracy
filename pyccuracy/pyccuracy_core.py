@@ -75,6 +75,8 @@ class PyccuracyCore(object):
 
         if should_throw and self.context.test_fixture.get_results().status == "FAILED":
             raise TestFailedError("The test failed!")
+        
+        return results
 
     def configure_ioc(self, languages_dir, culture, tests_dir, file_pattern, actions_dir, pages_dir, base_url, custom_actions_dir, lang):
         config = InPlaceConfig()
