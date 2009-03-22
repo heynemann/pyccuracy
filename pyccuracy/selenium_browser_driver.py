@@ -21,15 +21,6 @@ class SeleniumBrowserDriver(BrowserDriver):
 
         return SeleniumElementSelector.element(element_type, element_key)
 
-    def start(self):
-        #if self.__is_server_started():
-            #self.selenium_server = None
-            #return
-        #self.selenium_server = SeleniumServer()
-        #self.selenium_server.start()
-        #self.__wait_for_server_to_start()
-        pass
-
     def start_test(self, url = "http://www.someurl.com"):
         self.selenium = selenium(self.__host, self.__port, self.__browser, url)
         try:
@@ -141,11 +132,6 @@ class SeleniumBrowserDriver(BrowserDriver):
 
     def stop_test(self):
         self.selenium.stop()
-
-    def stop(self):
-        #if self.selenium_server:
-            #self.selenium_server.stop()
-        pass
 
     def __get_attribute_value(self, element, attribute):
         try:

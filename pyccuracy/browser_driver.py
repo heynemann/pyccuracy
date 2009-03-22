@@ -1,4 +1,3 @@
-import sys
 import time
 import urllib2
 
@@ -33,7 +32,7 @@ class BrowserDriver(object):
         return server_started
 
     def start(self):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
+        pass
 
     def start_test(self, url = "http://www.someurl.com"):
         raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
@@ -114,8 +113,8 @@ class BrowserDriver(object):
         raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
 
     def stop(self):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
-
+        pass
+    
     def __get_attribute_value(self, element, attribute):
         raise ExceptionNotImplemented(self.__not_implemented_exception_message__)
 
