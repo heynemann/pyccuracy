@@ -48,6 +48,7 @@ div_is_visible_regex = ^(E )?[eE]u vejo o div [\"](.+)[\"]$
 div_is_not_visible_regex = ^(E )?[eE]u não vejo o div [\"](.+)[\"]$
 div_mouseover_regex = ^(E )?[eE]u passo o mouse no div [\"](.+)[\"]$
 div_contains_text_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] contém [\"](.+)[\"]$
+div_contains_markup_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] contém o markup [\"](.+)[\"]$
 div_does_not_contain_text_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] não contém [\"](.+)[\"]$
 div_click_regex = ^(E )?[eE]u clico no div [\"](.+)[\"]( e espero)?$
 
@@ -108,6 +109,7 @@ checkbox_is_not_checked_failure = A checkbox com nome ou id %s está marcada e d
 div_is_visible_failure = O div com nome ou id %s não existe ou não está visível.
 div_is_not_visible_failure = O div com nome ou id %s está visível, quando deveria não existir ou estar invisível.
 div_contains_text_failure = O div com nome ou id %s deveria conter "%s", mas o seu texto atual é "%s".
+div_contains_markup_failure = O div com nome ou id %s deveria conter o markup "%s", mas o seu markup atual é "%s".
 div_does_not_contain_text_failure = O div com nome ou id %s não deveria conter "%s", mas o seu texto atual é "%s".
 
 image_is_visible_failure = A imagem com nome ou id %s não existe ou não está visível.

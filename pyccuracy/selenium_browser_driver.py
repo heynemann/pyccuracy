@@ -111,6 +111,11 @@ class SeleniumBrowserDriver(object):
 
         return text
 
+    def get_element_markup(self, element_selector):
+        script = """this.page().findElement("%s").innerHTML;"""
+        script_return = self.selenium.get_eval(script % element_selector)
+        return script_return != "null" and script_return or ""
+
     def select_option_by_index(self, element_selector, index):
         return self.__select_option(element_selector, "index", index)
         
