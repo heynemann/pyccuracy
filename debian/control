@@ -1,0 +1,26 @@
+Source: python-pyccuracy
+Section: python
+Priority: optional
+Maintainer: Gabriel Falcão <gabriel@nacaolivre.org>
+Uploaders: Gabriel Falcão <gabriel@nacaolivre.org>
+Standards-Version: 3.8.0
+Build-Depends: debhelper (>= 7), python, cdbs, python-setuptools, python-support, python-pyoc
+Build-Depends-Indep: python-sphinx
+Homepage: http://www.pyccuracyproject.com/
+Vcs-Git: git://github.com/heynemann/pyccuracy.git
+Vcs-Browser: http://github.com/heynemann/pyccuracy/tree/master
+
+Package: python-pyccuracy
+Architecture: all
+Depends: ${misc:Depends}, ${python:Depends}, python-pyoc
+Recommends:
+Suggests:
+Description: An IoC container for Python projects.
+ PyoC is an IoC container for Python.
+ .
+ It's purpose is to make it even easier
+ (it's easy already in Python) to manage
+ dependencies between components.
+ .
+ It's heavily oriented towards a
+ Convention-over-Configuration approach.
