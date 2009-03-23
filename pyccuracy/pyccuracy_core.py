@@ -108,8 +108,7 @@ class PyccuracyCore(object):
     def configure_ioc(self, languages_dir, culture, tests_dir, file_pattern, actions_dir, pages_dir, base_url, custom_actions_dir, lang, browser_to_run, browser_driver):
 
         config = InPlaceConfig()
-        config.register("selenium_server", SeleniumServer)
-
+        
         config.register("browser_driver", self.__select_browser_driver(browser_driver))
 
         config.register_instance("language", lang)

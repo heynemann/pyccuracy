@@ -5,7 +5,6 @@ import urllib2
 
 from selenium import *
 from browser_driver import *
-from selenium_server import SeleniumServer
 from selenium_element_selector import SeleniumElementSelector
 
 class SeleniumBrowserDriver(BrowserDriver):
