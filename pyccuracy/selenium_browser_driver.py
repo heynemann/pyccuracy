@@ -1,3 +1,4 @@
+from Tix import __init__
 from browser_driver import BrowserDriver
 import os
 import sys
@@ -11,10 +12,10 @@ from selenium_element_selector import SeleniumElementSelector
 
 class SeleniumBrowserDriver(BrowserDriver):
     def __init__(self, browser_to_run, tests_dir):
-        self.__host = "localhost"
-        self.__port = 4444
-        self.__browser = browser_to_run
-        self.root_dir = tests_dir
+        super(type(self),self).__init__(browser_to_run, tests_dir)
+        self.__port__ = 4444
+        self.__host__ = "localhost"
+
 
     def resolve_element_key(self, context, element_type, element_key):
         if context == None: return element_key
@@ -22,7 +23,7 @@ class SeleniumBrowserDriver(BrowserDriver):
         return SeleniumElementSelector.element(element_type, element_key)
 
     def start_test(self, url = "http://www.someurl.com"):
-        self.selenium = selenium(self.__host, self.__port, self.__browser, url)
+        self.selenium = selenium(self.__host__, self.__port__, self.__browser__, url)
         try:
             self.selenium.start()
         except Exception, e:
