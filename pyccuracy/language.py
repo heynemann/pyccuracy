@@ -37,7 +37,7 @@ class Language(object):
 
     def __getitem__(self, key):
         item = self.language_items.get(key, None)
-        if item is None: raise RuntimeError("The key %s was not found in the language definitions." % key)
+        if item is None: raise LookupError("The key %s was not found in the language definitions." % key)
         return item
 
 if __name__ == "__main__":
