@@ -25,6 +25,7 @@ pyccuracy/test_fixture.py
 pyccuracy/test_fixture_items.py
 pyccuracy/test_fixture_parser.py
 pyccuracy/test_result.py
+pyccuracy/webdriver_browser_driver.py
 pyccuracy/actions/__init__.py
 pyccuracy/actions/action_base.py
 pyccuracy/actions/button_click_action.py
