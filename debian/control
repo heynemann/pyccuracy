@@ -12,7 +12,7 @@ Vcs-Browser: http://github.com/heynemann/pyccuracy/tree/master
 
 Package: python-pyccuracy
 Architecture: all
-Depends: ${misc:Depends}, ${python:Depends}, python-pyoc
+Depends: ${misc:Depends}, ${python:Depends}, python-pyoc, python-lxml
 Recommends:
 Suggests:
 Description: An IoC container for Python projects.

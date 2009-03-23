@@ -2,5 +2,6 @@ python-pyccuracy (0.1.1) dev; urgency=low
 
   * Initial release.
   * Adding bash_completion instalation for pyccuracy_console
+  * Adding adding python-lxml as dependency
 
  -- Gabriel Falcão Gonçalves de Moura <gabriel@nacaolivre.org>  Mon, 23 Mar 2009 00:22:45 -0300
