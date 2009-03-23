@@ -16,7 +16,6 @@ class SeleniumBrowserDriver(BrowserDriver):
         self.__port__ = 4444
         self.__host__ = "localhost"
 
-
     def resolve_element_key(self, context, element_type, element_key):
         if context == None: return element_key
 
