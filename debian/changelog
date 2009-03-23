@@ -1,5 +1,6 @@
 python-pyccuracy (0.1.1) dev; urgency=low
 
   * Initial release.
+  * Adding bash_completion instalation for pyccuracy_console
 
- -- Gabriel Falcão Gonçalves de Moura <gabriel@nacaolivre.org>  Sun, 22 Mar 2009 23:34:47 -0300
+ -- Gabriel Falcão Gonçalves de Moura <gabriel@nacaolivre.org>  Mon, 23 Mar 2009 00:22:45 -0300
