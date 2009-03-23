@@ -25,6 +25,7 @@ pyccuracy/test_fixture.py
 pyccuracy/test_fixture_items.py
 pyccuracy/test_fixture_parser.py
 pyccuracy/test_result.py
+pyccuracy/webdriver_browser_driver.py
 pyccuracy/actions/__init__.py
 pyccuracy/actions/action_base.py
 pyccuracy/actions/button_click_action.py
@@ -76,6 +77,7 @@ pyccuracy/actions/select_is_visible_action.py
 pyccuracy/actions/select_option_by_index_action.py
 pyccuracy/actions/select_option_by_text_action.py
 pyccuracy/actions/select_option_by_value_action.py
+pyccuracy/actions/textbox_clean_action.py
 pyccuracy/actions/textbox_contains_text_action.py
 pyccuracy/actions/textbox_does_not_contain_text_action.py
 pyccuracy/actions/textbox_does_not_match_text_action.py
