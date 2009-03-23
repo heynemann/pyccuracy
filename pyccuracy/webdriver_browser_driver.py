@@ -13,15 +13,6 @@ class WebdriverBrowserDriver(BrowserDriver):
     def resolve_element_key(self, context, element_type, element_key):
         raise ExceptionNotImplemented(self.__not_implemented_exception_message)
 
-    def start(self):
-        """Starts a new WebDriver instance"""
-        pass
-
-    def stop(self):
-        """Stops the started instance of Webdriver"""
-        pass
-
-
     def __wait_for_server_to_start(self):
         server_started = False
         while server_started == False:

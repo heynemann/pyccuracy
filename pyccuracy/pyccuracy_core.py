@@ -13,6 +13,7 @@
 # limitations under the License.
 
 from selenium_browser_driver import *
+from webdriver_browser_driver import *
 from story_runner import *
 from test_fixture_parser import *
 from language import *
@@ -63,7 +64,9 @@ class PyccuracyCore(object):
                            pages_dir,
                            base_url,
                            custom_actions_dir,
-                           lang, browser_to_run)
+                           lang,
+                           browser_to_run,
+                           browser_driver)
 
         if context == None:
             self.context = IoC.resolve(PyccuracyContext)
@@ -88,10 +91,26 @@ class PyccuracyCore(object):
 
         return results
 
-    def configure_ioc(self, languages_dir, culture, tests_dir, file_pattern, actions_dir, pages_dir, base_url, custom_actions_dir, lang, browser_to_run):
+    def __select_browser_driver(self, driver_name):
+        available_drivers = {
+            "selenium": SeleniumBrowserDriver,
+            "webdriver": WebdriverBrowserDriver,
+            }
+
+        selected_driver = available_drivers.get(driver_name, None)
+        
+        if selected_driver is None:
+            raise LookupError('The requested Webdriver was not found. Available drivers are: \n%s' % available_drivers.keys())
+
+        return selected_driver
+
+
+    def configure_ioc(self, languages_dir, culture, tests_dir, file_pattern, actions_dir, pages_dir, base_url, custom_actions_dir, lang, browser_to_run, browser_driver):
+
         config = InPlaceConfig()
         config.register("selenium_server", SeleniumServer)
-        config.register("browser_driver", SeleniumBrowserDriver)
+
+        config.register("browser_driver", self.__select_browser_driver(browser_driver))
 
         config.register_instance("language", lang)
 
@@ -108,7 +127,8 @@ class PyccuracyCore(object):
 
         config.register("story_runner", StoryRunner)
 
-        config.register("browser_to_run", "*%s" % browser_to_run)
+        config.register("browser_to_run", "*%s" % browser_to_run)        
+
         config.register("scripts_path", os.path.abspath(__file__))
         config.register("base_url", base_url)
 
