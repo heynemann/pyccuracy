@@ -30,6 +30,9 @@ def main():
     parser.add_option("-u", "--url", dest="url", default=None, help="Base URL. Defines a base url against which the tests will get executed. For more details check the documentation [default: %%default].")
     parser.add_option("-b", "--browser", dest="browser_to_run", default="firefox", help="Browser to run. Browser driver will use it to run tests [default: %%default].")
 
+    #browser driver
+    parser.add_option("-e", "--browserdriver", dest="browser_driver", default="selenium", help="Browser Driver to be used on tests. [default: %%default].")
+
     #reporter
     parser.add_option("-R", "--report", dest="write_report", default="true", help="Should write report. Defines if Pyccuracy should write an html report after each run [default: %%default].")
     parser.add_option("-D", "--reportdir", dest="report_dir", default=os.curdir, help="Report directory. Defines the directory to write the report in [default: %%default].")
@@ -45,7 +48,8 @@ def main():
                            write_report = options.write_report.lower() == "true",
                            report_file_dir = options.report_dir,
                            report_file_name = options.report_file_name,
-                           browser_to_run=options.browser_to_run)
+                           browser_to_run=options.browser_to_run,
+                           browser_driver=options.browser_driver)
 
     if result.status != "SUCCESSFUL":
         sys.exit(1)
