@@ -92,6 +92,7 @@ textbox_is_empty_regex = ^(And )?I see [\"](.+)[\"] textbox is empty$
 textbox_is_not_empty_regex = ^(And )?I see [\"](.+)[\"] textbox is not empty$
 textbox_is_enabled_regex = ^(And )?I see [\"](.+)[\"] textbox is enabled$
 textbox_is_disabled_regex = ^(And )?I see [\"](.+)[\"] textbox is disabled$
+textbox_clean_regex = ^(And )?I clean [\"](.+)[\"] textbox$
 
 #Action Failure Messages
 page_see_title_failure = The page title (%s) does not match the expected title (%s)

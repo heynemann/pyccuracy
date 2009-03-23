@@ -1,4 +1,3 @@
-from browser_driver import BrowserDriver
 import os
 import sys
 import time
@@ -14,7 +13,6 @@ class SeleniumBrowserDriver(BrowserDriver):
         super(type(self),self).__init__(browser_to_run, tests_dir)
         self.__port__ = 4444
         self.__host__ = "localhost"
-
 
     def resolve_element_key(self, context, element_type, element_key):
         if context == None: return element_key
@@ -34,6 +32,9 @@ class SeleniumBrowserDriver(BrowserDriver):
 
     def type(self, input_selector, text):
         self.selenium.type(input_selector, text)
+
+    def clean_input(self, input_selector):
+        self.selenium.type(input_selector, "")
 
     def click_element(self, element_selector):
         self.selenium.click(element_selector)
@@ -77,17 +78,21 @@ class SeleniumBrowserDriver(BrowserDriver):
 
     def get_element_text(self, element_selector):
         text = ""
+        tag_name_script = """this.page().findElement("%s").tagName;"""
+        tag_name = self.selenium.get_eval(tag_name_script % element_selector).lower()
+        
+        properties = {
+                        "input" : "value",
+                        "textarea" : "value",
+                        "div" : "innerHTML"
+                     }
+        
+        script = """this.page().findElement("%s").%s;"""
+        script_return = self.selenium.get_eval(script % (element_selector, properties[tag_name]))
 
-        text = self.__get_attribute_value(element_selector, "value")
-        if not text:
-            text = self.selenium.get_text(element_selector)
-            if not text:
-                script = """this.page().findElement("%s").value;"""
-                script_return = self.selenium.get_eval(script % element_selector)
-
-                if script_return != "null":
-                    text = script_return
-
+        if script_return != "null":
+            text = script_return        
+        
         return text
 
     def get_element_markup(self, element_selector):
@@ -128,7 +133,8 @@ class SeleniumBrowserDriver(BrowserDriver):
         self.selenium.mouse_over(element_selector)
 
     def is_element_empty(self, element_selector):
-        return self.get_element_text(element_selector) == ""
+        current_text = self.get_element_text(element_selector)
+        return current_text == ""
 
     def stop_test(self):
         self.selenium.stop()

@@ -1,7 +1,6 @@
 import time
 import urllib2
 
-
 class BrowserDriver(object):
     __not_implemented_exception_message = "This method has not been implemented"
     __browser__ = ""
@@ -42,6 +41,9 @@ class BrowserDriver(object):
     def page_open(self, url):
         raise ExceptionNotImplemented(self.__not_implemented_exception_message)
 
+    def clean_input(self, input_selector):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        
     def type(self, input_selector, text):
         raise ExceptionNotImplemented(self.__not_implemented_exception_message)
 
