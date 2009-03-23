@@ -1,4 +1,3 @@
-from Tix import __init__
 from browser_driver import BrowserDriver
 import os
 import sys
