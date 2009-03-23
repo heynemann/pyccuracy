@@ -14,3 +14,4 @@ tests/prepostscriptsreport.html
 tests/action_tests/actions_report_en-us.html
 tests/action_tests/actions_report_pt-br.html
 nbproject/
+debian/python-pyccuracy*
