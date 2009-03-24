@@ -25,6 +25,7 @@ setup(name='Pyccuracy',
       include_package_data=True,
       scripts = ['pyccuracy/pyccuracy_console.py'],
       zip_safe=True,
+      test_suite='tests.test_suite',
       install_requires=[
           "selenium>=0.9.2",
       ],

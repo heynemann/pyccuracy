@@ -13,7 +13,7 @@ class StoryRunner(object):
             test_fixture.did_not_run()
             return
 
-        self.browser_driver.start_test("http://www.pyccuracy.org")
+        self.browser_driver.start_test(self.context.base_url or "http://localhost")
         try:
             test_fixture.start_run()
             for current_story in test_fixture.stories:
