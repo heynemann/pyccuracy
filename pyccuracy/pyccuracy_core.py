@@ -100,10 +100,9 @@ class PyccuracyCore(object):
         selected_driver = available_drivers.get(driver_name, None)
         
         if selected_driver is None:
-            raise LookupError('The requested Webdriver was not found. Available drivers are: \n%s' % available_drivers.keys())
+            raise LookupError('The requested browser driver was not found. Available drivers are: \n%s' % available_drivers.keys())
 
         return selected_driver
-
 
     def configure_ioc(self, languages_dir, culture, tests_dir, file_pattern, actions_dir, pages_dir, base_url, custom_actions_dir, lang, browser_to_run, browser_driver):
 
