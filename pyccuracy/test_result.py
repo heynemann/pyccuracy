@@ -83,3 +83,7 @@ class TestResult(object):
                     messages[-1] += (u" - %s" % action.error)
 
     __str__ = __unicode__
+    
+    @staticmethod
+    def empty(lang):
+        return TestResult(lang, [], [], [], None, None)

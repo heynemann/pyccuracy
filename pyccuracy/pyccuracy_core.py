@@ -73,7 +73,7 @@ class PyccuracyCore(object):
         except Exception, err:
             if err.__class__.__name__ == "InvalidScenarioError":
                 print unicode(err.message)
-                return None
+                return TestResult.empty(lang)
             else:
                 raise
 
