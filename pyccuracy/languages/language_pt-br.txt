@@ -152,3 +152,5 @@ textbox_is_not_empty_failure = A caixa de texto com nome ou id %s está vazia e 
 textbox_is_enabled_failure = A caixa de texto com nome ou id %s está desabilitada, quando deveria estar habilitada.
 textbox_is_disabled_failure = A caixa de texto com nome ou id %s está habilitada, quando deveria estar desabilitada.
 
+#Mensagens de erro
+invalid_scenario_error = \n>>>>>>>>>>>>>> "%s" <<<<<<<<<<<<<<\n\nA linha acima não corresponde a nenhuma das ações registradas. \nSe você só precisa de um texto como "Depois da página carregar"\n ou algo assim, prefixe sua linha com #. \n\nCenário: %s - %s\nArquivo: %s

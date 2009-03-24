@@ -113,7 +113,7 @@ class FileTestFixtureParser(object):
             if line.strip().startswith("#"):
                 method(line, self.blank_execute, self.blank_values_for)
             else:
-                raise InvalidScenarioError("\n\n>> \"%s\"\nThe line above does not match any actions. If you just need a text like \"I wait for the page to finish loading\" or something like this, prefix your line with a # sign. \nFilename: %s\nScenario: %s - %s" % (line, file_path, scenario.index, scenario.title))
+                raise InvalidScenarioError(self.language["invalid_scenario_error"] % (line, scenario.index, scenario.title, file_path))
 
     def blank_values_for(self, line):
         return tuple([])

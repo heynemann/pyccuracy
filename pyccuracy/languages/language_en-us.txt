@@ -152,3 +152,5 @@ textbox_is_not_empty_failure = The textbox with name or id %s is empty.
 textbox_is_enabled_failure = The textbox with name or id %s is disabled, when it should be enabled.
 textbox_is_disabled_failure = The textbox with name or id %s is enabled, when it should be disabled.
 
+#Error Messages
+invalid_scenario_error = \n>>>>>>>>>>>>>> "%s" <<<<<<<<<<<<<<\n\nThe line above does not match any actions. \nIf you just need a text like "I wait for the page to finish loading"\n or something like this, prefix your line with a # sign. \n\nScenario: %s - %s\nFilename: %s

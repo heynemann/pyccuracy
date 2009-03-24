@@ -67,9 +67,15 @@ class PyccuracyCore(object):
                            lang,
                            browser_to_run,
                            browser_driver)
-
-        if context == None:
-            self.context = IoC.resolve(PyccuracyContext)
+        try:
+            if context == None:
+                self.context = IoC.resolve(PyccuracyContext)
+        except Exception, err:
+            if err.__class__.__name__ == "InvalidScenarioError":
+                print unicode(err.message)
+                return None
+            else:
+                raise
 
         self.context.browser_driver.start()
 
