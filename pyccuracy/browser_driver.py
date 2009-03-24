@@ -47,9 +47,6 @@ class BrowserDriver(object):
     def type(self, input_selector, text):
         raise ExceptionNotImplemented(self.__not_implemented_exception_message)
 
-    def count_element(self, element_selector):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
-
     def click_element(self, element_selector):
         raise ExceptionNotImplemented(self.__not_implemented_exception_message)
 

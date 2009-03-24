@@ -9,7 +9,6 @@ class Page(object):
     Page = "page"
     Select = "select"
     Textbox = "textbox"
-    Any = "any"
 
     def __init__(self):
         '''Initializes the page with the given url.'''

@@ -38,9 +38,6 @@ class SeleniumBrowserDriver(BrowserDriver):
     def click_element(self, element_selector):
         self.selenium.click(element_selector)
 
-    def count_element(self, element_selector):
-        return self.selenium.get_xpath_count(element_selector)
-
     def is_element_visible(self, element_selector):
         return self.selenium.is_element_present(element_selector) and self.selenium.is_visible(element_selector)
 
