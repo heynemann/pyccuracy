@@ -1,0 +1,11 @@
+As a Pyccuracy User
+I want to test element occurs exactly action
+So that I can make sure Pyccuracy works
+
+Scenario 1 - Checking that some page contains exactly to divs with a specified id
+Given
+	I go to "div_tests.htm"
+When
+	#The page finishes loading
+Then
+    I see "Some Multiple Link" occurring exactly 0 times

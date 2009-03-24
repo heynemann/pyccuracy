@@ -13,3 +13,4 @@ class TestCustomPage (Page):
         self.register_link("My Link", "//a[@href='bogus_href']")
         self.register_select("Some Select", "//select[@alt='Some Select']")
         self.register_textbox("Some Textbox", "//div[contains(@class,'some')]//input[@type='text' and @class='textbox' and @name='some_textbox']")
+        self.register_element(Page.Any,"Some Multiple Link", "//*[@id[starts-with(.,'divMouseOver')]]")

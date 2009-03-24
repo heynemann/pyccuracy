@@ -52,6 +52,8 @@ div_contains_markup_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] contém o ma
 div_does_not_contain_text_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] não contém [\"](.+)[\"]$
 div_click_regex = ^(E )?[eE]u clico no div [\"](.+)[\"]( e espero)?$
 
+element_occurs_exactly_regex = ^(E )?[eE]u vejo [\"](.+)[\"] ocorrendo exatamente (\d+) vez(es)?$
+
 image_click_regex = ^(E )?[eE]u clico na imagem [\"](.+)[\"]$
 image_is_visible_regex = ^(E )?[eE]u vejo a imagem [\"](.+)[\"]$
 image_is_not_visible_regex = ^(E )?[eE]u não vejo a imagem [\"](.+)[\"]$
@@ -112,6 +114,8 @@ div_is_not_visible_failure = O div com nome ou id %s está visível, quando deve
 div_contains_text_failure = O div com nome ou id %s deveria conter "%s", mas o seu texto atual é "%s".
 div_contains_markup_failure = O div com nome ou id %s deveria conter o markup "%s", mas o seu markup atual é "%s".
 div_does_not_contain_text_failure = O div com nome ou id %s não deveria conter "%s", mas o seu texto atual é "%s".
+
+element_occurs_exactly_failure = O elemento "%s" era esperado %s vezes mas foi encontrado %s vezes.
 
 image_is_visible_failure = A imagem com nome ou id %s não existe ou não está visível.
 image_is_not_visible_failure = A imagem com nome ou id %s está visível, quando deveria não existir ou estar invisível.

@@ -4,7 +4,15 @@ class SeleniumElementSelector(object):
     def element(element_type, element_name):
         method = getattr(SeleniumElementSelector, element_type)
         return method(element_name)
-        
+
+    @staticmethod
+    def any(element_name):
+        '''
+        Returns a regular expression that matches any element with the specified argument as id or name.
+        '''
+        return r"//*[@name='%s' or @id='%s']" % (element_name, element_name)
+
+
     @staticmethod
     def button(element_name):
         '''
