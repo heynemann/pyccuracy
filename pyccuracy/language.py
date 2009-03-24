@@ -37,7 +37,8 @@ class Language(object):
 
     def __getitem__(self, key):
         item = self.language_items.get(key, None)
-        if item is None: raise LookupError("The key %s was not found in the language definitions." % key)
+        if item is None: 
+            raise LookupError(self.language_items.get("language_lookup_error", None) % key)
         if isinstance(item, unicode): item = item.replace("\\n", "\n")
         return item
 

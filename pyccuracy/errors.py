@@ -41,3 +41,4 @@ class SelectOptionError(Exception):
         
     def __unicode__(self):
         return self.message
+

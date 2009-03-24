@@ -97,7 +97,7 @@ class PyccuracyCore(object):
 
         return results
 
-    def __select_browser_driver(self, driver_name):
+    def __select_browser_driver(self, lang, driver_name):
         available_drivers = {
             "selenium": SeleniumBrowserDriver,
             "webdriver": WebdriverBrowserDriver,
@@ -106,7 +106,8 @@ class PyccuracyCore(object):
         selected_driver = available_drivers.get(driver_name, None)
         
         if selected_driver is None:
-            raise LookupError('The requested browser driver was not found. Available drivers are: \n%s' % available_drivers.keys())
+            available_drivers_string = ",".join(available_drivers.keys())
+            raise LookupError(lang["invalid_browser_driver_error"] % (driver_name, available_drivers_string))
 
         return selected_driver
 
@@ -114,7 +115,7 @@ class PyccuracyCore(object):
 
         config = InPlaceConfig()
         
-        config.register("browser_driver", self.__select_browser_driver(browser_driver))
+        config.register("browser_driver", self.__select_browser_driver(lang, browser_driver))
 
         config.register_instance("language", lang)
 

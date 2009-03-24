@@ -154,3 +154,5 @@ textbox_is_disabled_failure = A caixa de texto com nome ou id %s está habilitad
 
 #Mensagens de erro
 invalid_scenario_error = \n>>>>>>>>>>>>>> "%s" <<<<<<<<<<<<<<\n\nA linha acima não corresponde a nenhuma das ações registradas. \nSe você só precisa de um texto como "Depois da página carregar"\n ou algo assim, prefixe sua linha com #. \n\nCenário: %s - %s\nArquivo: %s
+language_lookup_error = A chave "%s" não foi encontrada no dicionário de linguagem.
+invalid_browser_driver_error = O browser driver informado (%s) não foi encontrado. Drivers disponíveis: \n%s
