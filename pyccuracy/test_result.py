@@ -45,15 +45,15 @@ class TestResult(object):
         messages.append(self.language["scenarios_ran_successfully"] % (self.successful_scenarios, percentage_successful_scenarios * 100))
         messages.append(self.language["scenarios_that_failed"] % (self.failed_scenarios, percentage_failed_scenarios * 100))
         messages.append("")
-        messages.append("Test Run Status: %s" % (self.failed_stories > 0 and "FAILED" or "SUCCESSFUL"))
+        messages.append(self.language["test_run_status"] % (self.failed_stories > 0 and "FAILED" or "SUCCESSFUL"))
         period = (self.end_time - self.start_time)
         threshold = total_scenarios / period
-        messages.append("Ran all %d scenarios in %0.2f s" % (total_scenarios, period))
-        messages.append("Test run threshold: %0.2f scenarios/second" % threshold)
+        messages.append(self.language["test_run_timing"] % (total_scenarios, period))
+        messages.append(self.language["test_run_threshold"] % threshold)
         if (self.failed_stories > 0):
             messages.append("")
             messages.append("=" * 80)
-            messages.append("Failures")
+            messages.append(self.language["test_run_failures"])
             messages.append("=" * 80)
             for story in [story for story in self.stories if story.status == "FAILED"]:
                 messages.append("%s %s %s %s %s %s" % (self.language["as_a"], story.as_a,
@@ -61,7 +61,7 @@ class TestResult(object):
                                                        self.language["so_that"], story.so_that))
                 messages.append("-" * 80)
                 for scenario in [scenario for scenario in story.scenarios if scenario.status == "FAILED"]:
-                    messages.append(u"Scenario %s - %s" % (scenario.index, scenario.title))
+                    messages.append(u"%s %s - %s" % (self.language["scenario"], scenario.index, scenario.title))
                     messages.append("-" * 80)
 
                     messages.append("%s: " % self.language["given"])

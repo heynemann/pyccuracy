@@ -156,3 +156,11 @@ textbox_is_disabled_failure = The textbox with name or id %s is enabled, when it
 invalid_scenario_error = \n>>>>>>>>>>>>>> "%s" <<<<<<<<<<<<<<\n\nThe line above does not match any actions. \nIf you just need a text like "I wait for the page to finish loading"\n or something like this, prefix your line with a # sign. \n\nScenario: %s - %s\nFilename: %s
 language_lookup_error = The key %s was not found in the language definitions.
 invalid_browser_driver_error = The requested browser driver (%s) was not found. Available drivers are: \n%s
+no_scenario_line_error = There was no scenario line ("Scenario X - Description") before the action: %s
+scenario_regex_match_error = Could not match the line: %s\n with the regex of scenario_starter_regex - %r
+
+#Test Summary
+test_run_status = Test Run Status: %s
+test_run_timing = Ran all %d scenarios in %0.2f s
+test_run_threshold = Test run threshold: %0.2f scenarios/second
+test_run_failures = Failures

@@ -156,3 +156,11 @@ textbox_is_disabled_failure = A caixa de texto com nome ou id %s está habilitad
 invalid_scenario_error = \n>>>>>>>>>>>>>> "%s" <<<<<<<<<<<<<<\n\nA linha acima não corresponde a nenhuma das ações registradas. \nSe você só precisa de um texto como "Depois da página carregar"\n ou algo assim, prefixe sua linha com #. \n\nCenário: %s - %s\nArquivo: %s
 language_lookup_error = A chave "%s" não foi encontrada no dicionário de linguagem.
 invalid_browser_driver_error = O browser driver informado (%s) não foi encontrado. Drivers disponíveis: \n%s
+no_scenario_line_error = Não havia uma linha "Cenário X - Descrição" antes da ação: %s
+scenario_regex_match_error = Não foi possível equalizar a linha: %s\n com a regex scenario_starter_regex: %r
+
+#Test Summary
+test_run_status = Resultado dos Testes: %s
+test_run_timing = %d Cenários executados em %0.2f s
+test_run_threshold = Taxa de execução de cenários: %0.2f cenários/segundo
+test_run_failures = Falhas

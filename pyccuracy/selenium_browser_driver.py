@@ -23,7 +23,7 @@ class SeleniumBrowserDriver(BrowserDriver):
         try:
             self.selenium.start()
         except Exception, e:
-            sys.stderr.write("Error when starting selenium. Is it running ?\n")
+            sys.stderr.write("Error when starting selenium. Is it running ? Error: %s\n" % unicode(e))
             sys.exit(1)
 
     def page_open(self, url):

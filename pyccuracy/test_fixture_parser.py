@@ -77,7 +77,7 @@ class FileTestFixtureParser(object):
                     action_under = self.__process_given_when_then_line(line)
                 else:
                     if not scenario:
-                        raise RuntimeError("There is no scenario line before current action: %s" % line)
+                        raise RuntimeError(self.language["no_scenario_line_error"] % line)
                     self.__process_action_line(file_path, fixture, scenario, action_under, line)
 
     def __process_story_lines(self, fixture, as_a, i_want_to, so_that):
@@ -91,8 +91,7 @@ class FileTestFixtureParser(object):
         try:
             values = match.groups()
         except AttributeError, e:
-            raise RuntimeError(u'Could not match the line:' \
-                               ' %s\n with the regex of scenario_starter_regex - %r' % (line, unicode(e)))
+            raise RuntimeError(self.language["scenario_regex_match_error"] % (line, unicode(e)))
 
         scenario_index = values[0]
         scenario_title = values[1]
