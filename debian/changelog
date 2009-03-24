@@ -1,3 +1,10 @@
+python-pyccuracy (0.4.1) dev; urgency=high
+
+  * Release 0.4.1!
+  * Including the tests in pyccuracy $PREFIX/share
+
+ -- Gabriel Falcão Gonçalves de Moura <gabriel@nacaolivre.org>  Mon, 24 Mar 2009 15:47:48 -0300
+
 python-pyccuracy (0.4) dev; urgency=low
 
   * Release 0.4!
