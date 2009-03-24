@@ -12,15 +12,9 @@ Vcs-Browser: http://github.com/heynemann/pyccuracy/tree/master
 
 Package: python-pyccuracy
 Architecture: all
-Depends: ${misc:Depends}, ${python:Depends}, python-pyoc, python-lxml
+Depends: ${misc:Depends}, ${python:Depends}, python-pyoc, python-lxml, python-selenium
 Recommends:
 Suggests:
-Description: An IoC container for Python projects.
- PyoC is an IoC container for Python.
- .
- It's purpose is to make it even easier
- (it's easy already in Python) to manage
- dependencies between components.
- .
- It's heavily oriented towards a
- Convention-over-Configuration approach.
+Description: Pyccuracy is a Behavior-Driven Development Acceptance Testing framework.
+ One of Pyccuracy's goals is to provide a zero-friction environment
+ for the developer to run his tests in.

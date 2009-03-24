@@ -19,7 +19,6 @@ pyccuracy/pyccuracy_core.py
 pyccuracy/report_parser.py
 pyccuracy/selenium_browser_driver.py
 pyccuracy/selenium_element_selector.py
-pyccuracy/selenium_server.py
 pyccuracy/story_runner.py
 pyccuracy/test_fixture.py
 pyccuracy/test_fixture_items.py
@@ -49,7 +48,9 @@ pyccuracy/actions/div_is_visible_action.py
 pyccuracy/actions/div_mouseover_action.py
 pyccuracy/actions/element_is_visible_base.py
 pyccuracy/actions/image_click_action.py
+pyccuracy/actions/image_does_not_have_src_of_action.py
 pyccuracy/actions/image_has_src_of_action.py
+pyccuracy/actions/image_is_not_visible_action.py
 pyccuracy/actions/image_is_visible_action.py
 pyccuracy/actions/image_mouseover_action.py
 pyccuracy/actions/link_click_action.py
