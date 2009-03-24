@@ -20,6 +20,15 @@ class Page(object):
         if not element_key in self.registered_elements[element_type]: return None
         return self.registered_elements[element_type][element_key]
 
+    def get_registered_element_by_key_only(self, element_key):
+        element = None
+        for element_type in self.registered_elements.keys():
+            if element_key in self.registered_elements[element_type]: 
+                element = self.registered_elements[element_type][element_key]
+        
+        if not element:
+            raise LookupError("The key '%s' was not found in the registered elements for the current page." % element_key)
+
     def register_button(self, button_key, button_locator):
         self.register_element(Page.Button, button_key, button_locator)
 
