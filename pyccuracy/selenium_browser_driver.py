@@ -18,7 +18,7 @@ class SeleniumBrowserDriver(BrowserDriver):
 
         return SeleniumElementSelector.element(element_type, element_key)
 
-    def start_test(self, url = "http://www.someurl.com"):
+    def start_test(self, url = "http://localhost"):
         self.selenium = selenium(self.__host__, self.__port__, self.__browser__, url)
         try:
             self.selenium.start()

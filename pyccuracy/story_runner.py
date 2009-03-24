@@ -1,3 +1,5 @@
+import urllib2
+
 from test_fixture import *
 
 class StoryRunner(object):
@@ -12,8 +14,17 @@ class StoryRunner(object):
         if len(test_fixture.stories) == 0:
             test_fixture.did_not_run()
             return
-
-        self.browser_driver.start_test(self.context.base_url or "http://localhost")
+        
+        base_url = None
+        if self.context.base_url:
+            protocol, page_name, file_name, complement, querystring, anchor = urllib2.urlparse.urlparse(self.context.base_url)
+            base_url = protocol and self.context.base_url or None
+        
+        if base_url: 
+            self.browser_driver.start_test(base_url) 
+        else: 
+            self.browser_driver.start_test()
+        
         try:
             test_fixture.start_run()
             for current_story in test_fixture.stories:
