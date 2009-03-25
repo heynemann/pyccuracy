@@ -67,9 +67,15 @@ class PyccuracyCore(object):
                            lang,
                            browser_to_run,
                            browser_driver)
-
-        if context == None:
-            self.context = IoC.resolve(PyccuracyContext)
+        try:
+            if context == None:
+                self.context = IoC.resolve(PyccuracyContext)
+        except Exception, err:
+            if err.__class__.__name__ == "InvalidScenarioError":
+                print unicode(err.message)
+                return TestResult.empty(lang)
+            else:
+                raise
 
         self.context.browser_driver.start()
 
@@ -91,7 +97,7 @@ class PyccuracyCore(object):
 
         return results
 
-    def __select_browser_driver(self, driver_name):
+    def __select_browser_driver(self, lang, driver_name):
         available_drivers = {
             "selenium": SeleniumBrowserDriver,
             "webdriver": WebdriverBrowserDriver,
@@ -100,17 +106,16 @@ class PyccuracyCore(object):
         selected_driver = available_drivers.get(driver_name, None)
         
         if selected_driver is None:
-            raise LookupError('The requested Webdriver was not found. Available drivers are: \n%s' % available_drivers.keys())
+            available_drivers_string = ",".join(available_drivers.keys())
+            raise LookupError(lang["invalid_browser_driver_error"] % (driver_name, available_drivers_string))
 
         return selected_driver
-
 
     def configure_ioc(self, languages_dir, culture, tests_dir, file_pattern, actions_dir, pages_dir, base_url, custom_actions_dir, lang, browser_to_run, browser_driver):
 
         config = InPlaceConfig()
-        config.register("selenium_server", SeleniumServer)
-
-        config.register("browser_driver", self.__select_browser_driver(browser_driver))
+        
+        config.register("browser_driver", self.__select_browser_driver(lang, browser_driver))
 
         config.register_instance("language", lang)
 

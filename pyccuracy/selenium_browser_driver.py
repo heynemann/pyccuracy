@@ -5,7 +5,6 @@ import urllib2
 
 from selenium import *
 from browser_driver import *
-from selenium_server import SeleniumServer
 from selenium_element_selector import SeleniumElementSelector
 
 class SeleniumBrowserDriver(BrowserDriver):
@@ -19,12 +18,12 @@ class SeleniumBrowserDriver(BrowserDriver):
 
         return SeleniumElementSelector.element(element_type, element_key)
 
-    def start_test(self, url = "http://www.someurl.com"):
+    def start_test(self, url = "http://localhost"):
         self.selenium = selenium(self.__host__, self.__port__, self.__browser__, url)
         try:
             self.selenium.start()
         except Exception, e:
-            sys.stderr.write("Error when starting selenium. Is it running ?\n")
+            sys.stderr.write("Error when starting selenium. Is it running ? Error: %s\n" % unicode(e))
             sys.exit(1)
 
     def page_open(self, url):
@@ -47,6 +46,9 @@ class SeleniumBrowserDriver(BrowserDriver):
 
     def get_title(self):
         return self.selenium.get_title()
+        
+    def get_xpath_count(self, xpath):
+        return self.selenium.get_xpath_count(xpath)
 
     def is_element_enabled(self, element):
         script = """this.page().findElement("%s").disabled;"""

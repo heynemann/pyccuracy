@@ -1,7 +1,22 @@
+python-pyccuracy (0.4.1) dev; urgency=high
+
+  * Release 0.4.1!
+  * Including the tests in pyccuracy $PREFIX/share
+
+ -- Gabriel Falcão Gonçalves de Moura <gabriel@nacaolivre.org>  Mon, 24 Mar 2009 15:47:48 -0300
+
+python-pyccuracy (0.4) dev; urgency=low
+
+  * Release 0.4!
+  * Fixing debian rules
+  * Adding documantation
+
+ -- Gabriel Falcão Gonçalves de Moura <gabriel@nacaolivre.org>  Mon, 23 Mar 2009 02:32:38 -0300
+
 python-pyccuracy (0.1.1) dev; urgency=low
 
   * Initial release.
   * Adding bash_completion instalation for pyccuracy_console
   * Adding adding python-lxml as dependency
 
- -- Gabriel Falcão Gonçalves de Moura <gabriel@nacaolivre.org>  Mon, 23 Mar 2009 00:22:45 -0300
+ -- Gabriel Falcão Gonçalves de Moura <gabriel@nacaolivre.org>  Mon, 23 Mar 2009 02:23:29 -0300

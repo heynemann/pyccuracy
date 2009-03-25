@@ -54,3 +54,8 @@ docs:
 
 selenium:
 	@java -jar pyccuracy/lib/selenium-server/selenium-server.jar
+
+deb:
+	mv .git /tmp/pyccuracy_git
+	debuild
+	mv /tmp/pyccuracy_git .git
