@@ -6,7 +6,7 @@ Syntax
 ------
 ::
 
-	I see "<div name>" div matches "<expected markup>"
+	I see "<div name>" div matches "<expected markup>" markup
 
 where:
 	``<div name>`` - name or id for the desired div element

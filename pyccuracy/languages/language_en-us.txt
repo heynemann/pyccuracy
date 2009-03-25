@@ -52,6 +52,7 @@ div_does_not_contain_text_regex = ^(And )?I see [\"](.+)[\"] div does not contai
 div_contains_markup_regex = ^(And )?I see [\"](.+)[\"] div contains [\"](.+)[\"] markup$
 div_does_not_contain_markup_regex = ^(And )?I see [\"](.+)[\"] div does not contain [\"](.+)[\"] markup$
 div_matches_markup_regex = ^(And )?I see [\"](.+)[\"] div matches [\"](.+)[\"] markup$
+div_does_not_match_markup_regex = ^(And )?I see [\"](.+)[\"] div does not match [\"](.+)[\"] markup$
 div_click_regex = ^(And )?I click [\"](.+)[\"] div( and wait)?$
 
 image_click_regex = ^(And )?I click [\"](.+)[\"] image$
@@ -116,6 +117,7 @@ div_contains_text_failure = The div with name or id %s should contain "%s", but 
 div_contains_markup_failure = The div with name or id %s should contain "%s" markup, but it's current markup is "%s".
 div_does_not_contain_text_failure = The div with name or id %s should not contain "%s", but it's current text is "%s".
 div_matches_markup_failure = The div with name or id %s should match "%s" markup, but it's current markup is "%s".
+div_does_not_match_markup_failure = The div with name or id %s should not match "%s" markup, but it's current markup is "%s".
 
 image_is_visible_failure = The image with name or id %s does not exist or is not visible.
 image_is_not_visible_failure = The image with name or id %s is visible, when it should not exist or be visible.
