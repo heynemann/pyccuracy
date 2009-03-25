@@ -8,5 +8,5 @@ Given
 When
 	#The page finishes loading
 Then
-	I see "divContainsMarkup" div contains "<p>some</p>" markup
-	And I see "divContainsMarkup" div contains "markup" markup
+	I see "divContainsMarkup" div does not contain "<p>other</p>" markup
+	And I see "divContainsMarkup" div does not contain "non-markup" markup
