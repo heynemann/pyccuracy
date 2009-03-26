@@ -26,6 +26,13 @@ class SeleniumElementSelector(object):
         the specified argument as id or name.
         '''
         return r"//input[(@name='%s' or @id='%s') and (@type='button' or @type='submit')] | //button[@name='%s' or @id='%s']" % (element_name, element_name, element_name, element_name)
+        
+    @staticmethod
+    def radio_button(element_name):
+        '''
+        Returns a regular expression that matches input type="radio" with the specified argument as id or name.
+        '''
+        return r"//input[(@name='%s' or @id='%s') and @type='radio']" % (element_name, element_name)
 
     @staticmethod
     def div(element_name):

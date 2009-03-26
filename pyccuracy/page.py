@@ -21,6 +21,7 @@ class Page(object):
     Image = "image"
     Link = "link"
     Page = "page"
+    RadioButton = "radio_button"
     Select = "select"
     Textbox = "textbox"
 
@@ -57,6 +58,9 @@ class Page(object):
 
     def register_link(self, link_key, link_locator):
         self.register_element(Page.Link, link_key, link_locator)
+
+    def register_radio_button(self, radio_button_key, radio_button_locator):
+        self.register_element(Page.RadioButton, radio_button_key, radio_button_locator)
 
     def register_select(self, select_key, select_locator):
         self.register_element(Page.Select, select_key, select_locator)
