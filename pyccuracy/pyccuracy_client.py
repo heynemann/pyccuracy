@@ -18,6 +18,13 @@ def write_lines():
         sock.sendall(get_next_test_message)
         response = sock.recv(BUFFER_SIZE)
         print "Server responded: %s" % response
+        
+        test_number = response[-12:]
+        test_result = i % 2 == 0 and "SUCCESSFUL" or "FAILED"
+        print "sending result for test %s of %s" % (test_number, test_result)
+        sock.sendall(send_result_message % (test_number, test_result))
+        response = sock.recv(BUFFER_SIZE)
+        print "Server responded: %s" % response
         time.sleep(2)
 
     sock.close()

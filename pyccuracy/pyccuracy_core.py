@@ -12,18 +12,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from os.path import join, abspath
+
+from pyoc.ioc import IoC
+from pyoc.config import InPlaceConfig
+
 from selenium_browser_driver import *
 from webdriver_browser_driver import *
 from story_runner import *
 from test_fixture_parser import *
 from language import *
 from errors import *
-from pyoc.ioc import IoC
-from pyoc.config import InPlaceConfig
 from page import Page
 from actions.action_base import ActionBase
 import report_parser as report
-from os.path import join
 
 class PyccuracyCore(object):
     def configure_context(self,
@@ -118,10 +120,10 @@ class PyccuracyCore(object):
         config.register("test_fixture_parser", FileTestFixtureParser)
         config.register("tests_dir", tests_dir)
 
-        config.register_files("all_actions", actions_dir, "*_action.py", lifestyle_type = "singleton")
+        config.register_files("all_actions", abspath(actions_dir), "*_action.py", lifestyle_type = "singleton")
 
-        config.register_inheritors("all_pages", pages_dir, Page)
-        config.register_inheritors("all_custom_actions", custom_actions_dir, ActionBase)
+        config.register_inheritors("all_pages", abspath(pages_dir), Page)
+        config.register_inheritors("all_custom_actions", abspath(custom_actions_dir), ActionBase)
 
         config.register("story_runner", StoryRunner)
 

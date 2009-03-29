@@ -64,7 +64,7 @@ def main():
     parser.add_option("-F", "--reportfile", dest="report_file_name", default="report.html", help="Report file. Defines the file name to write the report with [default: %default].")
     
     #server
-    parser.add_option("-P", "--port", dest="port", default=DEFAULT_PORT, help="Server Port. Defines the port that the server will listen at [default: %default].")
+    parser.add_option("-o", "--port", dest="port", default=DEFAULT_PORT, help="Server Port. Defines the port that the server will listen at [default: %default].")
     (options, args) = parser.parse_args()
 
     pyc = PyccuracyServer(port=options.port)
@@ -118,7 +118,7 @@ class PyccuracyServer(object):
                                    languages_dir,
                                    base_url,
                                    should_throw,
-                                   context,
+                                   None,
                                    write_report,
                                    report_file_dir,
                                    report_file_name,
@@ -172,9 +172,13 @@ class PyccuracyServerFactory(object):
         if message.startswith(identify_action):
             action, user_id = message.split(':')
             self.handle_identify(user_id)
-        if message.startswith(get_next_test_action):
+        elif message.startswith(get_next_test_action):
             action = message
             self.handle_next_test()
+        elif message.startswith(send_result_action):
+            action, result = message.split(':')
+            test_id, status = result.split('=')
+            self.handle_test_result(test_id, status)
 
     def handle_identify(self, user_id):
         self.identity = user_id
@@ -186,7 +190,12 @@ class PyccuracyServerFactory(object):
         print "Sending test number %s..." % test_number
         self.send("You got your test mofo: %s" % test_number)
         print "Test sent!"
-
+        
+    def handle_test_result(self, test_id, status):
+        print "Received result for test %s of %s" % (test_id, status)
+        self.send("Your result got computed for test %s" % test_id)
+        print "Informed client of acceptance"
+        
 if __name__ == "__main__":
     main()
     #srv = PyccuracyServer(DEFAULT_PORT)
