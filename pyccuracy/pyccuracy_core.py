@@ -44,6 +44,12 @@ class PyccuracyCore(object):
                           browser_driver):
         IoC.reset()
 
+        if not languages_dir:
+            languages_dir = os.path.join(os.path.dirname(__file__), "languages")
+
+        if not actions_dir:
+            actions_dir = os.path.join(os.path.dirname(__file__), "actions")
+            
         if not pages_dir:
             pages_dir = tests_dir
 
