@@ -28,7 +28,7 @@ class StoryRunner(object):
         if len(test_fixture.stories) == 0:
             test_fixture.did_not_run()
             return
-        
+
         base_url = None
         if self.context.base_url:
             protocol, page_name, file_name, complement, querystring, anchor = urllib2.urlparse.urlparse(self.context.base_url)
