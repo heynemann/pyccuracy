@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from windmill_browser_driver import WindmillBrowserDriver
 from os.path import join, abspath
 
 from pyoc.ioc import IoC
@@ -19,6 +20,7 @@ from pyoc.config import InPlaceConfig
 
 from selenium_browser_driver import *
 from webdriver_browser_driver import *
+from windmill_browser_driver import *
 from story_runner import *
 from test_fixture_parser import *
 from language import *
@@ -196,6 +198,7 @@ class PyccuracyCore(object):
         available_drivers = {
             "selenium": SeleniumBrowserDriver,
             "webdriver": WebdriverBrowserDriver,
+            "ẅindmill" : WindmillBrowserDriver,
             }
 
         selected_driver = available_drivers.get(driver_name, None)
