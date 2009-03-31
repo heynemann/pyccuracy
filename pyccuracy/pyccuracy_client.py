@@ -1,7 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import socket
 import time
 from uuid import uuid4
-from pyccuracy_distributed_language import *
+from pyccuracy.pyccuracy_distributed_language import *
 
 def write_lines():
     try:
@@ -20,13 +23,15 @@ def write_lines():
             response = sock.recv(BUFFER_SIZE)
             print "Server responded: %s" % response
             
+            time.sleep(20)
+            
             test_number = response[-12:]
             test_result = i % 2 == 0 and "SUCCESSFUL" or "FAILED"
             print "sending result for test %s of %s" % (test_number, test_result)
             sock.sendall(send_result_message % (test_number, test_result))
             response = sock.recv(BUFFER_SIZE)
             print "Server responded: %s" % response
-            time.sleep(2)
+            
 
         sock.close()
     except socket.error:

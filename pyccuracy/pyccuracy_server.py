@@ -6,6 +6,7 @@ import sys
 import asyncore
 import socket
 import optparse
+import Queue
 from uuid import uuid4
 from pyccuracy_distributed_language import *
 from pyccuracy.pyccuracy_core import PyccuracyCore
@@ -69,7 +70,7 @@ def main():
 
     pyc = PyccuracyServer(port=options.port)
 
-    result = pyc.start(actions_dir=options.actions_dir,
+    pyc.start(actions_dir=options.actions_dir,
                        custom_actions_dir=options.custom_actions_dir,
                        pages_dir=options.pages_dir,
                        languages_dir=options.languages_dir,
@@ -83,10 +84,6 @@ def main():
                        browser_to_run=options.browser_to_run,
                        browser_driver=options.browser_driver,
                        should_throw=options.should_throw)
-
-    if result.status != "SUCCESSFUL":
-        sys.exit(1)
-    sys.exit(0)
 
 class PyccuracyServer(object):
     def __init__(self, port):
@@ -124,7 +121,7 @@ class PyccuracyServer(object):
                                    report_file_name,
                                    browser_to_run,
                                    browser_driver)
-                                   
+
             self.server_socket = PyccuracyServerMainSocket(DEFAULT_PORT, core)
             asyncore.loop()
         except KeyboardInterrupt:
@@ -166,6 +163,13 @@ class PyccuracyServerFactory(object):
     def __init__(self, send_method, core):
         self.send = send_method
         self.core = core
+        self.build_tests_queue()
+    
+    def build_tests_queue(self):
+        self.queue = Queue.Queue()
+        for story in self.core.context.test_fixture.stories:
+            story.uuid = uuid4()
+            self.queue.put(story)
     
     def route(self, message):
         print "Routing message: %s" % message
@@ -186,10 +190,15 @@ class PyccuracyServerFactory(object):
         self.send("Identity granted at user %s" % self.identity)
         
     def handle_next_test(self):
-        test_number = uuid4()
-        print "Sending test number %s..." % test_number
-        self.send("You got your test mofo: %s" % test_number)
-        print "Test sent!"
+        try:
+            story = self.queue.get()
+            import pdb;pdb.set_trace()
+            print "Sending story"
+            self.send(sending_test_message % story.serialize())
+            print "Story sent!"
+        except Queue.Empty:
+            print "No more tests to run"
+            self.send(no_more_tests_message)
         
     def handle_test_result(self, test_id, status):
         print "Received result for test %s of %s" % (test_id, status)

@@ -12,8 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from errors import *
 import time
+from errors import *
+import simplejson as json
 
 class Story(object):
     def __init__(self, as_a, i_want_to, so_that):
@@ -39,6 +40,22 @@ class Story(object):
         
     def end_run(self):
         self.end_time = time.time()
+        
+    def serialize(self):
+        result = []
+        result.append("story:{")
+        result.append(" as_a:'%s'," % self.as_a)
+        result.append(" i_want_to:'%s'," % self.i_want_to)
+        result.append(" so_that:'%s'," % self.so_that)
+        result.append(" status:'%s'," % self.status)
+        result.append(" scenarios: [")
+        for scenario in self.scenarios:
+            result.append(scenario.serialize())
+            result.append(",")
+        result.append(" ]
+        result.append("}")
+        
+        return "".join(result)
 
 class Scenario(object):
     def __init__(self, story, index, title):
@@ -78,6 +95,29 @@ class Scenario(object):
         
     def end_run(self):
         self.end_time = time.time()
+
+    def serialize(self):
+        result = []
+        result.append("scenario:{")
+        result.append(" index:%d," % self.index)
+        result.append(" title:'%s'," % self.title)
+        result.append(" status:'%s'," % self.status)
+        result.append(" givens:[")
+        for given in self.givens:
+            result.append(given.serialize())
+            result.append(",")
+        result.append(" ],")
+        result.append(" whens:[")
+        for when in self.whens:
+            result.append(when.serialize())
+            result.append(",")
+        result.append(" ],")
+        result.append(" thens:[")
+        for then in self.thens:
+            result.append(then.serialize())
+            result.append(",")
+        result.append(" ]")
+        result.append("}")
 
 class Action(object):
     def __init__(self, scenario, description, execute_function, arguments):
