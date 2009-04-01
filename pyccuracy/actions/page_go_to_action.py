@@ -13,8 +13,9 @@
 # limitations under the License.
 
 import os
+from os.path import abspath, join
 import sys
-sys.path.insert(0,os.path.abspath(__file__+"/../../../"))
+sys.path.insert(0,abspath(__file__+"/../../../"))
 from pyccuracy.page import Page
 from pyccuracy.actions.action_base import ActionBase
 from pyccuracy.actions.element_is_visible_base import *
@@ -56,9 +57,9 @@ class PageGoToAction(ActionBase):
         protocol, page_name, file_name, complement, querystring, anchor = urllib2.urlparse.urlparse(url)
         
         if not protocol and not base_url:
-        	url = "file://" + os.path.abspath(os.path.join(context.tests_dir, url))
+            url = "file://" + abspath(join(context.tests_dir, url))
         elif not protocol:
-        	url = "file://" + os.path.abspath(url)
-        
+            url = "file://" + abspath(url)
+
         self.browser_driver.page_open(url)
         self.browser_driver.wait_for_page()

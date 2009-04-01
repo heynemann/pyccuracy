@@ -23,9 +23,6 @@ class SearchGoogleAction(ActionBase):
     Action that searches google for a given string.
     """
 
-    def __init__(self, browser_driver, language):
-        super(SearchGoogleAction, self).__init__(browser_driver, language)
-
     def matches(self, line):
         reg = re.compile("^(And )?I search google for [\"](.+)[\"]$")
         self.last_match = reg.search(line)
