@@ -147,7 +147,7 @@ class PyccuracyCore(object):
                   write_report=True,
                   report_file_dir=None,
                   report_file_name="report.html",
-                  browser_to_run="firefox",
+                  browser_to_run="chrome",
                   browser_driver="selenium"):
         
         result = self.configure_context(
