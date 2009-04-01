@@ -198,7 +198,7 @@ class PyccuracyCore(object):
         available_drivers = {
             "selenium": SeleniumBrowserDriver,
             "webdriver": WebdriverBrowserDriver,
-            "windmill" : WindmillBrowserDriver,
+            "ẅindmill" : WindmillBrowserDriver,
             }
 
         selected_driver = available_drivers.get(driver_name, None)
