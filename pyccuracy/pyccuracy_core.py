@@ -13,6 +13,7 @@
 # limitations under the License.
 
 from os.path import join, abspath, dirname
+from windmill_browser_driver import WindmillBrowserDriver
 
 from pyoc.ioc import IoC
 from pyoc.config import InPlaceConfig
@@ -196,6 +197,7 @@ class PyccuracyCore(object):
         available_drivers = {
             "selenium": SeleniumBrowserDriver,
             "webdriver": WebdriverBrowserDriver,
+            "windmill" : WindmillBrowserDriver,
             }
 
         selected_driver = available_drivers.get(driver_name, None)
@@ -246,3 +248,4 @@ class PyccuracyContext:
         self.report_file_dir = report_file_dir        
         self.report_file_name = report_file_name
         self.write_report = write_report
+
