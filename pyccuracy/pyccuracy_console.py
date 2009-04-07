@@ -45,6 +45,7 @@ def main():
     parser.add_option("-P", "--pagesdir", dest="pages_dir", default=None, help="Pages directory. Defines where the Pyccuracy custom pages are. If you don't change this parameter Pyccuracy will use the tests directory [default: %default].")
     parser.add_option("-u", "--url", dest="url", default=None, help="Base URL. Defines a base url against which the tests will get executed. For more details check the documentation [default: %default].")
     parser.add_option("-b", "--browser", dest="browser_to_run", default="firefox", help="Browser to run. Browser driver will use it to run tests [default: %default].")
+    parser.add_option("-s", "--scenario", dest="scenario_to_run", default=None, help="Scenario to run. Browser driver will run this scenario only [default: %default].")
     
     #browser driver
     parser.add_option("-e", "--browserdriver", dest="browser_driver", default="selenium", help="Browser Driver to be used on tests. [default: %default].")
@@ -73,6 +74,7 @@ def main():
                            report_file_dir=options.report_dir,
                            report_file_name=options.report_file_name,
                            browser_to_run=options.browser_to_run,
+                           scenario_to_run=options.scenario_to_run,
                            browser_driver=options.browser_driver,
                            should_throw=options.should_throw)
 

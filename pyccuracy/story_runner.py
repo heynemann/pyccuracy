@@ -51,6 +51,9 @@ class StoryRunner(object):
 
     def __run_scenarios(self, current_story, context):
         for current_scenario in current_story.scenarios:
+            if not context.scenario_to_run and current_scenario.title <>  context.scenario_to_run:
+                continue
+                
             self.raise_pre_scenario(context, current_story, current_scenario)
             current_scenario.start_run()
             for current_action in (current_scenario.givens + current_scenario.whens + current_scenario.thens):

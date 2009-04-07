@@ -42,6 +42,7 @@ class PyccuracyCore(object):
                           should_throw,
                           write_report,
                           browser_to_run,
+                          scenario_to_run,
                           browser_driver,
                           context):
         IoC.reset()
@@ -61,6 +62,9 @@ class PyccuracyCore(object):
         if not report_file_dir:
             report_file_dir = tests_dir
 
+        if not scenario_to_run:
+            scenario_to_run = unicode(scenario_to_run)
+
         lang = self.load_language(languages_dir, default_culture)
 
         self.configure_ioc(languages_dir=languages_dir,
@@ -73,6 +77,7 @@ class PyccuracyCore(object):
                            custom_actions_dir=custom_actions_dir,
                            lang=lang,
                            browser_to_run=browser_to_run,
+                           scenario_to_run=scenario_to_run,
                            browser_driver=browser_driver,
                            write_report=write_report,
                            report_file_dir=report_file_dir,
@@ -100,6 +105,7 @@ class PyccuracyCore(object):
                       base_url, 
                       lang, 
                       browser_to_run, 
+                      scenario_to_run,
                       browser_driver,
                       write_report):
 
@@ -126,7 +132,8 @@ class PyccuracyCore(object):
 
         config.register("story_runner", StoryRunner)
 
-        config.register("browser_to_run", "*%s" % browser_to_run)        
+        config.register("browser_to_run", "*%s" % browser_to_run)
+        config.register("scenario_to_run", scenario_to_run)
 
         config.register("scripts_path", abspath(dirname(__file__)))
         config.register("base_url", base_url)
@@ -148,6 +155,7 @@ class PyccuracyCore(object):
                   report_file_dir=None,
                   report_file_name="report.html",
                   browser_to_run="chrome",
+                  scenario_to_run=None,
                   browser_driver="selenium"):
         
         result = self.configure_context(
@@ -164,6 +172,7 @@ class PyccuracyCore(object):
                                should_throw=should_throw,
                                write_report=write_report,
                                browser_to_run=browser_to_run,
+                               scenario_to_run=scenario_to_run,
                                browser_driver=browser_driver,
                                context=context)
         if result:
@@ -230,7 +239,8 @@ class PyccuracyContext:
                  base_url,
                  report_file_dir,
                  report_file_name,
-                 write_report):
+                 write_report,
+                 scenario_to_run):
         self.browser_driver = browser_driver
         self.language = language
         self.test_fixture_parser = test_fixture_parser
@@ -243,6 +253,7 @@ class PyccuracyContext:
         self.base_url = base_url
         self.all_custom_actions = all_custom_actions
         self.all_actions = all_actions
-        self.report_file_dir = report_file_dir        
+        self.report_file_dir = report_file_dir
         self.report_file_name = report_file_name
         self.write_report = write_report
+        self.scenario_to_run = scenario_to_run
