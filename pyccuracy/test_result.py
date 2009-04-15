@@ -43,7 +43,6 @@ class TestResult(object):
 
     def __unicode__(self):
         messages = []
-        import pdb;pdb.set_trace()
         total_stories = float(self.successful_stories + self.failed_stories)
         total_scenarios = float(self.successful_scenarios + self.failed_scenarios)
         percentage_successful_stories = (self.successful_stories / (total_stories or 1))
