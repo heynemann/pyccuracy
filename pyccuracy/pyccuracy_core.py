@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
 
 # Licensed under the Open Software License ("OSL") v. 3.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -28,24 +29,6 @@ from actions.action_base import ActionBase
 import report_parser as report
 
 class PyccuracyCore(object):
-    def force_unicode(self, s, encoding='utf-8', errors='strict'):
-        #print "Decoding %s with encoding %s" % (s, encoding)
-        if not isinstance(s, basestring,):
-            if hasattr(s, '__unicode__'):
-                s = unicode(s)
-            else:
-                try:
-                    s = unicode(str(s), encoding, errors)
-                except UnicodeEncodeError:
-                    if not isinstance(s, Exception):
-                        raise
-                    s = ' '.join([self.force_unicode(arg, encoding, errors) for arg in s])
-        elif not isinstance(s, unicode):
-            s = s.decode(encoding, errors)
-
-        return s
-
-
     def configure_context(self,
                           tests_dir,
                           actions_dir,
@@ -231,7 +214,7 @@ class PyccuracyCore(object):
         return lang
 
     def __print_results(self, results):
-        print self.force_unicode(results)
+        print unicode(results)
         print "\n"
 
 class PyccuracyContext:

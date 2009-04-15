@@ -13,6 +13,7 @@
 # limitations under the License.
 
 from errors import *
+from common import force_unicode
 import os
 import re
 
@@ -42,7 +43,7 @@ class Language(object):
             if not line.startswith("#"):
                 key, value = line.split("=")
                 key = key.strip()
-                value = value.strip()
+                value = force_unicode(value.strip())
                 if key.endswith("_regex"):
                     value = re.compile(value, re.U)
                 self.language_items[key.strip()] = value
@@ -51,7 +52,7 @@ class Language(object):
         item = self.language_items.get(key, None)
         if item is None: 
             raise LookupError(self.language_items.get("language_lookup_error", None) % key)
-        if isinstance(item, unicode): item = item.replace("\\n", "\n")
+        if not isinstance(item, re._pattern_type): item = force_unicode(item.replace("\\n", "\n"))
         return item
 
 if __name__ == "__main__":
