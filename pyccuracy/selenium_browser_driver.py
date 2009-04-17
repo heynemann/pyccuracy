@@ -104,7 +104,11 @@ class SeleniumBrowserDriver(BrowserDriver):
                      }
         
         script = """this.page().findElement("%s").%s;"""
-        script_return = self.selenium.get_eval(script % (element_selector, properties[tag_name]))
+        try:
+            script_return = self.selenium.get_eval(script % (element_selector, properties[tag_name]))
+        except KeyError, err:
+            raise ValueError("The tag for element selector %s is %s and Pyccuracy only supports the following tags: %s",
+                             (element_selector, tag_name, ", ".join(properties.keys)))
 
         if script_return != "null":
             text = script_return        
