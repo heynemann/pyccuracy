@@ -85,6 +85,7 @@ class TestResult(object):
 
                     messages.append("%s: " % self.language["then"])
                     self.render_actions(messages, scenario.thens)
+                    messages.append("-" * 80)
 
         return u"\n".join(messages)
 
@@ -93,7 +94,7 @@ class TestResult(object):
             messages.append(u"	%s - %s" % (force_unicode(action.description), force_unicode(action.status)))
             if (action.status == "FAILED"):
                 if (action.error):
-                    messages[-1] += (u" - %s" % force_unicode(action.error))
+                    messages[-1] += (u" - %s" % action.error)
 
     __str__ = __unicode__
     

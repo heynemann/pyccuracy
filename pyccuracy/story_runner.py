@@ -57,7 +57,8 @@ class StoryRunner(object):
                 current_action.start_run()
                 result = current_action.execute(context)
                 current_action.end_run()
-                if not result: return 0
+                if not result: 
+                    break
             current_scenario.end_run()
             self.raise_post_scenario(context, current_story, current_scenario, current_scenario.status)
 
