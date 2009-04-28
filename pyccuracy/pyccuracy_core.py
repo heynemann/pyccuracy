@@ -26,7 +26,6 @@ from language import *
 from errors import *
 from page import Page
 from actions.action_base import ActionBase
-import report_parser as report
 
 class PyccuracyCore(object):
     def configure_context(self,
@@ -62,6 +61,9 @@ class PyccuracyCore(object):
         if not report_file_dir:
             report_file_dir = tests_dir
 
+        if write_report:
+            import report_parser as report
+            
         lang = self.load_language(languages_dir, default_culture)
 
         self.configure_ioc(languages_dir=languages_dir,
