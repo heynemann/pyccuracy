@@ -61,9 +61,6 @@ class PyccuracyCore(object):
         if not report_file_dir:
             report_file_dir = tests_dir
 
-        if write_report:
-            import report_parser as report
-            
         lang = self.load_language(languages_dir, default_culture)
 
         self.configure_ioc(languages_dir=languages_dir,
@@ -185,6 +182,7 @@ class PyccuracyCore(object):
         self.__print_results(results)
 
         if self.context.write_report:
+            import report_parser as report
             report.generate_report(
                         join(self.context.report_file_dir, self.context.report_file_name), 
                         results, 
