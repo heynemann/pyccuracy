@@ -19,12 +19,12 @@ from pyccuracy.page import Page
 from pyccuracy.actions.action_base import ActionBase
 from pyccuracy.actions.element_is_visible_base import *
 
-class DivContainsStyleAction(ActionBase):
+class DivDoesNotContainStyleAction(ActionBase):
     def __init__(self, browser_driver, language):
-        super(DivContainsStyleAction, self).__init__(browser_driver, language)
+        super(DivDoesNotContainStyleAction, self).__init__(browser_driver, language)
 
     def matches(self, line):
-        reg = self.language["div_contains_style_regex"]
+        reg = self.language["div_does_not_contain_style_regex"]
         self.last_match = reg.search(line)
         return self.last_match
 
@@ -37,8 +37,8 @@ class DivContainsStyleAction(ActionBase):
         div = self.resolve_element_key(context, Page.Div, div_name)
         self.assert_element_is_visible(div, self.language["div_is_visible_failure"] % div_name)
         current_style = self.browser_driver.get_class(div) or ""
-        styles = current_style.split(" ")
-        if style not in styles:
-            error_message = self.language["div_contains_style_failure"]
-            self.raise_action_failed_error(error_message % (div_name, style))
+        styles = current_style.split(" ")        
+        if style in styles:
+            error_message = self.language["div_does_not_contain_style_failure"]
+            self.raise_action_failed_error(error_message % (div_name, style, current_style))
 

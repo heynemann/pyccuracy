@@ -8,4 +8,4 @@ Dado que
 Quando
 	#A página termina de carregar
 Então
-	Eu vejo que o div "divContainsStyle1" contém o estilo "blabla"
+	Eu vejo que o div "divContainsStyle1" não contém o estilo "xispum"

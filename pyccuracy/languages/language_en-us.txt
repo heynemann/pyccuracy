@@ -52,6 +52,7 @@ div_does_not_contain_text_regex = ^(And )?I see [\"](.+)[\"] div does not contai
 div_contains_markup_regex = ^(And )?I see [\"](.+)[\"] div contains [\"](.+)[\"] markup$
 div_does_not_contain_markup_regex = ^(And )?I see [\"](.+)[\"] div does not contain [\"](.+)[\"] markup$
 div_contains_style_regex = ^(And )?I see [\"](.+)[\"] has [\"](.+)[\"] style$
+div_does_not_contain_style_regex = ^(And )?I see [\"](.+)[\"] does not have [\"](.+)[\"] style$
 div_matches_markup_regex = ^(And )?I see [\"](.+)[\"] div matches [\"](.+)[\"] markup$
 div_does_not_match_markup_regex = ^(And )?I see [\"](.+)[\"] div does not match [\"](.+)[\"] markup$
 div_click_regex = ^(And )?I click [\"](.+)[\"] div( and wait)?$
@@ -121,6 +122,7 @@ div_contains_text_failure = The div with name or id %s should contain "%s", but 
 div_contains_markup_failure = The div with name or id %s should contain "%s" markup, but it's current markup is "%s".
 div_does_not_contain_text_failure = The div with name or id %s should not contain "%s", but it's current text is "%s".
 div_contains_style_failure = The div with name or id %s should contain "%s" style.
+div_does_not_contain_style_failure = The div with name or id %s should not contain "%s" style.
 div_matches_markup_failure = The div with name or id %s should match "%s" markup, but it's current markup is "%s".
 div_does_not_match_markup_failure = The div with name or id %s should not match "%s" markup, but it's current markup is "%s".
 
