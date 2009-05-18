@@ -51,6 +51,7 @@ div_contains_text_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] contém [\"](.
 div_does_not_contain_text_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] não contém [\"](.+)[\"]$
 div_contains_markup_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] contém o markup [\"](.+)[\"]$
 div_does_not_contain_markup_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] não contém o markup [\"](.+)[\"]$
+div_contains_style_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] contém o estilo [\"](.+)[\"]$
 div_matches_markup_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] contém exatamente o markup [\"](.+)[\"]$
 div_does_not_match_markup_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] não contém exatamente o markup [\"](.+)[\"]$
 div_click_regex = ^(E )?[eE]u clico no div [\"](.+)[\"]( e espero)?$
@@ -119,6 +120,7 @@ div_is_not_visible_failure = O div com nome ou id %s está visível, quando deve
 div_contains_text_failure = O div com nome ou id %s deveria conter "%s", mas o seu texto atual é "%s".
 div_contains_markup_failure = O div com nome ou id %s deveria conter o markup "%s", mas o seu markup atual é "%s".
 div_does_not_contain_text_failure = O div com nome ou id %s não deveria conter "%s", mas o seu texto atual é "%s".
+div_contains_style_failure = O div com nome ou id %s deveria conter o estilo (class ou style) "%s".
 div_matches_markup_failure = O div com nome ou id %s deveria conter exatamente o markup "%s", mas o seu markup atual é "%s".
 div_does_not_match_markup_failure = O div com nome ou id %s não deveria conter exatamente o markup "%s", mas o seu markup atual é "%s".
 

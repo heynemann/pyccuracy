@@ -52,6 +52,10 @@ class BrowserDriver(object):
     def get_xpath_count(self, xpath):
         raise ExceptionNotImplemented(self.__not_implemented_exception_message)
 
+    def get_class(self, name):
+        """gets the css class name"""
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+
     def start_test(self, url = "http://www.someurl.com"):
         raise ExceptionNotImplemented(self.__not_implemented_exception_message)
     
