@@ -64,6 +64,10 @@ class SeleniumBrowserDriver(BrowserDriver):
     def get_xpath_count(self, xpath):
         return self.selenium.get_xpath_count(xpath)
 
+    def get_class(self, name):
+        klass = self.__get_attribute_value(name, 'class')
+        return klass
+
     def is_element_enabled(self, element):
         script = """this.page().findElement("%s").disabled;"""
 
