@@ -11,6 +11,7 @@ Syntax
 
 where:
     ``<div name>`` - name or id for the desired div
+    
     ``<float number of seconds>`` - number of seconds to wait for the element to show. This portion is optional.
 
 Description
