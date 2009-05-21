@@ -56,6 +56,7 @@ div_does_not_contain_style_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] não 
 div_matches_markup_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] contém exatamente o markup [\"](.+)[\"]$
 div_does_not_match_markup_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] não contém exatamente o markup [\"](.+)[\"]$
 div_click_regex = ^(E )?[eE]u clico no div [\"](.+)[\"]( e espero)?$
+div_wait_for_presence_regex = ^(E )?[eE]u espero o div [\"](.+)[\"] aparecer( por (\d+) segundos)?$
 
 image_click_regex = ^(E )?[eE]u clico na imagem [\"](.+)[\"]$
 image_is_visible_regex = ^(E )?[eE]u vejo a imagem [\"](.+)[\"]$

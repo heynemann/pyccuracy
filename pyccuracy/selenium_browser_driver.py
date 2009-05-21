@@ -160,6 +160,18 @@ class SeleniumBrowserDriver(BrowserDriver):
         current_text = self.get_element_text(element_selector)
         return current_text == ""
 
+    def wait_for_element_present(self, element_selector, timeout):
+        elapsed = 0
+        interval = 0.5
+
+        while (elapsed < timeout):
+            elapsed += interval
+            if self.is_element_visible(element_selector):
+                return True
+            time.sleep(interval)
+
+        return False
+
     def stop_test(self):
         self.selenium.stop()
 

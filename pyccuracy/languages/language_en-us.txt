@@ -56,6 +56,7 @@ div_does_not_contain_style_regex = ^(And )?I see [\"](.+)[\"] does not have [\"]
 div_matches_markup_regex = ^(And )?I see [\"](.+)[\"] div matches [\"](.+)[\"] markup$
 div_does_not_match_markup_regex = ^(And )?I see [\"](.+)[\"] div does not match [\"](.+)[\"] markup$
 div_click_regex = ^(And )?I click [\"](.+)[\"] div( and wait)?$
+div_wait_for_presence_regex = ^(And )?I wait for [\"](.+)[\"] div to be present( for (\d+) seconds)?$
 
 image_click_regex = ^(And )?I click [\"](.+)[\"] image$
 image_is_visible_regex = ^(And )?I see [\"](.+)[\"] image$

@@ -1,9 +1,15 @@
 
 <html>
-	<head>
-		<title>Pyccuracy Tests - Page</title>
-	</head>
-	<body>
-		<img src="logo_pyccuracy.gif" onclick="window.location='result_worked.htm';" name="imgSubmit" />
-	</body>
+    <head>
+        <title>Pyccuracy Tests - Page</title>
+        <script type="text/javascript" language="javascript">
+            function show_elements(){
+                document.getElementById('divWaitForVisible').style.display = 'block';
+            }
+        </script>
+    </head>
+    <body onload="window.setTimeout('show_elements()', 2000);">
+        <img src="logo_pyccuracy.gif" onclick="window.location='result_worked.htm';" name="imgSubmit" />
+        <div id="divWaitForVisible" style="display:none;">Div Wait For Visible</div>
+    </body>
 </html>

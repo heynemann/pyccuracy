@@ -134,6 +134,9 @@ class BrowserDriver(object):
     def is_element_empty(self, element_selector):
         raise ExceptionNotImplemented(self.__not_implemented_exception_message)
 
+    def wait_for_element_present(self, element_selector, timeout):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+
     def stop_test(self):
         raise ExceptionNotImplemented(self.__not_implemented_exception_message)
 
