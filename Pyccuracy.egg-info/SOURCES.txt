@@ -57,6 +57,7 @@ pyccuracy/actions/div_is_not_visible_action.py
 pyccuracy/actions/div_is_visible_action.py
 pyccuracy/actions/div_matches_markup_action.py
 pyccuracy/actions/div_mouseover_action.py
+pyccuracy/actions/div_wait_for_presence_action.py
 pyccuracy/actions/element_is_visible_base.py
 pyccuracy/actions/image_click_action.py
 pyccuracy/actions/image_does_not_have_src_of_action.py
