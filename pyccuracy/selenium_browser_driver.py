@@ -172,6 +172,18 @@ class SeleniumBrowserDriver(BrowserDriver):
 
         return False
 
+    def wait_for_element_to_disappear(self, element_selector, timeout):
+        elapsed = 0
+        interval = 0.5
+
+        while (elapsed < timeout):
+            elapsed += interval
+            if not self.is_element_visible(element_selector):
+                return True
+            time.sleep(interval)
+
+        return False
+
     def stop_test(self):
         self.selenium.stop()
 
