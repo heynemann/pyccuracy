@@ -59,8 +59,10 @@ div_click_regex = ^(E )?[eE]u clico no div [\"](.+)[\"]( e espero)?$
 div_wait_for_presence_regex = ^(E )?[eE]u espero o div [\"](.+)[\"] aparecer( por (\d+) segundos)?$
 div_wait_for_disappear_regex = ^(E )?[eE]u espero o div [\"](.+)[\"] desaparecer( por (\d+) segundos)?$
 
-element_is_not_visible_failure = O elemento de id ou nome %s está visível, quando não deveria existir ou estar visível.
+element_is_not_visible_failure = O elemento de id ou nome %s não está visível, quando deveria existir ou estar visível.
 element_wait_for_disappear_failure = O elemento de nome ou id %s deveria desaparecer dentro de %d segundo(s), mas ainda está presente.
+element_is_visible_failure = O elemento de id ou nome %s está visível, quando não deveria existir ou estar invisível.
+element_wait_for_presence_failure = O elemento de nome ou id %s deveria aparecer dentro de %d segundo(s), mas não existe ou não está visível.
 element_is_not_visible_for_drag_failure = O elemento que está sendo arrastado (%s) não existe ou não está visível.
 
 image_click_regex = ^(E )?[eE]u clico na imagem [\"](.+)[\"]$
@@ -133,7 +135,9 @@ div_matches_markup_failure = O div com nome ou id %s deveria conter exatamente o
 div_does_not_match_markup_failure = O div com nome ou id %s não deveria conter exatamente o markup "%s", mas o seu markup atual é "%s".
 
 element_is_not_visible_regex = ^(E )?[eE]u não vejo o elemento [\"](.+)[\"]$
+element_is_visible_regex = ^(E )?[eE]u vejo o elemento [\"](.+)[\"]$
 element_wait_for_disappear_regex = ^(E )?[eE]u espero o elemento [\"](.+)[\"] desaparecer( por (\d+) segundos)?$
+element_wait_for_presence_regex = ^(E )?[eE]u espero o elemento [\"](.+)[\"] aparecer( por (\d+) segundos)?$
 element_drag_drop_regex = ^(E )?[eE]u arrasto [oa] (?P<from_element_type>div) [\"](?P<from_element_key>.+)[\"] para [oa] (?P<to_element_type>div) [\"](?P<to_element_key>[^"]+)[\"]?$
 
 element_is_not_visible_for_drag_failure = O elemento sendo arrastado (%s) não existe ou não está visível.

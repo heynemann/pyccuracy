@@ -60,7 +60,9 @@ div_wait_for_presence_regex = ^(And )?I wait for [\"](.+)[\"] div to be present(
 div_wait_for_disappear_regex = ^(And )?I wait for [\"](.+)[\"] div to disappear( for (\d+) seconds)?$
 
 element_is_not_visible_regex = ^(And )?I do not see [\"](.+)[\"] element$
+element_is_visible_regex = ^(And )?I see [\"](.+)[\"] element$
 element_wait_for_disappear_regex = ^(And )?I wait for [\"](.+)[\"] element to disappear( for (\d+) seconds)?$
+element_wait_for_presence_regex = ^(And )?I wait for [\"](.+)[\"] element to be present( for (\d+) seconds)?$
 element_drag_drop_regex = ^(And )?I drag the [\"](?P<from_element_key>.+)[\"] (?P<from_element_type>div) to the [\"](?P<to_element_key>.+)[\"] (?P<to_element_type>div)?$
 
 image_click_regex = ^(And )?I click [\"](.+)[\"] image$
@@ -134,6 +136,9 @@ div_does_not_match_markup_failure = The div with name or id %s should not match 
 
 element_is_not_visible_failure = The element with name or id %s is visible, when it should not exist or be visible.
 element_wait_for_disappear_failure = The element with name or id %s should disappear within %d second(s), but it still present.
+element_is_visible_failure = The element with name or id %s does not exist or is not visible.
+element_wait_for_presence_failure = The element with name or id %s should be present within %d second(s), but is not present or do not exist.
+
 element_is_not_visible_for_drag_failure = The element being dragged (%s) does not exist or is not visible.
 
 image_is_visible_failure = The image with name or id %s does not exist or is not visible.
