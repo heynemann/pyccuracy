@@ -25,7 +25,10 @@ class ActionFailedError(Exception):
 
     def __str__(self):
         return unicode(self.message)
-        
+
+    def __unicode__(self):
+        return self.message
+
 class InvalidScenarioError(Exception):
     def __init__(self, message):
         self.message = message

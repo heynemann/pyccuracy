@@ -184,6 +184,9 @@ class SeleniumBrowserDriver(BrowserDriver):
 
         return False
 
+    def drag_element(self, from_element_selector, to_element_selector):
+        self.selenium.drag_and_drop_to_object(from_element_selector, to_element_selector)
+
     def stop_test(self):
         self.selenium.stop()
 

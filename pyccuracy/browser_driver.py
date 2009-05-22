@@ -140,6 +140,9 @@ class BrowserDriver(object):
     def wait_for_element_to_disappear(self, element_selector, timeout):
         raise ExceptionNotImplemented(self.__not_implemented_exception_message)
 
+    def drag_element(self, from_element_selector, to_element_selector):
+        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+
     def stop_test(self):
         raise ExceptionNotImplemented(self.__not_implemented_exception_message)
 

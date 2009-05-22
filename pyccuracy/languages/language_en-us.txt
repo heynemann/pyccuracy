@@ -59,6 +59,8 @@ div_click_regex = ^(And )?I click [\"](.+)[\"] div( and wait)?$
 div_wait_for_presence_regex = ^(And )?I wait for [\"](.+)[\"] div to be present( for (\d+) seconds)?$
 div_wait_for_disappear_regex = ^(And )?I wait for [\"](.+)[\"] div to disappear( for (\d+) seconds)?$
 
+element_drag_drop_regex = ^(And )?I drag the [\"](?P<from_element_key>.+)[\"] (?P<from_element_type>div) to the [\"](?P<to_element_key>.+)[\"] (?P<to_element_type>div)?$
+
 image_click_regex = ^(And )?I click [\"](.+)[\"] image$
 image_is_visible_regex = ^(And )?I see [\"](.+)[\"] image$
 image_is_not_visible_regex = ^(And )?I do not see [\"](.+)[\"] image$
@@ -127,6 +129,8 @@ div_contains_style_failure = The div with name or id %s should contain "%s" styl
 div_does_not_contain_style_failure = The div with name or id %s should not contain "%s" style.
 div_matches_markup_failure = The div with name or id %s should match "%s" markup, but it's current markup is "%s".
 div_does_not_match_markup_failure = The div with name or id %s should not match "%s" markup, but it's current markup is "%s".
+
+element_is_not_visible_for_drag_failure = The element being dragged (%s) does not exist or is not visible.
 
 image_is_visible_failure = The image with name or id %s does not exist or is not visible.
 image_is_not_visible_failure = The image with name or id %s is visible, when it should not exist or be visible.
