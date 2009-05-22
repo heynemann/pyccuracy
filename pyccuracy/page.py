@@ -45,6 +45,9 @@ class Page(object):
         
         return None
 
+    def register_element(self, element_key, element_locator):
+        self.register_generic_element(Page.Element, element_key, element_locator)
+
     def register_button(self, button_key, button_locator):
         self.register_generic_element(Page.Button, button_key, button_locator)
 

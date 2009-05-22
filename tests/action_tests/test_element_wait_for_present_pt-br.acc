@@ -18,3 +18,11 @@ Quando
 Então
     Eu vejo o elemento "divWaitForVisible"
 
+Cenário 3 - Verificando que eu posso esperar por um elemento registrado aparecer
+Dado que
+    Eu navego para Test Custom Page
+Quando
+    Eu espero o elemento "custom wait for visible" aparecer
+Então
+    Eu vejo o elemento "custom wait for visible"
+
