@@ -24,7 +24,8 @@ class Page(object):
     RadioButton = "radio_button"
     Select = "select"
     Textbox = "textbox"
-
+    Element = '*'
+    
     def __init__(self):
         '''Initializes the page with the given url.'''
         self.registered_elements = {}

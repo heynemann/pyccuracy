@@ -17,7 +17,7 @@ from page import Page
 class SeleniumElementSelector(object):
     @staticmethod
     def element(element_type, element_name):
-        method = getattr(SeleniumElementSelector, element_type, self.generic)
+        method = getattr(SeleniumElementSelector, element_type, SeleniumElementSelector.generic)
         return method(element_name)
 
     @staticmethod

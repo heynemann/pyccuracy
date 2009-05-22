@@ -109,7 +109,8 @@ class SeleniumBrowserDriver(BrowserDriver):
         
         script = """this.page().findElement("%s").%s;"""
         try:
-            script_return = self.selenium.get_eval(script % (element_selector, properties[tag_name]))
+            # if the element is not in the dict above, I'll assume that we need to use "innerHTML"
+            script_return = self.selenium.get_eval(script % (element_selector, properties.get(tag_name, "innerHTML")))
         except KeyError, err:
             raise ValueError("The tag for element selector %s is %s and Pyccuracy only supports the following tags: %s",
                              (element_selector, tag_name, ", ".join(properties.keys)))
