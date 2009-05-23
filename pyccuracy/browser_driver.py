@@ -16,7 +16,6 @@ import time
 import urllib2
 
 class BrowserDriver(object):
-    __not_implemented_exception_message = "This method has not been implemented"
     __browser__ = ""
 
     def __init__(self, browser_to_run, tests_dir):
@@ -24,7 +23,7 @@ class BrowserDriver(object):
         self.root_dir = tests_dir
     
     def resolve_element_key(self, context, element_type, element_key):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
     
     def __wait_for_server_to_start(self):
         server_started = False
@@ -50,110 +49,105 @@ class BrowserDriver(object):
         pass
         
     def get_xpath_count(self, xpath):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def get_class(self, name):
         """gets the css class name"""
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def start_test(self, url = "http://www.someurl.com"):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
     
     def page_open(self, url):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def clean_input(self, input_selector):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
         
     def type(self, input_selector, text):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def click_element(self, element_selector):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def is_element_visible(self, element_selector):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def wait_for_page(self, timeout = 20000):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def get_title(self):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def is_element_enabled(self, element):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def checkbox_is_checked(self, checkbox_selector):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def checkbox_check(self, checkbox_selector):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def checkbox_uncheck(self, checkbox_selector):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def get_selected_index(self, element_selector):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def get_selected_value(self, element_selector):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def get_selected_text(self, element_selector):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def get_element_text(self, element_selector):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def get_element_markup(self, element_selector):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def select_option_by_index(self, element_selector, index):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def select_option_by_value(self, element_selector, value):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def select_option_by_text(self, element_selector, text):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def __select_option(self, element_selector, option_selector, option_value):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def get_link_href(self, link_selector):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def get_image_src(self, image_selector):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def get_link_text(self, link_selector):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def mouseover_element(self, element_selector):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def is_element_empty(self, element_selector):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def wait_for_element_present(self, element_selector, timeout):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def wait_for_element_to_disappear(self, element_selector, timeout):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def drag_element(self, from_element_selector, to_element_selector):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def stop_test(self):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
+        raise NotImplementedError
 
     def stop(self):
         pass
     
     def __get_attribute_value(self, element, attribute):
-        raise ExceptionNotImplemented(self.__not_implemented_exception_message)
-
-class ExceptionNotImplemented(Exception):
-    """
-    Exception raised for not implemented methods
-    """
-    pass
+        raise NotImplementedError
+    
