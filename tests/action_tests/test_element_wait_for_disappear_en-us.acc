@@ -1,0 +1,19 @@
+As a Pyccuracy User
+I want to test the wait for element to disappear action
+So that I can make sure Pyccuracy works
+
+Scenario 1 - Checking that I can wait for an element to disappear using the default 5 seconds
+Given
+    I go to "page_tests.htm"
+When
+    I wait for "divWaitForInvisible" element to disappear
+Then
+    I do not see "divWaitForInvisible" element
+
+Scenario 2 - Checking that I can wait for an element to disappear for a given number of seconds
+Given
+    I go to "page_tests.htm"
+When
+    I wait for "divWaitForInvisible" element to disappear for 10 seconds
+Then
+    I do not see "divWaitForInvisible" element

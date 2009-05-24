@@ -57,5 +57,5 @@ selenium:
 
 deb:
 	mv .git /tmp/pyccuracy_git
-	debuild
+	python -c 'import os;os.system("debuild")'
 	mv /tmp/pyccuracy_git .git

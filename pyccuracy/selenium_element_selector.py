@@ -13,11 +13,19 @@
 # limitations under the License.
 
 from page import Page
+
 class SeleniumElementSelector(object):
     @staticmethod
     def element(element_type, element_name):
-        method = getattr(SeleniumElementSelector, element_type)
+        method = getattr(SeleniumElementSelector, element_type, SeleniumElementSelector.generic)
         return method(element_name)
+
+    @staticmethod
+    def generic(element_name):
+        '''
+        Returns a xpath that matches a generic element
+        '''
+        return r"//*[(@name='%s' or @id='%s')]" % (element_name, element_name)        
         
     @staticmethod
     def button(element_name):

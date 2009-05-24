@@ -24,7 +24,8 @@ class Page(object):
     RadioButton = "radio_button"
     Select = "select"
     Textbox = "textbox"
-
+    Element = '*'
+    
     def __init__(self):
         '''Initializes the page with the given url.'''
         self.registered_elements = {}
@@ -44,31 +45,34 @@ class Page(object):
         
         return None
 
+    def register_element(self, element_key, element_locator):
+        self.register_generic_element(Page.Element, element_key, element_locator)
+
     def register_button(self, button_key, button_locator):
-        self.register_element(Page.Button, button_key, button_locator)
+        self.register_generic_element(Page.Button, button_key, button_locator)
 
     def register_checkbox(self, checkbox_key, checkbox_locator):
-        self.register_element(Page.Checkbox, checkbox_key, checkbox_locator)
+        self.register_generic_element(Page.Checkbox, checkbox_key, checkbox_locator)
 
     def register_div(self, div_key, div_locator):
-        self.register_element(Page.Div, div_key, div_locator)
+        self.register_generic_element(Page.Div, div_key, div_locator)
 
     def register_image(self, image_key, image_locator):
-        self.register_element(Page.Image, image_key, image_locator)
+        self.register_generic_element(Page.Image, image_key, image_locator)
 
     def register_link(self, link_key, link_locator):
-        self.register_element(Page.Link, link_key, link_locator)
+        self.register_generic_element(Page.Link, link_key, link_locator)
 
     def register_radio_button(self, radio_button_key, radio_button_locator):
-        self.register_element(Page.RadioButton, radio_button_key, radio_button_locator)
+        self.register_generic_element(Page.RadioButton, radio_button_key, radio_button_locator)
 
     def register_select(self, select_key, select_locator):
-        self.register_element(Page.Select, select_key, select_locator)
+        self.register_generic_element(Page.Select, select_key, select_locator)
 
     def register_textbox(self, textbox_key, textbox_locator):
-        self.register_element(Page.Textbox, textbox_key, textbox_locator)
+        self.register_generic_element(Page.Textbox, textbox_key, textbox_locator)
 
-    def register_element(self, element_type, element_key, element_locator):
+    def register_generic_element(self, element_type, element_key, element_locator):
         if not element_type in self.registered_elements: 
             self.registered_elements[element_type] = {}
             

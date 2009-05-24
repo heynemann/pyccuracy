@@ -64,6 +64,10 @@ class SeleniumBrowserDriver(BrowserDriver):
     def get_xpath_count(self, xpath):
         return self.selenium.get_xpath_count(xpath)
 
+    def get_class(self, name):
+        klass = self.__get_attribute_value(name, 'class')
+        return klass
+
     def is_element_enabled(self, element):
         script = """this.page().findElement("%s").disabled;"""
 
@@ -104,7 +108,12 @@ class SeleniumBrowserDriver(BrowserDriver):
                      }
         
         script = """this.page().findElement("%s").%s;"""
-        script_return = self.selenium.get_eval(script % (element_selector, properties[tag_name]))
+        try:
+            # if the element is not in the dict above, I'll assume that we need to use "innerHTML"
+            script_return = self.selenium.get_eval(script % (element_selector, properties.get(tag_name, "innerHTML")))
+        except KeyError, err:
+            raise ValueError("The tag for element selector %s is %s and Pyccuracy only supports the following tags: %s",
+                             (element_selector, tag_name, ", ".join(properties.keys)))
 
         if script_return != "null":
             text = script_return        
@@ -151,6 +160,33 @@ class SeleniumBrowserDriver(BrowserDriver):
     def is_element_empty(self, element_selector):
         current_text = self.get_element_text(element_selector)
         return current_text == ""
+
+    def wait_for_element_present(self, element_selector, timeout):
+        elapsed = 0
+        interval = 0.5
+
+        while (elapsed < timeout):
+            elapsed += interval
+            if self.is_element_visible(element_selector):
+                return True
+            time.sleep(interval)
+
+        return False
+
+    def wait_for_element_to_disappear(self, element_selector, timeout):
+        elapsed = 0
+        interval = 0.5
+
+        while (elapsed < timeout):
+            elapsed += interval
+            if not self.is_element_visible(element_selector):
+                return True
+            time.sleep(interval)
+
+        return False
+
+    def drag_element(self, from_element_selector, to_element_selector):
+        self.selenium.drag_and_drop_to_object(from_element_selector, to_element_selector)
 
     def stop_test(self):
         self.selenium.stop()

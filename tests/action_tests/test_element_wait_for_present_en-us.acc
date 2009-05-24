@@ -1,0 +1,19 @@
+As a Pyccuracy User
+I want to test the wait for element to show action
+So that I can make sure Pyccuracy works
+
+Scenario 1 - Checking that I can wait for an element to load using the default 5 seconds
+Given
+    I go to "page_tests.htm"
+When
+    I wait for "divWaitForVisible" element to be present
+Then
+    I see "divWaitForVisible" div
+
+Scenario 2 - Checking that I can wait for an element to load for a given number of seconds
+Given
+    I go to "page_tests.htm"
+When
+    I wait for "divWaitForVisible" element to be present for 10 seconds
+Then
+    I see "divWaitForVisible" div

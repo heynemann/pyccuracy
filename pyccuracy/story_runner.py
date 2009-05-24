@@ -28,7 +28,7 @@ class StoryRunner(object):
         if len(test_fixture.stories) == 0:
             test_fixture.did_not_run()
             return
-        
+
         base_url = None
         if self.context.base_url:
             protocol, page_name, file_name, complement, querystring, anchor = urllib2.urlparse.urlparse(self.context.base_url)
@@ -57,7 +57,8 @@ class StoryRunner(object):
                 current_action.start_run()
                 result = current_action.execute(context)
                 current_action.end_run()
-                if not result: return 0
+                if not result: 
+                    break
             current_scenario.end_run()
             self.raise_post_scenario(context, current_story, current_scenario, current_scenario.status)
 
