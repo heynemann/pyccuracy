@@ -8,9 +8,6 @@ Dado que
 Quando
 	#A página termina de carregar
 Então
-	Eu vejo a caixa de texto "txtSomething"
-	E eu vejo a caixa de texto "txtSomethingElse"
-	E eu vejo a caixa de texto "txtSomething2"
-	E eu vejo a caixa de texto "txtSomethingElse2"
-	E eu vejo a caixa de texto "txtSomething3"
-	E eu vejo a caixa de texto "txtSomethingElse3"
+	Eu vejo a caixa de texto "txtSomething6"
+	E eu clico no botão "hide6"
+	E eu não vejo a caixa de texto "txtSomething6"

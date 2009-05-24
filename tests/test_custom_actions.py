@@ -23,7 +23,7 @@ class TestCustomActions(unittest.TestCase):
 
     def setUp(self):
         self.pyccuracy = PyccuracyCore()
-                
+
     def test_search_google(self):
         custom_actions_dir = join(abspath(split(__file__)[0]), "custom_actions")
         self.pyccuracy.run_tests(custom_actions_dir=custom_actions_dir, file_pattern="test_custom_action.acc", should_throw=True, report_file_name = "customactionsreport.html")

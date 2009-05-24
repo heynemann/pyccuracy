@@ -16,13 +16,13 @@ from selenium import selenium
 import unittest
 
 class TestGoogle(unittest.TestCase):
-    
-    
+
+
     def setUp(self):
         self.selenium = selenium("localhost", \
             4444, "*firefox", "http://www.google.com/")
         self.selenium.start()
-                
+
     def test_google(self):
         sel = self.selenium
         sel.open("http://www.google.com/")
@@ -38,7 +38,7 @@ class TestGoogle(unittest.TestCase):
         sel.click("btnG")
         sel.wait_for_page_to_load(5000)
         self.assertEqual("Something - Pesquisa Google", sel.get_title())
-        
+
     def tearDown(self):
         self.selenium.stop()
 

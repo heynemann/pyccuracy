@@ -27,6 +27,6 @@ class TestLocator(unittest.TestCase):
         files = list(locate("*en-us.acc"))
         self.assertEqual(len(files), 48)
         print files
-        
+
 if __name__ == "__main__":
     unittest.main()
