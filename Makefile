@@ -15,7 +15,6 @@ help:
 	@echo "  test      to run all the tests"
 	@echo "  upload    to run a build and upload to PyPI"
 	@echo "  docs      to build documentation"
-	@echo "  selenium  to fire selenium server"
 
 build:
 	@echo "=================="
