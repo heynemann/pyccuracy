@@ -43,22 +43,16 @@ page_see_title_regex = ^(E )?[eE]u vejo o título [\"](.+)[\"]$
 page_wait_for_page_to_load_regex = ^(E )?[eE]u espero a página ser carregada( por (\d+) segundos)?$
 page_wait_for_seconds_regex = ^(E )?[eE]u espero por (\d+([.]\d+)?) segundo[s]?$
 
-button_is_visible_regex = ^(E )?[eE]u vejo o botão [\"](.+)[\"]$
-button_is_not_visible_regex = ^(E )?[eE]u não vejo o botão [\"](.+)[\"]$
 button_click_regex = ^(E )?[eE]u clico no botão [\"](.+)[\"]( e espero)?$
 button_is_enabled_regex = ^(E )?[eE]u vejo que o botão [\"](.+)[\"] está habilitado$
 button_is_disabled_regex = ^(E )?[eE]u vejo que o botão [\"](.+)[\"] está desabilitado$
 button_mouseover_regex = ^(E )?[eE]u passo o mouse no botão [\"](.+)[\"]$
 
-checkbox_is_visible_regex = ^(E )?[eE]u vejo a checkbox [\"](.+)[\"]$
-checkbox_is_not_visible_regex = ^(E )?[eE]u não vejo a checkbox [\"](.+)[\"]$
 checkbox_is_checked_regex = ^(E )?[eE]u vejo que a checkbox [\"](.+)[\"] está marcada$
 checkbox_is_not_checked_regex = ^(E )?[eE]u vejo que a checkbox [\"](.+)[\"] está desmarcada$
 checkbox_check_regex = ^(E )?[eE]u marco a checkbox [\"](.+)[\"]$
 checkbox_uncheck_regex = ^(E )?[eE]u desmarco a checkbox [\"](.+)[\"]$
 
-div_is_visible_regex = ^(E )?[eE]u vejo o div [\"](.+)[\"]$
-div_is_not_visible_regex = ^(E )?[eE]u não vejo o div [\"](.+)[\"]$
 div_mouseover_regex = ^(E )?[eE]u passo o mouse no div [\"](.+)[\"]$
 div_contains_text_regex = ^(E )?[eE]u vejo que [oa] div [\"](.+)[\"] contém [\"](.+)[\"]$
 div_does_not_contain_text_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] não contém [\"](.+)[\"]$
@@ -72,21 +66,17 @@ div_click_regex = ^(E )?[eE]u clico no div [\"](.+)[\"]( e espero)?$
 div_wait_for_presence_regex = ^(E )?[eE]u espero o div [\"](.+)[\"] aparecer( por (\d+) segundos)?$
 div_wait_for_disappear_regex = ^(E )?[eE]u espero o div [\"](.+)[\"] desaparecer( por (\d+) segundos)?$
 
-element_is_not_visible_regex = ^(E )?[eE]u não vejo o elemento [\"](.+)[\"]$
-element_is_visible_regex = ^(E )?[eE]u vejo [oa] (?P<element_type><element selector>) [\"](?P<element_key>.+)[\"]$
+element_is_not_visible_regex = ^(E )?[eE]u não vejo [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"]$
+element_is_visible_regex = ^(E )?[eE]u vejo [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"]$
 element_wait_for_disappear_regex = ^(E )?[eE]u espero o elemento [\"](.+)[\"] desaparecer( por (\d+) segundos)?$
 element_wait_for_presence_regex = ^(E )?[eE]u espero o elemento [\"](.+)[\"] aparecer( por (\d+) segundos)?$
 element_drag_drop_regex = ^(E )?[eE]u arrasto [oa] (?P<from_element_type>div) [\"](?P<from_element_key>.+)[\"] para [oa] (?P<to_element_type>div) [\"](?P<to_element_key>[^"]+)[\"]?$
 
 image_click_regex = ^(E )?[eE]u clico na imagem [\"](.+)[\"]$
-image_is_visible_regex = ^(E )?[eE]u vejo a imagem [\"](.+)[\"]$
-image_is_not_visible_regex = ^(E )?[eE]u não vejo a imagem [\"](.+)[\"]$
 image_mouseover_regex = ^(E )?[eE]u passo o mouse na imagem [\"](.+)[\"]$
 image_has_src_regex = ^(E )?[eE]u vejo que a imagem [\"](.+)[\"] tem src de [\"](.+)[\"]$
 image_does_not_have_src_regex = ^(E )?[eE]u vejo que a imagem [\"](.+)[\"] não tem src de [\"](.+)[\"]$
 
-link_is_visible_regex = ^(E )?[eE]u vejo o link [\"](.+)[\"]$
-link_is_not_visible_regex = ^(E )?[eE]u não vejo o link [\"](.+)[\"]$
 link_click_regex = ^(E )?[eE]u clico no link [\"](.+)[\"]( e espero)?$
 link_is_enabled_regex = ^(E )?[eE]u vejo que o link [\"](.+)[\"] está habilitado$
 link_is_disabled_regex = ^(E )?[eE]u vejo que o link [\"](.+)[\"] está desabilitado$
@@ -94,11 +84,6 @@ link_has_href_regex = ^(E )?[eE]u vejo que o link [\"](.+)[\"] tem href [\"](.+)
 link_has_text_regex = ^(E )?[eE]u vejo que o link [\"](.+)[\"] tem texto [\"](.+)[\"]$
 link_mouseover_regex = ^(E )?[eE]u passo o mouse no link [\"](.+)[\"]$
 
-radio_button_is_visible_regex = ^(E )?[eE]u vejo o radio [\"](.+)[\"]$
-radio_button_is_not_visible_regex = ^(E )?[eE]u não vejo o radio [\"](.+)[\"]$
-
-select_is_visible_regex = ^(E )?[eE]u vejo a select [\"](.+)[\"]$
-select_is_not_visible_regex = ^(E )?[eE]u não vejo a select [\"](.+)[\"]$
 select_has_selected_index_regex = ^(E )?[eE]u vejo que o índice selecionado da select [\"](.+)[\"] é (\d+)$
 select_has_selected_value_regex = ^(E )?[eE]u vejo que o valor selecionado da select [\"](.+)[\"] é [\"](.+)[\"]$
 select_has_selected_text_regex = ^(E )?[eE]u vejo que o texto selecionado da select [\"](.+)[\"] é [\"](.+)[\"]$
@@ -111,8 +96,6 @@ select_does_not_have_selected_index_regex = ^(E )?[eE]u vejo que o índice selec
 select_does_not_have_selected_value_regex = ^(E )?[eE]u vejo que o valor selecionado da select [\"](.+)[\"] não é [\"](.+)[\"]$
 select_does_not_have_selected_text_regex = ^(E )?[eE]u vejo que o texto selecionado da select [\"](.+)[\"] não é [\"](.+)[\"]$
 
-textbox_is_visible_regex = ^(E )?[eE]u vejo a caixa de texto [\"](.+)[\"]$
-textbox_is_not_visible_regex = ^(E )?[eE]u não vejo a caixa de texto [\"](.+)[\"]$
 textbox_type_regex = ^(E )?[eE]u preencho a caixa de texto [\"](.+)[\"] com [\"](.+)[\"]$
 textbox_contains_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] contém [\"](.+)[\"]$
 textbox_does_not_contain_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] não contém [\"](.+)[\"]$

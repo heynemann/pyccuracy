@@ -43,19 +43,16 @@ page_see_title_regex = ^(And )?I see [\"](.+)[\"] title$
 page_wait_for_page_to_load_regex = ^(And )?I wait for the page to load( for (\d+) seconds)?$
 page_wait_for_seconds_regex = ^(And )?I wait for (\d+([.]d+)?) second[s]?$
 
-button_is_not_visible_regex = ^(And )?I do not see [\"](.+)[\"] button$
 button_click_regex = ^(And )?I click [\"](.+)[\"] button( and wait)?$
 button_is_enabled_regex = ^(And )?I see [\"](.+)[\"] button is enabled$
 button_is_disabled_regex = ^(And )?I see [\"](.+)[\"] button is disabled$
 button_mouseover_regex = ^(And )?I mouseover [\"](.+)[\"] button$
 
-checkbox_is_not_visible_regex = ^(And )?I do not see [\"](.+)[\"] checkbox$
 checkbox_is_checked_regex = ^(And )?I see the [\"](.+)[\"] checkbox is checked$
 checkbox_is_not_checked_regex = ^(And )?I see the [\"](.+)[\"] checkbox is not checked$
 checkbox_check_regex = ^(And )?I check the [\"](.+)[\"] checkbox$
 checkbox_uncheck_regex = ^(And )?I uncheck the [\"](.+)[\"] checkbox$
 
-div_is_not_visible_regex = ^(And )?I do not see [\"](.+)[\"] div$
 div_mouseover_regex = ^(And )?I mouseover [\"](.+)[\"] div$
 div_contains_text_regex = ^(And )?I see [\"](.+)[\"] div contains [\"](.+)[\"]$
 div_does_not_contain_text_regex = ^(And )?I see [\"](.+)[\"] div does not contain [\"](.+)[\"]$
@@ -69,19 +66,17 @@ div_click_regex = ^(And )?I click [\"](.+)[\"] div( and wait)?$
 div_wait_for_presence_regex = ^(And )?I wait for [\"](.+)[\"] div to be present( for (\d+) seconds)?$
 div_wait_for_disappear_regex = ^(And )?I wait for [\"](.+)[\"] div to disappear( for (\d+) seconds)?$
 
-element_is_not_visible_regex = ^(And )?I do not see [\"](.+)[\"] element$
+element_is_not_visible_regex = ^(And )?I do not see [\"](?P<element_key>.+)[\"] (?P<element_type><element selector>)$
 element_is_visible_regex = ^(And )?I see [\"](?P<element_key>.+)[\"] (?P<element_type><element selector>)$
 element_wait_for_disappear_regex = ^(And )?I wait for [\"](.+)[\"] element to disappear( for (\d+) seconds)?$
 element_wait_for_presence_regex = ^(And )?I wait for [\"](.+)[\"] element to be present( for (\d+) seconds)?$
 element_drag_drop_regex = ^(And )?I drag the [\"](?P<from_element_key>.+)[\"] (?P<from_element_type>div) to the [\"](?P<to_element_key>.+)[\"] (?P<to_element_type>div)?$
 
 image_click_regex = ^(And )?I click [\"](.+)[\"] image$
-image_is_not_visible_regex = ^(And )?I do not see [\"](.+)[\"] image$
 image_mouseover_regex = ^(And )?I mouseover [\"](.+)[\"] image$
 image_has_src_regex = ^(And )?I see [\"](.+)[\"] image has src of [\"](.+)[\"]$
 image_does_not_have_src_regex = ^(And )?I see [\"](.+)[\"] image does not have src of [\"](.+)[\"]$
 
-link_is_not_visible_regex = ^(And )?I do not see [\"](.+)[\"] link$
 link_click_regex = ^(And )?I click [\"](.+)[\"] link( and wait)?$
 link_is_enabled_regex = ^(And )?I see [\"](.+)[\"] link is enabled$
 link_is_disabled_regex = ^(And )?I see [\"](.+)[\"] link is disabled$
@@ -89,9 +84,6 @@ link_has_href_regex = ^(And )?I see [\"](.+)[\"] link has [\"](.+)[\"] href$
 link_has_text_regex = ^(And )?I see [\"](.+)[\"] link has [\"](.+)[\"] text$
 link_mouseover_regex = ^(And )?I mouseover [\"](.+)[\"] link$
 
-radio_button_is_not_visible_regex = ^(And )?I do not see [\"](.+)[\"] radio button$
-
-select_is_not_visible_regex = ^(And )?I do not see [\"](.+)[\"] select$
 select_has_selected_index_regex = ^(And )?I see [\"](.+)[\"] select has selected index of (\d+)$
 select_has_selected_value_regex = ^(And )?I see [\"](.+)[\"] select has selected value of [\"](.+)[\"]$
 select_has_selected_text_regex = ^(And )?I see [\"](.+)[\"] select has selected text of [\"](.+)[\"]$
@@ -104,7 +96,6 @@ select_does_not_have_selected_index_regex = ^(And )?I see [\"](.+)[\"] select do
 select_does_not_have_selected_value_regex = ^(And )?I see [\"](.+)[\"] select does not have selected value of [\"](.+)[\"]$
 select_does_not_have_selected_text_regex = ^(And )?I see [\"](.+)[\"] select does not have selected text of [\"](.+)[\"]$
 
-textbox_is_not_visible_regex = ^(And )?I do not see [\"](.+)[\"] textbox$
 textbox_type_regex = ^(And )?I fill [\"](.+)[\"] textbox with [\"](.+)[\"]$
 textbox_contains_text_regex = ^(And )?I see [\"](.+)[\"] textbox contains [\"](.+)[\"]$
 textbox_does_not_contain_text_regex = ^(And )?I see [\"](.+)[\"] textbox does not contain [\"](.+)[\"]$
