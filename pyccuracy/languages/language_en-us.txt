@@ -38,7 +38,7 @@ test_run_timing = Test Run Timings
 scenario_starter_regex = ^Scenario (\d+) - (.+)$
 
 #Actions Regular Expressions
-page_go_to_regex = ^(And )?I go to ([\"]([\w:/.]+)[\"]|([\w\s]+))$
+page_go_to_regex = ^(And )?I go to ([\"]([\w:/._-]+)[\"]|([\w\s_.-]+))$
 page_see_title_regex = ^(And )?I see [\"](.+)[\"] title$
 page_wait_for_page_to_load_regex = ^(And )?I wait for the page to load( for (\d+) seconds)?$
 page_wait_for_seconds_regex = ^(And )?I wait for (\d+([.]d+)?) second[s]?$
@@ -96,6 +96,7 @@ textbox_is_not_empty_regex = ^(And )?I see [\"](.+)[\"] textbox is not empty$
 textbox_clean_regex = ^(And )?I clean [\"](.+)[\"] textbox$
 
 #Action Failure Messages
+page_go_to_failure = The url "%s" is not valid. Did you forget to use the -u (or --url) parameter ?
 page_see_title_failure = The page title (%s) does not match the expected title (%s)
 
 checkbox_is_checked_failure = The checkbox with name or id %s is not checked and should be.

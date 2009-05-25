@@ -13,6 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import re
+import urllib2
+
 def force_unicode(s, encoding='utf-8', errors='strict'):
     if not isinstance(s, basestring,):
         if hasattr(s, '__unicode__'):
@@ -29,3 +32,24 @@ def force_unicode(s, encoding='utf-8', errors='strict'):
 
     return s
 
+class URLChecker(object):
+    """
+    Taken from dead-parrot:
+
+    http://github.com/gabrielfalcao/dead-parrot
+    deadparrot/models/fields.py
+    """
+
+    def set_url(self, url):
+        self.url = url
+
+    def is_valid(self):
+        url_regex = re.compile(r'^(https?|file):[/]{2}([\w_.-]+)+[.]\w{2,}([/]?.*)?')
+        return url_regex.search(self.url) and True or False
+
+    def does_exists(self):
+        try:
+            urllib2.urlopen(self.url)
+            return True
+        except urllib2.URLError:
+            return False

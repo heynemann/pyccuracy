@@ -16,6 +16,8 @@ import os
 from os.path import abspath, join
 import sys
 sys.path.insert(0,abspath(__file__+"/../../../"))
+from pyccuracy.common import URLChecker
+from pyccuracy.errors import ActionFailedError
 from pyccuracy.page import Page
 from pyccuracy.actions.action_base import ActionBase
 from pyccuracy.actions.element_is_visible_base import *
@@ -53,13 +55,19 @@ class PageGoToAction(ActionBase):
 
         if base_url:
             url = basejoin(base_url + "/", url)
-        
+
         protocol, page_name, file_name, complement, querystring, anchor = urllib2.urlparse.urlparse(url)
-        
-        if not protocol and not base_url:
-            url = "file://" + abspath(join(context.tests_dir, url))
-        elif not protocol:
-            url = "file://" + abspath(url)
+
+        if not protocol:
+            if not base_url and os.path.exists(abspath(join(context.tests_dir, url))):
+                url = "file://" + abspath(join(context.tests_dir, url))
+            elif os.path.exists(url):
+                url = "file://" + abspath(url)
+            else:
+                checker = URLChecker()
+                checker.set_url(url)
+                if not checker.is_valid():
+                    raise ActionFailedError(self.language['page_go_to_failure'] % url)
 
         self.browser_driver.page_open(url)
         self.browser_driver.wait_for_page()
