@@ -12,7 +12,7 @@ files_without_header = test files without the proper header
 story_status = Story Status
 
 #Supported elements
-supported_elements = button|radio button|div|link|checkbox|select|textbox|image|element
+supported_elements = button|radio button|div|link|checkbox|select|textbox|image|element|paragraph
 button_category = button
 checkbox_category = checkbox
 div_category = div
@@ -22,6 +22,7 @@ page_category = page
 radio button_category = radio_button
 select_category = select
 textbox_category = textbox
+paragraph_category = paragraph
 element_category = *
 
 #Test Run Summary
