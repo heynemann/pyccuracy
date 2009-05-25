@@ -36,7 +36,7 @@ class ElementClickAction(ActionBase):
         element_type = self.language[values["element_type"] + "_category"]
         should_wait = bool(values["should_wait"])
         element_key = self.resolve_element_key(context, element_type, element_name)
-        self.assert_element_is_visible(element_key, self.language["element_is_visible_failure"] % element_name)
+        self.assert_element_is_visible(element_key, self.language["element_is_visible_failure"] % (values["element_type"], element_name))
         self.browser_driver.click_element(element_key)
 
         if (should_wait):

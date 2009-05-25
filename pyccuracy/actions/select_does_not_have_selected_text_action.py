@@ -36,8 +36,8 @@ class SelectDoesNotHaveSelectedTextAction(ActionBase):
         text = values[1]
 
         select = self.resolve_element_key(context, Page.Select, select_name)
-        error_message = self.language["select_is_visible_failure"]
-        self.assert_element_is_visible(select, self.language["select_is_visible_failure"] % select_name)
+        error_message = self.language["element_is_visible_failure"]
+        self.assert_element_is_visible(select, error_message % ("select", select_name))
         
         selected_text = self.browser_driver.get_selected_text(select)
 

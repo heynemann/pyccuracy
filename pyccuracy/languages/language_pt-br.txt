@@ -43,7 +43,6 @@ page_see_title_regex = ^(E )?[eE]u vejo o título [\"](.+)[\"]$
 page_wait_for_page_to_load_regex = ^(E )?[eE]u espero a página ser carregada( por (\d+) segundos)?$
 page_wait_for_seconds_regex = ^(E )?[eE]u espero por (\d+([.]\d+)?) segundo[s]?$
 
-button_is_disabled_regex = ^(E )?[eE]u vejo que o botão [\"](.+)[\"] está desabilitado$
 button_mouseover_regex = ^(E )?[eE]u passo o mouse no botão [\"](.+)[\"]$
 
 checkbox_is_checked_regex = ^(E )?[eE]u vejo que a checkbox [\"](.+)[\"] está marcada$
@@ -64,6 +63,7 @@ div_wait_for_presence_regex = ^(E )?[eE]u espero o div [\"](.+)[\"] aparecer( po
 div_wait_for_disappear_regex = ^(E )?[eE]u espero o div [\"](.+)[\"] desaparecer( por (\d+) segundos)?$
 
 element_is_enabled_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"] está habilitad[oa]$
+element_is_disabled_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"] está desabilitad[oa]$
 element_click_regex = ^(E )?[eE]u clico n[oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"](?P<should_wait> e espero)?$
 element_is_not_visible_regex = ^(E )?[eE]u não vejo [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"]$
 element_is_visible_regex = ^(E )?[eE]u vejo [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"]$
@@ -75,7 +75,6 @@ image_mouseover_regex = ^(E )?[eE]u passo o mouse na imagem [\"](.+)[\"]$
 image_has_src_regex = ^(E )?[eE]u vejo que a imagem [\"](.+)[\"] tem src de [\"](.+)[\"]$
 image_does_not_have_src_regex = ^(E )?[eE]u vejo que a imagem [\"](.+)[\"] não tem src de [\"](.+)[\"]$
 
-link_is_disabled_regex = ^(E )?[eE]u vejo que o link [\"](.+)[\"] está desabilitado$
 link_has_href_regex = ^(E )?[eE]u vejo que o link [\"](.+)[\"] tem href [\"](.+)[\"]$
 link_has_text_regex = ^(E )?[eE]u vejo que o link [\"](.+)[\"] tem texto [\"](.+)[\"]$
 link_mouseover_regex = ^(E )?[eE]u passo o mouse no link [\"](.+)[\"]$
@@ -86,7 +85,6 @@ select_has_selected_text_regex = ^(E )?[eE]u vejo que o texto selecionado da sel
 select_option_by_index_regex = ^(E )?[eE]u seleciono o item com índice (\d+) na select [\"](.+)[\"]$
 select_option_by_value_regex = ^(E )?[eE]u seleciono o item com valor [\"](.+)[\"] na select [\"](.+)[\"]$
 select_option_by_text_regex = ^(E )?[eE]u seleciono o item com texto [\"](.+)[\"] na select [\"](.+)[\"]$
-select_is_disabled_regex = ^(E )?[eE]u vejo que a select [\"](.+)[\"] está desabilitada$
 select_does_not_have_selected_index_regex = ^(E )?[eE]u vejo que o índice selecionado da select [\"](.+)[\"] não é (\d+)$
 select_does_not_have_selected_value_regex = ^(E )?[eE]u vejo que o valor selecionado da select [\"](.+)[\"] não é [\"](.+)[\"]$
 select_does_not_have_selected_text_regex = ^(E )?[eE]u vejo que o texto selecionado da select [\"](.+)[\"] não é [\"](.+)[\"]$
@@ -98,13 +96,10 @@ textbox_matches_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] 
 textbox_does_not_match_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] não contém exatamente [\"](.+)[\"]$
 textbox_is_empty_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] está vazia$
 textbox_is_not_empty_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] não está vazia$
-textbox_is_disabled_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] está desabilitada$
 textbox_clean_regex = ^(E )?[eE]u limpo a caixa de texto [\"](.+)[\"]$
 
 #Action Failure Messages
 page_see_title_failure = O título da página (%s) não bate com o título esperado (%s)
-
-button_is_disabled_failure = O botão com nome ou id %s está habilitado, quando deveria estar desabilitado.
 
 checkbox_is_checked_failure = A checkbox com nome ou id %s está desmarcada e deveria estar marcada.
 checkbox_is_not_checked_failure = A checkbox com nome ou id %s está marcada e deveria estar desmarcada.
@@ -119,16 +114,15 @@ div_does_not_match_markup_failure = O div com nome ou id %s não deveria conter 
 
 element_is_enabled_failure = O %s com nome ou id %s está desabilitado, quando deveria estar habilitado.
 element_is_disabled_failure = O %s com nome ou id %s está habilitado, quando deveria estar desabilitado.
+element_is_visible_failure = O %s de id ou nome %s está visível, quando não deveria existir ou estar invisível.
 element_is_not_visible_failure = O %s de id ou nome %s não está visível, quando deveria existir ou estar visível.
 element_wait_for_disappear_failure = O %s de nome ou id %s deveria desaparecer dentro de %d segundo(s), mas ainda está presente.
-element_is_visible_failure = O elemento de id ou nome %s está visível, quando não deveria existir ou estar invisível.
 element_wait_for_presence_failure = O elemento de nome ou id %s deveria aparecer dentro de %d segundo(s), mas não existe ou não está visível.
 element_is_not_visible_for_drag_failure = O elemento que está sendo arrastado (%s) não existe ou não está visível.
 
 image_has_src_failure = A imagem com nome ou id %s deveria ter src de "%s", mas tem "%s".
 image_does_not_have_src_failure = A imagem com nome ou id %s não deveria ter src de "%s", mas tem "%s".
 
-link_is_disabled_failure = O link com nome ou id %s está habilitado, quando deveria estar desabilitado.
 link_has_href_failure = O link com nome ou id %s deveria ter href "%s", mas tem "%s".
 link_has_text_failure = O link com nome ou id %s deveria ter texto "%s", mas tem "%s".
 
@@ -137,7 +131,6 @@ radio_button_more_than_one_element_returned_failure = Mais de um elemento foi re
 select_has_selected_index_failure = O índice selecionado da select com nome ou id %s deveria ser %d, mas é %d.
 select_has_selected_value_failure = O valor selecionado da select com nome ou id %s deveria ser %s, mas é %s.
 select_has_selected_text_failure = O texto selecionado da select com nome ou id %s deveria ser %s, mas é %s.
-select_is_disabled_failure = A select com nome ou id %s está habilitada, quando deveria estar desabilitada.
 select_does_not_have_selected_index_failure = O índice selecionado da select com nome ou id %s não deveria ser %d, mas é %d.
 select_does_not_have_selected_value_failure = O valor selecionado da select com nome ou id %s não deveria ser %s, mas é %s.
 select_does_not_have_selected_text_failure = O texto selecionado da select com nome ou id %s não deveria ser %s, mas é %s.
@@ -151,7 +144,6 @@ textbox_matches_text_failure = A caixa de texto com nome ou id %s deveria conter
 textbox_does_not_match_text_failure = A caixa de texto com nome ou id %s não deveria conter exatamente "%s", mas o seu texto atual é "%s".
 textbox_is_empty_failure = A caixa de texto com nome ou id %s não está vazia e deveria estar.
 textbox_is_not_empty_failure = A caixa de texto com nome ou id %s está vazia e não deveria estar.
-textbox_is_disabled_failure = A caixa de texto com nome ou id %s está habilitada, quando deveria estar desabilitada.
 
 #Mensagens de erro
 invalid_scenario_error = \n>>>>>>>>>>>>>> "%s" <<<<<<<<<<<<<<\n\nA linha acima não corresponde a nenhuma das ações registradas. \nSe você só precisa de um texto como "Depois da página carregar"\n ou algo assim, prefixe sua linha com #. \n\nCenário: %s - %s\nArquivo: %s

@@ -34,6 +34,6 @@ class DivMouseoverAction(ActionBase):
     def execute(self, values, context):
         div_name = values[0]
         div = self.resolve_element_key(context, Page.Div, div_name)
-        self.assert_element_is_visible(div, self.language["div_is_visible_failure"] % div_name)
+        self.assert_element_is_visible(div, self.language["element_is_visible_failure"] % ("div", div_name))
         self.browser_driver.mouseover_element(div)
         

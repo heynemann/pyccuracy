@@ -34,6 +34,6 @@ class ButtonMouseoverAction(ActionBase):
     def execute(self, values, context):
         button_name = values[0]
         button = self.resolve_element_key(context, Page.Button, button_name)
-        self.assert_element_is_visible(button, self.language["button_is_visible_failure"] % button_name)
+        self.assert_element_is_visible(button, self.language["element_is_visible_failure"] % ("button", button_name))
         self.browser_driver.mouseover_element(button)
-        
+

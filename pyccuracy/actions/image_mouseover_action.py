@@ -34,6 +34,6 @@ class ImageMouseoverAction(ActionBase):
     def execute(self, values, context):
         image_name = values[0]
         image = self.resolve_element_key(context, Page.Image, image_name)
-        self.assert_element_is_visible(image, self.language["image_is_visible_failure"] % image_name)
+        self.assert_element_is_visible(image, self.language["element_is_visible_failure"] % ("image", image_name))
         self.browser_driver.mouseover_element(image)
         

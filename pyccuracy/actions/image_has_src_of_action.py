@@ -35,7 +35,7 @@ class ImageHasSrcOfAction(ActionBase):
         image_name = values[0]		
         src = values[1]
         image = self.resolve_element_key(context, Page.Image, image_name)
-        self.assert_element_is_visible(image, self.language["image_is_visible_failure"] % image_name)        
+        self.assert_element_is_visible(image, self.language["element_is_visible_failure"] % ("image", image_name))
         
         error_message = self.language["image_has_src_failure"]
         current_src = self.browser_driver.get_image_src(image)

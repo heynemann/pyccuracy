@@ -32,11 +32,12 @@ class LinkHasHrefOfAction(ActionBase):
         return self.last_match and (self.last_match.groups()[1],self.last_match.groups()[2]) or tuple([])
 
     def execute(self, values, context):
-        link_name = values[0]		
+        link_name = values[0]
         href = values[1]
         link = self.resolve_element_key(context, Page.Link, link_name)
-        self.assert_element_is_visible(link, self.language["link_is_visible_failure"] % link_name)        
-        
+        error_message = self.language["element_is_visible_failure"] % ("link", link_name)
+        self.assert_element_is_visible(link, error_message)
+
         error_message = self.language["link_has_href_failure"]
         current_href = self.browser_driver.get_link_href(link)
         if href.lower() != current_href.lower():

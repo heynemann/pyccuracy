@@ -35,7 +35,7 @@ class DivDoesNotContainTextAction(ActionBase):
         div_name = values[0]
         text = values[1]
         div = self.resolve_element_key(context, Page.Div, div_name)
-        self.assert_element_is_visible(div, self.language["div_is_visible_failure"] % div_name)
+        self.assert_element_is_visible(div, self.language["element_is_visible_failure"] % ("div", div_name))
 
         current_text = self.browser_driver.get_element_text(div)
         if text in current_text:
