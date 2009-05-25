@@ -35,9 +35,9 @@ class ElementIsEnabledAction(ActionBase):
         element_name = values["element_key"]
         element_type = self.language[values["element_type"] + "_category"]
         element = self.resolve_element_key(context, element_type, element_name)
-        
+
         self.assert_element_is_visible(element, self.language["element_is_visible_failure"] % (values["element_type"], element_name))
-        
+
         error_message = self.language["element_is_enabled_failure"]
         if not self.browser_driver.is_element_enabled(element):
             self.raise_action_failed_error(error_message % (values["element_type"], element_name))

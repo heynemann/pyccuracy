@@ -1,0 +1,333 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+            Pyccuracy - Tests Run Report -
+            <span class="date"></span>
+</title>
+<style>
+          
+          .header
+          {
+          font-size: medium;
+          font-family: Helvetica;
+          }
+          td.header
+          {
+          background-color: #dedede;
+          border: solid 1px black;
+          height: 23px;
+          }
+          .footer
+          {
+          font-size: xx-small;
+          font-family: Helvetica;
+          }
+          td.footer
+          {
+          background-color: #dedede;
+          border: solid 1px black;
+          height: 23px;
+          }
+          .date
+          {
+          color: dimgray;
+          }
+          .report
+          {
+          font-size: x-small;
+          font-family: Helvetica;
+          }
+          td.report
+          {
+          border-left: solid 1px black;
+          border-right: solid 1px black;
+          border-top: solid 0px black;
+          border-bottom: solid 0px black;
+          }
+          .runFailed
+          {
+          font-size: small;
+          font-weight: bold;
+          color: red;
+          }
+          .runSucceeded
+          {
+          font-size: small;
+          font-weight: bold;
+          color: darkgreen;
+          }
+          .summary
+          {
+          font-size: x-small;
+          font-family: Helvetica;
+          }
+          td.summary
+          {
+          background-color: lightblue;
+          border: dashed 1px dimgray;
+          }
+          .storiesHeader
+          {
+          font-size: small;
+          font-weight: bold;
+          font-family: Helvetica;
+          }
+          td.storiesHeader
+          {
+          background-color: lightGreen;
+          }
+          .storiesBody
+          {
+          font-size: x-small;
+          font-family: Helvetica;
+          }
+          td.storiesBody
+          {
+          border-top: solid 1px lightGreen;
+          border-bottom: solid 2px lightGreen;
+          border-left: solid 2px lightGreen;
+          border-right: solid 2px lightGreen;
+          padding: 6px 6px 6px 6px;
+          }
+          .successfulTests
+          {
+          color: darkgreen;
+          }
+          .failedTests
+          {
+          color: red;
+          }
+          .condition
+          {
+          font-size: x-small;
+          padding-left: 15px;
+          }
+          .action
+          {
+          font-size: x-small;
+          padding-left: 30px;
+          }
+          .actionTime
+          {
+          font-size: x-small;
+          color: Navy;
+          }
+          .odd
+          {
+          background-color: #dedede;
+          height: 18px;
+          }
+          .even
+          {
+          background-color: white;
+          height: 18px;
+          }
+          .totalTime
+          {
+          background-color: dimgray;
+          color: White;
+          font-size:x-small;
+          height: 18px;
+          }
+          .totalTimeFinishTime
+          {
+          color: lightblue;
+          font-size:x-small;
+          }
+          .story
+          {
+          background-color: lightGreen;
+          padding: 6px 6px 6px 6px;
+          }
+          .failedStory
+          {
+          background-color: #ffbbbb;
+          padding: 6px 6px 6px 6px;
+          }
+          .scenarios
+          {
+          padding-left: 12px;
+          padding-right: 12px;
+          padding-top: 6px;
+          padding-bottom: 6px;
+          border-top: solid 0px lightGreen;
+          border-bottom: solid 2px lightGreen;
+          border-left: solid 2px lightGreen;
+          border-right: solid 2px lightGreen;
+          }
+          
+          .failedScenarios
+          {
+          padding-left: 12px;
+          padding-right: 12px;
+          padding-top: 6px;
+          padding-bottom: 6px;
+          border-top: solid 0px #ffbbbb;
+          border-bottom: solid 2px #ffbbbb;
+          border-left: solid 2px #ffbbbb;
+          border-right: solid 2px #ffbbbb;
+          }
+          
+          .scenarioTitle{
+            font-weight:bold;
+            color:darkgreen;
+          }
+          
+          .failedScenarioTitle{
+            font-weight:bold;
+            color:red;
+          }
+          
+        </style>
+<script type="text/javascript">
+
+          
+          function lowerThan(value, comparison){
+            return value <comparison;
+          }
+
+          function greaterThan(value, comparison){
+            return value > comparison;
+          }
+          
+          
+            document.isCollapsed = true;
+            
+            function getElementsByClass(node,searchClass,tag) {
+                var classElements = new Array();
+                var elements = node.getElementsByTagName(tag); // use "*" for all elements
+                
+                var pattern = new RegExp("\b" + searchClass + "\b");
+                for (i = 0, j = 0; lowerThan(i,elements.length); i++) {
+                  var className = elements[i].className;
+                  
+                  if (greaterThan(className.indexOf(searchClass), -1)) {
+                    classElements[j] = elements[i];
+                    j++;
+                  }
+                }
+                return classElements;
+            }
+          
+            function toggleAll(){
+              var elements = getElementsByClass(document, 'scenarios', 'div');
+              toggleElements(elements);
+              elements = getElementsByClass(document, 'failedScenarios', 'div');
+              toggleElements(elements);
+              document.isCollapsed = !document.isCollapsed;
+            }
+            
+            function toggleElements(elements){
+              for (i=0; lowerThan(i, elements.length); i++){
+                var element = elements[i];
+                element.style.display = document.isCollapsed ? 'block' : 'none';
+              }
+            }
+            
+            function toggle(divId){
+              div = document.getElementById(divId);
+              if (div!=null){
+                if (div.style.display != 'none' ){
+                  div.style.display = 'none';
+                }
+                else {
+                  div.style.display = 'block'; 
+                }
+              }
+            }
+          
+        </script>
+</head>
+<body><table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr><td class="header">
+        Pyccuracy - Tests Run Report -
+        <span class="date">25/05/2009 17:23:37</span>
+</td></tr>
+<tr><td class="report" style="padding-top: 6px; padding-bottom: 6px; padding-left: 12px;                 padding-right: 12px;">
+<table border="0" cellspacing="0" cellpadding="0" style="width: 33%">
+<tr><td style="padding: 3px 3px 3px 3px"><span class="runFailed">Test run failed!</span></td></tr>
+<tr><td class="summary" style="padding: 3px 3px 3px 3px">
+<b>Summary:</b><br>
+          Total Stories: 1<br>
+          Total Scenarios: 1<br>
+          Scenarios Succeeded: <span class="successfulTests">0 (0.00%)
+          </span><br>
+          Scenarios Failed: <span class="failedTests">1 (100.00%)
+          </span><br>
+</td></tr>
+</table>
+<br><table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr><td style="padding: 3px 3px 3px 3px" class="storiesHeader">
+          Stories [<a href="javascript:" onclick="toggleAll();">Collapse/Expand All</a>]
+        </td></tr>
+<tr><tr><td class="storiesBody">
+<div style="margin-top:6px;" class="failedStory">
+<b>
+        Story 1: [<a href="javascript:" onclick="toggle('div_1');">Collapse/Expand
+        </a>]
+      </b><br>As a  Pyccuracy User<br>I want to  test that you can't wait for a non-existing / invisible div to disappear<br>So that  I can make sure Pyccuracy works</div>
+<div style="display:block;" class="failedScenarios" id="div_1"><div style="padding-top:6px; width:100%;">
+<b class="failedScenarioTitle">
+        Scenario 1</b>: Checking that I can't wait for an element to disappear given that it does not exist<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Given</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>I go to "baseurlreport.html"</b></td>
+<td class="actionTime">
+          [Mon May 25 17:23:37 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>When</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b><font color="red">I wait for "divDoesNotExist" div to disappear - The div with name or id divDoesNotExist does not exist or is not visible.(Resolved to Element //div[(@name='divDoesNotExist' or @id='divDoesNotExist')])</font></b></td>
+<td class="actionTime">
+          [Mon May 25 17:23:37 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Then</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b><font color="#555555">#if it got here something's amiss</font></b></td>
+<td class="actionTime">
+          [Unknown]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.00 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [FAILED]
+          </td>
+</tr>
+</table>
+</div></div>
+</td></tr></tr>
+</table>
+</td></tr>
+<tr><td class="footer">
+        Pyccuracy - Version 0.3.3 - <a href="http://www.stormwindproject.org">http://www.pyccuracy.org</a>
+</td></tr>
+</table></body>
+</html>

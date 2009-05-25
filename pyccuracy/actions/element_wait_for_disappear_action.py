@@ -41,5 +41,7 @@ class ElementWaitForDisappearAction(ActionBase):
             timeout = 5
         element = self.resolve_element_key(context, element_type, element_name)
 
+        self.assert_element_is_visible(element, self.language["element_is_visible_failure"] % (values["element_type"], element_name))
+
         if not self.browser_driver.wait_for_element_to_disappear(element, timeout):
             raise ActionFailedError(self.language['element_wait_for_disappear_failure'] % (element_type, element_name, timeout))

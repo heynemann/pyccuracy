@@ -1,0 +1,11 @@
+As a Pyccuracy User
+I want to test that you can't wait for a non-existing / invisible div to disappear
+So that I can make sure Pyccuracy works
+
+Scenario 1 - Checking that I can't wait for an element to disappear given that it does not exist
+Given
+    I go to "baseurlreport.html"
+When
+    I wait for "divDoesNotExist" div to disappear
+Then
+    #if it got here something's amiss
