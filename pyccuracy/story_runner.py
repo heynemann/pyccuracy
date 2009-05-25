@@ -33,12 +33,12 @@ class StoryRunner(object):
         if self.context.base_url:
             protocol, page_name, file_name, complement, querystring, anchor = urllib2.urlparse.urlparse(self.context.base_url)
             base_url = protocol and self.context.base_url or None
-        
-        if base_url: 
-            self.browser_driver.start_test(base_url) 
-        else: 
+
+        if base_url:
+            self.browser_driver.start_test(base_url)
+        else:
             self.browser_driver.start_test()
-        
+
         try:
             test_fixture.start_run()
             for current_story in test_fixture.stories:
@@ -51,13 +51,20 @@ class StoryRunner(object):
 
     def __run_scenarios(self, current_story, context):
         for current_scenario in current_story.scenarios:
+            # running only the given scenarios
+            scenarios = None
+            if context.scenarios_to_run:
+                scenarios = context.scenarios_to_run.replace(" ", "").split(",")
+                if current_scenario.index not in scenarios:
+                    continue
+
             self.raise_pre_scenario(context, current_story, current_scenario)
             current_scenario.start_run()
             for current_action in (current_scenario.givens + current_scenario.whens + current_scenario.thens):
                 current_action.start_run()
                 result = current_action.execute(context)
                 current_action.end_run()
-                if not result: 
+                if not result:
                     break
             current_scenario.end_run()
             self.raise_post_scenario(context, current_story, current_scenario, current_scenario.status)

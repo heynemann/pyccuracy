@@ -18,6 +18,7 @@ sys.path.insert(0,os.path.abspath(__file__+"/../../../"))
 from pyccuracy.page import Page
 from pyccuracy.actions.action_base import ActionBase
 from pyccuracy.actions.element_is_visible_base import *
+from pyccuracy.errors import ActionFailedError
 
 class DivWaitForPresenceAction(ActionBase):
     def __init__(self, browser_driver, language):
@@ -31,7 +32,7 @@ class DivWaitForPresenceAction(ActionBase):
     def values_for(self, line):
         if not self.last_match:
             return tuple()
-        
+
         div_name = self.last_match.groups()[1]
         timeout = self.last_match.groups()[3] and float(self.last_match.groups()[3]) or 5
         return (div_name, timeout)

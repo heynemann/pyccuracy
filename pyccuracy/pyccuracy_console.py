@@ -37,6 +37,7 @@ def main():
     """ Main function - parses args and runs action """
     parser = optparse.OptionParser(usage="%prog or type %prog -h (--help) for help", description=__doc__, version="%prog" + __revision__)
     parser.add_option("-p", "--pattern", dest="pattern", default="*.acc", help="File pattern. Defines which files will get executed [default: %default].")
+    parser.add_option("-s", "--scenarios", dest="scenarios_to_run", default=None, help="Run only the given scenarios, comma separated. I.e: --scenarios=1,4,9")
     parser.add_option("-l", "--language", dest="language", default="en-us", help="Language. Defines which language the dictionary will be loaded with  [default: %default].")
     parser.add_option("-L", "--languagesdir", dest="languages_dir", default=None, help="Languages Directory. Defines where Pyccuracy will search for language dictionaries  [default: %default].")
     parser.add_option("-d", "--dir", dest="dir", default=os.curdir, help="Tests directory. Defines where the tests to be executed are [default: %default]. Note: this is recursive, so all the tests under the current directory get executed.")
@@ -45,7 +46,7 @@ def main():
     parser.add_option("-P", "--pagesdir", dest="pages_dir", default=None, help="Pages directory. Defines where the Pyccuracy custom pages are. If you don't change this parameter Pyccuracy will use the tests directory [default: %default].")
     parser.add_option("-u", "--url", dest="url", default=None, help="Base URL. Defines a base url against which the tests will get executed. For more details check the documentation [default: %default].")
     parser.add_option("-b", "--browser", dest="browser_to_run", default="firefox", help="Browser to run. Browser driver will use it to run tests [default: %default].")
-    
+
     #browser driver
     parser.add_option("-e", "--browserdriver", dest="browser_driver", default="selenium", help="Browser Driver to be used on tests. [default: %default].")
 
@@ -66,6 +67,7 @@ def main():
                            pages_dir=options.pages_dir,
                            languages_dir=options.languages_dir,
                            file_pattern=options.pattern,
+                           scenarios_to_run=options.scenarios_to_run,
                            tests_dir=options.dir,
                            base_url=options.url,
                            default_culture=options.language,

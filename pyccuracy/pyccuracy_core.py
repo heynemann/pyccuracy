@@ -36,6 +36,7 @@ class PyccuracyCore(object):
                           languages_dir,
                           report_file_dir,
                           file_pattern,
+                          scenarios_to_run,
                           report_file_name,
                           default_culture,
                           base_url,
@@ -51,7 +52,7 @@ class PyccuracyCore(object):
 
         if not actions_dir:
             actions_dir = abspath(join(dirname(__file__), "actions"))
-            
+
         if not pages_dir:
             pages_dir = tests_dir
 
@@ -67,6 +68,7 @@ class PyccuracyCore(object):
                            culture=default_culture,
                            tests_dir=tests_dir,
                            file_pattern=file_pattern,
+                           scenarios_to_run=scenarios_to_run,
                            actions_dir=actions_dir,
                            pages_dir=pages_dir,
                            base_url=base_url,
@@ -86,31 +88,33 @@ class PyccuracyCore(object):
             else:
                 raise
         return None
-        
-    def configure_ioc(self, 
-                      tests_dir, 
-                      actions_dir, 
-                      custom_actions_dir, 
-                      pages_dir, 
-                      languages_dir, 
+
+    def configure_ioc(self,
+                      tests_dir,
+                      actions_dir,
+                      custom_actions_dir,
+                      pages_dir,
+                      languages_dir,
                       report_file_dir,
-                      file_pattern, 
+                      file_pattern,
+                      scenarios_to_run,
                       report_file_name,
-                      culture, 
-                      base_url, 
-                      lang, 
-                      browser_to_run, 
+                      culture,
+                      base_url,
+                      lang,
+                      browser_to_run,
                       browser_driver,
                       write_report):
 
         config = InPlaceConfig()
-        
+
         config.register("browser_driver", self.__select_browser_driver(lang, browser_driver))
 
         config.register_instance("language", lang)
 
         if (file_pattern == "to_be_defined_by_language"): file_pattern = lang["default_pattern"]
         config.register("file_pattern", file_pattern)
+        config.register("scenarios_to_run", scenarios_to_run)
 
         config.register("write_report", write_report)
         config.register("report_file_dir", report_file_dir)
@@ -126,19 +130,20 @@ class PyccuracyCore(object):
 
         config.register("story_runner", StoryRunner)
 
-        config.register("browser_to_run", "*%s" % browser_to_run)        
+        config.register("browser_to_run", "*%s" % browser_to_run)
 
         config.register("scripts_path", abspath(dirname(__file__)))
         config.register("base_url", base_url)
 
         IoC.configure(config)
-                
+
     def run_tests(self,
                   tests_dir=abspath(os.curdir),
                   actions_dir=None,
                   custom_actions_dir=None,
                   pages_dir=None,
                   file_pattern="to_be_defined_by_language",
+                  scenarios_to_run=None,
                   default_culture="en-us",
                   languages_dir=None,
                   base_url=None,
@@ -149,7 +154,7 @@ class PyccuracyCore(object):
                   report_file_name="report.html",
                   browser_to_run="chrome",
                   browser_driver="selenium"):
-        
+
         result = self.configure_context(
                                tests_dir=tests_dir,
                                actions_dir=actions_dir,
@@ -158,6 +163,7 @@ class PyccuracyCore(object):
                                languages_dir=languages_dir,
                                report_file_dir=report_file_dir,
                                file_pattern=file_pattern,
+                               scenarios_to_run=scenarios_to_run,
                                report_file_name=report_file_name,
                                default_culture=default_culture,
                                base_url=base_url,
@@ -168,7 +174,7 @@ class PyccuracyCore(object):
                                context=context)
         if result:
             return result
-            
+
         self.context.browser_driver.start()
 
         #running the tests
@@ -184,8 +190,8 @@ class PyccuracyCore(object):
         if self.context.write_report:
             import report_parser as report
             report.generate_report(
-                        join(self.context.report_file_dir, self.context.report_file_name), 
-                        results, 
+                        join(self.context.report_file_dir, self.context.report_file_name),
+                        results,
                         self.context.language)
 
         if should_throw and self.context.test_fixture.get_results().status == "FAILED":
@@ -200,7 +206,7 @@ class PyccuracyCore(object):
             }
 
         selected_driver = available_drivers.get(driver_name, None)
-        
+
         if selected_driver is None:
             available_drivers_string = ",".join(available_drivers.keys())
             raise LookupError(lang["invalid_browser_driver_error"] % (driver_name, available_drivers_string))
@@ -218,16 +224,17 @@ class PyccuracyCore(object):
         print "\n"
 
 class PyccuracyContext:
-    def __init__(self, 
-                 browser_driver, 
-                 language, 
-                 test_fixture_parser, 
-                 tests_dir, 
-                 file_pattern, 
-                 story_runner, 
-                 all_actions, 
-                 all_pages, 
-                 all_custom_actions, 
+    def __init__(self,
+                 browser_driver,
+                 language,
+                 test_fixture_parser,
+                 tests_dir,
+                 file_pattern,
+                 scenarios_to_run,
+                 story_runner,
+                 all_actions,
+                 all_pages,
+                 all_custom_actions,
                  base_url,
                  report_file_dir,
                  report_file_name,
@@ -240,10 +247,11 @@ class PyccuracyContext:
         self.all_pages = dict(zip([klass.__class__.__name__ for klass in all_pages], [klass for klass in all_pages]))
         self.current_page = None
         self.file_pattern = file_pattern
+        self.scenarios_to_run = scenarios_to_run
         self.story_runner = story_runner
         self.base_url = base_url
         self.all_custom_actions = all_custom_actions
         self.all_actions = all_actions
-        self.report_file_dir = report_file_dir        
+        self.report_file_dir = report_file_dir
         self.report_file_name = report_file_name
         self.write_report = write_report
