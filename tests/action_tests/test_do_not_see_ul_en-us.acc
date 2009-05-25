@@ -8,8 +8,8 @@ Given
 When
     #The page finishes loading
 Then
-    I do not see "ulHidden1" button
-    And I do not see "ulHidden2" button
-    And I do not see "ulHidden3" button
-    And I do not see "ulHidden4" button
-    And I do not see "ulHidden5" button
+    I do not see "ulHidden1" ul
+    And I do not see "ulHidden2" ul
+    And I do not see "ulHidden3" ul
+    And I do not see "ulHidden4" ul
+    And I do not see "ulHidden5" ul
