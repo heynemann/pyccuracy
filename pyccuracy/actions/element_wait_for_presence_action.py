@@ -30,17 +30,16 @@ class ElementWaitForPresenceAction(ActionBase):
         return self.last_match
 
     def values_for(self, line):
-        if not self.last_match:
-            return tuple()
-        
-        element_name = self.last_match.groups()[1]
-        timeout = self.last_match.groups()[3] and float(self.last_match.groups()[3]) or 5
-        return (element_name, timeout)
+        return self.last_match.groupdict()
 
     def execute(self, values, context):
-        element_name = values[0]
-        timeout = values[1]
-        element = self.resolve_element_key(context, Page.Element, element_name)
+        element_name = values["element_key"]
+        element_type = values["element_type"]
+        if (values.has_key("timeout") and values["timeout"]):
+            timeout = int(values["timeout"])
+        else:
+            timeout = 5
+        element = self.resolve_element_key(context, element_type, element_name)
 
         if not self.browser_driver.wait_for_element_present(element, timeout):
-            raise ActionFailedError(self.language['element_wait_for_presence_failure'] % (element_name, timeout))
+            raise ActionFailedError(self.language['element_wait_for_presence_failure'] % (element_type, element_name, timeout))
