@@ -6,17 +6,17 @@ Cenário 1 - Verificando que eu posso esperar por um div aparecer pelo tempo def
 Dado que
     Eu navego para "page_tests.htm"
 Quando
-    Eu espero o elemento "divWaitForVisible" aparecer
+    Eu espero a div "divWaitForVisible" aparecer
 Então
-    Eu vejo o elemento "divWaitForVisible"
+    Eu vejo a div "divWaitForVisible"
 
 Cenário 2 - Verificando que eu posso esperar por um div aparecer por um número específico de segundos
 Dado que
     Eu navego para "page_tests.htm"
 Quando
-    Eu espero o elemento "divWaitForVisible" aparecer por 10 segundos
+    Eu espero a div "divWaitForVisible" aparecer por 10 segundos
 Então
-    Eu vejo o elemento "divWaitForVisible"
+    Eu vejo a div "divWaitForVisible"
 
 Cenário 3 - Verificando que eu posso esperar por um elemento registrado aparecer
 Dado que

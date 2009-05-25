@@ -12,7 +12,7 @@ files_without_header = test files without the proper header
 story_status = Story Status
 
 #Supported elements
-supported_elements = button|radio button|div|link|checkbox|select|textbox|image|element
+supported_elements = button|radio button|div|link|checkbox|select|textbox|image|element|paragraph|ul|li
 button_category = button
 checkbox_category = checkbox
 div_category = div
@@ -22,6 +22,9 @@ page_category = page
 radio button_category = radio_button
 select_category = select
 textbox_category = textbox
+paragraph_category = paragraph
+ul_category = ul
+li_category = li
 element_category = *
 
 #Test Run Summary
@@ -64,9 +67,9 @@ element_is_disabled_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<ele
 element_click_regex = ^(And )?I click [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>)(?P<should_wait> and wait)?$
 element_is_not_visible_regex = ^(And )?I do not see [\"](?P<element_key>.+)[\"] (?P<element_type><element selector>)$
 element_is_visible_regex = ^(And )?I see [\"](?P<element_key>.+)[\"] (?P<element_type><element selector>)$
-element_wait_for_disappear_regex = ^(And )?I wait for [\"](.+)[\"] element to disappear( for (\d+) seconds)?$
-element_wait_for_presence_regex = ^(And )?I wait for [\"](.+)[\"] element to be present( for (\d+) seconds)?$
-element_drag_drop_regex = ^(And )?I drag the [\"](?P<from_element_key>.+)[\"] (?P<from_element_type>div) to the [\"](?P<to_element_key>.+)[\"] (?P<to_element_type>div)?$
+element_wait_for_disappear_regex = ^(And )?I wait for [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) to disappear( for (?P<timeout>\d+) seconds)?$
+element_wait_for_presence_regex = ^(And )?I wait for [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) to be present( for (?P<timeout>\d+) seconds)?$
+element_drag_drop_regex = ^(And )?I drag the [\"](?P<from_element_key>.+)[\"] (?P<from_element_type><element selector>) to the [\"](?P<to_element_key>.+)[\"] (?P<to_element_type><element selector>)?$
 element_mouseover_regex = ^(And )?I mouseover [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>)$
 element_mouseout_regex = ^(And )?I mouseout [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>)$
 
@@ -114,8 +117,8 @@ element_is_enabled_failure = The %s with name or id %s is disabled, when it shou
 element_is_disabled_failure = The %s with name or id %s is enabled, when it should be disabled.
 element_is_visible_failure = The %s with name or id %s does not exist or is not visible.
 element_is_not_visible_failure = The %s with name or id %s is visible, when it should not exist or be visible.
-element_wait_for_disappear_failure = The element with name or id %s should disappear within %d second(s), but it still present.
-element_wait_for_presence_failure = The element with name or id %s should be present within %d second(s), but is not present or do not exist.
+element_wait_for_disappear_failure = The %s with name or id %s should disappear within %d second(s), but it still present.
+element_wait_for_presence_failure = The %s with name or id %s should be present within %d second(s), but is not present or do not exist.
 element_is_not_visible_for_drag_failure = The element being dragged (%s) does not exist or is not visible.
 
 image_has_src_failure = The image with name or id %s should have "%s" as src, but has "%s".

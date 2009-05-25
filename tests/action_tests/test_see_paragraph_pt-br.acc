@@ -1,0 +1,12 @@
+Como um usuário do Pyccuracy
+Eu quero testar a ação de ver um botão
+Para garantir que o Pyccuracy funciona em outras línguas
+
+Cenário 1 - Garantindo que o botão de pesquisa do google está la
+Dado que
+    Eu navego para "p_tests.htm"
+Quando
+    #A página termina de carregar
+Então
+    Eu vejo o parágrafo "paragraph1"
+    E eu vejo o parágrafo "paragraph2"

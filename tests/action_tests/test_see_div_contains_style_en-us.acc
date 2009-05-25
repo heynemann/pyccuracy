@@ -4,9 +4,9 @@ So that I can make sure Pyccuracy works
 
 Scenario 1 - Checking that some page div has "some" style
 Given
-	I go to "div_tests.htm"
+    I go to "div_tests.htm"
 When
-	#The page finishes loading
+    #The page finishes loading
 Then
-	I see "divContainsStyle1" div has "blabla" style
-	And I see "divContainsStyle1" has "blabla" style
+    I see "divContainsStyle1" div has "blabla" style
+    And I see "divContainsStyle1" has "blabla" style
