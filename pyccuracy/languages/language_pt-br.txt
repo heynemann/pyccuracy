@@ -19,7 +19,7 @@ scenarios_ran_successfully = %d cenários tiveram sucesso (%.2f%%)
 scenarios_that_failed = %d cenários falharam (%.2f%%)
 
 #Supported elements
-supported_elements = botão|radio|div|link|checkbox|select|caixa de texto|imagem|elemento|parágrafo
+supported_elements = botão|radio|div|link|checkbox|select|caixa de texto|imagem|elemento|parágrafo|ul|li
 botão_category = button
 checkbox_category = checkbox
 div_category = div
@@ -30,6 +30,8 @@ radio_category = radio_button
 select_category = select
 caixa de texto_category = textbox
 parágrafo_category = paragraph
+ul_category = ul
+li_category = li
 elemento_category = *
 
 #Tempos dos Testes
