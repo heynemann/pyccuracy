@@ -32,7 +32,6 @@ class ElementIsVisibleAction(ElementIsVisibleBase):
         return self.last_match.groupdict()
 
     def execute(self, values, context):
-        import pdb;pdb.set_trace()
         element_name = values["element_key"]
         element_type = self.language["%s_category" % values["element_type"]]
         error_message = self.language["element_is_visible_failure"]

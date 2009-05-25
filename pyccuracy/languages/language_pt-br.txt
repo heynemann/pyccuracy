@@ -73,7 +73,7 @@ div_wait_for_presence_regex = ^(E )?[eE]u espero o div [\"](.+)[\"] aparecer( po
 div_wait_for_disappear_regex = ^(E )?[eE]u espero o div [\"](.+)[\"] desaparecer( por (\d+) segundos)?$
 
 element_is_not_visible_regex = ^(E )?[eE]u não vejo o elemento [\"](.+)[\"]$
-element_is_visible_regex = ^(E )?[eE]u vejo o (?P<element_type><element selector>) [\"](?P<element_key>.+)[\"]$
+element_is_visible_regex = ^(E )?[eE]u vejo [oa] (?P<element_type><element selector>) [\"](?P<element_key>.+)[\"]$
 element_wait_for_disappear_regex = ^(E )?[eE]u espero o elemento [\"](.+)[\"] desaparecer( por (\d+) segundos)?$
 element_wait_for_presence_regex = ^(E )?[eE]u espero o elemento [\"](.+)[\"] aparecer( por (\d+) segundos)?$
 element_drag_drop_regex = ^(E )?[eE]u arrasto [oa] (?P<from_element_type>div) [\"](?P<from_element_key>.+)[\"] para [oa] (?P<to_element_type>div) [\"](?P<to_element_key>[^"]+)[\"]?$
