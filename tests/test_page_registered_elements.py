@@ -22,11 +22,11 @@ class TestPageRegisteredElements(unittest.TestCase):
 
     def test_retrieve_element_by_key_only(self):
         page = Page()
-        page.register_link("Algum link", "xpath")
-        page.register_generic_element("li", "Generico", "xpath2")
+        page.register_element("Algum link", "xpath")
+        page.register_element("Generico", "xpath2")
 
-        link = page.get_registered_element_by_key_only("Algum link")
-        li = page.get_registered_element_by_key_only("Generico")
+        link = page.get_registered_element("Algum link")
+        li = page.get_registered_element("Generico")
 
         self.failIf(link!="xpath", "O elemento com nome de Algum link deveria resolver para xpath mas resolveu para %s" % link)
         self.failIf(li!="xpath2", "O elemento com nome de Generico deveria resolver para xpath2 mas resolveu para %s" % li)
