@@ -18,6 +18,19 @@ stories_that_failed = %d stories falharam (%.2f%%)
 scenarios_ran_successfully = %d cenários tiveram sucesso (%.2f%%)
 scenarios_that_failed = %d cenários falharam (%.2f%%)
 
+#Supported elements
+supported_elements = botão|radio|div|link|checkbox|select|caixa de texto|imagem|elemento
+botão_category = button
+checkbox_category = checkbox
+div_category = div
+imagem_category = image
+link_category = link
+page_category = page
+radio_category = radio_button
+select_category = select
+caixa de texto_category = textbox
+elemento_category = *
+
 #Tempos dos Testes
 test_run_timing = Duração dos Testes
 
@@ -59,11 +72,11 @@ div_click_regex = ^(E )?[eE]u clico no div [\"](.+)[\"]( e espero)?$
 div_wait_for_presence_regex = ^(E )?[eE]u espero o div [\"](.+)[\"] aparecer( por (\d+) segundos)?$
 div_wait_for_disappear_regex = ^(E )?[eE]u espero o div [\"](.+)[\"] desaparecer( por (\d+) segundos)?$
 
-element_is_not_visible_failure = O elemento de id ou nome %s não está visível, quando deveria existir ou estar visível.
-element_wait_for_disappear_failure = O elemento de nome ou id %s deveria desaparecer dentro de %d segundo(s), mas ainda está presente.
-element_is_visible_failure = O elemento de id ou nome %s está visível, quando não deveria existir ou estar invisível.
-element_wait_for_presence_failure = O elemento de nome ou id %s deveria aparecer dentro de %d segundo(s), mas não existe ou não está visível.
-element_is_not_visible_for_drag_failure = O elemento que está sendo arrastado (%s) não existe ou não está visível.
+element_is_not_visible_regex = ^(E )?[eE]u não vejo o elemento [\"](.+)[\"]$
+element_is_visible_regex = ^(E )?[eE]u vejo o (?P<element_type><element selector>) [\"](?P<element_key>.+)[\"]$
+element_wait_for_disappear_regex = ^(E )?[eE]u espero o elemento [\"](.+)[\"] desaparecer( por (\d+) segundos)?$
+element_wait_for_presence_regex = ^(E )?[eE]u espero o elemento [\"](.+)[\"] aparecer( por (\d+) segundos)?$
+element_drag_drop_regex = ^(E )?[eE]u arrasto [oa] (?P<from_element_type>div) [\"](?P<from_element_key>.+)[\"] para [oa] (?P<to_element_type>div) [\"](?P<to_element_key>[^"]+)[\"]?$
 
 image_click_regex = ^(E )?[eE]u clico na imagem [\"](.+)[\"]$
 image_is_visible_regex = ^(E )?[eE]u vejo a imagem [\"](.+)[\"]$
@@ -134,13 +147,11 @@ div_does_not_contain_style_failure = O div com nome ou id %s não deveria conter
 div_matches_markup_failure = O div com nome ou id %s deveria conter exatamente o markup "%s", mas o seu markup atual é "%s".
 div_does_not_match_markup_failure = O div com nome ou id %s não deveria conter exatamente o markup "%s", mas o seu markup atual é "%s".
 
-element_is_not_visible_regex = ^(E )?[eE]u não vejo o elemento [\"](.+)[\"]$
-element_is_visible_regex = ^(E )?[eE]u vejo o elemento [\"](.+)[\"]$
-element_wait_for_disappear_regex = ^(E )?[eE]u espero o elemento [\"](.+)[\"] desaparecer( por (\d+) segundos)?$
-element_wait_for_presence_regex = ^(E )?[eE]u espero o elemento [\"](.+)[\"] aparecer( por (\d+) segundos)?$
-element_drag_drop_regex = ^(E )?[eE]u arrasto [oa] (?P<from_element_type>div) [\"](?P<from_element_key>.+)[\"] para [oa] (?P<to_element_type>div) [\"](?P<to_element_key>[^"]+)[\"]?$
-
-element_is_not_visible_for_drag_failure = O elemento sendo arrastado (%s) não existe ou não está visível.
+element_is_not_visible_failure = O elemento de id ou nome %s não está visível, quando deveria existir ou estar visível.
+element_wait_for_disappear_failure = O elemento de nome ou id %s deveria desaparecer dentro de %d segundo(s), mas ainda está presente.
+element_is_visible_failure = O elemento de id ou nome %s está visível, quando não deveria existir ou estar invisível.
+element_wait_for_presence_failure = O elemento de nome ou id %s deveria aparecer dentro de %d segundo(s), mas não existe ou não está visível.
+element_is_not_visible_for_drag_failure = O elemento que está sendo arrastado (%s) não existe ou não está visível.
 
 image_is_visible_failure = A imagem com nome ou id %s não existe ou não está visível.
 image_is_not_visible_failure = A imagem com nome ou id %s está visível, quando deveria não existir ou estar invisível.

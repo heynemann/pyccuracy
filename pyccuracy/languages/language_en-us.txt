@@ -11,6 +11,19 @@ invalid_test_files = invalid test files
 files_without_header = test files without the proper header
 story_status = Story Status
 
+#Supported elements
+supported_elements = button|radio button|div|link|checkbox|select|textbox|image|element
+button_category = button
+checkbox_category = checkbox
+div_category = div
+image_category = image
+link_category = link
+page_category = page
+radio button_category = radio_button
+select_category = select
+textbox_category = textbox
+element_category = *
+
 #Test Run Summary
 test_run_summary = Test run Summary
 stories_ran_successfully = %d stories ran successfully (%.2f%%)
@@ -60,7 +73,7 @@ div_wait_for_presence_regex = ^(And )?I wait for [\"](.+)[\"] div to be present(
 div_wait_for_disappear_regex = ^(And )?I wait for [\"](.+)[\"] div to disappear( for (\d+) seconds)?$
 
 element_is_not_visible_regex = ^(And )?I do not see [\"](.+)[\"] element$
-element_is_visible_regex = ^(And )?I see [\"](.+)[\"] element$
+element_is_visible_regex = ^(And )?I see [\"](?P<element_key>.+)[\"] (?P<element_type><element selector>)$
 element_wait_for_disappear_regex = ^(And )?I wait for [\"](.+)[\"] element to disappear( for (\d+) seconds)?$
 element_wait_for_presence_regex = ^(And )?I wait for [\"](.+)[\"] element to be present( for (\d+) seconds)?$
 element_drag_drop_regex = ^(And )?I drag the [\"](?P<from_element_key>.+)[\"] (?P<from_element_type>div) to the [\"](?P<to_element_key>.+)[\"] (?P<to_element_type>div)?$
