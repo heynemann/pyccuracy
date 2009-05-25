@@ -43,14 +43,11 @@ page_see_title_regex = ^(E )?[eE]u vejo o título [\"](.+)[\"]$
 page_wait_for_page_to_load_regex = ^(E )?[eE]u espero a página ser carregada( por (\d+) segundos)?$
 page_wait_for_seconds_regex = ^(E )?[eE]u espero por (\d+([.]\d+)?) segundo[s]?$
 
-button_mouseover_regex = ^(E )?[eE]u passo o mouse no botão [\"](.+)[\"]$
-
 checkbox_is_checked_regex = ^(E )?[eE]u vejo que a checkbox [\"](.+)[\"] está marcada$
 checkbox_is_not_checked_regex = ^(E )?[eE]u vejo que a checkbox [\"](.+)[\"] está desmarcada$
 checkbox_check_regex = ^(E )?[eE]u marco a checkbox [\"](.+)[\"]$
 checkbox_uncheck_regex = ^(E )?[eE]u desmarco a checkbox [\"](.+)[\"]$
 
-div_mouseover_regex = ^(E )?[eE]u passo o mouse no div [\"](.+)[\"]$
 div_contains_text_regex = ^(E )?[eE]u vejo que [oa] div [\"](.+)[\"] contém [\"](.+)[\"]$
 div_does_not_contain_text_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] não contém [\"](.+)[\"]$
 div_contains_markup_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] contém o markup [\"](.+)[\"]$
@@ -69,15 +66,15 @@ element_is_not_visible_regex = ^(E )?[eE]u não vejo [oa] (?P<element_type><elem
 element_is_visible_regex = ^(E )?[eE]u vejo [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"]$
 element_wait_for_disappear_regex = ^(E )?[eE]u espero o elemento [\"](.+)[\"] desaparecer( por (\d+) segundos)?$
 element_wait_for_presence_regex = ^(E )?[eE]u espero o elemento [\"](.+)[\"] aparecer( por (\d+) segundos)?$
-element_drag_drop_regex = ^(E )?[eE]u arrasto [oa] (?P<from_element_type>div) [\"](?P<from_element_key>.+)[\"] para [oa] (?P<to_element_type>div) [\"](?P<to_element_key>[^"]+)[\"]?$
+element_drag_drop_regex = ^(E )?[eE]u arrasto [oa] (?P<from_element_type><element selector>) [\"](?P<from_element_key>.+)[\"] para [oa] (?P<to_element_type><element selector>) [\"](?P<to_element_key>[^"]+)[\"]?$
+element_mouseover_regex = ^(E )?[eE]u passo o mouse n[oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"]$
+element_mouseout_regex = ^(E )?[eE]u retiro o mouse d[oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"]$
 
-image_mouseover_regex = ^(E )?[eE]u passo o mouse na imagem [\"](.+)[\"]$
 image_has_src_regex = ^(E )?[eE]u vejo que a imagem [\"](.+)[\"] tem src de [\"](.+)[\"]$
 image_does_not_have_src_regex = ^(E )?[eE]u vejo que a imagem [\"](.+)[\"] não tem src de [\"](.+)[\"]$
 
 link_has_href_regex = ^(E )?[eE]u vejo que o link [\"](.+)[\"] tem href [\"](.+)[\"]$
 link_has_text_regex = ^(E )?[eE]u vejo que o link [\"](.+)[\"] tem texto [\"](.+)[\"]$
-link_mouseover_regex = ^(E )?[eE]u passo o mouse no link [\"](.+)[\"]$
 
 select_has_selected_index_regex = ^(E )?[eE]u vejo que o índice selecionado da select [\"](.+)[\"] é (\d+)$
 select_has_selected_value_regex = ^(E )?[eE]u vejo que o valor selecionado da select [\"](.+)[\"] é [\"](.+)[\"]$
