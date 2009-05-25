@@ -12,31 +12,32 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
 import os
+import sys
 sys.path.insert(0,os.path.abspath(__file__+"/../../../"))
 from pyccuracy.page import Page
 from pyccuracy.actions.action_base import ActionBase
 from pyccuracy.actions.element_is_visible_base import *
 
-class LinkIsEnabledAction(ActionBase):
+class ElementIsEnabledAction(ActionBase):
     def __init__(self, browser_driver, language):
-        super(LinkIsEnabledAction, self).__init__(browser_driver, language)
+        super(ElementIsEnabledAction, self).__init__(browser_driver, language)
 
     def matches(self, line):
-        reg = self.language["link_is_enabled_regex"]
+        reg = self.language["element_is_enabled_regex"]
         self.last_match = reg.search(line)
         return self.last_match
 
     def values_for(self, line):
-        return self.last_match and (self.last_match.groups()[1],) or tuple([])
+        return self.last_match.groupdict()
 
     def execute(self, values, context):
-        link_name = values[0]		
-        link = self.resolve_element_key(context, Page.Link, link_name)
-        self.assert_element_is_visible(link, self.language["link_is_visible_failure"] % link_name)        
+        element_name = values["element_key"]
+        element_type = self.language[values["element_type"] + "_category"]
+        element = self.resolve_element_key(context, element_type, element_name)
         
-        error_message = self.language["link_is_enabled_failure"]
-        if not self.browser_driver.is_element_enabled(link):
-            self.raise_action_failed_error(error_message % link_name)
-
+        self.assert_element_is_visible(element, self.language["element_is_visible_failure"] % element_name)
+        
+        error_message = self.language["element_is_enabled_failure"]
+        if not self.browser_driver.is_element_enabled(element):
+            self.raise_action_failed_error(error_message % (values["element_type"], element_name))
