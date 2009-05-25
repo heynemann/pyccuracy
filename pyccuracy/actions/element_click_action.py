@@ -19,19 +19,25 @@ from pyccuracy.page import Page
 from pyccuracy.actions.action_base import ActionBase
 from pyccuracy.actions.element_is_visible_base import *
 
-class DivIsVisibleAction(ElementIsVisibleBase):
+class ElementClickAction(ActionBase):
     def __init__(self, browser_driver, language):
-        super(DivIsVisibleAction, self).__init__(browser_driver, language)
+        super(ElementClickAction, self).__init__(browser_driver, language)
 
     def matches(self, line):
-        reg = self.language["div_is_visible_regex"]
+        reg = self.language["element_click_regex"]
         self.last_match = reg.search(line)
         return self.last_match
 
     def values_for(self, line):
-        return self.last_match and (self.last_match.groups()[1],) or tuple([])
+        return self.last_match.groupdict()
 
     def execute(self, values, context):
-        div_name = values[0]
-        error_message = self.language["div_is_visible_failure"]
-        self.execute_is_visible(context, Page.Div, div_name, error_message)
+        element_name = values["element_key"]
+        element_type = self.language[values["element_type"] + "_category"]
+        should_wait = bool(values["should_wait"])
+        element_key = self.resolve_element_key(context, element_type, element_name)
+        self.assert_element_is_visible(element_key, self.language["element_is_visible_failure"] % element_name)
+        self.browser_driver.click_element(element_key)
+
+        if (should_wait):
+            self.browser_driver.wait_for_page()

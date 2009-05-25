@@ -43,7 +43,7 @@ class ActionBase(object):
             element_key = self.browser_driver.resolve_element_key(context, element_type, element_key)
             return element_key
 
-        return page.get_registered_element(element_type, element_key) or self.browser_driver.resolve_element_key(context, element_type, element_key)
+        return page.get_registered_element(element_key) or self.browser_driver.resolve_element_key(context, element_type, element_key)
 
     def is_element_empty(self, selector):
         is_empty = self.browser_driver.is_element_empty(selector)

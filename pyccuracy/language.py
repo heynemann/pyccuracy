@@ -39,14 +39,17 @@ class Language(object):
         except ValueError:
             raise LanguageParseError(culture, file_path)
 
-        for line in lines:
-            if not line.startswith("#"):
-                key, value = line.split("=")
-                key = key.strip()
-                value = force_unicode(value.strip())
-                if key.endswith("_regex"):
-                    value = re.compile(value, re.U)
-                self.language_items[key.strip()] = value
+        for line in [line for line in lines if not line.startswith("#")]:
+            key, value = line.split("=")
+            key = key.strip()
+            value = force_unicode(value.strip())
+
+            if "<element selector>" in value:
+                value = value.replace("<element selector>", self.language_items["supported_elements"])
+
+            if key.endswith("_regex"):
+                value = re.compile(value, re.U)
+            self.language_items[key.strip()] = value
 
     def __getitem__(self, key):
         item = self.language_items.get(key, None)
