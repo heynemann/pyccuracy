@@ -32,10 +32,10 @@ class LinkHasTextOfAction(ActionBase):
         return self.last_match and (self.last_match.groups()[1],self.last_match.groups()[2]) or tuple([])
 
     def execute(self, values, context):
-        link_name = values[0]		
+        link_name = values[0]
         text = values[1]
         link = self.resolve_element_key(context, Page.Link, link_name)
-        self.assert_element_is_visible(link, self.language["link_is_visible_failure"] % link_name)        
+        self.assert_element_is_visible(link, self.language["element_is_visible_failure"] % ("link", link_name))
         
         error_message = self.language["link_has_text_failure"]
         current_text = self.browser_driver.get_link_text(link)

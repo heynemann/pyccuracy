@@ -35,7 +35,7 @@ class TextboxContainsTextAction(ActionBase):
         textbox_name = values[0]
         text = values[1]
         textbox = self.resolve_element_key(context, Page.Textbox, textbox_name)
-        self.assert_element_is_visible(textbox, self.language["textbox_is_visible_failure"] % textbox_name)
+        self.assert_element_is_visible(textbox, self.language["element_is_visible_failure"] % ("textbox", textbox_name))
         
         current_text = self.browser_driver.get_element_text(textbox)
         if (not current_text) or (not text in current_text):

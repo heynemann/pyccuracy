@@ -35,7 +35,7 @@ class DivDoesNotContainMarkupAction(ActionBase):
         div_name = values[0]
         markup = values[1]
         div = self.resolve_element_key(context, Page.Div, div_name)
-        self.assert_element_is_visible(div, self.language["div_is_visible_failure"] % div_name)
+        self.assert_element_is_visible(div, self.language["element_is_visible_failure"] % ("div", div_name))
 
         current_markup = self.browser_driver.get_element_markup(div)
         if markup.lower() in current_markup.lower():

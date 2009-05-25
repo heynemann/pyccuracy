@@ -35,6 +35,5 @@ class TextboxTypeAction(ActionBase):
         textbox_name = values[0]
         text = values[1]
         textbox = self.resolve_element_key(context, Page.Textbox, textbox_name)
-        self.assert_element_is_visible(textbox, self.language["textbox_is_visible_failure"] % textbox_name)
+        self.assert_element_is_visible(textbox, self.language["element_is_visible_failure"] % ("textbox", textbox_name))
         self.browser_driver.type(textbox, text)
-        

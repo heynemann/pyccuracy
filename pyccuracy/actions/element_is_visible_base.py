@@ -25,8 +25,8 @@ class ElementIsVisibleBase(ActionBase):
 
     def execute_is_visible(self, context, element_type, element_name, not_visible_message):
         element = self.resolve_element_key(context, element_type, element_name)
-        self.assert_element_is_visible(element, not_visible_message % (element_name))
+        self.assert_element_is_visible(element, not_visible_message % (element_type, element_name))
 
     def execute_is_not_visible(self, context, element_type, element_name, visible_message):
         element = self.resolve_element_key(context, element_type, element_name)
-        self.assert_element_is_not_visible(element, visible_message % (element_name))
+        self.assert_element_is_not_visible(element, visible_message % (element_type, element_name))

@@ -37,9 +37,9 @@ class SelectOptionByIndexAction(ActionBase):
         index = values[0]
 
         select = self.resolve_element_key(context, Page.Select, select_name)
-        error_message = self.language["select_is_visible_failure"]
-        self.assert_element_is_visible(select, error_message % select_name)        
-        
+        error_message = self.language["element_is_visible_failure"]
+        self.assert_element_is_visible(select, error_message % ("select", select_name))
+
         result = self.browser_driver.select_option_by_index(select, index)
         
         if not result:

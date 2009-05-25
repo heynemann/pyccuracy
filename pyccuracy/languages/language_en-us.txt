@@ -43,15 +43,11 @@ page_see_title_regex = ^(And )?I see [\"](.+)[\"] title$
 page_wait_for_page_to_load_regex = ^(And )?I wait for the page to load( for (\d+) seconds)?$
 page_wait_for_seconds_regex = ^(And )?I wait for (\d+([.]d+)?) second[s]?$
 
-button_is_disabled_regex = ^(And )?I see [\"](.+)[\"] button is disabled$
-button_mouseover_regex = ^(And )?I mouseover [\"](.+)[\"] button$
-
 checkbox_is_checked_regex = ^(And )?I see the [\"](.+)[\"] checkbox is checked$
 checkbox_is_not_checked_regex = ^(And )?I see the [\"](.+)[\"] checkbox is not checked$
 checkbox_check_regex = ^(And )?I check the [\"](.+)[\"] checkbox$
 checkbox_uncheck_regex = ^(And )?I uncheck the [\"](.+)[\"] checkbox$
 
-div_mouseover_regex = ^(And )?I mouseover [\"](.+)[\"] div$
 div_contains_text_regex = ^(And )?I see [\"](.+)[\"] div contains [\"](.+)[\"]$
 div_does_not_contain_text_regex = ^(And )?I see [\"](.+)[\"] div does not contain [\"](.+)[\"]$
 div_contains_markup_regex = ^(And )?I see [\"](.+)[\"] div contains [\"](.+)[\"] markup$
@@ -64,21 +60,21 @@ div_wait_for_presence_regex = ^(And )?I wait for [\"](.+)[\"] div to be present(
 div_wait_for_disappear_regex = ^(And )?I wait for [\"](.+)[\"] div to disappear( for (\d+) seconds)?$
 
 element_is_enabled_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) is enabled$
+element_is_disabled_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) is disabled$
 element_click_regex = ^(And )?I click [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>)(?P<should_wait> and wait)?$
 element_is_not_visible_regex = ^(And )?I do not see [\"](?P<element_key>.+)[\"] (?P<element_type><element selector>)$
 element_is_visible_regex = ^(And )?I see [\"](?P<element_key>.+)[\"] (?P<element_type><element selector>)$
 element_wait_for_disappear_regex = ^(And )?I wait for [\"](.+)[\"] element to disappear( for (\d+) seconds)?$
 element_wait_for_presence_regex = ^(And )?I wait for [\"](.+)[\"] element to be present( for (\d+) seconds)?$
 element_drag_drop_regex = ^(And )?I drag the [\"](?P<from_element_key>.+)[\"] (?P<from_element_type>div) to the [\"](?P<to_element_key>.+)[\"] (?P<to_element_type>div)?$
+element_mouseover_regex = ^(And )?I mouseover [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>)$
+element_mouseout_regex = ^(And )?I mouseout [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>)$
 
-image_mouseover_regex = ^(And )?I mouseover [\"](.+)[\"] image$
 image_has_src_regex = ^(And )?I see [\"](.+)[\"] image has src of [\"](.+)[\"]$
 image_does_not_have_src_regex = ^(And )?I see [\"](.+)[\"] image does not have src of [\"](.+)[\"]$
 
-link_is_disabled_regex = ^(And )?I see [\"](.+)[\"] link is disabled$
 link_has_href_regex = ^(And )?I see [\"](.+)[\"] link has [\"](.+)[\"] href$
 link_has_text_regex = ^(And )?I see [\"](.+)[\"] link has [\"](.+)[\"] text$
-link_mouseover_regex = ^(And )?I mouseover [\"](.+)[\"] link$
 
 select_has_selected_index_regex = ^(And )?I see [\"](.+)[\"] select has selected index of (\d+)$
 select_has_selected_value_regex = ^(And )?I see [\"](.+)[\"] select has selected value of [\"](.+)[\"]$
@@ -86,7 +82,6 @@ select_has_selected_text_regex = ^(And )?I see [\"](.+)[\"] select has selected 
 select_option_by_index_regex = ^(And )?I select the option with index of (\d+) in [\"](.+)[\"] select$
 select_option_by_value_regex = ^(And )?I select the option with value of [\"](.+)[\"] in [\"](.+)[\"] select$
 select_option_by_text_regex = ^(And )?I select the option with text of [\"](.+)[\"] in [\"](.+)[\"] select$
-select_is_disabled_regex = ^(And )?I see [\"](.+)[\"] select is disabled$
 select_does_not_have_selected_index_regex = ^(And )?I see [\"](.+)[\"] select does not have selected index of (\d+)$
 select_does_not_have_selected_value_regex = ^(And )?I see [\"](.+)[\"] select does not have selected value of [\"](.+)[\"]$
 select_does_not_have_selected_text_regex = ^(And )?I see [\"](.+)[\"] select does not have selected text of [\"](.+)[\"]$
@@ -98,14 +93,11 @@ textbox_matches_text_regex = ^(And )?I see [\"](.+)[\"] textbox matches [\"](.+)
 textbox_does_not_match_text_regex = ^(And )?I see [\"](.+)[\"] textbox does not match [\"](.+)[\"]$
 textbox_is_empty_regex = ^(And )?I see [\"](.+)[\"] textbox is empty$
 textbox_is_not_empty_regex = ^(And )?I see [\"](.+)[\"] textbox is not empty$
-textbox_is_disabled_regex = ^(And )?I see [\"](.+)[\"] textbox is disabled$
 textbox_clean_regex = ^(And )?I clean [\"](.+)[\"] textbox$
 
 #Action Failure Messages
 page_go_to_failure = The url "%s" is not valid. Did you forget to use the -u (or --url) parameter ?
 page_see_title_failure = The page title (%s) does not match the expected title (%s)
-
-button_is_disabled_failure = The button with name or id %s is enabled, when it should be enabled.
 
 checkbox_is_checked_failure = The checkbox with name or id %s is not checked and should be.
 checkbox_is_not_checked_failure = The checkbox with name or id %s is checked and should not be.
@@ -119,7 +111,7 @@ div_matches_markup_failure = The div with name or id %s should match "%s" markup
 div_does_not_match_markup_failure = The div with name or id %s should not match "%s" markup, but it's current markup is "%s".
 
 element_is_enabled_failure = The %s with name or id %s is disabled, when it should be enabled.
-element_is_disabled_failure = The %s with name or id %s is enabled, when it should be enabled.
+element_is_disabled_failure = The %s with name or id %s is enabled, when it should be disabled.
 element_is_visible_failure = The %s with name or id %s does not exist or is not visible.
 element_is_not_visible_failure = The %s with name or id %s is visible, when it should not exist or be visible.
 element_wait_for_disappear_failure = The element with name or id %s should disappear within %d second(s), but it still present.
@@ -129,7 +121,6 @@ element_is_not_visible_for_drag_failure = The element being dragged (%s) does no
 image_has_src_failure = The image with name or id %s should have "%s" as src, but has "%s".
 image_does_not_have_src_failure = The image with name or id %s should not have "%s" as src, but has "%s".
 
-link_is_disabled_failure = The link with name or id %s is enabled, when it should be disabled.
 link_has_href_failure = The link with name or id %s should have "%s" as href, but has "%s".
 link_has_text_failure = The link with name or id %s should have "%s" as text, but has "%s".
 
@@ -138,7 +129,6 @@ radio_button_more_than_one_element_returned_failure = More than one element was 
 select_has_selected_index_failure = The selected index for select with name or id %s should be %d, but is %d.
 select_has_selected_value_failure = The selected value for select with name or id %s should be %s, but is %s.
 select_has_selected_text_failure = The selected text for select with name or id %s should be %s, but is %s.
-select_is_disabled_failure = The select with name or id %s is enabled, when it should be disabled.
 select_does_not_have_selected_index_failure = The selected index for select with name or id %s should not be %d, but it is %d.
 select_does_not_have_selected_value_failure = The selected value for select with name or id %s should not be %s, but it is %s.
 select_does_not_have_selected_text_failure = The selected text for select with name or id %s should not be %s, but is %s.
@@ -152,7 +142,6 @@ textbox_matches_text_failure = The textbox with name or id %s should match "%s",
 textbox_does_not_match_text_failure = The textbox with name or id %s shouldn't match "%s", but it's current text is "%s".
 textbox_is_empty_failure = The textbox with name or id %s is not empty.
 textbox_is_not_empty_failure = The textbox with name or id %s is empty.
-textbox_is_disabled_failure = The textbox with name or id %s is enabled, when it should be disabled.
 
 #Error Messages
 invalid_scenario_error = \n>>>>>>>>>>>>>> "%s" <<<<<<<<<<<<<<\n\nThe line above does not match any actions. \nIf you just need a text like "I wait for the page to finish loading"\n or something like this, prefix your line with a # sign. \n\nScenario: %s - %s\nFilename: %s

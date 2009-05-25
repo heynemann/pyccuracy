@@ -34,6 +34,6 @@ class CheckboxIsCheckedAction(ActionBase):
     def execute(self, values, context):
         checkbox_name = values[0]
         checkbox = self.resolve_element_key(context, Page.Checkbox, checkbox_name)
-        self.assert_element_is_visible(checkbox, self.language["checkbox_is_visible_failure"] % checkbox_name)
+        self.assert_element_is_visible(checkbox, self.language["element_is_visible_failure"] % ("checkbox", checkbox_name))
         if not self.browser_driver.checkbox_is_checked(checkbox):
             self.raise_action_failed_error(self.language["checkbox_is_checked_failure"] % checkbox_name)
