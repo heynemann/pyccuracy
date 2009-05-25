@@ -19,27 +19,25 @@ from pyccuracy.page import Page
 from pyccuracy.actions.action_base import ActionBase
 from pyccuracy.actions.element_is_visible_base import *
 
-class LinkClickAction(ActionBase):
+class ElementClickAction(ActionBase):
     def __init__(self, browser_driver, language):
-        super(LinkClickAction, self).__init__(browser_driver, language)
+        super(ElementClickAction, self).__init__(browser_driver, language)
 
     def matches(self, line):
-        reg = self.language["link_click_regex"]
+        reg = self.language["element_click_regex"]
         self.last_match = reg.search(line)
         return self.last_match
 
     def values_for(self, line):
-        if self.last_match:
-            groups = self.last_match.groups()
-            return (groups[1], groups[2] is not None)
-        else:
-            return tuple([])
+        return self.last_match.groupdict()
 
     def execute(self, values, context):
-        link_name = values[0]
-        link = self.resolve_element_key(context, Page.Link, link_name)
-        self.assert_element_is_visible(link, self.language["link_is_visible_failure"] % link_name)
-        self.browser_driver.click_element(link)
+        element_name = values["element_key"]
+        element_type = self.language[values["element_type"] + "_category"]
+        should_wait = bool(values["should_wait"])
+        element_key = self.resolve_element_key(context, element_type, element_name)
+        self.assert_element_is_visible(element_key, self.language["element_is_visible_failure"] % element_name)
+        self.browser_driver.click_element(element_key)
 
-        if values[1]:
+        if (should_wait):
             self.browser_driver.wait_for_page()
