@@ -21,10 +21,10 @@ class BrowserDriver(object):
     def __init__(self, browser_to_run, tests_dir):
         self.__browser__ = browser_to_run
         self.root_dir = tests_dir
-    
+
     def resolve_element_key(self, context, element_type, element_key):
         raise NotImplementedError
-    
+
     def __wait_for_server_to_start(self):
         server_started = False
         while server_started == False:
@@ -47,7 +47,7 @@ class BrowserDriver(object):
 
     def start(self):
         pass
-        
+
     def get_xpath_count(self, xpath):
         raise NotImplementedError
 
@@ -57,13 +57,13 @@ class BrowserDriver(object):
 
     def start_test(self, url = "http://www.someurl.com"):
         raise NotImplementedError
-    
+
     def page_open(self, url):
         raise NotImplementedError
 
     def clean_input(self, input_selector):
         raise NotImplementedError
-        
+
     def type(self, input_selector, text):
         raise NotImplementedError
 
@@ -130,6 +130,9 @@ class BrowserDriver(object):
     def mouseover_element(self, element_selector):
         raise NotImplementedError
 
+    def mouseout_element(self, element_selector):
+        raise NotImplementedError
+
     def is_element_empty(self, element_selector):
         raise NotImplementedError
 
@@ -147,7 +150,7 @@ class BrowserDriver(object):
 
     def stop(self):
         pass
-    
+
     def __get_attribute_value(self, element, attribute):
         raise NotImplementedError
-    
+

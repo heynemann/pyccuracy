@@ -60,7 +60,7 @@ class SeleniumBrowserDriver(BrowserDriver):
 
     def get_title(self):
         return self.selenium.get_title()
-        
+
     def get_xpath_count(self, xpath):
         return self.selenium.get_xpath_count(xpath)
 
@@ -100,13 +100,13 @@ class SeleniumBrowserDriver(BrowserDriver):
         text = ""
         tag_name_script = """this.page().findElement("%s").tagName;"""
         tag_name = self.selenium.get_eval(tag_name_script % element_selector).lower()
-        
+
         properties = {
                         "input" : "value",
                         "textarea" : "value",
                         "div" : "innerHTML"
                      }
-        
+
         script = """this.page().findElement("%s").%s;"""
         try:
             # if the element is not in the dict above, I'll assume that we need to use "innerHTML"
@@ -116,8 +116,8 @@ class SeleniumBrowserDriver(BrowserDriver):
                              (element_selector, tag_name, ", ".join(properties.keys)))
 
         if script_return != "null":
-            text = script_return        
-        
+            text = script_return
+
         return text
 
     def get_element_markup(self, element_selector):
@@ -156,6 +156,9 @@ class SeleniumBrowserDriver(BrowserDriver):
 
     def mouseover_element(self, element_selector):
         self.selenium.mouse_over(element_selector)
+
+    def mouseout_element(self, element_selector):
+        self.selenium.mouse_out(element_selector)
 
     def is_element_empty(self, element_selector):
         current_text = self.get_element_text(element_selector)

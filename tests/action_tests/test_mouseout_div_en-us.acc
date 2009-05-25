@@ -1,0 +1,14 @@
+As a Pyccuracy User
+I want to test the mouseover div action
+So that I can make sure Pyccuracy works
+
+Scenario 1 - Checking that we can mouseout a div
+Given
+	I go to "div_tests.htm"
+	And I see "divMouseOutChild" div
+When
+        I mouseover "divMouseOut" div
+	And I do not see "divMouseOutChild" div
+        And I mouseout "divMouseOut" div
+Then
+	I see "divMouseOutChild" div

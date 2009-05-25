@@ -1,0 +1,14 @@
+Como um usuário do Pyccuracy
+Eu quero testar a ação de passar o mouse um div
+Para garantir que o Pyccuracy funciona em outras línguas
+
+Cenário 1 - Retirando o mouse em um div
+Dado que
+	Eu navego para "div_tests.htm"
+	E eu vejo o div "divMouseOutChild"
+Quando
+        Eu passo o mouse no div "divMouseOut"
+	E eu não vejo o div "divMouseOutChild"
+	E eu retiro o mouse do div "divMouseOut"
+Então
+	Eu vejo o div "divMouseOutChild"
