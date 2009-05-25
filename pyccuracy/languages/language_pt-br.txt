@@ -38,7 +38,7 @@ test_run_timing = Duração dos Testes
 scenario_starter_regex = ^Cenário (\d+) - (.+)$
 
 #Regular Expressions de Acoes
-page_go_to_regex = ^(E )?[eE]u navego para ([\"]([\w:/.]+)[\"]|([\w\s]+))$
+page_go_to_regex = ^(E )?[eE]u navego para ([\"]([\w:/._-]+)[\"]|([\w\s_.-]+))$
 page_see_title_regex = ^(E )?[eE]u vejo o título [\"](.+)[\"]$
 page_wait_for_page_to_load_regex = ^(E )?[eE]u espero a página ser carregada( por (\d+) segundos)?$
 page_wait_for_seconds_regex = ^(E )?[eE]u espero por (\d+([.]\d+)?) segundo[s]?$
@@ -102,6 +102,7 @@ textbox_is_disabled_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] e
 textbox_clean_regex = ^(E )?[eE]u limpo a caixa de texto [\"](.+)[\"]$
 
 #Action Failure Messages
+page_go_to_failure = A url "%s" não é válida. Você esqueceu de usar o parâmetro -u (ou --url) ?
 page_see_title_failure = O título da página (%s) não bate com o título esperado (%s)
 
 button_is_disabled_failure = O botão com nome ou id %s está habilitado, quando deveria estar desabilitado.

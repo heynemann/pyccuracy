@@ -35,10 +35,10 @@ class InvalidScenarioError(Exception):
 
     def __str__(self):
         return unicode(self.message)
-        
+
     def __unicode__(self):
         return self.message
-        
+
 class LanguageParseError(Exception):
     def __init__(self, culture, file_path, error_message = "The language file for %s could not be parsed at %s!"):
         self.culture = culture
@@ -47,7 +47,7 @@ class LanguageParseError(Exception):
 
     def __str__(self):
         return unicode(self.error_message) % (self.culture, self.file_path)
-        
+
 class SelectOptionError(Exception):
     def __init__(self, message):
         self.message = message
@@ -55,7 +55,7 @@ class SelectOptionError(Exception):
 
     def __str__(self):
         return unicode(self.message)
-        
+
     def __unicode__(self):
         return self.message
 
