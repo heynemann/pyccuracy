@@ -55,7 +55,7 @@ class SeleniumBrowserDriver(BrowserDriver):
     def is_element_visible(self, element_selector):
         return self.selenium.is_element_present(element_selector) and self.selenium.is_visible(element_selector)
 
-    def wait_for_page(self, timeout = 20000):
+    def wait_for_page(self, timeout=10000):
         self.selenium.wait_for_page_to_load(timeout)
 
     def get_title(self):

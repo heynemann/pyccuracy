@@ -242,7 +242,7 @@
 <body><table border="0" cellspacing="0" cellpadding="0" width="100%">
 <tr><td class="header">
         Pyccuracy - Tests Run Report -
-        <span class="date">25/05/2009 16:24:12</span>
+        <span class="date">26/05/2009 12:11:45</span>
 </td></tr>
 <tr><td class="report" style="padding-top: 6px; padding-bottom: 6px; padding-left: 12px;                 padding-right: 12px;">
 <table border="0" cellspacing="0" cellpadding="0" style="width: 33%">
@@ -266,47 +266,47 @@
 <b>
         Story 1: [<a href="javascript:" onclick="toggle('div_1');">Collapse/Expand
         </a>]
-      </b><br>As a  Pyccuracy User<br>I want to  test the go to page action<br>So that  I can make sure Pyccuracy works</div>
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar que o Pyccuracy gerencia erros de timeout corretamente<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
 <div style="display:block;" class="failedScenarios" id="div_1"><div style="padding-top:6px; width:100%;">
 <b class="failedScenarioTitle">
-        Scenario 1</b>: Checking that pyccuracy prevents the user to set a wrong url<br>
+        Scenario 1</b>: Verificando erro de timeout<br>
       Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
 <colgroup>
 <col>
 <col style="width: 200px;">
 </colgroup>
 <tr class="odd">
-<td class="condition"><b>Given</b></td>
+<td class="condition"><b>Dado que</b></td>
 <td>
            
         </td>
 </tr>
 <tr class="even">
-<td class="action"><b><font color="red">I go to "invalid-url" - The url "invalid-url" is not valid. Did you forget to use the -u (or --url) parameter ?</font></b></td>
+<td class="action"><b>Eu navego para "test_wait_for_element_error.htm"</b></td>
 <td class="actionTime">
-          [Mon May 25 16:24:11 2009]
+          [Tue May 26 12:11:34 2009]
         </td>
 </tr>
 <tr class="odd">
-<td class="condition"><b>When</b></td>
+<td class="condition"><b>Quando</b></td>
 <td>
            
         </td>
 </tr>
 <tr class="even">
-<td class="action"><b><font color="#555555">#I wait for the page to load</font></b></td>
+<td class="action"><b><font color="red">Eu clico no botão "btnTest" e espero - A ação de esperar a página carregar não foi executada com sucesso após um timeout de 10000 milisegundos.</font></b></td>
 <td class="actionTime">
-          [Unknown]
+          [Tue May 26 12:11:35 2009]
         </td>
 </tr>
 <tr class="odd">
-<td class="condition"><b>Then</b></td>
+<td class="condition"><b>Então</b></td>
 <td>
            
         </td>
 </tr>
 <tr class="even">
-<td class="action"><b><font color="#555555">#I see that works</font></b></td>
+<td class="action"><b><font color="#555555">#se chegou aqui tem algo errado.</font></b></td>
 <td class="actionTime">
           [Unknown]
         </td>

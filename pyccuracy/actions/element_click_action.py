@@ -40,4 +40,11 @@ class ElementClickAction(ActionBase):
         self.browser_driver.click_element(element_key)
 
         if (should_wait):
-            self.browser_driver.wait_for_page()
+            timeout = 10000
+            try:
+                self.browser_driver.wait_for_page(timeout=timeout)
+            except Exception, error:
+                if str(error) == "Timed out after %dms" % timeout:
+                    self.raise_action_failed_error(self.language["timeout_failure"] % timeout)
+                else:
+                    raise

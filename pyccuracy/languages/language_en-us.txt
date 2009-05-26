@@ -146,6 +146,8 @@ textbox_does_not_match_text_failure = The textbox with name or id %s shouldn't m
 textbox_is_empty_failure = The textbox with name or id %s is not empty.
 textbox_is_not_empty_failure = The textbox with name or id %s is empty.
 
+timeout_failure = The action wait for page to load timed out after waiting for %d ms.
+
 #Error Messages
 invalid_scenario_error = \n>>>>>>>>>>>>>> "%s" <<<<<<<<<<<<<<\n\nThe line above does not match any actions. \nIf you just need a text like "I wait for the page to finish loading"\n or something like this, prefix your line with a # sign. \n\nScenario: %s - %s\nFilename: %s
 language_lookup_error = The key %s was not found in the language definitions.
