@@ -16,7 +16,7 @@ import os
 import sys
 import time
 import urllib2
-
+import threading
 from selenium import *
 from browser_driver import *
 from selenium_element_selector import SeleniumElementSelector
@@ -24,6 +24,7 @@ from selenium_element_selector import SeleniumElementSelector
 class SeleniumBrowserDriver(BrowserDriver):
     def __init__(self, browser_to_run, tests_dir, extra_args):
         super(type(self),self).__init__(browser_to_run, tests_dir)
+        self.local = threading.local()
         if extra_args.has_key("selenium.server"):
             self.__host__ = extra_args["selenium.server"]
         else:
@@ -38,37 +39,41 @@ class SeleniumBrowserDriver(BrowserDriver):
 
         return SeleniumElementSelector.element(element_type, element_key)
 
-    def start_test(self, url = "http://localhost"):
-        self.selenium = selenium(self.__host__, self.__port__, self.__browser__, url)
+    def start_test(self, url="http://localhost"):
+        print "Starting selenium at %s:%s with browser %s at url %s" % (self.__host__, self.__port__, self.__browser__, url)
+
+        self.local.selenium = selenium(self.__host__, self.__port__, self.__browser__, url)
+
         try:
-            self.selenium.start()
+            self.local.selenium.start()
         except Exception, e:
             sys.stderr.write("Error when starting selenium. Is it running ? Error: %s\n" % unicode(e))
             sys.exit(1)
 
     def page_open(self, url):
-        self.selenium.open(url)
+        print "Opening url %s" % url
+        self.local.selenium.open(url)
 
     def type(self, input_selector, text):
-        self.selenium.type(input_selector, text)
+        self.local.selenium.type(input_selector, text)
 
     def clean_input(self, input_selector):
-        self.selenium.type(input_selector, "")
+        self.local.selenium.type(input_selector, "")
 
     def click_element(self, element_selector):
-        self.selenium.click(element_selector)
+        self.local.selenium.click(element_selector)
 
     def is_element_visible(self, element_selector):
-        return self.selenium.is_element_present(element_selector) and self.selenium.is_visible(element_selector)
+        return self.local.selenium.is_element_present(element_selector) and self.local.selenium.is_visible(element_selector)
 
     def wait_for_page(self, timeout=10000):
-        self.selenium.wait_for_page_to_load(timeout)
+        self.local.selenium.wait_for_page_to_load(timeout)
 
     def get_title(self):
-        return self.selenium.get_title()
+        return self.local.selenium.get_title()
 
     def get_xpath_count(self, xpath):
-        return self.selenium.get_xpath_count(xpath)
+        return self.local.selenium.get_xpath_count(xpath)
 
     def get_class(self, name):
         klass = self.__get_attribute_value(name, 'class')
@@ -77,7 +82,7 @@ class SeleniumBrowserDriver(BrowserDriver):
     def is_element_enabled(self, element):
         script = """this.page().findElement("%s").disabled;"""
 
-        script_return = self.selenium.get_eval(script % element)
+        script_return = self.local.selenium.get_eval(script % element)
         if script_return == "null":
             is_disabled = self.__get_attribute_value(element, "disabled")
         else:
@@ -85,27 +90,27 @@ class SeleniumBrowserDriver(BrowserDriver):
         return not is_disabled
 
     def checkbox_is_checked(self, checkbox_selector):
-        return self.selenium.is_checked(checkbox_selector)
+        return self.local.selenium.is_checked(checkbox_selector)
 
     def checkbox_check(self, checkbox_selector):
-        self.selenium.check(checkbox_selector)
+        self.local.selenium.check(checkbox_selector)
 
     def checkbox_uncheck(self, checkbox_selector):
-        self.selenium.uncheck(checkbox_selector)
+        self.local.selenium.uncheck(checkbox_selector)
 
     def get_selected_index(self, element_selector):
-        return int(self.selenium.get_selected_index(element_selector))
+        return int(self.local.selenium.get_selected_index(element_selector))
 
     def get_selected_value(self, element_selector):
-        return self.selenium.get_selected_value(element_selector)
+        return self.local.selenium.get_selected_value(element_selector)
 
     def get_selected_text(self, element_selector):
-        return self.selenium.get_selected_label(element_selector)
+        return self.local.selenium.get_selected_label(element_selector)
 
     def get_element_text(self, element_selector):
         text = ""
         tag_name_script = """this.page().findElement("%s").tagName;"""
-        tag_name = self.selenium.get_eval(tag_name_script % element_selector).lower()
+        tag_name = self.local.selenium.get_eval(tag_name_script % element_selector).lower()
 
         properties = {
                         "input" : "value",
@@ -116,7 +121,7 @@ class SeleniumBrowserDriver(BrowserDriver):
         script = """this.page().findElement("%s").%s;"""
         try:
             # if the element is not in the dict above, I'll assume that we need to use "innerHTML"
-            script_return = self.selenium.get_eval(script % (element_selector, properties.get(tag_name, "innerHTML")))
+            script_return = self.local.selenium.get_eval(script % (element_selector, properties.get(tag_name, "innerHTML")))
         except KeyError, err:
             raise ValueError("The tag for element selector %s is %s and Pyccuracy only supports the following tags: %s",
                              (element_selector, tag_name, ", ".join(properties.keys)))
@@ -128,7 +133,7 @@ class SeleniumBrowserDriver(BrowserDriver):
 
     def get_element_markup(self, element_selector):
         script = """this.page().findElement("%s").innerHTML;"""
-        script_return = self.selenium.get_eval(script % element_selector)
+        script_return = self.local.selenium.get_eval(script % element_selector)
         return script_return != "null" and script_return or ""
 
     def select_option_by_index(self, element_selector, index):
@@ -143,7 +148,7 @@ class SeleniumBrowserDriver(BrowserDriver):
     def __select_option(self, element_selector, option_selector, option_value):
         error_message = "Option with %s '%s' not found" % (option_selector, option_value)
         try:
-            self.selenium.select(element_selector, "%s=%s" % (option_selector, option_value))
+            self.local.selenium.select(element_selector, "%s=%s" % (option_selector, option_value))
         except Exception, error:
             if error.message == error_message:
                 return False
@@ -158,13 +163,13 @@ class SeleniumBrowserDriver(BrowserDriver):
         return self.__get_attribute_value(image_selector, "src")
 
     def get_link_text(self, link_selector):
-        return self.selenium.get_text(link_selector)
+        return self.local.selenium.get_text(link_selector)
 
     def mouseover_element(self, element_selector):
-        self.selenium.mouse_over(element_selector)
+        self.local.selenium.mouse_over(element_selector)
 
     def mouseout_element(self, element_selector):
-        self.selenium.mouse_out(element_selector)
+        self.local.selenium.mouse_out(element_selector)
 
     def is_element_empty(self, element_selector):
         current_text = self.get_element_text(element_selector)
@@ -195,15 +200,15 @@ class SeleniumBrowserDriver(BrowserDriver):
         return False
 
     def drag_element(self, from_element_selector, to_element_selector):
-        self.selenium.drag_and_drop_to_object(from_element_selector, to_element_selector)
+        self.local.selenium.drag_and_drop_to_object(from_element_selector, to_element_selector)
 
     def stop_test(self):
-        self.selenium.stop()
+        self.local.selenium.stop()
 
     def __get_attribute_value(self, element, attribute):
         try:
             locator = element + "/@" + attribute
-            attr_value = self.selenium.get_attribute(locator)
+            attr_value = self.local.selenium.get_attribute(locator)
         except Exception, inst:
             if "Could not find element attribute" in str(inst):
                 attr_value = None

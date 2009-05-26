@@ -67,7 +67,7 @@ class ActionBase(object):
             if action.__class__.__name__!="ActionBase" and action.matches(action_text):
                 action.execute(action.values_for(action_text), context)
                 found = True
-                
+
         if not found:
             raise RuntimeError('The specified line("%s") didn\'t match any custom or built-in actions.' % (action_text,))
 

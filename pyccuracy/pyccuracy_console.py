@@ -32,17 +32,19 @@ __release__ = "tylenol"
 __version_string__ = "pyccuracy %s (release '%s')" % (__revision__, __release__)
 __docformat__ = 'restructuredtext en'
 
-import os, sys, optparse
+import os
+import sys
+import optparse
 from pyccuracy.pyccuracy_core import PyccuracyCore
 
 def main():
     """ Main function - parses args and runs action """
-    
+
     extra_browser_driver_arguments = "\n\nThe following extra browser driver arguments " \
                                      " are supported in the key=value format:\n\nSelenium Browser Driver:\n" \
                                      "-selenium.server=ip or name of selenium server or grid\n" \
                                      "-selenium.port=port of the given selenium server or grid\n"
-    
+
     parser = optparse.OptionParser(usage="%prog or type %prog -h (--help) for help" + extra_browser_driver_arguments, description=__doc__, version=__version_string__)
     parser.add_option("-p", "--pattern", dest="pattern", default="*.acc", help="File pattern. Defines which files will get executed [default: %default].")
     parser.add_option("-s", "--scenarios", dest="scenarios_to_run", default=None, help="Run only the given scenarios, comma separated. I.e: --scenarios=1,4,9")
@@ -54,6 +56,7 @@ def main():
     parser.add_option("-P", "--pagesdir", dest="pages_dir", default=None, help="Pages directory. Defines where the Pyccuracy custom pages are. If you don't change this parameter Pyccuracy will use the tests directory [default: %default].")
     parser.add_option("-u", "--url", dest="url", default=None, help="Base URL. Defines a base url against which the tests will get executed. For more details check the documentation [default: %default].")
     parser.add_option("-b", "--browser", dest="browser_to_run", default="firefox", help="Browser to run. Browser driver will use it to run tests [default: %default].")
+    parser.add_option("-w", "--workers", dest="workers", default=1, help="How many workers must be spawned to parallelize the test running. [default: %default].")
 
     #browser driver
     parser.add_option("-e", "--browserdriver", dest="browser_driver", default="selenium", help="Browser Driver to be used on tests. [default: %default].")
@@ -69,6 +72,7 @@ def main():
 
     pyc = PyccuracyCore()
 
+
     extra_args = {}
     if args:
         for arg in args:
@@ -76,6 +80,12 @@ def main():
                 raise ValueError("The specified extra argument should be in the form of key=value and not %s" % arg)
             key, value = arg.split('=')
             extra_args[key] = value
+
+    try:
+        number_of_threads = int(options.workers)
+    except ValueError:
+        sys.stderr.write("The number of threads (-w or --workers) must be an integer. Got %r\n" % options.workers)
+        sys.exit(1)
 
     result = pyc.run_tests(actions_dir=options.actions_dir,
                            custom_actions_dir=options.custom_actions_dir,
@@ -90,6 +100,7 @@ def main():
                            report_file_dir=options.report_dir,
                            report_file_name=options.report_file_name,
                            browser_to_run=options.browser_to_run,
+                           threads=number_of_threads,
                            browser_driver=options.browser_driver,
                            should_throw=options.should_throw,
                            extra_args=extra_args)
