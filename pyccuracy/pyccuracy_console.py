@@ -27,7 +27,9 @@ Example usage
 # "line to long" pylint: disable-msg=C0301
 # "Used * or ** magic" pylint: disable-msg=W0142
 
-__revision__ = "$Id$"
+__revision__ = "0.5.1"
+__release__ = "tylenol"
+__version_string__ = "pyccuracy %s (release '%s')" % (__revision__, __release__)
 __docformat__ = 'restructuredtext en'
 
 import os, sys, optparse
@@ -35,7 +37,7 @@ from pyccuracy.pyccuracy_core import PyccuracyCore
 
 def main():
     """ Main function - parses args and runs action """
-    parser = optparse.OptionParser(usage="%prog or type %prog -h (--help) for help", description=__doc__, version="%prog" + __revision__)
+    parser = optparse.OptionParser(usage="%prog or type %prog -h (--help) for help", description=__doc__, version=__version_string__)
     parser.add_option("-p", "--pattern", dest="pattern", default="*.acc", help="File pattern. Defines which files will get executed [default: %default].")
     parser.add_option("-s", "--scenarios", dest="scenarios_to_run", default=None, help="Run only the given scenarios, comma separated. I.e: --scenarios=1,4,9")
     parser.add_option("-l", "--language", dest="language", default="en-us", help="Language. Defines which language the dictionary will be loaded with  [default: %default].")
