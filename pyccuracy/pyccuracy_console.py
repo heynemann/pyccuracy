@@ -37,7 +37,13 @@ from pyccuracy.pyccuracy_core import PyccuracyCore
 
 def main():
     """ Main function - parses args and runs action """
-    parser = optparse.OptionParser(usage="%prog or type %prog -h (--help) for help", description=__doc__, version=__version_string__)
+    
+    extra_browser_driver_arguments = "\n\nThe following extra browser driver arguments " \
+                                     " are supported in the key=value format:\n\nSelenium Browser Driver:\n" \
+                                     "-selenium.server=ip or name of selenium server or grid\n" \
+                                     "-selenium.port=port of the given selenium server or grid\n"
+    
+    parser = optparse.OptionParser(usage="%prog or type %prog -h (--help) for help" + extra_browser_driver_arguments, description=__doc__, version=__version_string__)
     parser.add_option("-p", "--pattern", dest="pattern", default="*.acc", help="File pattern. Defines which files will get executed [default: %default].")
     parser.add_option("-s", "--scenarios", dest="scenarios_to_run", default=None, help="Run only the given scenarios, comma separated. I.e: --scenarios=1,4,9")
     parser.add_option("-l", "--language", dest="language", default="en-us", help="Language. Defines which language the dictionary will be loaded with  [default: %default].")
@@ -63,8 +69,15 @@ def main():
 
     pyc = PyccuracyCore()
 
-    result = pyc.run_tests(
-                           actions_dir=options.actions_dir,
+    extra_args = {}
+    if args:
+        for arg in args:
+            if not "=" in arg:
+                raise ValueError("The specified extra argument should be in the form of key=value and not %s" % arg)
+            key, value = arg.split('=')
+            extra_args[key] = value
+
+    result = pyc.run_tests(actions_dir=options.actions_dir,
                            custom_actions_dir=options.custom_actions_dir,
                            pages_dir=options.pages_dir,
                            languages_dir=options.languages_dir,
@@ -78,7 +91,8 @@ def main():
                            report_file_name=options.report_file_name,
                            browser_to_run=options.browser_to_run,
                            browser_driver=options.browser_driver,
-                           should_throw=options.should_throw)
+                           should_throw=options.should_throw,
+                           extra_args=extra_args)
 
     if result.status != "SUCCESSFUL":
         sys.exit(1)

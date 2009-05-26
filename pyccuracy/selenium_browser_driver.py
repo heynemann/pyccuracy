@@ -22,10 +22,16 @@ from browser_driver import *
 from selenium_element_selector import SeleniumElementSelector
 
 class SeleniumBrowserDriver(BrowserDriver):
-    def __init__(self, browser_to_run, tests_dir):
+    def __init__(self, browser_to_run, tests_dir, extra_args):
         super(type(self),self).__init__(browser_to_run, tests_dir)
-        self.__port__ = 4444
-        self.__host__ = "localhost"
+        if extra_args.has_key("selenium.server"):
+            self.__host__ = extra_args["selenium.server"]
+        else:
+            self.__host__ = "localhost"
+        if extra_args.has_key("selenium.port"):
+            self.__port__ = int(extra_args["selenium.port"])
+        else:
+            self.__port__ = 4444
 
     def resolve_element_key(self, context, element_type, element_key):
         if context == None: return element_key

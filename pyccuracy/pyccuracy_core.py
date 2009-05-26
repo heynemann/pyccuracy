@@ -44,7 +44,8 @@ class PyccuracyCore(object):
                           write_report,
                           browser_to_run,
                           browser_driver,
-                          context):
+                          context,
+                          extra_args):
         IoC.reset()
 
         if not languages_dir:
@@ -78,7 +79,8 @@ class PyccuracyCore(object):
                            browser_driver=browser_driver,
                            write_report=write_report,
                            report_file_dir=report_file_dir,
-                           report_file_name=report_file_name)
+                           report_file_name=report_file_name,
+                           extra_args=extra_args)
         try:
             self.context = IoC.resolve(PyccuracyContext)
         except Exception, err:
@@ -104,10 +106,12 @@ class PyccuracyCore(object):
                       lang,
                       browser_to_run,
                       browser_driver,
-                      write_report):
+                      write_report,
+                      extra_args):
 
         config = InPlaceConfig()
 
+        config.register_instance("extra_args", extra_args)
         config.register("browser_driver", self.__select_browser_driver(lang, browser_driver))
 
         config.register_instance("language", lang)
@@ -153,7 +157,8 @@ class PyccuracyCore(object):
                   report_file_dir=None,
                   report_file_name="report.html",
                   browser_to_run="chrome",
-                  browser_driver="selenium"):
+                  browser_driver="selenium",
+                  extra_args={}):
 
         result = self.configure_context(
                                tests_dir=tests_dir,
@@ -171,7 +176,8 @@ class PyccuracyCore(object):
                                write_report=write_report,
                                browser_to_run=browser_to_run,
                                browser_driver=browser_driver,
-                               context=context)
+                               context=context,
+                               extra_args=extra_args)
         if result:
             return result
 
