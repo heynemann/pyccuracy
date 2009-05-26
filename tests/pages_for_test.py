@@ -27,3 +27,8 @@ class TestCustomPage (Page):
         self.register_element("My Link", "//a[@href='bogus_href']")
         self.register_element("Some Select", "//select[@alt='Some Select']")
         self.register_element("Some Textbox", "//div[contains(@class,'some')]//input[@type='text' and @class='textbox' and @name='some_textbox']")
+
+class TestAmInPage(Page):
+    def register(self):
+        self.url = "weird_url.htm"
+        self.register_element("other div", "//div[@id='other_page_div']")

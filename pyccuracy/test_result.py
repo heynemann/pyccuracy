@@ -60,7 +60,10 @@ class TestResult(object):
         messages.append("")
         messages.append(self.language["test_run_status"] % (self.failed_stories > 0 and "FAILED" or "SUCCESSFUL"))
         period = (self.end_time - self.start_time)
-        threshold = total_scenarios / period
+        if period == 0:
+            threshold = 0
+        else:
+            threshold = total_scenarios / period
         messages.append(self.language["test_run_timing"] % (total_scenarios, period))
         messages.append(self.language["test_run_threshold"] % threshold)
         if (self.failed_stories > 0):
