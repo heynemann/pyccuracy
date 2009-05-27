@@ -32,6 +32,9 @@ class LanguageGetter(object):
 
         self.raw_data = self.file_object.read()
         for line in self.raw_data.split('\n'):
+            if '=' not in line:
+                continue
+
             k, v = line.split('=')
             self.data[k.strip()] = unicode(v.strip())
 
