@@ -89,5 +89,5 @@ class StoryRunner(object):
 
     def raise_post_scenario(self, context, story, scenario, result):
         conditions = story.conditions_module
-        if conditions and hasattr(conditions, "pre_scenario"):
+        if conditions and hasattr(conditions, "post_scenario"):
             conditions.post_scenario(context, story, scenario, result)
