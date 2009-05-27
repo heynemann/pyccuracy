@@ -28,158 +28,14 @@ from page import Page
 from actions.action_base import ActionBase
 
 class PyccuracyCore(object):
-    def configure_context(self,
-                          tests_dir,
-                          actions_dir,
-                          custom_actions_dir,
-                          pages_dir,
-                          languages_dir,
-                          report_file_dir,
-                          file_pattern,
-                          scenarios_to_run,
-                          report_file_name,
-                          default_culture,
-                          base_url,
-                          should_throw,
-                          write_report,
-                          browser_to_run,
-                          browser_driver,
-                          context,
-                          extra_args):
-        IoC.reset()
+    def __init__(self, parser, runner):
+        self.parser = parser
+        self.runner = runner
 
-        if not languages_dir:
-            languages_dir = abspath(join(dirname(__file__), "languages"))
+    def run_tests(self, **kwargs):
+        settings = Settings(kwargs)
 
-        if not actions_dir:
-            actions_dir = abspath(join(dirname(__file__), "actions"))
-
-        if not pages_dir:
-            pages_dir = tests_dir
-
-        if not custom_actions_dir:
-            custom_actions_dir = tests_dir
-
-        if not report_file_dir:
-            report_file_dir = tests_dir
-
-        lang = self.load_language(languages_dir, default_culture)
-
-        self.configure_ioc(languages_dir=languages_dir,
-                           culture=default_culture,
-                           tests_dir=tests_dir,
-                           file_pattern=file_pattern,
-                           scenarios_to_run=scenarios_to_run,
-                           actions_dir=actions_dir,
-                           pages_dir=pages_dir,
-                           base_url=base_url,
-                           custom_actions_dir=custom_actions_dir,
-                           lang=lang,
-                           browser_to_run=browser_to_run,
-                           browser_driver=browser_driver,
-                           write_report=write_report,
-                           report_file_dir=report_file_dir,
-                           report_file_name=report_file_name,
-                           extra_args=extra_args)
-        try:
-            self.context = IoC.resolve(PyccuracyContext)
-        except Exception, err:
-            if err.__class__.__name__ == "InvalidScenarioError":
-                print unicode(err.message)
-                return TestResult.empty(lang)
-            else:
-                raise
-        return None
-
-    def configure_ioc(self,
-                      tests_dir,
-                      actions_dir,
-                      custom_actions_dir,
-                      pages_dir,
-                      languages_dir,
-                      report_file_dir,
-                      file_pattern,
-                      scenarios_to_run,
-                      report_file_name,
-                      culture,
-                      base_url,
-                      lang,
-                      browser_to_run,
-                      browser_driver,
-                      write_report,
-                      extra_args):
-
-        config = InPlaceConfig()
-
-        config.register_instance("extra_args", extra_args)
-        config.register("browser_driver", self.__select_browser_driver(lang, browser_driver))
-
-        config.register_instance("language", lang)
-
-        if (file_pattern == "to_be_defined_by_language"): file_pattern = lang["default_pattern"]
-        config.register("file_pattern", file_pattern)
-        config.register("scenarios_to_run", scenarios_to_run)
-
-        config.register("write_report", write_report)
-        config.register("report_file_dir", report_file_dir)
-        config.register("report_file_name", report_file_name)
-
-        config.register("test_fixture_parser", FileTestFixtureParser)
-        config.register("tests_dir", tests_dir)
-
-        config.register_files("all_actions", actions_dir, "*_action.py", lifestyle_type = "singleton")
-
-        config.register_inheritors("all_pages", pages_dir, Page)
-        config.register_inheritors("all_custom_actions", custom_actions_dir, ActionBase)
-
-        config.register("story_runner", StoryRunner)
-
-        config.register("browser_to_run", "*%s" % browser_to_run)
-
-        config.register("scripts_path", abspath(dirname(__file__)))
-        config.register("base_url", base_url)
-
-        IoC.configure(config)
-
-    def run_tests(self,
-                  tests_dir=abspath(os.curdir),
-                  actions_dir=None,
-                  custom_actions_dir=None,
-                  pages_dir=None,
-                  file_pattern="to_be_defined_by_language",
-                  scenarios_to_run=None,
-                  default_culture="en-us",
-                  languages_dir=None,
-                  base_url=None,
-                  should_throw=False,
-                  context=None,
-                  write_report=True,
-                  report_file_dir=None,
-                  report_file_name="report.html",
-                  browser_to_run="chrome",
-                  browser_driver="selenium",
-                  extra_args={}):
-
-        result = self.configure_context(
-                               tests_dir=tests_dir,
-                               actions_dir=actions_dir,
-                               custom_actions_dir=custom_actions_dir,
-                               pages_dir=pages_dir,
-                               languages_dir=languages_dir,
-                               report_file_dir=report_file_dir,
-                               file_pattern=file_pattern,
-                               scenarios_to_run=scenarios_to_run,
-                               report_file_name=report_file_name,
-                               default_culture=default_culture,
-                               base_url=base_url,
-                               should_throw=should_throw,
-                               write_report=write_report,
-                               browser_to_run=browser_to_run,
-                               browser_driver=browser_driver,
-                               context=context,
-                               extra_args=extra_args)
-        if result:
-            return result
+        test_suite = self.parser.get_fixture(settings)
 
         self.context.browser_driver.start()
 
@@ -228,6 +84,32 @@ class PyccuracyCore(object):
     def __print_results(self, results):
         print unicode(results)
         print "\n"
+
+class Settings(object):
+    def __init__(self, settings):
+        cur_dir = abspath(os.curdir)
+        actions_dir = abspath(join(dirname(__file__), "actions"))
+        languages_dir = abspath(join(dirname(__file__), "languages"))
+
+        self.tests_dir = settings.get("tests_dir", cur_dir)
+
+        self.actions_dir = settings.get("actions_dir", actions_dir)
+        self.languages_dir = settings.get("languages_dir", languages_dir)
+
+        self.pages_dir = settings.get("pages_dir", cur_dir)
+        self.custom_actions_dir = settings.get("custom_actions_dir", cur_dir)
+
+        self.file_pattern = settings.get("file_pattern", "*.acc")
+        self.scenarios_to_run = settings.get("scenarios_to_run", None)
+        self.default_culture = settings.get("default_culture", "en-us")
+        self.base_url = settings.get("base_url", None)
+        self.should_throw = settings.get("should_throw", False)
+        self.write_report = settings.get("write_report", True)
+        self.report_file_dir = settings.get("report_file_dir", cur_dir)
+        self.report_file_name = settings.get("report_file_name", "report.html")
+        self.browser_to_run = settings.get("browser_to_run", "chrome")
+        self.browser_driver = settings.get("browser_driver", "selenium")
+        self.extra_args = settings.get("extra_args", {})
 
 class PyccuracyContext:
     def __init__(self,
