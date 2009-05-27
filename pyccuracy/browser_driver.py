@@ -106,6 +106,9 @@ class BrowserDriver(object):
     def get_element_markup(self, element_selector):
         raise NotImplementedError
 
+    def get_html_source(self):
+        raise NotImplementedError
+
     def select_option_by_index(self, element_selector, index):
         raise NotImplementedError
 

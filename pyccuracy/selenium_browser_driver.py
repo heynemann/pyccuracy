@@ -131,6 +131,9 @@ class SeleniumBrowserDriver(BrowserDriver):
         script_return = self.selenium.get_eval(script % element_selector)
         return script_return != "null" and script_return or ""
 
+    def get_html_source(self):
+        return self.selenium.get_html_source()
+
     def select_option_by_index(self, element_selector, index):
         return self.__select_option(element_selector, "index", index)
 

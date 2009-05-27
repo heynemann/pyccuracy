@@ -16,3 +16,4 @@ tests/action_tests/actions_report_pt-br.html
 nbproject/
 debian/python-pyccuracy*
 python-build-stamp*
+*report.html

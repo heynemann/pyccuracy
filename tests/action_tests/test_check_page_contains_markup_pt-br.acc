@@ -1,0 +1,19 @@
+Como um usuário Pyccuracy
+Eu quero ver o markup de uma página
+Para que eu possa checar que seu markup possui algo
+
+Cenário 1 - Checando que a página atual possui algum javascript
+Dado que
+    Eu navego para "page_tests.htm"
+Quando
+    #A página é carregada
+Então
+    Eu vejo que a página atual contém 'type="text/javascript"'
+
+Cenário 2 - Checando que a página atual não possui css embutido
+Dado que
+    Eu navego para "page_tests.htm"
+Quando
+    #A página é carregada
+Então
+    Eu vejo que a página atual não contém '<style'

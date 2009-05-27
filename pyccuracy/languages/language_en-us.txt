@@ -46,6 +46,8 @@ page_am_in_regex = ^(And )?I am in the ([\"]([\w:/._-]+)[\"]|([\w\s_.-]+))$
 page_see_title_regex = ^(And )?I see [\"](.+)[\"] title$
 page_wait_for_page_to_load_regex = ^(And )?I wait for the page to load( for (\d+) seconds)?$
 page_wait_for_seconds_regex = ^(And )?I wait for (\d+([.]d+)?) second[s]?$
+page_check_contains_markup_regex = ^(And )?I see that current page contains [\"\'](.+)[\'\"]$
+page_check_does_not_contain_markup_regex = ^(And )?I see that current page does not contain [\"\'](.+)[\'\"]$
 
 checkbox_is_checked_regex = ^(And )?I see the [\"](.+)[\"] checkbox is checked$
 checkbox_is_not_checked_regex = ^(And )?I see the [\"](.+)[\"] checkbox is not checked$
@@ -103,6 +105,8 @@ textbox_clean_regex = ^(And )?I clean [\"](.+)[\"] textbox$
 page_go_to_failure = The url "%s" is not valid. Did you forget to use the -u (or --url) parameter ?
 page_am_in_failure = The url "%s" was not registered in any pages. Did you forget to include a class that inherits from Page with the given url?
 page_see_title_failure = The page title (%s) does not match the expected title (%s)
+page_check_contains_markup_failure = The current page does not contain "%s" markup.
+page_check_does_not_contain_markup_failure = The current page contains "%s" markup, when it should not.
 
 checkbox_is_checked_failure = The checkbox with name or id %s is not checked and should be.
 checkbox_is_not_checked_failure = The checkbox with name or id %s is checked and should not be.
