@@ -14,7 +14,7 @@
 
 import re
 from locator import *
-from test_fixture import *
+from fixture import *
 import pyoc.reflection as reflection
 
 class FileTestFixtureParser(object):
