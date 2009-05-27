@@ -23,25 +23,24 @@ from selenium_element_selector import SeleniumElementSelector
 
 class SeleniumBrowserDriver(BrowserDriver):
     def __init__(self, browser_to_run, tests_dir, extra_args):
-        super(type(self),self).__init__(browser_to_run, tests_dir)
-        if extra_args.has_key("selenium.server"):
-            self.__host__ = extra_args["selenium.server"]
-        else:
-            self.__host__ = "localhost"
-        if extra_args.has_key("selenium.port"):
-            self.__port__ = int(extra_args["selenium.port"])
-        else:
-            self.__port__ = 4444
+        super(SeleniumBrowserDriver, self)
+
+        self.__host__ = extra_args.get("selenium.server", "localhost")
+        self.__port__ = int(extra_args.get("selenium.port", 4444))
 
     def resolve_element_key(self, context, element_type, element_key):
-        if context == None: return element_key
+        if context == None:
+            return element_key
 
         return SeleniumElementSelector.element(element_type, element_key)
 
     def start_test(self, url = "http://localhost"):
-        self.selenium = selenium(self.__host__, self.__port__, self.__browser__, url)
+        self.selenium = selenium(self.__host__,
+                                 self.__port__,
+                                 self.__browser__, url)
         try:
             self.selenium.start()
+
         except Exception, e:
             sys.stderr.write("Error when starting selenium. Is it running ? Error: %s\n" % unicode(e))
             sys.exit(1)
@@ -78,10 +77,13 @@ class SeleniumBrowserDriver(BrowserDriver):
         script = """this.page().findElement("%s").disabled;"""
 
         script_return = self.selenium.get_eval(script % element)
+
         if script_return == "null":
             is_disabled = self.__get_attribute_value(element, "disabled")
+
         else:
-            is_disabled = script_return[0].upper()=="T" # is it 'True'?
+            is_disabled = script_return[0].upper() == "T" # is it 'True'?
+
         return not is_disabled
 
     def checkbox_is_checked(self, checkbox_selector):
@@ -144,11 +146,14 @@ class SeleniumBrowserDriver(BrowserDriver):
         error_message = "Option with %s '%s' not found" % (option_selector, option_value)
         try:
             self.selenium.select(element_selector, "%s=%s" % (option_selector, option_value))
+
         except Exception, error:
             if error.message == error_message:
                 return False
+
             else:
                 raise
+
         return True
 
     def get_link_href(self, link_selector):
@@ -204,10 +209,13 @@ class SeleniumBrowserDriver(BrowserDriver):
         try:
             locator = element + "/@" + attribute
             attr_value = self.selenium.get_attribute(locator)
+
         except Exception, inst:
             if "Could not find element attribute" in str(inst):
                 attr_value = None
+
             else:
                 raise
+
         return attr_value
 
