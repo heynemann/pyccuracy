@@ -14,7 +14,7 @@
 
 import urllib2
 
-from test_fixture import *
+from fixture import *
 
 class StoryRunner(object):
     def __init__(self, browser_driver):

@@ -15,8 +15,7 @@
 
 import os
 from os.path import join, abspath, dirname
-from pyccuracy.pyccuracy_core import PyccuracyCore, Settings
-from mocker import Mocker
+from pyccuracy.pyccuracy_core import Settings
 
 cur_dir = abspath(os.curdir)
 actions_dir = abspath(join(dirname(__file__), "../../pyccuracy/actions"))

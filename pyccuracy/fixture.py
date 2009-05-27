@@ -15,7 +15,7 @@
 from errors import *
 import time
 from test_result import *
-from test_fixture_items import *
+from fixture_items import *
 
 class TestFixture(object):
     def __init__(self, language):
