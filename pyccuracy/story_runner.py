@@ -31,13 +31,11 @@ class StoryRunner(object):
 
         base_url = None
         if self.context.base_url:
-            p = urllib2.urlparse.urlparse(self.context.base_url)
-            protocol, page_name, file_name, complement, querystring, anchor = p
+            protocol, page_name, file_name, complement, querystring, anchor = urllib2.urlparse.urlparse(self.context.base_url)
             base_url = protocol and self.context.base_url or None
 
         if base_url:
             self.browser_driver.start_test(base_url)
-
         else:
             self.browser_driver.start_test()
 
@@ -47,7 +45,6 @@ class StoryRunner(object):
                 self.raise_pre_story(context, current_story)
                 self.__run_scenarios(current_story, context)
                 self.raise_post_story(context, current_story, current_story.status)
-
         finally:
             test_fixture.end_run()
             self.browser_driver.stop_test()
