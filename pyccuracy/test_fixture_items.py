@@ -32,11 +32,12 @@ class Story(object):
         self.status = "FAILED"
 
     def mark_as_successful(self):
-        self.status = "SUCCESSFUL"
-        
+        if self.status != 'FAILED':
+            self.status = "SUCCESSFUL"
+
     def start_run(self):
         self.start_time = time.time()
-        
+
     def end_run(self):
         self.end_time = time.time()
 
@@ -70,12 +71,13 @@ class Scenario(object):
         self.story.mark_as_failed()
 
     def mark_as_successful(self):
-        self.status = "SUCCESSFUL"
-        self.story.mark_as_successful()
+        if self.status != 'FAILED':
+            self.status = "SUCCESSFUL"
+            self.story.mark_as_successful()
 
     def start_run(self):
         self.start_time = time.time()
-        
+
     def end_run(self):
         self.end_time = time.time()
 
@@ -107,11 +109,12 @@ class Action(object):
         self.scenario.mark_as_failed()
 
     def mark_as_successful(self):
-        self.status = "SUCCESSFUL"
-        self.scenario.mark_as_successful()
+        if self.status != 'FAILED':
+            self.status = "SUCCESSFUL"
+            self.scenario.mark_as_successful()
 
     def start_run(self):
         self.start_time = time.time()
-        
+
     def end_run(self):
         self.end_time = time.time()
