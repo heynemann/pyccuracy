@@ -50,7 +50,7 @@ compile:
 run_unit: compile
 	@echo "Running unit tests..."
 	@rm -f ${unit_log_file} >> /dev/null
-	@if [ "$(nocoverage)" = "true" ]; then nosetests --verbose ${unit_tests_dir} >> ${unit_log_file} 2>> ${unit_log_file}; else nosetests --verbose --with-coverage --cover-package=pyccuracy ${unit_tests_dir} >> ${unit_log_file} 2>> ${unit_log_file}; fi
+	@if [ "$(nocoverage)" = "true" ]; then nosetests --verbose ${unit_tests_dir}; else nosetests --verbose --with-coverage --cover-package=pyccuracy; fi
 	@echo "============="
 	@echo "Unit coverage"
 	@echo "============="

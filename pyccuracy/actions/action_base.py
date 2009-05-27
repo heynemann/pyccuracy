@@ -12,15 +12,36 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import re
 import os
 import sys
 sys.path.insert(0,os.path.abspath(__file__+"/../../../"))
 from pyccuracy.errors import ActionFailedError
 
+class MetaActionBase(type):
+    def __init__(cls, name, bases, attrs):
+        if name not in ('ActionBase', ):
+            if 'execute' not in attrs:
+                raise NotImplementedError("The action %s does not implements the method execute()", name)
+            if 'regex' not in attrs:
+                raise NotImplementedError("The action %s does not implements the attribute regex", name)
+
+            if not isinstance(attrs['regex'], basestring):
+                regex = attrs['regex']
+                raise TypeError("%s.regex attribute must be a string, got %r(%r)." % (regex.__class__, regex))
+
+        super(MetaActionBase, cls).__init__(name, bases, attrs)
+
 class ActionBase(object):
+    __metaclass__ = MetaActionBase
+
     def __init__(self, browser_driver, language):
         self.browser_driver = browser_driver
         self.language = language
+
+    @classmethod
+    def can_resolve(cls, string):
+        return bool(re.match(cls.regex, string))
 
     def raise_action_failed_error(self, message):
         raise ActionFailedError(message)
@@ -67,7 +88,7 @@ class ActionBase(object):
             if action.__class__.__name__!="ActionBase" and action.matches(action_text):
                 action.execute(action.values_for(action_text), context)
                 found = True
-                
+
         if not found:
             raise RuntimeError('The specified line("%s") didn\'t match any custom or built-in actions.' % (action_text,))
 
