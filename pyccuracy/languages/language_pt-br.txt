@@ -121,8 +121,8 @@ div_does_not_match_markup_failure = O div com nome ou id %s não deveria conter 
 
 element_is_enabled_failure = O %s com nome ou id %s está desabilitado, quando deveria estar habilitado.
 element_is_disabled_failure = O %s com nome ou id %s está habilitado, quando deveria estar desabilitado.
-element_is_visible_failure = O %s de id ou nome %s está visível, quando não deveria existir ou estar invisível.
-element_is_not_visible_failure = O %s de id ou nome %s não está visível, quando deveria existir ou estar visível.
+element_is_visible_failure = O %s de id ou nome %s não está visível, quando deveria existir ou estar visível.
+element_is_not_visible_failure = O %s de id ou nome %s está visível, quando não deveria existir ou estar invisível.
 element_wait_for_disappear_failure = O %s de nome ou id %s deveria desaparecer dentro de %d segundo(s), mas ainda está presente.
 element_wait_for_presence_failure = O %s de nome ou id %s deveria aparecer dentro de %d segundo(s), mas não existe ou não está visível.
 element_is_not_visible_for_drag_failure = O elemento que está sendo arrastado (%s) não existe ou não está visível.
