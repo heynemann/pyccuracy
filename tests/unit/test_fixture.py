@@ -16,7 +16,13 @@
 import time
 
 from pyccuracy.fixture import Fixture
-from pyccuracy.fixture_items import Story
+from pyccuracy.common import Status
+from pyccuracy.fixture_items import Story, Scenario, Action
+
+def some_action():
+    story = Story(as_a="Someone", i_want_to="Do Something", so_that="I'm Happy")
+    scenario = story.append_scenario("1", "Something")
+    return scenario.add_given(action_description="Some Action", execute_function=lambda: None, args=["s"], kwargs={"a":"b"})
 
 def test_create_fixture_returns_fixture():
     fixture = Fixture()
@@ -75,3 +81,117 @@ def test_append_story_keeps_data():
     assert fixture.stories[0].i_want_to == "other"
     assert fixture.stories[0].so_that == "data"
 
+def test_fixture_returns_unknown_status_if_no_stories():
+    fixture = Fixture()
+    assert fixture.get_status() == Status.Unknown
+
+def test_fixture_returns_proper_status_if_action_failed():
+    fixture = Fixture()
+    action = some_action()
+    fixture.append_story(action.scenario.story)
+    action.mark_as_failed()
+
+    assert fixture.get_status() == Status.Failed
+
+def test_fixture_returns_proper_status_if_action_succeeded():
+    fixture = Fixture()
+    action = some_action()
+    fixture.append_story(action.scenario.story)
+    action.mark_as_successful()
+
+    assert fixture.get_status() == Status.Successful
+
+def test_fixture_returns_proper_status_with_two_scenarios():
+    fixture = Fixture()
+    action = some_action()
+    other_action = some_action()
+    fixture.append_story(action.scenario.story)
+    fixture.append_story(other_action.scenario.story)
+    action.mark_as_successful()
+    other_action.mark_as_failed()
+
+    assert fixture.get_status() == Status.Failed
+
+def test_fixture_returns_proper_status_with_two_scenarios_with_failed_first():
+    fixture = Fixture()
+    action = some_action()
+    other_action = some_action()
+    fixture.append_story(action.scenario.story)
+    fixture.append_story(other_action.scenario.story)
+    action.mark_as_failed()
+    other_action.mark_as_successful()
+
+    assert fixture.get_status() == Status.Failed
+
+def test_fixture_returns_proper_status_with_two_scenarios_with_both_successful():
+    fixture = Fixture()
+    action = some_action()
+    other_action = some_action()
+    fixture.append_story(action.scenario.story)
+    fixture.append_story(other_action.scenario.story)
+    action.mark_as_successful()
+    other_action.mark_as_successful()
+
+    assert fixture.get_status() == Status.Successful
+
+def test_fixture_returns_total_number_of_stories():
+    fixture = Fixture()
+    action = some_action()
+    other_action = some_action()
+    fixture.append_story(action.scenario.story)
+    fixture.append_story(action.scenario.story)
+    fixture.append_story(other_action.scenario.story)
+    action.mark_as_successful()
+    other_action.mark_as_successful()
+
+    assert fixture.count_total_stories() == 3
+
+def test_fixture_returns_total_number_of_scenarios():
+    fixture = Fixture()
+    action = some_action()
+    other_action = some_action()
+    fixture.append_story(action.scenario.story)
+    fixture.append_story(action.scenario.story)
+    fixture.append_story(other_action.scenario.story)
+    action.mark_as_successful()
+    other_action.mark_as_successful()
+
+    assert fixture.count_total_scenarios() == 3
+
+def test_fixture_returns_total_successful_stories():
+    fixture = Fixture()
+    action = some_action()
+    other_action = some_action()
+    fixture.append_story(action.scenario.story)
+    fixture.append_story(other_action.scenario.story)
+    action.mark_as_successful()
+    other_action.mark_as_failed()
+
+    assert fixture.count_successful_stories() == 1
+
+def test_fixture_returns_total_failed_stories():
+    fixture = Fixture()
+    action = some_action()
+    other_action = some_action()
+    fixture.append_story(action.scenario.story)
+    fixture.append_story(other_action.scenario.story)
+    action.mark_as_successful()
+    other_action.mark_as_failed()
+
+    assert fixture.count_failed_stories() == 1
+
+def test_fixture_returns_total_successful_scenarios():
+    fixture = Fixture()
+    action = some_action()
+    other_action = some_action()
+    fixture.append_story(action.scenario.story)
+    fixture.append_story(other_action.scenario.story)
+    action.mark_as_successful()
+    other_action.mark_as_successful()
+
+    assert fixture.count_successful_scenarios() == 2
+
+#        percentage_successful_stories = (self.successful_stories / (total_stories or 1))
+#        percentage_failed_stories = (self.failed_stories / (total_stories or 1))
+#        percentage_successful_scenarios = (self.successful_scenarios / (total_scenarios or 1))
+#        percentage_failed_scenarios = (self.failed_scenarios / (total_scenarios or 1))
