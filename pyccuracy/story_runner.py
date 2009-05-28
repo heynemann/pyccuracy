@@ -14,13 +14,10 @@
 
 import urllib2
 
-from fixture import *
+from pyccuracy import PageRegistry
 
 class StoryRunner(object):
-    def __init__(self, browser_driver):
-        self.browser_driver = browser_driver
-
-    def run_stories(self, context):
+    def run_stories(self, settings, fixture):
         self.context = context
         test_fixture = context.test_fixture
 

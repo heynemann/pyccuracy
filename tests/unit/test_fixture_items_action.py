@@ -114,7 +114,7 @@ def test_action_ellapsed_returns_seconds():
     time.sleep(0.1)
     action.end_run()
 
-    expected = "0.10"
-    ellapsed = "%.2f" % action.ellapsed()
+    expected = "0.1"
+    ellapsed = "%.1f" % action.ellapsed()
     assert ellapsed == expected, "The ellapsed time should be %s but was %s" % (expected, ellapsed)
     

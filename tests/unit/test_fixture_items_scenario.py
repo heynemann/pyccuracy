@@ -121,8 +121,8 @@ def test_scenario_ellapsed_returns_seconds():
     time.sleep(0.1)
     scenario.end_run()
 
-    expected = "0.10"
-    ellapsed = "%.2f" % scenario.ellapsed()
+    expected = "0.1"
+    ellapsed = "%.1f" % scenario.ellapsed()
     assert ellapsed == expected, "The ellapsed time should be %s but was %s" % (expected, ellapsed)
 
 def test_append_given_adds_to_givens_in_scenario():

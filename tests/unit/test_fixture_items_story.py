@@ -109,8 +109,8 @@ def test_story_ellapsed_returns_seconds():
     time.sleep(0.1)
     story.end_run()
 
-    expected = "0.10"
-    ellapsed = "%.2f" % story.ellapsed()
+    expected = "0.1"
+    ellapsed = "%.1f" % story.ellapsed()
     assert ellapsed == expected, "The ellapsed time should be %s but was %s" % (expected, ellapsed)
 
 def test_append_scenario_adds_to_scenarios_in_story():

@@ -108,35 +108,3 @@ class Settings(object):
         self.browser_driver = settings.get("browser_driver", "selenium")
         self.extra_args = settings.get("extra_args", {})
 
-class PyccuracyContext:
-    def __init__(self,
-                 browser_driver,
-                 language,
-                 test_fixture_parser,
-                 tests_dir,
-                 file_pattern,
-                 scenarios_to_run,
-                 story_runner,
-                 all_actions,
-                 all_pages,
-                 all_custom_actions,
-                 base_url,
-                 report_file_dir,
-                 report_file_name,
-                 write_report):
-        self.browser_driver = browser_driver
-        self.language = language
-        self.test_fixture_parser = test_fixture_parser
-        self.test_fixture = self.test_fixture_parser.get_fixture([file_path for file_path in list(locate(file_pattern, tests_dir))])
-        self.tests_dir = tests_dir
-        self.all_pages = dict(zip([klass.__class__.__name__ for klass in all_pages], [klass for klass in all_pages]))
-        self.current_page = None
-        self.file_pattern = file_pattern
-        self.scenarios_to_run = scenarios_to_run
-        self.story_runner = story_runner
-        self.base_url = base_url
-        self.all_custom_actions = all_custom_actions
-        self.all_actions = all_actions
-        self.report_file_dir = report_file_dir
-        self.report_file_name = report_file_name
-        self.write_report = write_report
