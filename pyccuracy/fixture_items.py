@@ -138,3 +138,8 @@ class Action(StatusItem, TimedItem):
         self.mark_as_successful()
         return 1
 
+    def __unicode__(self):
+        return "Action %s - %s" % (self.description, self.status)
+    def __str__(self):
+        return unicode(self)
+
