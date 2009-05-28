@@ -52,15 +52,3 @@ def test_can_not_resolves_string():
 
     assert not DoSomethingAction.can_resolve('Not for me')
     assert not DoSomethingAction.can_resolve('Foo Bar')
-
-# def test_execute_takes_regex_groups_as_args_and_kwargs():
-#     class DoSomethingAction(ActionBase):
-#         regex = r'^(And )?I do "(?P<what>[\w\s]+)"$'
-
-#         def execute(self, context, *args, **kwargs):
-#             assert args[0] == 'And '
-#             assert kwargs['what'] == 'mock things'
-
-#     my_action = DoSomethingAction(None, None)
-#     re
-#     assert my_action.execute('And I do "mock things"', None, )

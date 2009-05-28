@@ -11,7 +11,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+from os import listdir
 from os.path import abspath, dirname, join
+
+AVAILABLE_LANGUAGES = [l.replace('.txt', '') for l in listdir(join(abspath(dirname(__file__)), 'data'))]
 
 class LanguageGetter(object):
     def __init__(self, language, file_object=None):
@@ -43,3 +46,6 @@ class LanguageGetter(object):
             self.fill_data()
 
         return self.data.get(key)
+
+class LanguageItem(unicode):
+    pass

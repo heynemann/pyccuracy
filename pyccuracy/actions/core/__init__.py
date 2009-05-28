@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from os.path import dirname, abspath, join, split
+from glob import glob
 
-from pyccuracy.actions import ActionBase, ACTIONS, ActionRegistry
-from pyccuracy.actions.core import *
+base_path = abspath(dirname(__file__))
+pattern = join(base_path, "*.py")
+__all__ = [split(x)[1][:-3] for x in glob(pattern)]
