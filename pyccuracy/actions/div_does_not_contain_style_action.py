@@ -36,9 +36,8 @@ class DivDoesNotContainStyleAction(ActionBase):
         style = values[1]
         div = self.resolve_element_key(context, Page.Div, div_name)
         self.assert_element_is_visible(div, self.language["element_is_visible_failure"] % ("div", div_name))
-        current_style = self.browser_driver.get_class(div) or ""
         styles = current_style.split(" ")        
         if style in styles:
             error_message = self.language["div_does_not_contain_style_failure"]
-            self.raise_action_failed_error(error_message % (div_name, style, current_style))
+            self.raise_action_failed_error(error_message % (div_name, style))
 
