@@ -31,6 +31,9 @@ class ActionRegistry(object):
             if match:
                 return action, match.groups(), match.groupdict()
 
+        # nothing found
+        return None, None, None
+
 class MetaActionBase(type):
     def __init__(cls, name, bases, attrs):
         if name not in ('ActionBase', ):
