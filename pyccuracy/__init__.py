@@ -15,3 +15,4 @@
 
 from pyccuracy.actions import ActionBase, ACTIONS, ActionRegistry
 from pyccuracy.actions.core import *
+from pyccuracy.page import PageRegistry, Page

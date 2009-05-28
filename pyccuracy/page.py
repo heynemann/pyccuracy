@@ -17,9 +17,36 @@ URL_DICT = {}
 
 class MetaPage(type):
     def __init__(cls, name, bases, attrs):
+        if name not in ('MetaPage', 'Page'):
+
+            if not attrs.has_key('url'):
+                raise NotImplementedError('%r does not contain the attribute url' % cls)
+
+            url = attrs['url']
+            if not isinstance(url, basestring):
+                raise TypeError('%s.url must be a string or unicode. Got %r(%r)' % (name, url.__class__, url))
+
+            NAME_DICT[name] = cls
+            if URL_DICT.has_key(url):
+                URL_DICT[url].append(cls)
+            else:
+                URL_DICT[url] = [cls]
+
+
         super(MetaPage, cls).__init__(name, bases, attrs)
 
+class PageRegistry(object):
+    @classmethod
+    def get_by_name(cls, name):
+        name = name.replace(" ", "")
+        return NAME_DICT.get(name)
+
+    @classmethod
+    def all_by_url(cls, url):
+        return URL_DICT.get(url)
+
 class Page(object):
+    __metaclass__ = MetaPage
     '''Class that defines a page model.'''
 
     Button = "button"
