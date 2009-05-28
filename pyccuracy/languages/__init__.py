@@ -14,6 +14,8 @@
 from os import listdir
 from os.path import abspath, dirname, join
 
+from pyccuracy.errors import WrongArgumentsError
+
 AVAILABLE_LANGUAGES = [l.replace('.txt', '') for l in listdir(join(abspath(dirname(__file__)), 'data'))]
 
 class LanguageGetter(object):
@@ -48,7 +50,26 @@ class LanguageGetter(object):
         return self.data.get(key)
 
     def format(self, string, *args, **kwargs):
-        return self.get(string) % (args or kwargs)
+        resolved_string = self.get(string)
+        need_kwargs = bool(len(resolved_string.split("%(")) > 1)
+
+        try:
+            if need_kwargs:
+                return resolved_string % kwargs
+            else:
+                return resolved_string % args
+
+        except ValueError, e:
+            total_args = len(resolved_string.split('%'))
+            total_got_args = len(args)
+            raise WrongArgumentsError('The resolved_string "%s" gets exactly %d args, got %d' % (resolved_string, total_args, total_got_args))
+
+        except TypeError, e:
+                raise WrongArgumentsError('The resolved_string "%s" gets is formatted through *args, but got **kwargs' % resolved_string)
+
+        except KeyError, e:
+                raise WrongArgumentsError('The resolved_string "%s" gets is formatted through **kwargs, but got *args' % resolved_string)
+
 
 class LanguageItem(unicode):
     pass

@@ -19,7 +19,7 @@ from pyccuracy.languages import LanguageItem
 class PageSeeTitle(ActionBase):
     regex = LanguageItem('page_see_title_regex')
 
-    def execute(self, values, context):
+    def execute(self, context, *args, **kwargs):
         expected_title = values[0]
         title = self.context.get_title()
         if (title != expected_title):
