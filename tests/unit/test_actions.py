@@ -1,6 +1,19 @@
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
 
-from nose.tools import raises, set_trace
+# Licensed under the Open Software License ("OSL") v. 3.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#     http://www.opensource.org/licenses/osl-3.0.php
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+from nose.tools import raises
 
 from pyccuracy import ActionBase
 
@@ -35,7 +48,7 @@ def test_construction_fails_if_regex_nonstring():
         def execute(self, context, *args, **kw):
             pass
 
-def test_can_resolves_string():
+def test_can_resolve_string():
     class DoSomethingAction(ActionBase):
         regex = r'^(And )?I do "(?P<what>\w+)"$'
         def execute(self, context, *args, **kwargs):
@@ -44,7 +57,7 @@ def test_can_resolves_string():
     assert DoSomethingAction.can_resolve('And I do "test"')
     assert DoSomethingAction.can_resolve('I do "test"')
 
-def test_can_not_resolves_string():
+def test_cannot_resolve_string():
     class DoSomethingAction(ActionBase):
         regex = r'^(And )?I do "(?P<what>\w+)"$'
         def execute(self, context, *args, **kwargs):

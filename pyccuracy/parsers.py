@@ -15,17 +15,33 @@
 import re
 from locator import *
 from fixture import *
-import pyoc.reflection as reflection
 
-class FileTestFixtureParser(object):
-    def __init__(self, browser_driver, language, all_actions, all_custom_actions):
-        self.language = language
-        self.story_lines = (language["as_a"], language["i_want_to"], language["so_that"],)
-        self.scenario_starter_lines = (language["scenario"],)
-        self.scenario_lines = (language["given"], language["when"], language["then"],)
-        self.browser_driver = browser_driver
-        self.all_actions = all_actions
-        self.all_custom_actions = all_custom_actions
+class FSO(object):
+    '''Actual Filesystem'''
+    pass
+
+class FileParser(object):
+    def __init__(self, file_object=None):
+        self.file_object = file_object and file_object or FSO()
+
+    def get_stories(self, settings):
+        story_file_list = self.file_object.list_files(directory=settings.tests_dir, pattern=settings.file_pattern)
+        stories = []
+        for story_file_path in story_file_list:
+            stories.append(self.parse_story(story_file_path))
+        return stories
+
+    def parse_story_file(self, story_file_path):
+        pass
+
+#    def __init__(self, browser_driver, language, all_actions, all_custom_actions):
+#        self.language = language
+#        self.story_lines = (language["as_a"], language["i_want_to"], language["so_that"],)
+#        self.scenario_starter_lines = (language["scenario"],)
+#        self.scenario_lines = (language["given"], language["when"], language["then"],)
+#        self.browser_driver = browser_driver
+#        self.all_actions = all_actions
+#        self.all_custom_actions = all_custom_actions
 
     #helper methods for defining special cases
     def __is_story_line(self, line):

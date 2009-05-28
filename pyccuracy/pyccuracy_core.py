@@ -15,17 +15,14 @@
 
 from os.path import join, abspath, dirname
 
-from pyoc.ioc import IoC
-from pyoc.config import InPlaceConfig
-
 from selenium_browser_driver import *
 from webdriver_browser_driver import *
 from story_runner import *
-from test_fixture_parser import *
+from parsers import *
 from language import *
 from errors import *
 from page import Page
-from actions.action_base import ActionBase
+from actions import ActionBase
 
 class PyccuracyCore(object):
     def __init__(self, parser, runner):
@@ -86,7 +83,7 @@ class PyccuracyCore(object):
         print "\n"
 
 class Settings(object):
-    def __init__(self, settings):
+    def __init__(self, settings={}):
         cur_dir = abspath(os.curdir)
         actions_dir = abspath(join(dirname(__file__), "actions"))
         languages_dir = abspath(join(dirname(__file__), "languages"))

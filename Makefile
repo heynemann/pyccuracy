@@ -1,4 +1,4 @@
-# Makefile for Pynq
+# Makefile for Pyccuracy
 SHELL := /bin/bash
 
 # Internal variables.
@@ -51,7 +51,7 @@ compile:
 run_unit: compile
 	@echo "Running unit tests..."
 	@rm -f ${unit_log_file} >> /dev/null
-	@nosetests --verbose --with-coverage --cover-package=pyccuracy ${unit_tests_dir}
+	@nosetests -s --verbose --with-coverage --cover-package=pyccuracy ${unit_tests_dir}
 
 test: build
 	@echo "================="
