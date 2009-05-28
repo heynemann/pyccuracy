@@ -71,3 +71,6 @@ class SelectOptionError(Exception):
 
 class WrongArgumentsError(Exception):
     pass
+
+class LanguageDoesNotResolveError(Exception):
+    pass
