@@ -190,8 +190,4 @@ def test_fixture_returns_total_successful_scenarios():
     other_action.mark_as_successful()
 
     assert fixture.count_successful_scenarios() == 2
-
-#        percentage_successful_stories = (self.successful_stories / (total_stories or 1))
-#        percentage_failed_stories = (self.failed_stories / (total_stories or 1))
-#        percentage_successful_scenarios = (self.successful_scenarios / (total_scenarios or 1))
-#        percentage_failed_scenarios = (self.failed_scenarios / (total_scenarios or 1))
+    
