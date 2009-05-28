@@ -16,6 +16,9 @@ class Result(object):
     def __init__(self, fixture):
         self.fixture = fixture
 
+    def show_result(self):
+        pass
+
     @classmethod
     def empty(cls):
         return Result(fixture=None)

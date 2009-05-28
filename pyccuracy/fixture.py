@@ -12,8 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import operator
+
 from pyccuracy.fixture_items import *
-from pyccuracy.common import TimedItem
+from pyccuracy.common import TimedItem, Status
 
 class Fixture(TimedItem):
     def __init__(self):
@@ -34,6 +36,38 @@ class Fixture(TimedItem):
     def append_story(self, story):
         self.stories.append(story)
         return story
+
+    def get_status(self):
+        status = Status.Unknown
+        for story in self.stories:
+            if story.status == Status.Failed:
+                return Status.Failed
+            if story.status == Status.Successful:
+                status = story.status
+        return status
+
+    def count_total_stories(self):
+        return len(self.stories)
+
+    def count_total_scenarios(self):
+        return reduce(operator.add, [len(story.scenarios) for story in self.stories])
+
+    def count_successful_stories(self):
+        return self.count_stories_by_status(Status.Successful)
+
+    def count_failed_stories(self):
+        return self.count_stories_by_status(Status.Failed)
+
+    def count_stories_by_status(self, status):
+        return len([story for story in self.stories if story.status == status])
+
+    def count_successful_scenarios(self):
+        return self.count_scenarios_by_status(Status.Successful)
+
+    def count_scenarios_by_status(self, status):
+        all_scenarios = []
+        map(lambda item: all_scenarios.extend(item), [story.scenarios for story in self.stories])
+        return len([scenario for scenario in all_scenarios if scenario.status==status])
 
     def __str__(self):
         return self.get_results()
