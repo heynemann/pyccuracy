@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 from nose.tools import raises, set_trace
-from pyccuracy.languages import LanguageGetter
+from pyccuracy.languages import LanguageGetter, AVAILABLE_LANGUAGES
 
 def test_pt_br_exists():
     lg = LanguageGetter('pt-br')
@@ -37,3 +37,6 @@ def test_en_us_basic_items():
     assert lg.get('files_without_header')
     assert lg.get('story_status')
 
+def test_available_languages():
+    assert 'pt-br' in AVAILABLE_LANGUAGES
+    assert 'en-us' in AVAILABLE_LANGUAGES
