@@ -16,20 +16,4 @@
 import os
 from os.path import join, abspath, dirname
 from pyccuracy.pyccuracy_core import PyccuracyCore, Settings
-from mocker import Mocker
 
-#    mocker = Mocker()
-
-#    mock_parser = mocker.mock()
-#    
-#    mocker.replay()
-
-#    mock_runner = mocker.mock()
-#    
-#    mocker.replay()
-
-#    core = PyccuracyCore(parser=mock_parser, runner=mock_runner)
-
-#    result = core.run_tests()
-
-#    assert result is not None, "The returned result cannot be none."
