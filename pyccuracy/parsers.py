@@ -14,7 +14,9 @@
 
 import re
 from locator import *
-from fixture import *
+
+from pyccuracy.fixture import Fixture
+from pyccuracy.fixture_items import Story, Scenario, Action
 
 class FSO(object):
     '''Actual Filesystem'''
@@ -26,16 +28,20 @@ class FileParser(object):
         self.language = language
 
     def get_stories(self, settings):
+        fixture = Fixture()
+
         story_file_list = self.file_object.list_files(directory=settings.tests_dir, pattern=settings.file_pattern)
-        stories = []
-        invalid_stories_list = []
+
         for story_file_path in story_file_list:
-            parsed, error, story = self.parse_story_file(story_file_path, settings) 
-            if parsed:
-                stories.append(story)
-            else:
-                invalid_stories_list.append((error, story_file_path))
-        return (stories, invalid_stories_list)
+            try:
+                parsed, error, story = self.parse_story_file(story_file_path, settings) 
+                if parsed:
+                    fixture.append_story(story)
+                else:
+                    fixture.append_no_story_header(story_file_path)
+            except Exception, err:
+                fixture.append_invalid_test_file(story_file_path, err)
+        return fixture
 
     def parse_story_file(self, story_file_path, settings):
         story_text = self.file_object.read_file(story_file_path)

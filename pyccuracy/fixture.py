@@ -15,46 +15,29 @@
 from errors import *
 import time
 from test_result import *
-from fixture_items import *
 
-class TestFixture(object):
-    def __init__(self, language):
+from pyccuracy.fixture_items import *
+from pyccuracy.common import TimedItem
+
+class Fixture(TimedItem):
+    def __init__(self):
+        TimedItem.__init__(self)
         self.clear()
-        self.language = language
 
     def clear(self):
         self.invalid_test_files = []
-        self.no_story_definition = []
+        self.no_story_header = []
         self.stories = []
 
-    def add_invalid_test_file(self, path):
-        self.invalid_test_files.append(path)
+    def append_invalid_test_file(self, path, error):
+        self.invalid_test_files.append((path, error))
 
-    def add_no_story_definition(self, path):
-        self.no_story_definition.append(path)
+    def append_no_story_header(self, path):
+        self.no_story_header.append(path)
 
-    def start_story(self, as_a, i_want_to, so_that):
-        story = Story(as_a, i_want_to, so_that)
+    def append_story(self, story):
         self.stories.append(story)
         return story
-
-    def get_results(self):
-        return TestResult(self.language,
-                          self.stories,
-                          self.invalid_test_files,
-                          self.no_story_definition,
-                          self.start_time,
-                          self.end_time)
-
-    def did_not_run(self):
-        self.start_time = time.time()
-        self.end_time = time.time()
-
-    def start_run(self):
-        self.start_time = time.time()
-
-    def end_run(self):
-        self.end_time = time.time()
 
     def __str__(self):
         return self.get_results()

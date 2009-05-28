@@ -15,6 +15,7 @@
 
 import re
 import urllib2
+import time
 
 def force_unicode(s, encoding='utf-8', errors='strict'):
     if not isinstance(s, basestring,):
@@ -53,3 +54,50 @@ class URLChecker(object):
             return True
         except urllib2.URLError:
             return False
+
+class TimedItem(object):
+    def __init__(self):
+        self.start_time = None
+        self.end_time = None
+
+    def start_run(self):
+        '''Starts a run for this story. This method just keeps track of the time this story started.'''
+        self.start_time = time.time()
+
+    def end_run(self):
+        '''Finishes a run for this story. This method just keeps track of the time this story finished.'''
+        self.end_time = time.time()
+
+    def ellapsed(self):
+        '''The number of milliseconds that this story took to run.'''
+        if self.start_time is None:
+            return 0
+        if self.end_time is None:
+            return 0
+        return self.end_time - self.start_time
+
+class Status:
+    '''Possible statuses of a story, scenario or action.'''
+    Unknown = "UNKNOWN"
+    Failed = "FAILED"
+    Successful = "SUCCESSFUL"
+
+class StatusItem(object):
+    def __init__(self, parent):
+        self.status = Status.Unknown
+        self.parent = parent
+        self.error = None
+
+    def mark_as_failed(self, error=None):
+        '''Marks this story as failed.'''
+        self.status = Status.Failed
+        self.error = error
+        if self.parent and isinstance(self.parent, StatusItem):
+            self.parent.mark_as_failed()
+
+    def mark_as_successful(self):
+        '''Marks this story as successful only if it has not been marked failed before.'''
+        if self.status != Status.Failed:
+            self.status = Status.Successful
+        if self.parent and isinstance(self.parent, StatusItem):
+            self.parent.mark_as_successful()

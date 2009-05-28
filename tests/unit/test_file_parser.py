@@ -18,6 +18,7 @@ from nose.tools import raises
 
 from pyccuracy.pyccuracy_core import Settings
 from pyccuracy.parsers import FileParser
+from pyccuracy.fixture import Fixture
 
 def test_can_create_file_parser():
     parser = FileParser()
@@ -36,8 +37,8 @@ def test_parsing_stories_returns_list():
     filemock.expects(pmock.once()).list_files(directory=pmock.same(settings.tests_dir), pattern=pmock.same(settings.file_pattern)).will(pmock.return_value([]))
     parser = FileParser(file_object=filemock)
 
-    stories, invalid_files = parser.get_stories(settings=settings)
-    assert isinstance(stories, (list,tuple))
+    fixture = parser.get_stories(settings=settings)
+    assert isinstance(fixture, Fixture)
 
 def test_parsing_folder_with_no_stories_returns_empty_list():
     settings = Settings()
@@ -47,17 +48,13 @@ def test_parsing_folder_with_no_stories_returns_empty_list():
 
     parser = FileParser(file_object=filemock)
 
-    stories, invalid_files = parser.get_stories(settings=settings)
-    assert len(stories) == 0
+    fixture = parser.get_stories(settings=settings)
+    assert len(fixture.stories) == 0
     filemock.verify()
 
 def test_parsing_files_with_empty_content_returns_invalid_files_list():
     settings = Settings()
     files = ["some path"]
-    
-#    story_text = """As a someone
-#    I want to do something
-#    So that I'm happy"""
 
     story_text = ""
 
@@ -73,10 +70,9 @@ def test_parsing_files_with_empty_content_returns_invalid_files_list():
 
     parser = FileParser(language=language_mock, file_object=filemock)
 
-    stories, invalid_files = parser.get_stories(settings=settings)
-    assert len(invalid_files) == 1
-    error, file_path = invalid_files[0]
-    assert error == "No header found"
+    fixture = parser.get_stories(settings=settings)
+    assert len(fixture.no_story_header) == 1
+    file_path = fixture.no_story_header[0]
     assert file_path == "some path"
     filemock.verify()
     
@@ -100,10 +96,9 @@ So that I'm happy"""
 
     parser = FileParser(language=language_mock, file_object=filemock)
 
-    stories, invalid_files = parser.get_stories(settings=settings)
-    assert len(invalid_files) == 1
-    error, file_path = invalid_files[0]
-    assert error == "No header found"
+    fixture = parser.get_stories(settings=settings)
+    assert len(fixture.no_story_header) == 1
+    file_path = fixture.no_story_header[0]
     assert file_path == "some path"
     filemock.verify()
 
@@ -127,10 +122,9 @@ So that I'm happy"""
 
     parser = FileParser(language=language_mock, file_object=filemock)
 
-    stories, invalid_files = parser.get_stories(settings=settings)
-    assert len(invalid_files) == 1
-    error, file_path = invalid_files[0]
-    assert error == "No header found"
+    fixture = parser.get_stories(settings=settings)
+    assert len(fixture.no_story_header) == 1
+    file_path = fixture.no_story_header[0]
     assert file_path == "some path"
     filemock.verify()
 
@@ -154,10 +148,9 @@ So I'm happy"""
 
     parser = FileParser(language=language_mock, file_object=filemock)
 
-    stories, invalid_files = parser.get_stories(settings=settings)
-    assert len(invalid_files) == 1
-    error, file_path = invalid_files[0]
-    assert error == "No header found"
+    fixture = parser.get_stories(settings=settings)
+    assert len(fixture.no_story_header) == 1
+    file_path = fixture.no_story_header[0]
     assert file_path == "some path"
     filemock.verify()
 
@@ -181,10 +174,10 @@ So that I'm happy"""
 
     parser = FileParser(language=language_mock, file_object=filemock)
 
-    stories, invalid_files = parser.get_stories(settings=settings)
-    assert len(stories) == 1
-    assert stories[0].as_a == "someone"
-    assert stories[0].i_want_to == "do something"
-    assert stories[0].so_that == "I'm happy"
+    fixture = parser.get_stories(settings=settings)
+    assert len(fixture.stories) == 1
+    assert fixture.stories[0].as_a == "someone"
+    assert fixture.stories[0].i_want_to == "do something"
+    assert fixture.stories[0].so_that == "I'm happy"
     filemock.verify()
 
