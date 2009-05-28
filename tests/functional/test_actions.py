@@ -9,3 +9,9 @@ def test_get_suitable_action():
     assert isinstance(args, (list, tuple))
     assert isinstance(kw, dict)
     assert args[1] == u'Welcome to Pyccuracy'
+
+def test_do_not_get_suitable_action():
+    Action, args, kw = ActionRegistry.suitable_for(u'Blah bluh foo bar', 'en-us')
+    assert Action is None
+    assert args is None
+    assert kw is None

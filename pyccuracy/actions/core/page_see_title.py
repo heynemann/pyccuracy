@@ -16,10 +16,11 @@ from pyccuracy.page import Page
 from pyccuracy.actions import ActionBase
 from pyccuracy.languages import LanguageItem
 
-class PageSeeTitleAction(ActionBase):
+class PageSeeTitle(ActionBase):
     regex = LanguageItem('page_see_title_regex')
-    def execute(self, values, context):
+
+    def execute(self, context, *args, **kwargs):
         expected_title = values[0]
-        title = self.browser_driver.get_title()
+        title = self.context.get_title()
         if (title != expected_title):
-            self.raise_action_failed_error(self.language["page_see_title_failure"] % (title, expected_title))
+            raise PageSeeTitle.ActionFailedError(context.language.format("page_see_title_failure", title, expected_title))
