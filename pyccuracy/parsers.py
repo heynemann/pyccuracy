@@ -41,10 +41,17 @@ class FileParser(object):
         story_text = self.file_object.read_file(story_file_path)
         story_lines = [line for line in story_text.split('\n') if line != ""]
 
-        if not self.assert_header(story_lines, settings.default_culture):
+        headers = self.assert_header(story_lines, settings.default_culture)
+        if not headers:
             return (False, self.language.get('no_header_failure'), None)
 
-        return (True, None, None)
+        as_a = headers[0]
+        i_want_to = headers[1]
+        so_that = headers[2]
+        
+        story = Story(as_a=as_a, i_want_to=i_want_to, so_that=so_that)
+        
+        return (True, None, story)
 
     def assert_header(self, story_lines, culture):
         as_a = self.language.get('as_a')
@@ -52,14 +59,16 @@ class FileParser(object):
         so_that = self.language.get('so_that')
 
         if len(story_lines) < 3:
-            return False
+            return []
 
         if not as_a in story_lines[0] \
            or not i_want_to in story_lines[1] \
            or not so_that in story_lines[2]:
-            return False
+            return []
 
-        return True
+        return [story_lines[0].replace(as_a, "").strip(), 
+                 story_lines[1].replace(i_want_to, "").strip(), 
+                 story_lines[2].replace(so_that, "").strip()]
 
 #    def __init__(self, browser_driver, language, all_actions, all_custom_actions):
 #        self.language = language

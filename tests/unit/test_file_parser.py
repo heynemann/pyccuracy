@@ -183,5 +183,8 @@ So that I'm happy"""
 
     stories, invalid_files = parser.get_stories(settings=settings)
     assert len(stories) == 1
+    assert stories[0].as_a == "someone"
+    assert stories[0].i_want_to == "do something"
+    assert stories[0].so_that == "I'm happy"
     filemock.verify()
 
