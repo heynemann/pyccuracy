@@ -28,6 +28,7 @@ unit: prepare_build compile run_unit report_success
 functional: prepare_build compile run_functional report_success
 prepare_build: clean create_build_dir
 clean: remove_build_dir remove_dist_dir
+	@find . -name '*.pyc' -delete
 
 # action targets
 
