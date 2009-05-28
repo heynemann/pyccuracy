@@ -13,25 +13,27 @@
 # limitations under the License.
 
 import re
-from pyccuracy.errors import ActionFailedError
-from pyccuracy.languages import LanguageItem, AVAILABLE_LANGUAGES, LanguageGetter
+from pyccuracy.errors import ActionFailedError, LanguageDoesNotResolveError
+from pyccuracy.languages import LanguageItem, AVAILABLE_GETTERS, LanguageGetter
 
-ACTIONS = {}
-LANGUAGE_DICT = dict([(l, []) for l in AVAILABLE_LANGUAGES])
+ACTIONS = []
 
 class ActionRegistry(object):
     @classmethod
-    def suitable_for(cls, line, language):
-        for action in LANGUAGE_DICT[language]:
-            match = action.can_resolve(line)
-            if not match:
-                translated_regex = LanguageGetter(language).get(action.regex)
-                match = re.match(translated_regex, line)
+    def suitable_for(cls, line, language, getter=None):
+        getter = getter or AVAILABLE_GETTERS[language]
 
-            if match:
-                return action, match.groups(), match.groupdict()
+        for Action in ACTIONS:
+            regex = Action.regex
+            if isinstance(Action.regex, LanguageItem):
+                regex = getter.get(Action.regex)
+                if regex is None:
+                    raise LanguageDoesNotResolveError('The language "%s" does not resolve the string "%s"' % (language, Action.regex))
 
-        # nothing found
+            matches = re.match(regex, line)
+            if matches:
+                return Action, matches.groups(), matches.groupdict()
+
         return None, None, None
 
 class MetaActionBase(type):
@@ -47,9 +49,7 @@ class MetaActionBase(type):
                 raise TypeError("%s.regex attribute must be a string, got %r(%r)." % (regex.__class__, regex))
 
             # registering
-            ACTIONS[name] = cls
-            for language in AVAILABLE_LANGUAGES:
-                LANGUAGE_DICT[language].append(cls)
+            ACTIONS.append(cls)
 
         super(MetaActionBase, cls).__init__(name, bases, attrs)
 
@@ -60,3 +60,9 @@ class ActionBase(object):
     @classmethod
     def can_resolve(cls, string):
         return re.match(cls.regex, string)
+
+    def execute_action(self, line, context, getter=None):
+        # the getter is here for unit testing reasons
+        Action, args, kwargs = ActionRegistry.suitable_for(line, context.get_language(), getter=getter)
+        if isinstance(self, Action):
+            raise RuntimeError('A action can not execute itself for infinite recursion reasons :)')

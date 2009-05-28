@@ -73,3 +73,5 @@ class LanguageGetter(object):
 
 class LanguageItem(unicode):
     pass
+
+AVAILABLE_GETTERS = dict([(language, LanguageGetter(language)) for language in AVAILABLE_LANGUAGES])
