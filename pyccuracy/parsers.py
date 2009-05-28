@@ -55,9 +55,27 @@ class FileParser(object):
         i_want_to = headers[1]
         so_that = headers[2]
         
-        story = Story(as_a=as_a, i_want_to=i_want_to, so_that=so_that)
-        
-        return (True, None, story)
+        current_story = Story(as_a=as_a, i_want_to=i_want_to, so_that=so_that)
+
+        scenario_lines = story_lines[3:]
+
+        for line in scenario_lines:
+            current_scenario = None
+            if self.is_scenario_starter_line(line):
+                current_scenario = self.parse_scenario_line(current_story, line)
+
+        return (True, None, current_story)
+
+    def is_scenario_starter_line(self, line):
+        scenario_keyword = self.language.get('scenario')
+        return line.strip().startswith(scenario_keyword)
+
+    def parse_scenario_line(self, current_story, line):
+        scenario_keyword = self.language.get('scenario')
+        scenario_values = line.split(' ')
+        index = scenario_values[0].replace(scenario_keyword,"").strip()
+        title = scenario_values[1].strip()
+        current_scenario = current_story.append_scenario(index, title)
 
     def assert_header(self, story_lines, culture):
         as_a = self.language.get('as_a')
