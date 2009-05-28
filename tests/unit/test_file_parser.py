@@ -36,7 +36,7 @@ def test_parsing_stories_returns_list():
     filemock.expects(pmock.once()).list_files(directory=pmock.same(settings.tests_dir), pattern=pmock.same(settings.file_pattern)).will(pmock.return_value([]))
     parser = FileParser(file_object=filemock)
 
-    stories = parser.get_stories(settings=settings)
+    stories, invalid_files = parser.get_stories(settings=settings)
     assert isinstance(stories, (list,tuple))
 
 def test_parsing_folder_with_no_stories_returns_empty_list():
@@ -47,7 +47,141 @@ def test_parsing_folder_with_no_stories_returns_empty_list():
 
     parser = FileParser(file_object=filemock)
 
-    stories = parser.get_stories(settings=settings)
+    stories, invalid_files = parser.get_stories(settings=settings)
     assert len(stories) == 0
+    filemock.verify()
+
+def test_parsing_files_with_empty_content_returns_invalid_files_list():
+    settings = Settings()
+    files = ["some path"]
+    
+#    story_text = """As a someone
+#    I want to do something
+#    So that I'm happy"""
+
+    story_text = ""
+
+    filemock = pmock.Mock()
+    filemock.expects(pmock.once()).list_files(directory=pmock.same(settings.tests_dir), pattern=pmock.same(settings.file_pattern)).will(pmock.return_value(files))
+    filemock.expects(pmock.once()).read_file(pmock.eq(files[0])).will(pmock.return_value(story_text))
+
+    language_mock = pmock.Mock()
+    language_mock.expects(pmock.once()).get(pmock.eq("as_a")).will(pmock.return_value("As a"))
+    language_mock.expects(pmock.once()).get(pmock.eq("i_want_to")).will(pmock.return_value("I want to"))
+    language_mock.expects(pmock.once()).get(pmock.eq("so_that")).will(pmock.return_value("So that"))
+    language_mock.expects(pmock.once()).get(pmock.eq("no_header_failure")).will(pmock.return_value("No header found"))
+
+    parser = FileParser(language=language_mock, file_object=filemock)
+
+    stories, invalid_files = parser.get_stories(settings=settings)
+    assert len(invalid_files) == 1
+    error, file_path = invalid_files[0]
+    assert error == "No header found"
+    assert file_path == "some path"
+    filemock.verify()
+    
+def test_parsing_files_with_invalid_as_a_returns_invalid_files_list():
+    settings = Settings()
+    files = ["some path"]
+    
+    story_text = """As someone
+I want to do something
+So that I'm happy"""
+
+    filemock = pmock.Mock()
+    filemock.expects(pmock.once()).list_files(directory=pmock.same(settings.tests_dir), pattern=pmock.same(settings.file_pattern)).will(pmock.return_value(files))
+    filemock.expects(pmock.once()).read_file(pmock.eq(files[0])).will(pmock.return_value(story_text))
+
+    language_mock = pmock.Mock()
+    language_mock.expects(pmock.once()).get(pmock.eq("as_a")).will(pmock.return_value("As a"))
+    language_mock.expects(pmock.once()).get(pmock.eq("i_want_to")).will(pmock.return_value("I want to"))
+    language_mock.expects(pmock.once()).get(pmock.eq("so_that")).will(pmock.return_value("So that"))
+    language_mock.expects(pmock.once()).get(pmock.eq("no_header_failure")).will(pmock.return_value("No header found"))
+
+    parser = FileParser(language=language_mock, file_object=filemock)
+
+    stories, invalid_files = parser.get_stories(settings=settings)
+    assert len(invalid_files) == 1
+    error, file_path = invalid_files[0]
+    assert error == "No header found"
+    assert file_path == "some path"
+    filemock.verify()
+
+def test_parsing_files_with_invalid_i_want_to_returns_invalid_files_list():
+    settings = Settings()
+    files = ["some path"]
+    
+    story_text = """As a someone
+I want something
+So that I'm happy"""
+
+    filemock = pmock.Mock()
+    filemock.expects(pmock.once()).list_files(directory=pmock.same(settings.tests_dir), pattern=pmock.same(settings.file_pattern)).will(pmock.return_value(files))
+    filemock.expects(pmock.once()).read_file(pmock.eq(files[0])).will(pmock.return_value(story_text))
+
+    language_mock = pmock.Mock()
+    language_mock.expects(pmock.once()).get(pmock.eq("as_a")).will(pmock.return_value("As a"))
+    language_mock.expects(pmock.once()).get(pmock.eq("i_want_to")).will(pmock.return_value("I want to"))
+    language_mock.expects(pmock.once()).get(pmock.eq("so_that")).will(pmock.return_value("So that"))
+    language_mock.expects(pmock.once()).get(pmock.eq("no_header_failure")).will(pmock.return_value("No header found"))
+
+    parser = FileParser(language=language_mock, file_object=filemock)
+
+    stories, invalid_files = parser.get_stories(settings=settings)
+    assert len(invalid_files) == 1
+    error, file_path = invalid_files[0]
+    assert error == "No header found"
+    assert file_path == "some path"
+    filemock.verify()
+
+def test_parsing_files_with_invalid_so_that_returns_invalid_files_list():
+    settings = Settings()
+    files = ["some path"]
+    
+    story_text = """As a someone
+I want to do something
+So I'm happy"""
+
+    filemock = pmock.Mock()
+    filemock.expects(pmock.once()).list_files(directory=pmock.same(settings.tests_dir), pattern=pmock.same(settings.file_pattern)).will(pmock.return_value(files))
+    filemock.expects(pmock.once()).read_file(pmock.eq(files[0])).will(pmock.return_value(story_text))
+
+    language_mock = pmock.Mock()
+    language_mock.expects(pmock.once()).get(pmock.eq("as_a")).will(pmock.return_value("As a"))
+    language_mock.expects(pmock.once()).get(pmock.eq("i_want_to")).will(pmock.return_value("I want to"))
+    language_mock.expects(pmock.once()).get(pmock.eq("so_that")).will(pmock.return_value("So that"))
+    language_mock.expects(pmock.once()).get(pmock.eq("no_header_failure")).will(pmock.return_value("No header found"))
+
+    parser = FileParser(language=language_mock, file_object=filemock)
+
+    stories, invalid_files = parser.get_stories(settings=settings)
+    assert len(invalid_files) == 1
+    error, file_path = invalid_files[0]
+    assert error == "No header found"
+    assert file_path == "some path"
+    filemock.verify()
+
+def test_parsing_files_with_proper_header_returns_parsed_scenario():
+    settings = Settings()
+    files = ["some path"]
+    
+    story_text = """As a someone
+I want to do something
+So that I'm happy"""
+
+    filemock = pmock.Mock()
+    filemock.expects(pmock.once()).list_files(directory=pmock.same(settings.tests_dir), pattern=pmock.same(settings.file_pattern)).will(pmock.return_value(files))
+    filemock.expects(pmock.once()).read_file(pmock.eq(files[0])).will(pmock.return_value(story_text))
+
+    language_mock = pmock.Mock()
+    language_mock.expects(pmock.once()).get(pmock.eq("as_a")).will(pmock.return_value("As a"))
+    language_mock.expects(pmock.once()).get(pmock.eq("i_want_to")).will(pmock.return_value("I want to"))
+    language_mock.expects(pmock.once()).get(pmock.eq("so_that")).will(pmock.return_value("So that"))
+    language_mock.expects(pmock.once()).get(pmock.eq("no_header_failure")).will(pmock.return_value("No header found"))
+
+    parser = FileParser(language=language_mock, file_object=filemock)
+
+    stories, invalid_files = parser.get_stories(settings=settings)
+    assert len(stories) == 1
     filemock.verify()
 

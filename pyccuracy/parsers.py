@@ -21,18 +21,45 @@ class FSO(object):
     pass
 
 class FileParser(object):
-    def __init__(self, file_object=None):
+    def __init__(self, language=None, file_object=None):
         self.file_object = file_object and file_object or FSO()
+        self.language = language
 
     def get_stories(self, settings):
         story_file_list = self.file_object.list_files(directory=settings.tests_dir, pattern=settings.file_pattern)
         stories = []
+        invalid_stories_list = []
         for story_file_path in story_file_list:
-            stories.append(self.parse_story(story_file_path))
-        return stories
+            parsed, error, story = self.parse_story_file(story_file_path, settings) 
+            if parsed:
+                stories.append(story)
+            else:
+                invalid_stories_list.append((error, story_file_path))
+        return (stories, invalid_stories_list)
 
-    def parse_story_file(self, story_file_path):
-        pass
+    def parse_story_file(self, story_file_path, settings):
+        story_text = self.file_object.read_file(story_file_path)
+        story_lines = [line for line in story_text.split('\n') if line != ""]
+
+        if not self.assert_header(story_lines, settings.default_culture):
+            return (False, self.language.get('no_header_failure'), None)
+
+        return (True, None, None)
+
+    def assert_header(self, story_lines, culture):
+        as_a = self.language.get('as_a')
+        i_want_to = self.language.get('i_want_to')
+        so_that = self.language.get('so_that')
+
+        if len(story_lines) < 3:
+            return False
+
+        if not as_a in story_lines[0] \
+           or not i_want_to in story_lines[1] \
+           or not so_that in story_lines[2]:
+            return False
+
+        return True
 
 #    def __init__(self, browser_driver, language, all_actions, all_custom_actions):
 #        self.language = language
