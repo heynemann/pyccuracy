@@ -128,42 +128,48 @@ def test_scenario_ellapsed_returns_seconds():
 def test_append_given_adds_to_givens_in_scenario():
     story = Story(as_a="Someone", i_want_to="do something", so_that="something")
     scenario = Scenario(index="1", title="Something", story=story)
+    args = ["a"]
     kwargs = {"extra_args":"something"}
-    scenario.add_given("some action", lambda: None, "some arg", **kwargs)
+    scenario.add_given("some action", lambda: None, args, kwargs)
     assert len(scenario.givens) == 1, "There should be one given in the scenario but there was %d" % len(scenario.givens)
 
 def test_append_given_adds_right_class_to_givens_in_scenario():
     story = Story(as_a="Someone", i_want_to="do something", so_that="something")
     scenario = Scenario(index="1", title="Something", story=story)
+    args = ["a"]
     kwargs = {"extra_args":"something"}
-    scenario.add_given("some action", lambda: None, "some arg", **kwargs)
+    scenario.add_given("some action", lambda: None, args, kwargs)
     assert isinstance(scenario.givens[0], Action), "There should be one given of type Action in the scenario but there was %s" % scenario.givens[0].__class__
 
 def test_append_when_adds_to_whens_in_scenario():
     story = Story(as_a="Someone", i_want_to="do something", so_that="something")
     scenario = Scenario(index="1", title="Something", story=story)
+    args = ["a"]
     kwargs = {"extra_args":"something"}
-    scenario.add_when("some action", lambda: None, "some arg", **kwargs)
+    scenario.add_when("some action", lambda: None, args, kwargs)
     assert len(scenario.whens) == 1, "There should be one when in the scenario but there was %d" % len(scenario.whens)
 
 def test_append_when_adds_right_class_to_whens_in_scenario():
     story = Story(as_a="Someone", i_want_to="do something", so_that="something")
     scenario = Scenario(index="1", title="Something", story=story)
+    args = ["a"]
     kwargs = {"extra_args":"something"}
-    scenario.add_when("some action", lambda: None, "some arg", **kwargs)
+    scenario.add_when("some action", lambda: None, args, kwargs)
     assert isinstance(scenario.whens[0], Action), "There should be one when of type Action in the scenario but there was %s" % scenario.whens[0].__class__
 
 def test_append_then_adds_to_thens_in_scenario():
     story = Story(as_a="Someone", i_want_to="do something", so_that="something")
     scenario = Scenario(index="1", title="Something", story=story)
+    args = ["a"]
     kwargs = {"extra_args":"something"}
-    scenario.add_then("some action", lambda: None, "some arg", **kwargs)
+    scenario.add_then("some action", lambda: None, args, kwargs)
     assert len(scenario.thens) == 1, "There should be one then in the scenario but there was %d" % len(scenario.thens)
 
 def test_append_then_adds_right_class_to_thens_in_scenario():
     story = Story(as_a="Someone", i_want_to="do something", so_that="something")
     scenario = Scenario(index="1", title="Something", story=story)
+    args = ["a"]
     kwargs = {"extra_args":"something"}
-    scenario.add_then("some action", lambda: None, "some arg", **kwargs)
+    scenario.add_then("some action", lambda: None, args, kwargs)
     assert isinstance(scenario.thens[0], Action), "There should be one then of type Action in the scenario but there was %s" % scenario.thens[0].__class__
 

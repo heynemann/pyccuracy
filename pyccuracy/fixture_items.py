@@ -96,18 +96,18 @@ class Scenario(StatusItem, TimedItem):
         self.whens = []
         self.thens = []
 
-    def add_given(self, action_description, execute_function, *args, **kwargs):
-        action = Action(self, action_description, execute_function, *args, **kwargs)
+    def add_given(self, action_description, execute_function, args, kwargs):
+        action = Action(self, action_description, execute_function, args, kwargs)
         self.givens.append(action)
         return action
 
-    def add_when(self, action_description, execute_function, *args, **kwargs):
-        action = Action(self, action_description, execute_function, *args, **kwargs)
+    def add_when(self, action_description, execute_function, args, kwargs):
+        action = Action(self, action_description, execute_function, args, kwargs)
         self.whens.append(action)
         return action
 
-    def add_then(self, action_description, execute_function, *args, **kwargs):
-        action = Action(self, action_description, execute_function, *args, **kwargs)
+    def add_then(self, action_description, execute_function, args, kwargs):
+        action = Action(self, action_description, execute_function, args, kwargs)
         self.thens.append(action)
         return action
 
@@ -118,7 +118,7 @@ class Scenario(StatusItem, TimedItem):
         return unicode(self)
 
 class Action(StatusItem, TimedItem):
-    def __init__(self, scenario, description, execute_function, *args, **kwargs):
+    def __init__(self, scenario, description, execute_function, args, kwargs):
         StatusItem.__init__(self, parent=scenario)
         TimedItem.__init__(self)
 
