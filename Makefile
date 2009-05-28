@@ -45,18 +45,13 @@ compile:
 	@echo "Compiling source code..."
 	@rm -f ${compile_log_file} >> /dev/null
 	@rm -f -r ${src_dir}/*.pyc >> /dev/null
-	@python -m compileall ${src_dir} >> ${compile_log_file} 2>> ${compile_log_file}
+	@python -tt -m compileall ${src_dir} >> ${compile_log_file} 2>> ${compile_log_file}
+	@python -tt -m compileall ${unit_tests_dir} >> ${compile_log_file} 2>> ${compile_log_file}
 
 run_unit: compile
 	@echo "Running unit tests..."
 	@rm -f ${unit_log_file} >> /dev/null
-	@if [ "$(nocoverage)" = "true" ]; then nosetests --verbose ${unit_tests_dir}; else nosetests --verbose --with-coverage --cover-package=pyccuracy; fi
-	@echo "============="
-	@echo "Unit coverage"
-	@echo "============="
-	@if [ "$(nocoverage)" != "true" ]; then cat ${unit_log_file} | egrep '(Name)|(TOTAL)'; fi
-	@if [ "$(nocoverage)" = "true" ]; then echo 'Coverage Disabled.'; fi
-	@echo
+	@nosetests --verbose --with-coverage --cover-package=pyccuracy ${unit_tests_dir}
 
 test: build
 	@echo "================="

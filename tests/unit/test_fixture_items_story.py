@@ -15,13 +15,19 @@
 
 import time
 
-from mocker import Mocker
-
-from pyccuracy.fixture_items import Status, Story
+from pyccuracy.fixture_items import Status, Story, Scenario, TimedItem, StatusItem
 
 def test_creating_a_story_returns_a_story():
     story = Story(as_a=None, i_want_to=None, so_that=None)
     assert isinstance(story, Story)
+
+def test_story_is_a_timed_item():
+    story = Story(as_a=None, i_want_to=None, so_that=None)
+    assert isinstance(story, TimedItem)
+
+def test_story_is_a_status_item():
+    story = Story(as_a=None, i_want_to=None, so_that=None)
+    assert isinstance(story, StatusItem)
 
 def test_creating_a_story_keeps_as_a():
     expected = "someone"
@@ -100,30 +106,25 @@ def test_story_ellapsed_returns_zero_for_non_finished_stories():
 def test_story_ellapsed_returns_seconds():
     story = Story(as_a="Someone", i_want_to="Do Something", so_that="I'm Happy")
     story.start_run()
-    time.sleep(2)
+    time.sleep(0.1)
     story.end_run()
 
-    expected = 2
-    ellapsed = int(story.ellapsed())
-    assert ellapsed == expected, "The ellapsed time should be %d but was %d" % (expected, ellapsed)
+    expected = "0.10"
+    ellapsed = "%.2f" % story.ellapsed()
+    assert ellapsed == expected, "The ellapsed time should be %s but was %s" % (expected, ellapsed)
 
 def test_append_scenario_adds_to_scenarios_in_story():
     story = Story(as_a="Someone", i_want_to="Do Something", so_that="I'm Happy")
     story.append_scenario(index="1", title="Test")
     assert len(story.scenarios) == 1, "There should be one scenario in the story but there was %d" % len(story.scenarios)
 
-#    mocker = Mocker()
+def test_append_scenario_adds_right_class_to_scenarios_in_story():
+    story = Story(as_a="Someone", i_want_to="Do Something", so_that="I'm Happy")
+    story.append_scenario(index="1", title="Test")
+    assert isinstance(story.scenarios[0], Scenario), "There should be an item of class Scenario in the story but there was %s" % story.scenarios[0].__class__
 
-#    mock_parser = mocker.mock()
-#    
-#    mocker.replay()
+def test_append_scenario_adds_right_index_to_scenarios_in_story():
+    story = Story(as_a="Someone", i_want_to="Do Something", so_that="I'm Happy")
+    story.append_scenario(index="1", title="Test")
+    assert story.scenarios[0].index == "1", "There should be a scenario in the story with index 1 but there was %s" % story.scenarios[0].index
 
-#    mock_runner = mocker.mock()
-#    
-#    mocker.replay()
-
-#    core = PyccuracyCore(parser=mock_parser, runner=mock_runner)
-
-#    result = core.run_tests()
-
-#    assert result is not None, "The returned result cannot be none."
