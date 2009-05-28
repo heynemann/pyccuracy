@@ -47,5 +47,8 @@ class LanguageGetter(object):
 
         return self.data.get(key)
 
+    def format(self, string, *args, **kwargs):
+        return self.get(string) % (args or kwargs)
+
 class LanguageItem(unicode):
     pass

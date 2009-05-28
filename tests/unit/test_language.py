@@ -14,7 +14,7 @@
 # limitations under the License.
 
 import pmock
-from nose.tools import raises
+from nose.tools import raises, set_trace
 from pyccuracy.languages import LanguageGetter
 
 def test_language_getter_get():
@@ -33,3 +33,18 @@ def test_language_getter_get():
     assert lg.get('data1') == u'something'
     assert lg.get('data2') == u'something else'
     filemock.verify()
+
+def test_laguage_getter_format():
+    language = 'error_one_ok_args = you expected %s but got %s\n' \
+               'error_one_ok_kwargs = you expected %(expected)s but got %(what_got)s\n' \
+               'error_two_too_many_args = impossible to check %s\n' \
+               'error_three_not_enough_args = impossible to check %s in %s\n'
+
+    filemock = pmock.Mock()
+    filemock.expects(pmock.once()).read().will(pmock.return_value(language))
+
+    lg = LanguageGetter('pt-br', file_object=filemock)
+    lg.fill_data()
+
+    assert lg.format('error_one_ok_args', 'X', 'Y') == u'you expected X but got Y'
+    assert lg.format('error_one_ok_kwargs', expected='Xabba', what_got='Yabba') == u'you expected Xabba but got Yabba'
