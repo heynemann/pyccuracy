@@ -74,8 +74,9 @@ def test_parsing_files_with_empty_content_returns_invalid_files_list():
     assert len(fixture.no_story_header) == 1
     file_path = fixture.no_story_header[0]
     assert file_path == "some path"
+    language_mock.verify()
     filemock.verify()
-    
+
 def test_parsing_files_with_invalid_as_a_returns_invalid_files_list():
     settings = Settings()
     files = ["some path"]
@@ -100,6 +101,7 @@ So that I'm happy"""
     assert len(fixture.no_story_header) == 1
     file_path = fixture.no_story_header[0]
     assert file_path == "some path"
+    language_mock.verify()
     filemock.verify()
 
 def test_parsing_files_with_invalid_i_want_to_returns_invalid_files_list():
@@ -126,6 +128,7 @@ So that I'm happy"""
     assert len(fixture.no_story_header) == 1
     file_path = fixture.no_story_header[0]
     assert file_path == "some path"
+    language_mock.verify()
     filemock.verify()
 
 def test_parsing_files_with_invalid_so_that_returns_invalid_files_list():
@@ -152,6 +155,7 @@ So I'm happy"""
     assert len(fixture.no_story_header) == 1
     file_path = fixture.no_story_header[0]
     assert file_path == "some path"
+    language_mock.verify()
     filemock.verify()
 
 def test_parsing_files_with_proper_header_returns_parsed_scenario():
@@ -170,7 +174,6 @@ So that I'm happy"""
     language_mock.expects(pmock.once()).get(pmock.eq("as_a")).will(pmock.return_value("As a"))
     language_mock.expects(pmock.once()).get(pmock.eq("i_want_to")).will(pmock.return_value("I want to"))
     language_mock.expects(pmock.once()).get(pmock.eq("so_that")).will(pmock.return_value("So that"))
-    language_mock.expects(pmock.once()).get(pmock.eq("no_header_failure")).will(pmock.return_value("No header found"))
 
     parser = FileParser(language=language_mock, file_object=filemock)
 
@@ -179,5 +182,25 @@ So that I'm happy"""
     assert fixture.stories[0].as_a == "someone"
     assert fixture.stories[0].i_want_to == "do something"
     assert fixture.stories[0].so_that == "I'm happy"
+    language_mock.verify()
     filemock.verify()
 
+def test_is_scenario_starter_line():
+    language_mock = pmock.Mock()
+    language_mock.expects(pmock.once()).get(pmock.eq("scenario")).will(pmock.return_value("Scenario"))
+
+    parser = FileParser(language=language_mock, file_object=None)
+    is_scenario_starter_line = parser.is_scenario_starter_line("Scenario bla")
+    
+    assert is_scenario_starter_line
+    language_mock.verify()
+
+def test_is_not_scenario_starter_line():
+    language_mock = pmock.Mock()
+    language_mock.expects(pmock.once()).get(pmock.eq("scenario")).will(pmock.return_value("Scenario"))
+
+    parser = FileParser(language=language_mock, file_object=None)
+    is_scenario_starter_line = parser.is_scenario_starter_line("Cenario bla")
+    
+    assert not is_scenario_starter_line
+    language_mock.verify()
