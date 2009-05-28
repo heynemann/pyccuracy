@@ -63,7 +63,8 @@ class Page(object):
     def __init__(self):
         '''Initializes the page with the given url.'''
         self.registered_elements = {}
-        if hasattr(self, "register"): self.register()
+        if hasattr(self, "register"):
+            self.register()
 
     def get_registered_element(self, element_key):
         if not self.registered_elements.has_key(element_key):
