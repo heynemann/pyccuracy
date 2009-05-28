@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
 
 # Licensed under the Open Software License ("OSL") v. 3.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,14 +15,10 @@
 
 from pyccuracy.result import Result
 
-class StoryRunner(object):
-    def run_stories(self, settings, fixture):
-        #No tests to run
-        if len(fixture.stories) == 0:
-            return Result.empty()
+def test_empty_result_returns_result():
+    result = Result.empty()
+    assert result is not None
 
-#        for story in fixture.stories:
-#            for scenario in fixture.scenarios:
-#                for action in 
-
-        return Result(fixture)
+def test_empty_result_returns_none_fixture():
+    result = Result.empty()
+    assert result.fixture is None

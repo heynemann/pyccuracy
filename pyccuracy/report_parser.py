@@ -26,7 +26,7 @@ from lxml.etree import Element
 from lxml.builder import E
 from lxml import etree as ET
 
-VERSION = "0.3.3"
+VERSION = "0.6.0"
 
 def generate_report(file_path, test_result, language):
     xslt = open(join(split(__file__)[0], "xslt/AccuracyReport.xslt"))

@@ -12,16 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from pyccuracy.result import Result
+class Result(object):
+    def __init__(self, fixture):
+        self.fixture = fixture
 
-class StoryRunner(object):
-    def run_stories(self, settings, fixture):
-        #No tests to run
-        if len(fixture.stories) == 0:
-            return Result.empty()
-
-#        for story in fixture.stories:
-#            for scenario in fixture.scenarios:
-#                for action in 
-
-        return Result(fixture)
+    @classmethod
+    def empty(cls):
+        return Result(fixture=None)
