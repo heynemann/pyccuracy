@@ -1,12 +1,15 @@
 #!/usr/bin/env python
-#-*- coding:utf-8 -*-
-
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2009 Bernardo Heynemann <heynemann@gmail.com>
+# Copyright (C) 2009 Gabriel Falcão <gabriel@nacaolivre.org>
+#
 # Licensed under the Open Software License ("OSL") v. 3.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-
+#
 #     http://www.opensource.org/licenses/osl-3.0.php
-
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,27 +17,12 @@
 # limitations under the License.
 
 import os
-from os.path import abspath, join, dirname
-
 import re
-import urllib2
 import time
+import fnmatch
+import urllib2
 
-def force_unicode(s, encoding='utf-8', errors='strict'):
-    if not isinstance(s, basestring,):
-        if hasattr(s, '__unicode__'):
-            s = unicode(s)
-        else:
-            try:
-                s = unicode(str(s), encoding, errors)
-            except UnicodeEncodeError:
-                if not isinstance(s, Exception):
-                    raise
-                s = ' '.join([self.force_unicode(arg, encoding, errors) for arg in s])
-    elif not isinstance(s, unicode):
-        s = s.decode(encoding, errors)
-
-    return s
+from os.path import abspath, join, dirname
 
 class URLChecker(object):
     """
@@ -134,3 +122,10 @@ class Settings(object):
 class Context(object):
     def __init__(self, settings):
         self.settings = settings
+
+
+def locate(pattern, root=os.curdir):
+    root_path = os.path.abspath(root)
+    for path, dirs, files in os.walk(root_path):
+        for filename in fnmatch.filter(files, pattern):
+            yield os.path.join(path, filename)

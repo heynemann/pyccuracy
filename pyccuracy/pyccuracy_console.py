@@ -1,12 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+#
+# Copyright (C) 2009 Bernardo Heynemann <heynemann@gmail.com>
+# Copyright (C) 2009 Gabriel Falcão <gabriel@nacaolivre.org>
+#
 # Licensed under the Open Software License ("OSL") v. 3.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-
+#
 #     http://www.opensource.org/licenses/osl-3.0.php
-
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -37,12 +40,12 @@ from pyccuracy.pyccuracy_core import PyccuracyCore
 
 def main():
     """ Main function - parses args and runs action """
-    
+
     extra_browser_driver_arguments = "\n\nThe following extra browser driver arguments " \
                                      " are supported in the key=value format:\n\nSelenium Browser Driver:\n" \
                                      "-selenium.server=ip or name of selenium server or grid\n" \
                                      "-selenium.port=port of the given selenium server or grid\n"
-    
+
     parser = optparse.OptionParser(usage="%prog or type %prog -h (--help) for help" + extra_browser_driver_arguments, description=__doc__, version=__version_string__)
     parser.add_option("-p", "--pattern", dest="pattern", default="*.acc", help="File pattern. Defines which files will get executed [default: %default].")
     parser.add_option("-s", "--scenarios", dest="scenarios_to_run", default=None, help="Run only the given scenarios, comma separated. I.e: --scenarios=1,4,9")

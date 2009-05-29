@@ -15,14 +15,10 @@
 
 from os.path import join, abspath, dirname
 
-from selenium_browser_driver import *
-from webdriver_browser_driver import *
-from story_runner import *
-from parsers import *
-from language import *
-from errors import *
-from page import Page
-from actions import ActionBase
+from pyccuracy import Page, ActionBase
+from pyccuracy.story_runner import *
+from pyccuracy.parsers import *
+from pyccuracy.errors import *
 
 class PyccuracyCore(object):
     def __init__(self, parser, runner):

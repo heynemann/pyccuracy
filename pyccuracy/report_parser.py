@@ -1,24 +1,28 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+#
+# Copyright (C) 2009 Bernardo Heynemann <heynemann@gmail.com>
+# Copyright (C) 2009 Gabriel Falcão <gabriel@nacaolivre.org>
+#
 # Licensed under the Open Software License ("OSL") v. 3.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-
+#
 #     http://www.opensource.org/licenses/osl-3.0.php
-
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from os.path import join
-from os.path import split
-from os.path import exists
+import time
 from os import remove
 from os import curdir
+
 from datetime import datetime
-import time
+from os.path import join, split, exists
+
 from StringIO import StringIO
 
 from lxml import etree
@@ -37,11 +41,11 @@ def generate_report(file_path, test_result, language):
 
     if exists(file_path):
         remove(file_path)
-    
+
     html = open(file_path, "w")
     html.write(str(result_tree))
     html.close()
-    
+
 def generate_xml(test_result, language):
     total_stories = float(test_result.successful_stories + test_result.failed_stories)
     total_scenarios = float(test_result.successful_scenarios + test_result.failed_scenarios)
@@ -49,13 +53,13 @@ def generate_xml(test_result, language):
     percentage_failed_stories = (test_result.failed_stories / (total_stories or 1)) * 100
     percentage_successful_scenarios = (test_result.successful_scenarios / (total_scenarios or 1)) * 100
     percentage_failed_scenarios = (test_result.failed_scenarios / (total_scenarios or 1)) * 100
-    
+
     index = 0
     stories = []
     for story in test_result.stories:
         index += 1
         stories.append(__generate_story(story, index, language))
-        
+
     doc = E.report(
         E.header(
             {
@@ -78,14 +82,14 @@ def generate_xml(test_result, language):
             }
         )
     )
-    
+
     stories_doc = Element("stories")
-    
+
     for story in stories:
         stories_doc.append(story)
-    
+
     doc.append(stories_doc)
-    
+
     #print etree.tostring(doc, pretty_print=True)
     return doc
 
@@ -93,7 +97,7 @@ def __generate_story(story, story_index, language):
     scenarios = []
     for scenario in story.scenarios:
         scenarios.append(__generate_scenario(scenario, language))
-        
+
     story_doc = E.story(
                     {
                         "index":str(story_index),
@@ -103,10 +107,10 @@ def __generate_story(story, story_index, language):
                         "isSuccessful": (story.status == "SUCCESSFUL" and "true" or "false")
                     }
                 )
-                
+
     for scenario in scenarios:
         story_doc.append(scenario)
-        
+
     return story_doc
 
 def __generate_scenario(scenario, language):
@@ -116,7 +120,7 @@ def __generate_scenario(scenario, language):
     else:
         scenario_total_time = 0.0
         scenario_finish_time = "FAILED"
-    
+
     actions = []
     odd = True
     actions.append(__generate_given(language, odd))
@@ -124,23 +128,23 @@ def __generate_scenario(scenario, language):
     for action in scenario.givens:
         actions.append(__generate_action(action, language, odd))
         odd = not odd
-        
+
     actions.append(__generate_when(language, odd))
     odd = not odd
     for action in scenario.whens:
         actions.append(__generate_action(action, language, odd))
         odd = not odd
-    
+
     actions.append(__generate_then(language, odd))
     odd = not odd
     for action in scenario.thens:
         actions.append(__generate_action(action, language, odd))
         odd = not odd
-        
+
     #action_text = "".join([etree.tostring(action, pretty_print=False) for action in actions]).replace('"', '&quot;')
-        
+
     scenario_status = scenario.status == "SUCCESSFUL" and "true" or "false"
-    
+
     scenario_doc = E.scenario(
                                 {
                                     "index":str(scenario.index),
@@ -150,10 +154,10 @@ def __generate_scenario(scenario, language):
                                     "isSuccessful":scenario_status
                                 }
                            )
-                           
+
     for action in actions:
         scenario_doc.append(action)
-        
+
     return scenario_doc
 
 def __generate_given(language, odd):
@@ -164,7 +168,7 @@ def __generate_when(language, odd):
 
 def __generate_then(language, odd):
     return __generate_condition(language["then"], odd)
-    
+
 def __generate_condition(condition_name, odd):
     condition_doc = E.action(
                             {
@@ -174,18 +178,18 @@ def __generate_condition(condition_name, odd):
                                 "oddOrEven":(odd and "odd" or "even")
                             }
                           )
-                          
+
     return condition_doc
-    
+
 def __generate_action(action, language, odd):
     description = action.description
     if action.status == "FAILED":
         description += " - %s" % unicode(action.error)
-        
+
     actionTime = "Unknown"
     if action.status == "SUCCESSFUL" or action.status == "FAILED":
         actionTime = time.asctime(time.localtime(action.start_time))
-        
+
     action_doc = E.action(
                         {
                             "type":"action",
@@ -196,4 +200,4 @@ def __generate_action(action, language, odd):
                         }
                  )
     return action_doc
-    
+
