@@ -42,12 +42,12 @@ scenario_starter_regex = ^Scenario (\d+) - (.+)$
 
 #Actions Regular Expressions
 page_go_to_regex = ^(And )?I go to (?P<url>[\"]([\w:/._-]+)[\"]|([\w\s_.-]+))$
-page_am_in_regex = ^(And )?I am in the ([\"]([\w:/._-]+)[\"]|([\w\s_.-]+))$
+page_am_in_regex = ^(And )?I am in the (?P<url>[\"]([\w:/._-]+)[\"]|([\w\s_.-]+))$
 page_see_title_regex = ^(And )?I see [\"](?P<title>.+)[\"] title$
-page_wait_for_page_to_load_regex = ^(And )?I wait for the page to load( for (\d+) seconds)?$
-page_wait_for_seconds_regex = ^(And )?I wait for (\d+([.]d+)?) second[s]?$
-page_check_contains_markup_regex = ^(And )?I see that current page contains [\"\'](.+)[\'\"]$
-page_check_does_not_contain_markup_regex = ^(And )?I see that current page does not contain [\"\'](.+)[\'\"]$
+page_wait_for_page_to_load_regex = ^(And )?I wait for the page to load(?P<timeout> for (\d+) seconds)?$
+page_wait_for_seconds_regex = ^(And )?I wait for (?P<timeout>\d+([.]d+)?) second[s]?$
+page_check_contains_markup_regex = ^(And )?I see that current page contains [\"\'](?P<expected_markup>.+)[\'\"]$
+page_check_does_not_contain_markup_regex = ^(And )?I see that current page does not contain [\"\'](?P<expected_markup>.+)[\'\"]$
 
 checkbox_is_checked_regex = ^(And )?I see the [\"](.+)[\"] checkbox is checked$
 checkbox_is_not_checked_regex = ^(And )?I see the [\"](.+)[\"] checkbox is not checked$

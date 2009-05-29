@@ -59,7 +59,7 @@ class MetaActionBase(type):
 
 class ActionBase(object):
     __metaclass__ = MetaActionBase
-    Failed = ActionFailedError
+    failed = ActionFailedError
 
     @classmethod
     def can_resolve(cls, string):
