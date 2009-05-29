@@ -13,6 +13,7 @@
 # limitations under the License.
 
 from pyccuracy.result import Result
+from pyccuracy.common import Context
 
 class StoryRunner(object):
     def run_stories(self, settings, fixture):
@@ -20,8 +21,13 @@ class StoryRunner(object):
         if len(fixture.stories) == 0:
             return Result.empty()
 
-#        for story in fixture.stories:
-#            for scenario in fixture.scenarios:
-#                for action in 
+        for story in fixture.stories:
+            for scenario in fixture.scenarios:
+                context = self.create_context_for(settings)
+                for action in scenario.givens + scenario.whens + scenario.thens:
+                    pass
 
         return Result(fixture)
+
+    def create_context_for(self, settings):
+        return Context(settings)

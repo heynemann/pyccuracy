@@ -15,7 +15,7 @@
 
 import os
 from os.path import join, abspath, dirname
-from pyccuracy.pyccuracy_core import Settings
+from pyccuracy.common import Settings
 
 cur_dir = abspath(os.curdir)
 actions_dir = abspath(join(dirname(__file__), "../../pyccuracy/actions"))

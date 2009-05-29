@@ -16,7 +16,7 @@
 from pmock import *;
 
 from pyccuracy.result import Result
-from pyccuracy.pyccuracy_core import Settings
+from pyccuracy.common import Settings
 from pyccuracy.fixture import Fixture
 from pyccuracy.fixture_items import Story, Scenario, Action
 

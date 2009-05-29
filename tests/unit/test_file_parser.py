@@ -16,7 +16,7 @@
 from pmock import *
 from nose.tools import raises
 
-from pyccuracy.pyccuracy_core import Settings
+from pyccuracy.common import Settings
 from pyccuracy.parsers import FileParser
 from pyccuracy.fixture import Fixture
 from pyccuracy.fixture_items import Story

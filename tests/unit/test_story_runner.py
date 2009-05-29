@@ -14,7 +14,7 @@
 # limitations under the License.
 
 from pyccuracy.fixture import Fixture
-from pyccuracy.pyccuracy_core import Settings
+from pyccuracy.common import Context, Settings
 from pyccuracy.story_runner import StoryRunner
 
 def test_story_runner_returns_a_result():
@@ -34,3 +34,10 @@ def test_story_runner_returns_failed_story():
     result = runner.run_stories(settings, fixture)
 
     assert result is not None
+
+def test_create_context_for_returns_context():
+    settings = Settings()
+    runner = StoryRunner()
+    context = runner.create_context_for(settings)
+
+    assert context is not None

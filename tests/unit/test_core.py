@@ -15,5 +15,6 @@
 
 import os
 from os.path import join, abspath, dirname
-from pyccuracy.pyccuracy_core import PyccuracyCore, Settings
+from pyccuracy.core import PyccuracyCore
+from pyccuracy.common import Settings
 

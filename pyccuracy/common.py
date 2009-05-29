@@ -13,6 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import os
+from os.path import abspath, join, dirname
+
 import re
 import urllib2
 import time
@@ -101,3 +104,33 @@ class StatusItem(object):
             self.status = Status.Successful
         if self.parent and isinstance(self.parent, StatusItem):
             self.parent.mark_as_successful()
+
+class Settings(object):
+    def __init__(self, settings={}):
+        cur_dir = abspath(os.curdir)
+        actions_dir = abspath(join(dirname(__file__), "actions"))
+        languages_dir = abspath(join(dirname(__file__), "languages"))
+
+        self.tests_dir = settings.get("tests_dir", cur_dir)
+
+        self.actions_dir = settings.get("actions_dir", actions_dir)
+        self.languages_dir = settings.get("languages_dir", languages_dir)
+
+        self.pages_dir = settings.get("pages_dir", cur_dir)
+        self.custom_actions_dir = settings.get("custom_actions_dir", cur_dir)
+
+        self.file_pattern = settings.get("file_pattern", "*.acc")
+        self.scenarios_to_run = settings.get("scenarios_to_run", None)
+        self.default_culture = settings.get("default_culture", "en-us")
+        self.base_url = settings.get("base_url", None)
+        self.should_throw = settings.get("should_throw", False)
+        self.write_report = settings.get("write_report", True)
+        self.report_file_dir = settings.get("report_file_dir", cur_dir)
+        self.report_file_name = settings.get("report_file_name", "report.html")
+        self.browser_to_run = settings.get("browser_to_run", "chrome")
+        self.browser_driver = settings.get("browser_driver", "selenium")
+        self.extra_args = settings.get("extra_args", {})
+
+class Context(object):
+    def __init__(self, settings):
+        self.settings = settings
