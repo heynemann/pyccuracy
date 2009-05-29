@@ -20,6 +20,7 @@ from pyccuracy.fixture import Fixture
 from pyccuracy.fixture_items import Story, Scenario, Action
 from pyccuracy.common import Context, Settings, Status
 from pyccuracy.story_runner import StoryRunner
+from pyccuracy.errors import ActionFailedError
 
 def some_action():
     story = Story(as_a="Someone", i_want_to="Do Something", so_that="I'm Happy")
@@ -62,3 +63,30 @@ def test_should_execute_scenarios_successfully():
     result = runner.run_stories(settings=settings, fixture=fixture)
 
     assert fixture.get_status() == Status.Successful
+
+def test_should_handle_action_errors_successfully():
+    def action_failed_method(context, *args, **kwargs):
+        raise ActionFailedError("bla")
+    settings = Settings()
+    runner = StoryRunner()
+    fixture = Fixture()
+    action = some_action()
+    fixture.append_story(action.scenario.story)
+    action.execute_function = action_failed_method
+    result = runner.run_stories(settings=settings, fixture=fixture)
+
+    assert fixture.get_status() == Status.Failed
+
+def test_should_record_errors_correctly():
+    def action_failed_method(context, *args, **kwargs):
+        raise ActionFailedError("bla")
+    settings = Settings()
+    runner = StoryRunner()
+    fixture = Fixture()
+    action = some_action()
+    fixture.append_story(action.scenario.story)
+    action.execute_function = action_failed_method
+    result = runner.run_stories(settings=settings, fixture=fixture)
+
+    assert isinstance(action.error, ActionFailedError)
+    assert action.error.message == "bla"

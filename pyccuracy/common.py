@@ -123,7 +123,6 @@ class Context(object):
     def __init__(self, settings):
         self.settings = settings
 
-
 def locate(pattern, root=os.curdir):
     root_path = os.path.abspath(root)
     for path, dirs, files in os.walk(root_path):

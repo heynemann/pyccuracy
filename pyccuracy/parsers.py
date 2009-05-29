@@ -17,13 +17,23 @@
 # limitations under the License.
 
 import re
+import os
 
 from pyccuracy import ActionRegistry
+from pyccuracy.languages import LanguageGetter
+from pyccuracy.common import locate
 from pyccuracy.fixture import Fixture
 from pyccuracy.fixture_items import Story, Action, Scenario
 
 class FSO(object):
     '''Actual Filesystem'''
+    def list_files(self, directory, pattern):
+        return locate(root=directory, pattern=pattern)
+
+    def read_file(self, file_path):
+        return open(file_path).read()
+
+class ActionNotFoundError(Exception):
     pass
 
 class FileParser(object):
@@ -33,6 +43,9 @@ class FileParser(object):
         self.language = language
 
     def get_stories(self, settings):
+        if not self.language:
+            self.language = LanguageGetter(settings.default_culture)
+
         fixture = Fixture()
 
         story_file_list = self.file_object.list_files(directory=settings.tests_dir, pattern=settings.file_pattern)
@@ -44,8 +57,11 @@ class FileParser(object):
                     fixture.append_story(story)
                 else:
                     fixture.append_no_story_header(story_file_path)
-            except Exception, err:
+            except IOError, err:
                 fixture.append_invalid_test_file(story_file_path, err)
+            except ValueError, verr:
+                fixture.append_invalid_test_file(story_file_path, err)
+
         return fixture
 
     def parse_story_file(self, story_file_path, settings):
