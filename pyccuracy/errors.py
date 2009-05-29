@@ -20,14 +20,7 @@ class TestFailedError(Exception):
         return unicode(self.message)
 
 class ActionFailedError(Exception):
-    def __init__(self, message):
-        self.message = message
-
-    def __str__(self):
-        return unicode(self.message)
-
-    def __unicode__(self):
-        return self.message
+    pass
 
 class ActionNotFoundError(Exception):
     def __init__(self, message):

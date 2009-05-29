@@ -24,6 +24,7 @@ help:
 	@echo "  docs      to build documentation"
 
 all: prepare_build compile test report_success
+test: prepare_build compile run_unit run_functional report_success
 unit: prepare_build compile run_unit report_success
 functional: prepare_build compile run_functional report_success
 prepare_build: clean create_build_dir
@@ -62,7 +63,7 @@ run_functional: compile
 	@rm -f ${functional_log_file} >> /dev/null
 	@nosetests -s --verbose --with-coverage --cover-package=pyccuracy ${functional_tests_dir}
 
-test: build
+acceptance:
 	@echo "================="
 	@echo "Starting tests..."
 	@echo "================="

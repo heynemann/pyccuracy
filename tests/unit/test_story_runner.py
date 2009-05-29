@@ -14,8 +14,17 @@
 # limitations under the License.
 
 from pyccuracy.fixture import Fixture
-from pyccuracy.common import Context, Settings
+from pyccuracy.fixture_items import Story, Scenario, Action
+from pyccuracy.common import Context, Settings, Status
 from pyccuracy.story_runner import StoryRunner
+
+def some_action():
+    story = Story(as_a="Someone", i_want_to="Do Something", so_that="I'm Happy")
+    scenario = story.append_scenario("1", "Something")
+    return scenario.add_given(action_description="Some Action", \
+                               execute_function=lambda context, *args, **kwargs: None, \
+                               args=["s"], \
+                               kwargs={"a":"b"})
 
 def test_story_runner_returns_a_result():
     settings = Settings()
@@ -41,3 +50,12 @@ def test_create_context_for_returns_context():
     context = runner.create_context_for(settings)
 
     assert context is not None
+
+def test_should_execute_scenarios_successfully():
+    settings = Settings()
+    runner = StoryRunner()
+    fixture = Fixture()
+    fixture.append_story(some_action().scenario.story)
+    result = runner.run_stories(settings=settings, fixture=fixture)
+
+    assert fixture.get_status() == Status.Successful
