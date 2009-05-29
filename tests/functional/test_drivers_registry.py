@@ -16,10 +16,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from pyccuracy.actions import ActionBase, ACTIONS, ActionRegistry
-from pyccuracy.actions.core import *
-from pyccuracy.page import PageRegistry, Page
-from pyccuracy.drivers import DriverRegistry
-from pyccuracy.drivers.core import *
+from pyccuracy import DriverRegistry
+from pyccuracy.drivers import BaseDriver
 
-Version = "0.6.0"
+def test_selenium_browser_driver_exists():
+    SeleniumDriver = DriverRegistry.get('selenium')
+    assert isinstance(SeleniumDriver, type)
+    assert issubclass(SeleniumDriver, BaseDriver)

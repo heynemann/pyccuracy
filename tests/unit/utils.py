@@ -14,16 +14,16 @@
 # limitations under the License.
 
 # Discussion
-#    assertRaisesEx() adds two optional arguments: "exc_args" 
-#    and "exc_pattern". "exc_args" is a tuple that is expected 
-#    to match the .args attribute of the raised exception. 
-#    "exc_pattern" is a compiled regular expression that the 
+#    assert_raises() adds two optional arguments: "exc_args"
+#    and "exc_pattern". "exc_args" is a tuple that is expected
+#    to match the .args attribute of the raised exception.
+#    "exc_pattern" is a compiled regular expression that the
 #    stringified raised exception is expected to match.
 #
 # Original url: http://code.activestate.com/recipes/307970/
 # Author: Trent Mick
 #
-# Usage: assertRaisesEx(ExceptionType, method_to_execute, 
+# Usage: assert_raises(ExceptionType, method_to_execute,
 #                       arguments_to_method, kwargs_to_method,
 #                       exc_pattern=r'^.+$')
 # Please note that exc_pattern is not required, but if passed
@@ -32,6 +32,9 @@
 # Fail Conditions
 # Fails on exception not raised, wrong exception type or
 # invalid exception message.
+
+import sys
+
 def assert_raises(exception, callable, *args, **kwargs):
     if "exc_args" in kwargs:
         exc_args = kwargs["exc_args"]
@@ -52,12 +55,12 @@ def assert_raises(exception, callable, *args, **kwargs):
         callable(*args, **kwargs)
     except exception, exc:
         if exc_args is not None:
-            assert exc.args != exc_args,
+            assert exc.args != exc_args, \
                         "%s raised %s with unexpected args: "\
                         "expected=%r, actual=%r"\
                         % (callsig, exc.__class__, exc_args, exc.args)
         if exc_pattern is not None:
-            assert exc_pattern.search(str(exc)),
+            assert exc_pattern.search(str(exc)), \
                             "%s raised %s, but the exception "\
                             "does not match '%s': %r"\
                             % (callsig, exc.__class__, exc_pattern.pattern,

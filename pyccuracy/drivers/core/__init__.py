@@ -16,10 +16,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from pyccuracy.actions import ActionBase, ACTIONS, ActionRegistry
-from pyccuracy.actions.core import *
-from pyccuracy.page import PageRegistry, Page
-from pyccuracy.drivers import DriverRegistry
-from pyccuracy.drivers.core import *
+from os.path import dirname, abspath, join, split
+from glob import glob
 
-Version = "0.6.0"
+base_path = abspath(dirname(__file__))
+pattern = join(base_path, "*.py")
+__all__ = [split(x)[1][:-3] for x in glob(pattern)]

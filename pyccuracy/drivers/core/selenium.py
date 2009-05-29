@@ -16,10 +16,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from pyccuracy.actions import ActionBase, ACTIONS, ActionRegistry
-from pyccuracy.actions.core import *
-from pyccuracy.page import PageRegistry, Page
-from pyccuracy.drivers import DriverRegistry
-from pyccuracy.drivers.core import *
+from selenium import *
 
-Version = "0.6.0"
+from pyccuracy.drivers import BaseDriver
+
+class SeleniumDriver(BaseDriver):
+    backend = 'selenium'
