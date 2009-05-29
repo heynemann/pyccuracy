@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+#
 # Copyright (C) 2009 Bernardo Heynemann <heynemann@gmail.com>
 # Copyright (C) 2009 Gabriel Falcão <gabriel@nacaolivre.org>
 #
@@ -16,10 +16,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from pyccuracy import DriverRegistry
-from pyccuracy.drivers import BaseDriver
+from pmock import *
 
-def test_selenium_browser_driver_exists():
-    SeleniumDriver = DriverRegistry.get('selenium')
-    assert isinstance(SeleniumDriver, type)
-    assert issubclass(SeleniumDriver, BaseDriver)
+from pyccuracy.actions.core.page_actions import PageGoToAction
+
+def test_page_go_to_action():
+
+    context = Mock()
+    browser_driver_mock = Mock()
+    context.browser_driver = browser_driver_mock
+
+    browser_driver_mock.expects(once()) \
+                       .page_open(eq("some_url"))
+    browser_driver_mock.expects(once()) \
+                       .wait_for_page()
+
+    action = PageGoToAction()
+
+    action.execute(context, "E", url="some_url")
+    browser_driver_mock.verify()

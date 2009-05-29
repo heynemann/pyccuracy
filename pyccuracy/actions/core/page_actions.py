@@ -16,14 +16,6 @@ from pyccuracy.page import Page
 from pyccuracy.actions import ActionBase
 from pyccuracy.languages import LanguageItem
 
-class PageSeeTitle(ActionBase):
-    regex = LanguageItem('page_see_title_regex')
-
-    def execute(self, context, title, *args):
-        expected_title = context.browser_driver.get_title()
-        if (title != expected_title):
-            raise self.failed(context.language.format("page_see_title_failure", title, expected_title))
-
 class PageGoToAction(ActionBase):
     regex = LanguageItem('page_go_to_regex')
 
@@ -62,6 +54,14 @@ class PageAmInAction(ActionBase):
             url = context.current_page.url
         else:
             raise self.failed(context.language.format("page_am_in_failure", url))
+
+class PageSeeTitle(ActionBase):
+    regex = LanguageItem('page_see_title_regex')
+
+    def execute(self, context, title, *args):
+        expected_title = context.browser_driver.get_title()
+        if (title != expected_title):
+            raise self.failed(context.language.format("page_see_title_failure", title, expected_title))
 
 class PageCheckContainsMarkupAction(ActionBase):
     regex = LanguageItem("page_check_contains_markup_regex")
