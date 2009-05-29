@@ -21,19 +21,28 @@ from utils import assert_raises
 from pyccuracy.common import Settings
 from pyccuracy.drivers import BaseDriver
 
-def test_base_driver_has_start_attr():
-    assert hasattr(BaseDriver, 'start'), 'The BaseDriver should have the "start" attr'
-
-def test_base_driver_start_attr_is_callable():
-    assert callable(BaseDriver.start), 'The BaseDriver.start should be callable'
-
 def test_base_driver_instantiate_need_a_settings():
     def do_instantiate_fail():
         BaseDriver(None)
 
     assert_raises(TypeError, do_instantiate_fail, exc_pattern=re_compile('BaseDriver takes a pyccuracy.common.Settings object as construction parameter. Got None.'))
 
+def test_base_driver_has_start_attr():
+    assert hasattr(BaseDriver, 'start'), 'The BaseDriver should have the "start" attr'
+
+def test_base_driver_start_attr_is_callable():
+    assert callable(BaseDriver.start), 'The BaseDriver.start should be callable'
+
 def test_base_driver_start_does_nothing():
     settings = Settings()
     assert BaseDriver(settings).start() is None
 
+def test_base_driver_has_stop_attr():
+    assert hasattr(BaseDriver, 'stop'), 'The BaseDriver should have the "stop" attr'
+
+def test_base_driver_stop_attr_is_callable():
+    assert callable(BaseDriver.stop), 'The BaseDriver.stop should be callable'
+
+def test_base_driver_stop_does_nothing():
+    settings = Settings()
+    assert BaseDriver(settings).stop() is None

@@ -16,7 +16,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-class BrowserDriver(object):
+class DriverInterface(object):
+    """ This class contains only, those methods that must be
+    implemented by browser drivers"""
+
     def resolve_element_key(self, context, element_type, element_key):
         raise NotImplementedError
 

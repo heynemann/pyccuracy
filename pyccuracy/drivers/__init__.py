@@ -18,6 +18,7 @@
 
 DRIVERS = {}
 from pyccuracy.common import Settings
+from pyccuracy.drivers.interface import DriverInterface
 
 class DriverRegistry(object):
     @classmethod
@@ -34,11 +35,12 @@ class MetaBaseDriver(type):
         if name not in ('MetaBaseDriver', 'BaseDriver'):
             if not 'backend' in attrs.keys():
                 raise BackendNotFoundError(name, 'Backend not found in "%s" class. Did you forget to specify "backend" attribute?' % name)
+
             DRIVERS[attrs['backend']] = cls
 
         super(MetaBaseDriver, cls).__init__(name, bases, attrs)
 
-class BaseDriver(object):
+class BaseDriver(DriverInterface):
     __metaclass__ = MetaBaseDriver
 
     def __init__(self, settings):
@@ -46,6 +48,9 @@ class BaseDriver(object):
             raise TypeError('%s takes a pyccuracy.common.Settings object as construction parameter. Got %s.' % (self.__class__.__name__, settings))
 
     def start(self):
+        pass
+
+    def stop(self):
         pass
 
 class DriverDoesNotExistError(Exception):
