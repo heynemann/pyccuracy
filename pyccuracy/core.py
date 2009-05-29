@@ -58,26 +58,6 @@ class PyccuracyCore(object):
 
         return results
 
-    def __select_browser_driver(self, lang, driver_name):
-        available_drivers = {
-            "selenium": SeleniumBrowserDriver,
-            "webdriver": WebdriverBrowserDriver,
-            }
-
-        selected_driver = available_drivers.get(driver_name, None)
-
-        if selected_driver is None:
-            available_drivers_string = ",".join(available_drivers.keys())
-            raise LookupError(lang["invalid_browser_driver_error"] % (driver_name, available_drivers_string))
-
-        return selected_driver
-
-    def load_language(self, languages_dir, culture):
-        lang = Language(languages_dir)
-        lang.load(culture)
-
-        return lang
-
     def __print_results(self, results):
         print unicode(results)
         print "\n"

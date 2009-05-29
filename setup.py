@@ -14,11 +14,10 @@
 
 from setuptools import setup, find_packages
 import sys, os
-
-version = '0.5.0'
+from pyccuracy import Version
 
 setup(name='Pyccuracy',
-      version=version,
+      version=Version,
       description="Pyccuracy is a BDD style Acceptance Testing framework",
       long_description="""Pyccuracy is a Behavior-Driven Acceptance Testing framework (more on http://www.pyccuracy.org).""",
       classifiers=["Development Status :: 2 - Pre-Alpha",

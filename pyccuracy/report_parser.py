@@ -26,7 +26,7 @@ from lxml.etree import Element
 from lxml.builder import E
 from lxml import etree as ET
 
-VERSION = "0.6.0"
+from pyccuracy import Version
 
 def generate_report(file_path, test_result, language):
     xslt = open(join(split(__file__)[0], "xslt/AccuracyReport.xslt"))
@@ -64,7 +64,7 @@ def generate_xml(test_result, language):
         ),
         E.footer(
             {
-                "version":VERSION
+                "version":Version
             }
         ),
         E.summary(
