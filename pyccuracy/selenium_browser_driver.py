@@ -59,7 +59,17 @@ class SeleniumBrowserDriver(BrowserDriver):
         self.selenium.click(element_selector)
 
     def is_element_visible(self, element_selector):
-        return self.selenium.is_element_present(element_selector) and self.selenium.is_visible(element_selector)
+        error_message = "ERROR: Element %s not found" % (element_selector)
+        is_present = self.selenium.is_element_present(element_selector)
+        if is_present:
+            try:
+                is_present = self.selenium.is_visible(element_selector)
+            except Exception, error:
+                if error.message == error_message:
+                    is_present = False
+                else:
+                    raise
+        return is_present
 
     def wait_for_page(self, timeout=10000):
         self.selenium.wait_for_page_to_load(timeout)
