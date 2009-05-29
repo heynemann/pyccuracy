@@ -19,40 +19,40 @@
 from os.path import join, abspath, dirname
 
 from pyccuracy import Page, ActionBase
+from pyccuracy.common import Settings
 from pyccuracy.story_runner import *
 from pyccuracy.parsers import *
 from pyccuracy.errors import *
 
 class PyccuracyCore(object):
-    def __init__(self, parser, runner):
-        self.parser = parser
-        self.runner = runner
+    def __init__(self, parser=None, runner=None):
+        self.parser = parser or FileParser()
+        self.runner = runner or StoryRunner()
 
     def run_tests(self, **kwargs):
         settings = Settings(kwargs)
 
-        test_suite = self.parser.get_fixture(settings)
+        test_suite = self.parser.get_stories(settings)
 
-        self.context.browser_driver.start()
+        #self.context.browser_driver.start()
 
         #running the tests
         try:
-            results = self.context.story_runner.run_stories(self.context)
+            results = self.runner.run_stories(settings=settings, fixture=test_suite)
         finally:
-            self.context.browser_driver.stop()
-
-        results = self.context.test_fixture.get_results()
+            #self.context.browser_driver.stop()
+            pass
 
         self.__print_results(results)
 
-        if self.context.write_report:
-            import report_parser as report
-            report.generate_report(
-                        join(self.context.report_file_dir, self.context.report_file_name),
-                        results,
-                        self.context.language)
+#        if self.context.write_report:
+#            import report_parser as report
+#            report.generate_report(
+#                        join(self.context.report_file_dir, self.context.report_file_name),
+#                        results,
+#                        self.context.language)
 
-        if should_throw and self.context.test_fixture.get_results().status == "FAILED":
+        if settings.should_throw and result.get_status() == Status.Failed:
             raise TestFailedError("The test failed!")
 
         return results

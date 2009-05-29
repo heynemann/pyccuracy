@@ -60,7 +60,7 @@ class FileParser(object):
             except IOError, err:
                 fixture.append_invalid_test_file(story_file_path, err)
             except ValueError, verr:
-                fixture.append_invalid_test_file(story_file_path, err)
+                fixture.append_invalid_test_file(story_file_path, verr)
 
         return fixture
 
