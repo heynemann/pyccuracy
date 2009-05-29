@@ -26,6 +26,10 @@ class Result(object):
         template = Template(template_string)
         return template.merge(self.summary_values())
 
+    def get_summary_template_for(self, language):
+        template_loader = self.template_loader or TemplateLoader(language)
+        return template_loader.load("summary")
+
     def summary_values(self):
         val = {}
         val["run_status"] = self.fixture.get_status()
@@ -42,11 +46,11 @@ class Result(object):
         val["successful_scenario_percentage"] = no_scenarios and "0.00" or "%.2f" % (val["successful_scenarios"] / val["total_scenarios"] * 100)
         val["failed_scenario_percentage"] = no_scenarios and "0.00" or "%.2f" % (val["failed_scenarios"] / val["total_scenarios"] * 100)
         val["has_failed_scenarios"] = val["failed_scenarios"] > 0
-        return val
+        
+        if val["has_failed_scenarios"]:
+            val["failed_scenario_instances"] = self.fixture.get_failed_scenarios()
 
-    def get_summary_template_for(self, language):
-        template_loader = self.template_loader or TemplateLoader(language)
-        return template_loader.load("summary")
+        return val
 
     @classmethod
     def empty(cls):

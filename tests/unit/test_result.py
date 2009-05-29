@@ -38,13 +38,35 @@ summary_template_failed_stories = """#if($has_failed_scenarios)
 
 Failed Stories / Scenarios
 --------------------------
-TBW.
+#foreach ($scenario in $failed_scenario_instances)Story..........As a $scenario.story.as_a I want to $scenario.story.i_want_to So that $scenario.story.so_that
+Story file.....To be implemented.
+Scenario.......$scenario.index - $scenario.title
+    Given
+#foreach ($action in $scenario.givens)#if($action.status != "FAILED")        $action.description - $action.status#end
+#if($action.status == "FAILED")        $action.description - $action.status - $action.error#end#end
+
+    When
+#foreach ($action in $scenario.whens)#if($action.status != "FAILED")        $action.description - $action.status#end
+#if($action.status == "FAILED")        $action.description - $action.status - $action.error#end#end
+
+    Then
+#foreach ($action in $scenario.thens)#if($action.status != "FAILED")        $action.description - $action.status#end
+#if($action.status == "FAILED")        $action.description - $action.status - $action.error#end#end
+#end
 #end"""
 
 def some_action():
     story = Story(as_a="Someone", i_want_to="Do Something", so_that="I'm Happy")
     scenario = story.append_scenario("1", "Something")
     return scenario.add_given(action_description="Some Action", execute_function=lambda: None, args=["s"], kwargs={"a":"b"})
+
+def complete_scenario_with_then_action_returned():
+    story = Story(as_a="Someone", i_want_to="Do Something", so_that="I'm Happy")
+    scenario = story.append_scenario("1", "Something")
+    given = scenario.add_given(action_description="I did something", execute_function=lambda: None, args=["s"], kwargs={"a":"b"})
+    when = scenario.add_when(action_description="I do something", execute_function=lambda: None, args=["s"], kwargs={"a":"b"})
+    then = scenario.add_then(action_description="Something happens", execute_function=lambda: None, args=["s"], kwargs={"a":"b"})
+    return then
 
 def test_empty_result_returns_result():
     result = Result.empty()
@@ -166,7 +188,15 @@ Failed Scenarios........1/1 (100.00%)
 
 Failed Stories / Scenarios
 --------------------------
-TBW.
+Story..........As a Someone I want to Do Something So that I'm Happy
+Story file.....To be implemented.
+Scenario.......1 - Something
+    Given
+        I did something - UNKNOWN
+    When
+        I do something - UNKNOWN
+    Then
+        Something happens - FAILED - Something very bad happened
 """
 
     template_loader_mock = Mock()
@@ -176,10 +206,11 @@ TBW.
     settings = Settings()
     fixture = Fixture()
     result = Result(fixture=fixture, template_loader=template_loader_mock)
-    action = some_action()
+    action = complete_scenario_with_then_action_returned()
     fixture.append_story(action.scenario.story)
-    action.mark_as_failed()
+    action.mark_as_failed("Something very bad happened")
 
     summary = result.summary_for(settings.default_culture)
-    assert summary == expected
+
+    assert summary.strip() == expected.strip()
 

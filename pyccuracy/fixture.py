@@ -68,9 +68,18 @@ class Fixture(TimedItem):
         return self.count_scenarios_by_status(Status.Failed)
 
     def count_scenarios_by_status(self, status):
+        return len(self.get_scenarios_by_status(status))
+
+    def get_successful_scenarios(self):
+        return self.get_scenarios_by_status(Status.Successful)
+
+    def get_failed_scenarios(self):
+        return self.get_scenarios_by_status(Status.Failed)
+
+    def get_scenarios_by_status(self, status):
         all_scenarios = []
         map(lambda item: all_scenarios.extend(item), [story.scenarios for story in self.stories])
-        return len([scenario for scenario in all_scenarios if scenario.status==status])
+        return [scenario for scenario in all_scenarios if scenario.status==status]
 
     def __str__(self):
         return self.get_results()

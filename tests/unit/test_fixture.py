@@ -202,3 +202,25 @@ def test_fixture_returns_total_failed_scenarios():
 
     assert fixture.count_failed_scenarios() == 2
 
+def test_fixture_returns_successful_scenarios():
+    fixture = Fixture()
+    action = some_action()
+    other_action = some_action()
+    fixture.append_story(action.scenario.story)
+    fixture.append_story(other_action.scenario.story)
+    action.mark_as_successful()
+    other_action.mark_as_successful()
+
+    assert len(fixture.get_successful_scenarios()) == 2
+
+def test_fixture_returns_failed_scenarios():
+    fixture = Fixture()
+    action = some_action()
+    other_action = some_action()
+    fixture.append_story(action.scenario.story)
+    fixture.append_story(other_action.scenario.story)
+    action.mark_as_failed()
+    other_action.mark_as_failed()
+
+    assert len(fixture.get_failed_scenarios()) == 2
+

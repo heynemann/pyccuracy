@@ -2,6 +2,8 @@
 Test Run Summary
 ================
 
+Status: $run_status
+
 Test Data Stats
 ---------------
 Successful Stories......$successful_stories/$total_stories ($successful_story_percentage%)
@@ -12,6 +14,19 @@ Failed Scenarios........$failed_scenarios/$total_scenarios ($failed_scenario_per
 
 Failed Stories / Scenarios
 --------------------------
-TBW.
-#end
+#foreach ($scenario in $failed_scenario_instances)Story..........As a $scenario.story.as_a I want to $scenario.story.i_want_to So that $scenario.story.so_that
+Story file.....To be implemented.
+Scenario.......$scenario.index - $scenario.title
+    Given
+#foreach ($action in $scenario.givens)#if($action.status != "FAILED")        $action.description - $action.status#end
+#if($action.status == "FAILED")        $action.description - $action.status - $action.error#end#end
 
+    When
+#foreach ($action in $scenario.whens)#if($action.status != "FAILED")        $action.description - $action.status#end
+#if($action.status == "FAILED")        $action.description - $action.status - $action.error#end#end
+
+    Then
+#foreach ($action in $scenario.thens)#if($action.status != "FAILED")        $action.description - $action.status#end
+#if($action.status == "FAILED")        $action.description - $action.status - $action.error#end#end
+#end
+#end
