@@ -1,0 +1,17 @@
+================
+Test Run Summary
+================
+
+Test Data Stats
+---------------
+Successful Stories......$successful_stories/$total_stories ($successful_story_percentage%)
+Failed Stories..........$failed_stories/$total_stories ($failed_story_percentage%)
+Successful Scenarios....$successful_scenarios/$total_scenarios ($successful_scenario_percentage%)
+Failed Scenarios........$failed_scenarios/$total_scenarios ($failed_scenario_percentage%)
+#if($has_failed_scenarios)
+
+Failed Stories / Scenarios
+--------------------------
+TBW.
+#end
+

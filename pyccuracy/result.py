@@ -12,12 +12,41 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-class Result(object):
-    def __init__(self, fixture):
-        self.fixture = fixture
+from os.path import abspath, dirname, join
+from pyccuracy.languages.templates import TemplateLoader
+from pyccuracy.airspeed import Template
 
-    def show_result(self):
-        pass
+class Result(object):
+    def __init__(self, fixture, template_loader=None):
+        self.fixture = fixture
+        self.template_loader = template_loader
+
+    def summary_for(self, language):
+        template_string = self.get_summary_template_for(language)
+        template = Template(template_string)
+        return template.merge(self.summary_values())
+
+    def summary_values(self):
+        val = {}
+        val["run_status"] = self.fixture.get_status()
+        val["total_stories"] = self.fixture.count_total_stories()
+        val["total_scenarios"] = self.fixture.count_total_scenarios()
+        no_stories = val["total_stories"] == 0
+        no_scenarios = val["total_scenarios"] == 0
+        val["successful_stories"] = self.fixture.count_successful_stories()
+        val["failed_stories"] = self.fixture.count_failed_stories()
+        val["successful_scenarios"] = self.fixture.count_successful_scenarios()
+        val["failed_scenarios"] = self.fixture.count_failed_scenarios()
+        val["successful_story_percentage"] = no_stories and "0.00" or "%.2f" % (val["successful_stories"] / val["total_stories"] * 100)
+        val["failed_story_percentage"] = no_stories and "0.00" or "%.2f" % (val["failed_stories"] / val["total_stories"] * 100)
+        val["successful_scenario_percentage"] = no_scenarios and "0.00" or "%.2f" % (val["successful_scenarios"] / val["total_scenarios"] * 100)
+        val["failed_scenario_percentage"] = no_scenarios and "0.00" or "%.2f" % (val["failed_scenarios"] / val["total_scenarios"] * 100)
+        val["has_failed_scenarios"] = val["failed_scenarios"] > 0
+        return val
+
+    def get_summary_template_for(self, language):
+        template_loader = self.template_loader or TemplateLoader(language)
+        return template_loader.load("summary")
 
     @classmethod
     def empty(cls):

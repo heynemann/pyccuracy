@@ -50,7 +50,7 @@ class Fixture(TimedItem):
         return len(self.stories)
 
     def count_total_scenarios(self):
-        return reduce(operator.add, [len(story.scenarios) for story in self.stories])
+        return sum([len(story.scenarios) for story in self.stories])
 
     def count_successful_stories(self):
         return self.count_stories_by_status(Status.Successful)
@@ -63,6 +63,9 @@ class Fixture(TimedItem):
 
     def count_successful_scenarios(self):
         return self.count_scenarios_by_status(Status.Successful)
+
+    def count_failed_scenarios(self):
+        return self.count_scenarios_by_status(Status.Failed)
 
     def count_scenarios_by_status(self, status):
         all_scenarios = []

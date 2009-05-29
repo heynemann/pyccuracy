@@ -190,4 +190,15 @@ def test_fixture_returns_total_successful_scenarios():
     other_action.mark_as_successful()
 
     assert fixture.count_successful_scenarios() == 2
-    
+
+def test_fixture_returns_total_failed_scenarios():
+    fixture = Fixture()
+    action = some_action()
+    other_action = some_action()
+    fixture.append_story(action.scenario.story)
+    fixture.append_story(other_action.scenario.story)
+    action.mark_as_failed()
+    other_action.mark_as_failed()
+
+    assert fixture.count_failed_scenarios() == 2
+
