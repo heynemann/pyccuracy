@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from pyccuracy.page import Page
+from pyccuracy.page import PageRegistry, Page
 from pyccuracy.actions import ActionBase
 from pyccuracy.languages import LanguageItem
 
@@ -20,27 +20,7 @@ class PageGoToAction(ActionBase):
     regex = LanguageItem('page_go_to_regex')
 
     def execute(self, context, url, *args):
-        base_url = context.base_url
-
-#        if url.replace(" ", "") in context.all_pages:
-#            context.current_page = context.all_pages[url.replace(" ", "")]
-#            url = context.current_page.url
-# 
-#        if base_url:
-#            url = basejoin(base_url + "/", url)
-# 
-#        protocol, page_name, file_name, complement, querystring, anchor = urllib2.urlparse.urlparse(url)
- 
-#        if not protocol:
-#            if not base_url and os.path.exists(abspath(join(context.tests_dir, url))):
-#                url = "file://" + abspath(join(context.tests_dir, url))
-#            elif os.path.exists(url):
-#                url = "file://" + abspath(url)
-#            else:
-#                checker = URLChecker()
-#                checker.set_url(url)
-#                if not checker.is_valid():
-#                    raise ActionFailedError(self.language['page_go_to_failure'] % url)
+        page, resolved_url = PageRegistry.resolve(context.settings, url)
 
         context.browser_driver.page_open(url)
         context.browser_driver.wait_for_page()
@@ -51,9 +31,11 @@ class PageAmInAction(ActionBase):
     regex = LanguageItem("page_am_in_regex")
 
     def execute(self, context, url, *args):
-        if url.replace(" ", "") in context.all_pages:
-            context.current_page = context.all_pages[url.replace(" ", "")]
-            url = context.current_page.url
+        page, resolved_url = PageRegistry.resolve(context.settings, url)
+
+        if page:
+            context.current_page = page
+            context.url = resolved_url
         else:
             raise self.failed(context.language.format("page_am_in_failure", url))
 
