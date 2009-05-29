@@ -122,6 +122,8 @@ class Settings(object):
 class Context(object):
     def __init__(self, settings):
         self.settings = settings
+        self.url = None
+        self.current_page = None
 
 def locate(pattern, root=os.curdir):
     root_path = os.path.abspath(root)

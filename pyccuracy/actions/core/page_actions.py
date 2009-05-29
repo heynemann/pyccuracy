@@ -44,6 +44,8 @@ class PageGoToAction(ActionBase):
 
         context.browser_driver.page_open(url)
         context.browser_driver.wait_for_page()
+        context.url = url
+        context.current_page = page
 
 class PageAmInAction(ActionBase):
     regex = LanguageItem("page_am_in_regex")

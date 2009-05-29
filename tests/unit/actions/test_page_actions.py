@@ -18,9 +18,44 @@
 
 from pmock import *
 
+from pyccuracy import Page
 from pyccuracy.actions.core.page_actions import PageGoToAction
 
-def test_page_go_to_action():
+def test_page_go_to_action_calls_the_right_browser_driver_methods():
+    context = Mock()
+    browser_driver_mock = Mock()
+    context.browser_driver = browser_driver_mock
+
+    browser_driver_mock.expects(once()) \
+                       .page_open(eq("some_url"))
+    browser_driver_mock.expects(once()) \
+                       .wait_for_page()
+
+    action = PageGoToAction()
+
+    action.execute(context, url="some_url")
+    browser_driver_mock.verify()
+
+def test_page_go_to_action_sets_context_current_url():
+    context = Mock()
+    browser_driver_mock = Mock()
+    context.browser_driver = browser_driver_mock
+
+    browser_driver_mock.expects(once()) \
+                       .page_open(eq("some_url"))
+    browser_driver_mock.expects(once()) \
+                       .wait_for_page()
+
+    action = PageGoToAction()
+
+    action.execute(context, url="some_url")
+    browser_driver_mock.verify()
+
+    assert context.url == "some_url"
+
+def _test_page_go_to_action_sets_page_if_page_is_supplied():
+    class SomePage(Page):
+        url = "some"
 
     context = Mock()
     browser_driver_mock = Mock()
@@ -33,5 +68,9 @@ def test_page_go_to_action():
 
     action = PageGoToAction()
 
-    action.execute(context, "E", url="some_url")
+    action.execute(context, url="Some Page")
     browser_driver_mock.verify()
+
+    assert isinstance(context.current_page, SomePage)
+
+
