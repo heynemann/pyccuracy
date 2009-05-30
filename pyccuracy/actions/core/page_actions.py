@@ -20,18 +20,22 @@ class PageGoToAction(ActionBase):
     regex = LanguageItem('page_go_to_regex')
 
     def execute(self, context, url, *args):
-        page, resolved_url = PageRegistry.resolve(context.settings, url)
+        page, resolved_url = PageRegistry.resolve(context.settings, url.replace('"', ''), must_raise=False)
 
-        context.browser_driver.page_open(url)
+# TODO: Add url check here again to provide feedback for user if invalid url used.
+        if not resolved_url or (not url.startswith('"') and not page):
+            raise self.failed(context.language.format("page_go_to_failure", url))
+
+        context.browser_driver.page_open(resolved_url)
         context.browser_driver.wait_for_page()
-        context.url = url
+        context.url = resolved_url
         context.current_page = page
 
 class PageAmInAction(ActionBase):
     regex = LanguageItem("page_am_in_regex")
 
     def execute(self, context, url, *args):
-        page, resolved_url = PageRegistry.resolve(context.settings, url)
+        page, resolved_url = PageRegistry.resolve(context.settings, url, must_raise=False)
 
         if page:
             context.current_page = page
