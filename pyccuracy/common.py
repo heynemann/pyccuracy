@@ -95,6 +95,9 @@ class StatusItem(object):
 
 class Settings(object):
     def __init__(self, settings=None):
+        if not settings:
+            settings = {}
+
         cur_dir = abspath(os.curdir)
         actions_dir = abspath(join(dirname(__file__), "actions"))
         languages_dir = abspath(join(dirname(__file__), "languages"))
