@@ -36,7 +36,7 @@ class StoryRunner(object):
                         action.mark_as_failed(err)
                     action.mark_as_successful()
 
-        return Result(fixture)
+        return Result(fixture=fixture)
 
     def create_context_for(self, settings):
         return Context(settings)

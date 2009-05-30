@@ -36,8 +36,29 @@ def test_story_runner_returns_a_result():
     runner = StoryRunner()
 
     result = runner.run_stories(settings, fixture)
-
     assert result is not None
+
+def test_story_runner_returns_a_result_with_a_Fixture():
+    settings = Settings()
+    fixture = Fixture()
+    action = some_action()
+    fixture.append_story(action.scenario.story)
+    runner = StoryRunner()
+
+    result = runner.run_stories(settings, fixture)
+
+    assert result.fixture is not None
+
+def test_story_runner_returns_a_result_with_the_original_Fixture():
+    settings = Settings()
+    fixture = Fixture()
+    action = some_action()
+    fixture.append_story(action.scenario.story)
+    runner = StoryRunner()
+
+    result = runner.run_stories(settings, fixture)
+
+    assert result.fixture == fixture
 
 def test_story_runner_returns_failed_story():
     settings = Settings()

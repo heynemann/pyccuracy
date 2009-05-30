@@ -42,7 +42,7 @@ def test_pyccuracy_core_run_tests():
     parser_mock.expects(once()).method('get_stories').will(return_value(suite_mock))
     runner_mock.expects(once()).method('run_stories').will(return_value(results_mock))
 
-    results_mock.expects(once()).method('__unicode__').will(return_value('my results'))
+    results_mock.expects(once()).summary_for(eq('en-us')).will(return_value('my results'))
     pc = PyccuracyCore(parser_mock, runner_mock)
     assert pc.run_tests(should_throw=False) == results_mock
 

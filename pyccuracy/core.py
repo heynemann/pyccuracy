@@ -36,7 +36,7 @@ class PyccuracyCore(object):
         settings = Settings(kwargs)
 
         try:
-            test_suite = self.parser.get_stories(settings)
+            fixture = self.parser.get_stories(settings)
         except ActionNotFoundError, err:
             self.print_invalid_action(settings.default_culture, err)
             if settings.should_throw:
@@ -48,12 +48,12 @@ class PyccuracyCore(object):
 
         #running the tests
         try:
-            results = self.runner.run_stories(settings=settings, fixture=test_suite)
+            results = self.runner.run_stories(settings=settings, fixture=fixture)
         finally:
             #self.context.browser_driver.stop()
             pass
 
-        self.__print_results(results)
+        self.print_results(settings.default_culture, results)
 
 #        if self.context.write_report:
 #            import report_parser as report
@@ -67,8 +67,8 @@ class PyccuracyCore(object):
 
         return results
 
-    def __print_results(self, results):
-        print unicode(results)
+    def print_results(self, language, results):
+        print results.summary_for(language)
         print "\n"
 
     def print_invalid_action(self, language, err):
