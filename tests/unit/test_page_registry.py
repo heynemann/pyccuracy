@@ -84,11 +84,29 @@ def test_page_registry_resolve_by_page_class_name_with_base_url_get_right_url_wi
     assert PageGot is MyPage, 'The page resolved by "My Page" should be a type class: MyPage. Got %r.' % PageGot
     assert url == 'file:///home/blabla', 'The url must be "file:///home" concatenated with "/" and "blabla". Got "%s".' % url
 
-def test_page_registry_resolve_by_page_class_name_with_base_url_get_right_url_with_slash():
+def test_page_registry_resolve_by_page_class_name_with_base_url_get_right_url_without_slash_both():
     class MyPage(Page):
         url = 'blabla'
 
-    PageGot, url = PageRegistry.resolve(Settings(cur_dir='/home/'), 'My Page')
+    PageGot, url = PageRegistry.resolve(Settings(cur_dir='home'), 'My Page')
+
+    assert PageGot is MyPage, 'The page resolved by "My Page" should be a type class: MyPage. Got %r.' % PageGot
+    assert url == 'file:///home/blabla', 'The url must be "file:///home" concatenated with "/" and "blabla". Got "%s".' % url
+
+def test_page_registry_resolve_by_page_class_name_with_base_url_get_right_url_without_slash_left():
+    class MyPage(Page):
+        url = 'blabla'
+
+    PageGot, url = PageRegistry.resolve(Settings(cur_dir='home/'), 'My Page')
+
+    assert PageGot is MyPage, 'The page resolved by "My Page" should be a type class: MyPage. Got %r.' % PageGot
+    assert url == 'file:///home/blabla', 'The url must be "file:///home" concatenated with "/" and "blabla". Got "%s".' % url
+
+def test_page_registry_resolve_by_page_class_name_with_base_url_get_right_url_without_slash_right():
+    class MyPage(Page):
+        url = 'blabla'
+
+    PageGot, url = PageRegistry.resolve(Settings(cur_dir='/home'), 'My Page')
 
     assert PageGot is MyPage, 'The page resolved by "My Page" should be a type class: MyPage. Got %r.' % PageGot
     assert url == 'file:///home/blabla', 'The url must be "file:///home" concatenated with "/" and "blabla". Got "%s".' % url
@@ -119,3 +137,28 @@ def test_page_registry_resolve_page_by_url_without_base_url_without_slash():
 
     assert PageGot is MyPage, 'The page resolved by "my_url" should be a type class: MyPage. Got %r.' % PageGot
     assert url == 'file:///test/my_url', 'The url must be "file:///test/my_url". Got "%s".' % url
+
+def test_page_registry_resolve_by_url_without_base_url_without_page_with_slash():
+    PageGot, url = PageRegistry.resolve(Settings(cur_dir='/test/'), 'file.html')
+
+    assert PageGot is None, 'The page resolved by "file.html" should be None. Got %r.' % PageGot
+    assert url == 'file:///test/file.html', 'The url must be "file:///test/file.html". Got "%s".' % url
+
+def test_page_registry_resolve_by_url_without_base_url_without_page_without_slash_right():
+    PageGot, url = PageRegistry.resolve(Settings(cur_dir='/test'), 'file.html')
+
+    assert PageGot is None, 'The page resolved by "file.html" should be None. Got %r.' % PageGot
+    assert url == 'file:///test/file.html', 'The url must be "file:///test/file.html". Got "%s".' % url
+
+def test_page_registry_resolve_by_url_without_base_url_without_page_without_slash_left():
+    PageGot, url = PageRegistry.resolve(Settings(cur_dir='test/'), 'file.html')
+
+    assert PageGot is None, 'The page resolved by "file.html" should be None. Got %r.' % PageGot
+    assert url == 'file:///test/file.html', 'The url must be "file:///test/file.html". Got "%s".' % url
+
+def test_page_registry_resolve_by_url_without_base_url_without_page_without_slash_both():
+    PageGot, url = PageRegistry.resolve(Settings(cur_dir='test'), 'file.html')
+
+    assert PageGot is None, 'The page resolved by "file.html" should be None. Got %r.' % PageGot
+    assert url == 'file:///test/file.html', 'The url must be "file:///test/file.html". Got "%s".' % url
+

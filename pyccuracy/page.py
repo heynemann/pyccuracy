@@ -69,23 +69,33 @@ class PageRegistry(object):
         klass_object = cls.get_by_name(url)
 
         if not klass_object:
-            klass_objects_list = list(reversed(cls.get_by_url(url)))
+            klass_objects_list = cls.get_by_url(url)
             if klass_objects_list:
-                klass_object = klass_objects_list[0]
+                klass_object = list(reversed(klass_objects_list))[0]
 
         url_pieces = []
         if settings.base_url:
             url_pieces.append(settings.base_url)
         else:
-            url_pieces.append("file://%s" % settings.tests_dir)
+            url_pieces.append(settings.tests_dir)
 
         if klass_object:
             url_pieces.append(klass_object.url)
+        else:
+            url_pieces.append(url)
 
         # if use os.path.join here, will not work on windows
 
-        fix = lambda x: x.replace('//', '/').replace('file://', 'file:///').replace('http:/', 'http://')
-        return klass_object, fix("/".join(url_pieces))
+        fix = lambda x: x.replace('//', '/').replace('http:/', 'http://')
+        final_url = fix("/".join(url_pieces))
+
+        if not "://" in final_url:
+            if final_url.startswith('/'):
+                final_url = "file://%s" % final_url
+            else:
+                final_url = "file:///%s" % final_url
+
+        return klass_object, final_url
 
     @classmethod
     def get_by_url(cls, url):
