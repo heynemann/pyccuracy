@@ -34,9 +34,17 @@ class ActionRegistry(object):
                 if regex is None:
                     raise LanguageDoesNotResolveError('The language "%s" does not resolve the string "%s"' % (language, Action.regex))
 
+            supported_elements = getter.get("supported_elements")
+            regex = regex.replace("<element selector>", supported_elements)
+
             matches = re.match(regex, line)
             if matches:
-                return Action, matches.groups(), matches.groupdict()
+                args = matches.groups()
+                kw = matches.groupdict()
+                for k, v in kw.items():
+                    del kw[k]
+                    kw[str(k)] = v
+                return Action, args, kw
 
         return None, None, None
 
@@ -70,3 +78,11 @@ class ActionBase(object):
         Action, args, kwargs = ActionRegistry.suitable_for(line, context.get_language(), getter=getter)
         if isinstance(self, Action):
             raise RuntimeError('A action can not execute itself for infinite recursion reasons :)')
+
+    def resolve_element_key(self, context, element_type, element_key):
+        page = context.current_page
+        if not page:
+            return context.browser_driver.resolve_element_key(context, element_type, element_key)
+
+        return page.get_registered_element(element_key)
+

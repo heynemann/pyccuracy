@@ -24,6 +24,9 @@ import urllib2
 
 from os.path import abspath, join, dirname
 
+from pyccuracy.languages import *
+from pyccuracy.drivers import *
+
 def get_curdir():
     return abspath(dirname(os.curdir))
 
@@ -138,6 +141,8 @@ class Settings(object):
 class Context(object):
     def __init__(self, settings):
         self.settings = settings
+        self.language = AVAILABLE_GETTERS[settings.default_culture]
+        self.browser_driver = DriverRegistry.get(settings.browser_driver)(self)
         self.url = None
         self.current_page = None
 
@@ -146,3 +151,4 @@ def locate(pattern, root=os.curdir):
     for path, dirs, files in os.walk(root_path):
         for filename in fnmatch.filter(files, pattern):
             yield os.path.join(path, filename)
+

@@ -16,27 +16,34 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import traceback
+
 from pyccuracy.result import Result
 from pyccuracy.common import Context
 from pyccuracy.errors import ActionFailedError
 
 class StoryRunner(object):
     def run_stories(self, settings, fixture):
-        #No tests to run
-        if len(fixture.stories) == 0:
-            return Result.empty()
-
         for story in fixture.stories:
             for scenario in story.scenarios:
                 context = self.create_context_for(settings)
-                for action in scenario.givens + scenario.whens + scenario.thens:
-                    try:
-                        action.execute_function(context, *action.args, **action.kwargs)
-                    except ActionFailedError, err:
-                        action.mark_as_failed(err)
-                    action.mark_as_successful()
+                for action in scenario.givens:
+                    self.execute_action(context, action)
+                for action in scenario.whens:
+                    self.execute_action(context, action)
+                for action in scenario.thens:
+                    self.execute_action(context, action)
 
         return Result(fixture=fixture)
+
+    def execute_action(self, context, action):
+        try:
+            action.execute_function(context, *action.args, **action.kwargs)
+        except ActionFailedError, err:
+            action.mark_as_failed(err)
+        except Exception, err:
+            raise ValueError("Error executing action %s - %s" % (action.execute_function, traceback.format_exc(err)))
+        action.mark_as_successful()
 
     def create_context_for(self, settings):
         return Context(settings)

@@ -35,6 +35,9 @@ class Result(object):
         template_loader = self.template_loader or TemplateLoader(language)
         return template_loader.load("summary")
 
+    def get_status(self):
+        return self.fixture and self.fixture.get_status() or Status.Unknown
+
     def summary_values(self):
         val = {
                 "run_status" : Status.Unknown,
@@ -69,6 +72,10 @@ class Result(object):
         val["failed_story_percentage"] = no_stories and "0.00" or "%.2f" % (val["failed_stories"] / val["total_stories"] * 100)
         val["successful_scenario_percentage"] = no_scenarios and "0.00" or "%.2f" % (val["successful_scenarios"] / val["total_scenarios"] * 100)
         val["failed_scenario_percentage"] = no_scenarios and "0.00" or "%.2f" % (val["failed_scenarios"] / val["total_scenarios"] * 100)
+
+        if self.fixture.no_story_header:
+            val["has_no_header_files"] = True
+            val["no_header_files"] = self.fixture.no_story_header
 
         return val
 

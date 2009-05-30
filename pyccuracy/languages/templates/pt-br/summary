@@ -30,3 +30,12 @@ Cenário........$scenario.index - $scenario.title
 #if($action.status == "FAILED")        $action.description - $action.status - $action.error#end#end
 #end
 #end
+#if($has_no_header_files)
+
+Arquivos com cabeçalho inválido
+-------------------------------
+Os arquivos desta área estão aqui pois falharam em apresentar
+o cabeçalho padrão do pyccuracy (Como um/Eu quero/Para que) ou 
+não especificaram um cenário válido (usando a sintaxe Cenário # - Descrição).
+
+#foreach ($story in $no_header_files)  $story#end#end

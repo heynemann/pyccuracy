@@ -22,3 +22,6 @@ from pyccuracy.drivers import BaseDriver
 
 class SeleniumDriver(BaseDriver):
     backend = 'selenium'
+    
+    def __init__(self, context):
+        self.context = context

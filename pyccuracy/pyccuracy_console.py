@@ -83,7 +83,7 @@ def main():
                            should_throw=options.should_throw,
                            extra_args=extra_args)
 
-    if not result or result.status != "SUCCESSFUL":
+    if not result or result.get_status() != "SUCCESSFUL":
         sys.exit(1)
     sys.exit(0)
 

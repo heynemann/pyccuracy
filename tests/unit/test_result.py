@@ -16,7 +16,7 @@
 from pmock import *;
 
 from pyccuracy.result import Result
-from pyccuracy.common import Settings
+from pyccuracy.common import Settings, Status
 from pyccuracy.fixture import Fixture
 from pyccuracy.fixture_items import Story, Scenario, Action
 
@@ -75,6 +75,10 @@ def test_empty_result_returns_result():
 def test_empty_result_returns_none_fixture():
     result = Result.empty()
     assert result.fixture is None
+
+def test_empty_result_returns_unknown_status():
+    result = Result.empty()
+    assert result.get_status() == Status.Unknown
 
 def test_see_summary_for_fixture():
     template_loader_mock = Mock()

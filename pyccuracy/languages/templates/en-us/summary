@@ -30,3 +30,12 @@ Scenario.......$scenario.index - $scenario.title
 #if($action.status == "FAILED")        $action.description - $action.status - $action.error#end#end
 #end
 #end
+#if($has_no_header_files)
+
+Files with Invalid Header
+-------------------------
+The files in this area are here because they failed to provide 
+the default pyccuracy header (As a/I want to/So that) or 
+didn't specify a valid scenario (using Scenario # - Description syntax).
+
+#foreach ($story in $no_header_files)  $story#end#end

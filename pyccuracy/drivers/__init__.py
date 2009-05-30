@@ -17,7 +17,6 @@
 # limitations under the License.
 
 DRIVERS = {}
-from pyccuracy.common import Settings
 from pyccuracy.drivers.interface import DriverInterface
 
 class DriverRegistry(object):
@@ -44,8 +43,12 @@ class BaseDriver(DriverInterface):
     __metaclass__ = MetaBaseDriver
 
     def __init__(self, settings):
-        if not isinstance(settings, Settings):
+        #Removed this to avoid circular reference
+        #if not isinstance(settings, Settings):
+        if not settings or settings.__class__.__name__ != "Settings":
             raise TypeError('%s takes a pyccuracy.common.Settings object as construction parameter. Got %s.' % (self.__class__.__name__, settings))
+
+        self.settings = settings
 
     def start(self):
         pass

@@ -151,3 +151,9 @@ def test_execute_action_will_not_execute_itself():
 
     dosaction.execute(context_mock, getter_mock=language_getter_mock, *args, **kwargs)
     context_mock.verify()
+
+def test_action_base_can_resolve_elements_in_a_given_page():
+    assert False
+
+def test_action_base_can_resolve_elements_using_browser_driver():
+    assert False

@@ -63,13 +63,13 @@ class FileParser(object):
             except IOError, err:
                 fixture.append_invalid_test_file(story_file_path, err)
             except ValueError, verr:
-                fixture.append_invalid_test_file(story_file_path, verr)
+                fixture.append_no_story_header(story_file_path)
 
         return fixture
 
     def parse_story_file(self, story_file_path, settings):
         story_text = self.file_object.read_file(story_file_path)
-        story_lines = [line.strip() for line in story_text.split('\n') if line != ""]
+        story_lines = [line.strip() for line in story_text.split('\n') if line.strip() != ""]
 
         headers = self.assert_header(story_lines, settings.default_culture)
         if not headers:

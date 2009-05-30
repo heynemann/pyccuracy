@@ -20,7 +20,8 @@ class PageGoToAction(ActionBase):
     '''Navigates to a page or url.'''
     regex = LanguageItem('page_go_to_regex')
 
-    def execute(self, context, url, *args):
+    def execute(self, context, *args, **kwargs):
+        url = kwargs.get("url", None)
         page, resolved_url = PageRegistry.resolve(context.settings, url.replace('"', ''), must_raise=False)
 
 # TODO: Add url check here again to provide feedback for user if invalid url used.
@@ -36,7 +37,7 @@ class PageAmInAction(ActionBase):
     '''Changes the current page without actually navigating to it.'''
     regex = LanguageItem("page_am_in_regex")
 
-    def execute(self, context, url, *args):
+    def execute(self, context, url=None, *args):
         page, resolved_url = PageRegistry.resolve(context.settings, url, must_raise=False)
 
         if page:
@@ -49,7 +50,7 @@ class PageSeeTitleAction(ActionBase):
     '''Verifies that the current page's title matches the specified one. Raises otherwise.'''
     regex = LanguageItem('page_see_title_regex')
 
-    def execute(self, context, title, *args):
+    def execute(self, context, title=None, *args):
         expected_title = context.browser_driver.get_title()
         if (title != expected_title):
             raise self.failed(context.language.format("page_see_title_failure", title, expected_title))
@@ -57,7 +58,7 @@ class PageSeeTitleAction(ActionBase):
 class PageCheckContainsMarkupAction(ActionBase):
     regex = LanguageItem("page_check_contains_markup_regex")
 
-    def execute(self, context, expected_markup, *args):
+    def execute(self, context, expected_markup=None, *args):
         html = context.browser_driver.get_html_source()
 
         if expected_markup not in html:
@@ -67,7 +68,7 @@ class PageCheckContainsMarkupAction(ActionBase):
 class PageCheckDoesNotContainMarkupAction(ActionBase):
     regex = LanguageItem("page_check_does_not_contain_markup_regex")
 
-    def execute(self, context, expected_markup, *args):
+    def execute(self, context, expected_markup=None, *args):
         html = context.browser_driver.get_html_source()
 
         if expected_markup in html:
@@ -77,7 +78,7 @@ class PageCheckDoesNotContainMarkupAction(ActionBase):
 class PageSeeTitleAction(ActionBase):
     regex = LanguageItem("page_see_title_regex")
 
-    def execute(self, context, title, *args):
+    def execute(self, context, title=None, *args):
         actual_title = context.browser_driver.get_title()
         if (actual_title != title):
             msg = context.language.format("page_see_title_failure", actual_title, title)
@@ -86,7 +87,7 @@ class PageSeeTitleAction(ActionBase):
 class PageWaitForPageToLoadAction(ActionBase):
     regex = LanguageItem("page_wait_for_page_to_load_regex")
 
-    def execute(self, context, timeout, *args):
+    def execute(self, context, timeout=None, *args):
         try:
             timeout = float(values[0])
         except ValueError:
@@ -100,7 +101,7 @@ class PageWaitForPageToLoadAction(ActionBase):
 class PageWaitForSecondsAction(ActionBase):
     regex = LanguageItem("page_wait_for_seconds_regex")
 
-    def execute(self, context, timeout, *args):
+    def execute(self, context, timeout=None, *args):
         try:
             timeout = float(timeout)
         except ValueError:
