@@ -25,13 +25,13 @@ from pyccuracy.actions.core.page_actions import *
 class FakeContext(object):
     settings = Settings(cur_dir='/')
     browser_driver = Mock()
+    language = Mock()
 
 def test_page_go_to_action_calls_the_right_browser_driver_methods():
-
     context = FakeContext()
-    context.browser_driver.expects(once()) \
-                          .page_open(eq("some_url"))
 
+    context.browser_driver.expects(once()) \
+                          .page_open(eq("file:///some_url"))
     context.browser_driver.expects(once()) \
                           .wait_for_page()
 
@@ -44,7 +44,7 @@ def test_page_go_to_action_sets_context_current_url():
     context = FakeContext()
 
     context.browser_driver.expects(once()) \
-                          .page_open(eq("some_url"))
+                          .page_open(eq("file:///some_url"))
     context.browser_driver.expects(once()) \
                           .wait_for_page()
 
@@ -53,7 +53,7 @@ def test_page_go_to_action_sets_context_current_url():
     action.execute(context, url="some_url")
     context.browser_driver.verify()
 
-    assert context.url == "some_url"
+    assert context.url == "file:///some_url"
 
 def test_page_go_to_action_sets_page_if_page_is_supplied():
     class SomePage(Page):
@@ -62,7 +62,7 @@ def test_page_go_to_action_sets_page_if_page_is_supplied():
     context = FakeContext()
 
     context.browser_driver.expects(once()) \
-                          .page_open(eq("some"))
+                          .page_open(eq("file:///some"))
     context.browser_driver.expects(once()) \
                           .wait_for_page()
 
@@ -71,7 +71,7 @@ def test_page_go_to_action_sets_page_if_page_is_supplied():
     action.execute(context, url="Some Page")
     context.browser_driver.verify()
 
-    assert isinstance(context.current_page, SomePage)
+    assert issubclass(context.current_page, SomePage)
 
 def test_page_am_in_action_calls_the_right_browser_driver_methods():
     class SomePage(Page):
@@ -79,15 +79,9 @@ def test_page_am_in_action_calls_the_right_browser_driver_methods():
 
     context = FakeContext()
 
-    context.browser_driver.expects(once()) \
-                          .page_open(eq("some"))
-    context.browser_driver.expects(once()) \
-                          .wait_for_page()
-
     action = PageAmInAction()
 
     action.execute(context, url="Some Page")
-    context.browser_driver.verify()
 
 def test_page_am_in_action_sets_page_if_page_is_supplied():
     class SomePage(Page):
@@ -95,15 +89,9 @@ def test_page_am_in_action_sets_page_if_page_is_supplied():
 
     context = FakeContext()
 
-    context.browser_driver.expects(once()) \
-                          .page_open(eq("some"))
-    context.browser_driver.expects(once()) \
-                          .wait_for_page()
-
     action = PageAmInAction()
 
     action.execute(context, url="Some Page")
-    context.browser_driver.verify()
-    assert isinstance(context.current_page, SomePage)
-    assert context.url == "some"
+    assert issubclass(context.current_page, SomePage)
+    assert context.url == "file:///some"
 
