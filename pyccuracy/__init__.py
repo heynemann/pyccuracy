@@ -23,3 +23,4 @@ from pyccuracy.drivers import DriverRegistry
 from pyccuracy.drivers.core import *
 
 Version = "0.6.0"
+Release = "Aspirin"

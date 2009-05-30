@@ -277,7 +277,7 @@ def test_is_not_scenario_starter_line():
     language_mock.verify()
 
 def test_parse_scenario_line():
-    story = Story(as_a="Someone", i_want_to="Do Something", so_that="I'm Happy")
+    story = Story(as_a="Someone", i_want_to="Do Something", so_that="I'm Happy", identity="some file")
 
     language_mock = Mock()
     language_mock.expects(once()) \

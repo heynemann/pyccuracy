@@ -23,7 +23,7 @@ from pyccuracy.story_runner import StoryRunner
 from pyccuracy.errors import ActionFailedError
 
 def some_action():
-    story = Story(as_a="Someone", i_want_to="Do Something", so_that="I'm Happy")
+    story = Story(as_a="Someone", i_want_to="Do Something", so_that="I'm Happy", identity="some file")
     scenario = story.append_scenario("1", "Something")
     return scenario.add_given(action_description="Some Action", \
                                execute_function=lambda context, *args, **kwargs: None, \

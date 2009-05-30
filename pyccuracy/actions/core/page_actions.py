@@ -17,6 +17,7 @@ from pyccuracy.actions import ActionBase
 from pyccuracy.languages import LanguageItem
 
 class PageGoToAction(ActionBase):
+    '''Navigates to a page or url.'''
     regex = LanguageItem('page_go_to_regex')
 
     def execute(self, context, url, *args):
@@ -32,6 +33,7 @@ class PageGoToAction(ActionBase):
         context.current_page = page
 
 class PageAmInAction(ActionBase):
+    '''Changes the current page without actually navigating to it.'''
     regex = LanguageItem("page_am_in_regex")
 
     def execute(self, context, url, *args):
@@ -43,7 +45,8 @@ class PageAmInAction(ActionBase):
         else:
             raise self.failed(context.language.format("page_am_in_failure", url))
 
-class PageSeeTitle(ActionBase):
+class PageSeeTitleAction(ActionBase):
+    '''Verifies that the current page's title matches the specified one. Raises otherwise.'''
     regex = LanguageItem('page_see_title_regex')
 
     def execute(self, context, title, *args):

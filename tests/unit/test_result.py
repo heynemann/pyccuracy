@@ -56,12 +56,12 @@ Scenario.......$scenario.index - $scenario.title
 #end"""
 
 def some_action():
-    story = Story(as_a="Someone", i_want_to="Do Something", so_that="I'm Happy")
+    story = Story(as_a="Someone", i_want_to="Do Something", so_that="I'm Happy", identity="Some file")
     scenario = story.append_scenario("1", "Something")
     return scenario.add_given(action_description="Some Action", execute_function=lambda: None, args=["s"], kwargs={"a":"b"})
 
 def complete_scenario_with_then_action_returned():
-    story = Story(as_a="Someone", i_want_to="Do Something", so_that="I'm Happy")
+    story = Story(as_a="Someone", i_want_to="Do Something", so_that="I'm Happy", identity="Some file")
     scenario = story.append_scenario("1", "Something")
     given = scenario.add_given(action_description="I did something", execute_function=lambda: None, args=["s"], kwargs={"a":"b"})
     when = scenario.add_when(action_description="I do something", execute_function=lambda: None, args=["s"], kwargs={"a":"b"})

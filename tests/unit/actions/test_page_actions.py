@@ -124,3 +124,19 @@ def test_page_am_in_action_raises_if_no_page():
     assert_raises(ActionFailedError, action.execute, context=context, url="InvalidAmInPage", exc_pattern=re_compile(r'^Error Message$'))
 
 #End Am In Action
+
+# Page See Title Action
+
+def test_page_see_title_action_calls_the_right_browser_driver_methods():
+    context = FakeContext()
+    context.browser_driver.expects(once()) \
+                          .get_title() \
+                          .will(return_value("some title"))
+
+    action = PageSeeTitleAction()
+
+    action.execute(context, title="some title")
+
+    context.browser_driver.verify()
+
+#End Page See Title Action

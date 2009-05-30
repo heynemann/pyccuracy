@@ -32,7 +32,7 @@ def test_creating_a_scenario_keeps_title():
     assert scenario.title == expected, "title should be %s but was %s" % (expected, scenario.title)
 
 def test_creating_a_scenario_keeps_the_story():
-    story = Story(as_a="Someone", i_want_to="do something", so_that="something")
+    story = Story(as_a="Someone", i_want_to="do something", so_that="something", identity="Some File")
     scenario = Scenario(index=None, title=None, story=story)
     assert str(story) == str(scenario.story), "story should be %s but was %s" % (str(story), str(scenario.story))
 
@@ -80,13 +80,13 @@ def test_mark_scenario_as_successful_after_failed_has_no_effect():
     assert scenario.status == Status.Failed, "The status should be %s but was %s" % (Status.Failed, scenario.status)
 
 def test_marking_scenario_as_failed_also_marks_story_as_failed_if_story_exists():
-    story = Story(as_a="Someone", i_want_to="do something", so_that="something")
+    story = Story(as_a="Someone", i_want_to="do something", so_that="something", identity="Some File")
     scenario = Scenario(index="1", title="Something", story=story)
     scenario.mark_as_failed()
     assert story.status == Status.Failed, "The status should be %s but was %s" % (Status.Failed, story.status)
 
 def test_marking_scenario_as_successful_also_marks_story_as_failed_if_story_exists():
-    story = Story(as_a="Someone", i_want_to="do something", so_that="something")
+    story = Story(as_a="Someone", i_want_to="do something", so_that="something", identity="Some File")
     scenario = Scenario(index="1", title="Something", story=story)
     scenario.mark_as_successful()
     assert story.status == Status.Successful, "The status should be %s but was %s" % (Status.Successful, story.status)
@@ -126,7 +126,7 @@ def test_scenario_ellapsed_returns_seconds():
     assert ellapsed == expected, "The ellapsed time should be %s but was %s" % (expected, ellapsed)
 
 def test_append_given_adds_to_givens_in_scenario():
-    story = Story(as_a="Someone", i_want_to="do something", so_that="something")
+    story = Story(as_a="Someone", i_want_to="do something", so_that="something", identity="Some File")
     scenario = Scenario(index="1", title="Something", story=story)
     args = ["a"]
     kwargs = {"extra_args":"something"}
@@ -134,7 +134,7 @@ def test_append_given_adds_to_givens_in_scenario():
     assert len(scenario.givens) == 1, "There should be one given in the scenario but there was %d" % len(scenario.givens)
 
 def test_append_given_adds_right_class_to_givens_in_scenario():
-    story = Story(as_a="Someone", i_want_to="do something", so_that="something")
+    story = Story(as_a="Someone", i_want_to="do something", so_that="something", identity="Some File")
     scenario = Scenario(index="1", title="Something", story=story)
     args = ["a"]
     kwargs = {"extra_args":"something"}
@@ -142,7 +142,7 @@ def test_append_given_adds_right_class_to_givens_in_scenario():
     assert isinstance(scenario.givens[0], Action), "There should be one given of type Action in the scenario but there was %s" % scenario.givens[0].__class__
 
 def test_append_when_adds_to_whens_in_scenario():
-    story = Story(as_a="Someone", i_want_to="do something", so_that="something")
+    story = Story(as_a="Someone", i_want_to="do something", so_that="something", identity="Some File")
     scenario = Scenario(index="1", title="Something", story=story)
     args = ["a"]
     kwargs = {"extra_args":"something"}
@@ -150,7 +150,7 @@ def test_append_when_adds_to_whens_in_scenario():
     assert len(scenario.whens) == 1, "There should be one when in the scenario but there was %d" % len(scenario.whens)
 
 def test_append_when_adds_right_class_to_whens_in_scenario():
-    story = Story(as_a="Someone", i_want_to="do something", so_that="something")
+    story = Story(as_a="Someone", i_want_to="do something", so_that="something", identity="Some File")
     scenario = Scenario(index="1", title="Something", story=story)
     args = ["a"]
     kwargs = {"extra_args":"something"}
@@ -158,7 +158,7 @@ def test_append_when_adds_right_class_to_whens_in_scenario():
     assert isinstance(scenario.whens[0], Action), "There should be one when of type Action in the scenario but there was %s" % scenario.whens[0].__class__
 
 def test_append_then_adds_to_thens_in_scenario():
-    story = Story(as_a="Someone", i_want_to="do something", so_that="something")
+    story = Story(as_a="Someone", i_want_to="do something", so_that="something", identity="Some File")
     scenario = Scenario(index="1", title="Something", story=story)
     args = ["a"]
     kwargs = {"extra_args":"something"}
@@ -166,7 +166,7 @@ def test_append_then_adds_to_thens_in_scenario():
     assert len(scenario.thens) == 1, "There should be one then in the scenario but there was %d" % len(scenario.thens)
 
 def test_append_then_adds_right_class_to_thens_in_scenario():
-    story = Story(as_a="Someone", i_want_to="do something", so_that="something")
+    story = Story(as_a="Someone", i_want_to="do something", so_that="something", identity="Some File")
     scenario = Scenario(index="1", title="Something", story=story)
     args = ["a"]
     kwargs = {"extra_args":"something"}

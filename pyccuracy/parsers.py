@@ -34,7 +34,10 @@ class FSO(object):
         return open(file_path).read()
 
 class ActionNotFoundError(Exception):
-    pass
+    def __init__(self, line, scenario, filename):
+        self.line = line
+        self.scenario = scenario
+        self.filename = filename
 
 class FileParser(object):
     def __init__(self, language=None, file_object=None, action_registry=None):
@@ -76,7 +79,7 @@ class FileParser(object):
         i_want_to = headers[1]
         so_that = headers[2]
 
-        current_story = Story(as_a=as_a, i_want_to=i_want_to, so_that=so_that)
+        current_story = Story(as_a=as_a, i_want_to=i_want_to, so_that=so_that, identity=story_file_path)
 
         scenario_lines = story_lines[3:]
 
@@ -107,7 +110,7 @@ class FileParser(object):
 
             action, args, kwargs = self.action_registry.suitable_for(line, settings.default_culture)
             if not action:
-                self.raise_action_not_found_for_line(line)
+                self.raise_action_not_found_for_line(line, current_scenario, story_file_path)
             instance = action()
             add_method(line, instance.execute, args, kwargs)
 
@@ -146,5 +149,5 @@ class FileParser(object):
         current_scenario = current_story.append_scenario(index, title)
         return current_scenario
 
-    def raise_action_not_found_for_line(self, line):
-        raise ActionNotFoundError(line)
+    def raise_action_not_found_for_line(self, line, scenario, filename):
+        raise ActionNotFoundError(line, scenario, filename)

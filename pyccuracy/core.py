@@ -18,11 +18,14 @@
 
 from os.path import join, abspath, dirname
 
+from pyccuracy.airspeed import Template
+
 from pyccuracy import Page, ActionBase
 from pyccuracy.common import Settings
 from pyccuracy.story_runner import *
-from pyccuracy.parsers import *
+from pyccuracy.parsers import FileParser, ActionNotFoundError
 from pyccuracy.errors import *
+from pyccuracy.languages.templates import *
 
 class PyccuracyCore(object):
     def __init__(self, parser=None, runner=None):
@@ -32,7 +35,14 @@ class PyccuracyCore(object):
     def run_tests(self, **kwargs):
         settings = Settings(kwargs)
 
-        test_suite = self.parser.get_stories(settings)
+        try:
+            test_suite = self.parser.get_stories(settings)
+        except ActionNotFoundError, err:
+            self.print_invalid_action(settings.default_culture, err)
+            if settings.should_throw:
+                raise TestFailedError("The test failed!")
+            else:
+                return None
 
         #self.context.browser_driver.start()
 
@@ -60,4 +70,16 @@ class PyccuracyCore(object):
     def __print_results(self, results):
         print unicode(results)
         print "\n"
+
+    def print_invalid_action(self, language, err):
+        template_text = TemplateLoader(language).load("invalid_scenario")
+        template = Template(template_text)
+        
+        values = {
+                    "action_text":err.line,
+                    "scenario":err.scenario,
+                    "filename":err.filename
+                 }
+
+        print template.merge(values)
 

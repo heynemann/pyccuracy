@@ -16,27 +16,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-u"""Pyccuracy - BDD Acceptance testing
+import os
+import sys, optparse
+from pyccuracy.core import PyccuracyCore
+from pyccuracy import Version, Release
 
-Example usage
-=============
-
-    python pyccuracy_console.py
-
-:author: `Bernardo Heynemann <mailto:heynemann@gmail.com>`__
-"""
-
-# Pylint checks
-# "line to long" pylint: disable-msg=C0301
-# "Used * or ** magic" pylint: disable-msg=W0142
-
-__revision__ = "0.5.1"
-__release__ = "tylenol"
-__version_string__ = "pyccuracy %s (release '%s')" % (__revision__, __release__)
+__version_string__ = "pyccuracy %s (release '%s')" % (Version, Release)
 __docformat__ = 'restructuredtext en'
-
-import os, sys, optparse
-from pyccuracy.pyccuracy_core import PyccuracyCore
 
 def main():
     """ Main function - parses args and runs action """
@@ -97,7 +83,7 @@ def main():
                            should_throw=options.should_throw,
                            extra_args=extra_args)
 
-    if result.status != "SUCCESSFUL":
+    if not result or result.status != "SUCCESSFUL":
         sys.exit(1)
     sys.exit(0)
 

@@ -1,31 +1,31 @@
-================
-Test Run Summary
-================
+=================
+Sumário de Testes
+=================
 
 Status: $run_status
 
-Test Data Stats
----------------
-Successful Stories......$successful_stories/$total_stories ($successful_story_percentage%)
-Failed Stories..........$failed_stories/$total_stories ($failed_story_percentage%)
-Successful Scenarios....$successful_scenarios/$total_scenarios ($successful_scenario_percentage%)
-Failed Scenarios........$failed_scenarios/$total_scenarios ($failed_scenario_percentage%)
+Estatísticas dos Testes
+-----------------------
+Stories com Sucesso.....$successful_stories/$total_stories ($successful_story_percentage%)
+Stories com FALHA.......$failed_stories/$total_stories ($failed_story_percentage%)
+Scenarios com Sucesso...$successful_scenarios/$total_scenarios ($successful_scenario_percentage%)
+Scenarios com FALHA.....$failed_scenarios/$total_scenarios ($failed_scenario_percentage%)
 #if($has_failed_scenarios)
 
-Failed Stories / Scenarios
---------------------------
+Detalhes das Falhas
+-------------------
 #foreach ($scenario in $failed_scenario_instances)Story..........As a $scenario.story.as_a I want to $scenario.story.i_want_to So that $scenario.story.so_that
-Story file.....$scenario.story.identity
-Scenario.......$scenario.index - $scenario.title
-    Given
+Arquivo........$scenario.story.identity
+Cenário........$scenario.index - $scenario.title
+    Dado que
 #foreach ($action in $scenario.givens)#if($action.status != "FAILED")        $action.description - $action.status#end
 #if($action.status == "FAILED")        $action.description - $action.status - $action.error#end#end
 
-    When
+    Quando
 #foreach ($action in $scenario.whens)#if($action.status != "FAILED")        $action.description - $action.status#end
 #if($action.status == "FAILED")        $action.description - $action.status - $action.error#end#end
 
-    Then
+    Então
 #foreach ($action in $scenario.thens)#if($action.status != "FAILED")        $action.description - $action.status#end
 #if($action.status == "FAILED")        $action.description - $action.status - $action.error#end#end
 #end

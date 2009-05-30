@@ -7,7 +7,7 @@ from pyccuracy.fixture import Fixture
 from pyccuracy.fixture_items import Story, Scenario, Action
 
 def complete_scenario_with_then_action_returned():
-    story = Story(as_a="Someone", i_want_to="Do Something", so_that="I'm Happy")
+    story = Story(as_a="Someone", i_want_to="Do Something", so_that="I'm Happy", identity="some file")
     scenario = story.append_scenario("1", "Something")
     given = scenario.add_given(action_description="I did something", execute_function=lambda: None, args=["s"], kwargs={"a":"b"})
     when = scenario.add_when(action_description="I do something", execute_function=lambda: None, args=["s"], kwargs={"a":"b"})
@@ -31,7 +31,7 @@ Failed Scenarios........1/1 (100.00%)
 Failed Stories / Scenarios
 --------------------------
 Story..........As a Someone I want to Do Something So that I'm Happy
-Story file.....To be implemented.
+Story file.....some file
 Scenario.......1 - Something
     Given
         I did something - UNKNOWN

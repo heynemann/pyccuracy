@@ -1,0 +1,17 @@
+
+===============
+Erro de Parsing
+===============
+
+Detalhes do Erro
+----------------
+Ação com erro......... $action_text
+Cenário da ação....... $scenario.index - $scenario.title
+Arquivo do scenario... $filename
+
+Descrição do Erro
+-----------------
+A linha de ação não bate com nenhuma das ações registradas.
+
+Se você só precisa de um texto como "E eu espero a página carregar"
+ou algo assim, utilize '#' como prefixo da sua linha de ação (comentário).

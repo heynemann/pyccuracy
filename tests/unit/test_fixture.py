@@ -20,7 +20,7 @@ from pyccuracy.common import Status
 from pyccuracy.fixture_items import Story, Scenario, Action
 
 def some_action():
-    story = Story(as_a="Someone", i_want_to="Do Something", so_that="I'm Happy")
+    story = Story(as_a="Someone", i_want_to="Do Something", so_that="I'm Happy", identity="Some File")
     scenario = story.append_scenario("1", "Something")
     return scenario.add_given(action_description="Some Action", execute_function=lambda: None, args=["s"], kwargs={"a":"b"})
 
@@ -69,13 +69,13 @@ def test_append_no_story_header_keeps_file():
 
 def test_append_story():
     fixture = Fixture()
-    story = Story("some","other","data")
+    story = Story("some","other","data", identity="Some File")
     fixture.append_story(story)
     assert len(fixture.stories) == 1
 
 def test_append_story_keeps_data():
     fixture = Fixture()
-    story = Story("some","other","data")
+    story = Story("some","other","data", identity="Some File")
     fixture.append_story(story)
     assert fixture.stories[0].as_a == "some"
     assert fixture.stories[0].i_want_to == "other"

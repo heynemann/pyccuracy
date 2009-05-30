@@ -18,7 +18,7 @@ import time
 from pyccuracy.fixture_items import Status, Story, Scenario, Action
 
 def some_action():
-    story = Story(as_a="Someone", i_want_to="Do Something", so_that="I'm Happy")
+    story = Story(as_a="Someone", i_want_to="Do Something", so_that="I'm Happy", identity="Some File")
     scenario = Scenario(index="1", title="Something", story=story)
     return Action(scenario=scenario, description="Some Action", execute_function=lambda: None, args=["s"], kwargs={"a":"b"})
 

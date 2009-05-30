@@ -1,0 +1,17 @@
+
+=============
+Parsing Error
+=============
+
+Error Details
+-------------
+Action with error..... $action_text
+Action Scenario....... $scenario.index - $scenario.title
+Scenario file......... $filename
+
+Error Description
+-----------------
+The action line does not match any of the registered actions.
+
+If you just need a text like "I wait for the page to finish loading"
+or something like this, prefix your line with a # sign.

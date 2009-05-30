@@ -24,12 +24,13 @@ from pyccuracy.common import StatusItem, TimedItem, Status
 class Story(StatusItem, TimedItem):
     '''Class that represents a story to be run by Pyccuracy.
     Contains zero or many scenarios to be run.'''
-    def __init__(self, as_a, i_want_to, so_that):
+    def __init__(self, as_a, i_want_to, so_that, identity):
         StatusItem.__init__(self, parent=None)
         TimedItem.__init__(self)
         self.as_a = as_a
         self.i_want_to = i_want_to
         self.so_that = so_that
+        self.identity = identity
         self.scenarios = []
 
     def append_scenario(self, index, title):
