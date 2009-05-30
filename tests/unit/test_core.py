@@ -15,6 +15,37 @@
 
 import os
 from os.path import join, abspath, dirname
+from pmock import *
+
 from pyccuracy.core import PyccuracyCore
 from pyccuracy.common import Settings
+
+def test_pyccuracy_core_instantiation():
+    class MyParser:
+        pass
+
+    class MyRunner:
+        pass
+
+    pc = PyccuracyCore(MyParser(), MyRunner())
+    assert isinstance(pc, PyccuracyCore)
+    assert isinstance(pc.parser, MyParser)
+    assert isinstance(pc.runner, MyRunner)
+
+def test_pyccuracy_core_run_tests():
+    results_mock = Mock()
+    suite_mock = Mock()
+
+    runner_mock = Mock()
+    parser_mock = Mock()
+
+    parser_mock.expects(once()).method('get_stories').will(return_value(suite_mock))
+    runner_mock.expects(once()).method('run_stories').will(return_value(results_mock))
+
+    results_mock.expects(once()).method('__unicode__').will(return_value('my results'))
+    pc = PyccuracyCore(parser_mock, runner_mock)
+    assert pc.run_tests(should_throw=False) == results_mock
+
+    parser_mock.verify()
+    runner_mock.verify()
 

@@ -1,32 +1,36 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+# Copyright (C) 2009 Bernardo Heynemann <heynemann@gmail.com>
+# Copyright (C) 2009 Gabriel Falcão <gabriel@nacaolivre.org>
+#
 # Licensed under the Open Software License ("OSL") v. 3.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-
+#
 #     http://www.opensource.org/licenses/osl-3.0.php
-
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import unittest
-import sys
-import os
-sys.path.insert(0,os.path.abspath(__file__+"/../../"))
-from pyccuracy.locator import *
+from pmock import *
+from pyccuracy.common import URLChecker
 
-class TestLocator(unittest.TestCase):
-    def __test_locate_test_files(self):
-        files = list(locate("test*.py"))
-        self.assertEqual(len(files), 8)
+def test_url_checker():
+    urlmock = Mock()
 
-    def __test_locate_action_tests(self):
-        files = list(locate("*en-us.acc"))
-        self.assertEqual(len(files), 48)
-        print files
+    urlmock.expects(once()) \
+        .urlopen(eq("http://foo.bar.com")) \
+        .will(return_value(None))
 
-if __name__ == "__main__":
-    unittest.main()
+    checker = URLChecker(lib=urlmock)
+    checker.set_url("http://foo.bar.com")
+
+    assert checker.url == "http://foo.bar.com"
+    assert checker.is_valid()
+    assert checker.does_exists()
+
+    urlmock.verify()

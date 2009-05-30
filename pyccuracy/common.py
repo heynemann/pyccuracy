@@ -35,6 +35,9 @@ class URLChecker(object):
     deadparrot/models/fields.py
     """
 
+    def __init__(self, lib=urllib2):
+        self.lib = lib
+
     def set_url(self, url):
         self.url = url
 
@@ -44,7 +47,7 @@ class URLChecker(object):
 
     def does_exists(self):
         try:
-            urllib2.urlopen(self.url)
+            self.lib.urlopen(self.url)
             return True
         except urllib2.URLError:
             return False
