@@ -24,7 +24,7 @@ help:
 	@echo "  docs      to build documentation"
 
 all: prepare_build compile test report_success
-test: prepare_build compile run_unit run_functional report_success
+test: prepare_build compile run_all_tests
 unit: prepare_build compile run_unit report_success
 functional: prepare_build compile run_functional report_success
 prepare_build: clean create_build_dir
@@ -52,6 +52,10 @@ compile:
 	@rm -f -r ${src_dir}/*.pyc >> /dev/null
 	@python -tt -m compileall ${src_dir} >> ${compile_log_file} 2>> ${compile_log_file}
 	@python -tt -m compileall ${unit_tests_dir} >> ${compile_log_file} 2>> ${compile_log_file}
+
+run_all_tests: compile
+	@echo "Running all tests..."
+	@nosetests -s --verbose --with-coverage --cover-package=pyccuracy
 
 run_unit: compile
 	@echo "Running unit tests..."
