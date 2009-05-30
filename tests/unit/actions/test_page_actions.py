@@ -19,37 +19,39 @@
 from pmock import *
 
 from pyccuracy import Page
+from pyccuracy.common import Settings
 from pyccuracy.actions.core.page_actions import *
 
-def test_page_go_to_action_calls_the_right_browser_driver_methods():
-    context = Mock()
-    browser_driver_mock = Mock()
-    context.browser_driver = browser_driver_mock
+class FakeContext(object):
+    settings = Settings(cur_dir='/')
+    browser_driver = Mock()
 
-    browser_driver_mock.expects(once()) \
-                       .page_open(eq("some_url"))
-    browser_driver_mock.expects(once()) \
-                       .wait_for_page()
+def test_page_go_to_action_calls_the_right_browser_driver_methods():
+
+    context = FakeContext()
+    context.browser_driver.expects(once()) \
+                          .page_open(eq("some_url"))
+
+    context.browser_driver.expects(once()) \
+                          .wait_for_page()
 
     action = PageGoToAction()
 
     action.execute(context, url="some_url")
-    browser_driver_mock.verify()
+    context.browser_driver.verify()
 
 def test_page_go_to_action_sets_context_current_url():
-    context = Mock()
-    browser_driver_mock = Mock()
-    context.browser_driver = browser_driver_mock
+    context = FakeContext()
 
-    browser_driver_mock.expects(once()) \
-                       .page_open(eq("some_url"))
-    browser_driver_mock.expects(once()) \
-                       .wait_for_page()
+    context.browser_driver.expects(once()) \
+                          .page_open(eq("some_url"))
+    context.browser_driver.expects(once()) \
+                          .wait_for_page()
 
     action = PageGoToAction()
 
     action.execute(context, url="some_url")
-    browser_driver_mock.verify()
+    context.browser_driver.verify()
 
     assert context.url == "some_url"
 
@@ -57,19 +59,17 @@ def test_page_go_to_action_sets_page_if_page_is_supplied():
     class SomePage(Page):
         url = "some"
 
-    context = Mock()
-    browser_driver_mock = Mock()
-    context.browser_driver = browser_driver_mock
+    context = FakeContext()
 
-    browser_driver_mock.expects(once()) \
-                       .page_open(eq("some"))
-    browser_driver_mock.expects(once()) \
-                       .wait_for_page()
+    context.browser_driver.expects(once()) \
+                          .page_open(eq("some"))
+    context.browser_driver.expects(once()) \
+                          .wait_for_page()
 
     action = PageGoToAction()
 
     action.execute(context, url="Some Page")
-    browser_driver_mock.verify()
+    context.browser_driver.verify()
 
     assert isinstance(context.current_page, SomePage)
 
@@ -77,37 +77,33 @@ def test_page_am_in_action_calls_the_right_browser_driver_methods():
     class SomePage(Page):
         url = "some"
 
-    context = Mock()
-    browser_driver_mock = Mock()
-    context.browser_driver = browser_driver_mock
+    context = FakeContext()
 
-    browser_driver_mock.expects(once()) \
-                       .page_open(eq("some"))
-    browser_driver_mock.expects(once()) \
-                       .wait_for_page()
+    context.browser_driver.expects(once()) \
+                          .page_open(eq("some"))
+    context.browser_driver.expects(once()) \
+                          .wait_for_page()
 
     action = PageAmInAction()
 
     action.execute(context, url="Some Page")
-    browser_driver_mock.verify()
+    context.browser_driver.verify()
 
 def test_page_am_in_action_sets_page_if_page_is_supplied():
     class SomePage(Page):
         url = "some"
 
-    context = Mock()
-    browser_driver_mock = Mock()
-    context.browser_driver = browser_driver_mock
+    context = FakeContext()
 
-    browser_driver_mock.expects(once()) \
-                       .page_open(eq("some"))
-    browser_driver_mock.expects(once()) \
-                       .wait_for_page()
+    context.browser_driver.expects(once()) \
+                          .page_open(eq("some"))
+    context.browser_driver.expects(once()) \
+                          .wait_for_page()
 
     action = PageAmInAction()
 
     action.execute(context, url="Some Page")
-    browser_driver_mock.verify()
+    context.browser_driver.verify()
     assert isinstance(context.current_page, SomePage)
     assert context.url == "some"
 
