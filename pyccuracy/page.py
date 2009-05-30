@@ -69,7 +69,7 @@ class PageRegistry(object):
         klass_object = cls.get_by_name(url)
 
         if not klass_object:
-            klass_objects_list = cls.get_by_url(url)
+            klass_objects_list = cls.all_by_url(url)
             if klass_objects_list:
                 klass_object = list(reversed(klass_objects_list))[0]
 
@@ -98,7 +98,7 @@ class PageRegistry(object):
         return klass_object, final_url
 
     @classmethod
-    def get_by_url(cls, url):
+    def all_by_url(cls, url):
         return URL_DICT.get(url)
 
 class Page(object):

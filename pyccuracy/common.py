@@ -24,6 +24,9 @@ import urllib2
 
 from os.path import abspath, join, dirname
 
+def get_curdir():
+    return abspath(dirname(os.curdir))
+
 class URLChecker(object):
     """
     Taken from dead-parrot:
@@ -96,7 +99,7 @@ class StatusItem(object):
 class Settings(object):
     def __init__(self,
                  settings=None,
-                 cur_dir=os.curdir,
+                 cur_dir=get_curdir(),
                  actions_dir=None,
                  languages_dir=None):
 
