@@ -17,21 +17,17 @@ import os
 from os.path import join, abspath, dirname
 from pyccuracy.common import Settings
 
-cur_dir = abspath(os.curdir)
-actions_dir = abspath(join(dirname(__file__), "../../pyccuracy/actions"))
-languages_dir = abspath(join(dirname(__file__), "../../pyccuracy/languages"))
-
 def test_settings_return_default_value_for_tests_dir():
-    settings = Settings({})
-    assert settings.tests_dir == cur_dir, "The tests dir should be %s but was %s." % (cur_dir, settings.tests_dir)
+    settings = Settings({}, cur_dir='/root')
+    assert settings.tests_dir == '/root', "The tests dir should be %s but was %s." % ('/root', settings.tests_dir)
 
 def test_settings_return_default_value_for_actions_dir():
-    settings = Settings({})
-    assert settings.actions_dir == actions_dir, "The actions_dir dir should be %s but was %s." % (actions_dir, settings.actions_dir)
+    settings = Settings({}, actions_dir='/actions')
+    assert settings.actions_dir == '/actions', "The actions_dir dir should be %s but was %s." % ('/actions', settings.actions_dir)
 
 def test_settings_return_default_value_for_languages_dir():
-    settings = Settings({})
-    assert settings.languages_dir == languages_dir, "The languages_dir dir should be %s but was %s." % (languages_dir, settings.languages_dir)
+    settings = Settings({}, languages_dir)
+    assert settings.languages_dir == '/languages', "The languages_dir dir should be %s but was %s." % ('/languages', settings.languages_dir)
 
 def test_settings_return_default_value_for_pages_dir():
     settings = Settings({})

@@ -16,6 +16,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from urlparse import urljoin
+from pyccuracy.common import Settings
+
 NAME_DICT = {}
 URL_DICT = {}
 
@@ -46,7 +49,46 @@ class PageRegistry(object):
         return NAME_DICT.get(name)
 
     @classmethod
-    def all_by_url(cls, url):
+    def resolve(cls, settings, url, must_raise=True):
+        """Resolves a url given a string and a settings. Raises
+        TypeError when parameters are wrong, unless the must_raise
+        parameter is False"""
+
+        if not isinstance(settings, Settings):
+            if must_raise:
+                raise TypeError('PageRegistry.resolve takes a pyccuracy.common.Settings object first parameter. Got %r.' % settings)
+            else:
+                return None
+
+        if not isinstance(url, basestring):
+            if must_raise:
+                raise TypeError('PageRegistry.resolve argument 2 must be a string. Got %r.' % url)
+            else:
+                return None
+
+        klass_object = cls.get_by_name(url)
+
+        if not klass_object:
+            klass_objects_list = list(reversed(cls.get_by_url(url)))
+            if klass_objects_list:
+                klass_object = klass_objects_list[0]
+
+        url_pieces = []
+        if settings.base_url:
+            url_pieces.append(settings.base_url)
+        else:
+            url_pieces.append("file://%s" % settings.tests_dir)
+
+        if klass_object:
+            url_pieces.append(klass_object.url)
+
+        # if use os.path.join here, will not work on windows
+
+        fix = lambda x: x.replace('//', '/').replace('file://', 'file:///').replace('http:/', 'http://')
+        return klass_object, fix("/".join(url_pieces))
+
+    @classmethod
+    def get_by_url(cls, url):
         return URL_DICT.get(url)
 
 class Page(object):

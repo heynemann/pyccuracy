@@ -94,13 +94,20 @@ class StatusItem(object):
             self.parent.mark_as_successful()
 
 class Settings(object):
-    def __init__(self, settings=None):
+    def __init__(self,
+                 settings=None,
+                 cur_dir=os.curdir,
+                 actions_dir=None,
+                 languages_dir=None):
+
         if not settings:
             settings = {}
 
-        cur_dir = abspath(os.curdir)
-        actions_dir = abspath(join(dirname(__file__), "actions"))
-        languages_dir = abspath(join(dirname(__file__), "languages"))
+        if not actions_dir:
+            actions_dir = abspath(join(dirname(__file__), "actions"))
+
+        if not languages_dir:
+            languages_dir = abspath(join(dirname(__file__), "languages"))
 
         self.tests_dir = settings.get("tests_dir", cur_dir)
 
