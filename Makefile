@@ -24,7 +24,7 @@ help:
 	@echo "  docs      to build documentation"
 
 all: prepare_build compile test report_success
-test: prepare_build compile run_all_tests
+test: prepare_build compile run_unit run_functional report_success
 unit: prepare_build compile run_unit report_success
 functional: prepare_build compile run_functional report_success
 prepare_build: clean create_build_dir
