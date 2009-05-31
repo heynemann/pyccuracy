@@ -31,7 +31,7 @@ class FSO(object):
         return locate(root=directory, pattern=pattern)
 
     def read_file(self, file_path):
-        return open(file_path).read()
+        return open(file_path).read().decode('utf-8')
 
 class ActionNotFoundError(Exception):
     def __init__(self, line, scenario, filename):
@@ -109,6 +109,7 @@ class FileParser(object):
                 continue
 
             action, args, kwargs = self.action_registry.suitable_for(line, settings.default_culture)
+
             if not action:
                 self.raise_action_not_found_for_line(line, current_scenario, story_file_path)
             instance = action()

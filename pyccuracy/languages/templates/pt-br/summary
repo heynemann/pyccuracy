@@ -1,43 +1,45 @@
 =================
 Sumário de Testes
 =================
+#if ($run_status == "FAILED")Status: ${BG_RED}$run_status#end
+#if ($run_status == "SUCCESSFUL")Status: ${GREEN}$run_status#end
+#if ($run_status == "UNKNOWN")Status: ${CYAN}$run_status#end
+${NORMAL}
 
-Status: $run_status
-
-Estatísticas dos Testes
------------------------
-Stories com Sucesso.....$successful_stories/$total_stories ($successful_story_percentage%)
-Stories com FALHA.......$failed_stories/$total_stories ($failed_story_percentage%)
-Scenarios com Sucesso...$successful_scenarios/$total_scenarios ($successful_scenario_percentage%)
-Scenarios com FALHA.....$failed_scenarios/$total_scenarios ($failed_scenario_percentage%)
+Estatísticas de Teste
+---------------------
+Stories com Sucesso......${GREEN}$successful_stories${NORMAL} of ${GREEN}$total_stories${NORMAL} (${GREEN}$successful_story_percentage%${NORMAL})
+Cenários com Sucesso.....${GREEN}$successful_scenarios${NORMAL} of ${GREEN}$total_scenarios${NORMAL} (${GREEN}$successful_scenario_percentage%${NORMAL})
+Stories com Falha........${RED}$failed_stories${NORMAL} of ${RED}$total_stories${NORMAL} (${RED}$failed_story_percentage%${NORMAL})
+Cenários com Falha.......${RED}$failed_scenarios${NORMAL} of ${RED}$total_scenarios${NORMAL} (${RED}$failed_scenario_percentage%${NORMAL})
 #if($has_failed_scenarios)
 
-Detalhes das Falhas
--------------------
-#foreach ($scenario in $failed_scenario_instances)Story..........As a $scenario.story.as_a I want to $scenario.story.i_want_to So that $scenario.story.so_that
+${BG_RED}Stories / Cenários com Falha${NORMAL}
+----------------------------
+#foreach ($scenario in $failed_scenario_instances)Story..........Como um $scenario.story.as_a Eu quero $scenario.story.i_want_to Para que $scenario.story.so_that
 Arquivo........$scenario.story.identity
 Cenário........$scenario.index - $scenario.title
     Dado que
 #foreach ($action in $scenario.givens)#if($action.status != "FAILED")        $action.description - $action.status#end
-#if($action.status == "FAILED")        $action.description - $action.status - $action.error#end#end
+#if($action.status == "FAILED")${BG_RED}        $action.description - $action.status - $action.error${NORMAL}#end#end
 
     Quando
 #foreach ($action in $scenario.whens)#if($action.status != "FAILED")        $action.description - $action.status#end
-#if($action.status == "FAILED")        $action.description - $action.status - $action.error#end#end
+#if($action.status == "FAILED")${BG_RED}        $action.description - $action.status - $action.error${NORMAL}#end#end
 
     Então
 #foreach ($action in $scenario.thens)#if($action.status != "FAILED")        $action.description - $action.status#end
-#if($action.status == "FAILED")        $action.description - $action.status - $action.error#end#end
+#if($action.status == "FAILED")${BG_RED}        $action.description - $action.status - $action.error${NORMAL}#end#end
 #end
 #end
 #if($has_no_header_files)
 
-Arquivos com cabeçalho inválido
+${BG_RED}Arquivos com cabeçalho Inválido${NORMAL}
 -------------------------------
-Os arquivos desta área estão aqui pois falharam em apresentar
-o cabeçalho padrão do pyccuracy (Como um/Eu quero/Para que) ou 
-não especificaram um cenário válido (usando a sintaxe Cenário # - Descrição).
+Os arquivos nesta área estão aqui porque não continham o cabeçalho
+padrão do Pyccuracy (${CYAN}Como um/Eu quero/Para que${NORMAL}) ou
+não especificaram nenhum cenário válido (usando a sintaxe ${CYAN}Cenário # - Descrição${NORMAL}).
 
-Você esqueceu de usar o parâmetro -l <en-us, pt-br, etc> (ou --language=en-us)?
+Será que você esqueceu de usar o parâmetro ${CYAN}-l <en-us, pt-br, etc>${NORMAL} (ou ${CYAN}--language=en-us${NORMAL})?
 
-#foreach ($story in $no_header_files)  $story#end#end
+#foreach ($story in $no_header_files)${RED}  $story${NORMAL}#end#end

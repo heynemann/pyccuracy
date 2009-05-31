@@ -28,6 +28,7 @@ from pyccuracy.errors import *
 from pyccuracy.languages.templates import *
 from pyccuracy.drivers import DriverError
 from pyccuracy.result import Result
+from pyccuracy.colored_terminal import TerminalController
 
 class PyccuracyCore(object):
     def __init__(self, parser=None, runner=None):
@@ -90,7 +91,8 @@ class PyccuracyCore(object):
             context.browser_driver.stop_test()
 
     def print_results(self, language, results):
-        print results.summary_for(language)
+        ctrl = TerminalController()
+        print ctrl.render(results.summary_for(language))
         print "\n"
 
     def print_invalid_action(self, language, err):

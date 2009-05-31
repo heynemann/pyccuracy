@@ -23,7 +23,7 @@ class ElementClickAction(ActionBase):
     def execute(self, context, *args, **kwargs):
         element_key = kwargs.get("element_key", None)
         element_type = kwargs.get("element_type", None)
-        element_type = context.language.get(element_type + "_category")
+        element_type = context.language.get(element_type.encode("utf-8") + "_category")
         should_wait = bool(kwargs.get("should_wait", None))
 
         element_key = self.resolve_element_key(context, element_type, element_key)
