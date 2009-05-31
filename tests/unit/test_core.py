@@ -33,6 +33,14 @@ def test_pyccuracy_core_instantiation():
     assert isinstance(pc.runner, MyRunner)
 
 def test_pyccuracy_core_run_tests():
+    context_mock = Mock()
+    context_mock.browser_driver = Mock()
+    settings_mock = Mock()
+    context_mock.settings = settings_mock
+    settings_mock.base_url = "http://localhost"
+    context_mock.browser_driver.expects(once()).method('start_test')
+    context_mock.browser_driver.expects(once()).method('stop_test')
+
     results_mock = Mock()
     suite_mock = Mock()
 
@@ -44,8 +52,10 @@ def test_pyccuracy_core_run_tests():
 
     results_mock.expects(once()).summary_for(eq('en-us')).will(return_value('my results'))
     pc = PyccuracyCore(parser_mock, runner_mock)
-    assert pc.run_tests(should_throw=False) == results_mock
+    assert pc.run_tests(should_throw=False, context=context_mock) == results_mock
 
     parser_mock.verify()
     runner_mock.verify()
-
+    context_mock.verify()
+    results_mock.verify()
+    suite_mock.verify()

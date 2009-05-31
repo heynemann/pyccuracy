@@ -30,7 +30,7 @@ class SeleniumDriver(BaseDriver):
         self.context = context
         self.selenium = selenium
 
-    def start_test(self, url):
+    def start_test(self, url=None):
         host = self.context.settings.extra_args.get("selenium.server", "localhost")
         port = self.context.settings.extra_args.get("selenium.port", 4444)
         browser_to_run = self.context.settings.browser_to_run
@@ -41,4 +41,7 @@ class SeleniumDriver(BaseDriver):
         try:
             self.selenium.start()
         except Exception, e:
-            raise DriverError("Error when starting selenium. Is it running ? Error: %s\n" % format_exc(e))
+            raise DriverError("Error when starting selenium. Is it running?\n\n\n Error: %s\n" % format_exc(e))
+
+    def stop_test(self):
+        self.selenium.stop()

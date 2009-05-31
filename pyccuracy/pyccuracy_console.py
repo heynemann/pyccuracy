@@ -60,7 +60,7 @@ def main():
 
     extra_args = {}
     if args:
-        for arg in args:
+        for arg in args[:-1]:
             if not "=" in arg:
                 raise ValueError("The specified extra argument should be in the form of key=value and not %s" % arg)
             key, value = arg.split('=')

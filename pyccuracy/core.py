@@ -33,9 +33,10 @@ class PyccuracyCore(object):
         self.parser = parser or FileParser()
         self.runner = runner or StoryRunner()
 
-    def run_tests(self, **kwargs):
+    def run_tests(self, context=None, **kwargs):
         settings = Settings(kwargs)
-        context = Context(settings)
+        if not context:
+            context = Context(settings)
 
         try:
             fixture = self.parser.get_stories(settings)
@@ -46,21 +47,27 @@ class PyccuracyCore(object):
             else:
                 return None
 
+        if context.settings.base_url:
+            base_url = context.settings.base_url
+        else:
+            base_url = "http://localhost"
         try:
-            context.browser_driver.start()
+            context.browser_driver.start_test(base_url)
         except DriverError, err:
-            template_text = TemplateLoader(language).load("driver_error")
+            template_text = TemplateLoader(settings.default_culture).load("driver_error")
             template = Template(template_text)
-            values = {"error" : err, browser_driver:context.browser_driver}
+            values = {"error" : err, "browser_driver":context.browser_driver}
             print template.merge(values)
+            if settings.should_throw:
+                raise TestFailedError("The test failed!")
+            else:
+                return None
 
         #running the tests
         try:
             results = self.runner.run_stories(settings=settings, fixture=fixture)
-        finally:
-            context.browser_driver.stop()
 
-        self.print_results(settings.default_culture, results)
+            self.print_results(settings.default_culture, results)
 
 #        if self.context.write_report:
 #            import report_parser as report
@@ -69,10 +76,12 @@ class PyccuracyCore(object):
 #                        results,
 #                        self.context.language)
 
-        if settings.should_throw and result.get_status() == Status.Failed:
-            raise TestFailedError("The test failed!")
+            if settings.should_throw and result.get_status() == Status.Failed:
+                raise TestFailedError("The test failed!")
 
-        return results
+            return results
+        finally:
+            context.browser_driver.stop_test()
 
     def print_results(self, language, results):
         print results.summary_for(language)

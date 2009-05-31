@@ -20,6 +20,12 @@ class DriverInterface(object):
     """ This class contains only, those methods that must be
     implemented by browser drivers"""
 
+    def start_test(self, url=None):
+        raise NotImplementedError
+
+    def stop_test(self):
+        raise NotImplementedError
+
     def resolve_element_key(self, context, element_type, element_key):
         raise NotImplementedError
 
@@ -28,9 +34,6 @@ class DriverInterface(object):
 
     def get_class(self, name):
         """gets the css class name"""
-        raise NotImplementedError
-
-    def start_test(self, url=None):
         raise NotImplementedError
 
     def page_open(self, url):
@@ -121,9 +124,6 @@ class DriverInterface(object):
         raise NotImplementedError
 
     def drag_element(self, from_element_selector, to_element_selector):
-        raise NotImplementedError
-
-    def stop_test(self):
         raise NotImplementedError
 
     def __get_attribute_value(self, element, attribute):

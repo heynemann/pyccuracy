@@ -17,7 +17,7 @@ import re
 
 from pmock import *;
 
-from pyccuracy.drivers.core.selenium import SeleniumDriver
+from pyccuracy.drivers.core.selenium_driver import SeleniumDriver
 from pyccuracy.drivers import DriverError
 from pyccuracy.common import Context, Settings
 from utils import assert_raises
@@ -66,5 +66,15 @@ def test_selenium_driver_raises_on_start_test_when_selenium_cant_start():
     driver = SeleniumDriver(context, selenium=selenium_mock)
 
     assert_raises(DriverError, driver.start_test, url="http://localhost", exc_pattern=re.compile(r"Error when starting selenium. Is it running ?"))
+    selenium_mock.verify()
+
+def test_selenium_driver_calls_proper_selenese_on_stop_test():
+    context = Context(Settings())
+    selenium_mock = Mock()
+    selenium_mock.expects(once()).stop()
+
+    driver = SeleniumDriver(context, selenium=selenium_mock)
+
+    driver.stop_test()
     selenium_mock.verify()
 
