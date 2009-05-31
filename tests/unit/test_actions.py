@@ -153,7 +153,30 @@ def test_execute_action_will_not_execute_itself():
     context_mock.verify()
 
 def test_action_base_can_resolve_elements_in_a_given_page():
-    assert False
+    class DoOtherThingAction(ActionBase):
+        regex="^Do other thing$"
+        def execute(self, context, *args, **kwargs):
+            self.element = self.resolve_element_key(context, "button", "Something")
+
+    context_mock = Mock()
+    context_mock.current_page = Mock()
+    context_mock.current_page.expects(once()).get_registered_element(eq("Something")).will(return_value("btnSomething"))
+
+    action = DoOtherThingAction()
+    action.execute(context_mock)
+    assert action.element == "btnSomething"
 
 def test_action_base_can_resolve_elements_using_browser_driver():
-    assert False
+    class DoOneMoreThingAction(ActionBase):
+        regex="^Do other thing$"
+        def execute(self, context, *args, **kwargs):
+            self.element = self.resolve_element_key(context, "button", "Something")
+
+    context_mock = Mock()
+    context_mock.browser_driver = Mock()
+    context_mock.browser_driver.expects(once()).resolve_element_key(eq(context_mock), eq("button"), eq("Something")).will(return_value("btnSomething"))
+    context_mock.current_page = None
+
+    action = DoOneMoreThingAction()
+    action.execute(context_mock)
+    assert action.element == "btnSomething"
