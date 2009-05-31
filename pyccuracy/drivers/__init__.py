@@ -64,6 +64,8 @@ class DriverDoesNotExistError(Exception):
     def __str__(self):
         return self._msg
 
+class DriverError(Exception):
+    pass
 
 class BackendNotFoundError(Exception):
     def __init__(self, klass, msg):

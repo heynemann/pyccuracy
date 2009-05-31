@@ -21,11 +21,12 @@ from os.path import join, abspath, dirname
 from pyccuracy.airspeed import Template
 
 from pyccuracy import Page, ActionBase
-from pyccuracy.common import Settings
+from pyccuracy.common import Settings, Context
 from pyccuracy.story_runner import *
 from pyccuracy.parsers import FileParser, ActionNotFoundError
 from pyccuracy.errors import *
 from pyccuracy.languages.templates import *
+from pyccuracy.drivers import DriverError
 
 class PyccuracyCore(object):
     def __init__(self, parser=None, runner=None):
@@ -34,6 +35,7 @@ class PyccuracyCore(object):
 
     def run_tests(self, **kwargs):
         settings = Settings(kwargs)
+        context = Context(settings)
 
         try:
             fixture = self.parser.get_stories(settings)
@@ -44,14 +46,19 @@ class PyccuracyCore(object):
             else:
                 return None
 
-        #self.context.browser_driver.start()
+        try:
+            context.browser_driver.start()
+        except DriverError, err:
+            template_text = TemplateLoader(language).load("driver_error")
+            template = Template(template_text)
+            values = {"error" : err, browser_driver:context.browser_driver}
+            print template.merge(values)
 
         #running the tests
         try:
             results = self.runner.run_stories(settings=settings, fixture=fixture)
         finally:
-            #self.context.browser_driver.stop()
-            pass
+            context.browser_driver.stop()
 
         self.print_results(settings.default_culture, results)
 
