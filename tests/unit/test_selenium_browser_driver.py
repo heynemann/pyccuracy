@@ -65,7 +65,6 @@ def test_selenium_driver_raises_on_start_test_when_selenium_cant_start():
 
     driver = SeleniumDriver(context, selenium=selenium_mock)
 
-    #driver.start_test("http://localhost")
     assert_raises(DriverError, driver.start_test, url="http://localhost", exc_pattern=re.compile(r"Error when starting selenium. Is it running ?"))
     selenium_mock.verify()
 
