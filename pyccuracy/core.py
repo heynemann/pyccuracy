@@ -27,6 +27,7 @@ from pyccuracy.parsers import FileParser, ActionNotFoundError
 from pyccuracy.errors import *
 from pyccuracy.languages.templates import *
 from pyccuracy.drivers import DriverError
+from pyccuracy.result import Result
 
 class PyccuracyCore(object):
     def __init__(self, parser=None, runner=None):
@@ -47,6 +48,11 @@ class PyccuracyCore(object):
             else:
                 return None
 
+        if not fixture.stories:
+            results = Result(fixture)
+            self.print_results(settings.default_culture, results)
+            return results
+
         if context.settings.base_url:
             base_url = context.settings.base_url
         else:
@@ -65,7 +71,7 @@ class PyccuracyCore(object):
 
         #running the tests
         try:
-            results = self.runner.run_stories(settings=settings, fixture=fixture)
+            results = self.runner.run_stories(settings=settings, fixture=fixture, context=context)
 
             self.print_results(settings.default_culture, results)
 

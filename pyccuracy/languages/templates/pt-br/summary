@@ -38,4 +38,6 @@ Os arquivos desta área estão aqui pois falharam em apresentar
 o cabeçalho padrão do pyccuracy (Como um/Eu quero/Para que) ou 
 não especificaram um cenário válido (usando a sintaxe Cenário # - Descrição).
 
+Você esqueceu de usar o parâmetro -l <en-us, pt-br, etc> (ou --language=en-us)?
+
 #foreach ($story in $no_header_files)  $story#end#end

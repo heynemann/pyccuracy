@@ -21,7 +21,7 @@ from traceback import format_exc
 from selenium import *
 
 from pyccuracy.drivers import BaseDriver, DriverError
-from selenium import *
+from selenium_element_selector import *
 
 class SeleniumDriver(BaseDriver):
     backend = 'selenium'
@@ -45,3 +45,18 @@ class SeleniumDriver(BaseDriver):
 
     def stop_test(self):
         self.selenium.stop()
+
+    def resolve_element_key(self, context, element_type, element_key):
+        if not context: 
+            return element_key
+        return SeleniumElementSelector.element(element_type, element_key)
+
+    def page_open(self, url):
+        self.selenium.open(url)
+
+    def wait_for_page(self, timeout=10000):
+        self.selenium.wait_for_page_to_load(timeout)
+
+    def click_element(self, element_selector):
+        self.selenium.click(element_selector)
+

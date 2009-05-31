@@ -23,10 +23,11 @@ from pyccuracy.common import Context
 from pyccuracy.errors import ActionFailedError
 
 class StoryRunner(object):
-    def run_stories(self, settings, fixture):
+    def run_stories(self, settings, fixture, context=None):
         for story in fixture.stories:
             for scenario in story.scenarios:
-                context = self.create_context_for(settings)
+                if not context:
+                    context = self.create_context_for(settings)
                 for action in scenario.givens:
                     self.execute_action(context, action)
                 for action in scenario.whens:

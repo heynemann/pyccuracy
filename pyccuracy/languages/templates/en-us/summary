@@ -38,4 +38,6 @@ The files in this area are here because they failed to provide
 the default pyccuracy header (As a/I want to/So that) or 
 didn't specify a valid scenario (using Scenario # - Description syntax).
 
+Maybe you forgot to use the -l <en-us, pt-br, etc> switch (or --language=en-us)?
+
 #foreach ($story in $no_header_files)  $story#end#end

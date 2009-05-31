@@ -78,3 +78,12 @@ def test_selenium_driver_calls_proper_selenese_on_stop_test():
     driver.stop_test()
     selenium_mock.verify()
 
+def test_selenium_driver_overrides_page_open_properly():
+    context = Context(Settings())
+    selenium_mock = Mock()
+    selenium_mock.expects(once()).open(eq("http://localhost"))
+
+    driver = SeleniumDriver(context, selenium=selenium_mock)
+
+    driver.page_open("http://localhost")
+    selenium_mock.verify()

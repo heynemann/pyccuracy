@@ -16,6 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from os.path import abspath
 from urlparse import urljoin
 from pyccuracy.common import Settings
 
@@ -90,10 +91,7 @@ class PageRegistry(object):
         final_url = fix("/".join(url_pieces))
 
         if not "://" in final_url:
-            if final_url.startswith('/'):
-                final_url = "file://%s" % final_url
-            else:
-                final_url = "file:///%s" % final_url
+            final_url = "file://%s" % abspath(final_url)
 
         return klass_object, final_url
 
