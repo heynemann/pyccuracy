@@ -8,5 +8,7 @@ Dado que
 Quando
 	#A página termina de carregar
 Então
-	Eu vejo que o link "lnkGoogle" tem texto "Google 1"
-	E eu vejo que o link "lnkGoogle2" tem texto "Google 2"
+	Eu vejo que o link "lnkGoogle" contém "Google 1"
+	E eu vejo que o link "lnkGoogle2" contém "Google 2"
+	E eu vejo que o link "lnkGoogle" contém exatamente "Google 1"
+	E eu vejo que o link "lnkGoogle2" contém exatamente "Google 2"
