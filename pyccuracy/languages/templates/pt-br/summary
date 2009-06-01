@@ -9,12 +9,14 @@ ${NORMAL}
 Estatísticas de Teste
 ---------------------
 Stories com Sucesso......${GREEN}$successful_stories${NORMAL} of ${GREEN}$total_stories${NORMAL} (${GREEN}$successful_story_percentage%${NORMAL})
-Cenários com Sucesso.....${GREEN}$successful_scenarios${NORMAL} of ${GREEN}$total_scenarios${NORMAL} (${GREEN}$successful_scenario_percentage%${NORMAL})#if ($run_status == "FAILED")
-Stories com Falha.......${RED}$failed_stories${NORMAL} de ${RED}$total_stories${NORMAL} (${RED}$failed_story_percentage%${NORMAL})
-Cenários com Falha......${RED}$failed_scenarios${NORMAL} de ${RED}$total_scenarios${NORMAL} (${RED}$failed_scenario_percentage%${NORMAL})#{else}
-Stories com Falha.......$failed_stories de $total_stories ($failed_story_percentage%)
-Cenários com Falha......$failed_scenarios de $total_scenarios ($failed_scenario_percentage%)#end
+Cenários com Sucesso.....${GREEN}$successful_scenarios${NORMAL} of ${GREEN}$total_scenarios${NORMAL} (${GREEN}$successful_scenario_percentage%${NORMAL})
+#if ($run_status == "FAILED")
+Stories com Falha........${RED}$failed_stories${NORMAL} de ${RED}$total_stories${NORMAL} (${RED}$failed_story_percentage%${NORMAL})
+Cenários com Falha.......${RED}$failed_scenarios${NORMAL} de ${RED}$total_scenarios${NORMAL} (${RED}$failed_scenario_percentage%${NORMAL})#{else}
+Stories com Falha........$failed_stories de $total_stories ($failed_story_percentage%)
+Cenários com Falha.......$failed_scenarios de $total_scenarios ($failed_scenario_percentage%)#end
 #if($has_failed_scenarios)
+
 
 ${BG_RED}Stories / Cenários com Falha${NORMAL}
 ----------------------------

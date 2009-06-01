@@ -60,7 +60,8 @@ class PageSeeTitleAction(ActionBase):
 class PageCheckContainsMarkupAction(ActionBase):
     regex = LanguageItem("page_check_contains_markup_regex")
 
-    def execute(self, context, expected_markup=None, *args):
+    def execute(self, context, *args, **kwargs):
+        expected_markup = kwargs["expected_markup"]
         html = context.browser_driver.get_html_source()
 
         if expected_markup not in html:
@@ -70,7 +71,8 @@ class PageCheckContainsMarkupAction(ActionBase):
 class PageCheckDoesNotContainMarkupAction(ActionBase):
     regex = LanguageItem("page_check_does_not_contain_markup_regex")
 
-    def execute(self, context, expected_markup=None, *args):
+    def execute(self, context, *args, **kwargs):
+        expected_markup = kwargs["expected_markup"]
         html = context.browser_driver.get_html_source()
 
         if expected_markup in html:
@@ -80,7 +82,8 @@ class PageCheckDoesNotContainMarkupAction(ActionBase):
 class PageSeeTitleAction(ActionBase):
     regex = LanguageItem("page_see_title_regex")
 
-    def execute(self, context, title=None, *args):
+    def execute(self, context, *args, **kwargs):
+        title = kwargs["title"]
         actual_title = context.browser_driver.get_title()
         if (actual_title != title):
             msg = context.language.format("page_see_title_failure", actual_title, title)
@@ -89,10 +92,11 @@ class PageSeeTitleAction(ActionBase):
 class PageWaitForPageToLoadAction(ActionBase):
     regex = LanguageItem("page_wait_for_page_to_load_regex")
 
-    def execute(self, context, timeout=None, *args):
+    def execute(self, context, *args, **kwargs):
+        timeout = kwargs["timeout"]
         try:
-            timeout = float(values[0])
-        except ValueError:
+            timeout = float(timeout)
+        except Exception:
             timeout = None
 
         if timeout:
@@ -103,7 +107,8 @@ class PageWaitForPageToLoadAction(ActionBase):
 class PageWaitForSecondsAction(ActionBase):
     regex = LanguageItem("page_wait_for_seconds_regex")
 
-    def execute(self, context, timeout=None, *args):
+    def execute(self, context, *args, **kwargs):
+        timeout = kwargs["timeout"]
         try:
             timeout = float(timeout)
         except ValueError:

@@ -68,10 +68,10 @@ class Result(object):
         no_stories = val["total_stories"] == 0
         no_scenarios = val["total_scenarios"] == 0
 
-        val["successful_story_percentage"] = no_stories and "0.00" or "%.2f" % (val["successful_stories"] / val["total_stories"] * 100)
-        val["failed_story_percentage"] = no_stories and "0.00" or "%.2f" % (val["failed_stories"] / val["total_stories"] * 100)
-        val["successful_scenario_percentage"] = no_scenarios and "0.00" or "%.2f" % (val["successful_scenarios"] / val["total_scenarios"] * 100)
-        val["failed_scenario_percentage"] = no_scenarios and "0.00" or "%.2f" % (val["failed_scenarios"] / val["total_scenarios"] * 100)
+        val["successful_story_percentage"] = no_stories and "0.00" or "%.2f" % (float(val["successful_stories"]) / float(val["total_stories"]) * 100)
+        val["failed_story_percentage"] = no_stories and "0.00" or "%.2f" % (float(val["failed_stories"]) / float(val["total_stories"]) * 100)
+        val["successful_scenario_percentage"] = no_scenarios and "0.00" or "%.2f" % (float(val["successful_scenarios"]) / float(val["total_scenarios"]) * 100)
+        val["failed_scenario_percentage"] = no_scenarios and "0.00" or "%.2f" % (float(val["failed_scenarios"]) / float(val["total_scenarios"]) * 100)
 
         if self.fixture.no_story_header:
             val["has_no_header_files"] = True

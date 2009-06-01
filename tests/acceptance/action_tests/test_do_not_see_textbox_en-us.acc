@@ -4,10 +4,10 @@ So that I can make sure Pyccuracy works
 
 Scenario 1 - Checking that some page textbox is not there
 Given
-	I go to "textbox_tests.htm"
+    I go to "textbox_tests.htm"
 When
-	#The page finishes loading
+    #The page finishes loading
 Then
-	I see "txtSomething6" textbox
-	And I click "hide6" button
-        I do not see txtSomething6 textbox
+    I see "txtContains6" textbox
+    And I click "hide6" button
+    And I do not see "txtContains6" textbox
