@@ -18,7 +18,7 @@
 
 import os
 import sys
-from os.path import join, abspath, dirname, split, splitext
+from os.path import join, split, splitext
 
 from pyccuracy.airspeed import Template
 
@@ -43,15 +43,18 @@ class PyccuracyCore(object):
             context = Context(settings)
 
         self.import_extra_content(context.settings.pages_dir)
+
         if context.settings.custom_actions_dir != context.settings.pages_dir:
             self.import_extra_content(context.settings.custom_actions_dir)
 
         try:
             fixture = self.parser.get_stories(settings)
+
         except ActionNotFoundError, err:
             self.print_invalid_action(settings.default_culture, err)
             if settings.should_throw:
                 raise TestFailedError("The test failed!")
+
             else:
                 return None
 
@@ -62,14 +65,17 @@ class PyccuracyCore(object):
 
         if context.settings.base_url:
             base_url = context.settings.base_url
+
         else:
             base_url = "http://localhost"
+
         try:
             context.browser_driver.start_test(base_url)
+
         except DriverError, err:
             template_text = TemplateLoader(settings.default_culture).load("driver_error")
             template = Template(template_text)
-            values = {"error" : err, "browser_driver":context.browser_driver}
+            values = {"error": err, "browser_driver": context.browser_driver}
             print template.merge(values)
             if settings.should_throw:
                 raise TestFailedError("The test failed!")
@@ -105,7 +111,7 @@ class PyccuracyCore(object):
         ctrl = TerminalController()
         template_text = TemplateLoader(language).load("invalid_scenario")
         template = Template(template_text)
-        
+
         values = {
                     "action_text":err.line,
                     "scenario":err.scenario,
