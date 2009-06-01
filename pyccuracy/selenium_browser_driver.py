@@ -107,9 +107,13 @@ class SeleniumBrowserDriver(BrowserDriver):
         return self.selenium.get_selected_label(element_selector)
 
     def get_element_text(self, element_selector):
+        use_default_selenium_tags = ["a"]
         text = ""
         tag_name_script = """this.page().findElement("%s").tagName;"""
         tag_name = self.selenium.get_eval(tag_name_script % element_selector).lower()
+
+        if tag_name in use_default_selenium_tags:
+            return self.selenium.get_text(element_selector)
 
         properties = {
                         "input" : "value",

@@ -174,7 +174,7 @@ class ElementContainsTextAction(ActionBase):
             error_message = context.language.format("element_contains_text_failure", element_name, text, current_text)
             raise self.failed(error_message)
 
-class ElementDoesNotContainsTextAction(ActionBase):
+class ElementDoesNotContainTextAction(ActionBase):
     regex = LanguageItem("element_does_not_contain_text_regex")
  
     def execute(self, context, *args, **kwargs):
@@ -191,6 +191,43 @@ class ElementDoesNotContainsTextAction(ActionBase):
         if current_text and text in current_text:
             error_message = context.language.format("element_does_not_contain_text_failure", element_name, text, current_text)
             raise self.failed(error_message)
+
+class ElementMatchesTextAction(ActionBase):
+    regex = LanguageItem("element_matches_text_regex")
+ 
+    def execute(self, context, *args, **kwargs):
+        element_type = kwargs.get("element_type", None)
+        element_name = kwargs.get("element_key", None)
+        element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
+
+        text = kwargs.get("text", None)
+
+        error_message = context.language.format("element_is_visible_failure", element_type, element_name)
+        self.assert_element_is_visible(context, element_key, error_message)
+
+        current_text = context.browser_driver.get_element_text(element_key)
+        if (not current_text) or (text != current_text):
+            error_message = context.language.format("element_matches_text_failure", element_name, text, current_text)
+            raise self.failed(error_message)
+
+class ElementDoesNotMatchTextAction(ActionBase):
+    regex = LanguageItem("element_does_not_match_text_regex")
+ 
+    def execute(self, context, *args, **kwargs):
+        element_type = kwargs.get("element_type", None)
+        element_name = kwargs.get("element_key", None)
+        element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
+
+        text = kwargs.get("text", None)
+
+        error_message = context.language.format("element_is_visible_failure", element_type, element_name)
+        self.assert_element_is_visible(context, element_key, error_message)
+
+        current_text = context.browser_driver.get_element_text(element_key)
+        if current_text and text in current_text:
+            error_message = context.language.format("element_does_not_match_text_failure", element_name, text, current_text)
+            raise self.failed(error_message)
+
 
 class ElementContainsMarkupAction(ActionBase):
     regex = LanguageItem("element_contains_markup_regex")
@@ -226,6 +263,42 @@ class ElementDoesNotContainMarkupAction(ActionBase):
         current_markup = context.browser_driver.get_element_markup(element_key)
         if current_markup and markup in current_markup:
             error_message = context.language.format("element_does_not_contain_markup_failure", element_name, markup, current_markup)
+            raise self.failed(error_message)
+
+class ElementMatchesMarkupAction(ActionBase):
+    regex = LanguageItem("element_matches_markup_regex")
+ 
+    def execute(self, context, *args, **kwargs):
+        element_type = kwargs.get("element_type", None)
+        element_name = kwargs.get("element_key", None)
+        element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
+
+        markup = kwargs.get("markup", None)
+
+        error_message = context.language.format("element_is_visible_failure", element_type, element_name)
+        self.assert_element_is_visible(context, element_key, error_message)
+
+        current_markup = context.browser_driver.get_element_markup(element_key)
+        if (not current_markup) or (markup != current_markup):
+            error_message = context.language.format("element_matches_markup_failure", element_name, markup, current_markup)
+            raise self.failed(error_message)
+
+class ElementDoesNotMatchMarkupAction(ActionBase):
+    regex = LanguageItem("element_does_not_match_markup_regex")
+ 
+    def execute(self, context, *args, **kwargs):
+        element_type = kwargs.get("element_type", None)
+        element_name = kwargs.get("element_key", None)
+        element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
+
+        markup = kwargs.get("markup", None)
+
+        error_message = context.language.format("element_is_visible_failure", element_type, element_name)
+        self.assert_element_is_visible(context, element_key, error_message)
+
+        current_markup = context.browser_driver.get_element_markup(element_key)
+        if current_markup and markup == current_markup:
+            error_message = context.language.format("element_does_not_match_markup_failure", element_name, markup, current_markup)
             raise self.failed(error_message)
 
 class ElementMouseoverAction(ActionBase):

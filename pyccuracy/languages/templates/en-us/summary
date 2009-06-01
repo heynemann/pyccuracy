@@ -9,9 +9,11 @@ ${NORMAL}
 Test Data Stats
 ---------------
 Successful Stories......${GREEN}$successful_stories${NORMAL} of ${GREEN}$total_stories${NORMAL} (${GREEN}$successful_story_percentage%${NORMAL})
-Successful Scenarios....${GREEN}$successful_scenarios${NORMAL} of ${GREEN}$total_scenarios${NORMAL} (${GREEN}$successful_scenario_percentage%${NORMAL})
+Successful Scenarios....${GREEN}$successful_scenarios${NORMAL} of ${GREEN}$total_scenarios${NORMAL} (${GREEN}$successful_scenario_percentage%${NORMAL})#if ($run_status == "FAILED")
 Failed Stories..........${RED}$failed_stories${NORMAL} of ${RED}$total_stories${NORMAL} (${RED}$failed_story_percentage%${NORMAL})
-Failed Scenarios........${RED}$failed_scenarios${NORMAL} of ${RED}$total_scenarios${NORMAL} (${RED}$failed_scenario_percentage%${NORMAL})
+Failed Scenarios........${RED}$failed_scenarios${NORMAL} of ${RED}$total_scenarios${NORMAL} (${RED}$failed_scenario_percentage%${NORMAL})#{else}
+Failed Stories..........$failed_stories of $total_stories ($failed_story_percentage%)
+Failed Scenarios........$failed_scenarios of $total_scenarios ($failed_scenario_percentage%)#end
 #if($has_failed_scenarios)
 
 ${BG_RED}Failed Stories / Scenarios${NORMAL}
