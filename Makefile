@@ -24,7 +24,7 @@ help:
 	@echo "  docs      to build documentation"
 
 all: prepare_build compile test report_success
-test: prepare_build compile run_unit run_functional report_success
+test: prepare_build compile run_unit run_functional acceptance report_success
 unit: prepare_build compile run_unit report_success
 functional: prepare_build compile run_functional report_success
 prepare_build: clean create_build_dir
@@ -72,11 +72,14 @@ acceptance:
 	@echo "Starting tests..."
 	@echo "================="
 
-	@for f in `ls tests | grep --regex="test_.*\.py$$"` ; do \
-		cd tests && python $$f && cd .. && echo $$env; \
-	done
+#	@for f in `ls tests | grep --regex="test_.*\.py$$"` ; do \
+#		cd tests && python $$f && cd .. && echo $$env; \
+#	done
 
-	@python ./tests/action_tests/test_all.py
+#	@python ./tests/action_tests/test_all.py
+
+	@pyccuracy_console -d tests/acceptance/action_tests/ -p "*en-us.acc" -l en-us
+	@pyccuracy_console -d tests/acceptance/action_tests/ -p "*pt-br.acc" -l pt-br
 
 upload:
 	@echo "Running a build..."

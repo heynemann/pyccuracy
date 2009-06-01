@@ -82,10 +82,17 @@ class ActionBase(object):
     def resolve_element_key(self, context, element_type, element_key):
         page = context.current_page
 
-        if not page:
-            return context.browser_driver.resolve_element_key(context, element_type, element_key)
+        resolved_element = None
+        if page:
+            resolved_element = page.get_registered_element(element_key)
+        if not resolved_element:
+            resolved_element = context.browser_driver.resolve_element_key(context, element_type, element_key)
 
-        return page.get_registered_element(element_key)
+        if not resolved_element:
+            import pdb;pdb.set_trace()
+            raise KeyError("No element could be resolved for element type %s and element key %s" % (element_type, element_key))
+
+        return resolved_element
 
     def is_element_visible(self, context, selector):
         is_visible = context.browser_driver.is_element_visible(selector)
