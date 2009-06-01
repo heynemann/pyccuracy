@@ -54,15 +54,6 @@ checkbox_is_not_checked_regex = ^(E )?[eE]u vejo que a checkbox [\"](?P<checkbox
 checkbox_check_regex = ^(E )?[eE]u marco a checkbox [\"](?P<checkbox_key>.+)[\"]$
 checkbox_uncheck_regex = ^(E )?[eE]u desmarco a checkbox [\"](?P<checkbox_key>.+)[\"]$
 
-div_contains_text_regex = ^(E )?[eE]u vejo que [oa] div [\"](.+)[\"] contém [\"](.+)[\"]$
-div_does_not_contain_text_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] não contém [\"](.+)[\"]$
-div_contains_markup_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] contém o markup [\"](.+)[\"]$
-div_does_not_contain_markup_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] não contém o markup [\"](.+)[\"]$
-div_matches_markup_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] contém exatamente o markup [\"](.+)[\"]$
-div_does_not_match_markup_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] não contém exatamente o markup [\"](.+)[\"]$
-div_wait_for_presence_regex = ^(E )?[eE]u espero o div [\"](.+)[\"] aparecer( por (\d+) segundos)?$
-div_wait_for_disappear_regex = ^(E )?[eE]u espero o div [\"](.+)[\"] desaparecer( por (\d+) segundos)?$
-
 element_contains_style_regex = ^(E )?[eE]u vejo que [ao] (?P<element_type><element selector>) [\"](?P<element_key>.+)[\"] contém o estilo [\"](?P<style_name>.+)[\"]$
 element_does_not_contain_style_regex = ^(E )?[eE]u vejo que [ao] (?P<element_type><element selector>) [\"](?P<element_key>.+)[\"] não contém o estilo [\"](?P<style_name>.+)[\"]$
 element_is_enabled_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"] está habilitad[oa]$

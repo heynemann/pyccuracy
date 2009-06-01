@@ -54,15 +54,6 @@ checkbox_is_not_checked_regex = ^(And )?I see the [\"](?P<checkbox_key>.+)[\"] c
 checkbox_check_regex = ^(And )?I check the [\"](?P<checkbox_key>.+)[\"] checkbox$
 checkbox_uncheck_regex = ^(And )?I uncheck the [\"](?P<checkbox_key>.+)[\"] checkbox$
 
-div_contains_text_regex = ^(And )?I see [\"](.+)[\"] div contains [\"](.+)[\"]$
-div_does_not_contain_text_regex = ^(And )?I see [\"](.+)[\"] div does not contain [\"](.+)[\"]$
-div_contains_markup_regex = ^(And )?I see [\"](.+)[\"] div contains [\"](.+)[\"] markup$
-div_does_not_contain_markup_regex = ^(And )?I see [\"](.+)[\"] div does not contain [\"](.+)[\"] markup$
-div_matches_markup_regex = ^(And )?I see [\"](.+)[\"] div matches [\"](.+)[\"] markup$
-div_does_not_match_markup_regex = ^(And )?I see [\"](.+)[\"] div does not match [\"](.+)[\"] markup$
-div_wait_for_presence_regex = ^(And )?I wait for [\"](.+)[\"] div to be present( for (\d+) seconds)?$
-div_wait_for_disappear_regex = ^(And )?I wait for [\"](.+)[\"] div to disappear( for (\d+) seconds)?$
-
 element_contains_style_regex = ^(And )?I see [\"](?P<element_key>.+)[\"] (?P<element_type><element selector>) has [\"](?P<style_name>.+)[\"] style$
 element_does_not_contain_style_regex = ^(And )?I see [\"](?P<element_key>.+)[\"] (?P<element_type><element selector>) does not have [\"](?P<style_name>.+)[\"] style$
 element_is_enabled_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) is enabled$
