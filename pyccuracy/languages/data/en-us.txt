@@ -75,6 +75,8 @@ element_wait_for_presence_regex = ^(And )?I wait for [\"](?P<element_key>[^"]+)[
 element_drag_drop_regex = ^(And )?I drag the [\"](?P<from_element_key>.+)[\"] (?P<from_element_type><element selector>) to the [\"](?P<to_element_key>.+)[\"] (?P<to_element_type><element selector>)?$
 element_mouseover_regex = ^(And )?I mouseover [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>)$
 element_mouseout_regex = ^(And )?I mouseout [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>)$
+element_contains_text_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) contains [\"](?P<text>.+)[\"]$
+element_does_not_contain_text_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) does not contain [\"](?P<text>.+)[\"]$
 
 image_has_src_regex = ^(And )?I see [\"](.+)[\"] image has src of [\"](.+)[\"]$
 image_does_not_have_src_regex = ^(And )?I see [\"](.+)[\"] image does not have src of [\"](.+)[\"]$

@@ -111,6 +111,33 @@ class SeleniumDriver(BaseDriver):
 
         return False
 
+    def get_element_text(self, element_selector):
+        text = ""
+        tag_name_script = """this.page().findElement("%s").tagName;"""
+        tag_name = self.selenium.get_eval(tag_name_script % element_selector).lower()
+
+        properties = {
+                        "input" : "value",
+                        "textarea" : "value",
+                        "div" : "innerHTML"
+                     }
+
+        script = """this.page().findElement("%s").%s;"""
+        try:
+            # if the element is not in the dict above, I'll assume that we need to use "innerHTML"
+            script_return = self.selenium.get_eval(script % (element_selector, properties.get(tag_name, "innerHTML")))
+        except KeyError, err:
+            raise ValueError("The tag for element selector %s is %s and Pyccuracy only supports the following tags: %s",
+                             (element_selector, tag_name, ", ".join(properties.keys)))
+
+        if script_return != "null":
+            text = script_return
+
+        return text
+
+    def drag_element(self, from_element_selector, to_element_selector):
+        self.selenium.drag_and_drop_to_object(from_element_selector, to_element_selector)
+
     def __get_attribute_value(self, element, attribute):
         try:
             locator = element + "/@" + attribute

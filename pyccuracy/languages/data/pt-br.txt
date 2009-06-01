@@ -75,6 +75,8 @@ element_wait_for_presence_regex = ^(E )?[eE]u espero [oa] (?P<element_type><elem
 element_drag_drop_regex = ^(E )?[eE]u arrasto [oa] (?P<from_element_type><element selector>) [\"](?P<from_element_key>.+)[\"] para [oa] (?P<to_element_type><element selector>) [\"](?P<to_element_key>[^"]+)[\"]?$
 element_mouseover_regex = ^(E )?[eE]u passo o mouse n[oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"]$
 element_mouseout_regex = ^(E )?[eE]u retiro o mouse d[oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"]$
+element_contains_text_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"] contém [\"](?P<text>.+)[\"]$
+element_does_not_contain_text_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"] não contém [\"](?P<text>.+)[\"]$
 
 image_has_src_regex = ^(E )?[eE]u vejo que a imagem [\"](.+)[\"] tem src de [\"](.+)[\"]$
 image_does_not_have_src_regex = ^(E )?[eE]u vejo que a imagem [\"](.+)[\"] não tem src de [\"](.+)[\"]$
