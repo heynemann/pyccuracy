@@ -16,12 +16,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from os.path import join, abspath, dirname
+import os
+import sys
+from os.path import join, abspath, dirname, split, splitext
 
 from pyccuracy.airspeed import Template
 
 from pyccuracy import Page, ActionBase
-from pyccuracy.common import Settings, Context
+from pyccuracy.common import Settings, Context, locate
 from pyccuracy.story_runner import *
 from pyccuracy.parsers import FileParser, ActionNotFoundError
 from pyccuracy.errors import *
@@ -39,6 +41,10 @@ class PyccuracyCore(object):
         settings = Settings(kwargs)
         if not context:
             context = Context(settings)
+
+        self.import_extra_content(context.settings.pages_dir)
+        if context.settings.custom_actions_dir != context.settings.pages_dir:
+            self.import_extra_content(context.settings.custom_actions_dir)
 
         try:
             fixture = self.parser.get_stories(settings)
@@ -108,3 +114,19 @@ class PyccuracyCore(object):
 
         print ctrl.render(template.merge(values))
 
+    def import_extra_content(self, path):
+        '''Imports all the extra .py files in the tests dir so that pages, actions and other things get imported.'''
+        pattern = "*.py"
+
+        sys.path.insert(0, path)
+        files = locate(root=path, pattern=pattern)
+
+        for f in files:
+            try:
+                filename = splitext(split(f)[1])[0]
+                __import__(filename)
+            except ImportError, err:
+                raise ExtraContentError("An error occurred while trying to import %s. Error: %s" % (f, err))
+
+class ExtraContentError(Exception):
+    pass

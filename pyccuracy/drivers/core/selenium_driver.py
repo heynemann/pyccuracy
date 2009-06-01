@@ -16,6 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import time
 from traceback import format_exc
 
 from selenium import *
@@ -85,6 +86,30 @@ class SeleniumDriver(BaseDriver):
         else:
             is_disabled = script_return[0].upper()=="T" # is it 'True'?
         return not is_disabled
+
+    def wait_for_element_present(self, element_selector, timeout):
+        elapsed = 0
+        interval = 0.5
+
+        while (elapsed < timeout):
+            elapsed += interval
+            if self.is_element_visible(element_selector):
+                return True
+            time.sleep(interval)
+
+        return False
+
+    def wait_for_element_to_disappear(self, element_selector, timeout):
+        elapsed = 0
+        interval = 0.5
+
+        while (elapsed < timeout):
+            elapsed += interval
+            if not self.is_element_visible(element_selector):
+                return True
+            time.sleep(interval)
+
+        return False
 
     def __get_attribute_value(self, element, attribute):
         try:

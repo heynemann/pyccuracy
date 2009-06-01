@@ -118,25 +118,31 @@ class Settings(object):
         if not languages_dir:
             languages_dir = abspath(join(dirname(__file__), "languages"))
 
-        self.tests_dir = settings.get("tests_dir", cur_dir)
+        self.tests_dir = abspath(self.get_setting(settings, "tests_dir", cur_dir))
 
-        self.actions_dir = settings.get("actions_dir", actions_dir)
-        self.languages_dir = settings.get("languages_dir", languages_dir)
+        self.actions_dir = self.get_setting(settings, "actions_dir", actions_dir)
+        self.languages_dir = self.get_setting(settings, "languages_dir", languages_dir)
 
-        self.pages_dir = settings.get("pages_dir", cur_dir)
-        self.custom_actions_dir = settings.get("custom_actions_dir", cur_dir)
+        self.pages_dir = self.get_setting(settings, "pages_dir", self.tests_dir)
+        self.custom_actions_dir = self.get_setting(settings, "custom_actions_dir", self.tests_dir)
 
-        self.file_pattern = settings.get("file_pattern", "*.acc")
-        self.scenarios_to_run = settings.get("scenarios_to_run", None)
-        self.default_culture = settings.get("default_culture", "en-us")
-        self.base_url = settings.get("base_url", None)
-        self.should_throw = settings.get("should_throw", False)
-        self.write_report = settings.get("write_report", True)
-        self.report_file_dir = settings.get("report_file_dir", cur_dir)
-        self.report_file_name = settings.get("report_file_name", "report.html")
-        self.browser_to_run = settings.get("browser_to_run", "chrome")
-        self.browser_driver = settings.get("browser_driver", "selenium")
-        self.extra_args = settings.get("extra_args", {})
+        self.file_pattern = self.get_setting(settings, "file_pattern", "*.acc")
+        self.scenarios_to_run = self.get_setting(settings, "scenarios_to_run", None)
+        self.default_culture = self.get_setting(settings, "default_culture", "en-us")
+        self.base_url = self.get_setting(settings, "base_url", None)
+        self.should_throw = self.get_setting(settings, "should_throw", False)
+        self.write_report = self.get_setting(settings, "write_report", True)
+        self.report_file_dir = self.get_setting(settings, "report_file_dir", self.tests_dir)
+        self.report_file_name = self.get_setting(settings, "report_file_name", "report.html")
+        self.browser_to_run = self.get_setting(settings, "browser_to_run", "chrome")
+        self.browser_driver = self.get_setting(settings, "browser_driver", "selenium")
+        self.extra_args = self.get_setting(settings, "extra_args", {})
+
+    def get_setting(self, settings, key, default):
+        value = settings.get(key, None)
+        if value is None:
+            return default
+        return value
 
 class Context(object):
     def __init__(self, settings):

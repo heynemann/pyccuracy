@@ -103,3 +103,21 @@ class ElementIsDisabledAction(ActionBase):
             error_message = context.language.format("element_is_disabled_failure", element_type, element_name)
             raise self.failed(error_message)
 
+class ElementWaitForPresenceAction(ActionBase):
+    '''Waits until a given element appears or times out.'''
+    regex = LanguageItem("element_wait_for_presence_regex")
+    
+    def execute(self, context, *args, **kwargs):
+        element_type = kwargs.get("element_type", None)
+        element_name = kwargs.get("element_key", None)
+        element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
+
+        timeout = kwargs.get("timeout", None)
+        if not timeout:
+            timeout = 5
+        timeout = int(timeout)
+
+        if not context.browser_driver.wait_for_element_present(element_key, timeout):
+            error_message = context.language.format("element_wait_for_presence_failure", element_type, element_name, timeout)
+            raise self.failed(error_message)
+

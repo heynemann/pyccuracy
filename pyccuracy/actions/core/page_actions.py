@@ -31,7 +31,8 @@ class PageGoToAction(ActionBase):
         context.browser_driver.page_open(resolved_url)
         context.browser_driver.wait_for_page()
         context.url = resolved_url
-        context.current_page = page
+        if page:
+            context.current_page = page()
 
 class PageAmInAction(ActionBase):
     '''Changes the current page without actually navigating to it.'''
@@ -41,7 +42,7 @@ class PageAmInAction(ActionBase):
         page, resolved_url = PageRegistry.resolve(context.settings, url, must_raise=False)
 
         if page:
-            context.current_page = page
+            context.current_page = page()
             context.url = resolved_url
         else:
             raise self.failed(context.language.format("page_am_in_failure", url))

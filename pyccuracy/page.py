@@ -69,10 +69,13 @@ class PageRegistry(object):
 
         klass_object = cls.get_by_name(url)
 
-        if not klass_object:
-            klass_objects_list = cls.all_by_url(url)
-            if klass_objects_list:
-                klass_object = list(reversed(klass_objects_list))[0]
+        #this does not work :(
+        #if the user specified an actual url and not a page name
+        #the returned page should be None
+        #if not klass_object:
+            #klass_objects_list = cls.all_by_url(url)
+            #if klass_objects_list:
+                #klass_object = list(reversed(klass_objects_list))[0]
 
         url_pieces = []
         if settings.base_url:

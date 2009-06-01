@@ -81,6 +81,7 @@ class ActionBase(object):
 
     def resolve_element_key(self, context, element_type, element_key):
         page = context.current_page
+
         if not page:
             return context.browser_driver.resolve_element_key(context, element_type, element_key)
 

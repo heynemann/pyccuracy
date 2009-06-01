@@ -28,12 +28,10 @@ class StoryRunner(object):
             for scenario in story.scenarios:
                 if not context:
                     context = self.create_context_for(settings)
-                for action in scenario.givens:
-                    self.execute_action(context, action)
-                for action in scenario.whens:
-                    self.execute_action(context, action)
-                for action in scenario.thens:
-                    self.execute_action(context, action)
+                for action in scenario.givens + scenario.whens + scenario.thens:
+                    result = self.execute_action(context, action)
+                    if not result:
+                        break
 
         return Result(fixture=fixture)
 
@@ -42,9 +40,11 @@ class StoryRunner(object):
             action.execute_function(context, *action.args, **action.kwargs)
         except ActionFailedError, err:
             action.mark_as_failed(err)
+            return False
         except Exception, err:
             raise ValueError("Error executing action %s - %s" % (action.execute_function, traceback.format_exc(err)))
         action.mark_as_successful()
+        return True
 
     def create_context_for(self, settings):
         return Context(settings)

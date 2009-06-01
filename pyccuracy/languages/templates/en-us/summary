@@ -21,15 +21,15 @@ Story file.....$scenario.story.identity
 Scenario.......$scenario.index - $scenario.title
     Given
 #foreach ($action in $scenario.givens)#if($action.status != "FAILED")        $action.description - $action.status#end
-#if($action.status == "FAILED")${BG_RED}        $action.description - $action.status - $action.error${NORMAL}#end#end
+#if($action.status == "FAILED")${RED}        $action.description - $action.status - $action.error${NORMAL}#end#end
 
     When
 #foreach ($action in $scenario.whens)#if($action.status != "FAILED")        $action.description - $action.status#end
-#if($action.status == "FAILED")${BG_RED}        $action.description - $action.status - $action.error${NORMAL}#end#end
+#if($action.status == "FAILED")${RED}        $action.description - $action.status - $action.error${NORMAL}#end#end
 
     Then
 #foreach ($action in $scenario.thens)#if($action.status != "FAILED")        $action.description - $action.status#end
-#if($action.status == "FAILED")${BG_RED}        $action.description - $action.status - $action.error${NORMAL}#end#end
+#if($action.status == "FAILED")${RED}        $action.description - $action.status - $action.error${NORMAL}#end#end
 #end
 #end
 #if($has_no_header_files)

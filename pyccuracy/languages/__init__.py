@@ -70,10 +70,10 @@ class LanguageGetter(object):
             raise WrongArgumentsError('The resolved_string "%s" gets exactly %d args, got %d' % (resolved_string, total_args, total_got_args))
 
         except TypeError, e:
-                raise WrongArgumentsError('The resolved_string "%s" gets is formatted through *args, but got **kwargs' % resolved_string)
+            raise WrongArgumentsError('The resolved_string "%s" gets is formatted through *args, but got **kwargs' % resolved_string)
 
         except KeyError, e:
-                raise WrongArgumentsError('The resolved_string "%s" gets is formatted through **kwargs, but got *args' % resolved_string)
+            raise WrongArgumentsError('The resolved_string "%s" gets is formatted through **kwargs, but got *args' % resolved_string)
 
 
 class LanguageItem(unicode):
