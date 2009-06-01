@@ -158,6 +158,35 @@ class SeleniumDriver(BaseDriver):
     def checkbox_uncheck(self, checkbox_selector):
         self.selenium.uncheck(checkbox_selector)
 
+    def get_selected_index(self, element_selector):
+        return int(self.selenium.get_selected_index(element_selector))
+
+    def get_selected_value(self, element_selector):
+        return self.selenium.get_selected_value(element_selector)
+
+    def get_selected_text(self, element_selector):
+        return self.selenium.get_selected_label(element_selector)
+
+    def select_option_by_index(self, element_selector, index):
+        return self.__select_option(element_selector, "index", index)
+
+    def select_option_by_value(self, element_selector, value):
+        return self.__select_option(element_selector, "value", value)
+
+    def select_option_by_text(self, element_selector, text):
+        return self.__select_option(element_selector, "label", text)
+
+    def __select_option(self, element_selector, option_selector, option_value):
+        error_message = "Option with %s '%s' not found" % (option_selector, option_value)
+        try:
+            self.selenium.select(element_selector, "%s=%s" % (option_selector, option_value))
+        except Exception, error:
+            if error.message == error_message:
+                return False
+            else:
+                raise
+        return True
+
     def __get_attribute_value(self, element, attribute):
         try:
             locator = element + "/@" + attribute
