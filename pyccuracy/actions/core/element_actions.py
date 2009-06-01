@@ -20,7 +20,6 @@ def resolve_element_key(context, element_type, element_name, resolve_function):
     element_category = context.language.get(element_type.encode("utf-8") + "_category")
     return resolve_function(context, element_category, element_name)
 
-
 class ElementClickAction(ActionBase):
     '''Clicks on a specific element.'''
     regex = LanguageItem('element_click_regex')

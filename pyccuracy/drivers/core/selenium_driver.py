@@ -144,6 +144,15 @@ class SeleniumDriver(BaseDriver):
     def mouseout_element(self, element_selector):
         self.selenium.mouse_out(element_selector)
 
+    def checkbox_is_checked(self, checkbox_selector):
+        return self.selenium.is_checked(checkbox_selector)
+
+    def checkbox_check(self, checkbox_selector):
+        self.selenium.check(checkbox_selector)
+
+    def checkbox_uncheck(self, checkbox_selector):
+        self.selenium.uncheck(checkbox_selector)
+
     def __get_attribute_value(self, element, attribute):
         try:
             locator = element + "/@" + attribute

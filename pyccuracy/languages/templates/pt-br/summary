@@ -20,16 +20,20 @@ ${BG_RED}Stories / Cenários com Falha${NORMAL}
 Arquivo........$scenario.story.identity
 Cenário........$scenario.index - $scenario.title
     Dado que
-#foreach ($action in $scenario.givens)#if($action.status != "FAILED")        $action.description - $action.status#end
-#if($action.status == "FAILED")${RED}        $action.description - $action.status - $action.error${NORMAL}#end#end
-
+#foreach ($action in $scenario.givens)#if($action.status != "FAILED")        $action.description - $action.status
+#end
+#if($action.status == "FAILED")${RED}        $action.description - $action.status - $action.error${NORMAL}
+#end#end
     Quando
-#foreach ($action in $scenario.whens)#if($action.status != "FAILED")        $action.description - $action.status#end
-#if($action.status == "FAILED")${RED}        $action.description - $action.status - $action.error${NORMAL}#end#end
-
+#foreach ($action in $scenario.whens)#if($action.status != "FAILED")        $action.description - $action.status
+#end
+#if($action.status == "FAILED")${RED}        $action.description - $action.status - $action.error${NORMAL}
+#end#end
     Então
-#foreach ($action in $scenario.thens)#if($action.status != "FAILED")        $action.description - $action.status#end
-#if($action.status == "FAILED")${RED}        $action.description - $action.status - $action.error${NORMAL}#end#end
+#foreach ($action in $scenario.thens)#if($action.status != "FAILED")        $action.description - $action.status
+#end
+#if($action.status == "FAILED")${RED}        $action.description - $action.status - $action.error${NORMAL}
+#end#end
 #end
 #end
 #if($has_no_header_files)

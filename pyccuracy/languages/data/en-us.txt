@@ -49,10 +49,10 @@ page_wait_for_seconds_regex = ^(And )?I wait for (?P<timeout>\d+([.]d+)?) second
 page_check_contains_markup_regex = ^(And )?I see that current page contains [\"\'](?P<expected_markup>.+)[\'\"]$
 page_check_does_not_contain_markup_regex = ^(And )?I see that current page does not contain [\"\'](?P<expected_markup>.+)[\'\"]$
 
-checkbox_is_checked_regex = ^(And )?I see the [\"](.+)[\"] checkbox is checked$
-checkbox_is_not_checked_regex = ^(And )?I see the [\"](.+)[\"] checkbox is not checked$
-checkbox_check_regex = ^(And )?I check the [\"](.+)[\"] checkbox$
-checkbox_uncheck_regex = ^(And )?I uncheck the [\"](.+)[\"] checkbox$
+checkbox_is_checked_regex = ^(And )?I see the [\"](?P<checkbox_key>.+)[\"] checkbox is checked$
+checkbox_is_not_checked_regex = ^(And )?I see the [\"](?P<checkbox_key>.+)[\"] checkbox is not checked$
+checkbox_check_regex = ^(And )?I check the [\"](?P<checkbox_key>.+)[\"] checkbox$
+checkbox_uncheck_regex = ^(And )?I uncheck the [\"](?P<checkbox_key>.+)[\"] checkbox$
 
 div_contains_text_regex = ^(And )?I see [\"](.+)[\"] div contains [\"](.+)[\"]$
 div_does_not_contain_text_regex = ^(And )?I see [\"](.+)[\"] div does not contain [\"](.+)[\"]$

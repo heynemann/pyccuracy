@@ -49,10 +49,10 @@ page_wait_for_seconds_regex = ^(E )?[eE]u espero por (?P<timeout>\d+([.]\d+)?) s
 page_check_contains_markup_regex = ^(E )?[eE]u vejo que a página atual contém [\"\'](?P<expected_markup>.+)[\'\"]$
 page_check_does_not_contain_markup_regex = ^(E )?[eE]u vejo que a página atual não contém [\"\'](?P<expected_markup>.+)[\'\"]$
 
-checkbox_is_checked_regex = ^(E )?[eE]u vejo que a checkbox [\"](.+)[\"] está marcada$
-checkbox_is_not_checked_regex = ^(E )?[eE]u vejo que a checkbox [\"](.+)[\"] está desmarcada$
-checkbox_check_regex = ^(E )?[eE]u marco a checkbox [\"](.+)[\"]$
-checkbox_uncheck_regex = ^(E )?[eE]u desmarco a checkbox [\"](.+)[\"]$
+checkbox_is_checked_regex = ^(E )?[eE]u vejo que a checkbox [\"](?P<checkbox_key>.+)[\"] está marcada$
+checkbox_is_not_checked_regex = ^(E )?[eE]u vejo que a checkbox [\"](?P<checkbox_key>.+)[\"] está desmarcada$
+checkbox_check_regex = ^(E )?[eE]u marco a checkbox [\"](?P<checkbox_key>.+)[\"]$
+checkbox_uncheck_regex = ^(E )?[eE]u desmarco a checkbox [\"](?P<checkbox_key>.+)[\"]$
 
 div_contains_text_regex = ^(E )?[eE]u vejo que [oa] div [\"](.+)[\"] contém [\"](.+)[\"]$
 div_does_not_contain_text_regex = ^(E )?[eE]u vejo que o div [\"](.+)[\"] não contém [\"](.+)[\"]$
