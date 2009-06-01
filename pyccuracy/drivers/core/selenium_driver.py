@@ -138,6 +138,12 @@ class SeleniumDriver(BaseDriver):
     def drag_element(self, from_element_selector, to_element_selector):
         self.selenium.drag_and_drop_to_object(from_element_selector, to_element_selector)
 
+    def mouseover_element(self, element_selector):
+        self.selenium.mouse_over(element_selector)
+
+    def mouseout_element(self, element_selector):
+        self.selenium.mouse_out(element_selector)
+
     def __get_attribute_value(self, element, attribute):
         try:
             locator = element + "/@" + attribute

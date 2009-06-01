@@ -193,3 +193,27 @@ class ElementDoesNotContainsTextAction(ActionBase):
             error_message = context.language.format("element_does_not_contain_text_failure", element_name, text, current_text)
             raise self.failed(error_message)
 
+class ElementMouseoverAction(ActionBase):
+    regex = LanguageItem("element_mouseover_regex")
+
+    def execute(self, context, *args, **kwargs):
+        element_type = kwargs.get("element_type", None)
+        element_name = kwargs.get("element_key", None)
+        element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
+
+        error_message = context.language.format("element_is_visible_failure", element_type, element_name)
+        self.assert_element_is_visible(context, element_key, error_message)
+        context.browser_driver.mouseover_element(element_key)
+
+class ElementMouseOutAction(ActionBase):
+    regex = LanguageItem("element_mouseout_regex")
+
+    def execute(self, context, *args, **kwargs):
+        element_type = kwargs.get("element_type", None)
+        element_name = kwargs.get("element_key", None)
+        element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
+
+        error_message = context.language.format("element_is_visible_failure", element_type, element_name)
+        self.assert_element_is_visible(context, element_key, error_message)
+        context.browser_driver.mouseout_element(element_key)
+
