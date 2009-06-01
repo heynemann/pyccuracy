@@ -121,3 +121,22 @@ class ElementWaitForPresenceAction(ActionBase):
             error_message = context.language.format("element_wait_for_presence_failure", element_type, element_name, timeout)
             raise self.failed(error_message)
 
+class ElementWaitForDisappearAction(ActionBase):
+    '''Waits until a given element disappears (or is not visible already) or times out.'''
+    regex = LanguageItem("element_wait_for_disappear_regex")
+    
+    def execute(self, context, *args, **kwargs):
+        element_type = kwargs.get("element_type", None)
+        element_name = kwargs.get("element_key", None)
+        element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
+
+        timeout = kwargs.get("timeout", None)
+        if not timeout:
+            timeout = 5
+        timeout = int(timeout)
+
+        if not context.browser_driver.wait_for_element_to_disappear(element_key, timeout):
+            error_message = context.language.format("element_wait_for_disappear_failure", element_type, element_name, timeout)
+            raise self.failed(error_message)
+
+
