@@ -91,8 +91,8 @@ element_does_not_match_markup_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type
 image_has_src_regex = ^(E )?[eE]u vejo que a imagem [\"](?P<image_name>.+)[\"] tem src de [\"](?P<src>.+)[\"]$
 image_does_not_have_src_regex = ^(E )?[eE]u vejo que a imagem [\"](?P<image_name>.+)[\"] não tem src de [\"](?P<src>.+)[\"]$
 
-link_has_href_regex = ^(E )?[eE]u vejo que o link [\"](.+)[\"] tem href [\"](.+)[\"]$
-link_has_text_regex = ^(E )?[eE]u vejo que o link [\"](.+)[\"] tem texto [\"](.+)[\"]$
+link_has_href_regex = ^(E )?[eE]u vejo que o link [\"](?P<link_name>.+)[\"] tem href [\"](?P<href>.+)[\"]$
+link_has_text_regex = ^(E )?[eE]u vejo que o link [\"](?P<link_name>.+)[\"] tem texto [\"](?P<text>.+)[\"]$
 
 select_has_selected_index_regex = ^(E )?[eE]u vejo que o índice selecionado da select [\"](?P<select_name>.+)[\"] é (?P<index>\d+)$
 select_has_selected_value_regex = ^(E )?[eE]u vejo que o valor selecionado da select [\"](?P<select_name>.+)[\"] é [\"](?P<option_value>.+)[\"]$

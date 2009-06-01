@@ -200,6 +200,9 @@ class SeleniumDriver(BaseDriver):
     def clean_input(self, input_selector):
         self.selenium.type(input_selector, "")
 
+    def get_link_href(self, link_selector):
+        return self.__get_attribute_value(link_selector, "href")
+
     def __get_attribute_value(self, element, attribute):
         try:
             locator = element + "/@" + attribute

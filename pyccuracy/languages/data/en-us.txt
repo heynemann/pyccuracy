@@ -91,8 +91,8 @@ element_does_not_match_markup_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\
 image_has_src_regex = ^(And )?I see [\"](?P<image_name>.+)[\"] image has src of [\"](?P<src>.+)[\"]$
 image_does_not_have_src_regex = ^(And )?I see [\"](?P<image_name>.+)[\"] image does not have src of [\"](?P<src>.+)[\"]$
 
-link_has_href_regex = ^(And )?I see [\"](.+)[\"] link has [\"](.+)[\"] href$
-link_has_text_regex = ^(And )?I see [\"](.+)[\"] link has [\"](.+)[\"] text$
+link_has_href_regex = ^(And )?I see [\"](?P<link_name>.+)[\"] link has [\"](?P<href>.+)[\"] href$
+link_has_text_regex = ^(And )?I see [\"](?P<link_name>.+)[\"] link has [\"](?P<text>.+)[\"] text$
 
 select_has_selected_index_regex = ^(And )?I see [\"](?P<select_name>.+)[\"] select has selected index of (?P<index>\d+)$
 select_has_selected_value_regex = ^(And )?I see [\"](?P<select_name>.+)[\"] select has selected value of [\"](?P<option_value>.+)[\"]$
