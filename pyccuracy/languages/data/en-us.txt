@@ -88,8 +88,8 @@ element_does_not_match_text_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"]
 element_matches_markup_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) matches [\"](?P<markup>.+)[\"] markup$
 element_does_not_match_markup_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) does not match [\"](?P<markup>.+)[\"] markup$
 
-image_has_src_regex = ^(And )?I see [\"](.+)[\"] image has src of [\"](.+)[\"]$
-image_does_not_have_src_regex = ^(And )?I see [\"](.+)[\"] image does not have src of [\"](.+)[\"]$
+image_has_src_regex = ^(And )?I see [\"](?P<image_name>.+)[\"] image has src of [\"](?P<src>.+)[\"]$
+image_does_not_have_src_regex = ^(And )?I see [\"](?P<image_name>.+)[\"] image does not have src of [\"](?P<src>.+)[\"]$
 
 link_has_href_regex = ^(And )?I see [\"](.+)[\"] link has [\"](.+)[\"] href$
 link_has_text_regex = ^(And )?I see [\"](.+)[\"] link has [\"](.+)[\"] text$

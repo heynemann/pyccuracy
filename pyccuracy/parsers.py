@@ -69,7 +69,7 @@ class FileParser(object):
 
     def parse_story_file(self, story_file_path, settings):
         story_text = self.file_object.read_file(story_file_path)
-        story_lines = [line.strip() for line in story_text.split('\n') if line.strip() != ""]
+        story_lines = [line.strip() for line in story_text.splitlines() if line.strip() != ""]
 
         headers = self.assert_header(story_lines, settings.default_culture)
         if not headers:
@@ -111,6 +111,7 @@ class FileParser(object):
             action, args, kwargs = self.action_registry.suitable_for(line, settings.default_culture)
 
             if not action:
+                import pdb;pdb.set_trace()
                 self.raise_action_not_found_for_line(line, current_scenario, story_file_path)
             instance = action()
             add_method(line, instance.execute, args, kwargs)

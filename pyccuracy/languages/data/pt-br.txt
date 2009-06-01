@@ -88,8 +88,8 @@ element_does_not_match_text_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><
 element_matches_markup_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"] contém exatamente o markup [\"](?P<markup>.+)[\"]$
 element_does_not_match_markup_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"] não contém exatamente o markup [\"](?P<markup>.+)[\"]$
 
-image_has_src_regex = ^(E )?[eE]u vejo que a imagem [\"](.+)[\"] tem src de [\"](.+)[\"]$
-image_does_not_have_src_regex = ^(E )?[eE]u vejo que a imagem [\"](.+)[\"] não tem src de [\"](.+)[\"]$
+image_has_src_regex = ^(E )?[eE]u vejo que a imagem [\"](?P<image_name>.+)[\"] tem src de [\"](?P<src>.+)[\"]$
+image_does_not_have_src_regex = ^(E )?[eE]u vejo que a imagem [\"](?P<image_name>.+)[\"] não tem src de [\"](?P<src>.+)[\"]$
 
 link_has_href_regex = ^(E )?[eE]u vejo que o link [\"](.+)[\"] tem href [\"](.+)[\"]$
 link_has_text_regex = ^(E )?[eE]u vejo que o link [\"](.+)[\"] tem texto [\"](.+)[\"]$
