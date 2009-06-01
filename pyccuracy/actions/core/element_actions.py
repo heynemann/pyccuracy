@@ -20,6 +20,46 @@ def resolve_element_key(context, element_type, element_name, resolve_function):
     element_category = context.language.get(element_type.encode("utf-8") + "_category")
     return resolve_function(context, element_category, element_name)
 
+class ElementDoesNotContainStyleAction(ActionBase):
+    '''Ensure that a specific element does not contain some style.'''
+    regex = LanguageItem('element_does_not_contain_style_regex')
+
+    def execute(self, context, *args, **kwargs):
+        element_type = kwargs["element_type"]
+        element_name = kwargs["element_key"]
+        style_name = kwargs["style_name"]
+        element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
+
+        error_message = context.language.format("element_is_visible_failure", element_type, element_name)
+        self.assert_element_is_visible(context, element_key, error_message)
+
+        current_style = context.browser_driver.get_class(element_key) or ""
+        styles = current_style.split(" ")
+
+        if style_name in styles:
+            error_message = context.language.format("element_does_not_contain_style_failure", element_type, element_name, style_name)
+            raise self.failed(error_message)
+
+class ElementContainsStyleAction(ActionBase):
+    '''Ensure that a specific element contains some style.'''
+    regex = LanguageItem('element_contains_style_regex')
+
+    def execute(self, context, *args, **kwargs):
+        element_type = kwargs["element_type"]
+        element_name = kwargs["element_key"]
+        style_name = kwargs["style_name"]
+        element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
+
+        error_message = context.language.format("element_is_visible_failure", element_type, element_name)
+        self.assert_element_is_visible(context, element_key, error_message)
+
+        current_style = context.browser_driver.get_class(element_key) or ""
+        styles = current_style.split(" ")
+
+        if style_name not in styles:
+            error_message = context.language.format("element_contains_style_failure", element_type, element_name, style_name)
+            raise self.failed(error_message)
+
 class ElementClickAction(ActionBase):
     '''Clicks on a specific element.'''
     regex = LanguageItem('element_click_regex')
@@ -105,7 +145,7 @@ class ElementIsDisabledAction(ActionBase):
 class ElementWaitForPresenceAction(ActionBase):
     '''Waits until a given element appears or times out.'''
     regex = LanguageItem("element_wait_for_presence_regex")
-    
+
     def execute(self, context, *args, **kwargs):
         element_type = kwargs.get("element_type", None)
         element_name = kwargs.get("element_key", None)
@@ -158,7 +198,7 @@ class ElementDragAction(ActionBase):
 
 class ElementContainsTextAction(ActionBase):
     regex = LanguageItem("element_contains_text_regex")
- 
+
     def execute(self, context, *args, **kwargs):
         element_type = kwargs.get("element_type", None)
         element_name = kwargs.get("element_key", None)
@@ -176,7 +216,7 @@ class ElementContainsTextAction(ActionBase):
 
 class ElementDoesNotContainTextAction(ActionBase):
     regex = LanguageItem("element_does_not_contain_text_regex")
- 
+
     def execute(self, context, *args, **kwargs):
         element_type = kwargs.get("element_type", None)
         element_name = kwargs.get("element_key", None)
@@ -194,7 +234,7 @@ class ElementDoesNotContainTextAction(ActionBase):
 
 class ElementMatchesTextAction(ActionBase):
     regex = LanguageItem("element_matches_text_regex")
- 
+
     def execute(self, context, *args, **kwargs):
         element_type = kwargs.get("element_type", None)
         element_name = kwargs.get("element_key", None)
@@ -212,7 +252,7 @@ class ElementMatchesTextAction(ActionBase):
 
 class ElementDoesNotMatchTextAction(ActionBase):
     regex = LanguageItem("element_does_not_match_text_regex")
- 
+
     def execute(self, context, *args, **kwargs):
         element_type = kwargs.get("element_type", None)
         element_name = kwargs.get("element_key", None)
@@ -231,7 +271,7 @@ class ElementDoesNotMatchTextAction(ActionBase):
 
 class ElementContainsMarkupAction(ActionBase):
     regex = LanguageItem("element_contains_markup_regex")
- 
+
     def execute(self, context, *args, **kwargs):
         element_type = kwargs.get("element_type", None)
         element_name = kwargs.get("element_key", None)
@@ -249,7 +289,7 @@ class ElementContainsMarkupAction(ActionBase):
 
 class ElementDoesNotContainMarkupAction(ActionBase):
     regex = LanguageItem("element_does_not_contain_markup_regex")
- 
+
     def execute(self, context, *args, **kwargs):
         element_type = kwargs.get("element_type", None)
         element_name = kwargs.get("element_key", None)
@@ -267,7 +307,7 @@ class ElementDoesNotContainMarkupAction(ActionBase):
 
 class ElementMatchesMarkupAction(ActionBase):
     regex = LanguageItem("element_matches_markup_regex")
- 
+
     def execute(self, context, *args, **kwargs):
         element_type = kwargs.get("element_type", None)
         element_name = kwargs.get("element_key", None)
@@ -285,7 +325,7 @@ class ElementMatchesMarkupAction(ActionBase):
 
 class ElementDoesNotMatchMarkupAction(ActionBase):
     regex = LanguageItem("element_does_not_match_markup_regex")
- 
+
     def execute(self, context, *args, **kwargs):
         element_type = kwargs.get("element_type", None)
         element_name = kwargs.get("element_key", None)

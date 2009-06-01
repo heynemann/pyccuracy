@@ -9,3 +9,4 @@ Quando
 	#A página termina de carregar
 Então
 	Eu vejo que o div "divContainsStyle1" contém o estilo "blabla"
+	E eu vejo que o div "divContainsStyle2" contém o estilo "blabla"

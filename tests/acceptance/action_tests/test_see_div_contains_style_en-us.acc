@@ -9,4 +9,4 @@ When
     #The page finishes loading
 Then
     I see "divContainsStyle1" div has "blabla" style
-    And I see "divContainsStyle1" has "blabla" style
+    And I see "divContainsStyle2" div has "blabla" style

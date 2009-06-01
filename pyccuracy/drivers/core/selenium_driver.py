@@ -26,7 +26,7 @@ from selenium_element_selector import *
 
 class SeleniumDriver(BaseDriver):
     backend = 'selenium'
-    
+
     def __init__(self, context, selenium=None):
         self.context = context
         self.selenium = selenium
@@ -48,7 +48,7 @@ class SeleniumDriver(BaseDriver):
         self.selenium.stop()
 
     def resolve_element_key(self, context, element_type, element_key):
-        if not context: 
+        if not context:
             return element_key
         return SeleniumElementSelector.element(element_type, element_key)
 
@@ -79,7 +79,7 @@ class SeleniumDriver(BaseDriver):
 
     def is_element_enabled(self, element):
         script = """this.page().findElement("%s").disabled;"""
- 
+
         script_return = self.selenium.get_eval(script % element)
         if script_return == "null":
             is_disabled = self.__get_attribute_value(element, "disabled")
@@ -205,6 +205,10 @@ class SeleniumDriver(BaseDriver):
 
     def get_html_source(self):
         return self.selenium.get_html_source()
+
+    def get_class(self, name):
+        klass = self.__get_attribute_value(name, 'class')
+        return klass
 
     def __get_attribute_value(self, element, attribute):
         try:
