@@ -77,7 +77,7 @@ def test_page_go_to_action_sets_page_if_page_is_supplied():
     action.execute(context, url="Some Page")
     context.browser_driver.verify()
 
-    assert issubclass(context.current_page, SomePage)
+    assert isinstance(context.current_page, SomePage)
 
 def test_page_go_to_action_raises_with_invalid_page():
     context = FakeContext()
@@ -111,7 +111,7 @@ def test_page_am_in_action_sets_page_if_page_is_supplied():
     action = PageAmInAction()
 
     action.execute(context, url="Some Page")
-    assert issubclass(context.current_page, SomePage)
+    assert isinstance(context.current_page, SomePage)
     assert context.url == "file:///some"
 
 def test_page_am_in_action_raises_if_no_page():

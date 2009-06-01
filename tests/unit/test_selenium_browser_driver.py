@@ -112,7 +112,7 @@ def test_selenium_driver_calls_proper_selenese_on_wait_for_page():
 def test_selenium_driver_calls_proper_selenese_on_click_element():
     context = Context(Settings())
     selenium_mock = Mock()
-    selenium_mock.expects(once()).click("some")
+    selenium_mock.expects(once()).click(eq("some"))
 
     driver = SeleniumDriver(context, selenium=selenium_mock)
 

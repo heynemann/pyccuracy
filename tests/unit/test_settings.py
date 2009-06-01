@@ -84,7 +84,8 @@ def test_settings_return_default_value_for_extra_args():
 #Specified Values
 def test_settings_return_custom_value_for_tests_dir():
     settings = Settings({"tests_dir":"a"})
-    assert settings.tests_dir == "a", "The tests dir should be %s but was %s." % ("a", settings.tests_dir)
+    expected = abspath("a")
+    assert settings.tests_dir == expected, "The tests dir should be %s but was %s." % (expected, settings.tests_dir)
 
 def test_settings_return_default_value_for_actions_dir():
     settings = Settings({"actions_dir":"a"})

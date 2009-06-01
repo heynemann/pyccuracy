@@ -41,7 +41,14 @@ def test_element_click_action_calls_the_right_browser_driver_methods():
                           .resolve_element_key(same(context), eq("button"), eq("some")) \
                           .will(return_value("btnSome"))
     context.browser_driver.expects(once()) \
+                          .is_element_visible(eq("btnSome")) \
+                          .will(return_value(True))
+    context.browser_driver.expects(once()) \
                           .click_element(eq("btnSome"))
+
+    context.language.expects(once()) \
+                    .format(eq("element_is_visible_failure"), eq("button"), eq("some")) \
+                    .will(return_value("button"))
 
     context.language.expects(once()) \
                     .get(eq("button_category")) \
