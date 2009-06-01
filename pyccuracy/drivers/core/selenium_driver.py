@@ -135,6 +135,11 @@ class SeleniumDriver(BaseDriver):
 
         return text
 
+    def get_element_markup(self, element_selector):
+        script = """this.page().findElement("%s").innerHTML;"""
+        script_return = self.selenium.get_eval(script % element_selector)
+        return script_return != "null" and script_return or ""
+
     def drag_element(self, from_element_selector, to_element_selector):
         self.selenium.drag_and_drop_to_object(from_element_selector, to_element_selector)
 

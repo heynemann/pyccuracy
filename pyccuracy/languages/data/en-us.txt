@@ -77,6 +77,8 @@ element_mouseover_regex = ^(And )?I mouseover [\"](?P<element_key>[^"]+)[\"] (?P
 element_mouseout_regex = ^(And )?I mouseout [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>)$
 element_contains_text_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) contains [\"](?P<text>.+)[\"]$
 element_does_not_contain_text_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) does not contain [\"](?P<text>.+)[\"]$
+element_contains_markup_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) contains [\"](?P<markup>.+)[\"] markup$
+element_does_not_contain_markup_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) does not contain [\"](?P<markup>.+)[\"] markup$
 
 image_has_src_regex = ^(And )?I see [\"](.+)[\"] image has src of [\"](.+)[\"]$
 image_does_not_have_src_regex = ^(And )?I see [\"](.+)[\"] image does not have src of [\"](.+)[\"]$

@@ -77,6 +77,8 @@ element_mouseover_regex = ^(E )?[eE]u passo o mouse n[oa] (?P<element_type><elem
 element_mouseout_regex = ^(E )?[eE]u retiro o mouse d[oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"]$
 element_contains_text_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"] contém [\"](?P<text>.+)[\"]$
 element_does_not_contain_text_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"] não contém [\"](?P<text>.+)[\"]$
+element_contains_markup_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"] contém o markup [\"](?P<markup>.+)[\"]$
+element_does_not_contain_markup_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"] não contém o markup [\"](?P<markup>.+)[\"]$
 
 image_has_src_regex = ^(E )?[eE]u vejo que a imagem [\"](.+)[\"] tem src de [\"](.+)[\"]$
 image_does_not_have_src_regex = ^(E )?[eE]u vejo que a imagem [\"](.+)[\"] não tem src de [\"](.+)[\"]$
