@@ -96,6 +96,7 @@ class PyccuracyCore(object):
         print "\n"
 
     def print_invalid_action(self, language, err):
+        ctrl = TerminalController()
         template_text = TemplateLoader(language).load("invalid_scenario")
         template = Template(template_text)
         
@@ -105,5 +106,5 @@ class PyccuracyCore(object):
                     "filename":err.filename
                  }
 
-        print template.merge(values)
+        print ctrl.render(template.merge(values))
 

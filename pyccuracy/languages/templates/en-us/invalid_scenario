@@ -1,13 +1,12 @@
 
-=============
-Parsing Error
+${BG_RED}Parsing Error${NORMAL}
 =============
 
 Error Details
 -------------
-Action with error..... $action_text
-Action Scenario....... $scenario.index - $scenario.title
-Scenario file......... $filename
+Action with error..... ${RED}$action_text${NORMAL}
+Action Scenario....... ${CYAN}$scenario.index - $scenario.title${NORMAL}
+Scenario file......... ${CYAN}$filename${NORMAL}
 
 Error Description
 -----------------

@@ -62,3 +62,16 @@ class SeleniumDriver(BaseDriver):
 
     def get_title(self):
         return self.selenium.get_title()
+
+    def is_element_visible(self, element_selector):
+        error_message = "ERROR: Element %s not found" % (element_selector)
+        is_present = self.selenium.is_element_present(element_selector)
+        if is_present:
+            try:
+                is_present = self.selenium.is_visible(element_selector)
+            except Exception, error:
+                if error.message == error_message:
+                    is_present = False
+                else:
+                    raise
+        return is_present

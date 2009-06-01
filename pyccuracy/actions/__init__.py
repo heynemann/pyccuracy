@@ -86,3 +86,15 @@ class ActionBase(object):
 
         return page.get_registered_element(element_key)
 
+    def is_element_visible(self, context, selector):
+        is_visible = context.browser_driver.is_element_visible(selector)
+        return is_visible
+
+    def assert_element_is_visible(self, context, selector, message):
+        if not self.is_element_visible(context, selector):
+            raise self.failed(message + "(Resolved to Element %s)" % selector)
+
+    def assert_element_is_not_visible(self, context, selector, message):
+        if self.is_element_visible(context, selector):
+            raise self.failed(message + "(Resolved to Element %s)" % selector)
+
