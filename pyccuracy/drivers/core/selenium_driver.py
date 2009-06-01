@@ -194,6 +194,12 @@ class SeleniumDriver(BaseDriver):
     def get_image_src(self, image_selector):
         return self.__get_attribute_value(image_selector, "src")
 
+    def type_text(self, input_selector, text):
+        self.selenium.type(input_selector, text)
+
+    def clean_input(self, input_selector):
+        self.selenium.type(input_selector, "")
+
     def __get_attribute_value(self, element, attribute):
         try:
             locator = element + "/@" + attribute

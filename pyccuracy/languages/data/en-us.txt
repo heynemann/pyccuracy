@@ -104,7 +104,7 @@ select_does_not_have_selected_index_regex = ^(And )?I see [\"](?P<select_name>.+
 select_does_not_have_selected_value_regex = ^(And )?I see [\"](?P<select_name>.+)[\"] select does not have selected value of [\"](?P<value>.+)[\"]$
 select_does_not_have_selected_text_regex = ^(And )?I see [\"](?P<select_name>.+)[\"] select does not have selected text of [\"](?P<text>.+)[\"]$
 
-textbox_type_regex = ^(And )?I fill [\"](.+)[\"] textbox with [\"](.+)[\"]$
+textbox_type_regex = ^(And )?I fill [\"](?P<textbox_name>.+)[\"] textbox with [\"](?P<text>.+)[\"]$
 textbox_contains_text_regex = ^(And )?I see [\"](.+)[\"] textbox contains [\"](.+)[\"]$
 textbox_does_not_contain_text_regex = ^(And )?I see [\"](.+)[\"] textbox does not contain [\"](.+)[\"]$
 textbox_matches_text_regex = ^(And )?I see [\"](.+)[\"] textbox matches [\"](.+)[\"]$

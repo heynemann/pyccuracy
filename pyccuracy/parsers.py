@@ -111,7 +111,6 @@ class FileParser(object):
             action, args, kwargs = self.action_registry.suitable_for(line, settings.default_culture)
 
             if not action:
-                import pdb;pdb.set_trace()
                 self.raise_action_not_found_for_line(line, current_scenario, story_file_path)
             instance = action()
             add_method(line, instance.execute, args, kwargs)

@@ -42,7 +42,7 @@ class DriverInterface(object):
     def clean_input(self, input_selector):
         raise NotImplementedError
 
-    def type(self, input_selector, text):
+    def type_text(self, input_selector, text):
         raise NotImplementedError
 
     def click_element(self, element_selector):

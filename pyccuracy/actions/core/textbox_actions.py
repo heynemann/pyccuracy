@@ -54,3 +54,17 @@ class TextboxIsNotEmptyAction(ActionBase):
             error_message = context.language.format("textbox_is_not_empty_failure", element_name)
             raise self.failed(error_message)
 
+class TextboxTypeAction(ActionBase):
+    regex = LanguageItem("textbox_type_regex")
+
+    def execute(self, context, *args, **kwargs):
+        textbox_name = kwargs["textbox_name"]
+        text = kwargs["text"]
+
+        textbox_key = self.resolve_element_key(context, Page.Textbox, textbox_name)
+
+        error_message = context.language.format("element_is_visible_failure", "textbox", textbox_name)
+        self.assert_element_is_visible(context, textbox_key, error_message)
+        context.browser_driver.type_text(textbox_key, text)
+
+ 

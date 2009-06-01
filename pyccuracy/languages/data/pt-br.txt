@@ -104,7 +104,7 @@ select_does_not_have_selected_index_regex = ^(E )?[eE]u vejo que o índice selec
 select_does_not_have_selected_value_regex = ^(E )?[eE]u vejo que o valor selecionado da select [\"](?P<select_name>.+)[\"] não é [\"](?P<value>.+)[\"]$
 select_does_not_have_selected_text_regex = ^(E )?[eE]u vejo que o texto selecionado da select [\"](?P<select_name>.+)[\"] não é [\"](?P<text>.+)[\"]$
 
-textbox_type_regex = ^(E )?[eE]u preencho a caixa de texto [\"](.+)[\"] com [\"](.+)[\"]$
+textbox_type_regex = ^(E )?[eE]u preencho a caixa de texto [\"](?P<textbox_name>.+)[\"] com [\"](?P<text>.+)[\"]$
 textbox_contains_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] contém [\"](.+)[\"]$
 textbox_does_not_contain_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] não contém [\"](.+)[\"]$
 textbox_matches_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] contém exatamente [\"](.+)[\"]$
