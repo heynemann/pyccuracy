@@ -32,6 +32,18 @@ class CheckboxCheckAction(ActionBase):
         self.assert_element_is_visible(context, element_key, error_message)
         context.browser_driver.checkbox_check(element_key)
 
+class CheckboxUncheckAction(ActionBase):
+    regex = LanguageItem("checkbox_uncheck_regex")
+ 
+    def execute(self, context, *args, **kwargs):
+        element_type = "checkbox"
+        element_name = kwargs.get("checkbox_key", None)
+        element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
+
+        error_message = context.language.format("element_is_visible_failure", element_type, element_name)
+        self.assert_element_is_visible(context, element_key, error_message)
+        context.browser_driver.checkbox_uncheck(element_key)
+
 class CheckboxIsCheckedAction(ActionBase):
     regex = LanguageItem("checkbox_is_checked_regex")
 
@@ -44,6 +56,20 @@ class CheckboxIsCheckedAction(ActionBase):
         self.assert_element_is_visible(context, element_key, error_messsage)
         if not context.browser_driver.checkbox_is_checked(element_key):
             error_messsage = context.language.format("checkbox_is_checked_failure", element_name)
+            raise self.failed(error_messsage)
+
+class CheckboxIsNotCheckedAction(ActionBase):
+    regex = LanguageItem("checkbox_is_not_checked_regex")
+
+    def execute(self, context, *args, **kwargs):
+        element_type = "checkbox"
+        element_name = kwargs.get("checkbox_key", None)
+        element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
+
+        error_messsage = context.language.format("element_is_visible_failure", element_type, element_name)
+        self.assert_element_is_visible(context, element_key, error_messsage)
+        if context.browser_driver.checkbox_is_checked(element_key):
+            error_messsage = context.language.format("checkbox_is_not_checked_failure", element_name)
             raise self.failed(error_messsage)
 
 
