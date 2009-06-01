@@ -29,9 +29,10 @@ class ElementIsNotVisibleAction(ElementIsVisibleBase):
         return self.last_match
 
     def values_for(self, line):
-        return self.last_match and (self.last_match.groups()[1],) or tuple([])
+        return self.last_match.groupdict()
 
     def execute(self, values, context):
-        element_name = values[0]
+        element_name = values["element_key"]
+        element_type = self.language["%s_category" % values["element_type"]]
         error_message = self.language["element_is_not_visible_failure"]
-        self.execute_is_not_visible(context, Page.Element, element_name, error_message)
+        self.execute_is_not_visible(context, element_type, element_name, error_message)
