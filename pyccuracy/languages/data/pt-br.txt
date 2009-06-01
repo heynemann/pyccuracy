@@ -111,7 +111,7 @@ textbox_matches_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] 
 textbox_does_not_match_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] não contém exatamente [\"](.+)[\"]$
 textbox_is_empty_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](?P<textbox_name>.+)[\"] está vazia$
 textbox_is_not_empty_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](?P<textbox_name>.+)[\"] não está vazia$
-textbox_clean_regex = ^(E )?[eE]u limpo a caixa de texto [\"](.+)[\"]$
+textbox_clean_regex = ^(E )?[eE]u limpo a caixa de texto [\"](?P<textbox_name>.+)[\"]$
 
 #Action Failure Messages
 page_go_to_failure = A url "%s" não é válida. Você esqueceu de usar o parâmetro -u (ou --url) ?

@@ -111,7 +111,7 @@ textbox_matches_text_regex = ^(And )?I see [\"](.+)[\"] textbox matches [\"](.+)
 textbox_does_not_match_text_regex = ^(And )?I see [\"](.+)[\"] textbox does not match [\"](.+)[\"]$
 textbox_is_empty_regex = ^(And )?I see [\"](?P<textbox_name>.+)[\"] textbox is empty$
 textbox_is_not_empty_regex = ^(And )?I see [\"](?P<textbox_name>.+)[\"] textbox is not empty$
-textbox_clean_regex = ^(And )?I clean [\"](.+)[\"] textbox$
+textbox_clean_regex = ^(And )?I clean [\"](?P<textbox_name>.+)[\"] textbox$
 
 #Action Failure Messages
 page_go_to_failure = The url "%s" is not valid. Did you forget to use the -u (or --url) parameter ?
