@@ -86,11 +86,11 @@ image_does_not_have_src_regex = ^(E )?[eE]u vejo que a imagem [\"](.+)[\"] não 
 link_has_href_regex = ^(E )?[eE]u vejo que o link [\"](.+)[\"] tem href [\"](.+)[\"]$
 link_has_text_regex = ^(E )?[eE]u vejo que o link [\"](.+)[\"] tem texto [\"](.+)[\"]$
 
-select_has_selected_index_regex = ^(E )?[eE]u vejo que o índice selecionado da select [\"](.+)[\"] é (\d+)$
-select_has_selected_value_regex = ^(E )?[eE]u vejo que o valor selecionado da select [\"](.+)[\"] é [\"](.+)[\"]$
-select_has_selected_text_regex = ^(E )?[eE]u vejo que o texto selecionado da select [\"](.+)[\"] é [\"](.+)[\"]$
-select_option_by_index_regex = ^(E )?[eE]u seleciono o item com índice (\d+) na select [\"](.+)[\"]$
-select_option_by_value_regex = ^(E )?[eE]u seleciono o item com valor [\"](.+)[\"] na select [\"](.+)[\"]$
+select_has_selected_index_regex = ^(E )?[eE]u vejo que o índice selecionado da select [\"](?P<select_name>.+)[\"] é (?P<index>\d+)$
+select_has_selected_value_regex = ^(E )?[eE]u vejo que o valor selecionado da select [\"](?P<select_name>.+)[\"] é [\"](?P<option_value>.+)[\"]$
+select_has_selected_text_regex = ^(E )?[eE]u vejo que o texto selecionado da select [\"](?P<select_name>.+)[\"] é [\"](.+)[\"]$
+select_option_by_index_regex = ^(E )?[eE]u seleciono o item com índice (?P<index>\d+) na select [\"](?P<select_name>.+)[\"]$
+select_option_by_value_regex = ^(E )?[eE]u seleciono o item com valor [\"](?P<option_value>.+)[\"] na select [\"](?P<select_name>.+)[\"]$
 select_option_by_text_regex = ^(E )?[eE]u seleciono o item com texto [\"](.+)[\"] na select [\"](.+)[\"]$
 select_does_not_have_selected_index_regex = ^(E )?[eE]u vejo que o índice selecionado da select [\"](.+)[\"] não é (\d+)$
 select_does_not_have_selected_value_regex = ^(E )?[eE]u vejo que o valor selecionado da select [\"](.+)[\"] não é [\"](.+)[\"]$
@@ -130,6 +130,11 @@ element_is_not_visible_failure = O %s de id ou nome %s está visível, quando n�
 element_wait_for_disappear_failure = O %s de nome ou id %s deveria desaparecer dentro de %d segundo(s), mas ainda está presente.
 element_wait_for_presence_failure = O %s de nome ou id %s deveria aparecer dentro de %d segundo(s), mas não existe ou não está visível.
 element_is_not_visible_for_drag_failure = O elemento que está sendo arrastado (%s) não existe ou não está visível.
+element_contains_text_failure = O %s com nome ou id %s deveria conter "%s", mas o seu texto atual é "%s".
+element_contains_markup_failure = O %s com nome ou id %s deveria conter o markup "%s", mas o seu markup atual é "%s".
+element_does_not_contain_text_failure = O %s com nome ou id %s não deveria conter "%s", mas o seu texto atual é "%s".
+element_contains_style_failure = O %s com nome ou id %s deveria conter o estilo (class ou style) "%s".
+
 
 image_has_src_failure = A imagem com nome ou id %s deveria ter src de "%s", mas tem "%s".
 image_does_not_have_src_failure = A imagem com nome ou id %s não deveria ter src de "%s", mas tem "%s".
