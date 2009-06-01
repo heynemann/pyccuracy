@@ -101,8 +101,8 @@ textbox_contains_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"]
 textbox_does_not_contain_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] não contém [\"](.+)[\"]$
 textbox_matches_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] contém exatamente [\"](.+)[\"]$
 textbox_does_not_match_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] não contém exatamente [\"](.+)[\"]$
-textbox_is_empty_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] está vazia$
-textbox_is_not_empty_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] não está vazia$
+textbox_is_empty_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](?P<textbox_name>.+)[\"] está vazia$
+textbox_is_not_empty_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](?P<textbox_name>.+)[\"] não está vazia$
 textbox_clean_regex = ^(E )?[eE]u limpo a caixa de texto [\"](.+)[\"]$
 
 #Action Failure Messages

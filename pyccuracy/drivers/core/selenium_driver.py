@@ -187,6 +187,10 @@ class SeleniumDriver(BaseDriver):
                 raise
         return True
 
+    def is_element_empty(self, element_selector):
+        current_text = self.get_element_text(element_selector)
+        return current_text == ""
+
     def __get_attribute_value(self, element, attribute):
         try:
             locator = element + "/@" + attribute

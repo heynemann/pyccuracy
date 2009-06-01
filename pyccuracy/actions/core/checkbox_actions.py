@@ -1,11 +1,15 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+#
+# Copyright (C) 2009 Bernardo Heynemann <heynemann@gmail.com>
+# Copyright (C) 2009 Gabriel Falcão <gabriel@nacaolivre.org>
+#
 # Licensed under the Open Software License ("OSL") v. 3.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-
+#
 #     http://www.opensource.org/licenses/osl-3.0.php
-
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,17 +20,13 @@ from pyccuracy.page import PageRegistry, Page
 from pyccuracy.actions import ActionBase
 from pyccuracy.languages import LanguageItem
 
-def resolve_element_key(context, element_type, element_name, resolve_function):
-    element_category = context.language.get(element_type.encode("utf-8") + "_category")
-    return resolve_function(context, element_category, element_name)
-
 class CheckboxCheckAction(ActionBase):
     regex = LanguageItem("checkbox_check_regex")
  
     def execute(self, context, *args, **kwargs):
         element_type = "checkbox"
         element_name = kwargs.get("checkbox_key", None)
-        element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
+        element_key = self.resolve_element_key(context, element_type, element_name)
 
         error_message = context.language.format("element_is_visible_failure", element_type, element_name)
         self.assert_element_is_visible(context, element_key, error_message)
@@ -38,7 +38,7 @@ class CheckboxUncheckAction(ActionBase):
     def execute(self, context, *args, **kwargs):
         element_type = "checkbox"
         element_name = kwargs.get("checkbox_key", None)
-        element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
+        element_key = self.resolve_element_key(context, element_type, element_name)
 
         error_message = context.language.format("element_is_visible_failure", element_type, element_name)
         self.assert_element_is_visible(context, element_key, error_message)
@@ -50,7 +50,7 @@ class CheckboxIsCheckedAction(ActionBase):
     def execute(self, context, *args, **kwargs):
         element_type = "checkbox"
         element_name = kwargs.get("checkbox_key", None)
-        element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
+        element_key = self.resolve_element_key(context, element_type, element_name)
 
         error_messsage = context.language.format("element_is_visible_failure", element_type, element_name)
         self.assert_element_is_visible(context, element_key, error_messsage)
@@ -64,7 +64,7 @@ class CheckboxIsNotCheckedAction(ActionBase):
     def execute(self, context, *args, **kwargs):
         element_type = "checkbox"
         element_name = kwargs.get("checkbox_key", None)
-        element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
+        element_key = self.resolve_element_key(context, element_type, element_name)
 
         error_messsage = context.language.format("element_is_visible_failure", element_type, element_name)
         self.assert_element_is_visible(context, element_key, error_messsage)

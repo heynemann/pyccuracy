@@ -101,8 +101,8 @@ textbox_contains_text_regex = ^(And )?I see [\"](.+)[\"] textbox contains [\"](.
 textbox_does_not_contain_text_regex = ^(And )?I see [\"](.+)[\"] textbox does not contain [\"](.+)[\"]$
 textbox_matches_text_regex = ^(And )?I see [\"](.+)[\"] textbox matches [\"](.+)[\"]$
 textbox_does_not_match_text_regex = ^(And )?I see [\"](.+)[\"] textbox does not match [\"](.+)[\"]$
-textbox_is_empty_regex = ^(And )?I see [\"](.+)[\"] textbox is empty$
-textbox_is_not_empty_regex = ^(And )?I see [\"](.+)[\"] textbox is not empty$
+textbox_is_empty_regex = ^(And )?I see [\"](?P<textbox_name>.+)[\"] textbox is empty$
+textbox_is_not_empty_regex = ^(And )?I see [\"](?P<textbox_name>.+)[\"] textbox is not empty$
 textbox_clean_regex = ^(And )?I clean [\"](.+)[\"] textbox$
 
 #Action Failure Messages
