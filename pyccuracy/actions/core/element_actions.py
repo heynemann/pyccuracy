@@ -87,3 +87,19 @@ class ElementIsEnabledAction(ActionBase):
             error_message = context.language.format("element_is_enabled_failure", element_type, element_name)
             raise self.failed(error_message)
 
+class ElementIsDisabledAction(ActionBase):
+    '''Asserts that a specific element is disabled.'''
+    regex = LanguageItem('element_is_disabled_regex')
+
+    def execute(self, context, *args, **kwargs):
+        element_type = kwargs.get("element_type", None)
+        element_name = kwargs.get("element_key", None)
+        element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
+
+        error_message = context.language.format("element_is_visible_failure", element_type, element_name)
+        self.assert_element_is_visible(context, element_key, error_message)
+
+        if context.browser_driver.is_element_enabled(element_key):
+            error_message = context.language.format("element_is_disabled_failure", element_type, element_name)
+            raise self.failed(error_message)
+
