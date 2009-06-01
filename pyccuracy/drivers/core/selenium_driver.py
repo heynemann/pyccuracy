@@ -60,3 +60,5 @@ class SeleniumDriver(BaseDriver):
     def click_element(self, element_selector):
         self.selenium.click(element_selector)
 
+    def get_title(self):
+        return self.selenium.get_title()

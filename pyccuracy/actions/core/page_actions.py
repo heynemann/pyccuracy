@@ -50,7 +50,8 @@ class PageSeeTitleAction(ActionBase):
     '''Verifies that the current page's title matches the specified one. Raises otherwise.'''
     regex = LanguageItem('page_see_title_regex')
 
-    def execute(self, context, title=None, *args):
+    def execute(self, context, *args, **kwargs):
+        title = kwargs.get("title", None)
         expected_title = context.browser_driver.get_title()
         if (title != expected_title):
             raise self.failed(context.language.format("page_see_title_failure", title, expected_title))

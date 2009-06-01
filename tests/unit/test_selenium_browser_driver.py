@@ -87,3 +87,46 @@ def test_selenium_driver_overrides_page_open_properly():
 
     driver.page_open("http://localhost")
     selenium_mock.verify()
+
+def test_selenium_resolve_element_key_returns_element_key_for_null_context():
+    driver = SeleniumDriver(None)
+    assert driver.resolve_element_key(None, "button", "SomethingElse") == "SomethingElse"
+
+def test_selenium_resolve_element_key_uses_SeleniumElementSelector_for_non_null_contexts():
+    context = Context(Settings())
+    driver = SeleniumDriver(context)
+    key = driver.resolve_element_key(context, "Button", "SomethingElse")
+    expected = "//*[(@name='SomethingElse' or @id='SomethingElse')]"
+    assert key == expected, "Expected %s, Actual: %s" % (expected, key)
+
+def test_selenium_driver_calls_proper_selenese_on_wait_for_page():
+    context = Context(Settings())
+    selenium_mock = Mock()
+    selenium_mock.expects(once()).wait_for_page_to_load(eq(10000))
+
+    driver = SeleniumDriver(context, selenium=selenium_mock)
+
+    driver.wait_for_page()
+    selenium_mock.verify()
+
+def test_selenium_driver_calls_proper_selenese_on_click_element():
+    context = Context(Settings())
+    selenium_mock = Mock()
+    selenium_mock.expects(once()).click("some")
+
+    driver = SeleniumDriver(context, selenium=selenium_mock)
+
+    driver.click_element("some")
+    selenium_mock.verify()
+
+def test_selenium_driver_calls_proper_selenese_on_get_title():
+    context = Context(Settings())
+    selenium_mock = Mock()
+    selenium_mock.expects(once()).get_title().will(return_value("Some title"))
+
+    driver = SeleniumDriver(context, selenium=selenium_mock)
+
+    title = driver.get_title()
+    assert title == "Some title"
+    selenium_mock.verify()
+

@@ -16,8 +16,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from page import Page
-
 class SeleniumElementSelector(object):
     @staticmethod
     def element(element_type, element_name):
