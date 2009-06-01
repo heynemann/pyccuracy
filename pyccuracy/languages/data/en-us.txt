@@ -88,10 +88,10 @@ link_has_text_regex = ^(And )?I see [\"](.+)[\"] link has [\"](.+)[\"] text$
 
 select_has_selected_index_regex = ^(And )?I see [\"](?P<select_name>.+)[\"] select has selected index of (?P<index>\d+)$
 select_has_selected_value_regex = ^(And )?I see [\"](?P<select_name>.+)[\"] select has selected value of [\"](?P<option_value>.+)[\"]$
-select_has_selected_text_regex = ^(And )?I see [\"](?P<select_name>.+)[\"] select has selected text of [\"](.+)[\"]$
+select_has_selected_text_regex = ^(And )?I see [\"](?P<select_name>.+)[\"] select has selected text of [\"](?P<text>.+)[\"]$
 select_option_by_index_regex = ^(And )?I select the option with index of (?P<index>\d+) in [\"](?P<select_name>.+)[\"] select$
 select_option_by_value_regex = ^(And )?I select the option with value of [\"](?P<option_value>.+)[\"] in [\"](?P<select_name>.+)[\"] select$
-select_option_by_text_regex = ^(And )?I select the option with text of [\"](.+)[\"] in [\"](.+)[\"] select$
+select_option_by_text_regex = ^(And )?I select the option with text of [\"](?P<text>.+)[\"] in [\"](?P<select_name>.+)[\"] select$
 select_does_not_have_selected_index_regex = ^(And )?I see [\"](.+)[\"] select does not have selected index of (\d+)$
 select_does_not_have_selected_value_regex = ^(And )?I see [\"](.+)[\"] select does not have selected value of [\"](.+)[\"]$
 select_does_not_have_selected_text_regex = ^(And )?I see [\"](.+)[\"] select does not have selected text of [\"](.+)[\"]$

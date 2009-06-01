@@ -88,10 +88,10 @@ link_has_text_regex = ^(E )?[eE]u vejo que o link [\"](.+)[\"] tem texto [\"](.+
 
 select_has_selected_index_regex = ^(E )?[eE]u vejo que o índice selecionado da select [\"](?P<select_name>.+)[\"] é (?P<index>\d+)$
 select_has_selected_value_regex = ^(E )?[eE]u vejo que o valor selecionado da select [\"](?P<select_name>.+)[\"] é [\"](?P<option_value>.+)[\"]$
-select_has_selected_text_regex = ^(E )?[eE]u vejo que o texto selecionado da select [\"](?P<select_name>.+)[\"] é [\"](.+)[\"]$
+select_has_selected_text_regex = ^(E )?[eE]u vejo que o texto selecionado da select [\"](?P<select_name>.+)[\"] é [\"](?P<text>.+)[\"]$
 select_option_by_index_regex = ^(E )?[eE]u seleciono o item com índice (?P<index>\d+) na select [\"](?P<select_name>.+)[\"]$
 select_option_by_value_regex = ^(E )?[eE]u seleciono o item com valor [\"](?P<option_value>.+)[\"] na select [\"](?P<select_name>.+)[\"]$
-select_option_by_text_regex = ^(E )?[eE]u seleciono o item com texto [\"](.+)[\"] na select [\"](.+)[\"]$
+select_option_by_text_regex = ^(E )?[eE]u seleciono o item com texto [\"](?P<text>.+)[\"] na select [\"](?P<select_name>.+)[\"]$
 select_does_not_have_selected_index_regex = ^(E )?[eE]u vejo que o índice selecionado da select [\"](.+)[\"] não é (\d+)$
 select_does_not_have_selected_value_regex = ^(E )?[eE]u vejo que o valor selecionado da select [\"](.+)[\"] não é [\"](.+)[\"]$
 select_does_not_have_selected_text_regex = ^(E )?[eE]u vejo que o texto selecionado da select [\"](.+)[\"] não é [\"](.+)[\"]$

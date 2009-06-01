@@ -88,3 +88,37 @@ class SelectHasSelectedIndexAction(ActionBase):
             error_message = context.language.format("select_has_selected_index_failure", select_name, index, selected_index)
             raise self.failed(error_message)
 
+class SelectOptionByTextAction(ActionBase):
+    regex = LanguageItem("select_option_by_text_regex")
+
+    def execute(self, context, *args, **kwargs):
+        select_name = kwargs.get("select_name", None)
+        text = kwargs.get("text", None)
+        select_key = resolve_element_key(context, Page.Select, select_name, self.resolve_element_key)
+
+        error_message = context.language.format("element_is_visible_failure", Page.Select, select_name)
+        self.assert_element_is_visible(context, select_key, error_message)
+        
+        result = context.browser_driver.select_option_by_text(select_key, text)
+        
+        if not result:
+            error_message = context.language.format("select_option_by_text_failure", select_name, text)
+            raise self.failed(error_message)
+
+class SelectHasSelectedTextAction(ActionBase):
+    regex = LanguageItem("select_has_selected_text_regex")
+
+    def execute(self, context, *args, **kwargs):
+        select_name = kwargs.get("select_name", None)
+        text = kwargs.get("text", None)
+
+        select = resolve_element_key(context, Page.Select, select_name, self.resolve_element_key)
+        error_message = context.language.format("element_is_visible_failure", Page.Select, select_name)
+        self.assert_element_is_visible(context, select, error_message)
+        
+        selected_text = context.browser_driver.get_selected_text(select)
+
+        if (selected_text != text):
+            error_message = context.language.format("select_has_selected_text_failure", select_name, text, selected_text)
+            raise self.failed(error_message)
+
