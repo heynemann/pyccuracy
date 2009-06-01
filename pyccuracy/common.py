@@ -21,6 +21,7 @@ import re
 import time
 import fnmatch
 import urllib2
+from glob import glob
 
 from os.path import abspath, join, dirname
 
@@ -155,10 +156,14 @@ class Context(object):
         self.url = None
         self.current_page = None
 
-def locate(pattern, root=os.curdir):
+def locate(pattern, root=os.curdir, recursive=True):
     root_path = os.path.abspath(root)
 
-    for path, dirs, files in os.walk(root_path):
-        for filename in fnmatch.filter(files, pattern):
-            yield os.path.join(path, filename)
-
+    if recursive:
+        return_files = []
+        for path, dirs, files in os.walk(root_path):
+            for filename in fnmatch.filter(files, pattern):
+                return_files.append(os.path.join(path, filename))
+        return return_files
+    else:
+        return glob(join(root_path, pattern))

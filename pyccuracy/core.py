@@ -125,7 +125,7 @@ class PyccuracyCore(object):
         pattern = "*.py"
 
         sys.path.insert(0, path)
-        files = locate(root=path, pattern=pattern)
+        files = locate(root=path, pattern=pattern, recursive=False)
 
         for f in files:
             try:
