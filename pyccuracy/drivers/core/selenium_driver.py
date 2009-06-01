@@ -75,3 +75,24 @@ class SeleniumDriver(BaseDriver):
                 else:
                     raise
         return is_present
+
+    def is_element_enabled(self, element):
+        script = """this.page().findElement("%s").disabled;"""
+ 
+        script_return = self.selenium.get_eval(script % element)
+        if script_return == "null":
+            is_disabled = self.__get_attribute_value(element, "disabled")
+        else:
+            is_disabled = script_return[0].upper()=="T" # is it 'True'?
+        return not is_disabled
+
+    def __get_attribute_value(self, element, attribute):
+        try:
+            locator = element + "/@" + attribute
+            attr_value = self.selenium.get_attribute(locator)
+        except Exception, inst:
+            if "Could not find element attribute" in str(inst):
+                attr_value = None
+            else:
+                raise
+        return attr_value

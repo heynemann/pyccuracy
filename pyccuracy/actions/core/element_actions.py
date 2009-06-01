@@ -16,19 +16,22 @@ from pyccuracy.page import PageRegistry, Page
 from pyccuracy.actions import ActionBase
 from pyccuracy.languages import LanguageItem
 
+def resolve_element_key(context, element_type, element_name, resolve_function):
+    element_category = context.language.get(element_type.encode("utf-8") + "_category")
+    return resolve_function(context, element_category, element_name)
+
+
 class ElementClickAction(ActionBase):
     '''Clicks on a specific element.'''
     regex = LanguageItem('element_click_regex')
 
     def execute(self, context, *args, **kwargs):
-        element_name = kwargs.get("element_key", None)
         element_type = kwargs.get("element_type", None)
-
-        element_category = context.language.get(element_type.encode("utf-8") + "_category")
+        element_name = kwargs.get("element_key", None)
+        element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
 
         should_wait = bool(kwargs.get("should_wait", None))
 
-        element_key = self.resolve_element_key(context, element_category, element_name)
 
         error_message = context.language.format("element_is_visible_failure", element_type, element_name)
         self.assert_element_is_visible(context, element_key, error_message)
@@ -40,7 +43,7 @@ class ElementClickAction(ActionBase):
                 context.browser_driver.wait_for_page(timeout=timeout)
             except Exception, error:
                 if str(error) == "Timed out after %dms" % timeout:
-                    self.raise_action_failed_error(context.language.format("timeout_failure", timeout))
+                    raise self.failed(context.language.format("timeout_failure", timeout))
                 else:
                     raise
 
@@ -49,12 +52,9 @@ class ElementIsVisibleAction(ActionBase):
     regex = LanguageItem('element_is_visible_regex')
 
     def execute(self, context, *args, **kwargs):
-        element_name = kwargs.get("element_key", None)
         element_type = kwargs.get("element_type", None)
-
-        element_category = context.language.get(element_type.encode("utf-8") + "_category")
-
-        element_key = self.resolve_element_key(context, element_category, element_name)
+        element_name = kwargs.get("element_key", None)
+        element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
 
         error_message = context.language.format("element_is_visible_failure", element_type, element_name)
         self.assert_element_is_visible(context, element_key, error_message)
@@ -64,13 +64,26 @@ class ElementIsNotVisibleAction(ActionBase):
     regex = LanguageItem('element_is_not_visible_regex')
 
     def execute(self, context, *args, **kwargs):
-        element_name = kwargs.get("element_key", None)
         element_type = kwargs.get("element_type", None)
+        element_name = kwargs.get("element_key", None)
+        element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
 
-        element_category = context.language.get(element_type.encode("utf-8") + "_category")
+        error_message = context.language.format("element_is_not_visible_failure", element_type, element_name)
+        self.assert_element_is_not_visible(context, element_key, error_message)
 
-        element_key = self.resolve_element_key(context, element_category, element_name)
+class ElementIsEnabledAction(ActionBase):
+    '''Asserts that a specific element is enabled.'''
+    regex = LanguageItem('element_is_enabled_regex')
+
+    def execute(self, context, *args, **kwargs):
+        element_type = kwargs.get("element_type", None)
+        element_name = kwargs.get("element_key", None)
+        element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
 
         error_message = context.language.format("element_is_visible_failure", element_type, element_name)
-        self.assert_element_is_not_visible(context, element_key, error_message)
+        self.assert_element_is_visible(context, element_key, error_message)
+
+        if not context.browser_driver.is_element_enabled(element_key):
+            error_message = context.language.format("element_is_enabled_failure", element_type, element_name)
+            raise self.failed(error_message)
 
