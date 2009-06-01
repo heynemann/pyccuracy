@@ -50,7 +50,7 @@ class PageRegistry(object):
         return NAME_DICT.get(name)
 
     @classmethod
-    def resolve(cls, settings, url, must_raise=True):
+    def resolve(cls, settings, url, must_raise=True, abspath_func=abspath):
         """Resolves a url given a string and a settings. Raises
         TypeError when parameters are wrong, unless the must_raise
         parameter is False"""
@@ -69,22 +69,16 @@ class PageRegistry(object):
 
         klass_object = cls.get_by_name(url)
 
-        #this does not work :(
-        #if the user specified an actual url and not a page name
-        #the returned page should be None
-        #if not klass_object:
-            #klass_objects_list = cls.all_by_url(url)
-            #if klass_objects_list:
-                #klass_object = list(reversed(klass_objects_list))[0]
-
         url_pieces = []
         if settings.base_url:
             url_pieces.append(settings.base_url)
+
         else:
             url_pieces.append(settings.tests_dir)
 
         if klass_object:
             url_pieces.append(klass_object.url)
+
         else:
             url_pieces.append(url)
 
@@ -94,7 +88,8 @@ class PageRegistry(object):
         final_url = fix("/".join(url_pieces))
 
         if not "://" in final_url:
-            final_url = "file://%s" % abspath(final_url)
+            almost_final_url = (final_url.startswith("/") and final_url) or "/%s" % final_url
+            final_url = "file://%s" % abspath_func(almost_final_url)
 
         return klass_object, final_url
 

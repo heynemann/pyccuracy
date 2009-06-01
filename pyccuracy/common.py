@@ -107,18 +107,19 @@ class Settings(object):
                  settings=None,
                  cur_dir=get_curdir(),
                  actions_dir=None,
+                 abspath_func=abspath,
                  languages_dir=None):
 
         if not settings:
             settings = {}
 
         if not actions_dir:
-            actions_dir = abspath(join(dirname(__file__), "actions"))
+            actions_dir = abspath_func(join(dirname(__file__), "actions"))
 
         if not languages_dir:
-            languages_dir = abspath(join(dirname(__file__), "languages"))
+            languages_dir = abspath_func(join(dirname(__file__), "languages"))
 
-        self.tests_dir = abspath(self.get_setting(settings, "tests_dir", cur_dir))
+        self.tests_dir = abspath_func(self.get_setting(settings, "tests_dir", cur_dir))
 
         self.actions_dir = self.get_setting(settings, "actions_dir", actions_dir)
         self.languages_dir = self.get_setting(settings, "languages_dir", languages_dir)
@@ -140,8 +141,10 @@ class Settings(object):
 
     def get_setting(self, settings, key, default):
         value = settings.get(key, None)
+
         if value is None:
             return default
+
         return value
 
 class Context(object):
@@ -154,6 +157,7 @@ class Context(object):
 
 def locate(pattern, root=os.curdir):
     root_path = os.path.abspath(root)
+
     for path, dirs, files in os.walk(root_path):
         for filename in fnmatch.filter(files, pattern):
             yield os.path.join(path, filename)

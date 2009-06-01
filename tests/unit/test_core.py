@@ -20,6 +20,17 @@ from pmock import *
 from pyccuracy.core import PyccuracyCore
 from pyccuracy.common import Settings
 
+class SettingsMock(Mock):
+    def __getattr__(self, attr):
+        if attr == 'pages_dir':
+            return '/pages/dir/'
+        if attr == 'custom_actions_dir':
+            return '/custom/actions/dir/'
+
+        if attr == 'base_url':
+            return "http://localhost"
+        return super(SettingsMock, self).__getattribute__(attr)
+
 def test_pyccuracy_core_instantiation():
     class MyParser:
         pass
@@ -35,9 +46,9 @@ def test_pyccuracy_core_instantiation():
 def test_pyccuracy_core_run_tests():
     context_mock = Mock()
     context_mock.browser_driver = Mock()
-    settings_mock = Mock()
-    context_mock.settings = settings_mock
-    settings_mock.base_url = "http://localhost"
+    context_mock.settings = SettingsMock()
+
+
     context_mock.browser_driver.expects(once()).method('start_test')
     context_mock.browser_driver.expects(once()).method('stop_test')
 
