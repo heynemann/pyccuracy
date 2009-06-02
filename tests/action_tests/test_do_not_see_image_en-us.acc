@@ -1,14 +1,0 @@
-As a Pyccuracy User
-I want to test do not see image action
-So that I can make sure Pyccuracy works
-
-Scenario 1 - Checking that some page image is not there
-Given
-    I go to "image_tests.htm"
-When    #The page finishes loading
-Then
-    I do not see "imgHidden" image
-    And I do not see "imgHidden2" image
-    And I do not see "imgHidden3" image
-    And I do not see "imgHidden4" image
-    And I do not see "imgHidden5" image
