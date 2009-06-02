@@ -32,12 +32,25 @@ from pyccuracy.drivers import DriverError
 from pyccuracy.result import Result
 from pyccuracy.colored_terminal import TerminalController
 
+class FSO(object):
+    def add_to_import(self, path):
+        sys.path.insert(0, path)
+
+    def remove_from_import(self, path):
+        sys.path.pop()
+
+    def locate(self, path, pattern):
+        return locate(root=path, pattern=pattern, recursive=False)
+
+    def import_file(self, filename):
+        __import__(filename)
+
 class PyccuracyCore(object):
     def __init__(self, parser=None, runner=None):
         self.parser = parser or FileParser()
         self.runner = runner
 
-    def run_tests(self, context=None, **kwargs):
+    def run_tests(self, context=None, fso=None, **kwargs):
         settings = Settings(kwargs)
 
         if not context:
@@ -46,10 +59,10 @@ class PyccuracyCore(object):
         if not self.runner:
             self.runner = settings.worker_threads == 1 and StoryRunner() or ParallelStoryRunner(settings.worker_threads)
 
-        self.import_extra_content(settings.pages_dir)
+        self.import_extra_content(settings.pages_dir, fso=fso)
 
         if settings.custom_actions_dir != settings.pages_dir:
-            self.import_extra_content(settings.custom_actions_dir)
+            self.import_extra_content(settings.custom_actions_dir, fso=fso)
 
         try:
             fixture = self.parser.get_stories(settings)
@@ -102,19 +115,24 @@ class PyccuracyCore(object):
 
         print ctrl.render(template.merge(values))
 
-    def import_extra_content(self, path):
+    def import_extra_content(self, path, fso=None):
         '''Imports all the extra .py files in the tests dir so that pages, actions and other things get imported.'''
         pattern = "*.py"
 
-        sys.path.insert(0, path)
-        files = locate(root=path, pattern=pattern, recursive=False)
+        if not fso:
+            fso = FSO()
+
+        fso.add_to_import(path)
+        files = fso.locate(path, pattern)
 
         for f in files:
             try:
                 filename = splitext(split(f)[1])[0]
-                __import__(filename)
+                fso.import_file(filename)
             except ImportError, err:
                 raise ExtraContentError("An error occurred while trying to import %s. Error: %s" % (f, err))
+
+        fso.remove_from_import()
 
 class ExtraContentError(Exception):
     pass

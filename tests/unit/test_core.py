@@ -48,6 +48,12 @@ def test_pyccuracy_core_run_tests():
     context_mock.browser_driver = Mock()
     context_mock.settings = SettingsMock()
 
+    files = ["/some/weird/file.py"]
+    fso_mock = Mock()
+    fso_mock.expects(once()).add_to_import(eq('/home/bernardo/Development/github/pyccuracy'))
+    fso_mock.expects(once()).locate(eq('/home/bernardo/Development/github/pyccuracy'), eq('*.py')).will(return_value(files))
+    fso_mock.expects(once()).import_file(eq('file'))
+    fso_mock.expects(once()).remove_from_import()
 
     context_mock.browser_driver.expects(once()).method('start_test')
     context_mock.browser_driver.expects(once()).method('stop_test')
@@ -63,7 +69,7 @@ def test_pyccuracy_core_run_tests():
 
     results_mock.expects(once()).summary_for(eq('en-us')).will(return_value('my results'))
     pc = PyccuracyCore(parser_mock, runner_mock)
-    assert pc.run_tests(should_throw=False, context=context_mock) == results_mock
+    assert pc.run_tests(should_throw=False, context=context_mock, fso=fso_mock) == results_mock
 
     parser_mock.verify()
     runner_mock.verify()
