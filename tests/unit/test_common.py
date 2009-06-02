@@ -31,6 +31,6 @@ def test_url_checker():
 
     assert checker.url == "http://foo.bar.com"
     assert checker.is_valid()
-    assert checker.does_exists()
+    assert checker.exists()
 
     urlmock.verify()
