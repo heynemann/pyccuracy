@@ -27,6 +27,9 @@ Successful Scenarios....0 of 1 (0.00%)
 Failed Stories..........1 of 1 (100.00%)
 Failed Scenarios........1 of 1 (100.00%)
 
+Total timing: 0.00 secs
+
+
 Failed Stories / Scenarios
 --------------------------
 Story..........As a Someone I want to Do Something So that I'm Happy
