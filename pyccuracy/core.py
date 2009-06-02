@@ -36,7 +36,7 @@ class FSO(object):
     def add_to_import(self, path):
         sys.path.insert(0, path)
 
-    def remove_from_import(self, path):
+    def remove_from_import(self):
         sys.path.pop()
 
     def locate(self, path, pattern):

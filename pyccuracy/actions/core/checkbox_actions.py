@@ -25,7 +25,7 @@ class CheckboxCheckAction(ActionBase):
  
     def execute(self, context, *args, **kwargs):
         element_type = "checkbox"
-        element_name = kwargs.get("checkbox_key", None)
+        element_name = kwargs["checkbox_key"]
         element_key = self.resolve_element_key(context, element_type, element_name)
 
         error_message = context.language.format("element_is_visible_failure", element_type, element_name)
