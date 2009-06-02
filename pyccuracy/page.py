@@ -18,10 +18,13 @@
 
 from os.path import abspath
 from urlparse import urljoin
-from pyccuracy.common import Settings
+from pyccuracy.common import Settings, URLChecker
 
 NAME_DICT = {}
 URL_DICT = {}
+
+class InvalidUrlError(Exception):
+    pass
 
 class MetaPage(type):
     def __init__(cls, name, bases, attrs):
@@ -90,6 +93,15 @@ class PageRegistry(object):
         if not "://" in final_url:
             almost_final_url = (final_url.startswith("/") and final_url) or "/%s" % final_url
             final_url = "file://%s" % abspath_func(almost_final_url)
+
+        checker = URLChecker()
+        checker.set_url(final_url)
+        if not checker.is_valid():
+            error_message = "The url %r is not valid." % final_url
+            if klass_object:
+                error_message += " In class %s, path %r" % (klass_object.__name__, klass_object.__module__)
+
+            raise InvalidUrlError(error_message)
 
         return klass_object, final_url
 

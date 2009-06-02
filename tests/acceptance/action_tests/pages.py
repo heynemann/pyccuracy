@@ -3,7 +3,7 @@
 
 from pyccuracy import Page
 
-class TestCustomPage(Page):
+class TestCustomPage2(Page):
     url = "page_tests.htm"
 
     def register(self):

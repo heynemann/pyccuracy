@@ -49,10 +49,11 @@ class URLChecker(object):
         url_regex = re.compile(r'^(https?|file):[/]{2}([\w_.-]+)+[.]\w{2,}([/]?.*)?')
         return url_regex.search(self.url) and True or False
 
-    def does_exists(self):
+    def exists(self):
         try:
             self.lib.urlopen(self.url)
             return True
+
         except urllib2.URLError:
             return False
 

@@ -19,6 +19,7 @@
 import os
 import sys, optparse
 from pyccuracy.core import PyccuracyCore
+from pyccuracy.story_runner import StoryRunner, ParallelStoryRunner
 from pyccuracy import Version, Release
 
 __version_string__ = "pyccuracy %s (release '%s')" % (Version, Release)
@@ -43,6 +44,7 @@ def main():
     parser.add_option("-P", "--pagesdir", dest="pages_dir", default=None, help="Pages directory. Defines where the Pyccuracy custom pages are. If you don't change this parameter Pyccuracy will use the tests directory [default: %default].")
     parser.add_option("-u", "--url", dest="url", default=None, help="Base URL. Defines a base url against which the tests will get executed. For more details check the documentation [default: %default].")
     parser.add_option("-b", "--browser", dest="browser_to_run", default="firefox", help="Browser to run. Browser driver will use it to run tests [default: %default].")
+    parser.add_option("-w", "--workers", dest="workers", default=1, help="Workers to run in parallel [default: %default].")
 
     #browser driver
     parser.add_option("-e", "--browserdriver", dest="browser_driver", default="selenium", help="Browser Driver to be used on tests. [default: %default].")
@@ -54,9 +56,10 @@ def main():
     parser.add_option("-R", "--report", dest="write_report", default="true", help="Should write report. Defines if Pyccuracy should write an html report after each run [default: %default].")
     parser.add_option("-D", "--reportdir", dest="report_dir", default=os.curdir, help="Report directory. Defines the directory to write the report in [default: %default].")
     parser.add_option("-F", "--reportfile", dest="report_file_name", default="report.html", help="Report file. Defines the file name to write the report with [default: %default].")
-    (options, args) = parser.parse_args()
 
-    pyc = PyccuracyCore()
+    options, args = parser.parse_args()
+
+    pyc = PyccuracyCore(runner=options.workers > 1 and ParallelStoryRunner(options.workers))
 
     extra_args = {}
     if args:
@@ -85,6 +88,7 @@ def main():
 
     if not result or result.get_status() != "SUCCESSFUL":
         sys.exit(1)
+
     sys.exit(0)
 
 if __name__ == "__main__":
