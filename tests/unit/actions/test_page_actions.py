@@ -98,21 +98,26 @@ def test_page_am_in_action_calls_the_right_browser_driver_methods():
         url = "http://www.somepage.com"
 
     context = FakeContext()
+    context.language.expects(once()) \
+                    .format(eq("page_am_in_failure"), eq("http://www.somepage.com")) \
+                    .will(return_value("Error Message"))
 
     action = PageAmInAction()
 
     action.execute(context, url="http://www.somepage.com")
+    assert isinstance(context.current_page, SomePage)
+    assert context.url == "http://www.somepage.com"
 
 def test_page_am_in_action_sets_page_if_page_is_supplied():
-    class SomePage(Page):
+    class SomePage1(Page):
         url = "http://www.somepage.com"
 
     context = FakeContext()
 
     action = PageAmInAction()
 
-    action.execute(context, url="Some Page")
-    assert isinstance(context.current_page, SomePage)
+    action.execute(context, url="Some Page 1")
+    assert isinstance(context.current_page, SomePage1)
     assert context.url == "http://www.somepage.com"
 
 def test_page_am_in_action_raises_if_no_page():

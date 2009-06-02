@@ -39,7 +39,7 @@ class MetaPage(type):
 
             NAME_DICT[name] = cls
             if URL_DICT.has_key(url):
-                URL_DICT[url].append(cls)
+                URL_DICT[url].insert(0, cls)
             else:
                 URL_DICT[url] = [cls]
 
@@ -51,6 +51,12 @@ class PageRegistry(object):
     def get_by_name(cls, name):
         name = name.replace(" ", "")
         return NAME_DICT.get(name)
+
+    @classmethod
+    def get_by_url(cls, name):
+        klass_list = cls.all_by_url(name)
+        if klass_list:
+            return klass_list[0]
 
     @classmethod
     def resolve(cls, settings, url, must_raise=True, abspath_func=abspath, exists_func=exists):
@@ -70,7 +76,7 @@ class PageRegistry(object):
             else:
                 return None
 
-        klass_object = cls.get_by_name(url)
+        klass_object = cls.get_by_name(url) or cls.get_by_url(url)
 
         url_pieces = []
 
