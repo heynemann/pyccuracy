@@ -94,6 +94,9 @@ class PageRegistry(object):
             almost_final_url = (final_url.startswith("/") and final_url) or "/%s" % final_url
             final_url = "file://%s" % abspath_func(almost_final_url)
 
+        if final_url.startswith("/"):
+            final_url = final_url[1:]
+
         checker = URLChecker()
         checker.set_url(final_url)
         if not checker.is_valid():
