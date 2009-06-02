@@ -37,6 +37,8 @@ class SeleniumDriver(BaseDriver):
         browser_to_run = self.context.settings.browser_to_run
 
         if not self.selenium:
+            if not browser_to_run.startswith("*"):
+                browser_to_run = "*%s" % browser_to_run
             self.selenium = selenium(host, port, browser_to_run, url)
 
         try:

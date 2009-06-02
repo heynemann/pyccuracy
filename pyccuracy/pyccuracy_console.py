@@ -59,7 +59,8 @@ def main():
 
     options, args = parser.parse_args()
 
-    pyc = PyccuracyCore(runner=options.workers > 1 and ParallelStoryRunner(options.workers))
+    workers = options.workers and int(options.workers) or None
+    pyc = PyccuracyCore()
 
     extra_args = {}
     if args:
@@ -84,6 +85,7 @@ def main():
                            browser_to_run=options.browser_to_run,
                            browser_driver=options.browser_driver,
                            should_throw=options.should_throw,
+                           workers=workers,
                            extra_args=extra_args)
 
     if not result or result.get_status() != "SUCCESSFUL":

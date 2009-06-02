@@ -35,17 +35,21 @@ from pyccuracy.colored_terminal import TerminalController
 class PyccuracyCore(object):
     def __init__(self, parser=None, runner=None):
         self.parser = parser or FileParser()
-        self.runner = runner or StoryRunner()
+        self.runner = runner
 
     def run_tests(self, context=None, **kwargs):
         settings = Settings(kwargs)
+
         if not context:
             context = Context(settings)
 
-        self.import_extra_content(context.settings.pages_dir)
+        if not self.runner:
+            self.runner = settings.worker_threads == 1 and StoryRunner() or ParallelStoryRunner(settings.worker_threads)
 
-        if context.settings.custom_actions_dir != context.settings.pages_dir:
-            self.import_extra_content(context.settings.custom_actions_dir)
+        self.import_extra_content(settings.pages_dir)
+
+        if settings.custom_actions_dir != settings.pages_dir:
+            self.import_extra_content(settings.custom_actions_dir)
 
         try:
             fixture = self.parser.get_stories(settings)
@@ -63,30 +67,10 @@ class PyccuracyCore(object):
             self.print_results(settings.default_culture, results)
             return results
 
-        if context.settings.base_url:
-            base_url = context.settings.base_url
-
-        else:
-            base_url = "http://localhost"
-
-        try:
-            context.browser_driver.start_test(base_url)
-
-        except DriverError, err:
-            template_text = TemplateLoader(settings.default_culture).load("driver_error")
-            template = Template(template_text)
-            values = {"error": err, "browser_driver": context.browser_driver}
-            print template.merge(values)
-            if settings.should_throw:
-                raise TestFailedError("The test failed!")
-            else:
-                return None
-
         #running the tests
-        try:
-            results = self.runner.run_stories(settings=settings, fixture=fixture, context=context)
+        results = self.runner.run_stories(settings=settings, fixture=fixture, context=context)
 
-            self.print_results(settings.default_culture, results)
+        self.print_results(settings.default_culture, results)
 
 #        if self.context.write_report:
 #            import report_parser as report
@@ -95,12 +79,10 @@ class PyccuracyCore(object):
 #                        results,
 #                        self.context.language)
 
-            if settings.should_throw and result.get_status() == Status.Failed:
-                raise TestFailedError("The test failed!")
+        if settings.should_throw and result.get_status() == Status.Failed:
+            raise TestFailedError("The test failed!")
 
-            return results
-        finally:
-            context.browser_driver.stop_test()
+        return results
 
     def print_results(self, language, results):
         ctrl = TerminalController()

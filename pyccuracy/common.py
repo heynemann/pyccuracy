@@ -139,6 +139,7 @@ class Settings(object):
         self.report_file_name = self.get_setting(settings, "report_file_name", "report.html")
         self.browser_to_run = self.get_setting(settings, "browser_to_run", "chrome")
         self.browser_driver = self.get_setting(settings, "browser_driver", "selenium")
+        self.worker_threads = int(self.get_setting(settings, "workers", 1))
         self.extra_args = self.get_setting(settings, "extra_args", {})
 
     def get_setting(self, settings, key, default):

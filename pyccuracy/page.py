@@ -73,15 +73,15 @@ class PageRegistry(object):
         klass_object = cls.get_by_name(url)
 
         url_pieces = []
-        if settings.base_url:
-            url_pieces.append(settings.base_url)
-
-        else:
-            url_pieces.append(settings.tests_dir)
+        
+        if not url.startswith("http"):
+            if settings.base_url:
+                url_pieces.append(settings.base_url)
+            else:
+                url_pieces.append(settings.tests_dir)
 
         if klass_object:
             url_pieces.append(klass_object.url)
-
         else:
             url_pieces.append(url)
 

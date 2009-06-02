@@ -16,6 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import sys
+import time
 import traceback
 
 from Queue import Queue
@@ -27,16 +29,40 @@ from pyccuracy.errors import ActionFailedError
 
 class StoryRunner(object):
     def run_stories(self, settings, fixture, context=None):
-        for story in fixture.stories:
-            for scenario in story.scenarios:
-                if not context:
-                    context = self.create_context_for(settings)
-                for action in scenario.givens + scenario.whens + scenario.thens:
-                    result = self.execute_action(context, action)
-                    if not result:
-                        break
+        fixture.start_run()
+        if context.settings.base_url:
+            base_url = context.settings.base_url
 
-        return Result(fixture=fixture)
+        else:
+            base_url = "http://localhost"
+
+        try:
+            context.browser_driver.start_test(base_url)
+
+        except DriverError, err:
+            template_text = TemplateLoader(settings.default_culture).load("driver_error")
+            template = Template(template_text)
+            values = {"error": err, "browser_driver": context.browser_driver}
+            print template.merge(values)
+            if settings.should_throw:
+                raise TestFailedError("The test failed!")
+            else:
+                return None
+
+        try:
+            for story in fixture.stories:
+                for scenario in story.scenarios:
+                    if not context:
+                        context = self.create_context_for(settings)
+                    for action in scenario.givens + scenario.whens + scenario.thens:
+                        result = self.execute_action(context, action)
+                        if not result:
+                            break
+
+            fixture.end_run()
+            return Result(fixture=fixture)
+        finally:
+            context.browser_driver.stop_test()
 
     def run_scenario(self, scenario, settings, fixture, context=None):
         if not context:
@@ -67,7 +93,40 @@ class ParallelStoryRunner(StoryRunner):
     def __init__(self, number_of_threads):
         self.number_of_threads = number_of_threads
         self.test_queue = Queue()
-        self.tests_executing = 0
+
+    def run_stories(self, settings, fixture, context=None):
+        if len(fixture.stories) == 0:
+            return
+
+        self.fill_queue(fixture, settings)
+
+        fixture.start_run()
+
+        self.start_processes()
+
+        try:
+            time.sleep(2)
+            while self.test_queue.unfinished_tasks:
+                time.sleep(1)
+
+        except KeyboardInterrupt:
+            sys.stderr.write("Parallel tests interrupted by user\n")
+
+        fixture.end_run()
+
+        return Result(fixture=fixture)
+
+    def start_processes(self):
+        for i in range(self.number_of_threads):
+            t = Thread(target=self.worker)
+            t.setDaemon(True)
+            t.start()
+
+    def fill_queue(self, fixture, settings):
+        for story in fixture.stories:
+            for scenario in story.scenarios:
+                context = self.create_context_for(settings)
+                self.test_queue.put((scenario, context))
 
     def worker(self):
         while True:
@@ -86,41 +145,10 @@ class ParallelStoryRunner(StoryRunner):
                     result = self.execute_action(context, action)
                     if not result:
                         break
-
                 scenario.end_run()
-
+            except Exception, err:
+                traceback.print_exc(err)
             finally:
                 context.browser_driver.stop_test()
+                self.test_queue.task_done()
 
-
-    def start_processes(self):
-        for i in range(self.number_of_threads):
-            t = Thread(target=self.worker)
-            t.setDaemon(True)
-            t.start()
-
-    def fill_queue(self, fixture, settings):
-        for story in fixture.stories:
-            for scenario in story.scenarios:
-                context = self.create_context_for(settings)
-                self.test_queue.put((scenario, context))
-
-    def run_stories(self, settings, fixture, context=None):
-        if len(fixture.stories) == 0:
-            return
-
-        self.fill_queue(fixture, context)
-
-        fixture.start_run()
-
-        self.start_processes()
-
-        try:
-            time.sleep(2)
-            while self.test_queue.unfinished_tasks:
-                time.sleep(1)
-
-        except KeyboardInterrupt:
-            sys.stderr.write("Parallel tests interrupted by user\n")
-
-        test_fixture.end_run()

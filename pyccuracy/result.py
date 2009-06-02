@@ -77,6 +77,8 @@ class Result(object):
             val["has_no_header_files"] = True
             val["no_header_files"] = self.fixture.no_story_header
 
+        val["test_run_seconds"] = "%.2f" % self.fixture.ellapsed()
+
         return val
 
     @classmethod

@@ -15,6 +15,9 @@ Stories com Falha........${RED}$failed_stories${NORMAL} de ${RED}$total_stories$
 Cenários com Falha.......${RED}$failed_scenarios${NORMAL} de ${RED}$total_scenarios${NORMAL} (${RED}$failed_scenario_percentage%${NORMAL})#{else}
 Stories com Falha........$failed_stories de $total_stories ($failed_story_percentage%)
 Cenários com Falha.......$failed_scenarios de $total_scenarios ($failed_scenario_percentage%)#end
+
+
+Tempo total: $test_run_seconds segs
 #if($has_failed_scenarios)
 
 
