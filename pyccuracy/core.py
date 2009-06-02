@@ -57,18 +57,18 @@ class PyccuracyCore(object):
             context = Context(settings)
 
         if not self.runner:
-            self.runner = settings.worker_threads == 1 and StoryRunner() or ParallelStoryRunner(settings.worker_threads)
+            self.runner = context.settings.worker_threads == 1 and StoryRunner() or ParallelStoryRunner(settings.worker_threads)
 
-        self.import_extra_content(settings.pages_dir, fso=fso)
+        self.import_extra_content(context.settings.pages_dir, fso=fso)
 
-        if settings.custom_actions_dir != settings.pages_dir:
-            self.import_extra_content(settings.custom_actions_dir, fso=fso)
+        if context.settings.custom_actions_dir != context.settings.pages_dir:
+            self.import_extra_content(context.settings.custom_actions_dir, fso=fso)
 
         try:
             fixture = self.parser.get_stories(settings)
 
         except ActionNotFoundError, err:
-            self.print_invalid_action(settings.default_culture, err)
+            self.print_invalid_action(context.settings.default_culture, err)
             if settings.should_throw:
                 raise TestFailedError("The test failed!")
 
@@ -77,13 +77,13 @@ class PyccuracyCore(object):
 
         if not fixture.stories:
             results = Result(fixture)
-            self.print_results(settings.default_culture, results)
+            self.print_results(context.settings.default_culture, results)
             return results
 
         #running the tests
-        results = self.runner.run_stories(settings=settings, fixture=fixture, context=context)
+        results = self.runner.run_stories(settings=context.settings, fixture=fixture, context=context)
 
-        self.print_results(settings.default_culture, results)
+        self.print_results(context.settings.default_culture, results)
 
 #        if self.context.write_report:
 #            import report_parser as report

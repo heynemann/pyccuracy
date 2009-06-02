@@ -20,17 +20,6 @@ from pmock import *
 from pyccuracy.core import PyccuracyCore
 from pyccuracy.common import Settings
 
-class SettingsMock(Mock):
-    def __getattr__(self, attr):
-        if attr == 'pages_dir':
-            return '/pages/dir/'
-        if attr == 'custom_actions_dir':
-            return '/custom/actions/dir/'
-
-        if attr == 'base_url':
-            return "http://localhost"
-        return super(SettingsMock, self).__getattribute__(attr)
-
 def test_pyccuracy_core_instantiation():
     class MyParser:
         pass
@@ -46,14 +35,21 @@ def test_pyccuracy_core_instantiation():
 def test_pyccuracy_core_run_tests():
     context_mock = Mock()
     context_mock.browser_driver = Mock()
-    context_mock.settings = SettingsMock()
+    context_mock.settings = Mock()
+    context_mock.settings.pages_dir = "/pages/dir/"
+    context_mock.settings.custom_actions_dir = "/custom/actions/dir/"
+    context_mock.settings.base_url = "http://localhost"
+    context_mock.settings.default_culture = "en-us"
 
     files = ["/some/weird/file.py"]
+    actions  = ["/some/weird/action.py"]
     fso_mock = Mock()
-    fso_mock.expects(once()).add_to_import(eq('/home/bernardo/Development/github/pyccuracy'))
-    fso_mock.expects(once()).locate(eq('/home/bernardo/Development/github/pyccuracy'), eq('*.py')).will(return_value(files))
-    fso_mock.expects(once()).import_file(eq('file'))
-    fso_mock.expects(once()).remove_from_import()
+    fso_mock.expects(once()).add_to_import(eq(context_mock.settings.pages_dir))
+    fso_mock.expects(once()).add_to_import(eq(context_mock.settings.custom_actions_dir))
+    fso_mock.expects(once()).locate(eq(context_mock.settings.pages_dir), eq('*.py')).will(return_value(files))
+    fso_mock.expects(once()).locate(eq(context_mock.settings.custom_actions_dir), eq('*.py')).will(return_value(files))
+    fso_mock.expects(at_least_once()).method('import_file')
+    fso_mock.expects(at_least_once()).remove_from_import()
 
     context_mock.browser_driver.expects(once()).method('start_test')
     context_mock.browser_driver.expects(once()).method('stop_test')
