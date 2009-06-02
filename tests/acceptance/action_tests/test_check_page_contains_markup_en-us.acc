@@ -1,0 +1,19 @@
+As a Pyccuracy User
+I want to see the markup of current page
+So that I can check if its markup contains something
+
+Scenario 1 - Checking that the page contains some javascript
+Given
+    I go to "page_tests.htm"
+When
+    #The page finishes loading
+Then
+    I see that current page contains 'type="text/javascript"'
+
+Scenario 2 - Checking that the page does not contains embedded css
+Given
+    I go to "page_tests.htm"
+When
+    #The page finishes loading
+Then
+    I see that current page does not contain "<style"

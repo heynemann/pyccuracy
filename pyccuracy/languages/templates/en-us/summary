@@ -1,0 +1,57 @@
+================
+Test Run Summary
+================
+#if ($run_status == "FAILED")Status: ${BG_RED}$run_status#end
+#if ($run_status == "SUCCESSFUL")Status: ${GREEN}$run_status#end
+#if ($run_status == "UNKNOWN")Status: ${CYAN}$run_status#end
+${NORMAL}
+
+Test Data Stats
+---------------
+Successful Stories......${GREEN}$successful_stories${NORMAL} of ${GREEN}$total_stories${NORMAL} (${GREEN}$successful_story_percentage%${NORMAL})
+Successful Scenarios....${GREEN}$successful_scenarios${NORMAL} of ${GREEN}$total_scenarios${NORMAL} (${GREEN}$successful_scenario_percentage%${NORMAL})
+#if ($run_status == "FAILED")
+Failed Stories..........${RED}$failed_stories${NORMAL} of ${RED}$total_stories${NORMAL} (${RED}$failed_story_percentage%${NORMAL})
+Failed Scenarios........${RED}$failed_scenarios${NORMAL} of ${RED}$total_scenarios${NORMAL} (${RED}$failed_scenario_percentage%${NORMAL})#{else}
+Failed Stories..........$failed_stories of $total_stories ($failed_story_percentage%)
+Failed Scenarios........$failed_scenarios of $total_scenarios ($failed_scenario_percentage%)#end
+
+
+Total timing: $test_run_seconds secs
+#if($has_failed_scenarios)
+
+
+${BG_RED}Failed Stories / Scenarios${NORMAL}
+--------------------------
+#foreach ($scenario in $failed_scenario_instances)Story..........As a $scenario.story.as_a I want to $scenario.story.i_want_to So that $scenario.story.so_that
+Story file.....$scenario.story.identity
+Scenario.......$scenario.index - $scenario.title
+    Given
+#foreach ($action in $scenario.givens)#if($action.status != "FAILED")        $action.description - $action.status
+#end
+#if($action.status == "FAILED")${RED}        $action.description - $action.status - $action.error${NORMAL}
+#end#end
+    When
+#foreach ($action in $scenario.whens)#if($action.status != "FAILED")        $action.description - $action.status
+#end
+#if($action.status == "FAILED")${RED}        $action.description - $action.status - $action.error${NORMAL}
+#end#end
+    Then
+#foreach ($action in $scenario.thens)#if($action.status != "FAILED")        $action.description - $action.status
+#end
+#if($action.status == "FAILED")${RED}        $action.description - $action.status - $action.error${NORMAL}
+#end#end
+#end
+#end
+#if($has_no_header_files)
+
+${BG_RED}Files with Invalid Header${NORMAL}
+-------------------------
+The files in this area are here because they failed to provide 
+the default pyccuracy header (${CYAN}As a/I want to/So that${NORMAL}) or 
+didn't specify a valid scenario (using ${CYAN}Scenario # - Description${NORMAL} syntax).
+
+Maybe you forgot to use the ${CYAN}-l <en-us, pt-br, etc>${NORMAL} switch (or ${CYAN}--language=en-us${NORMAL})?
+
+#foreach ($story in $no_header_files)${RED}  $story${NORMAL}
+#end#end

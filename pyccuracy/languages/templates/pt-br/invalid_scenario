@@ -1,0 +1,16 @@
+
+${BG_RED}Erro de Parsing${NORMAL}
+===============
+
+Detalhes do Erro
+----------------
+Ação com erro......... ${RED}$action_text${NORMAL}
+Cenário com erro...... ${CYAN}$scenario.index - $scenario.title${NORMAL}
+Arquivo do Cenário.... ${CYAN}$filename${NORMAL}
+
+Descrição do Erro
+-----------------
+A ação acima não bate com nenhuma das ações registradas.
+
+Se você só precisa de um texto como "E eu espero a página carregar"
+ou algo assim, utilize o prefixo '#' antes da linha da ação.

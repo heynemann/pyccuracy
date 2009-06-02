@@ -1,0 +1,15 @@
+
+====================
+Browser Driver Error
+====================
+
+An error occurred in the current browser driver.
+Check below for more details.
+
+Error Details
+-------------
+Current Browser Driver....... $browser_driver
+
+Error Description
+-----------------
+$error

@@ -1,0 +1,12 @@
+As a Pyccuracy User
+I want to test see li action
+So that I can make sure Pyccuracy works
+
+Scenario 1 - Checking that li is there
+Given
+    I go to "ul_tests.htm"
+When
+    #The page finishes loading
+Then
+    I see "li1" li
+    And I see "li2" li

@@ -1,0 +1,20 @@
+Como um usuário do Pyccuracy
+Eu quero testar a ação de esperar que o div desapareça
+Para garantir que o Pyccuracy funciona em outras línguas
+
+Cenário 1 - Verificando que eu posso esperar por um element desaparecer pelo tempo default de 5 segundos
+Dado que
+    Eu navego para "page_tests.htm"
+Quando
+    Eu espero o elemento "divWaitForInvisible" desaparecer
+Então
+    Eu não vejo o elemento "divWaitForInvisible"
+
+Cenário 2 - Verificando que eu posso esperar por um element desaparecer por um número específico de segundos
+Dado que
+    Eu navego para "page_tests.htm"
+Quando
+    Eu espero o elemento "divWaitForInvisible" desaparecer por 10 segundos
+Então
+    Eu não vejo o elemento "divWaitForInvisible"
+

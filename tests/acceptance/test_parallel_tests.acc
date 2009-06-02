@@ -1,0 +1,57 @@
+As a Google User
+I want to search Google
+So that I can test Pyccuracy
+
+Scenario 1 - Searching for Hello World
+Given
+  I go to "http://www.google.com"
+When
+  I fill "q" textbox with "Hello World"
+  And I click "btnG" button
+Then
+  I see "q" textbox contains "Hello World"
+
+Scenario 2 - Searching for Monty Python
+Given
+  I go to "http://www.google.com"
+When
+  I fill "q" textbox with "Monty Python"
+  And I click "btnG" button
+Then
+  I see "q" textbox contains "Monty Python"
+
+Scenario 3 - Searching for Hello World
+Given
+  I go to "http://www.google.com"
+When
+  I fill "q" textbox with "Hello World"
+  And I click "btnG" button
+Then
+  I see "q" textbox contains "Hello World"
+
+Scenario 4 - Searching for Monty Python
+Given
+  I go to "http://www.google.com"
+When
+  I fill "q" textbox with "Monty Python"
+  And I click "btnG" button
+Then
+  I see "q" textbox contains "Monty Python"
+
+Scenario 5 - Searching for Hello World
+Given
+  I go to "http://www.google.com"
+When
+  I fill "q" textbox with "Hello World"
+  And I click "btnG" button
+Then
+  I see "q" textbox contains "Hello World"
+
+Scenario 6 - Searching for Monty Python
+Given
+  I go to "http://www.google.com"
+When
+  I fill "q" textbox with "Monty Python"
+  And I click "btnG" button
+Then
+  I see "q" textbox contains "Monty Python"

@@ -1,0 +1,56 @@
+=================
+Sumário de Testes
+=================
+#if ($run_status == "FAILED")Status: ${BG_RED}$run_status#end
+#if ($run_status == "SUCCESSFUL")Status: ${GREEN}$run_status#end
+#if ($run_status == "UNKNOWN")Status: ${CYAN}$run_status#end
+${NORMAL}
+
+Estatísticas de Teste
+---------------------
+Stories com Sucesso......${GREEN}$successful_stories${NORMAL} of ${GREEN}$total_stories${NORMAL} (${GREEN}$successful_story_percentage%${NORMAL})
+Cenários com Sucesso.....${GREEN}$successful_scenarios${NORMAL} of ${GREEN}$total_scenarios${NORMAL} (${GREEN}$successful_scenario_percentage%${NORMAL})
+#if ($run_status == "FAILED")
+Stories com Falha........${RED}$failed_stories${NORMAL} de ${RED}$total_stories${NORMAL} (${RED}$failed_story_percentage%${NORMAL})
+Cenários com Falha.......${RED}$failed_scenarios${NORMAL} de ${RED}$total_scenarios${NORMAL} (${RED}$failed_scenario_percentage%${NORMAL})#{else}
+Stories com Falha........$failed_stories de $total_stories ($failed_story_percentage%)
+Cenários com Falha.......$failed_scenarios de $total_scenarios ($failed_scenario_percentage%)#end
+
+
+Tempo total: $test_run_seconds segs
+#if($has_failed_scenarios)
+
+
+${BG_RED}Stories / Cenários com Falha${NORMAL}
+----------------------------
+#foreach ($scenario in $failed_scenario_instances)Story..........Como um $scenario.story.as_a Eu quero $scenario.story.i_want_to Para que $scenario.story.so_that
+Arquivo........$scenario.story.identity
+Cenário........$scenario.index - $scenario.title
+    Dado que
+#foreach ($action in $scenario.givens)#if($action.status != "FAILED")        $action.description - $action.status
+#end
+#if($action.status == "FAILED")${RED}        $action.description - $action.status - $action.error${NORMAL}
+#end#end
+    Quando
+#foreach ($action in $scenario.whens)#if($action.status != "FAILED")        $action.description - $action.status
+#end
+#if($action.status == "FAILED")${RED}        $action.description - $action.status - $action.error${NORMAL}
+#end#end
+    Então
+#foreach ($action in $scenario.thens)#if($action.status != "FAILED")        $action.description - $action.status
+#end
+#if($action.status == "FAILED")${RED}        $action.description - $action.status - $action.error${NORMAL}
+#end#end
+#end
+#end
+#if($has_no_header_files)
+
+${BG_RED}Arquivos com cabeçalho Inválido${NORMAL}
+-------------------------------
+Os arquivos nesta área estão aqui porque não continham o cabeçalho
+padrão do Pyccuracy (${CYAN}Como um/Eu quero/Para que${NORMAL}) ou
+não especificaram nenhum cenário válido (usando a sintaxe ${CYAN}Cenário # - Descrição${NORMAL}).
+
+Será que você esqueceu de usar o parâmetro ${CYAN}-l <en-us, pt-br, etc>${NORMAL} (ou ${CYAN}--language=en-us${NORMAL})?
+
+#foreach ($story in $no_header_files)${RED}  $story${NORMAL}#end#end

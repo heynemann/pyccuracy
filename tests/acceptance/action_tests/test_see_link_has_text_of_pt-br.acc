@@ -1,0 +1,14 @@
+Como um usuário do Pyccuracy
+Eu quero testar a ação de verificar o texto de um link
+Para garantir que o Pyccuracy funciona em outras línguas
+
+Cenário 1 - Garantindo que o link da página de testes tem o texto correto
+Dado que
+	Eu navego para "link_tests.htm"
+Quando
+	#A página termina de carregar
+Então
+	Eu vejo que o link "lnkGoogle" contém "Google 1"
+	E eu vejo que o link "lnkGoogle2" contém "Google 2"
+	E eu vejo que o link "lnkGoogle" contém exatamente "Google 1"
+	E eu vejo que o link "lnkGoogle2" contém exatamente "Google 2"

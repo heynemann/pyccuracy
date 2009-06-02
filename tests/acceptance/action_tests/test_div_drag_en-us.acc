@@ -1,0 +1,11 @@
+As a Pyccuracy User
+I want to test the drag div action
+So that I can make sure Pyccuracy works
+
+Scenario 1 - Checking that a given div gets drag and dropped
+Given
+    I go to "drag_tests.htm"
+When
+    I drag the "dragFrom" div to the "dragTo" div
+Then
+    I see "dragresult" div contains "Dropped!"

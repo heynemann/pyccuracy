@@ -1,0 +1,19 @@
+As a Pyccuracy User
+I want to test the click link action
+So that I can make sure Pyccuracy works
+
+Scenario 1 - Checking that we can click a link by name
+Given
+	I go to "link_tests.htm"
+When
+	I click "lnkItWorks" link
+Then
+	I see "It Works!" title
+	
+Scenario 2 - Checking that we can click a link by id
+Given
+	I go to "link_tests.htm"
+When
+	I click "lnkItWorks2" link
+Then
+	I see "It Works!" title

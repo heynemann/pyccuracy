@@ -1,0 +1,175 @@
+#BDD Keywords
+default_pattern = *.acc
+as_a = As a
+i_want_to = I want to
+so_that = So that
+scenario = Scenario
+given = Given
+when = When
+then = Then
+invalid_test_files = invalid test files
+files_without_header = test files without the proper header
+story_status = Story Status
+
+#Supported elements
+supported_elements = button|radio button|div|link|checkbox|select|textbox|image|element|paragraph|ul|li
+button_category = button
+checkbox_category = checkbox
+div_category = div
+image_category = image
+link_category = link
+page_category = page
+radio button_category = radio_button
+select_category = select
+textbox_category = textbox
+paragraph_category = paragraph
+ul_category = ul
+li_category = li
+element_category = *
+
+#Test Run Summary
+test_run_summary = Test run Summary
+stories_ran_successfully = %d stories ran successfully (%.2f%%)
+stories_that_failed = %d stories had failures (%.2f%%)
+scenarios_ran_successfully = %d scenarios ran successfully (%.2f%%)
+scenarios_that_failed = %d scenarios had failures (%.2f%%)
+
+#Test Run Timing
+test_run_timing = Test Run Timings
+
+#Scenario Starter Regex
+scenario_starter_regex = ^Scenario (\d+) - (.+)$
+
+#Actions Regular Expressions
+page_go_to_regex = ^(And )?I go to (?P<url>[\"]([\w:/._-]+)[\"]|([\w\s_.-]+))$
+page_am_in_regex = ^(And )?I am in the (?P<url>[\"]([\w:/._-]+)[\"]|([\w\s_.-]+))$
+page_see_title_regex = ^(And )?I see [\"](?P<title>.+)[\"] title$
+page_wait_for_page_to_load_regex = ^(And )?I wait for the page to load( for (?P<timeout>\d+) seconds)?$
+page_wait_for_seconds_regex = ^(And )?I wait for (?P<timeout>\d+([.]d+)?) second[s]?$
+page_check_contains_markup_regex = ^(And )?I see that current page contains [\"\'](?P<expected_markup>.+)[\'\"]$
+page_check_does_not_contain_markup_regex = ^(And )?I see that current page does not contain [\"\'](?P<expected_markup>.+)[\'\"]$
+
+checkbox_is_checked_regex = ^(And )?I see the [\"](?P<checkbox_key>.+)[\"] checkbox is checked$
+checkbox_is_not_checked_regex = ^(And )?I see the [\"](?P<checkbox_key>.+)[\"] checkbox is not checked$
+checkbox_check_regex = ^(And )?I check the [\"](?P<checkbox_key>.+)[\"] checkbox$
+checkbox_uncheck_regex = ^(And )?I uncheck the [\"](?P<checkbox_key>.+)[\"] checkbox$
+
+element_contains_style_regex = ^(And )?I see [\"](?P<element_key>.+)[\"] (?P<element_type><element selector>) has [\"](?P<style_name>.+)[\"] style$
+element_does_not_contain_style_regex = ^(And )?I see [\"](?P<element_key>.+)[\"] (?P<element_type><element selector>) does not have [\"](?P<style_name>.+)[\"] style$
+element_is_enabled_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) is enabled$
+element_is_disabled_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) is disabled$
+element_click_regex = ^(And )?I click [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>)(?P<should_wait> and wait)?$
+element_is_not_visible_regex = ^(And )?I do not see [\"](?P<element_key>.+)[\"] (?P<element_type><element selector>)$
+element_is_visible_regex = ^(And )?I see [\"](?P<element_key>.+)[\"] (?P<element_type><element selector>)$
+element_wait_for_disappear_regex = ^(And )?I wait for [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) to disappear( for (?P<timeout>\d+) seconds)?$
+element_wait_for_presence_regex = ^(And )?I wait for [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) to be present( for (?P<timeout>\d+) seconds)?$
+element_drag_drop_regex = ^(And )?I drag the [\"](?P<from_element_key>.+)[\"] (?P<from_element_type><element selector>) to the [\"](?P<to_element_key>.+)[\"] (?P<to_element_type><element selector>)?$
+element_mouseover_regex = ^(And )?I mouseover [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>)$
+element_mouseout_regex = ^(And )?I mouseout [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>)$
+
+#Element Contains
+element_contains_text_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) contains [\"](?P<text>.+)[\"]$
+element_does_not_contain_text_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) does not contain [\"](?P<text>.+)[\"]$
+element_contains_markup_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) contains [\"](?P<markup>.+)[\"] markup$
+element_does_not_contain_markup_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) does not contain [\"](?P<markup>.+)[\"] markup$
+
+#Element Matches
+element_matches_text_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) matches [\"](?P<text>.+)[\"]$
+element_does_not_match_text_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) does not match [\"](?P<text>.+)[\"]$
+element_matches_markup_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) matches [\"](?P<markup>.+)[\"] markup$
+element_does_not_match_markup_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) does not match [\"](?P<markup>.+)[\"] markup$
+
+image_has_src_regex = ^(And )?I see [\"](?P<image_name>.+)[\"] image has src of [\"](?P<src>.+)[\"]$
+image_does_not_have_src_regex = ^(And )?I see [\"](?P<image_name>.+)[\"] image does not have src of [\"](?P<src>.+)[\"]$
+
+link_has_href_regex = ^(And )?I see [\"](?P<link_name>.+)[\"] link has [\"](?P<href>.+)[\"] href$
+link_has_text_regex = ^(And )?I see [\"](?P<link_name>.+)[\"] link has [\"](?P<text>.+)[\"] text$
+
+select_has_selected_index_regex = ^(And )?I see [\"](?P<select_name>.+)[\"] select has selected index of (?P<index>\d+)$
+select_has_selected_value_regex = ^(And )?I see [\"](?P<select_name>.+)[\"] select has selected value of [\"](?P<option_value>.+)[\"]$
+select_has_selected_text_regex = ^(And )?I see [\"](?P<select_name>.+)[\"] select has selected text of [\"](?P<text>.+)[\"]$
+select_option_by_index_regex = ^(And )?I select the option with index of (?P<index>\d+) in [\"](?P<select_name>.+)[\"] select$
+select_option_by_value_regex = ^(And )?I select the option with value of [\"](?P<option_value>.+)[\"] in [\"](?P<select_name>.+)[\"] select$
+select_option_by_text_regex = ^(And )?I select the option with text of [\"](?P<text>.+)[\"] in [\"](?P<select_name>.+)[\"] select$
+select_does_not_have_selected_index_regex = ^(And )?I see [\"](?P<select_name>.+)[\"] select does not have selected index of (?P<index>\d+)$
+select_does_not_have_selected_value_regex = ^(And )?I see [\"](?P<select_name>.+)[\"] select does not have selected value of [\"](?P<value>.+)[\"]$
+select_does_not_have_selected_text_regex = ^(And )?I see [\"](?P<select_name>.+)[\"] select does not have selected text of [\"](?P<text>.+)[\"]$
+
+textbox_type_regex = ^(And )?I fill [\"](?P<textbox_name>.+)[\"] textbox with [\"](?P<text>.+)[\"]$
+textbox_contains_text_regex = ^(And )?I see [\"](.+)[\"] textbox contains [\"](.+)[\"]$
+textbox_does_not_contain_text_regex = ^(And )?I see [\"](.+)[\"] textbox does not contain [\"](.+)[\"]$
+textbox_matches_text_regex = ^(And )?I see [\"](.+)[\"] textbox matches [\"](.+)[\"]$
+textbox_does_not_match_text_regex = ^(And )?I see [\"](.+)[\"] textbox does not match [\"](.+)[\"]$
+textbox_is_empty_regex = ^(And )?I see [\"](?P<textbox_name>.+)[\"] textbox is empty$
+textbox_is_not_empty_regex = ^(And )?I see [\"](?P<textbox_name>.+)[\"] textbox is not empty$
+textbox_clean_regex = ^(And )?I clean [\"](?P<textbox_name>.+)[\"] textbox$
+
+#Action Failure Messages
+page_go_to_failure = The url "%s" is not valid. Did you forget to use the -u (or --url) parameter ?
+page_am_in_failure = The url "%s" was not registered in any pages. Did you forget to include a class that inherits from Page with the given url?
+page_see_title_failure = The page title (%s) does not match the expected title (%s)
+page_check_contains_markup_failure = The current page does not contain "%s" markup.
+page_check_does_not_contain_markup_failure = The current page contains "%s" markup, when it should not.
+
+checkbox_is_checked_failure = The checkbox with name or id %s is not checked and should be.
+checkbox_is_not_checked_failure = The checkbox with name or id %s is checked and should not be.
+
+div_contains_text_failure = The div with name or id %s should contain "%s", but it's current text is "%s".
+div_contains_markup_failure = The div with name or id %s should contain "%s" markup, but it's current markup is "%s".
+div_does_not_contain_text_failure = The div with name or id %s should not contain "%s", but it's current text is "%s".
+div_matches_markup_failure = The div with name or id %s should match "%s" markup, but it's current markup is "%s".
+div_does_not_match_markup_failure = The div with name or id %s should not match "%s" markup, but it's current markup is "%s".
+
+element_contains_style_failure = The %s with name or id %s should contain "%s" style.
+element_does_not_contain_style_failure = The %s with name or id %s should not contain "%s" style.
+element_is_enabled_failure = The %s with name or id %s is disabled, when it should be enabled.
+element_is_disabled_failure = The %s with name or id %s is enabled, when it should be disabled.
+element_is_visible_failure = The %s with name or id %s does not exist or is not visible.
+element_is_not_visible_failure = The %s with name or id %s is visible, when it should not exist or be visible.
+element_wait_for_disappear_failure = The %s with name or id %s should disappear within %d second(s), but it still present.
+element_wait_for_presence_failure = The %s with name or id %s should be present within %d second(s), but is not present or do not exist.
+element_is_not_visible_for_drag_failure = The element being dragged (%s) does not exist or is not visible.
+element_contains_text_failure = The %s with name or id %s should contain "%s", but it's current text is "%s".
+element_contains_markup_failure = The %s with name or id %s should contain "%s" markup, but it's current markup is "%s".
+element_does_not_contain_text_failure = The %s with name or id %s should not contain "%s", but it's current text is "%s".
+element_contains_style_failure = The %s with name or id %s should contain "%s" style.
+
+image_has_src_failure = The image with name or id %s should have "%s" as src, but has "%s".
+image_does_not_have_src_failure = The image with name or id %s should not have "%s" as src, but has "%s".
+
+link_has_href_failure = The link with name or id %s should have "%s" as href, but has "%s".
+link_has_text_failure = The link with name or id %s should have "%s" as text, but has "%s".
+
+radio_button_more_than_one_element_returned_failure = More than one element was returned for the element with name %s (resolved to %s). %d elements were found.
+
+select_has_selected_index_failure = The selected index for select with name or id %s should be %d, but is %d.
+select_has_selected_value_failure = The selected value for select with name or id %s should be %s, but is %s.
+select_has_selected_text_failure = The selected text for select with name or id %s should be %s, but is %s.
+select_does_not_have_selected_index_failure = The selected index for select with name or id %s should not be %d, but it is %d.
+select_does_not_have_selected_value_failure = The selected value for select with name or id %s should not be %s, but it is %s.
+select_does_not_have_selected_text_failure = The selected text for select with name or id %s should not be %s, but is %s.
+select_option_by_index_failure = The option in the select %s with index of %d was not found or can't be selected.
+select_option_by_value_failure = The option in the select %s with value of "%s" was not found or can't be selected.
+select_option_by_text_failure = The option in the select %s with text of "%s" was not found or can't be selected.
+
+textbox_contains_text_failure = The textbox with name or id %s should contain "%s", but it's current text is "%s".
+textbox_does_not_contain_text_failure = The textbox with name or id %s shouldn't contain "%s", but it's current text is "%s".
+textbox_matches_text_failure = The textbox with name or id %s should match "%s", but it's current text is "%s".
+textbox_does_not_match_text_failure = The textbox with name or id %s shouldn't match "%s", but it's current text is "%s".
+textbox_is_empty_failure = The textbox with name or id %s is not empty.
+textbox_is_not_empty_failure = The textbox with name or id %s is empty.
+
+timeout_failure = The action wait for page to load timed out after waiting for %d ms.
+
+#Error Messages
+invalid_scenario_error = \n>>>>>>>>>>>>>> "%s" <<<<<<<<<<<<<<\n\nThe line above does not match any actions. \nIf you just need a text like "I wait for the page to finish loading"\n or something like this, prefix your line with a # sign. \n\nScenario: %s - %s\nFilename: %s
+language_lookup_error = The key %s was not found in the language definitions.
+invalid_browser_driver_error = The requested browser driver (%s) was not found. Available drivers are: \n%s
+no_scenario_line_error = There was no scenario line ("Scenario X - Description") before the action: %s
+scenario_regex_match_error = Could not match the line: %s\n with the regex of scenario_starter_regex - %r
+
+#Test Summary
+test_run_status = Test Run Status: %s
+test_run_timing = Ran all %d scenarios in %0.2f s
+test_run_threshold = Test run threshold: %0.2f scenarios/second
+test_run_failures = Failures

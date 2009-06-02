@@ -1,0 +1,2 @@
+prune dist
+prune build

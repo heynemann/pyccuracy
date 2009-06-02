@@ -1,0 +1,16 @@
+
+${BG_RED}Parsing Error${NORMAL}
+=============
+
+Error Details
+-------------
+Action with error..... ${RED}$action_text${NORMAL}
+Action Scenario....... ${CYAN}$scenario.index - $scenario.title${NORMAL}
+Scenario file......... ${CYAN}$filename${NORMAL}
+
+Error Description
+-----------------
+The action line does not match any of the registered actions.
+
+If you just need a text like "I wait for the page to finish loading"
+or something like this, prefix your line with a # sign.

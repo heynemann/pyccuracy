@@ -1,0 +1,15 @@
+Como um usuário do Pyccuracy
+Eu quero testar a ação de não ver uma ul
+Para garantir que o Pyccuracy funciona em outras línguas
+
+Cenário 1 - Garantindo que a ul da página de testes está invisível
+Dado que
+    Eu navego para "ul_tests.htm"
+Quando
+    #A página termina de carregar
+Então
+    Eu não vejo a ul "ulHidden1"
+    E eu não vejo a ul "ulHidden2"
+    E eu não vejo a ul "ulHidden3"
+    E eu não vejo a ul "ulHidden4"
+    E eu não vejo a ul "ulHidden5"

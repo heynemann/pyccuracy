@@ -1,0 +1,32 @@
+
+<html>
+	<head>
+		<title>Pyccuracy Tests - Link</title>
+	</head>
+	<body>
+		Visible Links: <br />
+		<a href="#" name="lnkSomething">Something</a>
+		<a href="#" id="lnkSomethingElse">Something Else</a>
+		
+		Invisible Links: <br />
+		<a href="#" name="invisibleLink1" style="display:none;">Invisible Link 1</a>
+		<a href="#" name="invisibleLink2" style="visibility:hidden;">Invisible Link 2</a>
+		<a href="#" id="invisibleLink3" style="display:none;">Invisible Link 3</a>
+		<a href="#" id="invisibleLink4" style="visibility:hidden;">Invisible Link 4</a>
+		
+		<a name="lnkItWorks" href="result_worked.htm">It Worked</a>
+		<a id="lnkItWorks2" href="result_worked.htm">It Worked 2</a>
+		
+		<a name="lnkEnabled" href="result_worked.htm">It Worked</a>
+		<a id="lnkEnabled2" href="result_worked.htm">It Worked</a>
+		
+		<a name="lnkDisabled" disabled="disabled" href="result_worked.htm">It Worked</a>
+		<a id="lnkDisabled2" disabled="disabled" href="result_worked.htm">It Worked</a>
+		
+		<a name="lnkGoogle" href="http://www.google.com">Google 1</a>
+		<a id="lnkGoogle2" href="http://www.google.com">Google 2</a>
+		
+		<a href="javascript:" id="lnkMouseOver" onMouseOver="document.getElementById('divMouseOverLink').style.display = 'block';">Mouse over me</a>
+		<div id="divMouseOverLink" style="display:none;">Link Mouse Over</div>
+	</body>
+</html>

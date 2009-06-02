@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<title>Pyccuracy Tests - Div</title>
+                <style type="text/css">
+                    #divMouseOut {
+                        border:1px solid black;
+                        float:left;
+                        padding:1em;
+                    }
+                    #divMouseOutChild {
+                        border:1px solid red;
+                        background: #445;
+                        float:right;
+                        color:white;
+                        padding:1em;
+                    }
+                </style>
+	</head>
+	<body>
+        <div id="divSomething">Test</div>
+        <div name="divSomething2">Test</div>
+
+        <div id="divHidden1" style="display:none;">Hidden</div>
+        <div name="divHidden2" style="display:none;">Hidden</div>
+        <div id="divHidden3" style="visibility:hidden;">Hidden</div>
+        <div name="divHidden4" style="visibility:hidden;">Hidden</div>
+
+        <div id="divMouseOut" onMouseOut="document.getElementById('divMouseOutChild').style.display = 'block';" onMouseOver="document.getElementById('divMouseOutChild').style.display = 'none';">Some Div with child <div id="divMouseOutChild">I have a parent!</div></div>
+        <br style="clear:both;" />
+        <div id="divMouseOver" onMouseOver="document.getElementById('divMouseOverDiv').style.display = 'block';">Some Div</div>
+		<div id="divMouseOverDiv" style="display:none;">Div Mouse Over</div>
+		<div id="divContains">Some large text</div>
+
+		<div id="divContainsMarkup"><p>some</p> markup</div>
+		<div id="divContainsStyle1" class="3blablabla3 blabla"><p>some</p> markup</div>
+		<div name="divContainsStyle2" class="3blablabla3 blabla"><p>some</p> markup</div>
+	</body>
+</html>

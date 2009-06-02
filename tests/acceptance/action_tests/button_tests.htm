@@ -1,0 +1,65 @@
+
+<html>
+    <head>
+        <title>Pyccuracy Tests - Button</title>
+        <link rel="stylesheet" href="css/smoothness/jquery-ui-1.7.1.custom.css" type="text/css" />
+        <script type="text/javascript" language="javascript" src="js/jquery-1.3.2.min.js"></script>
+        <script type="text/javascript" language="javascript" src="js/jquery-ui-1.7.1.custom.min.js"></script>
+        <script type="text/javascript" language="javascript">
+            $(function(){
+                $("#disableSecond").click(function(){
+                    $('#toBeDisabled').attr('disabled','disabled');
+                    $('#toBeDisabled').removeAttr('disabled');
+                    $('#toBeDisabled').attr('disabled','disabled');
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <input type="button" name="btnSomething" value="Something" />
+        <input type="button" id="btnSomethingElse" value="Something" />
+        <input type="submit" name="btnSomething2" value="Something" />
+        <input type="submit" id="btnSomethingElse2" value="Something" />
+        <button name="btnSomething3">Something</button>
+        <button id="btnSomethingElse3">Something Else</button>
+        
+        <form action="button_tests.htm" method="post">
+            <input type="submit" name="btnSend" value="Submit"></input>
+        </form>
+        
+        <input type="button" name="btnEnabled" value="Something" />
+        <input type="button" id="btnEnabled2" value="Something" />
+        <input type="submit" name="btnEnabled3" value="Something" />
+        <input type="submit" id="btnEnabled4" value="Something" />
+        <button name="btnEnabled5">Something</button>
+        <button id="btnEnabled6">Something Else</button>
+        
+        <input type="button" name="btnDisabled" disabled="disabled" value="Something" />
+        <input type="button" id="btnDisabled2" disabled="disabled" value="Something Else" />
+        <input type="submit" name="btnDisabled3" disabled="disabled" value="Something" />
+        <input type="submit" id="btnDisabled4" disabled="disabled" value="Something" />
+        <button name="btnDisabled5" disabled="disabled">Something</button>
+        <button id="btnDisabled6" disabled="disabled">Something Else</button>
+
+        <input type="button" name="btnHidden1" style="display:none" value="Something" />
+        <input type="button" id="btnHidden2" style="display:none" value="Something Else" />
+        <input type="submit" name="btnHidden3" style="display:none" value="Something" />
+        <input type="submit" id="btnHidden4" style="display:none" value="Something" />
+        <button name="btnHidden5" style="display:none">Something</button>
+        <button id="btnHidden6" style="display:none">Something Else</button>
+
+        <input type="button" name="btnHidden7" style="visibility:hidden" value="Something" />
+        <input type="button" id="btnHidden8" style="visibility:hidden" value="Something Else" />
+        <input type="submit" name="btnHidden9" style="visibility:hidden" value="Something" />
+        <input type="submit" id="btnHidden10" style="visibility:hidden" value="Something" />
+        <button name="btnHidden11" style="visibility:hidden">Something</button>
+        <button id="btnHidden12" style="visibility:hidden">Something Else</button>
+        
+        <button name="btnMouseOver" onMouseOver="document.getElementById('divMouseOverButton').style.display = 'block';">Hover button</button>
+        <div id="divMouseOverButton" style="display:none;">Button Mouse Over</div>
+        
+        <br /><br />
+        <button id="disableSecond">Disable Other</button><br />
+        <button id="toBeDisabled">To be Disabled</button>
+    </body>
+</html>

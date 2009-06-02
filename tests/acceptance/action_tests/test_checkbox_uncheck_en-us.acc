@@ -1,0 +1,13 @@
+As a Pyccuracy User
+I want to test the uncheck checkbox action
+So that I can make sure Pyccuracy works
+
+Scenario 1 - Checking that a given checkbox gets unchecked
+Given
+	I go to "checkbox_tests.htm"
+When
+	I uncheck the "chkChecked" checkbox
+	And I uncheck the "chkChecked2" checkbox
+Then
+	I see the "chkChecked" checkbox is not checked
+	And I see the "chkChecked2" checkbox is not checked

@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title>Pyccuracy Tests - Page</title>
+        <script type="text/javascript" language="javascript">
+            function show_elements(){
+                document.getElementById('divWaitForVisible').style.display = 'block';
+                document.getElementById('divWaitForInvisible').style.display = 'none';
+            }
+        </script>
+    </head>
+    <body onload="window.setTimeout('show_elements()', 2000);">
+        <img src="logo_pyccuracy.gif" onclick="window.location='result_worked.htm';" name="imgSubmit" />
+        <div id="divWaitForVisible" style="display:none;">Div Wait For Visible</div>
+        <div id="divWaitForInvisible" style="display:block;">Div Wait For Invisible</div>
+    </body>
+</html>

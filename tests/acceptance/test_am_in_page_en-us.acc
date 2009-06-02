@@ -1,0 +1,11 @@
+As a Pyccuracy User
+I want to test the am in page action
+So that I can make sure Pyccuracy works
+
+Scenario 1 - Checking that I am in a page
+Given
+	I go to Test Custom Page
+When
+	I am in the Test Am In Page
+Then
+	I see "other div" div

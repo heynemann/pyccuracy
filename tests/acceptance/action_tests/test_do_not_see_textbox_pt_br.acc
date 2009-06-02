@@ -1,0 +1,13 @@
+Como um usuário do Pyccuracy
+Eu quero testar a ação de ver uma caixa de texto
+Para garantir que o Pyccuracy funciona em outras línguas
+
+Cenário 1 - Garantindo que as caixas de texto da página de testes estão la
+Dado que
+	Eu navego para "textbox_tests.htm"
+Quando
+	#A página termina de carregar
+Então
+	Eu vejo a caixa de texto "txtContains6"
+	E eu clico no botão "hide6"
+	E eu não vejo a caixa de texto "txtContains6"

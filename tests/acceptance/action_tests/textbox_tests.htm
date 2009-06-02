@@ -1,0 +1,55 @@
+<html>
+	<head>
+		<title>Pyccuracy Tests - Link</title>
+                <script type="text/javascript">
+                    function hide(element) {
+                        element.style.display = 'none';
+                    }
+                </script>
+	</head>
+	<body>
+		<input type="text" name="txtSomething" />
+		<input name="txtSomethingElse" />
+		<input type="text" id="txtSomething2" />
+		<input id="txtSomethingElse2" />
+		<textarea name="txtSomething3"></textarea>
+		<textarea id="txtSomethingElse3"></textarea>
+		<br />		<br />		<br />		<br />		<br />
+		<input type="text" name="txtContains1" value="Some large text" />
+		<input name="txtContains2" value="Some large text" />
+		<input type="text" id="txtContains3" value="Some large text"  />
+		<input id="txtContains4" value="Some large text" />
+		<textarea name="txtContains5">Some large text</textarea>
+		<textarea id="txtContains6" >Some large text</textarea>
+		<button id="hide6" onClick="hide(document.getElementById('txtContains6'))">Hide</button>
+
+        <br />		<br />		<br />		<br />		<br />
+		<input type="text" name="txtMatches1" value="Some large text" />
+		<input name="txtMatches2" value="Some large text" />
+		<input type="text" id="txtMatches3" value="Some large text"  />
+		<input id="txtMatches4" value="Some large text" />
+		<textarea name="txtMatches5">Some large text</textarea>
+		<textarea id="txtMatches6">Some large text</textarea>
+
+		<input type="text" name="txtDisabled1" disabled="disabled" />
+		<input name="txtDisabled2" disabled="disabled" />
+		<input type="text" id="txtDisabled3" disabled="disabled" />
+		<input id="txtDisabled4" disabled="disabled" />
+		<textarea name="txtDisabled5" disabled="disabled">Some large text</textarea>
+		<textarea id="txtDisabled6" disabled="disabled">Some large text</textarea>
+
+		<input type="text" name="txtEnabled1" />
+		<input name="txtEnabled2" />
+		<input type="text" id="txtEnabled3" />
+		<input id="txtEnabled4" />
+		<textarea name="txtEnabled5">Some large text</textarea>
+		<textarea id="txtEnabled6">Some large text</textarea>
+
+		<input type="text" name="txtClean1" value="Text to be cleaned" />
+		<input name="txtClean2" value="Text to be cleaned" />
+		<input type="text" id="txtClean3" value="Text to be cleaned" />
+		<input id="txtClean4" value="Text to be cleaned" />
+		<textarea name="txtClean5">Text to be cleaned</textarea>
+		<textarea id="txtClean6">Text to be cleaned</textarea>
+	</body>
+</html>

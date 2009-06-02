@@ -1,0 +1,19 @@
+As a someone
+I want to do something
+So that I'm happy
+
+Scenario 1 - Test Scenario
+Given
+    I do something
+When
+    I do something else
+Then
+    I do yet another thing
+
+Scenario 2 - Test Scenario
+Given
+    I do something
+When
+    #some custom comment
+Then
+    I do yet another thing

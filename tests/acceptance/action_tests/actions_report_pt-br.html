@@ -1,0 +1,6207 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+            Pyccuracy - Tests Run Report -
+            <span class="date"></span>
+</title>
+<style>
+          
+          .header
+          {
+          font-size: medium;
+          font-family: Helvetica;
+          }
+          td.header
+          {
+          background-color: #dedede;
+          border: solid 1px black;
+          height: 23px;
+          }
+          .footer
+          {
+          font-size: xx-small;
+          font-family: Helvetica;
+          }
+          td.footer
+          {
+          background-color: #dedede;
+          border: solid 1px black;
+          height: 23px;
+          }
+          .date
+          {
+          color: dimgray;
+          }
+          .report
+          {
+          font-size: x-small;
+          font-family: Helvetica;
+          }
+          td.report
+          {
+          border-left: solid 1px black;
+          border-right: solid 1px black;
+          border-top: solid 0px black;
+          border-bottom: solid 0px black;
+          }
+          .runFailed
+          {
+          font-size: small;
+          font-weight: bold;
+          color: red;
+          }
+          .runSucceeded
+          {
+          font-size: small;
+          font-weight: bold;
+          color: darkgreen;
+          }
+          .summary
+          {
+          font-size: x-small;
+          font-family: Helvetica;
+          }
+          td.summary
+          {
+          background-color: lightblue;
+          border: dashed 1px dimgray;
+          }
+          .storiesHeader
+          {
+          font-size: small;
+          font-weight: bold;
+          font-family: Helvetica;
+          }
+          td.storiesHeader
+          {
+          background-color: lightGreen;
+          }
+          .storiesBody
+          {
+          font-size: x-small;
+          font-family: Helvetica;
+          }
+          td.storiesBody
+          {
+          border-top: solid 1px lightGreen;
+          border-bottom: solid 2px lightGreen;
+          border-left: solid 2px lightGreen;
+          border-right: solid 2px lightGreen;
+          padding: 6px 6px 6px 6px;
+          }
+          .successfulTests
+          {
+          color: darkgreen;
+          }
+          .failedTests
+          {
+          color: red;
+          }
+          .condition
+          {
+          font-size: x-small;
+          padding-left: 15px;
+          }
+          .action
+          {
+          font-size: x-small;
+          padding-left: 30px;
+          }
+          .actionTime
+          {
+          font-size: x-small;
+          color: Navy;
+          }
+          .odd
+          {
+          background-color: #dedede;
+          height: 18px;
+          }
+          .even
+          {
+          background-color: white;
+          height: 18px;
+          }
+          .totalTime
+          {
+          background-color: dimgray;
+          color: White;
+          font-size:x-small;
+          height: 18px;
+          }
+          .totalTimeFinishTime
+          {
+          color: lightblue;
+          font-size:x-small;
+          }
+          .story
+          {
+          background-color: lightGreen;
+          padding: 6px 6px 6px 6px;
+          }
+          .failedStory
+          {
+          background-color: #ffbbbb;
+          padding: 6px 6px 6px 6px;
+          }
+          .scenarios
+          {
+          padding-left: 12px;
+          padding-right: 12px;
+          padding-top: 6px;
+          padding-bottom: 6px;
+          border-top: solid 0px lightGreen;
+          border-bottom: solid 2px lightGreen;
+          border-left: solid 2px lightGreen;
+          border-right: solid 2px lightGreen;
+          }
+          
+          .failedScenarios
+          {
+          padding-left: 12px;
+          padding-right: 12px;
+          padding-top: 6px;
+          padding-bottom: 6px;
+          border-top: solid 0px #ffbbbb;
+          border-bottom: solid 2px #ffbbbb;
+          border-left: solid 2px #ffbbbb;
+          border-right: solid 2px #ffbbbb;
+          }
+          
+          .scenarioTitle{
+            font-weight:bold;
+            color:darkgreen;
+          }
+          
+          .failedScenarioTitle{
+            font-weight:bold;
+            color:red;
+          }
+          
+        </style>
+<script type="text/javascript">
+
+          
+          function lowerThan(value, comparison){
+            return value <comparison;
+          }
+
+          function greaterThan(value, comparison){
+            return value > comparison;
+          }
+          
+          
+            document.isCollapsed = true;
+            
+            function getElementsByClass(node,searchClass,tag) {
+                var classElements = new Array();
+                var elements = node.getElementsByTagName(tag); // use "*" for all elements
+                
+                var pattern = new RegExp("\b" + searchClass + "\b");
+                for (i = 0, j = 0; lowerThan(i,elements.length); i++) {
+                  var className = elements[i].className;
+                  
+                  if (greaterThan(className.indexOf(searchClass), -1)) {
+                    classElements[j] = elements[i];
+                    j++;
+                  }
+                }
+                return classElements;
+            }
+          
+            function toggleAll(){
+              var elements = getElementsByClass(document, 'scenarios', 'div');
+              toggleElements(elements);
+              elements = getElementsByClass(document, 'failedScenarios', 'div');
+              toggleElements(elements);
+              document.isCollapsed = !document.isCollapsed;
+            }
+            
+            function toggleElements(elements){
+              for (i=0; lowerThan(i, elements.length); i++){
+                var element = elements[i];
+                element.style.display = document.isCollapsed ? 'block' : 'none';
+              }
+            }
+            
+            function toggle(divId){
+              div = document.getElementById(divId);
+              if (div!=null){
+                if (div.style.display != 'none' ){
+                  div.style.display = 'none';
+                }
+                else {
+                  div.style.display = 'block'; 
+                }
+              }
+            }
+          
+        </script>
+</head>
+<body><table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr><td class="header">
+        Pyccuracy - Tests Run Report -
+        <span class="date">26/05/2009 17:46:55</span>
+</td></tr>
+<tr><td class="report" style="padding-top: 6px; padding-bottom: 6px; padding-left: 12px;                 padding-right: 12px;">
+<table border="0" cellspacing="0" cellpadding="0" style="width: 33%">
+<tr><td style="padding: 3px 3px 3px 3px"><span class="runSucceeded">Test run succeeded!</span></td></tr>
+<tr><td class="summary" style="padding: 3px 3px 3px 3px">
+<b>Summary:</b><br>
+          Total Stories: 75<br>
+          Total Scenarios: 84<br>
+          Scenarios Succeeded: <span class="successfulTests">84 (100.00%)
+          </span><br>
+          Scenarios Failed: <span class="failedTests">0 (0.00%)
+          </span><br>
+</td></tr>
+</table>
+<br><table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr><td style="padding: 3px 3px 3px 3px" class="storiesHeader">
+          Stories [<a href="javascript:" onclick="toggleAll();">Collapse/Expand All</a>]
+        </td></tr>
+<tr><tr><td class="storiesBody">
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 1: [<a href="javascript:" onclick="toggle('div_1');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver se uma select está habilitada<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_1"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que a select da página de testes está habilitada<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "select_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:05 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:05 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que a select "selEnabled" está habilitada</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:05 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.35 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:05 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 2: [<a href="javascript:" onclick="toggle('div_2');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de verificar o href de um link<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_2"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que o link da página de testes tem o href correto<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "link_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:05 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:05 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que o link "lnkGoogle" tem href "http://www.google.com"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:05 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que o link "lnkGoogle2" tem href "http://www.google.com"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:07 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            1.81 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:07 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 3: [<a href="javascript:" onclick="toggle('div_3');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de passar o mouse uma imagem<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_3"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Passando o mouse em uma imagem<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "image_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:07 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu passo o mouse na imagem "imgMouseOver"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:07 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo o div "divMouseOverImage"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:07 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.52 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:07 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 4: [<a href="javascript:" onclick="toggle('div_4');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver uma select<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_4"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que a select da página de testes está la<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "select_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:07 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:08 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo a select "selSomething"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:08 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo a select "selSomethingElse"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:08 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.73 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:08 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 5: [<a href="javascript:" onclick="toggle('div_5');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de esperar que o elemento apareça<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_5">
+<div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Verificando que eu posso esperar por um div aparecer pelo tempo default de 5 segundos<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "page_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:08 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu espero a div "divWaitForVisible" aparecer</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:08 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo a div "divWaitForVisible"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:11 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            2.76 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:11 2009]
+          </td>
+</tr>
+</table>
+</div>
+<div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 2</b>: Verificando que eu posso esperar por um div aparecer por um número específico de segundos<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "page_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:11 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu espero a div "divWaitForVisible" aparecer por 10 segundos</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:11 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo a div "divWaitForVisible"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:13 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            2.74 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:14 2009]
+          </td>
+</tr>
+</table>
+</div>
+<div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 3</b>: Verificando que eu posso esperar por um elemento registrado aparecer<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para Test Custom Page</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:14 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu espero o elemento "custom wait for visible" aparecer</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:14 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo o elemento "custom wait for visible"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:16 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            2.38 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:16 2009]
+          </td>
+</tr>
+</table>
+</div>
+</div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 6: [<a href="javascript:" onclick="toggle('div_6');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver que uma caixa de texto contém exatamente o texto<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_6"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que as caixas de texto da página de testes contém exatamente um texto<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "textbox_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:16 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:17 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que a caixa de texto "txtMatches1" contém exatamente "Some large text"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:17 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que a caixa de texto "txtMatches2" contém exatamente "Some large text"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:17 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu vejo que a caixa de texto "txtMatches3" contém exatamente "Some large text"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:17 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que a caixa de texto "txtMatches4" contém exatamente "Some large text"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:18 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu vejo que a caixa de texto "txtMatches5" contém exatamente "Some large text"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:18 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que a caixa de texto "txtMatches6" contém exatamente "Some large text"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:18 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            2.34 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:18 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 7: [<a href="javascript:" onclick="toggle('div_7');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de verificar o item selecionado de uma select por valor<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_7"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que a select da página de testes está com o valor selecionado de 1<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "select_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:18 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu seleciono o item com valor "1" na select "selByValue"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:19 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu seleciono o item com valor "1" na select "selByValue2"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:19 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>Eu vejo que o valor selecionado da select "selByValue" é "1"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:20 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu vejo que o valor selecionado da select "selByValue2" é "1"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:20 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            1.71 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:20 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 8: [<a href="javascript:" onclick="toggle('div_8');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver que um div contém markup<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_8"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que o div da página de testes contém o markup "&lt;p&gt;some&lt;/p&gt;"<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "div_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:20 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:21 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que o div "divContainsMarkup" não contém "&lt;p&gt;other&lt;/p&gt;"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:21 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que o div "divContainsMarkup" não contém "non-markup"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:22 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            2.04 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:22 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 9: [<a href="javascript:" onclick="toggle('div_9');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver um div<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_9"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que o div da página de testes está la<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "div_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:22 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:22 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo o div "divSomething"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:22 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo o div "divSomething2"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:22 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.50 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:23 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 10: [<a href="javascript:" onclick="toggle('div_10');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de não ver um botão<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_10"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que o botão da página de testes está invisível<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "button_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:23 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:23 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu não vejo o botão "btnHidden1"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:23 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu não vejo o botão "btnHidden2"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:23 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu não vejo o botão "btnHidden3"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:23 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu não vejo o botão "btnHidden4"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:23 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu não vejo o botão "btnHidden5"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:23 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu não vejo o botão "btnHidden6"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:23 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu não vejo o botão "btnHidden7"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:23 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu não vejo o botão "btnHidden8"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:24 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu não vejo o botão "btnHidden9"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:24 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu não vejo o botão "btnHidden10"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:24 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu não vejo o botão "btnHidden11"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:24 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu não vejo o botão "btnHidden12"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:24 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            1.23 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:24 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 11: [<a href="javascript:" onclick="toggle('div_11');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver um link<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_11"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que o link da página de testes está la<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "link_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:24 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:25 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu não vejo o link "invisibleLink1"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:25 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu não vejo o link "invisibleLink2"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:25 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu não vejo o link "invisibleLink3"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:25 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu não vejo o link "invisibleLink4"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:25 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu não vejo o link "invisibleLink5"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:25 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            1.19 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:25 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 12: [<a href="javascript:" onclick="toggle('div_12');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver um radio<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_12"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que o radio está la<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "radio_button_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:25 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:26 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo o radio "rdbSomething"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:26 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo o radio "rdbSomething2"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:26 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            1.18 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:26 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 13: [<a href="javascript:" onclick="toggle('div_13');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver que um div contém markup<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_13"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que o div da página de testes contém o markup "&lt;p&gt;some&lt;/p&gt;"<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "div_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:26 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:27 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que o div "divContainsMarkup" contém "&lt;p&gt;some&lt;/p&gt;"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:27 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que o div "divContainsMarkup" contém "markup"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:27 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.99 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:27 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 14: [<a href="javascript:" onclick="toggle('div_14');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de não ver uma ul<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_14"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que a ul da página de testes está invisível<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "ul_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:27 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:28 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu não vejo a ul "ulHidden1"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:28 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu não vejo a ul "ulHidden2"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:28 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu não vejo a ul "ulHidden3"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:28 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu não vejo a ul "ulHidden4"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:28 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu não vejo a ul "ulHidden5"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:28 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.61 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:28 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 15: [<a href="javascript:" onclick="toggle('div_15');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de clicar em uma imagem<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_15">
+<div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Clicando em uma imagem pelo atributo name<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "image_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:28 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu clico na imagem "imgChangeTitle"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:28 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo o título "different title"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:28 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.46 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:28 2009]
+          </td>
+</tr>
+</table>
+</div>
+<div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 2</b>: Clicando em uma imagem pelo atributo id<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "image_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:28 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu clico na imagem "imgChangeTitle2"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:29 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo o título "different title 2"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:29 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.49 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:29 2009]
+          </td>
+</tr>
+</table>
+</div>
+</div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 16: [<a href="javascript:" onclick="toggle('div_16');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver um link<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_16"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que o link da página de testes está la<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "link_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:29 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:29 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo o link "lnkSomething"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:29 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo o link "lnkSomethingElse"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:29 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.45 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:29 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 17: [<a href="javascript:" onclick="toggle('div_17');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver se um botão está habilitado<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_17"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que o botão está habilitado<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "button_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:29 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:30 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que o botão "btnEnabled" está habilitado</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:30 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que o botão "btnEnabled2" está habilitado</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:30 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu vejo que o botão "btnEnabled3" está habilitado</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:30 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que o botão "btnEnabled4" está habilitado</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:31 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu vejo que o botão "btnEnabled5" está habilitado</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:31 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que o botão "btnEnabled6" está habilitado</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:31 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            2.41 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:32 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 18: [<a href="javascript:" onclick="toggle('div_18');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de arrastar um elemento para outro<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_18"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Verificando que eu consigo arrastar uma div para outra<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "drag_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:32 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu arrasto a div "dragFrom" para a div "dragTo"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:32 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que a div "dragresult" contém "Dropped!"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:33 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            1.42 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:33 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 19: [<a href="javascript:" onclick="toggle('div_19');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver se uma caixa de texto está desabilitada<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_19"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que as caixas de texto estão desabilitadas<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "textbox_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:33 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:34 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que a caixa de texto "txtDisabled1" está desabilitada</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:34 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que a caixa de texto "txtDisabled2" está desabilitada</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:34 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu vejo que a caixa de texto "txtDisabled3" está desabilitada</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:35 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que a caixa de texto "txtDisabled4" está desabilitada</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:35 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu vejo que a caixa de texto "txtDisabled5" está desabilitada</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:36 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que a caixa de texto "txtDisabled6" está desabilitada</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:36 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            3.17 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:36 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 20: [<a href="javascript:" onclick="toggle('div_20');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver se um link está habilitado<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_20"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que o link da página de testes está habilitado<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "link_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:36 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:37 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que o link "lnkEnabled" está habilitado</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:37 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que o link "lnkEnabled2" está habilitado</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:37 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            1.61 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:38 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 21: [<a href="javascript:" onclick="toggle('div_21');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver uma caixa de texto<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_21"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que as caixas de texto da página de testes estão la<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "textbox_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:38 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:38 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo a caixa de texto "txtSomething"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:38 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo a caixa de texto "txtSomethingElse"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:38 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu vejo a caixa de texto "txtSomething2"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:39 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo a caixa de texto "txtSomethingElse2"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:39 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu vejo a caixa de texto "txtSomething3"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:40 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo a caixa de texto "txtSomethingElse3"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:40 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            2.02 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:40 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 22: [<a href="javascript:" onclick="toggle('div_22');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de verificar que o item selecionado de uma select não tem o valor informado<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_22"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que a select da página de testes não está com o valor selecionado de "10"<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "select_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:40 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:41 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que o valor selecionado da select "selNotSelectedByValue" não é "10"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:41 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que o valor selecionado da select "selNotSelectedByValue2" não é "10"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:41 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            1.32 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:41 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 23: [<a href="javascript:" onclick="toggle('div_23');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de não ver um parágrafo<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_23"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que o parágrafo da página de testes está invisível<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "p_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:41 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:42 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu não vejo o parágrafo "pHidden1"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:42 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu não vejo o parágrafo "pHidden2"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:42 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu não vejo o parágrafo "pHidden3"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:42 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu não vejo o parágrafo "pHidden4"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:42 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu não vejo o parágrafo "pHidden5"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:42 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            1.09 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:42 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 24: [<a href="javascript:" onclick="toggle('div_24');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver que um div contem markup<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_24"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que o div da página de testes contem determinado markup<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "div_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:42 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:43 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que o div "divContainsMarkup" contém o markup "&lt;p&gt;some&lt;/p&gt;"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:43 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que o div "divContainsMarkup" contém o markup "markup"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:43 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            1.20 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:44 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 25: [<a href="javascript:" onclick="toggle('div_25');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver que uma caixa de texto está vazia<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_25"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que a caixa de texto da página de testes está vazia<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "textbox_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:44 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:44 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que a caixa de texto "txtSomething" está vazia</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:44 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            1.32 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:45 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 26: [<a href="javascript:" onclick="toggle('div_26');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de esperar a página carregar<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_26">
+<div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Aguardando a página de resultados carregar<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "page_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:45 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu clico na imagem "imgSubmit"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:46 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu espero a página ser carregada</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:46 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>Eu vejo o título "It Works!"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:46 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            1.03 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:46 2009]
+          </td>
+</tr>
+</table>
+</div>
+<div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 2</b>: Aguardando a página de resultados carregar por 10 segundos<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "page_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:46 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu clico na imagem "imgSubmit"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:46 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu espero a página ser carregada por 10 segundos</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:46 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>Eu vejo o título "It Works!"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:47 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.67 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:47 2009]
+          </td>
+</tr>
+</table>
+</div>
+</div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 27: [<a href="javascript:" onclick="toggle('div_27');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de não ver uma li<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_27"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que a li da página de testes está invisível<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "ul_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:47 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:47 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu não vejo a li "liHidden1"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:47 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu não vejo a li "liHidden2"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:47 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu não vejo a li "liHidden3"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:47 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu não vejo a li "liHidden4"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:47 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu não vejo a li "liHidden5"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:47 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.41 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:47 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 28: [<a href="javascript:" onclick="toggle('div_28');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver que um div contém texto<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_28"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que o div da página de testes contém o texto "large"<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "div_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:47 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:47 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que o div "divContains" contém "large"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:47 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.48 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:47 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 29: [<a href="javascript:" onclick="toggle('div_29');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de não ver uma checkbox<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_29"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que o checkbox da página de testes está invisível<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "checkbox_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:47 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:48 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu não vejo a checkbox "chkHidden1"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:48 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu não vejo a checkbox "chkHidden2"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:48 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu não vejo a checkbox "chkHidden3"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:48 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu não vejo a checkbox "chkHidden4"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:48 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.65 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:48 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 30: [<a href="javascript:" onclick="toggle('div_30');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de verificar se uma checkbox está checada<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_30"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Verificando que as checkbox estão checadas<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "checkbox_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:48 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:48 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que a checkbox "chkChecked" está marcada</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:48 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que a checkbox "chkChecked2" está marcada</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:48 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.62 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:49 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 31: [<a href="javascript:" onclick="toggle('div_31');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver uma ul<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_31"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que a ul está la<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "ul_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:49 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:49 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo a ul "ul1"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:49 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo a ul "ul2"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:49 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.35 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:49 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 32: [<a href="javascript:" onclick="toggle('div_32');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver que um div contém texto<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_32"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que o div da página de testes contém o texto "large"<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "div_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:49 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:50 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que o div "divContains" contém "large"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:50 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.89 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:50 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 33: [<a href="javascript:" onclick="toggle('div_33');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de passar o mouse um div<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_33"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Passando o mouse em um div<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "div_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:50 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu passo o mouse no div "divMouseOver"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:50 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo o div "divMouseOverDiv"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:50 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.37 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:50 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 34: [<a href="javascript:" onclick="toggle('div_34');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de verificar se uma checkbox está checada<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_34"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Verificando que as checkbox estão checadas<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "checkbox_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:50 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu marco a checkbox "chkUnchecked"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:51 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu marco a checkbox "chkUnchecked2"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:51 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>Eu vejo que a checkbox "chkUnchecked" está marcada</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:51 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu vejo que a checkbox "chkUnchecked2" está marcada</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:51 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            1.16 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:51 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 35: [<a href="javascript:" onclick="toggle('div_35');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver uma imagem<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_35"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que a imagem da página de testes está la<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "image_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:51 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:52 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo a imagem "imgSomething"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:52 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo a imagem "imgSomething2"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:52 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.53 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:52 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 36: [<a href="javascript:" onclick="toggle('div_36');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver que uma caixa de texto contém texto<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_36"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que as caixas de texto da página de testes contém o texto "large"<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "textbox_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:52 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:53 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que a caixa de texto "txtContains1" contém "large"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:53 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que a caixa de texto "txtContains2" contém "large"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:53 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu vejo que a caixa de texto "txtContains3" contém "large"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:53 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que a caixa de texto "txtContains4" contém "large"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:53 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu vejo que a caixa de texto "txtContains5" contém "large"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:54 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que a caixa de texto "txtContains6" contém "large"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:54 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            2.17 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:54 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 37: [<a href="javascript:" onclick="toggle('div_37');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de verificar o item selecionado de uma select por valor<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_37"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que a select da página de testes está com o valor selecionado de 20<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "select_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:54 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:55 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que o valor selecionado da select "selSelectedByValue" é "20"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:55 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            1.29 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:55 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 38: [<a href="javascript:" onclick="toggle('div_38');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver uma select<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_38"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que a select da página de testes está la<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "select_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:55 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:56 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu não vejo a select "invisibleSelect1"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:56 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu não vejo a select "invisibleSelect2"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:56 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu não vejo a select "invisibleSelect3"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:56 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu não vejo a select "invisibleSelect4"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:56 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu não vejo a select "invisibleSelect5"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:56 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.68 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:56 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 39: [<a href="javascript:" onclick="toggle('div_39');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de passar o mouse um div<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_39"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Retirando o mouse em um div<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "div_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:56 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo o div "divMouseOutChild"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:57 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>Eu passo o mouse no div "divMouseOut"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:57 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu não vejo o div "divMouseOutChild"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:57 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu retiro o mouse do div "divMouseOut"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:57 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>Eu vejo o div "divMouseOutChild"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:57 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            1.12 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:57 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 40: [<a href="javascript:" onclick="toggle('div_40');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver que um div contém determinado estilo<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_40"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que o div da página de testes contém o estilo "blabla"<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "div_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:57 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:58 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que o div "divContainsStyle1" contém o estilo "blabla"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:58 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.48 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:45:58 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 41: [<a href="javascript:" onclick="toggle('div_41');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de limpar uma caixa de texto<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_41"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que eu posso limpar uma caixa de texto<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "textbox_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:58 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu limpo a caixa de texto "txtClean1"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:59 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu limpo a caixa de texto "txtClean2"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:59 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu limpo a caixa de texto "txtClean3"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:59 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu limpo a caixa de texto "txtClean4"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:59 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu limpo a caixa de texto "txtClean5"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:45:59 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu limpo a caixa de texto "txtClean6"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:00 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>Eu vejo que a caixa de texto "txtClean1" está vazia</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:00 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu vejo que a caixa de texto "txtClean2" está vazia</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:00 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que a caixa de texto "txtClean3" está vazia</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:01 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu vejo que a caixa de texto "txtClean4" está vazia</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:01 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que a caixa de texto "txtClean5" está vazia</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:01 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu vejo que a caixa de texto "txtClean6" está vazia</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:01 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            4.05 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:02 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 42: [<a href="javascript:" onclick="toggle('div_42');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver se uma caixa de texto está habilitada<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_42"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que as caixas de texto estão habilitadas<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "textbox_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:02 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:02 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que a caixa de texto "txtEnabled1" está habilitada</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:02 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que a caixa de texto "txtEnabled2" está habilitada</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:02 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu vejo que a caixa de texto "txtEnabled3" está habilitada</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:03 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que a caixa de texto "txtEnabled4" está habilitada</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:03 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu vejo que a caixa de texto "txtEnabled5" está habilitada</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:03 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que a caixa de texto "txtEnabled6" está habilitada</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:03 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            1.81 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:04 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 43: [<a href="javascript:" onclick="toggle('div_43');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de verificar o item selecionado de uma select por índice<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_43"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que a select da página de testes está com o índice selecionado de 1<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "select_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:04 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu seleciono o item com índice 1 na select "selSecondIndex"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:04 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu seleciono o item com índice 1 na select "selSecondIndex2"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:05 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>Eu vejo que o índice selecionado da select "selSecondIndex" é 1</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:05 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu vejo que o índice selecionado da select "selSecondIndex2" é 1</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:05 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            1.70 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:05 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 44: [<a href="javascript:" onclick="toggle('div_44');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de digitar um texto<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_44"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que se pode digitar em caixas de texto<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "textbox_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:05 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu preencho a caixa de texto "txtSomething" com "Monty Python"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:06 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu preencho a caixa de texto "txtSomething2" com "Monty Python"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:06 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu preencho a caixa de texto "txtSomething3" com "Monty Python"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:07 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu preencho a caixa de texto "txtSomethingElse" com "Monty Python"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:07 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu preencho a caixa de texto "txtSomethingElse2" com "Monty Python"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:07 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu preencho a caixa de texto "txtSomethingElse3" com "Monty Python"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:07 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>#As caixas de texto estão preenchidas</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:08 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            2.24 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:08 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 45: [<a href="javascript:" onclick="toggle('div_45');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver uma checkbox<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_45"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que a checkbox da página de testes está la<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "checkbox_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:08 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:08 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo a checkbox "chkSomething"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:08 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo a checkbox "chkSomethingElse"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:08 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.94 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:08 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 46: [<a href="javascript:" onclick="toggle('div_46');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de       verificar o src de uma imagem<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_46"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que a imagem da página de testes tem o src correto<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "image_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:08 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:09 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que a imagem "imgLogo" não tem src de "wrong_logo.gif"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:09 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.73 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:09 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 47: [<a href="javascript:" onclick="toggle('div_47');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver um botão<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_47"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que o botão de pesquisa do google está la<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "p_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:09 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:10 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo o parágrafo "paragraph1"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:10 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo o parágrafo "paragraph2"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:10 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.87 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:10 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 48: [<a href="javascript:" onclick="toggle('div_48');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de verificar o item selecionado de uma select por texto<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_48"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que a select da página de testes está com o text selecionado de "Holy Graal"<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "select_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:10 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu seleciono o item com texto "Holy Graal" na select "selByText"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:11 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu seleciono o item com texto "Holy Graal" na select "selByText2"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:11 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>Eu vejo que o texto selecionado da select "selByText" é "Holy Graal"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:11 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu vejo que o texto selecionado da select "selByText2" é "Holy Graal"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:12 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            1.70 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:12 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 49: [<a href="javascript:" onclick="toggle('div_49');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver que um div não contém exatamente um markup<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_49"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que o div da página de testes não contém exatamente o markup "&lt;p&gt;some&lt;/p&gt;"<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "div_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:12 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:12 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que o div "divContainsMarkup" não contém exatamente o markup "&lt;p&gt;some&lt;/p&gt;"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:12 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.54 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:12 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 50: [<a href="javascript:" onclick="toggle('div_50');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver se um link está desabilitado<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_50"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que o link da página de testes está desabilitado<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "link_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:12 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:13 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que o link "lnkDisabled" está desabilitado</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:13 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que o link "lnkDisabled2" está desabilitado</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:13 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            1.05 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:13 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 51: [<a href="javascript:" onclick="toggle('div_51');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver que uma caixa de texto não está vazia<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_51"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que a caixa de texto da página de testes não está vazia<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "textbox_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:13 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:14 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que a caixa de texto "txtContains1" não está vazia</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:14 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.92 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:14 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 52: [<a href="javascript:" onclick="toggle('div_52');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de esperar que o div desapareça<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_52">
+<div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Verificando que eu posso esperar por um element desaparecer pelo tempo default de 5 segundos<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "page_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:14 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu espero o elemento "divWaitForInvisible" desaparecer</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:15 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu não vejo o elemento "divWaitForInvisible"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:17 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            2.65 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:17 2009]
+          </td>
+</tr>
+</table>
+</div>
+<div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 2</b>: Verificando que eu posso esperar por um element desaparecer por um número específico de segundos<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "page_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:17 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu espero o elemento "divWaitForInvisible" desaparecer por 10 segundos</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:17 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu não vejo o elemento "divWaitForInvisible"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:20 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            2.76 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:20 2009]
+          </td>
+</tr>
+</table>
+</div>
+</div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 53: [<a href="javascript:" onclick="toggle('div_53');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver se um botão está desabilitado<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_53">
+<div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que o botão está desabilitado<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "button_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:20 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:20 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que o botão "btnDisabled" está desabilitado</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:20 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que o botão "btnDisabled2" está desabilitado</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:20 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu vejo que o botão "btnDisabled3" está desabilitado</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:21 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que o botão "btnDisabled4" está desabilitado</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:21 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu vejo que o botão "btnDisabled5" está desabilitado</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:21 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que o botão "btnDisabled6" está desabilitado</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:21 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            1.86 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:22 2009]
+          </td>
+</tr>
+</table>
+</div>
+<div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 2</b>: Garantindo que o botão está desabilitado<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "button_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:22 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu clico no botão "disableSecond"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:22 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que o botão "toBeDisabled" está desabilitado</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:22 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            1.16 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:23 2009]
+          </td>
+</tr>
+</table>
+</div>
+</div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 54: [<a href="javascript:" onclick="toggle('div_54');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de verificar o texto de um link<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_54"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que o link da página de testes tem o texto correto<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "link_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:23 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:23 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que o link "lnkGoogle" tem texto "Google 1"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:23 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que o link "lnkGoogle2" tem texto "Google 2"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:23 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.65 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:23 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 55: [<a href="javascript:" onclick="toggle('div_55');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver que uma caixa de texto não contém texto<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_55"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que as caixas de texto da página de testes não contém o texto "small"<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "textbox_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:23 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:24 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que a caixa de texto "txtContains1" não contém "small"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:24 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que a caixa de texto "txtContains2" não contém "small"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:25 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu vejo que a caixa de texto "txtContains3" não contém "small"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:26 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que a caixa de texto "txtContains4" não contém "small"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:26 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu vejo que a caixa de texto "txtContains5" não contém "small"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:26 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que a caixa de texto "txtContains6" não contém "small"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:26 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            3.39 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:27 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 56: [<a href="javascript:" onclick="toggle('div_56');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de verificar o item selecionado de uma select por índice<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_56"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que a select da página de testes está com o índice selecionado de 1<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "select_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:27 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:28 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que o índice selecionado da select "selFirstIndex" é 1</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:28 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que o índice selecionado da select "selFirstIndex2" é 1</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:28 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            1.33 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:28 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 57: [<a href="javascript:" onclick="toggle('div_57');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver se uma select está desabilitada<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_57"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que a select da página de testes está desabilitada<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "select_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:28 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:29 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que a select "selDisabled" está desabilitada</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:29 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.56 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:29 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 58: [<a href="javascript:" onclick="toggle('div_58');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de clicar um link<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_58">
+<div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Clicando em um link pelo atributo name<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "link_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:29 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu clico no link "lnkItWorks"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:29 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo o título "It Works!"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:29 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.66 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:29 2009]
+          </td>
+</tr>
+</table>
+</div>
+<div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 2</b>: Clicando em um link pelo atributo id<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "link_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:29 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu clico no link "lnkItWorks2"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:30 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo o título "It Works!"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:30 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.66 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:30 2009]
+          </td>
+</tr>
+</table>
+</div>
+</div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 59: [<a href="javascript:" onclick="toggle('div_59');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de verificar o item selecionado de uma select por valor<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_59"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que a select da página de testes está com o texto selecionado de "Shrubbery"<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "select_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:30 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:31 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que o texto selecionado da select "selSelectedByText" é "Shrubbery"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:31 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.74 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:31 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 60: [<a href="javascript:" onclick="toggle('div_60');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de verificar se uma checkbox está desmarcada<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_60"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Verificando que as checkbox estão desmarcadas<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "checkbox_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:31 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:31 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que a checkbox "chkUnchecked" está desmarcada</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:31 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que a checkbox "chkUnchecked2" está desmarcada</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:31 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.72 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:31 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 61: [<a href="javascript:" onclick="toggle('div_61');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de clicar um botão<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_61"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Clicando em um botão<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "button_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:31 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu clico no botão "btnSend"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:32 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página é recarregada</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:32 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.72 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:32 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 62: [<a href="javascript:" onclick="toggle('div_62');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de verificar o src de uma imagem<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_62"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que a imagem da página de testes tem o src correto<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "image_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:32 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:32 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que a imagem "imgLogo" tem src de "logo_pyccuracy.gif"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:32 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.49 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:33 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 63: [<a href="javascript:" onclick="toggle('div_63');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver um botão<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_63"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que o botão de pesquisa do google está la<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "button_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:33 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:33 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo o botão "btnSomething"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:33 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo o botão "btnSomething2"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:33 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu vejo o botão "btnSomething3"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:33 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo o botão "btnSomethingElse"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:34 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu vejo o botão "btnSomethingElse2"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:34 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo o botão "btnSomethingElse3"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:34 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            1.53 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:34 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 64: [<a href="javascript:" onclick="toggle('div_64');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de esperar que o div desapareça<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_64">
+<div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Verificando que eu posso esperar por um div desaparecer pelo tempo default de 5 segundos<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "page_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:34 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu espero o div "divWaitForInvisible" desaparecer</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:35 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu não vejo o div "divWaitForInvisible"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:37 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            3.17 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:37 2009]
+          </td>
+</tr>
+</table>
+</div>
+<div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 2</b>: Verificando que eu posso esperar por um div desaparecer por um número específico de segundos<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "page_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:37 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu espero o div "divWaitForInvisible" desaparecer por 10 segundos</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:38 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu não vejo o div "divWaitForInvisible"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:40 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            2.41 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:40 2009]
+          </td>
+</tr>
+</table>
+</div>
+</div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 65: [<a href="javascript:" onclick="toggle('div_65');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver que um div não contém exatamente um markup<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_65"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que o div da página de testes não contém exatamente o markup "&lt;p&gt;some&lt;/p&gt;"<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "div_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:40 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:40 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que o div "divContainsMarkup" não contém exatamente o markup "&lt;p&gt;some&lt;/p&gt;"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:40 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.45 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:40 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 66: [<a href="javascript:" onclick="toggle('div_66');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de passar o mouse um link<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_66"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Passando o mouse em um link<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "link_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:40 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu passo o mouse no link "lnkMouseOver"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:41 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo o div "divMouseOverLink"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:41 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.79 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:41 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 67: [<a href="javascript:" onclick="toggle('div_67');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de esperar que o div apareça<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_67">
+<div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Verificando que eu posso esperar por um div aparecer pelo tempo default de 5 segundos<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "page_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:41 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu espero o div "divWaitForVisible" aparecer</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:41 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo o div "divWaitForVisible"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:44 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            3.16 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:44 2009]
+          </td>
+</tr>
+</table>
+</div>
+<div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 2</b>: Verificando que eu posso esperar por um div aparecer por um número específico de segundos<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "page_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:44 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu espero o div "divWaitForVisible" aparecer por 10 segundos</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:44 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo o div "divWaitForVisible"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:47 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            2.64 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:47 2009]
+          </td>
+</tr>
+</table>
+</div>
+</div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 68: [<a href="javascript:" onclick="toggle('div_68');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver uma li<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_68"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que a li está la<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "ul_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:47 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:47 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo a li "li1"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:47 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo a li "li2"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:47 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.56 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:47 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 69: [<a href="javascript:" onclick="toggle('div_69');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver que uma caixa de texto não contém exatamente o texto<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_69"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que as caixas de texto da página de testes não contém exatamente um texto<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "textbox_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:47 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:48 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que a caixa de texto "txtMatches1" não contém exatamente "Invalid text"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:48 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que a caixa de texto "txtMatches2" não contém exatamente "Invalid text"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:48 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu vejo que a caixa de texto "txtMatches3" não contém exatamente "Invalid text"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:48 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que a caixa de texto "txtMatches4" não contém exatamente "Invalid text"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:49 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu vejo que a caixa de texto "txtMatches5" não contém exatamente "Invalid text"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:49 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que a caixa de texto "txtMatches6" não contém exatamente "Invalid text"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:49 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            1.99 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:49 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 70: [<a href="javascript:" onclick="toggle('div_70');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de verificar que o item selecionado de uma select não tem o texto informado<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_70"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que a select da página de testes não está com o texto selecionado de "Holy Graal"<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "select_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:49 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:50 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que o texto selecionado da select "selFirstIndex" não é "Holy Graal"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:50 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que o texto selecionado da select "selFirstIndex2" não é "Holy Graal"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:51 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            1.58 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:51 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 71: [<a href="javascript:" onclick="toggle('div_71');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de verificar se uma checkbox está checada<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_71"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Verificando que as checkbox estão desmarcadas<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "checkbox_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:51 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu desmarco a checkbox "chkChecked"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:51 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu desmarco a checkbox "chkChecked2"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:51 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>Eu vejo que a checkbox "chkChecked" está desmarcada</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:51 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu vejo que a checkbox "chkChecked2" está desmarcada</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:52 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.84 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:52 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 72: [<a href="javascript:" onclick="toggle('div_72');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de ver que um div contém determinado estilo<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_72"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que o div da página de testes contém o estilo "blabla"<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "div_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:52 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:52 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que o div "divContainsStyle1" não contém o estilo "xispum"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:52 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.53 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:52 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 73: [<a href="javascript:" onclick="toggle('div_73');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de não ver uma imagem<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_73"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que a imagem da página de testes não está la<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "image_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:52 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:53 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu não vejo a imagem "imgHidden"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:53 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu não vejo a imagem "imgHidden2"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:53 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu não vejo a imagem "imgHidden3"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:53 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu não vejo a imagem "imgHidden4"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:53 2009]
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>E eu não vejo a imagem "imgHidden5"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:53 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            0.66 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:53 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 74: [<a href="javascript:" onclick="toggle('div_74');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de passar o mouse um botão<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_74"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Passando o mouse em um botão<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "button_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:53 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu passo o mouse no botão "btnMouseOver"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:53 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo o div "divMouseOverButton"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:54 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            1.05 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:54 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+<div style="margin-top:6px;" class="story">
+<b>
+        Story 75: [<a href="javascript:" onclick="toggle('div_75');">Collapse/Expand
+        </a>]
+      </b><br>Como um  usuário do Pyccuracy<br>Eu quero  testar a ação de verificar que o item selecionado de uma select não tem o índice informado<br>Para  garantir que o Pyccuracy funciona em outras línguas</div>
+<div style="display:none;" class="scenarios" id="div_75"><div style="padding-top:6px; width:100%;">
+<b class="scenarioTitle">
+        Scenario 1</b>: Garantindo que a select da página de testes não está com o índice selecionado de 2<br>
+      Narrative:<br><table border="0" cellspacing="0" cellpadding="0" width="98%">
+<colgroup>
+<col>
+<col style="width: 200px;">
+</colgroup>
+<tr class="odd">
+<td class="condition"><b>Dado que</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu navego para "select_tests.htm"</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:54 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Quando</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>#A página termina de carregar</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:55 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="condition"><b>Então</b></td>
+<td>
+           
+        </td>
+</tr>
+<tr class="even">
+<td class="action"><b>Eu vejo que o índice selecionado da select "selFirstIndex" não é 2</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:55 2009]
+        </td>
+</tr>
+<tr class="odd">
+<td class="action"><b>E eu vejo que o índice selecionado da select "selFirstIndex2" não é 2</b></td>
+<td class="actionTime">
+          [Tue May 26 17:46:55 2009]
+        </td>
+</tr>
+<tr class="totalTime">
+<td class="condition">
+<b>Total Scenario Time:</b> 
+            1.15 
+            seconds
+          </td>
+<td class="totalTimeFinishTime">
+            [Tue May 26 17:46:55 2009]
+          </td>
+</tr>
+</table>
+</div></div>
+</td></tr></tr>
+</table>
+</td></tr>
+<tr><td class="footer">
+        Pyccuracy - Version 0.3.3 - <a href="http://www.stormwindproject.org">http://www.pyccuracy.org</a>
+</td></tr>
+</table></body>
+</html>
