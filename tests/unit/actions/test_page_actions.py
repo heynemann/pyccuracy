@@ -83,11 +83,11 @@ def test_page_go_to_action_sets_page_if_page_is_supplied():
 def test_page_go_to_action_raises_with_invalid_page():
     context = FakeContext()
     context.language.expects(once()) \
-                    .format(eq("page_go_to_failure"), eq("InvalidData")) \
+                    .format(eq("page_go_to_failure"), eq("http://www.google.com")) \
                     .will(return_value("Error Message"))
 
     action = PageGoToAction()
-    assert_raises(ActionFailedError, action.execute, context=context, url="InvalidData", exc_pattern=re_compile(r'^Error Message$'))
+    assert_raises(ActionFailedError, action.execute, context=context, url="http://www.google.com", exc_pattern=re_compile(r'^Error Message$'))
 
 #End Go To Action
 
@@ -95,7 +95,7 @@ def test_page_go_to_action_raises_with_invalid_page():
 
 def test_page_am_in_action_calls_the_right_browser_driver_methods():
     class SomePage(Page):
-        url = "some"
+        url = "http://www.somepage.com"
 
     context = FakeContext()
 
@@ -105,7 +105,7 @@ def test_page_am_in_action_calls_the_right_browser_driver_methods():
 
 def test_page_am_in_action_sets_page_if_page_is_supplied():
     class SomePage(Page):
-        url = "some"
+        url = "http://www.somepage.com"
 
     context = FakeContext()
 
