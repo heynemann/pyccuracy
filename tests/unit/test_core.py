@@ -50,8 +50,8 @@ def test_pyccuracy_core_run_tests():
 
     files = ["/some/weird/file.py"]
     fso_mock = Mock()
-    fso_mock.expects(once()).add_to_import(eq('/home/bernardo/Development/github/pyccuracy'))
-    fso_mock.expects(once()).locate(eq('/home/bernardo/Development/github/pyccuracy'), eq('*.py')).will(return_value(files))
+    fso_mock.expects(once()).add_to_import(eq(context_mock.settings.pages_dir))
+    fso_mock.expects(once()).locate(eq(context_mock.settings.pages_dir), eq('*.py')).will(return_value(files))
     fso_mock.expects(once()).import_file(eq('file'))
     fso_mock.expects(once()).remove_from_import()
 

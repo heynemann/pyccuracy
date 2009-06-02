@@ -118,7 +118,7 @@ def test_page_am_in_action_sets_page_if_page_is_supplied():
 def test_page_am_in_action_raises_if_no_page():
     context = FakeContext()
     context.language.expects(once()) \
-                    .format(eq("page_am_in_failure"), eq("InvalidAmInPage")) \
+                    .format(eq("page_am_in_failure"), eq("http://www.google.com")) \
                     .will(return_value("Error Message"))
     action = PageAmInAction()
 

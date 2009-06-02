@@ -103,8 +103,6 @@ class PageRegistry(object):
 
             if not final_url.startswith('file://'):
                 raise InvalidUrlError(error_message)
-            elif not exists_func(final_url):
-                raise InvalidUrlError(error_message)
 
         return klass_object, final_url
 
