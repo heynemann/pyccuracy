@@ -27,9 +27,10 @@ from pyccuracy.actions.core.page_actions import *
 from ..utils import assert_raises
 
 class FakeContext(object):
-    settings = Settings(cur_dir='/')
-    browser_driver = Mock()
-    language = Mock()
+    def __init__(self):
+        self.settings = Settings(cur_dir='/')
+        self.browser_driver = Mock()
+        self.language = Mock()
 
 #Go To Action
 
@@ -121,7 +122,7 @@ def test_page_am_in_action_raises_if_no_page():
                     .will(return_value("Error Message"))
     action = PageAmInAction()
 
-    assert_raises(ActionFailedError, action.execute, context=context, url="InvalidAmInPage", exc_pattern=re_compile(r'^Error Message$'))
+    assert_raises(ActionFailedError, action.execute, context=context, url="http://www.google.com", exc_pattern=re_compile(r'^Error Message$'))
 
 #End Am In Action
 
