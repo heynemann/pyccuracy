@@ -86,7 +86,9 @@ class StoryRunner(object):
             action.mark_as_failed(err)
             return False
         except Exception, err:
-            raise ValueError("Error executing action %s - %s" % (action.execute_function, traceback.format_exc(err)))
+            action.mark_as_failed(ValueError("Error executing action %s - %s" % (action.execute_function, traceback.format_exc(err))))
+            return False
+
         action.mark_as_successful()
         return True
 
