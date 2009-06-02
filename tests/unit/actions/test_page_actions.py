@@ -101,7 +101,7 @@ def test_page_am_in_action_calls_the_right_browser_driver_methods():
 
     action = PageAmInAction()
 
-    action.execute(context, url="Some Page")
+    action.execute(context, url="http://www.somepage.com")
 
 def test_page_am_in_action_sets_page_if_page_is_supplied():
     class SomePage(Page):
@@ -113,7 +113,7 @@ def test_page_am_in_action_sets_page_if_page_is_supplied():
 
     action.execute(context, url="Some Page")
     assert isinstance(context.current_page, SomePage)
-    assert context.url == "file:///some"
+    assert context.url == "http://www.somepage.com"
 
 def test_page_am_in_action_raises_if_no_page():
     context = FakeContext()
