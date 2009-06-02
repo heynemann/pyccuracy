@@ -23,7 +23,7 @@ import fnmatch
 import urllib2
 from glob import glob
 
-from os.path import abspath, join, dirname
+from os.path import abspath, join, dirname, exists
 
 from pyccuracy.languages import *
 from pyccuracy.drivers import *

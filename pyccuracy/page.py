@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from os.path import abspath
+from os.path import abspath, exists
 from urlparse import urljoin
 from pyccuracy.common import Settings, URLChecker
 
@@ -53,7 +53,7 @@ class PageRegistry(object):
         return NAME_DICT.get(name)
 
     @classmethod
-    def resolve(cls, settings, url, must_raise=True, abspath_func=abspath):
+    def resolve(cls, settings, url, must_raise=True, abspath_func=abspath, exists_func=exists):
         """Resolves a url given a string and a settings. Raises
         TypeError when parameters are wrong, unless the must_raise
         parameter is False"""
@@ -73,7 +73,7 @@ class PageRegistry(object):
         klass_object = cls.get_by_name(url)
 
         url_pieces = []
-        
+
         if not url.startswith("http"):
             if settings.base_url:
                 url_pieces.append(settings.base_url)
@@ -101,7 +101,8 @@ class PageRegistry(object):
             if klass_object:
                 error_message += " In class %s, path %r" % (klass_object.__name__, klass_object.__module__)
 
-            raise InvalidUrlError(error_message)
+            if not final_url.startswith('file://'):
+                raise InvalidUrlError(error_message)
 
         return klass_object, final_url
 

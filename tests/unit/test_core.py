@@ -72,3 +72,4 @@ def test_pyccuracy_core_run_tests():
     context_mock.verify()
     results_mock.verify()
     suite_mock.verify()
+    fso_mock.verify()
