@@ -26,12 +26,16 @@ from threading import Thread
 from pyccuracy.result import Result
 from pyccuracy.common import Context
 from pyccuracy.errors import ActionFailedError
+from pyccuracy.drivers import DriverError
 
 class StoryRunner(object):
     def run_stories(self, settings, fixture, context=None):
+        if not context:
+            context = self.create_context_for(settings)
+
         fixture.start_run()
-        if context.settings.base_url:
-            base_url = context.settings.base_url
+        if settings.base_url:
+            base_url = settings.base_url
 
         else:
             base_url = "http://localhost"
