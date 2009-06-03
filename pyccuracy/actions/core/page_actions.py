@@ -33,6 +33,7 @@ class PageGoToAction(ActionBase):
         context.url = resolved_url
         if page:
             context.current_page = page()
+            context.current_page.register()
 
 class PageAmInAction(ActionBase):
     '''Changes the current page without actually navigating to it.'''
@@ -43,6 +44,7 @@ class PageAmInAction(ActionBase):
 
         if page:
             context.current_page = page()
+            context.current_page.register()
             context.url = resolved_url
         else:
             raise self.failed(context.language.format("page_am_in_failure", url))

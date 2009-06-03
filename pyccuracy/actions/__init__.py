@@ -75,9 +75,12 @@ class ActionBase(object):
 
     def execute_action(self, line, context, getter=None):
         # the getter is here for unit testing reasons
-        Action, args, kwargs = ActionRegistry.suitable_for(line, context.get_language(), getter=getter)
+        Action, args, kwargs = ActionRegistry.suitable_for(line, context.settings.default_culture, getter=getter)
         if isinstance(self, Action):
             raise RuntimeError('A action can not execute itself for infinite recursion reasons :)')
+
+        action_to_execute = Action()
+        action_to_execute.execute(context, *args, **kwargs)
 
     def resolve_element_key(self, context, element_type, element_key):
         page = context.current_page
