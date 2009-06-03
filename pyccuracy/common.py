@@ -130,7 +130,10 @@ class Settings(object):
         self.custom_actions_dir = self.get_setting(settings, "custom_actions_dir", self.tests_dir)
 
         self.file_pattern = self.get_setting(settings, "file_pattern", "*.acc")
-        self.scenarios_to_run = self.get_setting(settings, "scenarios_to_run", None)
+        self.scenarios_to_run = self.get_setting(settings, "scenarios_to_run", [])
+        if self.scenarios_to_run:
+            self.scenarios_to_run = self.scenarios_to_run.replace(" ","").split(",")
+
         self.default_culture = self.get_setting(settings, "default_culture", "en-us")
         self.base_url = self.get_setting(settings, "base_url", None)
         self.should_throw = self.get_setting(settings, "should_throw", False)

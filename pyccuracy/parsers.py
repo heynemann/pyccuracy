@@ -86,7 +86,7 @@ class FileParser(object):
         current_scenario = None
         for line in scenario_lines:
             if self.is_scenario_starter_line(line):
-                current_scenario = self.parse_scenario_line(current_story, line)
+                current_scenario = self.parse_scenario_line(current_story, line, settings)
                 continue
 
             if self.is_keyword(line, "given"):
@@ -100,7 +100,10 @@ class FileParser(object):
                 continue
 
             if current_scenario is None:
-                raise ValueError("No scenario line found before first action.")
+                if settings.scenarios_to_run:
+                    continue
+                else:
+                    raise ValueError("No scenario line found before first action.")
 
             add_method = getattr(current_scenario, "add_%s" % current_area)
 
@@ -142,12 +145,14 @@ class FileParser(object):
         keyword = self.language.get(keyword)
         return line.strip() == keyword
 
-    def parse_scenario_line(self, current_story, line):
+    def parse_scenario_line(self, current_story, line, settings):
         scenario_keyword = self.language.get('scenario')
         scenario_values = line.split('-')
         index = scenario_values[0].replace(scenario_keyword,"").strip()
         title = scenario_values[1].strip()
-        current_scenario = current_story.append_scenario(index, title)
+        current_scenario = None
+        if not settings.scenarios_to_run or index in settings.scenarios_to_run:
+            current_scenario = current_story.append_scenario(index, title)
         return current_scenario
 
     def raise_action_not_found_for_line(self, line, scenario, filename):
