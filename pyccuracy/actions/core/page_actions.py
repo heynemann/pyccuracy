@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import time
+
 from pyccuracy.page import PageRegistry, Page
 from pyccuracy.actions import ActionBase
 from pyccuracy.languages import LanguageItem

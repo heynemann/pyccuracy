@@ -20,6 +20,7 @@ import re
 import os
 
 from pyccuracy import ActionRegistry
+from pyccuracy.actions import ActionNotFoundError
 from pyccuracy.languages import LanguageGetter
 from pyccuracy.common import locate
 from pyccuracy.fixture import Fixture
@@ -32,12 +33,6 @@ class FSO(object):
 
     def read_file(self, file_path):
         return open(file_path).read().decode('utf-8')
-
-class ActionNotFoundError(Exception):
-    def __init__(self, line, scenario, filename):
-        self.line = line
-        self.scenario = scenario
-        self.filename = filename
 
 class FileParser(object):
     def __init__(self, language=None, file_object=None, action_registry=None):

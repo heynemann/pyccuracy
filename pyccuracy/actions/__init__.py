@@ -17,10 +17,22 @@
 # limitations under the License.
 
 import re
+
 from pyccuracy.errors import ActionFailedError, LanguageDoesNotResolveError
 from pyccuracy.languages import LanguageItem, AVAILABLE_GETTERS, LanguageGetter
 
 ACTIONS = []
+
+class ActionNotFoundError(Exception):
+    def __init__(self, line, scenario, filename):
+        self.line = line
+        self.scenario = scenario
+        self.filename = filename
+
+    def __str__(self):
+        return unicode(self)
+    def __unicode__(self):
+        return "Action Not Found: %s\nScenario: %s\nFilename: %s" % (self.line, self.scenario, self.filename)
 
 class ActionRegistry(object):
     @classmethod
@@ -76,6 +88,10 @@ class ActionBase(object):
     def execute_action(self, line, context, getter=None):
         # the getter is here for unit testing reasons
         Action, args, kwargs = ActionRegistry.suitable_for(line, context.settings.default_culture, getter=getter)
+
+        if not Action:
+            raise ActionNotFoundError(line, None, None)
+
         if isinstance(self, Action):
             raise RuntimeError('A action can not execute itself for infinite recursion reasons :)')
 

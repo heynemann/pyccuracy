@@ -18,6 +18,7 @@
 
 import time
 
+from pyccuracy.actions import ActionNotFoundError
 from pyccuracy.errors import *
 from pyccuracy.common import StatusItem, TimedItem, Status
 

@@ -25,6 +25,7 @@ from threading import Thread
 
 from pyccuracy.result import Result
 from pyccuracy.common import Context
+from pyccuracy.actions import ActionNotFoundError
 from pyccuracy.errors import ActionFailedError
 from pyccuracy.drivers import DriverError
 from pyccuracy.languages.templates import TemplateLoader
@@ -61,8 +62,12 @@ class StoryRunner(object):
                     if not context:
                         context = self.create_context_for(settings)
                     for action in scenario.givens + scenario.whens + scenario.thens:
-                        result = self.execute_action(context, action)
-                        if not result:
+                        try:
+                            result = self.execute_action(context, action)
+                            if not result:
+                                break
+                        except ActionNotFoundError, error:
+                            action.mark_as_failed(ActionNotFoundError(error.line, scenario, scenario.story.identity))
                             break
 
             fixture.end_run()
@@ -70,20 +75,11 @@ class StoryRunner(object):
         finally:
             context.browser_driver.stop_test()
 
-    def run_scenario(self, scenario, settings, fixture, context=None):
-        if not context:
-            context = self.create_context_for(settings)
-
-        for action in scenario.givens + scenario.whens + scenario.thens:
-            result = self.execute_action(context, action)
-            if not result:
-                break
-
-        return Result(fixture=fixture)
-
     def execute_action(self, context, action):
         try:
             action.execute_function(context, *action.args, **action.kwargs)
+        except ActionNotFoundError:
+            raise
         except ActionFailedError, err:
             action.mark_as_failed(err)
             return False
