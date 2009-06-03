@@ -17,6 +17,10 @@ from pyccuracy.actions import ActionBase
 from pyccuracy.languages import LanguageItem
 
 def resolve_element_key(context, element_type, element_name, resolve_function):
+    resolved = resolve_function(context, element_type, element_name)
+    if resolved:
+        return resolved
+
     element_category = context.language.get(element_type.encode("utf-8") + "_category")
     return resolve_function(context, element_category, element_name)
 
@@ -157,7 +161,7 @@ class ElementWaitForPresenceAction(ActionBase):
         timeout = int(timeout)
 
         if not context.browser_driver.wait_for_element_present(element_key, timeout):
-            error_message = context.language.format("element_wait_for_presence_failure", element_type, element_name, timeout)
+            error_message = context.language.format("element_wait_for_presence_failure", element_type, element_name, timeout, element_key)
             raise self.failed(error_message)
 
 class ElementWaitForDisappearAction(ActionBase):
@@ -175,7 +179,7 @@ class ElementWaitForDisappearAction(ActionBase):
         timeout = int(timeout)
 
         if not context.browser_driver.wait_for_element_to_disappear(element_key, timeout):
-            error_message = context.language.format("element_wait_for_disappear_failure", element_type, element_name, timeout)
+            error_message = context.language.format("element_wait_for_disappear_failure", element_type, element_name, timeout, element_key)
             raise self.failed(error_message)
 
 class ElementDragAction(ActionBase):

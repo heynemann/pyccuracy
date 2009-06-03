@@ -86,6 +86,7 @@ class ActionBase(object):
         page = context.current_page
 
         resolved_element = None
+
         if page:
             resolved_element = page.get_registered_element(element_key)
         if not resolved_element:

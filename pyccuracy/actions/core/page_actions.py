@@ -24,7 +24,6 @@ class PageGoToAction(ActionBase):
         url = kwargs.get("url", None)
         page, resolved_url = PageRegistry.resolve(context.settings, url.replace('"', ''), must_raise=False)
 
-# TODO: Add url check here again to provide feedback for user if invalid url used.
         if not resolved_url or (not url.startswith('"') and not page):
             raise self.failed(context.language.format("page_go_to_failure", url))
 
@@ -32,8 +31,12 @@ class PageGoToAction(ActionBase):
         context.browser_driver.wait_for_page()
         context.url = resolved_url
         if page:
-            context.current_page = page()
-            context.current_page.register()
+            # If the resolved page is the same as the current one, 
+            # there's not need to override the context page, risking
+            # losing all the re-registered elements of the users.
+            if not isinstance(context.current_page, page):
+                context.current_page = page()
+                context.current_page.register()
 
 class PageAmInAction(ActionBase):
     '''Changes the current page without actually navigating to it.'''
@@ -43,8 +46,12 @@ class PageAmInAction(ActionBase):
         page, resolved_url = PageRegistry.resolve(context.settings, url, must_raise=False)
 
         if page:
-            context.current_page = page()
-            context.current_page.register()
+            # If the resolved page is the same as the current one, 
+            # there's not need to override the context page, risking
+            # losing all the re-registered elements of the users.
+            if not isinstance(context.current_page, page):
+                context.current_page = page()
+                context.current_page.register()
             context.url = resolved_url
         else:
             raise self.failed(context.language.format("page_am_in_failure", url))
