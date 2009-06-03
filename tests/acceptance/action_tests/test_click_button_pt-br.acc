@@ -6,6 +6,6 @@ Cenário 1 - Clicando em um botão
 Dado que
 	Eu navego para "button_tests.htm"
 Quando
-	Eu clico no botão "btnSend"
+	Eu clico no botão "btnSend" e espero
 Então
 	#A página é recarregada

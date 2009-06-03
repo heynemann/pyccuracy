@@ -6,7 +6,7 @@ Cenário 1 - Clicando em um link pelo atributo name
 Dado que
 	Eu navego para "link_tests.htm"
 Quando
-	Eu clico no link "lnkItWorks"
+	Eu clico no link "lnkItWorks" e espero
 Então
 	Eu vejo o título "It Works!"
 	
@@ -14,6 +14,6 @@ Cenário 2 - Clicando em um link pelo atributo id
 Dado que
 	Eu navego para "link_tests.htm"
 Quando
-	Eu clico no link "lnkItWorks2"
+	Eu clico no link "lnkItWorks2" e espero
 Então
 	Eu vejo o título "It Works!"

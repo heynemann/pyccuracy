@@ -27,6 +27,8 @@ from pyccuracy.result import Result
 from pyccuracy.common import Context
 from pyccuracy.errors import ActionFailedError
 from pyccuracy.drivers import DriverError
+from pyccuracy.languages.templates import TemplateLoader
+from pyccuracy.airspeed import Template
 
 class StoryRunner(object):
     def run_stories(self, settings, fixture, context=None):

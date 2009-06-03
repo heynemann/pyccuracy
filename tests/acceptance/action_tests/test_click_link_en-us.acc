@@ -6,7 +6,7 @@ Scenario 1 - Checking that we can click a link by name
 Given
 	I go to "link_tests.htm"
 When
-	I click "lnkItWorks" link
+	I click "lnkItWorks" link and wait
 Then
 	I see "It Works!" title
 	
@@ -14,6 +14,6 @@ Scenario 2 - Checking that we can click a link by id
 Given
 	I go to "link_tests.htm"
 When
-	I click "lnkItWorks2" link
+	I click "lnkItWorks2" link and wait
 Then
 	I see "It Works!" title
