@@ -279,13 +279,16 @@ def test_is_not_scenario_starter_line():
 def test_parse_scenario_line():
     story = Story(as_a="Someone", i_want_to="Do Something", so_that="I'm Happy", identity="some file")
 
+    settings_mock = Mock()
+    settings_mock.scenarios_to_run = []
+
     language_mock = Mock()
     language_mock.expects(once()) \
                  .get(eq("scenario")) \
                  .will(return_value("Scenario")) \
 
     parser = FileParser(language=language_mock, file_object=None)
-    scenario = parser.parse_scenario_line(story, "Scenario 1 - Doing something")
+    scenario = parser.parse_scenario_line(story, "Scenario 1 - Doing something", settings_mock)
 
     assert scenario is not None
     assert scenario.index == "1", "Expected 1 actual %s" % scenario.index

@@ -28,6 +28,7 @@ Failed Stories..........1 of 1 (100.00%)
 Failed Scenarios........1 of 1 (100.00%)
 
 Total timing: 0.00 secs
+Scenarios/Minute: 0 scenarios per minute
 
 
 Failed Stories / Scenarios

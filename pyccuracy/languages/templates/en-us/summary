@@ -18,6 +18,7 @@ Failed Scenarios........$failed_scenarios of $total_scenarios ($failed_scenario_
 
 
 Total timing: $test_run_seconds secs
+Scenarios/Minute: $threshold scenarios per minute
 #if($has_failed_scenarios)
 
 
@@ -42,8 +43,7 @@ Scenario.......$scenario.index - $scenario.title
 #if($action.status == "FAILED")${RED}        $action.description - $action.status - $action.error${NORMAL}
 #end#end
 #end
-#end
-#if($has_no_header_files)
+#end#if($has_no_header_files)
 
 ${BG_RED}Files with Invalid Header${NORMAL}
 -------------------------
@@ -53,5 +53,4 @@ didn't specify a valid scenario (using ${CYAN}Scenario # - Description${NORMAL} 
 
 Maybe you forgot to use the ${CYAN}-l <en-us, pt-br, etc>${NORMAL} switch (or ${CYAN}--language=en-us${NORMAL})?
 
-#foreach ($story in $no_header_files)${RED}  $story${NORMAL}
-#end#end
+#foreach ($story in $no_header_files)${RED}  $story${NORMAL}#end#end

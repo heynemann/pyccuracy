@@ -46,7 +46,7 @@ class URLChecker(object):
         self.url = url
 
     def is_valid(self):
-        url_regex = re.compile(r'^(https?|file):[/]{2}([\w_.-]+)+[.]\w{2,}([/]?.*)?')
+        url_regex = re.compile(r'^(https?|file):[/]{2}([\w_.-]+)+[.]?\w{2,}([:]\d+)?([/]?.*)?')
         return url_regex.search(self.url) and True or False
 
     def exists(self):

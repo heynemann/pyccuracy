@@ -34,3 +34,51 @@ def test_url_checker():
     assert checker.exists()
 
     urlmock.verify()
+
+def test_url_checker_with_port():
+    urlmock = Mock()
+
+    urlmock.expects(once()) \
+        .urlopen(eq("http://foo.bar.com:8080")) \
+        .will(return_value(None))
+
+    checker = URLChecker(lib=urlmock)
+    checker.set_url("http://foo.bar.com:8080")
+
+    assert checker.url == "http://foo.bar.com:8080"
+    assert checker.is_valid()
+    assert checker.exists()
+
+    urlmock.verify()
+
+def test_url_checker_with_port_with_sub_folder():
+    urlmock = Mock()
+
+    urlmock.expects(once()) \
+        .urlopen(eq("http://foo.bar.com:8080/login")) \
+        .will(return_value(None))
+
+    checker = URLChecker(lib=urlmock)
+    checker.set_url("http://foo.bar.com:8080/login")
+
+    assert checker.url == "http://foo.bar.com:8080/login"
+    assert checker.is_valid()
+    assert checker.exists()
+
+    urlmock.verify()
+
+def test_url_checker_with_port_with_sub_folder_in_localhost():
+    urlmock = Mock()
+
+    urlmock.expects(once()) \
+        .urlopen(eq("http://localhost:8080/login")) \
+        .will(return_value(None))
+
+    checker = URLChecker(lib=urlmock)
+    checker.set_url("http://localhost:8080/login")
+
+    assert checker.url == "http://localhost:8080/login"
+    assert checker.is_valid()
+    assert checker.exists()
+
+    urlmock.verify()

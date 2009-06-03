@@ -40,6 +40,7 @@ def test_pyccuracy_core_run_tests():
     context_mock.settings.custom_actions_dir = "/custom/actions/dir/"
     context_mock.settings.base_url = "http://localhost"
     context_mock.settings.default_culture = "en-us"
+    context_mock.settings.write_report = False
 
     files = ["/some/weird/file.py"]
     actions  = ["/some/weird/action.py"]

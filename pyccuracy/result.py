@@ -47,7 +47,8 @@ class Result(object):
                 "failed_stories" : 0,
                 "successful_scenarios" : 0,
                 "failed_scenarios" : 0,
-                "has_failed_scenarios": False
+                "has_failed_scenarios": False,
+                "threshold":"0.00"
               }
 
         if self.fixture:
@@ -60,6 +61,12 @@ class Result(object):
                     "successful_scenarios" : self.fixture.count_successful_scenarios(),
                     "failed_scenarios" : self.fixture.count_failed_scenarios()
                   }
+            total_test_time = float(self.fixture.ellapsed())
+            if total_test_time == 0:
+                val["threshold"] = 0
+            else:
+                val["threshold"] = "%.2f" % (val["total_scenarios"] / (total_test_time / 60))
+
             val["has_failed_scenarios"] = val["failed_scenarios"] > 0
 
         if val["has_failed_scenarios"]:
@@ -77,7 +84,7 @@ class Result(object):
             val["has_no_header_files"] = True
             val["no_header_files"] = self.fixture.no_story_header
 
-        val["test_run_seconds"] = "%.2f" % self.fixture.ellapsed()
+        val["test_run_seconds"] = "%.2f" % total_test_time
 
         return val
 

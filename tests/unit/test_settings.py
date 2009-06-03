@@ -43,7 +43,7 @@ def test_settings_return_default_value_for_file_pattern():
 
 def test_settings_return_default_value_for_scenarios_to_run():
     settings = Settings({})
-    assert settings.scenarios_to_run is None, "The scenarios to run should be None but was %s." % (settings.scenarios_to_run)
+    assert settings.scenarios_to_run == [], "The scenarios to run should be None but was %s." % (settings.scenarios_to_run)
 
 def test_settings_return_default_value_for_default_culture():
     settings = Settings({})
@@ -109,7 +109,7 @@ def test_settings_return_default_value_for_file_pattern():
 
 def test_settings_return_default_value_for_scenarios_to_run():
     settings = Settings({"scenarios_to_run":"a"})
-    assert settings.scenarios_to_run == "a", "The scenarios to run should be 'a' but was %s." % (settings.scenarios_to_run)
+    assert settings.scenarios_to_run == ["a"], "The scenarios to run should be 'a' but was %s." % (settings.scenarios_to_run)
 
 def test_settings_return_default_value_for_default_culture():
     settings = Settings({"default_culture":"a"})

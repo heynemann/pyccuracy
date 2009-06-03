@@ -18,7 +18,7 @@ Cenários com Falha.......$failed_scenarios de $total_scenarios ($failed_scenari
 
 
 Tempo total: $test_run_seconds segs
-#if($has_failed_scenarios)
+Cenários por Minuto: $threshold cenários por minuto#if($has_failed_scenarios)
 
 
 ${BG_RED}Stories / Cenários com Falha${NORMAL}
@@ -40,10 +40,8 @@ Cenário........$scenario.index - $scenario.title
 #foreach ($action in $scenario.thens)#if($action.status != "FAILED")        $action.description - $action.status
 #end
 #if($action.status == "FAILED")${RED}        $action.description - $action.status - $action.error${NORMAL}
-#end#end
-#end
-#end
-#if($has_no_header_files)
+#end#end#end
+#end#if($has_no_header_files)
 
 ${BG_RED}Arquivos com cabeçalho Inválido${NORMAL}
 -------------------------------
