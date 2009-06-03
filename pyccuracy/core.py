@@ -85,12 +85,10 @@ class PyccuracyCore(object):
 
         self.print_results(context.settings.default_culture, results)
 
-#        if self.context.write_report:
-#            import report_parser as report
-#            report.generate_report(
-#                        join(self.context.report_file_dir, self.context.report_file_name),
-#                        results,
-#                        self.context.language)
+        if context.settings.write_report:
+            import report_parser as report
+            path = join(context.settings.report_file_dir, context.settings.report_file_name)
+            report.generate_report(path, results, context.language)
 
         if settings.should_throw and result.get_status() == Status.Failed:
             raise TestFailedError("The test failed!")

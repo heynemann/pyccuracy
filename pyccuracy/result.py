@@ -59,7 +59,7 @@ class Result(object):
                     "failed_stories" : self.fixture.count_failed_stories(),
                     "successful_scenarios" : self.fixture.count_successful_scenarios(),
                     "failed_scenarios" : self.fixture.count_failed_scenarios()
-                }
+                  }
             val["has_failed_scenarios"] = val["failed_scenarios"] > 0
 
         if val["has_failed_scenarios"]:
