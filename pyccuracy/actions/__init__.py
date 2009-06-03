@@ -52,9 +52,9 @@ class MetaActionBase(type):
     def __init__(cls, name, bases, attrs):
         if name not in ('ActionBase', ):
             if 'execute' not in attrs:
-                raise NotImplementedError("The action %s does not implements the method execute()", name)
+                raise NotImplementedError("The action %s does not implements the method execute()" % name)
             if 'regex' not in attrs:
-                raise NotImplementedError("The action %s does not implements the attribute regex", name)
+                raise NotImplementedError("The action %s does not implements the attribute regex" % name)
 
             if not isinstance(attrs['regex'], basestring):
                 regex = attrs['regex']
@@ -92,7 +92,6 @@ class ActionBase(object):
             resolved_element = context.browser_driver.resolve_element_key(context, element_type, element_key)
 
         if not resolved_element:
-            import pdb;pdb.set_trace()
             raise KeyError("No element could be resolved for element type %s and element key %s" % (element_type, element_key))
 
         return resolved_element
