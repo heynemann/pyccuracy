@@ -212,6 +212,9 @@ class SeleniumDriver(BaseDriver):
         klass = self.__get_attribute_value(name, 'class')
         return klass
 
+    def get_xpath_count(self, xpath):
+        return self.selenium.get_xpath_count(xpath)
+
     def __get_attribute_value(self, element, attribute):
         try:
             locator = element + "/@" + attribute
