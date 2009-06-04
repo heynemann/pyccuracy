@@ -144,7 +144,7 @@ class ParallelStoryRunner(StoryRunner):
         while True:
             fixture, scenario, context = self.test_queue.get()
 
-            scenario_index = fixture.count_total_scenarios() - self.test_queue.unfinished_tasks + 1
+            scenario_index = fixture.count_successful_scenarios() + fixture.count_failed_scenarios()
 
             if context.settings.on_scenario_started and callable(context.settings.on_scenario_started):
                 context.settings.on_scenario_started(fixture, scenario, scenario_index)
