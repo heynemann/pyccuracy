@@ -138,11 +138,13 @@ class ParallelStoryRunner(StoryRunner):
             for scenario in story.scenarios:
                 scenario_index += 1
                 context = self.create_context_for(settings)
-                self.test_queue.put((scenario, context, scenario_index))
+                self.test_queue.put((fixture, scenario, context))
 
     def worker(self):
         while True:
-            scenario, context, scenario_index = self.test_queue.get()
+            fixture, scenario, context = self.test_queue.get()
+
+            scenario_index = fixture.count_total_scenarios() - self.test_queue.unfinished_tasks + 1
 
             if context.settings.on_scenario_started and callable(context.settings.on_scenario_started):
                 context.settings.on_scenario_started(fixture, scenario, scenario_index)
