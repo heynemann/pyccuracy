@@ -103,6 +103,8 @@ class PyccuracyCore(object):
             return results
 
     def print_results(self, language, results):
+        if not results:
+            return
         ctrl = TerminalController()
         print ctrl.render(results.summary_for(language))
         print "\n"
