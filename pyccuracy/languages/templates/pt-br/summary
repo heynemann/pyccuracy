@@ -23,9 +23,9 @@ Cenários por Minuto: $threshold cenários por minuto#if($has_failed_scenarios)
 
 ${BG_RED}Stories / Cenários com Falha${NORMAL}
 ----------------------------
-#foreach ($scenario in $failed_scenario_instances){CYAN}Story..........Como um $scenario.story.as_a Eu quero $scenario.story.i_want_to Para que $scenario.story.so_that
+#foreach ($scenario in $failed_scenario_instances)${CYAN}Story..........Como um $scenario.story.as_a Eu quero $scenario.story.i_want_to Para que $scenario.story.so_that
 Arquivo........$scenario.story.identity
-Cenário........$scenario.index - $scenario.title{NORMAL}
+Cenário........$scenario.index - $scenario.title${NORMAL}
     Dado que
 #foreach ($action in $scenario.givens)#if($action.status != "FAILED")        $action.description - $action.status
 #end
