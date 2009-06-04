@@ -133,14 +133,19 @@ class ParallelStoryRunner(StoryRunner):
             t.start()
 
     def fill_queue(self, fixture, settings):
+        scenario_index = 0
         for story in fixture.stories:
             for scenario in story.scenarios:
+                scenario_index += 1
                 context = self.create_context_for(settings)
-                self.test_queue.put((scenario, context))
+                self.test_queue.put((scenario, context, scenario_index))
 
     def worker(self):
         while True:
-            scenario, context = self.test_queue.get()
+            scenario, context, scenario_index = self.test_queue.get()
+
+            if context.settings.on_scenario_started and callable(context.settings.on_scenario_started):
+                context.settings.on_scenario_started(fixture, scenario, scenario_index)
 
             current_story = scenario.story
             if context.settings.base_url:
@@ -161,4 +166,6 @@ class ParallelStoryRunner(StoryRunner):
             finally:
                 context.browser_driver.stop_test()
                 self.test_queue.task_done()
+                if context.settings.on_scenario_completed and callable(context.settings.on_scenario_completed):
+                    context.settings.on_scenario_completed(fixture, scenario, scenario_index)
 
