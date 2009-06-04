@@ -74,8 +74,10 @@ class TimedItem(object):
         '''The number of milliseconds that this story took to run.'''
         if self.start_time is None:
             return 0
+
         if self.end_time is None:
-            return 0
+            return time.time() - self.start_time
+
         return self.end_time - self.start_time
 
 class Status:
@@ -144,6 +146,7 @@ class Settings(object):
         self.browser_driver = self.get_setting(settings, "browser_driver", "selenium")
         self.worker_threads = int(self.get_setting(settings, "workers", 1))
         self.extra_args = self.get_setting(settings, "extra_args", {})
+        self.on_scenario_completed = self.get_setting(settings, "on_scenario_completed", None)
 
     def get_setting(self, settings, key, default):
         value = settings.get(key, None)

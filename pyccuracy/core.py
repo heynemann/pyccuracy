@@ -81,7 +81,10 @@ class PyccuracyCore(object):
             return results
 
         #running the tests
-        results = self.runner.run_stories(settings=context.settings, fixture=fixture, context=context)
+        results = self.runner.run_stories(settings=context.settings, 
+                                           fixture=fixture, 
+                                           context=context, 
+                                           on_scenario_completed=settings.on_scenario_completed)
 
         self.print_results(context.settings.default_culture, results)
 

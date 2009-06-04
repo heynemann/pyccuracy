@@ -31,6 +31,7 @@ class FakeContext(object):
         self.settings = Settings(cur_dir='/')
         self.browser_driver = Mock()
         self.language = Mock()
+        self.current_page = None
 
 #Go To Action
 

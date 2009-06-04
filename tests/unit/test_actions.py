@@ -143,7 +143,8 @@ def test_execute_action_will_not_execute_itself():
     language_getter_mock.expects(at_least_once()).method('get').will(return_value('^$'))
 
     context_mock = Mock()
-    context_mock.expects(once()).get_language().will(return_value('en-us'))
+    context_mock.settings = Mock()
+    context_mock.settings.default_culture = "en-us"
 
     dosaction = DoSomethingRecursiveAction()
     args = []

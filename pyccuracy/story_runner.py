@@ -32,7 +32,7 @@ from pyccuracy.languages.templates import TemplateLoader
 from pyccuracy.airspeed import Template
 
 class StoryRunner(object):
-    def run_stories(self, settings, fixture, context=None):
+    def run_stories(self, settings, fixture, context=None, on_scenario_completed=None):
         if not context:
             context = self.create_context_for(settings)
 
@@ -57,8 +57,10 @@ class StoryRunner(object):
                 return None
 
         try:
+            scenario_index = 0
             for story in fixture.stories:
                 for scenario in story.scenarios:
+                    scenario_index += 1
                     if not context:
                         context = self.create_context_for(settings)
                     for action in scenario.givens + scenario.whens + scenario.thens:
@@ -69,6 +71,8 @@ class StoryRunner(object):
                         except ActionNotFoundError, error:
                             action.mark_as_failed(ActionNotFoundError(error.line, scenario, scenario.story.identity))
                             break
+                    if on_scenario_completed and callable(on_scenario_completed):
+                        on_scenario_completed(fixture, scenario, scenario_index)
 
             fixture.end_run()
             return Result(fixture=fixture)

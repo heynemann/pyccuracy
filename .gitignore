@@ -17,3 +17,4 @@ nbproject/
 debian/python-pyccuracy*
 python-build-stamp*
 *report.html
+.coverage

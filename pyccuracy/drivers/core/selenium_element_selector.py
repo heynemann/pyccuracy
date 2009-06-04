@@ -19,6 +19,8 @@
 class SeleniumElementSelector(object):
     @staticmethod
     def element(element_type, element_name):
+        if element_type == "element":
+            return SeleniumElementSelector.generic(element_name)
         method = getattr(SeleniumElementSelector, element_type, SeleniumElementSelector.generic)
         return method(element_name)
 

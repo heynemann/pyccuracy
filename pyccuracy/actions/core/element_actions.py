@@ -17,11 +17,12 @@ from pyccuracy.actions import ActionBase
 from pyccuracy.languages import LanguageItem
 
 def resolve_element_key(context, element_type, element_name, resolve_function):
+    element_type = element_type.encode("utf-8")
     resolved = resolve_function(context, element_type, element_name)
     if resolved:
         return resolved
 
-    element_category = context.language.get(element_type.encode("utf-8") + "_category")
+    element_category = context.language.get(element_type + "_category")
     return resolve_function(context, element_category, element_name)
 
 class ElementDoesNotContainStyleAction(ActionBase):

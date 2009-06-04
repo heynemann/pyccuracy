@@ -19,11 +19,28 @@
 import os
 import sys, optparse
 from pyccuracy.core import PyccuracyCore
+from pyccuracy.common import Status
 from pyccuracy.story_runner import StoryRunner, ParallelStoryRunner
 from pyccuracy import Version, Release
+from colored_terminal import ProgressBar
 
 __version_string__ = "pyccuracy %s (release '%s')" % (Version, Release)
 __docformat__ = 'restructuredtext en'
+
+prg = ProgressBar("Pyccuracy - %s" % __version_string__)
+
+def start_progress():
+    prg.update(0, "Starting test run...")
+
+def update_progress(fixture, scenario, scenario_index):
+    if scenario.status == Status.Failed:
+        prg.set_failed()
+    total_scenarios = fixture.count_total_scenarios()
+    if total_scenarios == 0:
+        return
+
+    current_progress = float(scenario_index) / total_scenarios
+    prg.update(current_progress, "Scenario %d - %s - %.2f secs" % (scenario_index, scenario.title, fixture.ellapsed()))
 
 def main():
     """ Main function - parses args and runs action """
@@ -70,6 +87,8 @@ def main():
             key, value = arg.split('=')
             extra_args[key] = value
 
+    start_progress()
+
     result = pyc.run_tests(actions_dir=options.actions_dir,
                            custom_actions_dir=options.custom_actions_dir,
                            pages_dir=options.pages_dir,
@@ -86,7 +105,8 @@ def main():
                            browser_driver=options.browser_driver,
                            should_throw=options.should_throw,
                            workers=workers,
-                           extra_args=extra_args)
+                           extra_args=extra_args,
+                           on_scenario_completed=update_progress)
 
     if not result or result.get_status() != "SUCCESSFUL":
         sys.exit(1)

@@ -38,7 +38,8 @@ class PageGoToAction(ActionBase):
             # losing all the re-registered elements of the users.
             if not isinstance(context.current_page, page):
                 context.current_page = page()
-                context.current_page.register()
+                if hasattr(context.current_page, "register"):
+                    context.current_page.register()
 
 class PageAmInAction(ActionBase):
     '''Changes the current page without actually navigating to it.'''
@@ -53,7 +54,8 @@ class PageAmInAction(ActionBase):
             # losing all the re-registered elements of the users.
             if not isinstance(context.current_page, page):
                 context.current_page = page()
-                context.current_page.register()
+                if hasattr(context.current_page, "register"):
+                    context.current_page.register()
             context.url = resolved_url
         else:
             raise self.failed(context.language.format("page_am_in_failure", url))

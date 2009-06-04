@@ -105,6 +105,7 @@ class ActionBase(object):
 
         if page:
             resolved_element = page.get_registered_element(element_key)
+
         if not resolved_element:
             resolved_element = context.browser_driver.resolve_element_key(context, element_type, element_key)
 
