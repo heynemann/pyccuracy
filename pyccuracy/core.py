@@ -80,23 +80,27 @@ class PyccuracyCore(object):
             self.print_results(context.settings.default_culture, results)
             return results
 
-        #running the tests
-        results = self.runner.run_stories(settings=context.settings, 
-                                           fixture=fixture, 
-                                           context=context, 
-                                           on_scenario_completed=settings.on_scenario_completed)
+        try:
+            #running the tests
+            results = self.runner.run_stories(settings=context.settings, 
+                                               fixture=fixture, 
+                                               context=context)
 
-        self.print_results(context.settings.default_culture, results)
+            self.print_results(context.settings.default_culture, results)
 
-        if context.settings.write_report:
-            import report_parser as report
-            path = join(context.settings.report_file_dir, context.settings.report_file_name)
-            report.generate_report(path, results, context.language)
+            if context.settings.write_report:
+                import report_parser as report
+                path = join(context.settings.report_file_dir, context.settings.report_file_name)
+                report.generate_report(path, results, context.language)
 
-        if settings.should_throw and result.get_status() == Status.Failed:
-            raise TestFailedError("The test failed!")
+            if settings.should_throw and result.get_status() == Status.Failed:
+                raise TestFailedError("The test failed!")
 
-        return results
+            return results
+        except KeyboardInterrupt:
+            results = Result(fixture)
+            self.print_results(context.settings.default_culture, results)
+            return results
 
     def print_results(self, language, results):
         ctrl = TerminalController()
