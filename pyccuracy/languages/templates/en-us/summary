@@ -24,7 +24,7 @@ Scenarios/Minute: $threshold scenarios per minute
 
 ${BG_RED}Failed Stories / Scenarios${NORMAL}
 --------------------------
-#foreach ($scenario in $failed_scenario_instances)${CYAN}Story..........As a $scenario.story.as_a I want to $scenario.story.i_want_to }So that $scenario.story.so_that
+#foreach ($scenario in $failed_scenario_instances)${CYAN}Story..........As a $scenario.story.as_a I want to $scenario.story.i_want_to So that $scenario.story.so_that
 Story file.....$scenario.story.identity
 Scenario.......$scenario.index - $scenario.title${NORMAL}
     Given

@@ -37,7 +37,7 @@ def update_progress(fixture, scenario, scenario_index):
         return
 
     current_progress = float(scenario_index) / total_scenarios
-    prg.update(current_progress, "Scenario %d - %s - %.2f secs" % (scenario_index, scenario.title, fixture.ellapsed()))
+    prg.update(current_progress, "Scenario %d of %d - %s - %.2f secs" % (scenario_index, total_scenarios, scenario.title, fixture.ellapsed()))
 
 def main():
     """ Main function - parses args and runs action """
