@@ -30,6 +30,7 @@ from pyccuracy.errors import ActionFailedError
 from pyccuracy.drivers import DriverError
 from pyccuracy.languages.templates import TemplateLoader
 from pyccuracy.airspeed import Template
+from pyccuracy.colored_terminal import TerminalController
 
 class StoryRunner(object):
     def run_stories(self, settings, fixture, context=None):
@@ -39,18 +40,18 @@ class StoryRunner(object):
         fixture.start_run()
         if settings.base_url:
             base_url = settings.base_url
-
         else:
             base_url = "http://localhost"
 
         try:
             context.browser_driver.start_test(base_url)
-
         except DriverError, err:
+            ctrl = TerminalController()
             template_text = TemplateLoader(settings.default_culture).load("driver_error")
             template = Template(template_text)
             values = {"error": err, "browser_driver": context.browser_driver}
-            print template.merge(values)
+            print ctrl.render(template.merge(values))
+
             if settings.should_throw:
                 raise TestFailedError("The test failed!")
             else:
@@ -118,7 +119,6 @@ class ParallelStoryRunner(StoryRunner):
             time.sleep(2)
             while self.test_queue.unfinished_tasks:
                 time.sleep(1)
-
         except KeyboardInterrupt:
             sys.stderr.write("Parallel tests interrupted by user\n")
 

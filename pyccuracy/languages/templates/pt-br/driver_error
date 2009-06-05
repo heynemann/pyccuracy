@@ -8,8 +8,8 @@ Verifique os detalhes abaixo.
 
 Detalhes do Erro
 ----------------
-Browser Driver Atual....... $browser_driver
+Browser Driver Atual....... ${CYAN}$browser_driver${NORMAL}
 
 Descrição do Erro
 -----------------
-$error
+${RED}$error${NORMAL}
