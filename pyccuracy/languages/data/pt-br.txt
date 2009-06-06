@@ -129,10 +129,16 @@ element_is_not_visible_failure = O %s de id ou nome %s está visível, quando n�
 element_wait_for_disappear_failure = O %s de nome ou id %s deveria desaparecer dentro de %d segundo(s), mas ainda está presente (Resolvido para %s).
 element_wait_for_presence_failure = O %s de nome ou id %s deveria aparecer dentro de %d segundo(s), mas não existe ou não está visível (Resolvido para %s).
 element_is_not_visible_for_drag_failure = O elemento que está sendo arrastado (%s) não existe ou não está visível.
-element_contains_text_failure = O %s com nome ou id %s deveria conter "%s", mas o seu texto atual é "%s".
-element_contains_markup_failure = O %s com nome ou id %s deveria conter o markup "%s", mas o seu markup atual é "%s".
-element_does_not_contain_text_failure = O %s com nome ou id %s não deveria conter "%s", mas o seu texto atual é "%s".
 element_contains_style_failure = O %s com nome ou id %s deveria conter o estilo (class ou style) "%s".
+
+element_contains_text_failure = O %s com nome ou id %s deveria conter "%s", mas o seu texto atual é "%s".
+element_does_not_contain_text_failure = O %s com nome ou id %s não deveria conter "%s", mas o seu texto atual é "%s".
+element_contains_markup_failure = O %s com nome ou id %s deveria conter o markup "%s", mas o seu markup atual é "%s".
+element_does_not_contain_markup_failure = O %s com nome ou id %s não deveria conter o markup "%s", mas o seu markup atual é "%s".
+element_matches_text_failure = O %s com nome ou id %s deveria conter exatamente "%s", mas o seu texto atual é "%s".
+element_does_not_match_text_failure = O %s com nome ou id %s não deveria conter exatamente "%s", mas o seu texto atual é "%s".
+element_matches_markup_failure = O %s com nome ou id %s deveria conter exatamente o markup "%s", mas o seu markup atual é "%s".
+element_does_not_match_markup_failure = O %s com nome ou id %s não deveria conter exatamente o markup "%s", mas o seu markup atual é "%s".
 
 
 image_has_src_failure = A imagem com nome ou id %s deveria ter src de "%s", mas tem "%s".

@@ -34,6 +34,6 @@ class LinkHasHrefOfAction(ActionBase):
 
         current_href = context.browser_driver.get_link_href(link)
 
-        if href.lower() != current_href.lower():
+        if not current_href or href.lower() != current_href.lower():
             error_message = context.language.format("link_has_href_failure", link_name, href, current_href)
             raise self.failed(error_message)

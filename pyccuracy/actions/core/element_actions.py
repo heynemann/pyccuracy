@@ -216,7 +216,7 @@ class ElementContainsTextAction(ActionBase):
 
         current_text = context.browser_driver.get_element_text(element_key)
         if (not current_text) or (not text in current_text):
-            error_message = context.language.format("element_contains_text_failure", element_name, text, current_text)
+            error_message = context.language.format("element_contains_text_failure", element_type, element_name, text, current_text)
             raise self.failed(error_message)
 
 class ElementDoesNotContainTextAction(ActionBase):
@@ -234,7 +234,7 @@ class ElementDoesNotContainTextAction(ActionBase):
 
         current_text = context.browser_driver.get_element_text(element_key)
         if current_text and text in current_text:
-            error_message = context.language.format("element_does_not_contain_text_failure", element_name, text, current_text)
+            error_message = context.language.format("element_does_not_contain_text_failure", element_type, element_name, text, current_text)
             raise self.failed(error_message)
 
 class ElementMatchesTextAction(ActionBase):
@@ -251,8 +251,8 @@ class ElementMatchesTextAction(ActionBase):
         self.assert_element_is_visible(context, element_key, error_message)
 
         current_text = context.browser_driver.get_element_text(element_key)
-        if (not current_text) or (text != current_text):
-            error_message = context.language.format("element_matches_text_failure", element_name, text, current_text)
+        if (not current_text) or (text.strip() != current_text.strip()):
+            error_message = context.language.format("element_matches_text_failure", element_type, element_name, text, current_text)
             raise self.failed(error_message)
 
 class ElementDoesNotMatchTextAction(ActionBase):
@@ -269,10 +269,9 @@ class ElementDoesNotMatchTextAction(ActionBase):
         self.assert_element_is_visible(context, element_key, error_message)
 
         current_text = context.browser_driver.get_element_text(element_key)
-        if current_text and text in current_text:
-            error_message = context.language.format("element_does_not_match_text_failure", element_name, text, current_text)
+        if current_text and text.strip() == current_text.strip():
+            error_message = context.language.format("element_does_not_match_text_failure", element_type, element_name, text, current_text)
             raise self.failed(error_message)
-
 
 class ElementContainsMarkupAction(ActionBase):
     regex = LanguageItem("element_contains_markup_regex")
@@ -289,7 +288,7 @@ class ElementContainsMarkupAction(ActionBase):
 
         current_markup = context.browser_driver.get_element_markup(element_key)
         if (not current_markup) or (not markup in current_markup):
-            error_message = context.language.format("element_contains_markup_failure", element_name, markup, current_markup)
+            error_message = context.language.format("element_contains_markup_failure", element_type, element_name, markup, current_markup)
             raise self.failed(error_message)
 
 class ElementDoesNotContainMarkupAction(ActionBase):
@@ -307,7 +306,7 @@ class ElementDoesNotContainMarkupAction(ActionBase):
 
         current_markup = context.browser_driver.get_element_markup(element_key)
         if current_markup and markup in current_markup:
-            error_message = context.language.format("element_does_not_contain_markup_failure", element_name, markup, current_markup)
+            error_message = context.language.format("element_does_not_contain_markup_failure", element_type, element_name, markup, current_markup)
             raise self.failed(error_message)
 
 class ElementMatchesMarkupAction(ActionBase):
@@ -324,8 +323,8 @@ class ElementMatchesMarkupAction(ActionBase):
         self.assert_element_is_visible(context, element_key, error_message)
 
         current_markup = context.browser_driver.get_element_markup(element_key)
-        if (not current_markup) or (markup != current_markup):
-            error_message = context.language.format("element_matches_markup_failure", element_name, markup, current_markup)
+        if (not current_markup) or (markup.strip() != current_markup.strip()):
+            error_message = context.language.format("element_matches_markup_failure", element_type, element_name, markup, current_markup)
             raise self.failed(error_message)
 
 class ElementDoesNotMatchMarkupAction(ActionBase):
@@ -342,8 +341,8 @@ class ElementDoesNotMatchMarkupAction(ActionBase):
         self.assert_element_is_visible(context, element_key, error_message)
 
         current_markup = context.browser_driver.get_element_markup(element_key)
-        if current_markup and markup == current_markup:
-            error_message = context.language.format("element_does_not_match_markup_failure", element_name, markup, current_markup)
+        if current_markup and markup.strip() == current_markup.strip():
+            error_message = context.language.format("element_does_not_match_markup_failure", element_type, element_name, markup, current_markup)
             raise self.failed(error_message)
 
 class ElementMouseoverAction(ActionBase):

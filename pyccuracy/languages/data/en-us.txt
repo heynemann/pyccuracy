@@ -129,10 +129,17 @@ element_is_not_visible_failure = The %s with name or id %s is visible, when it s
 element_wait_for_disappear_failure = The %s with name or id %s should disappear within %d second(s), but it still present (Resolved to %s).
 element_wait_for_presence_failure = The %s with name or id %s should be present within %d second(s), but is not present or do not exist (Resolved to %s).
 element_is_not_visible_for_drag_failure = The element being dragged (%s) does not exist or is not visible.
-element_contains_text_failure = The %s with name or id %s should contain "%s", but it's current text is "%s".
-element_contains_markup_failure = The %s with name or id %s should contain "%s" markup, but it's current markup is "%s".
-element_does_not_contain_text_failure = The %s with name or id %s should not contain "%s", but it's current text is "%s".
 element_contains_style_failure = The %s with name or id %s should contain "%s" style.
+
+element_contains_text_failure = The %s with name or id %s should contain "%s", but it's current text is "%s".
+element_does_not_contain_text_failure = The %s with name or id %s should not contain "%s", but it's current text is "%s".
+element_contains_markup_failure = The %s with name or id %s should contain "%s" markup, but it's current markup is "%s".
+element_does_not_contain_markup_failure = The %s with name or id %s should contain "%s" markup, but it's current markup is "%s".
+element_matches_text_failure = The %s with name or id %s should match "%s" text, but it's current text is "%s".
+element_does_not_match_text_failure = The %s with name or id %s should not match "%s" text, but it's current text is "%s".
+element_matches_markup_failure = The %s with name or id %s should match "%s" markup, but it's current markup is "%s".
+element_does_not_match_markup_failure = The %s with name or id %s should not match "%s" markup, but it's current markup is "%s".
+
 
 image_has_src_failure = The image with name or id %s should have "%s" as src, but has "%s".
 image_does_not_have_src_failure = The image with name or id %s should not have "%s" as src, but has "%s".
