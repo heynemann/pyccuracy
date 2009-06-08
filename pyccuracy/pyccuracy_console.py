@@ -27,20 +27,32 @@ from colored_terminal import ProgressBar
 __version_string__ = "pyccuracy %s (release '%s')" % (Version, Release)
 __docformat__ = 'restructuredtext en'
 
-prg = ProgressBar("Pyccuracy - %s" % __version_string__)
+no_progress = False
+prg = None
+
+def create_progress():
+    global no_progress
+    global prg
+    if not no_progress:
+        prg = ProgressBar("Pyccuracy - %s" % __version_string__)
+        prg.update(0, 'Running first test...')
 
 def update_progress(fixture, scenario, scenario_index):
-    if scenario.status == Status.Failed:
-        prg.set_failed()
-    total_scenarios = fixture.count_total_scenarios()
-    if total_scenarios == 0:
-        return
+    global no_progress
+    global prg
+    if not no_progress:
+        if scenario.status == Status.Failed:
+            prg.set_failed()
+        total_scenarios = fixture.count_total_scenarios()
+        if total_scenarios == 0:
+            return
 
-    current_progress = float(scenario_index) / total_scenarios
-    prg.update(current_progress, "Scenario %d of %d - %s - %.2f secs" % (scenario_index, total_scenarios, scenario.title, fixture.ellapsed()))
+        current_progress = float(scenario_index) / total_scenarios
+        prg.update(current_progress, "Scenario %d of %d - %s - %.2f secs" % (scenario_index, total_scenarios, scenario.title, fixture.ellapsed()))
 
 def main():
     """ Main function - parses args and runs action """
+    global no_progress
 
     extra_browser_driver_arguments = "\n\nThe following extra browser driver arguments " \
                                      " are supported in the key=value format:\n\nSelenium Browser Driver:\n" \
@@ -78,11 +90,16 @@ def main():
 
     extra_args = {}
     if args:
-        for arg in args[:-1]:
+        for arg in args:
+            if arg == "noprogress":
+                no_progress = True
+                continue
             if not "=" in arg:
                 raise ValueError("The specified extra argument should be in the form of key=value and not %s" % arg)
             key, value = arg.split('=')
             extra_args[key] = value
+
+    create_progress()
 
     result = pyc.run_tests(actions_dir=options.actions_dir,
                            custom_actions_dir=options.custom_actions_dir,
