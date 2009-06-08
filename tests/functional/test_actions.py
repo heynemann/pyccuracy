@@ -21,6 +21,7 @@ from pyccuracy.languages import LanguageItem
 
 def test_get_suitable_action():
     Action, args, kw = ActionRegistry.suitable_for(u'I see "Welcome to Pyccuracy" title', 'en-us')
+    assert Action, "Action cannot be None"
     assert issubclass(Action, ActionBase)
     assert isinstance(args, (list, tuple))
     assert isinstance(kw, dict)

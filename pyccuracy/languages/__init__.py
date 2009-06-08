@@ -23,7 +23,16 @@ from pyccuracy.errors import WrongArgumentsError
 
 AVAILABLE_LANGUAGES = [l.replace('.txt', '') for l in listdir(join(abspath(dirname(__file__)), 'data'))]
 
-class LanguageGetter(object):
+class Singleton(object):
+    __SINGLETON_INSTANCES__ = {}
+    def __new__(cls, *args, **kw):
+        key = cls.__name__, args, tuple(kw.values())
+        if key not in cls.__SINGLETON_INSTANCES__.keys():
+            cls.__SINGLETON_INSTANCES__[key] = super(type, cls).__new__(cls, *args, **kw)
+ 
+        return cls.__SINGLETON_INSTANCES__[key]
+
+class LanguageGetter(Singleton):
     def __init__(self, language, file_object=None):
         if not isinstance(language, basestring):
             error = 'LanguageGetter takes a string as construction ' \
