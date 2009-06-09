@@ -22,7 +22,7 @@ from pyccuracy.core import PyccuracyCore
 from pyccuracy.common import Status
 from pyccuracy.story_runner import StoryRunner, ParallelStoryRunner
 from pyccuracy import Version, Release
-from colored_terminal import ProgressBar
+from pyccuracy.colored_terminal import ProgressBar
 
 __version_string__ = "pyccuracy %s (release '%s')" % (Version, Release)
 __docformat__ = 'restructuredtext en'
