@@ -31,7 +31,15 @@ setup(name='Pyccuracy',
       author_email='heynemann@gmail.com',
       url='http://groups.google.com/group/pyccuracy',
       license='OSI',
-      packages=["pyccuracy", "pyccuracy.actions", "pyccuracy.languages", "pyccuracy.drivers"],
+      packages=[
+          "pyccuracy",
+          "pyccuracy.actions",
+          "pyccuracy.drivers",
+          "pyccuracy.languages",
+          "pyccuracy.actions.core",
+          "pyccuracy.drivers.core"
+          "pyccuracy.languages.templates",
+      ],
       package_data = {
           'pyccuracy': ['languages/templates/*/*', 'languages/data/*', 'lib/*/*.*', 'lib/*/*/*.*', 'lib/*/*/*/*.*', 'xslt/*'],
       },
