@@ -37,7 +37,7 @@ setup(name='Pyccuracy',
           "pyccuracy.drivers",
           "pyccuracy.languages",
           "pyccuracy.actions.core",
-          "pyccuracy.drivers.core"
+          "pyccuracy.drivers.core",
           "pyccuracy.languages.templates",
       ],
       package_data = {
