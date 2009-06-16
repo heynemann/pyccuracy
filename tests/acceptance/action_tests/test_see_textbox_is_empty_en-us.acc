@@ -9,3 +9,11 @@ When
     #The page loads
 Then
 	I see "txtSomething" textbox is empty
+
+Scenario 2 - Checking that we can see if a password box does not contain any text
+Given
+	I go to "textbox_tests.htm"
+When
+    #The page loads
+Then
+	I see "passwdSomething" textbox is empty

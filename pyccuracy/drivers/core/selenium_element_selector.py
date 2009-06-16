@@ -84,7 +84,7 @@ class SeleniumElementSelector(object):
         Returns a regular expression that matches input type="text", input without type attribute or textarea tags with
         the specified argument as id or name.
         '''
-        return r"//input[(@name='%s' or @id='%s') and (@type='text' or not(@type))] | //textarea[@name='%s' or @id='%s']" % (element_name, element_name, element_name, element_name)
+        return r"//input[(@name='%s' or @id='%s') and (@type='text' or @type='password' or not(@type))] | //textarea[@name='%s' or @id='%s']" % (element_name, element_name, element_name, element_name)
 
     @staticmethod
     def image(element_name):

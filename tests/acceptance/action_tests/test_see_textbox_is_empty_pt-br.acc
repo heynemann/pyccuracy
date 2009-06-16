@@ -9,3 +9,11 @@ Quando
 	#A página termina de carregar
 Então
 	Eu vejo que a caixa de texto "txtSomething" está vazia
+
+Cenário 2 - Garantindo que a caixa de senha da página de testes está vazia
+Dado que
+	Eu navego para "textbox_tests.htm"
+Quando
+	#A página termina de carregar
+Então
+	Eu vejo que a caixa de texto "passwdSomething" está vazia
