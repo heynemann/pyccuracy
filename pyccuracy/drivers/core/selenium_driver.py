@@ -116,6 +116,8 @@ class SeleniumDriver(BaseDriver):
     def get_element_text(self, element_selector):
         text = ""
         tag_name_script = """this.page().findElement("%s").tagName;"""
+        # escaping the user-made selector quotes
+        element_selector = element_selector.replace('"', r'\"')
         tag_name = self.selenium.get_eval(tag_name_script % element_selector).lower()
 
         properties = {
