@@ -59,7 +59,6 @@ class FileParser(object):
                 fixture.append_invalid_test_file(story_file_path, err)
             except ValueError, verr:
                 fixture.append_no_story_header(story_file_path)
-
         return fixture
 
     def parse_story_file(self, story_file_path, settings):
@@ -142,7 +141,7 @@ class FileParser(object):
 
     def parse_scenario_line(self, current_story, line, settings):
         scenario_keyword = self.language.get('scenario')
-        scenario_values = line.split('-')
+        scenario_values = line.split(u'-')
         index = scenario_values[0].replace(scenario_keyword,"").strip()
         title = scenario_values[1].strip()
         current_scenario = None
