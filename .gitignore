@@ -18,3 +18,4 @@ debian/python-pyccuracy*
 python-build-stamp*
 *report.html
 .coverage
+Pyccuracy.egg-info

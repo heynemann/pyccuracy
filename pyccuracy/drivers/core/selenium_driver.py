@@ -200,6 +200,12 @@ class SeleniumDriver(BaseDriver):
 
     def type_text(self, input_selector, text):
         self.selenium.type(input_selector, text)
+        
+    def type_keys(self, input_selector, text):
+        self.selenium.type_keys(input_selector, text)
+
+    def exec_js(self, js):
+        return self.selenium.get_eval(js)
 
     def clean_input(self, input_selector):
         self.selenium.type(input_selector, "")

@@ -38,6 +38,9 @@ class BrowserDriver(object):
 
     def type(self, input_selector, text):
         raise NotImplementedError
+        
+    def type_keys(self, input_selector, text):
+        raise NotImplementedError
 
     def click_element(self, element_selector):
         raise NotImplementedError
@@ -121,6 +124,9 @@ class BrowserDriver(object):
         raise NotImplementedError
 
     def stop_test(self):
+        raise NotImplementedError
+    
+    def exec_js(self, js):
         raise NotImplementedError
 
     def __get_attribute_value(self, element, attribute):

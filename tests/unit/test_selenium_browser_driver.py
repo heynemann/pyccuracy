@@ -129,4 +129,24 @@ def test_selenium_driver_calls_proper_selenese_on_get_title():
     title = driver.get_title()
     assert title == "Some title"
     selenium_mock.verify()
+    
+def test_selenium_driver_calls_get_eval():
+    javascript = "some javascript"
+    context = Context(Settings())
+    selenium_mock = Mock()
+    selenium_mock.expects(once()).get_eval(eq(javascript)).will(return_value("ok"))
+    
+    driver = SeleniumDriver(context, selenium=selenium_mock)
+    
+    assert driver.exec_js(javascript) == "ok"
 
+def test_selenium_driver_calls_type_keys():
+    input_selector = "//some_xpath"
+    text = "text to type"
+    context = Context(Settings())
+    selenium_mock = Mock()
+    selenium_mock.expects(once()).type_keys(eq(input_selector), eq(text))
+    
+    driver = SeleniumDriver(context, selenium=selenium_mock)
+    driver.type_keys(input_selector, text)
+    selenium_mock.verify()
