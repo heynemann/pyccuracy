@@ -16,6 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import codecs
 import os
 import sys, optparse
 from pyccuracy.core import PyccuracyCore
@@ -26,6 +27,9 @@ from pyccuracy.colored_terminal import ProgressBar
 
 __version_string__ = "pyccuracy %s (release '%s')" % (Version, Release)
 __docformat__ = 'restructuredtext en'
+
+# fixing print in non-utf8 terminals
+sys.stdout = codecs.getwriter('utf-8')(sys.stdout)
 
 no_progress = False
 prg = None
