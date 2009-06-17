@@ -16,12 +16,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
+import codecs
 from glob import glob
 from os import listdir
-
 from os.path import dirname, abspath, join, split
-
 
 base_path = abspath(dirname(__file__))
 folders = listdir(base_path)
@@ -38,7 +36,7 @@ for folder in folders:
 
     for template_file in [f for f in glob(pattern)]:
         template_name = split(template_file)[1]
-        template_text = open(template_file).read()
+        template_text = codecs.open(template_file, 'r', 'utf-8').read()
         templates_by_language[language][template_name] = template_text
 
 class TemplateLoader(object):
