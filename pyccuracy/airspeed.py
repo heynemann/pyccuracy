@@ -523,6 +523,8 @@ class FormalReference(_Element):
             else: value = self.my_text()
         if is_string(value):
             stream.write(value)
+        elif isinstance(value, Exception):
+            stream.write(unicode(value))
         else:
             stream.write(str(value))
 

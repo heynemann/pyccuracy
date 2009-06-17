@@ -24,7 +24,8 @@ class TestFailedError(Exception):
         return unicode(self.message)
 
 class ActionFailedError(Exception):
-    pass
+    def __unicode__(self):
+        return self.message
 
 class InvalidScenarioError(Exception):
     def __init__(self, message):
