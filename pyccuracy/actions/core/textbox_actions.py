@@ -67,6 +67,19 @@ class TextboxTypeAction(ActionBase):
         self.assert_element_is_visible(context, textbox_key, error_message)
         context.browser_driver.type_text(textbox_key, text)
 
+class TextboxTypeSlowlyAction(ActionBase):
+    regex = LanguageItem("textbox_type_keys_regex")
+
+    def execute(self, context, *args, **kwargs):
+        textbox_name = kwargs["textbox_name"]
+        text = kwargs["text"]
+
+        textbox_key = self.resolve_element_key(context, Page.Textbox, textbox_name)
+
+        error_message = context.language.format("element_is_visible_failure", "textbox", textbox_name)
+        self.assert_element_is_visible(context, textbox_key, error_message)
+        context.browser_driver.type_keys(textbox_key, text)
+
 class TextboxCleanAction(ActionBase):
     regex = LanguageItem("textbox_clean_regex")
 
