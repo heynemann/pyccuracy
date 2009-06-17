@@ -16,6 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from pmock import *;
+
 from pyccuracy.fixture import Fixture
 from pyccuracy.fixture_items import Story, Scenario, Action
 from pyccuracy.common import Context, Settings, Status
@@ -34,9 +36,16 @@ def test_story_runner_returns_a_result():
     settings = Settings()
     fixture = Fixture()
     runner = StoryRunner()
+    context = Mock()
+    context.browser_driver = Mock()
+    context.browser_driver.expects(once()).start_test(eq("http://localhost"))
+    context.browser_driver.expects(once()).stop_test()
 
-    result = runner.run_stories(settings, fixture)
+    result = runner.run_stories(settings, fixture, context=context)
     assert result is not None
+
+    context.verify()
+    context.browser_driver.verify()
 
 def test_story_runner_returns_a_result_with_a_Fixture():
     settings = Settings()
@@ -45,9 +54,16 @@ def test_story_runner_returns_a_result_with_a_Fixture():
     fixture.append_story(action.scenario.story)
     runner = StoryRunner()
 
-    result = runner.run_stories(settings, fixture)
+    context = Mock()
+    context.browser_driver = Mock()
+    context.browser_driver.expects(once()).start_test(eq("http://localhost"))
+    context.browser_driver.expects(once()).stop_test()
+
+    result = runner.run_stories(settings, fixture, context=context)
 
     assert result.fixture is not None
+    context.verify()
+    context.browser_driver.verify()
 
 def test_story_runner_returns_a_result_with_the_original_Fixture():
     settings = Settings()
@@ -56,18 +72,32 @@ def test_story_runner_returns_a_result_with_the_original_Fixture():
     fixture.append_story(action.scenario.story)
     runner = StoryRunner()
 
-    result = runner.run_stories(settings, fixture)
+    context = Mock()
+    context.browser_driver = Mock()
+    context.browser_driver.expects(once()).start_test(eq("http://localhost"))
+    context.browser_driver.expects(once()).stop_test()
+
+    result = runner.run_stories(settings, fixture, context=context)
 
     assert result.fixture == fixture
+    context.verify()
+    context.browser_driver.verify()
 
 def test_story_runner_returns_failed_story():
     settings = Settings()
     fixture = Fixture()
     runner = StoryRunner()
 
-    result = runner.run_stories(settings, fixture)
+    context = Mock()
+    context.browser_driver = Mock()
+    context.browser_driver.expects(once()).start_test(eq("http://localhost"))
+    context.browser_driver.expects(once()).stop_test()
+
+    result = runner.run_stories(settings, fixture, context=context)
 
     assert result is not None
+    context.verify()
+    context.browser_driver.verify()
 
 def test_create_context_for_returns_context():
     settings = Settings()
@@ -81,9 +111,17 @@ def test_should_execute_scenarios_successfully():
     runner = StoryRunner()
     fixture = Fixture()
     fixture.append_story(some_action().scenario.story)
-    result = runner.run_stories(settings=settings, fixture=fixture)
+
+    context = Mock()
+    context.browser_driver = Mock()
+    context.browser_driver.expects(once()).start_test(eq("http://localhost"))
+    context.browser_driver.expects(once()).stop_test()
+
+    result = runner.run_stories(settings=settings, fixture=fixture, context=context)
 
     assert fixture.get_status() == Status.Successful
+    context.verify()
+    context.browser_driver.verify()
 
 def test_should_handle_action_errors_successfully():
     def action_failed_method(context, *args, **kwargs):
@@ -94,9 +132,17 @@ def test_should_handle_action_errors_successfully():
     action = some_action()
     fixture.append_story(action.scenario.story)
     action.execute_function = action_failed_method
-    result = runner.run_stories(settings=settings, fixture=fixture)
+
+    context = Mock()
+    context.browser_driver = Mock()
+    context.browser_driver.expects(once()).start_test(eq("http://localhost"))
+    context.browser_driver.expects(once()).stop_test()
+
+    result = runner.run_stories(settings=settings, fixture=fixture, context=context)
 
     assert fixture.get_status() == Status.Failed
+    context.verify()
+    context.browser_driver.verify()
 
 def test_should_record_errors_correctly():
     def action_failed_method(context, *args, **kwargs):
@@ -107,7 +153,16 @@ def test_should_record_errors_correctly():
     action = some_action()
     fixture.append_story(action.scenario.story)
     action.execute_function = action_failed_method
-    result = runner.run_stories(settings=settings, fixture=fixture)
+
+    context = Mock()
+    context.browser_driver = Mock()
+    context.browser_driver.expects(once()).start_test(eq("http://localhost"))
+    context.browser_driver.expects(once()).stop_test()
+
+    result = runner.run_stories(settings=settings, fixture=fixture, context=context)
 
     assert isinstance(action.error, ActionFailedError)
     assert action.error.message == "bla"
+
+    context.verify()
+    context.browser_driver.verify()
