@@ -88,7 +88,7 @@ wait:
 	@echo "=========="
 	@echo "Waiting..."
 	@echo "=========="
-	@sleep 10
+	@sleep 5
 
 acceptance:
 	@make selenium_up
@@ -99,7 +99,7 @@ acceptance:
 
 	@pyccuracy_console -d tests/acceptance/action_tests/ -p "*en-us.acc" -l en-us noprogress
 	@pyccuracy_console -d tests/acceptance/action_tests/ -p "*pt-br.acc" -l pt-br noprogress
-	@make selenium_down
+	@-make selenium_down
 
 upload:
 	@echo "Running a build..."
