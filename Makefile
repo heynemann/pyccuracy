@@ -2,7 +2,7 @@
 SHELL := /bin/bash
 
 # Internal variables.
-file_version=0.5.1
+file_version=0.6.3
 root_dir=.
 build_dir=${root_dir}/build
 src_dir=${root_dir}/pyccuracy
@@ -17,11 +17,14 @@ functional_log_file=${build_dir}/functional.log
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
-	@echo "  build     to run a build"
-	@echo "  test      to run all the tests"
-	@echo "  unit      to run all the unit tests"
-	@echo "  upload    to run a build and upload to PyPI"
-	@echo "  docs      to build documentation"
+	@echo "  all         to run a complete build"
+	@echo "  clean       to clear the build dir"
+	@echo "  compile     to compile all python files"
+	@echo "  test        to run all the tests"
+	@echo "  unit        to run all the unit tests"
+	@echo "  functional  to run all the functional tests"
+	@echo "  acceptance  to run all the acceptance tests"
+	@echo "  docs        to build documentation"
 
 all: prepare_build compile test report_success
 test: prepare_build compile run_unit run_functional acceptance report_success
@@ -67,19 +70,29 @@ run_functional: compile
 	@rm -f ${functional_log_file} >> /dev/null
 	@nosetests -s --verbose --with-coverage --cover-package=pyccuracy ${functional_tests_dir}
 
+selenium_up:
+	@echo "===================="
+	@echo "Starting selenium..."
+	@echo "===================="
+	@java -jar ${root_dir}/lib/selenium-server.jar 2> /dev/null > /dev/null &
+	@echo "Started."
+
+selenium_down:
+	@echo "==================="
+	@echo "Killing selenium..."
+	@echo "==================="
+	@-ps aux | egrep selenium | egrep -v egrep | awk '{ print $$2 }' | xargs kill -9
+	@echo "Killed."
+
 acceptance:
+	@make selenium_up
 	@echo "================="
 	@echo "Starting tests..."
 	@echo "================="
 
-#	@for f in `ls tests | grep --regex="test_.*\.py$$"` ; do \
-#		cd tests && python $$f && cd .. && echo $$env; \
-#	done
-
-#	@python ./tests/action_tests/test_all.py
-
 	@pyccuracy_console -d tests/acceptance/action_tests/ -p "*en-us.acc" -l en-us
 	@pyccuracy_console -d tests/acceptance/action_tests/ -p "*pt-br.acc" -l pt-br
+	@make selenium_down
 
 upload:
 	@echo "Running a build..."
