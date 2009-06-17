@@ -16,6 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import codecs
 from os import listdir
 from os.path import abspath, dirname, join
 
@@ -47,7 +48,7 @@ class LanguageGetter(Singleton):
 
     def fill_data(self):
         if not self.file_object:
-            self.file_object = open(self.language_path)
+            self.file_object = codecs.open(self.language_path, "r", "utf-8")
 
         self.raw_data = self.file_object.read()
         for line in self.raw_data.split('\n'):
