@@ -45,7 +45,8 @@ class PageAmInAction(ActionBase):
     '''Changes the current page without actually navigating to it.'''
     regex = LanguageItem("page_am_in_regex")
 
-    def execute(self, context, url=None, *args):
+    def execute(self, context, *args, **kwargs):
+        url = kwargs.get("url", None)
         page, resolved_url = PageRegistry.resolve(context.settings, url, must_raise=False)
 
         if page:
