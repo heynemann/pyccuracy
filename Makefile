@@ -84,8 +84,15 @@ selenium_down:
 	@-ps aux | egrep selenium | egrep -v egrep | awk '{ print $$2 }' | xargs kill -9
 	@echo "Killed."
 
+wait:
+	@echo "=========="
+	@echo "Waiting..."
+	@echo "=========="
+	@sleep 10
+
 acceptance:
 	@make selenium_up
+	@make wait
 	@echo "================="
 	@echo "Starting tests..."
 	@echo "================="
