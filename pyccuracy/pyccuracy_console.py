@@ -56,8 +56,8 @@ def main():
 
     extra_browser_driver_arguments = "\n\nThe following extra browser driver arguments " \
                                      " are supported in the key=value format:\n\nSelenium Browser Driver:\n" \
-                                     "-selenium.server=ip or name of selenium server or grid\n" \
-                                     "-selenium.port=port of the given selenium server or grid\n"
+                                     "* selenium.server=ip or name of selenium server or grid\n" \
+                                     "* selenium.port=port of the given selenium server or grid\n"
 
     parser = optparse.OptionParser(usage="%prog or type %prog -h (--help) for help" + extra_browser_driver_arguments, description=__doc__, version=__version_string__)
     parser.add_option("-p", "--pattern", dest="pattern", default="*.acc", help="File pattern. Defines which files will get executed [default: %default].")
