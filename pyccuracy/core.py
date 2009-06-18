@@ -89,9 +89,14 @@ class PyccuracyCore(object):
             self.print_results(context.settings.default_culture, results)
 
             if context.settings.write_report and results:
-                import report_parser as report
-                path = join(context.settings.report_file_dir, context.settings.report_file_name)
-                report.generate_report(path, results, context.language)
+                try:
+                    import lxml
+                except ImportError:
+                    self.print_lxml_import_error()
+                else:
+                    import report_parser as report
+                    path = join(context.settings.report_file_dir, context.settings.report_file_name)
+                    report.generate_report(path, results, context.language)
 
             if settings.should_throw and result and result.get_status() == Status.Failed:
                 raise TestFailedError("The test failed!")
@@ -101,6 +106,17 @@ class PyccuracyCore(object):
             results = Result(fixture)
             self.print_results(context.settings.default_culture, results)
             return results
+
+    def print_lxml_import_error(self):
+        template = """${RED}REPORT ERROR
+------------
+Sorry, but you need to install lxml (python-lxml in aptitude)
+before using the report feature in pyccuracy.
+If you do not need a report use the -R=false parameter.
+${NORMAL}
+"""
+        ctrl = TerminalController()
+        print ctrl.render(template)
 
     def print_results(self, language, results):
         if not results:

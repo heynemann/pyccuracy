@@ -22,5 +22,5 @@ from pyccuracy.page import PageRegistry, Page
 from pyccuracy.drivers import DriverRegistry
 from pyccuracy.drivers.core import *
 
-Version = "0.6.3"
+Version = "0.6.4"
 Release = "Aspirin"

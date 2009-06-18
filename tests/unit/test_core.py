@@ -74,3 +74,43 @@ def test_pyccuracy_core_run_tests():
     results_mock.verify()
     suite_mock.verify()
     fso_mock.verify()
+
+def test_pyccuracy_core_run_tests_works_when_None_Result_returned_from_story_runner():
+    context_mock = Mock()
+    context_mock.browser_driver = Mock()
+    context_mock.settings = Mock()
+    context_mock.settings.pages_dir = "/pages/dir/"
+    context_mock.settings.custom_actions_dir = "/custom/actions/dir/"
+    context_mock.settings.base_url = "http://localhost"
+    context_mock.settings.default_culture = "en-us"
+
+    files = ["/some/weird/file.py"]
+    actions  = ["/some/weird/action.py"]
+    fso_mock = Mock()
+    fso_mock.expects(once()).add_to_import(eq(context_mock.settings.pages_dir))
+    fso_mock.expects(once()).add_to_import(eq(context_mock.settings.custom_actions_dir))
+    fso_mock.expects(once()).locate(eq(context_mock.settings.pages_dir), eq('*.py')).will(return_value(files))
+    fso_mock.expects(once()).locate(eq(context_mock.settings.custom_actions_dir), eq('*.py')).will(return_value(files))
+    fso_mock.expects(at_least_once()).method('import_file')
+    fso_mock.expects(at_least_once()).remove_from_import()
+
+    context_mock.browser_driver.expects(once()).method('start_test')
+    context_mock.browser_driver.expects(once()).method('stop_test')
+
+    suite_mock = Mock()
+
+    runner_mock = Mock()
+    parser_mock = Mock()
+
+    parser_mock.expects(once()).method('get_stories').will(return_value(suite_mock))
+    runner_mock.expects(once()).method('run_stories').will(return_value(None))
+
+    pc = PyccuracyCore(parser_mock, runner_mock)
+
+    assert pc.run_tests(should_throw=False, context=context_mock, fso=fso_mock) == None
+
+    parser_mock.verify()
+    runner_mock.verify()
+    context_mock.verify()
+    suite_mock.verify()
+    fso_mock.verify()
