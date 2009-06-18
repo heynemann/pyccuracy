@@ -150,3 +150,45 @@ def test_selenium_driver_calls_type_keys():
     driver = SeleniumDriver(context, selenium=selenium_mock)
     driver.type_keys(input_selector, text)
     selenium_mock.verify()
+
+def test_wait_for_presence():
+    context = Context(Settings())
+    selenium_mock = Mock()
+    selenium_mock.expects(once()).is_element_present(eq('some element')).will(return_value(True))
+    selenium_mock.expects(once()).is_visible(eq('some element')).will(return_value(True))
+
+    driver = SeleniumDriver(context, selenium=selenium_mock)
+    driver.wait_for_element_present("some element", 1)
+    selenium_mock.verify()
+
+def test_wait_for_presence_works_even_when_is_visible_raises():
+    context = Context(Settings())
+    selenium_mock = Mock()
+    selenium_mock.expects(at_least_once()).is_element_present(eq('some element')).will(return_value(True))
+    selenium_mock.expects(once()).is_visible(eq('some element')).will(raise_exception(Exception("ERROR: Element some element not found"))).id("is_visible #1")
+    selenium_mock.expects(once()).is_visible(eq('some element')).will(return_value(True)).after("is_visible #1")
+
+    driver = SeleniumDriver(context, selenium=selenium_mock)
+    driver.wait_for_element_present("some element", 1)
+    selenium_mock.verify()
+
+def test_wait_for_disappear():
+    context = Context(Settings())
+    selenium_mock = Mock()
+    selenium_mock.expects(once()).is_element_present(eq('some element')).will(return_value(True))
+    selenium_mock.expects(once()).is_visible(eq('some element')).will(return_value(False))
+
+    driver = SeleniumDriver(context, selenium=selenium_mock)
+    driver.wait_for_element_to_disappear("some element", 1)
+    selenium_mock.verify()
+
+def test_wait_for_disappear_works_even_when_is_visible_raises():
+    context = Context(Settings())
+    selenium_mock = Mock()
+    selenium_mock.expects(at_least_once()).is_element_present(eq('some element')).will(return_value(True))
+    selenium_mock.expects(once()).is_visible(eq('some element')).will(raise_exception(Exception("ERROR: Element some element not found")))
+
+    driver = SeleniumDriver(context, selenium=selenium_mock)
+    driver.wait_for_element_to_disappear("some element", 1)
+    selenium_mock.verify()
+
