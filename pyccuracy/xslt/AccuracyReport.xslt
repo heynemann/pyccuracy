@@ -296,6 +296,8 @@
         </a>]
       </b>
       <br />
+      <xsl:value-of select ="@identity"/>
+      <br />
       <xsl:value-of select ="@asA"/>
       <br />
       <xsl:value-of select ="@iWant"/>

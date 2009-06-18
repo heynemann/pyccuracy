@@ -105,10 +105,11 @@ def __generate_story(story, story_index, language):
     story_doc = E.story(
                     {
                         "index":str(story_index),
-                        "asA": "%s %s" % (language.get("as_a"), story.as_a),
-                        "iWant": "%s %s" % (language.get("i_want_to"), story.i_want_to),
-                        "soThat": "%s %s" % (language.get("so_that"), story.so_that),
-                        "isSuccessful": (story.status == "SUCCESSFUL" and "true" or "false")
+                        "identity":story.identity,
+                        "asA":"%s %s" % (language.get("as_a"), story.as_a),
+                        "iWant":"%s %s" % (language.get("i_want_to"), story.i_want_to),
+                        "soThat":"%s %s" % (language.get("so_that"), story.so_that),
+                        "isSuccessful":(story.status == "SUCCESSFUL" and "true" or "false")
                     }
                 )
 
