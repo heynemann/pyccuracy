@@ -41,15 +41,20 @@ class ActionRegistry(object):
 
         for Action in ACTIONS:
             regex = Action.regex
-            if isinstance(Action.regex, LanguageItem):
-                regex = getter.get(Action.regex)
-                if regex is None:
-                    raise LanguageDoesNotResolveError('The language "%s" does not resolve the string "%s"' % (language, Action.regex))
 
-            supported_elements = getter.get("supported_elements")
-            regex = regex.replace("<element selector>", supported_elements)
+            if isinstance(regex, (basestring, LanguageItem)):
+                if isinstance(Action.regex, LanguageItem):
+                    regex = getter.get(Action.regex)
+                    if regex is None:
+                        raise LanguageDoesNotResolveError('The language "%s" does not resolve the string "%s"' % (language, Action.regex))
 
-            matches = re.match(regex, line)
+                supported_elements = getter.get("supported_elements")
+                regex = regex.replace("<element selector>", supported_elements)
+
+                Action.regex = re.compile(regex)
+
+            matches = Action.regex.match(line)
+
             if matches:
                 args = matches.groups()
                 kw = matches.groupdict()

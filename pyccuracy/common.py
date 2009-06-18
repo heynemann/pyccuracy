@@ -27,6 +27,7 @@ from os.path import abspath, join, dirname, exists
 
 from pyccuracy.languages import *
 from pyccuracy.drivers import *
+from pyccuracy.actions import ActionRegistry
 
 def get_curdir():
     return abspath(dirname(os.curdir))
