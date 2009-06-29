@@ -32,7 +32,7 @@ for folder in folders:
         continue
 
     templates_by_language[language] = {}
-    pattern = join(base_path, folder, "*")
+    pattern = join(base_path, folder, "*.template")
 
     for template_file in [f for f in glob(pattern)]:
         template_file_name = split(template_file)[1]
