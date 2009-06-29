@@ -13,44 +13,33 @@
 # limitations under the License.
 
 from setuptools import setup, find_packages
-import sys, os
 from pyccuracy import Version
 
-setup(name='Pyccuracy',
-      version=Version,
-      description="Pyccuracy is a BDD style Acceptance Testing framework",
-      long_description="""Pyccuracy is a Behavior-Driven Acceptance Testing framework (more on http://www.pyccuracy.org).""",
-      classifiers=["Development Status :: 2 - Pre-Alpha",
-                   "Intended Audience :: Developers",
-                   "License :: OSI Approved",
-                   "Natural Language :: English",
-                   "Programming Language :: Python :: 2.5",
-                   "Topic :: Software Development :: Testing"], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
-      keywords='Acceptance Testing Accuracy Behavior Driven Development',
-      author='Bernardo Heynemann',
-      author_email='heynemann@gmail.com',
-      url='http://groups.google.com/group/pyccuracy',
-      license='OSI',
-      packages=[
-          "pyccuracy",
-          "pyccuracy.actions",
-          "pyccuracy.drivers",
-          "pyccuracy.languages",
-          "pyccuracy.actions.core",
-          "pyccuracy.drivers.core",
-          "pyccuracy.languages.templates",
-      ],
-      package_data = {
-          'pyccuracy': ['languages/templates/*/*', 'languages/data/*', 'lib/*/*.*', 'lib/*/*/*.*', 'lib/*/*/*/*.*', 'xslt/*'],
-      },
-      include_package_data=True,
-      scripts = ['pyccuracy/pyccuracy_console.py'],
-      zip_safe=True,
-      test_suite='tests.test_suite',
-      install_requires=[
-          "selenium>=0.9.2",
-      ],
-      entry_points="""
-      # -*- Entry points: -*-
-      """,
-      )
+setup(
+    name = 'Pyccuracy',
+    version = Version,
+    description = "Pyccuracy is a BDD style Acceptance Testing framework",
+    long_description = """Pyccuracy is a Behavior-Driven Acceptance Testing framework (more on http://www.pyccuracy.org).""",
+    keywords = 'Acceptance Testing Accuracy Behavior Driven Development',
+    author = 'Pyccuracy team',
+    author_email = 'pyccuracy@googlegroups.com',
+    url = 'http://www.pyccuracy.org',
+    license = 'OSI',
+    
+    packages = find_packages(),
+    package_dir = {"pyccuracy": "pyccuracy"},
+    include_package_data = True,
+    
+    install_requires=[
+        "selenium>=0.9.2",
+    ],
+
+    entry_points = {
+        'console_scripts': [
+            'pyccuracy_console = pyccuracy.pyccuracy_console:main',
+        ],
+    },
+
+)
+
+
