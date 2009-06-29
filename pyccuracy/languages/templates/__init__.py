@@ -32,10 +32,11 @@ for folder in folders:
         continue
 
     templates_by_language[language] = {}
-    pattern = join(base_path,folder, "*")
+    pattern = join(base_path, folder, "*")
 
     for template_file in [f for f in glob(pattern)]:
-        template_name = split(template_file)[1]
+        template_file_name = split(template_file)[1]
+        template_name = template_file_name.split('.')[0]
         template_text = codecs.open(template_file, 'r', 'utf-8').read()
         templates_by_language[language][template_name] = template_text
 

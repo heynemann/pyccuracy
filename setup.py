@@ -29,6 +29,9 @@ setup(
     packages = find_packages(),
     package_dir = {"pyccuracy": "pyccuracy"},
     include_package_data = True,
+    package_data = {
+        '': ['*.template'],
+    },
     
     install_requires=[
         "selenium>=0.9.2",
