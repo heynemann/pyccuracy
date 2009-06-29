@@ -30,8 +30,8 @@ setup(
     package_dir = {"pyccuracy": "pyccuracy"},
     include_package_data = True,
     package_data = {
+        '': ['*.template'],
         'pyccuracy.languages.data': ['*.txt'],
-        'pyccuracy.languages.templates': ['*.template'],
         'pyccuracy.xslt': ['*.xml', '*.xslt'],
     },
     

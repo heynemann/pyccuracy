@@ -93,7 +93,7 @@ class PageRegistry(object):
 
         # if use os.path.join here, will not work on windows
 
-        fix = lambda x: x.replace('//', '/').replace('http:/', 'http://')
+        fix = lambda x: x.replace('//', '/').replace('http:/', 'http://').replace('https:/', 'https://')
         final_url = fix("/".join(url_pieces))
 
         if not "://" in final_url:
