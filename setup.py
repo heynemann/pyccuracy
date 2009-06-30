@@ -45,7 +45,7 @@ setup(
     package_data = {
         '': ['*.template'],
         'pyccuracy.languages.data': ['*.txt'],
-        'pyccuracy.xslt': ['*.xml', '*.xslt'],
+        'pyccuracy.xslt': ['*.xslt'],
     },
 
     install_requires=[

@@ -1,2 +1,5 @@
 prune dist
 prune build
+recursive-include pyccuracy *.template
+recursive-include pyccuracy *.txt
+recursive-include pyccuracy *.xslt

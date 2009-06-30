@@ -103,12 +103,12 @@ acceptance:
 
 dist: clean
 	@echo "Running a build..."
-	@python setup.py bdist_egg
+	@python setup.py sdist
 	@echo "Build finished successfully!"
 
 upload: clean
 	@echo "Running a build..."
-	@python setup.py bdist_egg upload
+	@python setup.py sdist upload
 	@echo "Build finished successfully and uploaded!"
 
 docs:
