@@ -34,11 +34,11 @@ sys.stdout = codecs.getwriter('utf-8')(sys.stdout)
 no_progress = False
 prg = None
 
-def create_progress():
+def create_progress(verbosity):
     global no_progress
     global prg
     if not no_progress:
-        prg = ProgressBar("Pyccuracy - %s" % __version_string__)
+        prg = ProgressBar("Pyccuracy - %s" % __version_string__, verbosity)
         prg.update(0, 'Running first test...')
 
 def update_progress(fixture, scenario, scenario_index):
@@ -86,6 +86,7 @@ def main():
     parser.add_option("-R", "--report", dest="write_report", default="true", help="Should write report. Defines if Pyccuracy should write an html report after each run [default: %default].")
     parser.add_option("-D", "--reportdir", dest="report_dir", default=os.curdir, help="Report directory. Defines the directory to write the report in [default: %default].")
     parser.add_option("-F", "--reportfile", dest="report_file_name", default="report.html", help="Report file. Defines the file name to write the report with [default: %default].")
+    parser.add_option("-v", "--verbosity", dest="verbosity", default="2", help="Verbosity. 0 - does not show any output, 1 - shows text progress, 2 - shows animated progress bar")
 
     options, args = parser.parse_args()
 
@@ -95,15 +96,12 @@ def main():
     extra_args = {}
     if args:
         for arg in args:
-            if arg == "noprogress":
-                no_progress = True
-                continue
             if not "=" in arg:
                 raise ValueError("The specified extra argument should be in the form of key=value and not %s" % arg)
             key, value = arg.split('=')
             extra_args[key] = value
 
-    create_progress()
+    create_progress(int(options.verbosity))
 
     result = pyc.run_tests(actions_dir=options.actions_dir,
                            custom_actions_dir=options.custom_actions_dir,
@@ -123,7 +121,8 @@ def main():
                            workers=workers,
                            extra_args=extra_args,
                            on_scenario_started=update_progress,
-                           on_scenario_completed=update_progress)
+                           on_scenario_completed=update_progress,
+                           verbosity=int(options.verbosity))
 
     if not result or result.get_status() != "SUCCESSFUL":
         sys.exit(1)

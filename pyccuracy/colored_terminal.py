@@ -159,11 +159,13 @@ output; and adjusts to the width of the terminal.
     RED_BAR = '%3d%% ${RED}[${BOLD}%s%s${NORMAL}${RED}]${NORMAL}\n'
     HEADER = '${BOLD}${CYAN}%s${NORMAL}\n\n'
         
-    def __init__(self, header, term=None):
+    def __init__(self, header, verbosity, term=None):
         self.term = term or TerminalController()
-        if not (self.term.CLEAR_EOL and self.term.UP and self.term.BOL):
-            raise ValueError("Terminal isn't capable enough -- you "
-                             "should use a simpler progress dispaly.")
+        self.verbosity = verbosity
+        self.display_dots = False
+        if self.verbosity == 1 or not (self.term.CLEAR_EOL and self.term.UP and self.term.BOL):
+            self.display_dots = True
+            return
         self.width = self.term.COLS or 75
         self.bar = self.term.render(self.BAR)
         self.header = self.term.render(self.HEADER % header.center(self.width))
@@ -174,6 +176,11 @@ output; and adjusts to the width of the terminal.
         self.bar = self.term.render(self.RED_BAR)
 
     def update(self, percent, message):
+        if self.verbosity == 0:
+            return
+        if self.display_dots:
+            print "%.2f%% - %s" % (percent*100, message)
+            return
         if self.cleared:
             sys.stdout.write(self.header)
             self.cleared = 0
