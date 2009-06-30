@@ -49,7 +49,7 @@ setup(
     },
 
     install_requires=[
-        "selenium>=0.9.2",
+        "selenium",
     ],
 
     entry_points = {
