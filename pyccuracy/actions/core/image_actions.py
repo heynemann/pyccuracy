@@ -23,10 +23,7 @@ from pyccuracy.languages import LanguageItem
 class ImageHasSrcOfAction(ActionBase):
     regex = LanguageItem("image_has_src_regex")
 
-    def execute(self, context, *args, **kwargs):
-        image_name = kwargs["image_name"]
-        src = kwargs["src"]
-
+    def execute(self, context, image_name, src):
         image = self.resolve_element_key(context, Page.Image, image_name)
 
         error_message = context.language.format("element_is_visible_failure", "image", image_name)
@@ -40,10 +37,7 @@ class ImageHasSrcOfAction(ActionBase):
 class ImageDoesNotHaveSrcOfAction(ActionBase):
     regex = LanguageItem("image_does_not_have_src_regex")
 
-    def execute(self, context, *args, **kwargs):
-        image_name = kwargs["image_name"]
-        src = kwargs["src"]
-
+    def execute(self, context, image_name, src):
         image = self.resolve_element_key(context, Page.Image, image_name)
 
         error_message = context.language.format("element_is_visible_failure", "image", image_name)

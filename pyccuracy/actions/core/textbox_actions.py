@@ -23,44 +23,39 @@ from pyccuracy.languages import LanguageItem
 class TextboxIsEmptyAction(ActionBase):
     regex = LanguageItem("textbox_is_empty_regex")
 
-    def execute(self, context, *args, **kwargs):
+    def execute(self, context, textbox_name):
         element_type = Page.Textbox
-        element_name = kwargs.get("textbox_name", None)
-        element_key = self.resolve_element_key(context, element_type, element_name)
+        element_key = self.resolve_element_key(context, element_type, textbox_name)
 
-        error_message = context.language.format("element_is_visible_failure", "textbox", element_name)
+        error_message = context.language.format("element_is_visible_failure", "textbox", textbox_name)
         self.assert_element_is_visible(context, element_key, error_message)
 
         is_empty = context.browser_driver.is_element_empty(element_key)
 
         if not is_empty:
-            error_message = context.language.format("textbox_is_empty_failure", element_name)
+            error_message = context.language.format("textbox_is_empty_failure", textbox_name)
             raise self.failed(error_message)
 
 class TextboxIsNotEmptyAction(ActionBase):
     regex = LanguageItem("textbox_is_not_empty_regex")
 
-    def execute(self, context, *args, **kwargs):
+    def execute(self, context, textbox_name):
         element_type = "textbox"
-        element_name = kwargs.get("textbox_name", None)
-        element_key = self.resolve_element_key(context, element_type, element_name)
+        element_key = self.resolve_element_key(context, element_type, textbox_name)
 
-        error_message = context.language.format("element_is_visible_failure", "textbox", element_name)
+        error_message = context.language.format("element_is_visible_failure", "textbox", textbox_name)
         self.assert_element_is_visible(context, element_key, error_message)
 
         is_empty = context.browser_driver.is_element_empty(element_key)
 
         if is_empty:
-            error_message = context.language.format("textbox_is_not_empty_failure", element_name)
+            error_message = context.language.format("textbox_is_not_empty_failure", textbox_name)
             raise self.failed(error_message)
 
 class TextboxTypeAction(ActionBase):
     regex = LanguageItem("textbox_type_regex")
 
-    def execute(self, context, *args, **kwargs):
-        textbox_name = kwargs["textbox_name"]
-        text = kwargs["text"]
-
+    def execute(self, context, textbox_name, text):
         textbox_key = self.resolve_element_key(context, Page.Textbox, textbox_name)
 
         error_message = context.language.format("element_is_visible_failure", "textbox", textbox_name)
@@ -70,10 +65,7 @@ class TextboxTypeAction(ActionBase):
 class TextboxTypeSlowlyAction(ActionBase):
     regex = LanguageItem("textbox_type_keys_regex")
 
-    def execute(self, context, *args, **kwargs):
-        textbox_name = kwargs["textbox_name"]
-        text = kwargs["text"]
-
+    def execute(self, context, textbox_name, text):
         textbox_key = self.resolve_element_key(context, Page.Textbox, textbox_name)
 
         error_message = context.language.format("element_is_visible_failure", "textbox", textbox_name)
@@ -83,8 +75,7 @@ class TextboxTypeSlowlyAction(ActionBase):
 class TextboxCleanAction(ActionBase):
     regex = LanguageItem("textbox_clean_regex")
 
-    def execute(self, context, *args, **kwargs):
-        textbox_name = kwargs["textbox_name"]
+    def execute(self, context, textbox_name):
         textbox = self.resolve_element_key(context, Page.Textbox, textbox_name)
 
         error_message = context.language.format("element_is_visible_failure", "textbox", textbox_name)

@@ -23,10 +23,7 @@ from pyccuracy.languages import LanguageItem
 class LinkHasHrefOfAction(ActionBase):
     regex = LanguageItem("link_has_href_regex")
 
-    def execute(self, context, *args, **kwargs):
-        link_name = kwargs["link_name"]
-        href = kwargs["href"]
-
+    def execute(self, context, link_name, href):
         link = self.resolve_element_key(context, Page.Link, link_name)
 
         error_message = context.language.format("element_is_visible_failure", "link", link_name)

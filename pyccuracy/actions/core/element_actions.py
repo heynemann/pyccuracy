@@ -29,10 +29,7 @@ class ElementDoesNotContainStyleAction(ActionBase):
     '''Ensure that a specific element does not contain some style.'''
     regex = LanguageItem('element_does_not_contain_style_regex')
 
-    def execute(self, context, *args, **kwargs):
-        element_type = kwargs["element_type"]
-        element_name = kwargs["element_key"]
-        style_name = kwargs["style_name"]
+    def execute(self, context, element_type, element_name, style_name):
         element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
 
         error_message = context.language.format("element_is_visible_failure", element_type, element_name)
@@ -49,10 +46,7 @@ class ElementContainsStyleAction(ActionBase):
     '''Ensure that a specific element contains some style.'''
     regex = LanguageItem('element_contains_style_regex')
 
-    def execute(self, context, *args, **kwargs):
-        element_type = kwargs["element_type"]
-        element_name = kwargs["element_key"]
-        style_name = kwargs["style_name"]
+    def execute(self, context, element_type, element_name, style_name):
         element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
 
         error_message = context.language.format("element_is_visible_failure", element_type, element_name)
@@ -69,13 +63,8 @@ class ElementClickAction(ActionBase):
     '''Clicks on a specific element.'''
     regex = LanguageItem('element_click_regex')
 
-    def execute(self, context, *args, **kwargs):
-        element_type = kwargs["element_type"]
-        element_name = kwargs["element_key"]
+    def execute(self, context, element_type, element_name, should_wait):
         element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
-
-        should_wait = bool(kwargs.get("should_wait", None))
-
 
         error_message = context.language.format("element_is_visible_failure", element_type, element_name)
         self.assert_element_is_visible(context, element_key, error_message)
@@ -95,9 +84,7 @@ class ElementIsVisibleAction(ActionBase):
     '''Asserts that a specific element is visible.'''
     regex = LanguageItem('element_is_visible_regex')
 
-    def execute(self, context, *args, **kwargs):
-        element_type = kwargs["element_type"]
-        element_name = kwargs["element_key"]
+    def execute(self, context, element_type, element_name):
         element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
 
         error_message = context.language.format("element_is_visible_failure", element_type, element_name)
@@ -107,9 +94,7 @@ class ElementIsNotVisibleAction(ActionBase):
     '''Asserts that a specific element is not visible.'''
     regex = LanguageItem('element_is_not_visible_regex')
 
-    def execute(self, context, *args, **kwargs):
-        element_type = kwargs["element_type"]
-        element_name = kwargs["element_key"]
+    def execute(self, context, element_type, element_name):
         element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
 
         error_message = context.language.format("element_is_not_visible_failure", element_type, element_name)
@@ -119,9 +104,7 @@ class ElementIsEnabledAction(ActionBase):
     '''Asserts that a specific element is enabled.'''
     regex = LanguageItem('element_is_enabled_regex')
 
-    def execute(self, context, *args, **kwargs):
-        element_type = kwargs["element_type"]
-        element_name = kwargs["element_key"]
+    def execute(self, context, element_type, element_name):
         element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
 
         error_message = context.language.format("element_is_visible_failure", element_type, element_name)
@@ -135,9 +118,7 @@ class ElementIsDisabledAction(ActionBase):
     '''Asserts that a specific element is disabled.'''
     regex = LanguageItem('element_is_disabled_regex')
 
-    def execute(self, context, *args, **kwargs):
-        element_type = kwargs["element_type"]
-        element_name = kwargs["element_key"]
+    def execute(self, context, element_type, element_name):
         element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
 
         error_message = context.language.format("element_is_visible_failure", element_type, element_name)
@@ -151,12 +132,9 @@ class ElementWaitForPresenceAction(ActionBase):
     '''Waits until a given element appears or times out.'''
     regex = LanguageItem("element_wait_for_presence_regex")
 
-    def execute(self, context, *args, **kwargs):
-        element_type = kwargs["element_type"]
-        element_name = kwargs["element_key"]
+    def execute(self, context, element_type, element_name, timeout):
         element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
 
-        timeout = kwargs.get("timeout", None)
         if not timeout:
             timeout = 5
         timeout = int(timeout)
@@ -169,12 +147,9 @@ class ElementWaitForDisappearAction(ActionBase):
     '''Waits until a given element disappears (or is not visible already) or times out.'''
     regex = LanguageItem("element_wait_for_disappear_regex")
 
-    def execute(self, context, *args, **kwargs):
-        element_type = kwargs["element_type"]
-        element_name = kwargs["element_key"]
+    def execute(self, context, element_type, element_name, timeout):
         element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
 
-        timeout = kwargs.get("timeout", None)
         if not timeout:
             timeout = 5
         timeout = int(timeout)
@@ -186,13 +161,8 @@ class ElementWaitForDisappearAction(ActionBase):
 class ElementDragAction(ActionBase):
     regex = LanguageItem("element_drag_drop_regex")
 
-    def execute(self, context, *args, **kwargs):
-        from_element_type = kwargs.get("from_element_type", None)
-        from_element_name = kwargs.get("from_element_key", None)
+    def execute(self, context, from_element_type, from_element_name, to_element_type, to_element_name):
         from_element_key = resolve_element_key(context, from_element_type, from_element_name, self.resolve_element_key)
-
-        to_element_type = kwargs.get("to_element_type", None)
-        to_element_name = kwargs.get("to_element_key", None)
         to_element_key = resolve_element_key(context, to_element_type, to_element_name, self.resolve_element_key)
 
         error_message = context.language.get("element_is_not_visible_for_drag_failure")
@@ -204,12 +174,8 @@ class ElementDragAction(ActionBase):
 class ElementContainsTextAction(ActionBase):
     regex = LanguageItem("element_contains_text_regex")
 
-    def execute(self, context, *args, **kwargs):
-        element_type = kwargs["element_type"]
-        element_name = kwargs["element_key"]
+    def execute(self, context, element_type, element_name, text):
         element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
-
-        text = kwargs.get("text", None)
 
         error_message = context.language.format("element_is_visible_failure", element_type, element_name)
         self.assert_element_is_visible(context, element_key, error_message)
@@ -222,12 +188,8 @@ class ElementContainsTextAction(ActionBase):
 class ElementDoesNotContainTextAction(ActionBase):
     regex = LanguageItem("element_does_not_contain_text_regex")
 
-    def execute(self, context, *args, **kwargs):
-        element_type = kwargs["element_type"]
-        element_name = kwargs["element_key"]
+    def execute(self, context, element_type, element_name, text):
         element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
-
-        text = kwargs.get("text", None)
 
         error_message = context.language.format("element_is_visible_failure", element_type, element_name)
         self.assert_element_is_visible(context, element_key, error_message)
@@ -240,12 +202,8 @@ class ElementDoesNotContainTextAction(ActionBase):
 class ElementMatchesTextAction(ActionBase):
     regex = LanguageItem("element_matches_text_regex")
 
-    def execute(self, context, *args, **kwargs):
-        element_type = kwargs["element_type"]
-        element_name = kwargs["element_key"]
+    def execute(self, context, element_type, element_name, text):
         element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
-
-        text = kwargs.get("text", None)
 
         error_message = context.language.format("element_is_visible_failure", element_type, element_name)
         self.assert_element_is_visible(context, element_key, error_message)
@@ -258,12 +216,8 @@ class ElementMatchesTextAction(ActionBase):
 class ElementDoesNotMatchTextAction(ActionBase):
     regex = LanguageItem("element_does_not_match_text_regex")
 
-    def execute(self, context, *args, **kwargs):
-        element_type = kwargs["element_type"]
-        element_name = kwargs["element_key"]
+    def execute(self, context, element_type, element_name, text):
         element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
-
-        text = kwargs.get("text", None)
 
         error_message = context.language.format("element_is_visible_failure", element_type, element_name)
         self.assert_element_is_visible(context, element_key, error_message)
@@ -276,12 +230,8 @@ class ElementDoesNotMatchTextAction(ActionBase):
 class ElementContainsMarkupAction(ActionBase):
     regex = LanguageItem("element_contains_markup_regex")
 
-    def execute(self, context, *args, **kwargs):
-        element_type = kwargs["element_type"]
-        element_name = kwargs["element_key"]
+    def execute(self, context, element_type, element_name, markup):
         element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
-
-        markup = kwargs.get("markup", None)
 
         error_message = context.language.format("element_is_visible_failure", element_type, element_name)
         self.assert_element_is_visible(context, element_key, error_message)
@@ -294,12 +244,8 @@ class ElementContainsMarkupAction(ActionBase):
 class ElementDoesNotContainMarkupAction(ActionBase):
     regex = LanguageItem("element_does_not_contain_markup_regex")
 
-    def execute(self, context, *args, **kwargs):
-        element_type = kwargs["element_type"]
-        element_name = kwargs["element_key"]
+    def execute(self, context, element_type, element_name, markup):
         element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
-
-        markup = kwargs.get("markup", None)
 
         error_message = context.language.format("element_is_visible_failure", element_type, element_name)
         self.assert_element_is_visible(context, element_key, error_message)
@@ -312,12 +258,8 @@ class ElementDoesNotContainMarkupAction(ActionBase):
 class ElementMatchesMarkupAction(ActionBase):
     regex = LanguageItem("element_matches_markup_regex")
 
-    def execute(self, context, *args, **kwargs):
-        element_type = kwargs["element_type"]
-        element_name = kwargs["element_key"]
+    def execute(self, context, element_type, element_name, markup):
         element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
-
-        markup = kwargs.get("markup", None)
 
         error_message = context.language.format("element_is_visible_failure", element_type, element_name)
         self.assert_element_is_visible(context, element_key, error_message)
@@ -330,12 +272,8 @@ class ElementMatchesMarkupAction(ActionBase):
 class ElementDoesNotMatchMarkupAction(ActionBase):
     regex = LanguageItem("element_does_not_match_markup_regex")
 
-    def execute(self, context, *args, **kwargs):
-        element_type = kwargs["element_type"]
-        element_name = kwargs["element_key"]
+    def execute(self, context, element_type, element_name, markup):
         element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
-
-        markup = kwargs.get("markup", None)
 
         error_message = context.language.format("element_is_visible_failure", element_type, element_name)
         self.assert_element_is_visible(context, element_key, error_message)
@@ -348,9 +286,7 @@ class ElementDoesNotMatchMarkupAction(ActionBase):
 class ElementMouseoverAction(ActionBase):
     regex = LanguageItem("element_mouseover_regex")
 
-    def execute(self, context, *args, **kwargs):
-        element_type = kwargs["element_type"]
-        element_name = kwargs["element_key"]
+    def execute(self, context, element_type, element_name):
         element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
 
         error_message = context.language.format("element_is_visible_failure", element_type, element_name)
@@ -360,9 +296,7 @@ class ElementMouseoverAction(ActionBase):
 class ElementMouseOutAction(ActionBase):
     regex = LanguageItem("element_mouseout_regex")
 
-    def execute(self, context, *args, **kwargs):
-        element_type = kwargs["element_type"]
-        element_name = kwargs["element_key"]
+    def execute(self, context, element_type, element_name):
         element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
 
         error_message = context.language.format("element_is_visible_failure", element_type, element_name)

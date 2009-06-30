@@ -54,30 +54,30 @@ checkbox_is_not_checked_regex = ^(E )?[eE]u vejo que a checkbox [\"](?P<checkbox
 checkbox_check_regex = ^(E )?[eE]u marco a checkbox [\"](?P<checkbox_key>.+)[\"]$
 checkbox_uncheck_regex = ^(E )?[eE]u desmarco a checkbox [\"](?P<checkbox_key>.+)[\"]$
 
-element_contains_style_regex = ^(E )?[eE]u vejo que [ao] (?P<element_type><element selector>) [\"](?P<element_key>.+)[\"] contém o estilo [\"](?P<style_name>.+)[\"]$
-element_does_not_contain_style_regex = ^(E )?[eE]u vejo que [ao] (?P<element_type><element selector>) [\"](?P<element_key>.+)[\"] não contém o estilo [\"](?P<style_name>.+)[\"]$
-element_is_enabled_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"] está habilitad[oa]$
-element_is_disabled_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"] está desabilitad[oa]$
-element_click_regex = ^(E )?[eE]u clico n[oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"](?P<should_wait> e espero)?$
-element_is_not_visible_regex = ^(E )?[eE]u não vejo [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"]$
-element_is_visible_regex = ^(E )?[eE]u vejo [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"]$
-element_wait_for_disappear_regex = ^(E )?[eE]u espero [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"] desaparecer( por (?P<timeout>\d+) segundos)?$
-element_wait_for_presence_regex = ^(E )?[eE]u espero [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"] aparecer( por (?P<timeout>\d+) segundos)?$
-element_drag_drop_regex = ^(E )?[eE]u arrasto [oa] (?P<from_element_type><element selector>) [\"](?P<from_element_key>.+)[\"] para [oa] (?P<to_element_type><element selector>) [\"](?P<to_element_key>[^"]+)[\"]?$
-element_mouseover_regex = ^(E )?[eE]u passo o mouse n[oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"]$
-element_mouseout_regex = ^(E )?[eE]u retiro o mouse d[oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"]$
+element_contains_style_regex = ^(E )?[eE]u vejo que [ao] (?P<element_type><element selector>) [\"](?P<element_name>.+)[\"] contém o estilo [\"](?P<style_name>.+)[\"]$
+element_does_not_contain_style_regex = ^(E )?[eE]u vejo que [ao] (?P<element_type><element selector>) [\"](?P<element_name>.+)[\"] não contém o estilo [\"](?P<style_name>.+)[\"]$
+element_is_enabled_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_name>[^"]+)[\"] está habilitad[oa]$
+element_is_disabled_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_name>[^"]+)[\"] está desabilitad[oa]$
+element_click_regex = ^(E )?[eE]u clico n[oa] (?P<element_type><element selector>) [\"](?P<element_name>[^"]+)[\"](?P<should_wait> e espero)?$
+element_is_not_visible_regex = ^(E )?[eE]u não vejo [oa] (?P<element_type><element selector>) [\"](?P<element_name>[^"]+)[\"]$
+element_is_visible_regex = ^(E )?[eE]u vejo [oa] (?P<element_type><element selector>) [\"](?P<element_name>[^"]+)[\"]$
+element_wait_for_disappear_regex = ^(E )?[eE]u espero [oa] (?P<element_type><element selector>) [\"](?P<element_name>[^"]+)[\"] desaparecer( por (?P<timeout>\d+) segundos)?$
+element_wait_for_presence_regex = ^(E )?[eE]u espero [oa] (?P<element_type><element selector>) [\"](?P<element_name>[^"]+)[\"] aparecer( por (?P<timeout>\d+) segundos)?$
+element_drag_drop_regex = ^(E )?[eE]u arrasto [oa] (?P<from_element_type><element selector>) [\"](?P<from_element_name>.+)[\"] para [oa] (?P<to_element_type><element selector>) [\"](?P<to_element_name>[^"]+)[\"]?$
+element_mouseover_regex = ^(E )?[eE]u passo o mouse n[oa] (?P<element_type><element selector>) [\"](?P<element_name>[^"]+)[\"]$
+element_mouseout_regex = ^(E )?[eE]u retiro o mouse d[oa] (?P<element_type><element selector>) [\"](?P<element_name>[^"]+)[\"]$
 
 #Element Contains
-element_contains_text_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"] contém [\"](?P<text>.+)[\"]$
-element_does_not_contain_text_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"] não contém [\"](?P<text>.+)[\"]$
-element_contains_markup_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"] contém o markup [\"](?P<markup>.+)[\"]$
-element_does_not_contain_markup_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"] não contém o markup [\"](?P<markup>.+)[\"]$
+element_contains_text_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_name>[^"]+)[\"] contém [\"](?P<text>.+)[\"]$
+element_does_not_contain_text_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_name>[^"]+)[\"] não contém [\"](?P<text>.+)[\"]$
+element_contains_markup_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_name>[^"]+)[\"] contém o markup [\"](?P<markup>.+)[\"]$
+element_does_not_contain_markup_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_name>[^"]+)[\"] não contém o markup [\"](?P<markup>.+)[\"]$
 
 #Element Matches
-element_matches_text_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"] contém exatamente [\"](?P<text>.+)[\"]$
-element_does_not_match_text_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"] não contém exatamente [\"](?P<text>.+)[\"]$
-element_matches_markup_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"] contém exatamente o markup [\"](?P<markup>.+)[\"]$
-element_does_not_match_markup_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_key>[^"]+)[\"] não contém exatamente o markup [\"](?P<markup>.+)[\"]$
+element_matches_text_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_name>[^"]+)[\"] contém exatamente [\"](?P<text>.+)[\"]$
+element_does_not_match_text_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_name>[^"]+)[\"] não contém exatamente [\"](?P<text>.+)[\"]$
+element_matches_markup_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_name>[^"]+)[\"] contém exatamente o markup [\"](?P<markup>.+)[\"]$
+element_does_not_match_markup_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_name>[^"]+)[\"] não contém exatamente o markup [\"](?P<markup>.+)[\"]$
 
 image_has_src_regex = ^(E )?[eE]u vejo que a imagem [\"](?P<image_name>.+)[\"] tem src de [\"](?P<src>.+)[\"]$
 image_does_not_have_src_regex = ^(E )?[eE]u vejo que a imagem [\"](?P<image_name>.+)[\"] não tem src de [\"](?P<src>.+)[\"]$

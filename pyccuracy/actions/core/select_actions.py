@@ -27,43 +27,37 @@ def resolve_element_key(context, element_type, element_name, resolve_function):
 class SelectOptionByValueAction(ActionBase):
     regex = LanguageItem("select_option_by_value_regex")
 
-    def execute(self, context, *args, **kwargs):
-        select_name = kwargs.get("select_name", None)
-        value = kwargs.get("option_value", None)
+    def execute(self, context, select_name, option_value):
         select_key = resolve_element_key(context, Page.Select, select_name, self.resolve_element_key)
 
         error_message = context.language.format("element_is_visible_failure", Page.Select, select_name)
         self.assert_element_is_visible(context, select_key, error_message)
         
-        result = context.browser_driver.select_option_by_value(select_key, value)
+        result = context.browser_driver.select_option_by_value(select_key, option_value)
         
         if not result:
-            error_message = context.language.format("select_option_by_value_failure", select_name, value)
+            error_message = context.language.format("select_option_by_value_failure", select_name, option_value)
             raise self.failed(error_message)
 
 class SelectHasSelectedValueAction(ActionBase):
     regex = LanguageItem("select_has_selected_value_regex")
 
-    def execute(self, context, *args, **kwargs):
-        select_name = kwargs.get("select_name", None)
-        value = kwargs.get("option_value", None)
-
+    def execute(self, context, select_name, option_value):
         select = resolve_element_key(context, Page.Select, select_name, self.resolve_element_key)
         error_message = context.language.format("element_is_visible_failure", Page.Select, select_name)
         self.assert_element_is_visible(context, select, error_message)
         
         selected_value = context.browser_driver.get_selected_value(select)
 
-        if (unicode(selected_value) != unicode(value)):
-            error_message = context.language.format("select_has_selected_value_failure", select_name, value, selected_value)
+        if (unicode(selected_value) != unicode(option_value)):
+            error_message = context.language.format("select_has_selected_value_failure", select_name, option_value, selected_value)
             raise self.failed(error_message)
 
 class SelectOptionByIndexAction(ActionBase):
     regex = LanguageItem("select_option_by_index_regex")
 
-    def execute(self, context, *args, **kwargs):
-        select_name = kwargs.get("select_name", None)
-        index = int(kwargs.get("index", None))
+    def execute(self, context, select_name, index):
+        index = int(index)
         select_key = resolve_element_key(context, Page.Select, select_name, self.resolve_element_key)
 
         error_message = context.language.format("element_is_visible_failure", Page.Select, select_name)
@@ -78,10 +72,7 @@ class SelectOptionByIndexAction(ActionBase):
 class SelectHasSelectedIndexAction(ActionBase):
     regex = LanguageItem("select_has_selected_index_regex")
 
-    def execute(self, context, *args, **kwargs):
-        select_name = kwargs.get("select_name", None)
-        index = kwargs.get("index", None)
-
+    def execute(self, context, select_name, index):
         select = resolve_element_key(context, Page.Select, select_name, self.resolve_element_key)
         error_message = context.language.format("element_is_visible_failure", Page.Select, select_name)
         self.assert_element_is_visible(context, select, error_message)
@@ -95,9 +86,7 @@ class SelectHasSelectedIndexAction(ActionBase):
 class SelectOptionByTextAction(ActionBase):
     regex = LanguageItem("select_option_by_text_regex")
 
-    def execute(self, context, *args, **kwargs):
-        select_name = kwargs.get("select_name", None)
-        text = kwargs.get("text", None)
+    def execute(self, context, select_name, text):
         select_key = resolve_element_key(context, Page.Select, select_name, self.resolve_element_key)
 
         error_message = context.language.format("element_is_visible_failure", Page.Select, select_name)
@@ -112,10 +101,7 @@ class SelectOptionByTextAction(ActionBase):
 class SelectHasSelectedTextAction(ActionBase):
     regex = LanguageItem("select_has_selected_text_regex")
 
-    def execute(self, context, *args, **kwargs):
-        select_name = kwargs.get("select_name", None)
-        text = kwargs.get("text", None)
-
+    def execute(self, context, select_name, text):
         select = resolve_element_key(context, Page.Select, select_name, self.resolve_element_key)
         error_message = context.language.format("element_is_visible_failure", Page.Select, select_name)
         self.assert_element_is_visible(context, select, error_message)
@@ -129,10 +115,7 @@ class SelectHasSelectedTextAction(ActionBase):
 class SelectDoesNotHaveSelectedIndexAction(ActionBase):
     regex = LanguageItem("select_does_not_have_selected_index_regex")
 
-    def execute(self, context, *args, **kwargs):
-        select_name = kwargs.get("select_name", None)
-        index = kwargs.get("index", None)
-
+    def execute(self, context, select_name, index):
         select = resolve_element_key(context, Page.Select, select_name, self.resolve_element_key)
 
         error_message = context.language.format("element_is_visible_failure", Page.Select, select_name)
@@ -147,10 +130,7 @@ class SelectDoesNotHaveSelectedIndexAction(ActionBase):
 class SelectDoesNotHaveSelectedValueAction(ActionBase):
     regex = LanguageItem("select_does_not_have_selected_value_regex")
 
-    def execute(self, context, *args, **kwargs):
-        select_name = kwargs.get("select_name", None)
-        value = kwargs.get("value", None)
-
+    def execute(self, context, select_name, value):
         select = resolve_element_key(context, Page.Select, select_name, self.resolve_element_key)
 
         error_message = context.language.format("element_is_visible_failure", Page.Select, select_name)
@@ -165,10 +145,7 @@ class SelectDoesNotHaveSelectedValueAction(ActionBase):
 class SelectDoesNotHaveSelectedTextAction(ActionBase):
     regex = LanguageItem("select_does_not_have_selected_text_regex")
 
-    def execute(self, context, *args, **kwargs):
-        select_name = kwargs.get("select_name", None)
-        text = kwargs.get("text", None)
-
+    def execute(self, context, select_name, text):
         select = resolve_element_key(context, Page.Select, select_name, self.resolve_element_key)
 
         error_message = context.language.format("element_is_visible_failure", Page.Select, select_name)

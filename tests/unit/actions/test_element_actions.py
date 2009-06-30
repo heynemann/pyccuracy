@@ -56,5 +56,5 @@ def test_element_click_action_calls_the_right_browser_driver_methods():
 
     action = ElementClickAction()
 
-    action.execute(context, element_key="some", element_type="button", should_wait=None)
+    action.execute(context, element_name="some", element_type="button", should_wait=None)
     context.browser_driver.verify()

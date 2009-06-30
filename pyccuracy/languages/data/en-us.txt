@@ -54,30 +54,30 @@ checkbox_is_not_checked_regex = ^(And )?I see the [\"](?P<checkbox_key>.+)[\"] c
 checkbox_check_regex = ^(And )?I check the [\"](?P<checkbox_key>.+)[\"] checkbox$
 checkbox_uncheck_regex = ^(And )?I uncheck the [\"](?P<checkbox_key>.+)[\"] checkbox$
 
-element_contains_style_regex = ^(And )?I see [\"](?P<element_key>.+)[\"] (?P<element_type><element selector>) has [\"](?P<style_name>.+)[\"] style$
-element_does_not_contain_style_regex = ^(And )?I see [\"](?P<element_key>.+)[\"] (?P<element_type><element selector>) does not have [\"](?P<style_name>.+)[\"] style$
-element_is_enabled_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) is enabled$
-element_is_disabled_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) is disabled$
-element_click_regex = ^(And )?I click [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>)(?P<should_wait> and wait)?$
-element_is_not_visible_regex = ^(And )?I do not see [\"](?P<element_key>.+)[\"] (?P<element_type><element selector>)$
-element_is_visible_regex = ^(And )?I see [\"](?P<element_key>.+)[\"] (?P<element_type><element selector>)$
-element_wait_for_disappear_regex = ^(And )?I wait for [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) to disappear( for (?P<timeout>\d+) seconds)?$
-element_wait_for_presence_regex = ^(And )?I wait for [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) to be present( for (?P<timeout>\d+) seconds)?$
-element_drag_drop_regex = ^(And )?I drag the [\"](?P<from_element_key>.+)[\"] (?P<from_element_type><element selector>) to the [\"](?P<to_element_key>.+)[\"] (?P<to_element_type><element selector>)?$
-element_mouseover_regex = ^(And )?I mouseover [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>)$
-element_mouseout_regex = ^(And )?I mouseout [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>)$
+element_contains_style_regex = ^(And )?I see [\"](?P<element_name>.+)[\"] (?P<element_type><element selector>) has [\"](?P<style_name>.+)[\"] style$
+element_does_not_contain_style_regex = ^(And )?I see [\"](?P<element_name>.+)[\"] (?P<element_type><element selector>) does not have [\"](?P<style_name>.+)[\"] style$
+element_is_enabled_regex = ^(And )?I see [\"](?P<element_name>[^"]+)[\"] (?P<element_type><element selector>) is enabled$
+element_is_disabled_regex = ^(And )?I see [\"](?P<element_name>[^"]+)[\"] (?P<element_type><element selector>) is disabled$
+element_click_regex = ^(And )?I click [\"](?P<element_name>[^"]+)[\"] (?P<element_type><element selector>)(?P<should_wait> and wait)?$
+element_is_not_visible_regex = ^(And )?I do not see [\"](?P<element_name>.+)[\"] (?P<element_type><element selector>)$
+element_is_visible_regex = ^(And )?I see [\"](?P<element_name>.+)[\"] (?P<element_type><element selector>)$
+element_wait_for_disappear_regex = ^(And )?I wait for [\"](?P<element_name>[^"]+)[\"] (?P<element_type><element selector>) to disappear( for (?P<timeout>\d+) seconds)?$
+element_wait_for_presence_regex = ^(And )?I wait for [\"](?P<element_name>[^"]+)[\"] (?P<element_type><element selector>) to be present( for (?P<timeout>\d+) seconds)?$
+element_drag_drop_regex = ^(And )?I drag the [\"](?P<from_element_name>.+)[\"] (?P<from_element_type><element selector>) to the [\"](?P<to_element_name>.+)[\"] (?P<to_element_type><element selector>)?$
+element_mouseover_regex = ^(And )?I mouseover [\"](?P<element_name>[^"]+)[\"] (?P<element_type><element selector>)$
+element_mouseout_regex = ^(And )?I mouseout [\"](?P<element_name>[^"]+)[\"] (?P<element_type><element selector>)$
 
 #Element Contains
-element_contains_text_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) contains [\"](?P<text>.+)[\"]$
-element_does_not_contain_text_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) does not contain [\"](?P<text>.+)[\"]$
-element_contains_markup_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) contains [\"](?P<markup>.+)[\"] markup$
-element_does_not_contain_markup_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) does not contain [\"](?P<markup>.+)[\"] markup$
+element_contains_text_regex = ^(And )?I see [\"](?P<element_name>[^"]+)[\"] (?P<element_type><element selector>) contains [\"](?P<text>.+)[\"]$
+element_does_not_contain_text_regex = ^(And )?I see [\"](?P<element_name>[^"]+)[\"] (?P<element_type><element selector>) does not contain [\"](?P<text>.+)[\"]$
+element_contains_markup_regex = ^(And )?I see [\"](?P<element_name>[^"]+)[\"] (?P<element_type><element selector>) contains [\"](?P<markup>.+)[\"] markup$
+element_does_not_contain_markup_regex = ^(And )?I see [\"](?P<element_name>[^"]+)[\"] (?P<element_type><element selector>) does not contain [\"](?P<markup>.+)[\"] markup$
 
 #Element Matches
-element_matches_text_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) matches [\"](?P<text>.+)[\"]$
-element_does_not_match_text_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) does not match [\"](?P<text>.+)[\"]$
-element_matches_markup_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) matches [\"](?P<markup>.+)[\"] markup$
-element_does_not_match_markup_regex = ^(And )?I see [\"](?P<element_key>[^"]+)[\"] (?P<element_type><element selector>) does not match [\"](?P<markup>.+)[\"] markup$
+element_matches_text_regex = ^(And )?I see [\"](?P<element_name>[^"]+)[\"] (?P<element_type><element selector>) matches [\"](?P<text>.+)[\"]$
+element_does_not_match_text_regex = ^(And )?I see [\"](?P<element_name>[^"]+)[\"] (?P<element_type><element selector>) does not match [\"](?P<text>.+)[\"]$
+element_matches_markup_regex = ^(And )?I see [\"](?P<element_name>[^"]+)[\"] (?P<element_type><element selector>) matches [\"](?P<markup>.+)[\"] markup$
+element_does_not_match_markup_regex = ^(And )?I see [\"](?P<element_name>[^"]+)[\"] (?P<element_type><element selector>) does not match [\"](?P<markup>.+)[\"] markup$
 
 image_has_src_regex = ^(And )?I see [\"](?P<image_name>.+)[\"] image has src of [\"](?P<src>.+)[\"]$
 image_does_not_have_src_regex = ^(And )?I see [\"](?P<image_name>.+)[\"] image does not have src of [\"](?P<src>.+)[\"]$
