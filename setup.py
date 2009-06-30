@@ -43,8 +43,7 @@ setup(
     package_dir = {"pyccuracy": "pyccuracy"},
     include_package_data = True,
     package_data = {
-        'pyccuracy.languages.templates.en-us': ['*.template'],
-        'pyccuracy.languages.templates.pt-br': ['*.template'],
+        '': ['*.template'],
         'pyccuracy.languages.data': ['*.txt'],
         'pyccuracy.xslt': ['*.xml', '*.xslt'],
     },

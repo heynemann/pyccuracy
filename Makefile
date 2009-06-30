@@ -44,7 +44,7 @@ remove_build_dir:
 
 remove_dist_dir:
 	@rm -fr dist/
-	@rm -fr Pynq.egg-info/
+	@rm -fr Pyccuracy.egg-info/
 
 create_build_dir:
 	@mkdir -p ${build_dir}
@@ -101,18 +101,14 @@ acceptance:
 	@python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "*pt-br.acc" -l pt-br -v 0
 	@-make selenium_down
 
-sdist:
+dist: clean
 	@echo "Running a build..."
-	@echo off
-	@rm -f -r ./pyccuracy/build
-	@python setup.py sdist
+	@python setup.py bdist_egg
 	@echo "Build finished successfully!"
 
-upload:
+upload: clean
 	@echo "Running a build..."
-	@echo off
-	@rm -f -r ./pyccuracy/build
-	@python setup.py sdist upload
+	@python setup.py bdist_egg upload
 	@echo "Build finished successfully and uploaded!"
 
 docs:
