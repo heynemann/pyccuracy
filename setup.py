@@ -38,17 +38,17 @@ setup(
                    'Programming Language :: Python :: 2.5',
                    'Programming Language :: Python :: 2.6',
                    'Topic :: Software Development :: Quality Assurance',
-                   'Topic :: Software Development :: Testing',
-                   ''],
+                   'Topic :: Software Development :: Testing',],
     packages = find_packages(),
     package_dir = {"pyccuracy": "pyccuracy"},
     include_package_data = True,
     package_data = {
-        '': ['*.template'],
+        'pyccuracy.languages.templates.en-us': ['*.template'],
+        'pyccuracy.languages.templates.pt-br': ['*.template'],
         'pyccuracy.languages.data': ['*.txt'],
         'pyccuracy.xslt': ['*.xml', '*.xslt'],
     },
-    
+
     install_requires=[
         "selenium>=0.9.2",
     ],
