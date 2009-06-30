@@ -101,6 +101,8 @@ class ActionBase(object):
             raise RuntimeError('A action can not execute itself for infinite recursion reasons :)')
 
         action_to_execute = Action()
+        if kwargs:
+            args = []
         action_to_execute.execute(context, *args, **kwargs)
 
     def resolve_element_key(self, context, element_type, element_key):

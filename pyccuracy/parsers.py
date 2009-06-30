@@ -110,6 +110,8 @@ class FileParser(object):
             if not action:
                 self.raise_action_not_found_for_line(line, current_scenario, story_file_path)
             instance = action()
+            if kwargs:
+                args = []
             add_method(line, instance.execute, args, kwargs)
 
         return (True, None, current_story)
