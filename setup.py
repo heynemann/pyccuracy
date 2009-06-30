@@ -15,6 +15,8 @@
 from setuptools import setup, find_packages
 from pyccuracy import Version
 
+#classifier should be changed to "Development Status :: 5 - Production/Stable" soon
+
 setup(
     name = 'Pyccuracy',
     version = Version,
@@ -25,7 +27,19 @@ setup(
     author_email = 'pyccuracy@googlegroups.com',
     url = 'http://www.pyccuracy.org',
     license = 'OSI',
-    
+    classifiers = ['Development Status :: 4 - Beta',
+                   'Intended Audience :: Developers',
+                   'License :: OSI Approved',
+                   'Natural Language :: English',
+                   'Natural Language :: Portuguese (Brazilian)',
+                   'Operating System :: MacOS',
+                   'Operating System :: Microsoft :: Windows',
+                   'Operating System :: POSIX :: Linux',
+                   'Programming Language :: Python :: 2.5',
+                   'Programming Language :: Python :: 2.6',
+                   'Topic :: Software Development :: Quality Assurance',
+                   'Topic :: Software Development :: Testing',
+                   ''],
     packages = find_packages(),
     package_dir = {"pyccuracy": "pyccuracy"},
     include_package_data = True,

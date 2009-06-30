@@ -100,12 +100,20 @@ acceptance:
 	@python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "*en-us.acc" -l en-us -v 0
 	@python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "*pt-br.acc" -l pt-br -v 0
 	@-make selenium_down
+
+sdist:
+	@echo "Running a build..."
+	@echo off
+	@rm -f -r ./pyccuracy/build
+	@python setup.py sdist
+	@echo "Build finished successfully!"
+
 upload:
 	@echo "Running a build..."
 	@echo off
 	@rm -f -r ./pyccuracy/build
 	@python setup.py sdist upload
-	@echo "Build finished and uploaded!"
+	@echo "Build finished successfully and uploaded!"
 
 docs:
 	@$(MAKE) -C ./docs -f Makefile clean
