@@ -25,51 +25,73 @@ import selenium
 """
 Path constants
 You will need to configure the Path Constants according to your directory layout.
+
+BASE_PATH
+  Is Djangucacy's absolute path
+
+APPLICATION_DIR
+  Is the Django App directory (contains manage.py)
+
+SELENIUM_DIR
+  Is the directory of Selenium RC. We expect it contains the python driver and a lib subdirectory containing the RC Jar library.
 """
-ACC_DIR = "%s/acceptance/" % os.path.dirname(os.path.realpath(__file__))
-APP_DIR = os.path.realpath(os.curdir)
-SEL_DIR = os.path.dirname(selenium.__file__)
+APPLICATION_DIR     = os.path.realpath(os.curdir)
+SELENIUM_DIR        = os.path.dirname(selenium.__file__)
+
+BASE_PATH           = os.path.dirname(os.path.realpath(__file__))
+ACC_TESTS_DIR       = "%s/acceptance/" % BASE_PATH
+CUSTOM_ACTIONS_DIR  = "%s/custom_actions/" % BASE_PATH
+CUSTOM_PAGES_DIR    = "%s/custom_pages/" % BASE_PATH
+LOG_SELENIUM        = "%s/selenium.log" % BASE_PATH
+LOG_APPLICATION     = "%s/application.log" % BASE_PATH
 
 class PyccuracyTestCase(TestCase):
-    sel_server = None
-    app_server = None
-
-    def runSeleniumServer(self):
-        sel_server_path = SEL_DIR
-        sel_command = ["java", "-jar", "lib/selenium-server.jar"]
-        self.sel_server = Popen(sel_command, stdin=PIPE, stdout=PIPE, stderr=STDOUT, cwd=sel_server_path)
-
-        #wait selenium rc to be ready
-        line = self.sel_server.stdout.readline()
-        while not "Started SocketListener on" in line:
-            line = self.sel_server.stdout.readline()
-        print "Started selenium server"
+    application_server = None
+    selenium_server = None
 
     def runApplicationServer(self):
-        app_server_path = APP_DIR
-        self.app_server = Popen(['python', 'manage.py', 'runserver'],
-                stdout=PIPE, stderr=STDOUT, cwd=app_server_path)
-        time.sleep(2) #FIXME: we need to wait for the server to be ready
-        print "Application Server started"
+        """Starts Django Test Server"""
+        logfile = open(LOG_APPLICATION, 'w')
+        self.application_server = Popen(['python', 'manage.py', 'testserver'],
+                stdout=logfile, stderr=STDOUT, cwd=APPLICATION_DIR)
+        time.sleep(5) #FIXME: we need to wait for the server to be ready
+        print "Started Django Test Server"
+
+    def runSeleniumServer(self):
+        """Starts Selenium RC server"""
+        command = ["java", "-jar", "lib/selenium-server.jar"]
+        logfile = open(LOG_SELENIUM, 'w')
+
+        self.selenium_server = Popen(command, stdin=PIPE, 
+              stdout=logfile, stderr=STDOUT, cwd=SELENIUM_DIR)
+
+        #wait selenium rc to be ready
+        with open(LOG_SELENIUM, 'r') as f:
+           line = f.readline()
+           while not "Started SocketListener on" in line:
+              line = f.readline()
+           print "Started Selenium RC Server"
 
     def setUp(self):
-        """Starts the application and selenium servers"""
-
+        """Starts Django Test Server and Selenium RC Server."""
         self.runApplicationServer()
         self.runSeleniumServer()
 
     def tearDown(self):
-        """Stops Selenium RC and Django Server."""
-        self.sel_server.terminate()
-        self.app_server.terminate()
+        """Stops Django Test Server and Selenium RC."""
+        self.application_server.terminate()
+        self.selenium_server.terminate()
 
     def testAcceptanceWithPyccuracy(self):
         """Execute acceptance tests running Pyccuracy Core"""
         core = PyccuracyCore()
         result = core.run_tests(
                 #base_url="http://myserver/index",
-                tests_dir= ACC_DIR,
+                tests_dir=ACC_TESTS_DIR,
+                custom_actions_dir=CUSTOM_ACTIONS_DIR,
+                pages_dir=CUSTOM_PAGES_DIR,
                 write_report=False,
+                default_culture="pt-br",
                 browser_to_run="firefox",
                 browser_driver="selenium",
                 should_throw="should_throw",
