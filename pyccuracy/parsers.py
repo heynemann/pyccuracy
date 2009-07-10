@@ -47,6 +47,7 @@ class FileParser(object):
         fixture = Fixture()
 
         story_file_list = self.file_object.list_files(directory=settings.tests_dir, pattern=settings.file_pattern)
+        story_file_list.sort()
 
         for story_file_path in story_file_list:
             try:
