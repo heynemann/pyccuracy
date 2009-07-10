@@ -23,7 +23,7 @@ from os.path import join, split, splitext
 from pyccuracy.airspeed import Template
 
 from pyccuracy import Page, ActionBase
-from pyccuracy.common import Settings, Context, locate
+from pyccuracy.common import Settings, Context, locate, Status
 from pyccuracy.story_runner import *
 from pyccuracy.parsers import FileParser, ActionNotFoundError
 from pyccuracy.errors import *
@@ -98,7 +98,7 @@ class PyccuracyCore(object):
                     path = join(context.settings.report_file_dir, context.settings.report_file_name)
                     report.generate_report(path, results, context.language)
 
-            if settings.should_throw and result and result.get_status() == Status.Failed:
+            if settings.should_throw and results and results.get_status() == Status.Failed:
                 raise TestFailedError("The test failed!")
 
             return results
