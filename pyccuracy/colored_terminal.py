@@ -160,6 +160,7 @@ output; and adjusts to the width of the terminal.
     HEADER = '${BOLD}${CYAN}%s${NORMAL}\n\n'
         
     def __init__(self, header, verbosity, term=None):
+        self.status = "SUCCESS"
         self.term = term or TerminalController()
         self.verbosity = verbosity
         self.display_dots = False
@@ -174,12 +175,13 @@ output; and adjusts to the width of the terminal.
 
     def set_failed(self):
         self.bar = self.term.render(self.RED_BAR)
+        self.status = "FAILED"
 
     def update(self, percent, message):
         if self.verbosity == 0:
             return
         if self.display_dots:
-            print "%.2f%% - %s" % (percent*100, message)
+            print "[%06.2f%%] %s - %s" % (percent*100, self.status, message)
             return
         if self.cleared:
             sys.stdout.write(self.header)

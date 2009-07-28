@@ -52,7 +52,7 @@ def update_progress(fixture, scenario, scenario_index):
             return
 
         current_progress = float(scenario_index) / total_scenarios
-        prg.update(current_progress, "Scenario %d of %d - %s - %.2f secs" % (scenario_index, total_scenarios, scenario.title, fixture.ellapsed()))
+        prg.update(current_progress, "Scenario %d of %d <%.2fs> - %s" % (scenario_index, total_scenarios, fixture.ellapsed(), scenario.title))
 
 def main():
     """ Main function - parses args and runs action """
@@ -123,7 +123,7 @@ def main():
                            should_throw=options.should_throw,
                            workers=workers,
                            extra_args=extra_args,
-                           on_scenario_started=update_progress,
+                           on_scenario_started=int(options.verbosity) > 1 and update_progress or None,
                            on_scenario_completed=update_progress,
                            verbosity=int(options.verbosity))
 
