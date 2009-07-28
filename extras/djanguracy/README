@@ -1,0 +1,10 @@
+# Install
+1) Add the djanguracy module to the INSTALLED_APPS in your Django App settings.py
+2) Adapt the Path Constants in djanguracy\tests.py
+
+# Usage
+python manage.py test djanguracy
+
+# Authors
+Flávio Amieiro <amieiro.flavio@gmail.com>
+Henrique Bastos <henrique@bastos.net>
