@@ -40,7 +40,7 @@ def test_parsing_stories_returns_list():
     settings = Settings()
     filemock = Mock()
     filemock.expects(once()) \
-            .list_files(directory=same(settings.tests_dir), pattern=same(settings.file_pattern)) \
+            .list_files(directories=same(settings.tests_dirs), pattern=same(settings.file_pattern)) \
             .will(return_value([]))
     parser = FileParser(file_object=filemock)
 
@@ -52,7 +52,7 @@ def test_parsing_folder_with_no_stories_returns_empty_list():
     files = []
     filemock = Mock()
     filemock.expects(once()) \
-            .list_files(directory=same(settings.tests_dir), pattern=same(settings.file_pattern)) \
+            .list_files(directories=same(settings.tests_dirs), pattern=same(settings.file_pattern)) \
             .will(return_value(files))
 
     parser = FileParser(file_object=filemock)
@@ -69,7 +69,7 @@ def test_parsing_files_with_empty_content_returns_invalid_files_list():
 
     filemock = Mock()
     filemock.expects(once()) \
-            .list_files(directory=same(settings.tests_dir), pattern=same(settings.file_pattern)) \
+            .list_files(directories=same(settings.tests_dirs), pattern=same(settings.file_pattern)) \
             .will(return_value(files))
     filemock.expects(once()) \
             .read_file(eq(files[0])) \
@@ -108,7 +108,7 @@ So that I'm happy"""
 
     filemock = Mock()
     filemock.expects(once()) \
-            .list_files(directory=same(settings.tests_dir), pattern=same(settings.file_pattern)) \
+            .list_files(directories=same(settings.tests_dirs), pattern=same(settings.file_pattern)) \
             .will(return_value(files))
     filemock.expects(once()) \
             .read_file(eq(files[0])) \
@@ -147,7 +147,7 @@ So that I'm happy"""
 
     filemock = Mock()
     filemock.expects(once()) \
-            .list_files(directory=same(settings.tests_dir), pattern=same(settings.file_pattern)) \
+            .list_files(directories=same(settings.tests_dirs), pattern=same(settings.file_pattern)) \
             .will(return_value(files))
     filemock.expects(once()) \
             .read_file(eq(files[0])) \
@@ -186,7 +186,7 @@ So I'm happy"""
 
     filemock = Mock()
     filemock.expects(once()) \
-            .list_files(directory=same(settings.tests_dir), pattern=same(settings.file_pattern)) \
+            .list_files(directories=same(settings.tests_dirs), pattern=same(settings.file_pattern)) \
             .will(return_value(files))
     filemock.expects(once()) \
             .read_file(eq(files[0])) \
@@ -225,7 +225,7 @@ So that I'm happy"""
 
     filemock = Mock()
     filemock.expects(once()) \
-            .list_files(directory=same(settings.tests_dir), pattern=same(settings.file_pattern)) \
+            .list_files(directories=same(settings.tests_dirs), pattern=same(settings.file_pattern)) \
             .will(return_value(files))
     filemock.expects(once()) \
             .read_file(eq(files[0])) \
@@ -349,7 +349,7 @@ Then
 
     filemock = Mock()
     filemock.expects(once()) \
-            .list_files(directory=same(settings.tests_dir), pattern=same(settings.file_pattern)) \
+            .list_files(directories=same(settings.tests_dirs), pattern=same(settings.file_pattern)) \
             .will(return_value(files))
     filemock.expects(once()) \
             .read_file(eq(files[0])) \
@@ -446,7 +446,7 @@ Then
 
     filemock = Mock()
     filemock.expects(once()) \
-            .list_files(directory=same(settings.tests_dir), pattern=same(settings.file_pattern)) \
+            .list_files(directories=same(settings.tests_dirs), pattern=same(settings.file_pattern)) \
             .will(return_value(files))
     filemock.expects(once()) \
             .read_file(eq(files[0])) \

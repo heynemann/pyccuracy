@@ -23,7 +23,7 @@ languages_dir = abspath(join(dirname(__file__), "../../pyccuracy/languages"))
 
 def test_settings_return_default_value_for_tests_dir():
     settings = Settings({})
-    assert settings.tests_dir == cur_dir, "The tests dir should be %s but was %s." % (cur_dir, settings.tests_dir)
+    assert settings.tests_dirs == [cur_dir], "The tests dir should be %s but was %s." % (cur_dir, settings.tests_dir)
 
 def test_settings_return_default_value_for_actions_dir():
     settings = Settings({})
@@ -35,8 +35,8 @@ def test_settings_return_default_value_for_languages_dir():
 
 def test_settings_return_default_value_for_pages_dir():
     settings = Settings({})
-    assert settings.pages_dir == cur_dir, "The pages dir should be %s but was %s." % (cur_dir, settings.pages_dir)
+    assert settings.pages_dir == [cur_dir], "The pages dir should be %s but was %s." % (cur_dir, settings.pages_dir)
 
 def test_settings_return_default_value_for_custom_actions_dir():
     settings = Settings({})
-    assert settings.custom_actions_dir == cur_dir, "The custom actions dir should be %s but was %s." % (cur_dir, settings.custom_actions_dir)
+    assert settings.custom_actions_dir == [cur_dir], "The custom actions dir should be %s but was %s." % (cur_dir, settings.custom_actions_dir)

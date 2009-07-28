@@ -36,8 +36,8 @@ def test_pyccuracy_core_run_tests():
     context_mock = Mock()
     context_mock.browser_driver = Mock()
     context_mock.settings = Mock()
-    context_mock.settings.pages_dir = "/pages/dir/"
-    context_mock.settings.custom_actions_dir = "/custom/actions/dir/"
+    context_mock.settings.pages_dir = ["/pages/dir/"]
+    context_mock.settings.custom_actions_dir = ["/custom/actions/dir/"]
     context_mock.settings.base_url = "http://localhost"
     context_mock.settings.default_culture = "en-us"
     context_mock.settings.write_report = False
@@ -45,10 +45,10 @@ def test_pyccuracy_core_run_tests():
     files = ["/some/weird/file.py"]
     actions  = ["/some/weird/action.py"]
     fso_mock = Mock()
-    fso_mock.expects(once()).add_to_import(eq(context_mock.settings.pages_dir))
-    fso_mock.expects(once()).add_to_import(eq(context_mock.settings.custom_actions_dir))
-    fso_mock.expects(once()).locate(eq(context_mock.settings.pages_dir), eq('*.py')).will(return_value(files))
-    fso_mock.expects(once()).locate(eq(context_mock.settings.custom_actions_dir), eq('*.py')).will(return_value(files))
+    fso_mock.expects(once()).add_to_import(eq(context_mock.settings.pages_dir[0]))
+    fso_mock.expects(once()).add_to_import(eq(context_mock.settings.custom_actions_dir[0]))
+    fso_mock.expects(once()).locate(eq(context_mock.settings.pages_dir[0]), eq('*.py')).will(return_value(files))
+    fso_mock.expects(once()).locate(eq(context_mock.settings.custom_actions_dir[0]), eq('*.py')).will(return_value(files))
     fso_mock.expects(at_least_once()).method('import_file')
     fso_mock.expects(at_least_once()).remove_from_import()
 
@@ -79,18 +79,18 @@ def test_pyccuracy_core_run_tests_works_when_None_Result_returned_from_story_run
     context_mock = Mock()
     context_mock.browser_driver = Mock()
     context_mock.settings = Mock()
-    context_mock.settings.pages_dir = "/pages/dir/"
-    context_mock.settings.custom_actions_dir = "/custom/actions/dir/"
+    context_mock.settings.pages_dir = ["/pages/dir/"]
+    context_mock.settings.custom_actions_dir = ["/custom/actions/dir/"]
     context_mock.settings.base_url = "http://localhost"
     context_mock.settings.default_culture = "en-us"
 
     files = ["/some/weird/file.py"]
     actions  = ["/some/weird/action.py"]
     fso_mock = Mock()
-    fso_mock.expects(once()).add_to_import(eq(context_mock.settings.pages_dir))
-    fso_mock.expects(once()).add_to_import(eq(context_mock.settings.custom_actions_dir))
-    fso_mock.expects(once()).locate(eq(context_mock.settings.pages_dir), eq('*.py')).will(return_value(files))
-    fso_mock.expects(once()).locate(eq(context_mock.settings.custom_actions_dir), eq('*.py')).will(return_value(files))
+    fso_mock.expects(once()).add_to_import(eq(context_mock.settings.pages_dir[0]))
+    fso_mock.expects(once()).add_to_import(eq(context_mock.settings.custom_actions_dir[0]))
+    fso_mock.expects(once()).locate(eq(context_mock.settings.pages_dir[0]), eq('*.py')).will(return_value(files))
+    fso_mock.expects(once()).locate(eq(context_mock.settings.custom_actions_dir[0]), eq('*.py')).will(return_value(files))
     fso_mock.expects(at_least_once()).method('import_file')
     fso_mock.expects(at_least_once()).remove_from_import()
 

@@ -28,8 +28,11 @@ from pyccuracy.fixture_items import Story, Action, Scenario
 
 class FSO(object):
     '''Actual Filesystem'''
-    def list_files(self, directory, pattern):
-        return locate(root=directory, pattern=pattern)
+    def list_files(self, directories, pattern):
+        files = []
+        for directory in directories:
+            files.extend(locate(root=directory, pattern=pattern))
+        return files
 
     def read_file(self, file_path):
         return open(file_path).read().decode('utf-8')
@@ -46,7 +49,7 @@ class FileParser(object):
 
         fixture = Fixture()
 
-        story_file_list = self.file_object.list_files(directory=settings.tests_dir, pattern=settings.file_pattern)
+        story_file_list = self.file_object.list_files(directories=settings.tests_dirs, pattern=settings.file_pattern)
 
         for story_file_path in story_file_list:
             try:

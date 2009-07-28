@@ -124,13 +124,17 @@ class Settings(object):
         if not languages_dir:
             languages_dir = abspath_func(join(dirname(__file__), "languages"))
 
-        self.tests_dir = abspath_func(self.get_setting(settings, "tests_dir", cur_dir))
+        self.tests_dirs = [abspath_func(test_dir) for test_dir in self.get_setting(settings, "tests_dirs", [cur_dir])]
 
         self.actions_dir = self.get_setting(settings, "actions_dir", actions_dir)
         self.languages_dir = self.get_setting(settings, "languages_dir", languages_dir)
 
-        self.pages_dir = self.get_setting(settings, "pages_dir", self.tests_dir)
-        self.custom_actions_dir = self.get_setting(settings, "custom_actions_dir", self.tests_dir)
+        self.pages_dir = self.get_setting(settings, "pages_dir", self.tests_dirs)
+        if not self.pages_dir:
+            self.pages_dir = self.tests_dirs
+        self.custom_actions_dir = self.get_setting(settings, "custom_actions_dir", self.tests_dirs)
+        if not self.custom_actions_dir:
+            self.custom_actions_dir = self.tests_dirs
 
         self.file_pattern = self.get_setting(settings, "file_pattern", "*.acc")
         self.scenarios_to_run = self.get_setting(settings, "scenarios_to_run", [])
@@ -141,7 +145,7 @@ class Settings(object):
         self.base_url = self.get_setting(settings, "base_url", None)
         self.should_throw = self.get_setting(settings, "should_throw", False)
         self.write_report = self.get_setting(settings, "write_report", True)
-        self.report_file_dir = self.get_setting(settings, "report_file_dir", self.tests_dir)
+        self.report_file_dir = self.get_setting(settings, "report_file_dir", cur_dir)
         self.report_file_name = self.get_setting(settings, "report_file_name", "report.html")
         self.browser_to_run = self.get_setting(settings, "browser_to_run", "chrome")
         self.browser_driver = self.get_setting(settings, "browser_driver", "selenium")

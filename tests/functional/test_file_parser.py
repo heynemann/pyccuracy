@@ -27,7 +27,7 @@ def assert_no_invalid_stories(fixture):
 
 def test_parsing_folder_with_no_stories_returns_empty_list():
     settings = Settings()
-    settings.tests_dir = abspath(join(dirname(__file__), "no_stories_folder"))
+    settings.tests_dirs = [abspath(join(dirname(__file__), "no_stories_folder"))]
     parser = FileParser()
 
     fixture = parser.get_stories(settings=settings)
@@ -35,7 +35,7 @@ def test_parsing_folder_with_no_stories_returns_empty_list():
 
 def test_parsing_files_with_empty_content_returns_no_story_header_list():
     settings = Settings()
-    settings.tests_dir = abspath(join(dirname(__file__), "invalid_content_stories"))
+    settings.tests_dirs = [abspath(join(dirname(__file__), "invalid_content_stories"))]
     settings.file_pattern = "empty_story.acc"
 
     parser = FileParser()
@@ -48,7 +48,7 @@ def test_parsing_files_with_empty_content_returns_no_story_header_list():
 
 def test_parsing_files_with_wrong_content_returns_no_story_header_list():
     settings = Settings()
-    settings.tests_dir = abspath(join(dirname(__file__), "invalid_content_stories"))
+    settings.tests_dirs = [abspath(join(dirname(__file__), "invalid_content_stories"))]
     settings.file_pattern = "invalid_story.acc"
 
     parser = FileParser()
@@ -61,7 +61,7 @@ def test_parsing_files_with_wrong_content_returns_no_story_header_list():
 
 def test_parsing_files_with_wrong_as_a_returns_no_story_header_list():
     settings = Settings()
-    settings.tests_dir = abspath(join(dirname(__file__), "invalid_content_stories"))
+    settings.tests_dirs = [abspath(join(dirname(__file__), "invalid_content_stories"))]
     settings.file_pattern = "invalid_as_a.acc"
 
     parser = FileParser()
@@ -74,7 +74,7 @@ def test_parsing_files_with_wrong_as_a_returns_no_story_header_list():
     
 def test_parsing_files_with_wrong_i_want_to_returns_no_story_header_list():
     settings = Settings()
-    settings.tests_dir = abspath(join(dirname(__file__), "invalid_content_stories"))
+    settings.tests_dirs = [abspath(join(dirname(__file__), "invalid_content_stories"))]
     settings.file_pattern = "invalid_i_want_to.acc"
 
     parser = FileParser()
@@ -87,7 +87,7 @@ def test_parsing_files_with_wrong_i_want_to_returns_no_story_header_list():
     
 def test_parsing_files_with_wrong_so_that_returns_no_story_header_list():
     settings = Settings()
-    settings.tests_dir = abspath(join(dirname(__file__), "invalid_content_stories"))
+    settings.tests_dirs = [abspath(join(dirname(__file__), "invalid_content_stories"))]
     settings.file_pattern = "invalid_so_that.acc"
 
     parser = FileParser()
@@ -115,7 +115,7 @@ def test_parsing_files_with_many_scenarios_returns_parsed_scenarios():
             pass
 
     settings = Settings()
-    settings.tests_dir = abspath(dirname(__file__))
+    settings.tests_dirs = [abspath(dirname(__file__))]
     settings.file_pattern = "some_test.acc"
 
     parser = FileParser()

@@ -59,10 +59,12 @@ class PyccuracyCore(object):
         if not self.runner:
             self.runner = context.settings.worker_threads == 1 and StoryRunner() or ParallelStoryRunner(settings.worker_threads)
 
-        self.import_extra_content(context.settings.pages_dir, fso=fso)
+        for directory in context.settings.pages_dir:
+            self.import_extra_content(directory, fso=fso)
 
         if context.settings.custom_actions_dir != context.settings.pages_dir:
-            self.import_extra_content(context.settings.custom_actions_dir, fso=fso)
+            for directory in context.settings.custom_actions_dir:
+                self.import_extra_content(directory, fso=fso)
 
         try:
             fixture = self.parser.get_stories(settings)

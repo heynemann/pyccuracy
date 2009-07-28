@@ -68,10 +68,10 @@ def main():
     parser.add_option("-s", "--scenarios", dest="scenarios_to_run", default=None, help="Run only the given scenarios, comma separated. I.e: --scenarios=1,4,9")
     parser.add_option("-l", "--language", dest="language", default="en-us", help="Language. Defines which language the dictionary will be loaded with  [default: %default].")
     parser.add_option("-L", "--languagesdir", dest="languages_dir", default=None, help="Languages Directory. Defines where Pyccuracy will search for language dictionaries  [default: %default].")
-    parser.add_option("-d", "--dir", dest="dir", default=os.curdir, help="Tests directory. Defines where the tests to be executed are [default: %default]. Note: this is recursive, so all the tests under the current directory get executed.")
-    parser.add_option("-a", "--actionsdir", dest="actions_dir", default=None, help="Actions directory. Defines where the Pyccuracy actions are. Chances are you don't need to change this parameter [default: %default].")
-    parser.add_option("-A", "--customactionsdir", dest="custom_actions_dir", default=None, help="Custom Actions directory. Defines where the Pyccuracy custom actions are. If you don't change this parameter Pyccuracy will use the tests directory [default: %default].")
-    parser.add_option("-P", "--pagesdir", dest="pages_dir", default=None, help="Pages directory. Defines where the Pyccuracy custom pages are. If you don't change this parameter Pyccuracy will use the tests directory [default: %default].")
+    parser.add_option("-d", "--dir", action="append", dest="dir", default=[], help="Tests directory. Defines where the tests to be executed are [default: %default]. Note: this is recursive, so all the tests under the current directory get executed.")
+    parser.add_option("-a", "--actionsdir", action="append", dest="actions_dir", default=[], help="Actions directory. Defines where the Pyccuracy actions are. Chances are you don't need to change this parameter [default: %default].")
+    parser.add_option("-A", "--customactionsdir", action="append", dest="custom_actions_dir", default=[], help="Custom Actions directory. Defines where the Pyccuracy custom actions are. If you don't change this parameter Pyccuracy will use the tests directory [default: %default].")
+    parser.add_option("-P", "--pagesdir", action="append", dest="pages_dir", default=[], help="Pages directory. Defines where the Pyccuracy custom pages are. If you don't change this parameter Pyccuracy will use the tests directory [default: %default].")
     parser.add_option("-u", "--url", dest="url", default=None, help="Base URL. Defines a base url against which the tests will get executed. For more details check the documentation [default: %default].")
     parser.add_option("-b", "--browser", dest="browser_to_run", default="firefox", help="Browser to run. Browser driver will use it to run tests [default: %default].")
     parser.add_option("-w", "--workers", dest="workers", default=1, help="Workers to run in parallel [default: %default].")
@@ -93,6 +93,9 @@ def main():
     workers = options.workers and int(options.workers) or None
     pyc = PyccuracyCore()
 
+    if not options.dir:
+        options.dir = [os.curdir]
+
     extra_args = {}
     if args:
         for arg in args:
@@ -109,7 +112,7 @@ def main():
                            languages_dir=options.languages_dir,
                            file_pattern=options.pattern,
                            scenarios_to_run=options.scenarios_to_run,
-                           tests_dir=options.dir,
+                           tests_dirs=options.dir,
                            base_url=options.url,
                            default_culture=options.language,
                            write_report=options.write_report.lower() == "true",

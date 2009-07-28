@@ -84,7 +84,7 @@ class PageRegistry(object):
             if settings.base_url:
                 url_pieces.append(settings.base_url)
             else:
-                url_pieces.append(settings.tests_dir)
+                url_pieces.append(settings.tests_dirs[0]) #gotta think of a way to fix this
 
         if klass_object:
             url_pieces.append(klass_object.url)

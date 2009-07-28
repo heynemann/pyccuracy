@@ -17,9 +17,9 @@ import os
 from os.path import join, abspath, dirname
 from pyccuracy.common import Settings
 
-def test_settings_return_default_value_for_tests_dir():
+def test_settings_return_default_value_for_tests_dirs():
     settings = Settings({}, cur_dir='/root')
-    assert settings.tests_dir == '/root', "The tests dir should be %s but was %s." % ('/root', settings.tests_dir)
+    assert settings.tests_dirs[0] == '/root', "The tests dir should be %s but was %s." % ('/root', settings.tests_dirs[0])
 
 def test_settings_return_default_value_for_actions_dir():
     settings = Settings({}, actions_dir='/actions')
@@ -82,10 +82,10 @@ def test_settings_return_default_value_for_extra_args():
     assert settings.extra_args == {}, "The extra_args should be an empty dict but was %s." % (settings.extra_args)
 
 #Specified Values
-def test_settings_return_custom_value_for_tests_dir():
-    settings = Settings({"tests_dir":"a"})
-    expected = abspath("a")
-    assert settings.tests_dir == expected, "The tests dir should be %s but was %s." % (expected, settings.tests_dir)
+def test_settings_return_custom_value_for_tests_dirs():
+    settings = Settings({"tests_dirs":["a","b"]})
+    expected = [abspath("a"), abspath("b")]
+    assert settings.tests_dirs == expected, "The tests dir should be %s but was %s." % (expected, settings.tests_dirs)
 
 def test_settings_return_default_value_for_actions_dir():
     settings = Settings({"actions_dir":"a"})
