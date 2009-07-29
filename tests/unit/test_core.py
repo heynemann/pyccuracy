@@ -51,7 +51,8 @@ def make_context_and_fso_mocks():
     fso_mock.expects(once()).locate(eq(context_mock.settings.pages_dir[0]), eq('*.py')).will(return_value(files))
     fso_mock.expects(once()).locate(eq(context_mock.settings.custom_actions_dir[0]), eq('*.py')).will(return_value(files))
     fso_mock.expects(at_least_once()).method('import_file')
-    fso_mock.expects(at_least_once()).remove_from_import()
+    fso_mock.expects(once()).remove_from_import(eq(context_mock.settings.custom_actions_dir[0]))
+    fso_mock.expects(once()).remove_from_import(eq(context_mock.settings.pages_dir[0]))
 
     return context_mock, fso_mock
 
