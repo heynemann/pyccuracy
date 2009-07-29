@@ -36,8 +36,8 @@ class FSO(object):
     def add_to_import(self, path):
         sys.path.insert(0, path)
 
-    def remove_from_import(self):
-        sys.path.pop()
+    def remove_from_import(self, path):
+        sys.path.remove(path)
 
     def locate(self, path, pattern):
         return locate(root=path, pattern=pattern, recursive=False)
@@ -157,7 +157,7 @@ ${NORMAL}
             except ImportError, err:
                 raise ExtraContentError("An error occurred while trying to import %s. Error: %s" % (f, err))
 
-        fso.remove_from_import()
+        fso.remove_from_import(path)
 
 class ExtraContentError(Exception):
     pass
