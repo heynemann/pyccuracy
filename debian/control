@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Gabriel Falcão <gabriel@nacaolivre.org>
 Uploaders: Gabriel Falcão <gabriel@nacaolivre.org>
 Standards-Version: 3.8.0
-Build-Depends: debhelper (>= 7), python, cdbs, python-setuptools, python-support, python-pyoc
+Build-Depends: debhelper (>= 7), python, cdbs, python-setuptools, python-support
 Build-Depends-Indep: python-sphinx
 Homepage: http://www.pyccuracy.org/
 Vcs-Git: git://github.com/heynemann/pyccuracy.git
