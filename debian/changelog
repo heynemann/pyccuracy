@@ -1,8 +1,9 @@
 python-pyccuracy (1.0.5) jaunty; urgency=low
 
   * New release!
+  * Some bug fixes.
 
- -- Gabriel Falcão Gonçalves de Moura <gabriel@nacaolivre.org>  Wed, 29 Jul 2009 19:04:43 -0300
+ -- Gabriel Falcão Gonçalves de Moura <gabriel@nacaolivre.org>  Wed, 29 Jul 2009 19:10:31 -0300
 
 python-pyccuracy (1.0.4) jaunty; urgency=low
 
