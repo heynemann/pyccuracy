@@ -200,7 +200,7 @@ class SeleniumDriver(BaseDriver):
 
     def type_text(self, input_selector, text):
         self.selenium.type(input_selector, text)
-        
+
     def type_keys(self, input_selector, text):
         self.selenium.type_keys(input_selector, text)
 
@@ -233,3 +233,12 @@ class SeleniumDriver(BaseDriver):
             else:
                 raise
         return attr_value
+
+    def radio_is_checked(self, radio_selector):
+        return self.selenium.is_checked(radio_selector)
+
+    def radio_check(self, radio_selector):
+        self.selenium.check(radio_selector)
+
+    def radio_uncheck(self, radio_selector):
+        self.selenium.uncheck(radio_selector)

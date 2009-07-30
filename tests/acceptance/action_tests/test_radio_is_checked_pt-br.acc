@@ -1,0 +1,12 @@
+Como um usuário do Pyccuracy
+Eu quero testar a ação de verificar se uma radio está checada
+Para garantir que o Pyccuracy funciona em outras línguas
+
+Cenário 1 - Verificando que as radio estão checadas
+Dado que
+	Eu navego para "radio_tests.htm"
+Quando
+	#A página termina de carregar
+Então
+	Eu vejo que a radio "chkChecked" está marcada
+	E eu vejo que a radio "chkChecked2" está marcada

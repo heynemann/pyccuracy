@@ -54,6 +54,10 @@ checkbox_is_not_checked_regex = ^(E )?[eE]u vejo que a checkbox [\"](?P<checkbox
 checkbox_check_regex = ^(E )?[eE]u marco a checkbox [\"](?P<checkbox_key>.+)[\"]$
 checkbox_uncheck_regex = ^(E )?[eE]u desmarco a checkbox [\"](?P<checkbox_key>.+)[\"]$
 
+radio_is_checked_regex = ^(E )?[eE]u vejo que a radio [\"](?P<radio_key>.+)[\"] está marcada$
+radio_is_not_checked_regex = ^(E )?[eE]u vejo que a radio [\"](?P<radio_key>.+)[\"] está desmarcada$
+radio_check_regex = ^(E )?[eE]u marco a radio [\"](?P<radio_key>.+)[\"]$
+
 element_contains_style_regex = ^(E )?[eE]u vejo que [ao] (?P<element_type><element selector>) [\"](?P<element_name>.+)[\"] contém o estilo [\"](?P<style_name>.+)[\"]$
 element_does_not_contain_style_regex = ^(E )?[eE]u vejo que [ao] (?P<element_type><element selector>) [\"](?P<element_name>.+)[\"] não contém o estilo [\"](?P<style_name>.+)[\"]$
 element_is_enabled_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type><element selector>) [\"](?P<element_name>[^"]+)[\"] está habilitad[oa]$

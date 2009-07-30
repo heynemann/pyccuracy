@@ -1,0 +1,12 @@
+As a Pyccuracy User
+I want to test the radio is checked action
+So that I can make sure Pyccuracy works
+
+Scenario 1 - Checking that a given radio is checked
+Given
+	I go to "radio_tests.htm"
+When
+	#The Page finishes loading
+Then
+	I see the "chkChecked" radio is checked
+	And I see the "chkChecked2" radio is checked

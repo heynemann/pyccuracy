@@ -38,7 +38,7 @@ class BrowserDriver(object):
 
     def type(self, input_selector, text):
         raise NotImplementedError
-        
+
     def type_keys(self, input_selector, text):
         raise NotImplementedError
 
@@ -125,10 +125,19 @@ class BrowserDriver(object):
 
     def stop_test(self):
         raise NotImplementedError
-    
+
     def exec_js(self, js):
         raise NotImplementedError
 
     def __get_attribute_value(self, element, attribute):
+        raise NotImplementedError
+
+    def radio_is_checked(self, radio_selector):
+        raise NotImplementedError
+
+    def radio_check(self, radio_selector):
+        raise NotImplementedError
+
+    def radio_uncheck(self, radio_selector):
         raise NotImplementedError
 
