@@ -153,6 +153,8 @@ link_has_href_failure = The link with name or id %s should have "%s" as href, bu
 link_has_text_failure = The link with name or id %s should have "%s" as text, but has "%s".
 
 radio_button_more_than_one_element_returned_failure = More than one element was returned for the element with name %s (resolved to %s). %d elements were found.
+radio_is_checked_failure = The radio button with name or id %s is not selected and should be.
+radio_is_not_checked_failure = The radio button with name or id %s is selected and should not be.
 
 select_has_selected_index_failure = The selected index for select with name or id %s should be %d, but is %d.
 select_has_selected_value_failure = The selected value for select with name or id %s should be %s, but is %s.
