@@ -19,6 +19,7 @@
 import time
 from traceback import format_exc
 
+from webdriver_common.exceptions import *
 from webdriver_firefox.webdriver import WebDriver
 
 from pyccuracy.drivers.core.selenium_element_selector import *
@@ -64,7 +65,9 @@ class WebDriverDriver(BaseDriver):
             return False
         except ElementNotVisibleException, e:
             return False
-            
+        
+#        visible = self.exec_js('argument[0].style.visibility != "hidden" && argument[0].style.display != "none"', element)
+#        return visible == 'true'
         return True
 
     def is_element_enabled(self, element_selector):
@@ -99,22 +102,20 @@ class WebDriverDriver(BaseDriver):
 
     def get_element_markup(self, element_selector):
         elem = self.webdriver.find_element_by_xpath(element_selector)
-        return self.webdriver.execute_script("argument[0].innerHTML", elem)
+        return self.exec_js('argument[0].innerHTML', elem)
 
     #TODO
     def drag_element(self, from_element_selector, to_element_selector):
         pass
 #        self.selenium.drag_and_drop_to_object(from_element_selector, to_element_selector)
 
-    #TODO
     def mouseover_element(self, element_selector):
-        pass
-#        self.selenium.mouse_over(element_selector)
+        elem = self.webdriver.find_element_by_xpath(element_selector)
+        self.exec_js('argument[0].mouseover()', elem)
 
-    #TODO
     def mouseout_element(self, element_selector):
-        pass
-#        self.selenium.mouse_out(element_selector)
+        elem = self.webdriver.find_element_by_xpath(element_selector)
+        self.exec_js('argument[0].mouseout()', elem)
 
     def checkbox_is_checked(self, checkbox_selector):
         return self.webdriver.find_element_by_xpath(checkbox_selector).is_selected()
@@ -127,55 +128,40 @@ class WebDriverDriver(BaseDriver):
         if self.checkbox_is_checked(checkbox_selector):
             self.webdriver.find_element_by_xpath(checkbox_selector).toggle()
     
-    #TODO
     def get_selected_index(self, element_selector):
-        pass
-#        return int(self.selenium.get_selected_index(element_selector))
+        elem = self.webdriver.find_element_by_xpath(element_selector)
+        return self.exec_js('argument[0].selectedIndex;' % index, elem)
 
-    #TODO
     def get_selected_value(self, element_selector):
-        pass
-#        return self.selenium.get_selected_value(element_selector)
+        elem = self.webdriver.find_element_by_xpath(element_selector)
+        return self.exec_js('argument[0].options[argument[0].selectedIndex].value;' % index, elem)
 
-    #TODO
     def get_selected_text(self, element_selector):
-        pass
-#        return self.selenium.get_selected_label(element_selector)
+        elem = self.webdriver.find_element_by_xpath(element_selector)
+        return self.exec_js('argument[0].options[argument[0].selectedIndex].innerText;' % index, elem)
 
-    #TODO
     def select_option_by_index(self, element_selector, index):
-        pass
-#        return self.__select_option(element_selector, "index", index)
+        elem = self.webdriver.find_element_by_xpath(element_selector)
+        self.exec_js('argument[0].selectedIndex = %d;' % index, elem)
 
-    #TODO
     def select_option_by_value(self, element_selector, value):
-        pass
-#        return self.__select_option(element_selector, "value", value)
+        elem = self.webdriver.find_element_by_xpath(element_selector)
+        for index, option in enumerate(elem.find_elements_by_xpath('option')):
+            if option.get_value() == value:
+                self.select_option_by_index(index)
 
-    #TODO
     def select_option_by_text(self, element_selector, text):
-        pass
-#        return self.__select_option(element_selector, "label", text)
-
-    #TODO
-    def __select_option(self, element_selector, option_selector, option_value):
-        pass
-#        error_message = "Option with %s '%s' not found" % (option_selector, option_value)
-#        try:
-#            self.selenium.select(element_selector, "%s=%s" % (option_selector, option_value))
-#        except Exception, error:
-#            if error.message == error_message:
-#                return False
-#            else:
-#                raise
-#        return True
+        elem = self.webdriver.find_element_by_xpath(element_selector)
+        for index, option in enumerate(elem.find_elements_by_xpath('option')):
+            if option.get_text() == text:
+                self.select_option_by_index(index)
 
     def is_element_empty(self, element_selector):
-        current_text = self.webdriver.find_element_by_xpath(element_selector).get_text()
+        current_text = self.webdriver.find_element_by_xpath(element_selector).get_value()
         return current_text == ""
 
     def get_image_src(self, image_selector):
-        return self.__get_attribute_value(image_selector, "src")
+        return self.__get_attribute_value(image_selector, 'src')
 
     def type_text(self, input_selector, text):
         self.webdriver.find_element_by_xpath(input_selector).send_keys(text)
@@ -183,14 +169,14 @@ class WebDriverDriver(BaseDriver):
     def type_keys(self, input_selector, text):
         self.type_text(input_selector, text)
 
-    def exec_js(self, js):
-        self.driver.execute_script(js)
+    def exec_js(self, js, *args):
+        return self.webdriver.execute_script(js, *args)
 
     def clean_input(self, input_selector):
         self.webdriver.find_element_by_xpath(input_selector).clear()
 
     def get_link_href(self, link_selector):
-        return self.webdriver.find_element_by_xpath(link_selector).get_attribute("href")
+        return self.webdriver.find_element_by_xpath(link_selector).get_attribute('href')
 
     def get_html_source(self):
         return self.webdriver.get_page_source()
@@ -212,5 +198,5 @@ class WebDriverDriver(BaseDriver):
             self.webdriver.find_element_by_xpath(radio_selector).set_selected()
 
     def radio_uncheck(self, radio_selector):
-        raise NotImplementedError("Remove me! Does not make sense.")
+        raise NotImplementedError('Remove me! Does not make sense.')
 
