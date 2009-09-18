@@ -154,7 +154,9 @@ ${NORMAL}
             try:
                 filename = splitext(split(f)[1])[0]
                 fso.import_file(filename)
-            except ImportError, err:
+            except ImportError, e:
+                import traceback
+                err = traceback.format_exc(e)
                 raise ExtraContentError("An error occurred while trying to import %s. Error: %s" % (f, err))
 
         fso.remove_from_import(path)
