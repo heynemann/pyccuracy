@@ -34,7 +34,7 @@ from pyccuracy.colored_terminal import TerminalController
 
 class FSO(object):
     def add_to_import(self, path):
-        sys.path.insert(0, path)
+        sys.path.append(path)
 
     def remove_from_import(self, path):
         sys.path.remove(path)
@@ -49,6 +49,7 @@ class PyccuracyCore(object):
     def __init__(self, parser=None, runner=None):
         self.parser = parser or FileParser()
         self.runner = runner
+        sys.path.insert(0, os.getcwd())
 
     def run_tests(self, context=None, fso=None, **kwargs):
         settings = Settings(kwargs)
