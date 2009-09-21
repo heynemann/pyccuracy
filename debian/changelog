@@ -1,3 +1,9 @@
+python-pyccuracy (1.2.1) lenny; urgency=low
+
+  * New release!
+
+ -- Gabriel Falcão Gonçalves de Moura <gabriel@nacaolivre.org>  Mon, 21 Sep 2009 18:08:14 -0300
+
 python-pyccuracy (1.1.0) lenny; urgency=low
 
   * New release, new features!
