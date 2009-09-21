@@ -75,6 +75,7 @@ def main():
     parser.add_option("-u", "--url", dest="url", default=None, help="Base URL. Defines a base url against which the tests will get executed. For more details check the documentation [default: %default].")
     parser.add_option("-b", "--browser", dest="browser_to_run", default="firefox", help="Browser to run. Browser driver will use it to run tests [default: %default].")
     parser.add_option("-w", "--workers", dest="workers", default=1, help="Workers to run in parallel [default: %default].")
+    parser.add_option("-W", "--workerssetsize", dest="workers_set_size", default=1, help="How many tests the workers will run in the same browser window (only when running in parallel) [default: %default].")
 
     #browser driver
     parser.add_option("-e", "--browserdriver", dest="browser_driver", default="selenium", help="Browser Driver to be used on tests. [default: %default].")
