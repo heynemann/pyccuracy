@@ -33,10 +33,14 @@ sys.stdout = codecs.getwriter('utf-8')(sys.stdout)
 
 no_progress = False
 prg = None
+scenarios_ran = 0
 
 def create_progress(verbosity):
     global no_progress
     global prg
+    global scenarios_ran
+    
+    scenarios_ran = 0
     if not no_progress:
         prg = ProgressBar("Pyccuracy - %s" % __version_string__, verbosity)
         prg.update(0, 'Running first test...')
@@ -44,6 +48,10 @@ def create_progress(verbosity):
 def update_progress(fixture, scenario, scenario_index):
     global no_progress
     global prg
+    global scenarios_ran
+    
+    if not scenarios_ran is None:
+        scenarios_ran += 1
     if not no_progress:
         if scenario.status == Status.Failed:
             prg.set_failed()
@@ -51,8 +59,8 @@ def update_progress(fixture, scenario, scenario_index):
         if total_scenarios == 0:
             return
 
-        current_progress = float(scenario_index) / total_scenarios
-        prg.update(current_progress, "Scenario %d of %d <%.2fs> - %s" % (scenario_index, total_scenarios, fixture.ellapsed(), scenario.title))
+        current_progress = float(scenarios_ran) / total_scenarios
+        prg.update(current_progress, "Scenario %d of %d <%.2fs> - %s" % (scenarios_ran, total_scenarios, fixture.ellapsed(), scenario.title))
 
 def main():
     """ Main function - parses args and runs action """
@@ -123,7 +131,7 @@ def main():
                            should_throw=options.should_throw,
                            workers=workers,
                            extra_args=extra_args,
-                           on_scenario_started=int(options.verbosity) > 1 and update_progress or None,
+                           on_scenario_started=None,
                            on_scenario_completed=update_progress,
                            verbosity=int(options.verbosity))
 
