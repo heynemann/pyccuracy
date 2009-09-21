@@ -101,8 +101,9 @@ class StoryRunner(object):
         return Context(settings)
 
 class ParallelStoryRunner(StoryRunner):
-    def __init__(self, number_of_threads):
+    def __init__(self, number_of_threads, worker_threads_set_size):
         self.number_of_threads = number_of_threads
+        self.worker_threads_set_size = worker_threads_set_size
         self.test_queue = Queue()
 
     def run_stories(self, settings, fixture, context=None):

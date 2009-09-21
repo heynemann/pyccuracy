@@ -150,6 +150,7 @@ class Settings(object):
         self.browser_to_run = self.get_setting(settings, "browser_to_run", "chrome")
         self.browser_driver = self.get_setting(settings, "browser_driver", "selenium")
         self.worker_threads = int(self.get_setting(settings, "workers", 1))
+        self.worker_threads_set_size = int(self.get_setting(settings, "workers_set_size", 1))
         self.extra_args = self.get_setting(settings, "extra_args", {})
         self.on_scenario_started = self.get_setting(settings, "on_scenario_started", None)
         self.on_scenario_completed = self.get_setting(settings, "on_scenario_completed", None)

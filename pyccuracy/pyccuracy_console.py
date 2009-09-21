@@ -123,6 +123,7 @@ def main():
                            browser_driver=options.browser_driver,
                            should_throw=options.should_throw,
                            workers=workers,
+                           workers_set_size=workers_set_size,
                            extra_args=extra_args,
                            on_scenario_started=int(options.verbosity) > 1 and update_progress or None,
                            on_scenario_completed=update_progress,
