@@ -21,7 +21,7 @@ import time
 import traceback
 
 from Queue import Queue
-from threading import Thread
+from threading import Thread, RLock
 
 from pyccuracy.result import Result
 from pyccuracy.common import Context
@@ -104,7 +104,11 @@ class ParallelStoryRunner(StoryRunner):
     def __init__(self, number_of_threads):
         self.number_of_threads = number_of_threads
         self.test_queue = Queue()
-        self.context_queue = Queue()
+        self.contexts = []
+        self.available_context_queue = Queue()
+        self.threads = []
+        self.lock = RLock()
+        self.aborted = False
 
     def run_stories(self, settings, fixture, context=None):
         if len(fixture.stories) == 0:
@@ -123,8 +127,8 @@ class ParallelStoryRunner(StoryRunner):
                 while self.test_queue.unfinished_tasks:
                     time.sleep(1)
             except KeyboardInterrupt:
-                sys.stderr.write("Parallel tests interrupted by user\n")
-
+                #sys.stderr.write("Parallel tests interrupted by user\n")
+                self.aborted = True
         finally:
             self.kill_context_queue()
 
@@ -137,6 +141,7 @@ class ParallelStoryRunner(StoryRunner):
             t = Thread(target=self.worker)
             t.setDaemon(True)
             t.start()
+            self.threads.append(t)
 
     def fill_queue(self, fixture, settings):
         scenario_index = 0
@@ -149,17 +154,29 @@ class ParallelStoryRunner(StoryRunner):
         for i in range(self.number_of_threads):
             context = self.create_context_for(settings)
             context.browser_driver.start_test()
-            self.context_queue.put(context)
+            self.available_context_queue.put(i)
+            self.contexts.append(context)
             
     def kill_context_queue(self):
-        while not self.context_queue.empty():
-            context = self.context_queue.get()
+        for context in self.contexts:
+            context.settings.on_scenario_completed = None
+    
+        sys.stdout.write("Waiting on child threads... PLEASE DO NOT CANCEL AGAIN!")
+
+        for thread in self.threads:
+            if thread.isAlive():
+                thread.join()
+
+        for context in self.contexts:
             context.browser_driver.stop_test()
 
     def worker(self):
-        while True:
+        while not self.aborted:
             fixture, scenario = self.test_queue.get()
-            context = self.context_queue.get()
+            self.lock.acquire()
+            context_index = self.available_context_queue.get()
+            context = self.contexts[context_index]
+            self.lock.release()
 
             scenario_index = fixture.count_successful_scenarios() + fixture.count_failed_scenarios() + 1
 
@@ -182,7 +199,9 @@ class ParallelStoryRunner(StoryRunner):
             except Exception, err:
                 traceback.print_exc(err)
             finally:
-                self.context_queue.put(context)
+                self.available_context_queue.put(context_index)
                 self.test_queue.task_done()
+
                 if context.settings.on_scenario_completed and callable(context.settings.on_scenario_completed):
                     context.settings.on_scenario_completed(fixture, scenario, scenario_index)
+            
