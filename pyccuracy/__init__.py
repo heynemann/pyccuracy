@@ -23,4 +23,4 @@ from pyccuracy.drivers import DriverRegistry
 from pyccuracy.drivers.core import *
 
 Version = "1.2.0"
-Release = "Viagra"
+Release = "Clarytin"
