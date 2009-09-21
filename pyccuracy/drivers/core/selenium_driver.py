@@ -32,9 +32,11 @@ class SeleniumDriver(BaseDriver):
         self.selenium = selenium
 
     def start_test(self, url=None):
+        if not url:
+            url = self.context.settings.base_url
         self.start_selenium(url)
         
-    def start_selenium(self, url=None):
+    def start_selenium(self, url):
         host = self.context.settings.extra_args.get("selenium.server", "localhost")
         port = self.context.settings.extra_args.get("selenium.port", 4444)
         browser_to_run = self.context.settings.browser_to_run

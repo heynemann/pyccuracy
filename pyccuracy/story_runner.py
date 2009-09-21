@@ -104,85 +104,14 @@ class ParallelStoryRunner(StoryRunner):
     def __init__(self, number_of_threads):
         self.number_of_threads = number_of_threads
         self.test_queue = Queue()
-
-    def run_stories(self, settings, fixture, context=None):
-        if len(fixture.stories) == 0:
-            return
-
-        self.fill_queue(fixture, settings)
-
-        fixture.start_run()
-
-        self.start_processes()
-
-        try:
-            time.sleep(2)
-            while self.test_queue.unfinished_tasks:
-                time.sleep(1)
-        except KeyboardInterrupt:
-            sys.stderr.write("Parallel tests interrupted by user\n")
-
-        fixture.end_run()
-
-        return Result(fixture=fixture)
-
-    def start_processes(self):
-        for i in range(self.number_of_threads):
-            t = Thread(target=self.worker)
-            t.setDaemon(True)
-            t.start()
-
-    def fill_queue(self, fixture, settings):
-        scenario_index = 0
-        for story in fixture.stories:
-            for scenario in story.scenarios:
-                scenario_index += 1
-                context = self.create_context_for(settings)
-                self.test_queue.put((fixture, scenario, context))
-
-    def worker(self):
-        while True:
-            fixture, scenario, context = self.test_queue.get()
-
-            scenario_index = fixture.count_successful_scenarios() + fixture.count_failed_scenarios() + 1
-
-            if context.settings.on_scenario_started and callable(context.settings.on_scenario_started):
-                context.settings.on_scenario_started(fixture, scenario, scenario_index)
-
-            current_story = scenario.story
-            if context.settings.base_url:
-                base_url = context.settings.base_url
-            else:
-                base_url = "http://localhost"
-
-            context.browser_driver.start_test(base_url)
-            try:
-                scenario.start_run()
-                for action in scenario.givens + scenario.whens + scenario.thens:
-                    result = self.execute_action(context, action)
-                    if not result:
-                        break
-                scenario.end_run()
-            except Exception, err:
-                traceback.print_exc(err)
-            finally:
-                context.browser_driver.stop_test()
-                self.test_queue.task_done()
-                if context.settings.on_scenario_completed and callable(context.settings.on_scenario_completed):
-                    context.settings.on_scenario_completed(fixture, scenario, scenario_index)
-
-class KeepAliveSeleniumParallelStoryRunner(StoryRunner):
-    def __init__(self, number_of_threads):
-        self.number_of_threads = number_of_threads
-        self.test_queue = Queue()
-        self.selenium_queue = Queue()
+        self.context_queue = Queue()
 
     def run_stories(self, settings, fixture, context=None):
         if len(fixture.stories) == 0:
             return
         
         self.fill_queue(fixture, settings)
-        self.fill_selenium_queue(settings)
+        self.fill_context_queue(settings)
 
         fixture.start_run()
         
@@ -197,7 +126,7 @@ class KeepAliveSeleniumParallelStoryRunner(StoryRunner):
                 sys.stderr.write("Parallel tests interrupted by user\n")
 
         finally:
-            self.kill_selenium_queue()
+            self.kill_context_queue()
 
         fixture.end_run()
 
@@ -214,25 +143,23 @@ class KeepAliveSeleniumParallelStoryRunner(StoryRunner):
         for story in fixture.stories:
             for scenario in story.scenarios:
                 scenario_index += 1
-                context = self.create_context_for(settings)
-                self.test_queue.put((fixture, scenario, context))
+                self.test_queue.put((fixture, scenario))
     
-    def fill_selenium_queue(self, settings):
-        from pyccuracy.drivers.core.selenium_driver import SeleniumDriver
+    def fill_context_queue(self, settings):
         for i in range(self.number_of_threads):
-            driver = SeleniumDriver(self.create_context_for(settings))
-            driver.start_selenium(settings.base_url)
-            self.selenium_queue.put(driver)
+            context = self.create_context_for(settings)
+            context.browser_driver.start_test()
+            self.context_queue.put(context)
             
-    def kill_selenium_queue(self):
-        while not self.selenium_queue.empty():
-            driver = self.selenium_queue.get()
-            driver.stop_selenium()
+    def kill_context_queue(self):
+        while not self.context_queue.empty():
+            context = self.context_queue.get()
+            context.browser_driver.stop_test()
 
     def worker(self):
         while True:
-            fixture, scenario, context = self.test_queue.get()
-            context.browser_driver = self.selenium_queue.get()
+            fixture, scenario = self.test_queue.get()
+            context = self.context_queue.get()
 
             scenario_index = fixture.count_successful_scenarios() + fixture.count_failed_scenarios() + 1
 
@@ -255,7 +182,7 @@ class KeepAliveSeleniumParallelStoryRunner(StoryRunner):
             except Exception, err:
                 traceback.print_exc(err)
             finally:
-                self.selenium_queue.put(context.browser_driver)
+                self.context_queue.put(context)
                 self.test_queue.task_done()
                 if context.settings.on_scenario_completed and callable(context.settings.on_scenario_completed):
                     context.settings.on_scenario_completed(fixture, scenario, scenario_index)

@@ -57,8 +57,7 @@ class PyccuracyCore(object):
             context = Context(settings)
 
         if not self.runner:
-            #TODO
-            self.runner = context.settings.worker_threads == 1 and StoryRunner() or KeepAliveSeleniumParallelStoryRunner(settings.worker_threads)
+            self.runner = context.settings.worker_threads == 1 and StoryRunner() or ParallelStoryRunner(settings.worker_threads)
 
         for directory in context.settings.pages_dir:
             self.import_extra_content(directory, fso=fso)
