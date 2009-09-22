@@ -127,8 +127,8 @@ class ParallelStoryRunner(StoryRunner):
                 while self.test_queue.unfinished_tasks:
                     time.sleep(1)
             except KeyboardInterrupt:
-                #sys.stderr.write("Parallel tests interrupted by user\n")
-                self.aborted = True
+                self.abort_context_queue()
+                
         finally:
             self.kill_context_queue()
 
@@ -170,16 +170,18 @@ class ParallelStoryRunner(StoryRunner):
     def start_context_test(self, context):
         context.browser_driver.start_test()
 
-    def kill_context_queue(self):
+    def abort_context_queue(self):
+        self.aborted = True
+        
         for context in self.contexts:
             context.settings.on_scenario_completed = None
-    
+        
         sys.stdout.write("Waiting on child threads... PLEASE DO NOT CANCEL AGAIN!")
-
         for thread in self.threads:
             if thread.isAlive():
                 thread.join()
 
+    def kill_context_queue(self):
         for context in self.contexts:
             context.browser_driver.stop_test()
 
