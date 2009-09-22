@@ -179,25 +179,19 @@ class ParallelStoryRunner(StoryRunner):
         
         for context in self.contexts:
             context.settings.on_scenario_completed = None
-        
-        sys.stdout.write("Stopping tests...\n")
-        #sys.stdout.write("Waiting on child threads... PLEASE DO NOT CANCEL AGAIN!\n")
-        for thread in self.threads:
-            if thread.isAlive():
-                thread.join()
-            else:
-                del(thread)
-
+    
     def kill_context_queue(self):
-        #sys.stdout.write("Killing contexts...\n")
-        for context in self.contexts:
-            #sys.stdout.write("Killing context (%s)...\n" % str(context))
+        sys.stdout.write("\nStopping workers, please wait (DO NOT CANCEL AGAIN)...\n")
+        total = len(self.contexts)
+        for index, context in enumerate(self.contexts):
+            percent = (float(index + 1) / total) * 100
+            sys.stdout.write("[%06.2f%%] Stopped worker %d of %d\n" % (percent, index + 1, total))
             try:
                 context.browser_driver.stop_test()
             except Exception, e:
                 pass #doesn't matter for the user, the execution MUST be stopped
                 
-        #sys.stdout.write("Finished.\n")
+        sys.stdout.write("Done.\n")
 
     def worker(self):
         while not self.aborted:
