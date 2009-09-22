@@ -127,7 +127,7 @@ class ParallelStoryRunner(StoryRunner):
                 while self.test_queue.unfinished_tasks:
                     time.sleep(1)
             except KeyboardInterrupt:
-                self.abort_context_queue()
+                self.abort_run()
                 
         finally:
             self.kill_context_queue()
@@ -155,6 +155,7 @@ class ParallelStoryRunner(StoryRunner):
         for i in range(self.number_of_threads):
             context = self.create_context_for(settings)
 
+            #start browser driver in background
             thread = Thread(target=self.start_context_test, kwargs={'context':context})
             thread.setDaemon(True)
             thread.start()
@@ -162,31 +163,41 @@ class ParallelStoryRunner(StoryRunner):
 
             self.available_context_queue.put(i)
             self.contexts.append(context)
-
+        
+        #waiting for threads to finish
         for thread in starting_contexts:
             if thread.isAlive():
                 thread.join()
+            else:
+                del(thread)
 
     def start_context_test(self, context):
         context.browser_driver.start_test()
 
-    def abort_context_queue(self):
+    def abort_run(self):
         self.aborted = True
         
         for context in self.contexts:
             context.settings.on_scenario_completed = None
         
-        sys.stdout.write("Waiting on child threads... PLEASE DO NOT CANCEL AGAIN!")
-        #for thread in self.threads:
-        #    if thread.isAlive():
-        #        thread.join()
+        sys.stdout.write("Stopping tests...\n")
+        #sys.stdout.write("Waiting on child threads... PLEASE DO NOT CANCEL AGAIN!\n")
+        for thread in self.threads:
+            if thread.isAlive():
+                thread.join()
+            else:
+                del(thread)
 
     def kill_context_queue(self):
+        #sys.stdout.write("Killing contexts...\n")
         for context in self.contexts:
+            #sys.stdout.write("Killing context (%s)...\n" % str(context))
             try:
                 context.browser_driver.stop_test()
             except Exception, e:
                 pass #doesn't matter for the user, the execution MUST be stopped
+                
+        #sys.stdout.write("Finished.\n")
 
     def worker(self):
         while not self.aborted:
