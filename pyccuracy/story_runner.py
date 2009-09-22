@@ -151,12 +151,25 @@ class ParallelStoryRunner(StoryRunner):
                 self.test_queue.put((fixture, scenario))
     
     def fill_context_queue(self, settings):
+        starting_contexts = []
         for i in range(self.number_of_threads):
             context = self.create_context_for(settings)
-            context.browser_driver.start_test()
+
+            thread = Thread(target=self.start_context_test, context=context)
+            thread.setDaemon(True)
+            thread.start()
+            starting_contexts.append(thread)
+
             self.available_context_queue.put(i)
             self.contexts.append(context)
-            
+
+        for thread in starting_contexts:
+            if thread.isAlive():
+                thread.join()
+
+    def start_context_test(self, context):
+        context.browser_driver.start_test()
+
     def kill_context_queue(self):
         for context in self.contexts:
             context.settings.on_scenario_completed = None
