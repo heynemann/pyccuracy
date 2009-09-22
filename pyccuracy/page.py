@@ -149,7 +149,7 @@ class Page(object):
     def register_element(self, element_key, element_locator):
         self.registered_elements[element_key] = element_locator
 
-    def register_css_element(self, element_key, element_selector):
+    def quick_register(self, element_key, element_selector):
         selector = cssselect.CSSSelector(element_selector)
         xpath = selector.path.replace("descendant-or-self::", "//")
         self.register_element(element_key, xpath)

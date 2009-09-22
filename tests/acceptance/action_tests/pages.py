@@ -7,5 +7,5 @@ class TestCustomPage(Page):
     url = "page_tests.htm"
 
     def register(self):
-        self.register_element(u"custom wait for visible", "//div[@id='divWaitForVisible']")
-        self.register_element(u"custom wait for invisible", "//div[@id='divWaitForInvisible']")
+        self.quick_register(u"custom wait for visible", "#divWaitForVisible")
+        self.quick_register(u"custom wait for invisible", "#divWaitForInvisible")
