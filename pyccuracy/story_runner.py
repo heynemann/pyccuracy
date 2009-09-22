@@ -155,7 +155,7 @@ class ParallelStoryRunner(StoryRunner):
         for i in range(self.number_of_threads):
             context = self.create_context_for(settings)
 
-            thread = Thread(target=self.start_context_test, context=context)
+            thread = Thread(target=self.start_context_test, kwargs={'context':context})
             thread.setDaemon(True)
             thread.start()
             starting_contexts.append(thread)
