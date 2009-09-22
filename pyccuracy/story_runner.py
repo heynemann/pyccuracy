@@ -177,13 +177,16 @@ class ParallelStoryRunner(StoryRunner):
             context.settings.on_scenario_completed = None
         
         sys.stdout.write("Waiting on child threads... PLEASE DO NOT CANCEL AGAIN!")
-        for thread in self.threads:
-            if thread.isAlive():
-                thread.join()
+        #for thread in self.threads:
+        #    if thread.isAlive():
+        #        thread.join()
 
     def kill_context_queue(self):
         for context in self.contexts:
-            context.browser_driver.stop_test()
+            try:
+                context.browser_driver.stop_test()
+            except Exception, e:
+                pass #doesn't matter for the user, the execution MUST be stopped
 
     def worker(self):
         while not self.aborted:
