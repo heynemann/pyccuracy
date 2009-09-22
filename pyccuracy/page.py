@@ -151,4 +151,5 @@ class Page(object):
 
     def register_css_element(self, element_key, element_selector):
         selector = cssselect.CSSSelector(element_selector)
-        self.register_element(element_key, selector.path)
+        xpath = selector.path.replace("descendant-or-self::", "//")
+        self.register_element(element_key, xpath)
