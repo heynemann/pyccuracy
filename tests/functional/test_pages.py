@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from nose.tools import raises, set_trace
+from nose.tools import assert_equals
 from pyccuracy import PageRegistry, Page
 
 class GoogleMainPage(Page):
@@ -30,16 +30,15 @@ def test_register_element_registers_element_within_dict():
     assert p.registered_elements.has_key('logo')
     assert p.registered_elements['logo'] == u"div[contains(@class, 'marca-globo')]/a"
 
-def test_register_css_element_registers_element_within_dict():
+def test_quick_register_registers_element_within_dict():
     class GloboPortal(Page):
         url = 'http://globo.com'
         def register(self):
-            self.register_css_element('logo', u"div.marca-globo > a")
+            self.quick_register('logo', u"div.marca-globo > a")
 
 
     p = GloboPortal()
-    expected_xpath = u"descendant-or-self::div[contains(concat" \
-                     "(' ', normalize-space(@class), ' '), ' marca-globo ')]/a"
+    expected_xpath = "//div[contains(concat(' ', normalize-space(@class), ' '), ' marca-globo ')]/a"
     assert p.registered_elements.has_key('logo')
-    assert p.registered_elements['logo'] == expected_xpath
+    assert_equals(p.registered_elements['logo'], expected_xpath)
 
