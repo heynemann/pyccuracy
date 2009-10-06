@@ -62,7 +62,7 @@ def update_progress(fixture, scenario, scenario_index):
         current_progress = float(scenarios_ran) / total_scenarios
         prg.update(current_progress, "Scenario %d of %d <%.2fs> - %s" % (scenarios_ran, total_scenarios, fixture.ellapsed(), scenario.title))
 
-def main():
+def main(arguments):
     """ Main function - parses args and runs action """
     global no_progress
 
@@ -96,7 +96,7 @@ def main():
     parser.add_option("-F", "--reportfile", dest="report_file_name", default="report.html", help="Report file. Defines the file name to write the report with [default: %default].")
     parser.add_option("-v", "--verbosity", dest="verbosity", default="2", help="Verbosity. 0 - does not show any output, 1 - shows text progress, 2 - shows animated progress bar")
 
-    options, args = parser.parse_args()
+    options, args = parser.parse_args(arguments)
 
     workers = options.workers and int(options.workers) or None
     pyc = PyccuracyCore()
@@ -141,4 +141,4 @@ def main():
     sys.exit(0)
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:])
