@@ -1,3 +1,9 @@
+python-pyccuracy (1.2.6) lenny; urgency=low
+
+  * New upstream release.
+
+ -- Gabriel Falcão Gonçalves de Moura <gabriel@nacaolivre.org>  Fri, 16 Oct 2009 15:46:49 -0300
+
 python-pyccuracy (1.2.5) lenny; urgency=low
 
   * New upstream release.
