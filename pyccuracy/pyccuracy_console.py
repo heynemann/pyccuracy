@@ -136,9 +136,12 @@ def main(arguments=sys.argv[1:]):
                            verbosity=int(options.verbosity))
 
     if not result or result.get_status() != "SUCCESSFUL":
-        sys.exit(1)
+        return 1
 
-    sys.exit(0)
+    return 0
+
+def console():
+    sys.exit(main(sys.argv[1:]))
 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+    console()
