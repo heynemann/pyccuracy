@@ -1,0 +1,19 @@
+As a Pyccuracy User
+I want to test see select contains option by text action
+So that I can make sure Pyccuracy works
+
+Scenario 1 - Checking that some page's select contains an option of "shrubbery" (using name)
+Given
+	I go to "select_tests.htm"
+When
+	#The page finishes loading
+Then
+	I see "selContainsOptionByText" select contains an option with text "Shrubbery"
+
+Scenario 2 - Checking that some page's select contains an option of "shrubbery" (using id)
+Given
+	I go to "select_tests.htm"
+When
+	#The page finishes loading
+Then
+	I see "selContainsOptionByText2" select contains an option with text "Shrubbery"

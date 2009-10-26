@@ -1,0 +1,20 @@
+Como um usuário do Pyccuracy
+Eu quero testar a ação de verificar que uma select não contém um item por texto
+Para garantir que o Pyccuracy funciona em outras línguas
+
+Cenário 1 - Garantindo que a select da página de testes não contém um ítem com texto NI (por name)
+Dado que
+	Eu navego para "select_tests.htm"
+Quando
+	#A página termina de carregar
+Então
+	Eu vejo que a select "selContainsOptionByText" não contém uma opção com texto "NI"
+
+Cenário 2 - Garantindo que a select da página de testes não contém um ítem com texto NI (por id)
+Dado que
+	Eu navego para "select_tests.htm"
+Quando
+	#A página termina de carregar
+Então
+	Eu vejo que a select "selContainsOptionByText" não contém uma opção com texto "NI"
+

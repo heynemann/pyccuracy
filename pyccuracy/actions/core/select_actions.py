@@ -157,3 +157,39 @@ class SelectDoesNotHaveSelectedTextAction(ActionBase):
             error_message = context.language.format("select_does_not_have_selected_text_failure", select_name, text, selected_text)
             raise self.failed(error_message)
 
+class SelectContainsOptionWithTextAction(ActionBase):
+    regex = LanguageItem("select_contains_option_with_text_regex")
+
+    def execute(self, context, select_name, text):
+        select = resolve_element_key(context, Page.Select, select_name, self.resolve_element_key)
+
+        error_message = context.language.format("element_is_visible_failure", Page.Select, select_name)
+
+        self.assert_element_is_visible(context, select, error_message)
+
+        options = context.browser_driver.get_select_options(select)
+
+        found = text in options
+        
+        if not found:
+            error_message = context.language.format("select_contains_option_with_text_failure", select_name, text)
+            raise self.failed(error_message)
+
+class SelectDoesNotContainOptionWithTextAction(ActionBase):
+    regex = LanguageItem("select_does_not_contain_option_with_text_regex")
+
+    def execute(self, context, select_name, text):
+        select = resolve_element_key(context, Page.Select, select_name, self.resolve_element_key)
+
+        error_message = context.language.format("element_is_visible_failure", Page.Select, select_name)
+
+        self.assert_element_is_visible(context, select, error_message)
+
+        options = context.browser_driver.get_select_options(select)
+
+        found = text in options
+        
+        if found:
+            error_message = context.language.format("select_does_not_contain_option_with_text_failure", select_name, text)
+            raise self.failed(error_message)
+

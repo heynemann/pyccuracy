@@ -89,6 +89,8 @@ image_does_not_have_src_regex = ^(And )?I see [\"](?P<image_name>.+)[\"] image d
 link_has_href_regex = ^(And )?I see [\"](?P<link_name>.+)[\"] link has [\"](?P<href>.+)[\"] href$
 link_has_text_regex = ^(And )?I see [\"](?P<link_name>.+)[\"] link has [\"](?P<text>.+)[\"] text$
 
+select_contains_option_with_text_regex = ^(And )?I see [\"](?P<select_name>.+)[\"] select contains an option with text [\"](?P<text>.+)[\"]$
+select_does_not_contain_option_with_text_regex = ^(And )?I see [\"](?P<select_name>.+)[\"] select does not contain an option with text [\"](?P<text>.+)[\"]$
 select_has_selected_index_regex = ^(And )?I see [\"](?P<select_name>.+)[\"] select has selected index of (?P<index>\d+)$
 select_has_selected_value_regex = ^(And )?I see [\"](?P<select_name>.+)[\"] select has selected value of [\"](?P<option_value>.+)[\"]$
 select_has_selected_text_regex = ^(And )?I see [\"](?P<select_name>.+)[\"] select has selected text of [\"](?P<text>.+)[\"]$
@@ -156,6 +158,8 @@ radio_button_more_than_one_element_returned_failure = More than one element was 
 radio_is_checked_failure = The radio button with name or id %s is not selected and should be.
 radio_is_not_checked_failure = The radio button with name or id %s is selected and should not be.
 
+select_contains_option_with_text_failure = The select with name or id %s should contain an option with text %s.
+select_does_not_contain_option_with_text_failure = The select with name or id %s should not contain an option with text %s, but does.
 select_has_selected_index_failure = The selected index for select with name or id %s should be %d, but is %d.
 select_has_selected_value_failure = The selected value for select with name or id %s should be %s, but is %s.
 select_has_selected_text_failure = The selected text for select with name or id %s should be %s, but is %s.

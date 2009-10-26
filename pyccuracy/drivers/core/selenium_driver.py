@@ -188,6 +188,10 @@ class SeleniumDriver(BaseDriver):
     def select_option_by_text(self, element_selector, text):
         return self.__select_option(element_selector, "label", text)
 
+    def get_select_options(self, element_selector):
+        options = self.selenium.get_select_options(element_selector)
+        return options
+
     def __select_option(self, element_selector, option_selector, option_value):
         error_message = "Option with %s '%s' not found" % (option_selector, option_value)
         try:
@@ -250,3 +254,4 @@ class SeleniumDriver(BaseDriver):
 
     def radio_uncheck(self, radio_selector):
         self.selenium.uncheck(radio_selector)
+        

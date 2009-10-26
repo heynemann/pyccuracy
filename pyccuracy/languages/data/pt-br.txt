@@ -89,6 +89,8 @@ image_does_not_have_src_regex = ^(E )?[eE]u vejo que a imagem [\"](?P<image_name
 link_has_href_regex = ^(E )?[eE]u vejo que o link [\"](?P<link_name>.+)[\"] tem href [\"](?P<href>.+)[\"]$
 link_has_text_regex = ^(E )?[eE]u vejo que o link [\"](?P<link_name>.+)[\"] tem texto [\"](?P<text>.+)[\"]$
 
+select_contains_option_with_text_regex = ^(E )?[eE]u vejo que a select [\"](?P<select_name>.+)[\"] contém uma opção com texto [\"](?P<text>.+)[\"]$
+select_does_not_contain_option_with_text_regex = ^(E )?[eE]u vejo que a select [\"](?P<select_name>.+)[\"] não contém uma opção com texto [\"](?P<text>.+)[\"]$
 select_has_selected_index_regex = ^(E )?[eE]u vejo que o índice selecionado da select [\"](?P<select_name>.+)[\"] é (?P<index>\d+)$
 select_has_selected_value_regex = ^(E )?[eE]u vejo que o valor selecionado da select [\"](?P<select_name>.+)[\"] é [\"](?P<option_value>.+)[\"]$
 select_has_selected_text_regex = ^(E )?[eE]u vejo que o texto selecionado da select [\"](?P<select_name>.+)[\"] é [\"](?P<text>.+)[\"]$
@@ -156,6 +158,8 @@ radio_button_more_than_one_element_returned_failure = Mais de um elemento foi re
 radio_is_checked_failure = O radio button com nome ou id %s está desmarcado e deveria estar marcado.
 radio_is_not_checked_failure = O radio button com nome ou id %s está marcado e deveria estar desmarcado.
 
+select_contains_option_with_text_failure = A select com nome ou id %s deveria conter uma opção com texto %s.
+select_does_not_contain_option_with_text_failure = A select com nome ou id %s não deveria conter uma opção com texto %s, mas contém.
 select_has_selected_index_failure = O índice selecionado da select com nome ou id %s deveria ser %d, mas é %d.
 select_has_selected_value_failure = O valor selecionado da select com nome ou id %s deveria ser %s, mas é %s.
 select_has_selected_text_failure = O texto selecionado da select com nome ou id %s deveria ser %s, mas é %s.
