@@ -2,10 +2,10 @@
 SHELL := /bin/bash
 
 # Internal variables.
-file_version=0.6.3
 root_dir=.
 build_dir=${root_dir}/build
 src_dir=${root_dir}/pyccuracy
+wait_time=10
 
 tests_dir=${root_dir}/tests
 unit_tests_dir=${tests_dir}/unit
@@ -85,10 +85,10 @@ selenium_down:
 	@echo "Killed."
 
 wait:
-	@echo "=========="
-	@echo "Waiting..."
-	@echo "=========="
-	@sleep 10
+	@echo "========================="
+	@echo "Waiting for ${wait_time} seconds..."
+	@echo "========================="
+	@sleep ${wait_time}
 
 acceptance:
 	@make selenium_up
