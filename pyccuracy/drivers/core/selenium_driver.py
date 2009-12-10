@@ -22,7 +22,7 @@ from traceback import format_exc
 from selenium import *
 
 from pyccuracy.drivers import BaseDriver, DriverError
-from selenium_element_selector import *
+from pyccuracy.drivers.core.xpath_element_selector import *
 
 class SeleniumDriver(BaseDriver):
     backend = 'selenium'
@@ -60,7 +60,7 @@ class SeleniumDriver(BaseDriver):
     def resolve_element_key(self, context, element_type, element_key):
         if not context:
             return element_key
-        return SeleniumElementSelector.element(element_type, element_key)
+        return XPathElementSelector.element(element_type, element_key)
 
     def page_open(self, url):
         self.selenium.open(url)

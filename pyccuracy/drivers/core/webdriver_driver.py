@@ -22,8 +22,8 @@ from traceback import format_exc
 from webdriver_common.exceptions import *
 from webdriver_firefox.webdriver import WebDriver
 
-from pyccuracy.drivers.core.selenium_element_selector import *
 from pyccuracy.drivers import BaseDriver, DriverError
+from pyccuracy.drivers.core.xpath_element_selector import *
 
 class WebDriverDriver(BaseDriver):
     backend = 'webdriver'
@@ -38,11 +38,10 @@ class WebDriverDriver(BaseDriver):
     def stop_test(self):
         self.webdriver.quit()
 
-	#TODO
 	def resolve_element_key(self, context, element_type, element_key):
         if not context:
             return element_key
-        return SeleniumElementSelector.element(element_type, element_key)
+        return XPathElementSelector.element(element_type, element_key)
 
     def page_open(self, url):
         self.webdriver.get(url)
