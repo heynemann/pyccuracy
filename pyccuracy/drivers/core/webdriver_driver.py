@@ -38,7 +38,8 @@ class WebDriverDriver(BaseDriver):
     def stop_test(self):
         self.webdriver.quit()
 
-    def resolve_element_key(self, context, element_type, element_key):
+	#TODO
+	def resolve_element_key(self, context, element_type, element_key):
         if not context:
             return element_key
         return SeleniumElementSelector.element(element_type, element_key)
@@ -55,7 +56,8 @@ class WebDriverDriver(BaseDriver):
 
     def get_title(self):
         return self.webdriver.get_title()
-
+	
+	#TODO
     def is_element_visible(self, element_selector):
         try:
             element = self.webdriver.find_element_by_xpath(element_selector)
@@ -106,8 +108,9 @@ class WebDriverDriver(BaseDriver):
 
     #TODO
     def drag_element(self, from_element_selector, to_element_selector):
-        pass
-#        self.selenium.drag_and_drop_to_object(from_element_selector, to_element_selector)
+        # self.selenium.drag_and_drop_to_object(from_element_selector, to_element_selector)
+		raise NotImplementedError('Unfortunately Webdriver does not support drag-n-drop yet. \
+								   If you really need it, you will have to use Selenium driver.')
 
     def mouseover_element(self, element_selector):
         elem = self.webdriver.find_element_by_xpath(element_selector)
@@ -196,7 +199,8 @@ class WebDriverDriver(BaseDriver):
     def radio_check(self, radio_selector):
         if not self.radio_is_checked(radio_selector):
             self.webdriver.find_element_by_xpath(radio_selector).set_selected()
-
+	
+	#TODO
     def radio_uncheck(self, radio_selector):
-        raise NotImplementedError('Remove me! Does not make sense.')
+        raise NotImplementedError('Remove me! Does not make sense to uncheck a radio button; you will select another one.')
 
