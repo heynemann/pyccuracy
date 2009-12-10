@@ -21,7 +21,7 @@ import time
 import traceback
 
 from Queue import Queue
-from threading import Thread
+from threading import Thread, RLock
 
 from pyccuracy.result import Result
 from pyccuracy.common import Context
@@ -104,23 +104,33 @@ class ParallelStoryRunner(StoryRunner):
     def __init__(self, number_of_threads):
         self.number_of_threads = number_of_threads
         self.test_queue = Queue()
+        self.contexts = []
+        self.available_context_queue = Queue()
+        self.threads = []
+        self.lock = RLock()
+        self.aborted = False
 
     def run_stories(self, settings, fixture, context=None):
         if len(fixture.stories) == 0:
             return
-
+        
         self.fill_queue(fixture, settings)
+        self.fill_context_queue(settings)
 
         fixture.start_run()
-
-        self.start_processes()
-
+        
         try:
-            time.sleep(2)
-            while self.test_queue.unfinished_tasks:
-                time.sleep(1)
-        except KeyboardInterrupt:
-            sys.stderr.write("Parallel tests interrupted by user\n")
+            self.start_processes()
+
+            try:
+                time.sleep(2)
+                while self.test_queue.unfinished_tasks:
+                    time.sleep(1)
+            except KeyboardInterrupt:
+                self.abort_run()
+                
+        finally:
+            self.kill_context_queue()
 
         fixture.end_run()
 
@@ -131,18 +141,65 @@ class ParallelStoryRunner(StoryRunner):
             t = Thread(target=self.worker)
             t.setDaemon(True)
             t.start()
+            self.threads.append(t)
 
     def fill_queue(self, fixture, settings):
         scenario_index = 0
         for story in fixture.stories:
             for scenario in story.scenarios:
                 scenario_index += 1
-                context = self.create_context_for(settings)
-                self.test_queue.put((fixture, scenario, context))
+                self.test_queue.put((fixture, scenario))
+    
+    def fill_context_queue(self, settings):
+        starting_contexts = []
+        for i in range(self.number_of_threads):
+            context = self.create_context_for(settings)
+
+            #start browser driver in background
+            thread = Thread(target=self.start_context_test, kwargs={'context':context})
+            thread.setDaemon(True)
+            thread.start()
+            starting_contexts.append(thread)
+
+            self.available_context_queue.put(i)
+            self.contexts.append(context)
+        
+        #waiting for threads to finish
+        for thread in starting_contexts:
+            if thread.isAlive():
+                thread.join()
+            else:
+                del(thread)
+
+    def start_context_test(self, context):
+        context.browser_driver.start_test()
+
+    def abort_run(self):
+        self.aborted = True
+        
+        for context in self.contexts:
+            context.settings.on_scenario_completed = None
+    
+    def kill_context_queue(self):
+        sys.stdout.write("\nStopping workers, please wait (DO NOT CANCEL AGAIN)...\n")
+        total = len(self.contexts)
+        for index, context in enumerate(self.contexts):
+            percent = (float(index + 1) / total) * 100
+            sys.stdout.write("[%06.2f%%] Stopped worker %d of %d\n" % (percent, index + 1, total))
+            try:
+                context.browser_driver.stop_test()
+            except Exception, e:
+                pass #doesn't matter for the user, the execution MUST be stopped
+                
+        sys.stdout.write("Done.\n")
 
     def worker(self):
-        while True:
-            fixture, scenario, context = self.test_queue.get()
+        while not self.aborted:
+            fixture, scenario = self.test_queue.get()
+            self.lock.acquire()
+            context_index = self.available_context_queue.get()
+            context = self.contexts[context_index]
+            self.lock.release()
 
             scenario_index = fixture.count_successful_scenarios() + fixture.count_failed_scenarios() + 1
 
@@ -155,7 +212,6 @@ class ParallelStoryRunner(StoryRunner):
             else:
                 base_url = "http://localhost"
 
-            context.browser_driver.start_test(base_url)
             try:
                 scenario.start_run()
                 for action in scenario.givens + scenario.whens + scenario.thens:
@@ -166,8 +222,9 @@ class ParallelStoryRunner(StoryRunner):
             except Exception, err:
                 traceback.print_exc(err)
             finally:
-                context.browser_driver.stop_test()
+                self.available_context_queue.put(context_index)
                 self.test_queue.task_done()
+
                 if context.settings.on_scenario_completed and callable(context.settings.on_scenario_completed):
                     context.settings.on_scenario_completed(fixture, scenario, scenario_index)
-
+            

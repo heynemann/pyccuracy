@@ -33,10 +33,14 @@ sys.stdout = codecs.getwriter('utf-8')(sys.stdout)
 
 no_progress = False
 prg = None
+scenarios_ran = 0
 
 def create_progress(verbosity):
     global no_progress
     global prg
+    global scenarios_ran
+    
+    scenarios_ran = 0
     if not no_progress:
         prg = ProgressBar("Pyccuracy - %s" % __version_string__, verbosity)
         prg.update(0, 'Running first test...')
@@ -44,6 +48,10 @@ def create_progress(verbosity):
 def update_progress(fixture, scenario, scenario_index):
     global no_progress
     global prg
+    global scenarios_ran
+    
+    if not scenarios_ran is None:
+        scenarios_ran += 1
     if not no_progress:
         if scenario.status == Status.Failed:
             prg.set_failed()
@@ -51,10 +59,10 @@ def update_progress(fixture, scenario, scenario_index):
         if total_scenarios == 0:
             return
 
-        current_progress = float(scenario_index) / total_scenarios
-        prg.update(current_progress, "Scenario %d of %d <%.2fs> - %s" % (scenario_index, total_scenarios, fixture.ellapsed(), scenario.title))
+        current_progress = float(scenarios_ran) / total_scenarios
+        prg.update(current_progress, "Scenario %d of %d <%.2fs> - %s" % (scenarios_ran, total_scenarios, fixture.ellapsed(), scenario.title))
 
-def main():
+def main(arguments=sys.argv[1:]):
     """ Main function - parses args and runs action """
     global no_progress
 
@@ -88,7 +96,7 @@ def main():
     parser.add_option("-F", "--reportfile", dest="report_file_name", default="report.html", help="Report file. Defines the file name to write the report with [default: %default].")
     parser.add_option("-v", "--verbosity", dest="verbosity", default="2", help="Verbosity. 0 - does not show any output, 1 - shows text progress, 2 - shows animated progress bar")
 
-    options, args = parser.parse_args()
+    options, args = parser.parse_args(arguments)
 
     workers = options.workers and int(options.workers) or None
     pyc = PyccuracyCore()
@@ -123,14 +131,17 @@ def main():
                            should_throw=options.should_throw,
                            workers=workers,
                            extra_args=extra_args,
-                           on_scenario_started=int(options.verbosity) > 1 and update_progress or None,
+                           on_scenario_started=None,
                            on_scenario_completed=update_progress,
                            verbosity=int(options.verbosity))
 
     if not result or result.get_status() != "SUCCESSFUL":
-        sys.exit(1)
+        return 1
 
-    sys.exit(0)
+    return 0
+
+def console():
+    sys.exit(main(sys.argv[1:]))
 
 if __name__ == "__main__":
-    main()
+    console()

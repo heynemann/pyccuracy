@@ -18,6 +18,7 @@
 
 from os.path import abspath, exists
 from urlparse import urljoin
+from lxml import cssselect
 from pyccuracy.common import Settings, URLChecker
 
 NAME_DICT = {}
@@ -148,3 +149,7 @@ class Page(object):
     def register_element(self, element_key, element_locator):
         self.registered_elements[element_key] = element_locator
 
+    def quick_register(self, element_key, element_selector):
+        selector = cssselect.CSSSelector(element_selector)
+        xpath = selector.path.replace("descendant-or-self::", "//")
+        self.register_element(element_key, xpath)

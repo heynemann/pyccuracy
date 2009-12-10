@@ -1,3 +1,39 @@
+python-pyccuracy (1.2.7) lenny; urgency=low
+
+  * New upstream release.
+
+ -- Gabriel Falcão Gonçalves de Moura <gabriel@nacaolivre.org>  Mon, 26 Oct 2009 18:32:06 -0200
+
+python-pyccuracy (1.2.6) lenny; urgency=low
+
+  * New upstream release.
+
+ -- Gabriel Falcão Gonçalves de Moura <gabriel@nacaolivre.org>  Fri, 16 Oct 2009 15:46:49 -0300
+
+python-pyccuracy (1.2.5) lenny; urgency=low
+
+  * New upstream release.
+
+ -- Gabriel Falcão Gonçalves de Moura <gabriel@nacaolivre.org>  Tue, 06 Oct 2009 15:12:05 -0300
+
+python-pyccuracy (1.2.4) lenny; urgency=low
+
+  * New upstream release
+
+ -- Gabriel Falcão Gonçalves de Moura <gabriel@nacaolivre.org>  Wed, 23 Sep 2009 14:45:45 -0300
+
+python-pyccuracy (1.2.3) lenny; urgency=low
+
+  * New upstream release
+
+ -- Gabriel Falcão Gonçalves de Moura <gabriel@nacaolivre.org>  Tue, 22 Sep 2009 14:53:28 -0300
+
+python-pyccuracy (1.2.1) lenny; urgency=low
+
+  * New release!
+
+ -- Gabriel Falcão Gonçalves de Moura <gabriel@nacaolivre.org>  Mon, 21 Sep 2009 18:08:14 -0300
+
 python-pyccuracy (1.1.0) lenny; urgency=low
 
   * New release, new features!

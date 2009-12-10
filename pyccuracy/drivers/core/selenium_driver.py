@@ -32,6 +32,11 @@ class SeleniumDriver(BaseDriver):
         self.selenium = selenium
 
     def start_test(self, url=None):
+        if not url:
+            url = self.context.settings.base_url
+        self.start_selenium(url)
+        
+    def start_selenium(self, url):
         host = self.context.settings.extra_args.get("selenium.server", "localhost")
         port = self.context.settings.extra_args.get("selenium.port", 4444)
         browser_to_run = self.context.settings.browser_to_run
@@ -47,6 +52,9 @@ class SeleniumDriver(BaseDriver):
             raise DriverError("Error when starting selenium. Is it running?\n\n\n Error: %s\n" % format_exc(e))
 
     def stop_test(self):
+        self.stop_selenium()
+    
+    def stop_selenium(self):
         self.selenium.stop()
 
     def resolve_element_key(self, context, element_type, element_key):
@@ -180,6 +188,10 @@ class SeleniumDriver(BaseDriver):
     def select_option_by_text(self, element_selector, text):
         return self.__select_option(element_selector, "label", text)
 
+    def get_select_options(self, element_selector):
+        options = self.selenium.get_select_options(element_selector)
+        return options
+
     def __select_option(self, element_selector, option_selector, option_value):
         error_message = "Option with %s '%s' not found" % (option_selector, option_value)
         try:
@@ -242,3 +254,4 @@ class SeleniumDriver(BaseDriver):
 
     def radio_uncheck(self, radio_selector):
         self.selenium.uncheck(radio_selector)
+        

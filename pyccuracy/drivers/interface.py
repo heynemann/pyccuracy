@@ -129,3 +129,5 @@ class DriverInterface(object):
     def __get_attribute_value(self, element, attribute):
         raise NotImplementedError
 
+    def get_select_options(self, select):
+        raise NotImplementedError
