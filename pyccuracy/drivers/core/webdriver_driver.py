@@ -66,6 +66,7 @@ class WebDriverDriver(BaseDriver):
                 return False
         return True
     
+    # TODO: REALLY poor performance, there must be a better way to do that hacking WebDriver
     def is_element_visible_by_css(self, element):
         style = ''
         try:
