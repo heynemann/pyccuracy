@@ -28,9 +28,9 @@ from pyccuracy.drivers.core.xpath_element_selector import *
 class WebDriverDriver(BaseDriver):
     backend = 'webdriver'
     
-    def __init__(self, context, selenium=None):
+    def __init__(self, context, webdriver=None):
         self.context = context
-        self.selenium = selenium
+        self.webdriver = webdriver
     
     def start_test(self, url=None):
         self.webdriver = WebDriver()
@@ -47,7 +47,7 @@ class WebDriverDriver(BaseDriver):
         self.webdriver.get(url)
     
     def wait_for_page(self, timeout=10000):
-        # Does not make sense for WebDriver.
+        # Does not make sense for WebDriver because it always wait for page to load.
         pass
     
     def click_element(self, element_selector):
@@ -106,7 +106,6 @@ class WebDriverDriver(BaseDriver):
         return self.exec_js('argument[0].innerHTML', elem)
     
     def drag_element(self, from_element_selector, to_element_selector):
-        # self.selenium.drag_and_drop_to_object(from_element_selector, to_element_selector)
         raise NotImplementedError('Unfortunately Webdriver does not support drag-n-drop yet. \
 								   If you really need it, you will have to use Selenium driver.')
     
