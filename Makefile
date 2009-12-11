@@ -97,16 +97,16 @@ acceptance_selenium:
 	@echo "=========================="
 	@echo "Starting Selenium tests..."
 	@echo "=========================="
-	@PYTHONPATH=`pwd`/pyccuracy/:$$PYTHONPATH python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "*en-us.acc" -l en-us -v 0
-	@PYTHONPATH=`pwd`/pyccuracy/:$$PYTHONPATH python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "*pt-br.acc" -l pt-br -v 0
+	@PYTHONPATH=`pwd`/pyccuracy/:$$PYTHONPATH python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "*en-us.acc" -l en-us -v 1
+	@PYTHONPATH=`pwd`/pyccuracy/:$$PYTHONPATH python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "*pt-br.acc" -l pt-br -v 1
 	@-make selenium_down
 
 acceptance_webdriver:	
 	@echo "==========================="
 	@echo "Starting WebDriver tests..."
 	@echo "==========================="
-	@PYTHONPATH=`pwd`/pyccuracy/:$$PYTHONPATH python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "*en-us.acc" -l en-us -v 0 -e "webdriver"
-	@PYTHONPATH=`pwd`/pyccuracy/:$$PYTHONPATH python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "*pt-br.acc" -l pt-br -v 0 -e "webdriver"
+	@PYTHONPATH=`pwd`/pyccuracy/:$$PYTHONPATH python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "*en-us.acc" -l en-us -v 1 -e "webdriver"
+	@PYTHONPATH=`pwd`/pyccuracy/:$$PYTHONPATH python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "*pt-br.acc" -l pt-br -v 1 -e "webdriver"
 
 dist: clean
 	@echo "Running a build..."
