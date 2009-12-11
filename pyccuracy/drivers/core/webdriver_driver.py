@@ -76,7 +76,13 @@ class WebDriverDriver(BaseDriver):
         except ElementNotVisibleException, e:
             return False
         
-        style = element.get_attribute('style')
+        try:
+            style = element.get_attribute('style')
+        except ErrorInResponseException, e:
+            # if there was an error, assume that there's no style, 
+            # therefore the element should be visible
+            return True
+
         return self.check_css_style_is_visible(style)
     
     def is_element_enabled(self, element_selector):
@@ -114,8 +120,8 @@ class WebDriverDriver(BaseDriver):
         return self.exec_js('argument[0].innerHTML', elem)
     
     def drag_element(self, from_element_selector, to_element_selector):
-        raise NotImplementedError('Unfortunately Webdriver does not support drag-n-drop yet. \
-								   If you really need it, you will have to use Selenium driver.')
+        raise NotImplementedError('Unfortunately Webdriver does not support drag-n-drop yet. ' + \
+								   'If you really need it, you will have to use Selenium driver.')
     
     def mouseover_element(self, element_selector):
         elem = self.webdriver.find_element_by_xpath(element_selector)
@@ -138,15 +144,15 @@ class WebDriverDriver(BaseDriver):
     
     def get_selected_index(self, element_selector):
         elem = self.webdriver.find_element_by_xpath(element_selector)
-        return self.exec_js('argument[0].selectedIndex;' % index, elem)
+        return self.exec_js('argument[0].selectedIndex;', elem)
     
     def get_selected_value(self, element_selector):
         elem = self.webdriver.find_element_by_xpath(element_selector)
-        return self.exec_js('argument[0].options[argument[0].selectedIndex].value;' % index, elem)
+        return self.exec_js('argument[0].options[argument[0].selectedIndex].value;', elem)
     
     def get_selected_text(self, element_selector):
         elem = self.webdriver.find_element_by_xpath(element_selector)
-        return self.exec_js('argument[0].options[argument[0].selectedIndex].innerText;' % index, elem)
+        return self.exec_js('argument[0].options[argument[0].selectedIndex].innerText;', elem)
     
     def select_option_by_index(self, element_selector, index):
         elem = self.webdriver.find_element_by_xpath(element_selector)
@@ -156,13 +162,13 @@ class WebDriverDriver(BaseDriver):
         elem = self.webdriver.find_element_by_xpath(element_selector)
         for index, option in enumerate(elem.find_elements_by_xpath('option')):
             if option.get_value() == value:
-                self.select_option_by_index(index)
+                self.select_option_by_index(element_selector, index)
     
     def select_option_by_text(self, element_selector, text):
         elem = self.webdriver.find_element_by_xpath(element_selector)
         for index, option in enumerate(elem.find_elements_by_xpath('option')):
             if option.get_text() == text:
-                self.select_option_by_index(index)
+                self.select_option_by_index(element_selector, index)
     
     def is_element_empty(self, element_selector):
         current_text = self.webdriver.find_element_by_xpath(element_selector).get_value()
