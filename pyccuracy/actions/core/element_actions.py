@@ -96,7 +96,7 @@ class ElementIsNotVisibleAction(ActionBase):
 
     def execute(self, context, element_type, element_name):
         element_key = resolve_element_key(context, element_type, element_name, self.resolve_element_key)
-
+        
         error_message = context.language.format("element_is_not_visible_failure", element_type, element_name)
         self.assert_element_is_not_visible(context, element_key, error_message)
 

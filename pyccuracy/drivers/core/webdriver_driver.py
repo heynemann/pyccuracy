@@ -55,8 +55,17 @@ class WebDriverDriver(BaseDriver):
     
     def get_title(self):
         return self.webdriver.get_title()
-	
-	#TODO
+    
+    def check_css_style_is_visible(self, style):
+        styles = style.split(';')
+        for each_style in [s for s in styles if s != '']:
+            name, value = each_style.split(':')
+            name = name.strip().lower()
+            value = value.strip().lower()
+            if (name == 'visibility' and value == 'hidden') or (name == 'display' and value == 'none'):
+                return False
+        return True
+    
     def is_element_visible(self, element_selector):
         try:
             element = self.webdriver.find_element_by_xpath(element_selector)
@@ -66,10 +75,9 @@ class WebDriverDriver(BaseDriver):
             return False
         except ElementNotVisibleException, e:
             return False
-
-#        visible = self.exec_js('argument[0].style.visibility != "hidden" && argument[0].style.display != "none"', element)
-#        return visible == 'true'
-        return True
+        
+        style = element.get_attribute('style')
+        return self.check_css_style_is_visible(style)
     
     def is_element_enabled(self, element_selector):
         return self.webdriver.find_element_by_xpath(element_selector).is_enabled()
@@ -99,7 +107,7 @@ class WebDriverDriver(BaseDriver):
         return False
     
     def get_element_text(self, element_selector):
-        return self.webdriver.find_element_by_xpath(element_selector).get_text()
+        return self.webdriver.find_element_by_xpath(element_selector).get_value()
     
     def get_element_markup(self, element_selector):
         elem = self.webdriver.find_element_by_xpath(element_selector)
