@@ -147,8 +147,7 @@ class WebDriverDriver(BaseDriver):
         return self.exec_js('argument[0].selectedIndex;', elem)
     
     def get_selected_value(self, element_selector):
-        elem = self.webdriver.find_element_by_xpath(element_selector)
-        return self.exec_js('argument[0].options[argument[0].selectedIndex].value;', elem)
+        return self.webdriver.find_element_by_xpath(element_selector).get_value()
     
     def get_selected_text(self, element_selector):
         elem = self.webdriver.find_element_by_xpath(element_selector)
