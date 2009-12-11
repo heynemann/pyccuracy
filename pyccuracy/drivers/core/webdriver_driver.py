@@ -66,6 +66,38 @@ class WebDriverDriver(BaseDriver):
                 return False
         return True
     
+    def is_element_visible_by_css(self, element):
+        style = ''
+        try:
+            style = element.get_attribute('style')
+        except ErrorInResponseException, e:
+            # if there was an error, assume that there's no style and continue
+            pass
+        
+        parent = None
+        has_parent = True
+        
+        while has_parent:
+            try:
+                parent = element.find_element_by_xpath('..')
+            except ErrorInResponseException, e:
+                # if there was an error, assume that there's no parent anymore and return
+                has_parent = False
+                # returns when there is no more parents
+                return self.check_css_style_is_visible(style)
+            
+            try:
+                style = '%s;%s' % (style, parent.get_attribute('style'))
+                # returns when finds out that it's not visible
+                if not self.check_css_style_is_visible(style):
+                    return False
+            except ErrorInResponseException, e:
+                # if there was an error, assume that there's no style and continue
+                pass
+            
+            # next
+            element = parent
+
     def is_element_visible(self, element_selector):
         try:
             element = self.webdriver.find_element_by_xpath(element_selector)
@@ -75,15 +107,8 @@ class WebDriverDriver(BaseDriver):
             return False
         except ElementNotVisibleException, e:
             return False
-        
-        try:
-            style = element.get_attribute('style')
-        except ErrorInResponseException, e:
-            # if there was an error, assume that there's no style, 
-            # therefore the element should be visible
-            return True
 
-        return self.check_css_style_is_visible(style)
+        return self.is_element_visible_by_css(element)
     
     def is_element_enabled(self, element_selector):
         return self.webdriver.find_element_by_xpath(element_selector).is_enabled()
