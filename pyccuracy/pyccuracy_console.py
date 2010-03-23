@@ -46,13 +46,13 @@ def position(level, message, offset=10):
     return line
 
 def before_action(context, action, args, kwarg):
-    pass
+    print ctrl.render("${WHITE}%s" % position(1, action.description))
 
 def action_successful(context, action, args, kwarg):
-    print ctrl.render("${GREEN}%s" % position(1, action.description))
+    print ctrl.render(ctrl.BOL + ctrl.UP + ctrl.CLEAR_EOL + "${GREEN}%s" % position(1, action.description))
 
 def action_error(context, action, args, kwarg, error):
-    print ctrl.render("${RED}%s" % position(1, action.description))
+    print ctrl.render(ctrl.BOL + ctrl.UP + ctrl.CLEAR_EOL + "${RED}%s" % position(1, action.description))
 
 def scenario_started(fixture, scenario, scenario_index):
     global scenarios_ran
