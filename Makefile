@@ -120,3 +120,4 @@ deb:
 	mv .git /tmp/pyccuracy_git
 	python -c 'import os;os.system("debuild -tc")'
 	mv /tmp/pyccuracy_git .git
+	mv ../python-pyccuracy_*.deb ./releases
