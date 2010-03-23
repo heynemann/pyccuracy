@@ -38,11 +38,8 @@ scenarios_ran = 0
 ctrl = TerminalController()
 
 def position(level, message, offset=10):
-    limit = 120 - (level * offset)
     offset_message = (level * offset) * " "
-    separator = "\n%s" % offset_message
-    display_message = separator.join(textwrap.wrap(message, limit))
-    line = "%s%s" % (offset_message, display_message)
+    line = "%s%s" % (offset_message, message)
     return line
 
 def before_action(context, action, args, kwarg):
