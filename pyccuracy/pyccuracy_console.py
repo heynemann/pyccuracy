@@ -72,7 +72,7 @@ def create_progress(verbosity):
     global prg
     global scenarios_ran
 
-    if not verbosity or verbosity > 2:
+    if verbosity == 3:
         return
 
     scenarios_ran = 0
@@ -156,18 +156,18 @@ def main(arguments=sys.argv[1:]):
 
     create_progress(verbosity)
 
-    on_before_action = None
-    on_action_successful = None
-    on_action_error = None
-    on_scenario_started = None
-    on_scenario_completed = update_progress
+    on_before_action_handler = None
+    on_action_successful_handler = None
+    on_action_error_handler = None
+    on_scenario_started_handler = None
+    on_scenario_completed_handler = update_progress
 
-    if verbosity == 4:
-        on_before_action = before_action
-        on_action_successful = action_successful
-        on_action_error = action_error
-        on_scenario_started = scenario_started
-        on_scenario_completed = scenario_completed
+    if verbosity == 3:
+        on_before_action_handler = before_action
+        on_action_successful_handler = action_successful
+        on_action_error_handler = action_error
+        on_scenario_started_handler = scenario_started
+        on_scenario_completed_handler = scenario_completed
 
     result = pyc.run_tests(actions_dir=options.actions_dir,
                            custom_actions_dir=options.custom_actions_dir,
@@ -186,11 +186,11 @@ def main(arguments=sys.argv[1:]):
                            should_throw=options.should_throw,
                            workers=workers,
                            extra_args=extra_args,
-                           on_scenario_started=on_scenario_started,
-                           on_scenario_completed=on_scenario_completed,
-                           on_before_action=before_action,
-                           on_action_successful=action_successful,
-                           on_action_error=action_error,
+                           on_scenario_started=on_scenario_started_handler,
+                           on_scenario_completed=on_scenario_completed_handler,
+                           on_before_action=on_before_action_handler,
+                           on_action_successful=on_action_successful_handler,
+                           on_action_error=on_action_error_handler,
                            verbosity=int(options.verbosity))
 
     if not result or result.get_status() != "SUCCESSFUL":
