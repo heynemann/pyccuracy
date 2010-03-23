@@ -118,5 +118,5 @@ docs:
 
 deb:
 	mv .git /tmp/pyccuracy_git
-	python -c 'import os;os.system("debuild")'
+	python -c 'import os;os.system("debuild -tc")'
 	mv /tmp/pyccuracy_git .git
