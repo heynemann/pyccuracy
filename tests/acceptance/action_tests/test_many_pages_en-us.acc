@@ -1,0 +1,19 @@
+As a Pyccuracy User
+I want to test that many pages can be registered
+So that I can make sure Pyccuracy works
+
+Scenario 1 - Navigate to OtherPage
+Given
+	I go to Other Page
+When
+	#The Page finishes loading
+Then
+	I see "text" div
+
+Scenario 2 - Navigate to YetAnotherPage
+Given
+	I go to Yet Another Page
+When
+	#The Page finishes loading
+Then
+	I see "text2" div

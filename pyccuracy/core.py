@@ -57,6 +57,10 @@ class PyccuracyCore(object):
         if not context:
             context = Context(settings)
 
+        context.on_before_action = kwargs.get('on_before_action', None)
+        context.on_action_successful = kwargs.get('on_action_successful', None)
+        context.on_action_error = kwargs.get('on_action_error', None)
+
         if not self.runner:
             self.runner = context.settings.worker_threads == 1 and StoryRunner() or ParallelStoryRunner(settings.worker_threads)
 
@@ -125,11 +129,13 @@ ${NORMAL}
         if not results:
             return
         ctrl = TerminalController()
+        print ctrl.render("${NORMAL}")
         print ctrl.render(results.summary_for(language))
         print "\n"
 
     def print_invalid_action(self, language, err):
         ctrl = TerminalController()
+        print ctrl.render("${NORMAL}")
         template_text = TemplateLoader(language).load("invalid_scenario")
         template = Template(template_text)
 

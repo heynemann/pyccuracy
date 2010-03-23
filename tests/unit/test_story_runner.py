@@ -28,9 +28,9 @@ def some_action():
     story = Story(as_a="Someone", i_want_to="Do Something", so_that="I'm Happy", identity="some file")
     scenario = story.append_scenario("1", "Something")
     return scenario.add_given(action_description="Some Action", \
-                               execute_function=lambda context, *args, **kwargs: None, \
-                               args=["s"], \
-                               kwargs={"a":"b"})
+                              execute_function=lambda context, *args, **kwargs: None, \
+                              args=["s"], \
+                              kwargs={"a":"b"})
 
 def test_story_runner_returns_a_result():
     settings = Settings()
@@ -116,6 +116,9 @@ def test_should_execute_scenarios_successfully():
     context.browser_driver = Mock()
     context.browser_driver.expects(once()).start_test(eq("http://localhost"))
     context.browser_driver.expects(once()).stop_test()
+    context.on_before_action = None
+    context.on_action_successful = None
+    context.on_action_error = None
 
     result = runner.run_stories(settings=settings, fixture=fixture, context=context)
 
@@ -137,6 +140,9 @@ def test_should_handle_action_errors_successfully():
     context.browser_driver = Mock()
     context.browser_driver.expects(once()).start_test(eq("http://localhost"))
     context.browser_driver.expects(once()).stop_test()
+    context.on_before_action = None
+    context.on_action_successful = None
+    context.on_action_error = None
 
     result = runner.run_stories(settings=settings, fixture=fixture, context=context)
 
@@ -158,6 +164,9 @@ def test_should_record_errors_correctly():
     context.browser_driver = Mock()
     context.browser_driver.expects(once()).start_test(eq("http://localhost"))
     context.browser_driver.expects(once()).stop_test()
+    context.on_before_action = None
+    context.on_action_successful = None
+    context.on_action_error = None
 
     result = runner.run_stories(settings=settings, fixture=fixture, context=context)
 

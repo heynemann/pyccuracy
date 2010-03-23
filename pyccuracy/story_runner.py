@@ -84,7 +84,7 @@ class StoryRunner(object):
 
     def execute_action(self, context, action):
         try:
-            action.execute_function(context, *action.args, **action.kwargs)
+            action.execute(context)
         except ActionNotFoundError:
             raise
         except ActionFailedError, err:
