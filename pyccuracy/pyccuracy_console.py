@@ -95,7 +95,7 @@ def update_progress(fixture, scenario, scenario_index):
             return
 
         current_progress = float(scenarios_ran) / total_scenarios
-        prg.update(current_progress, "Scenario %d of %d <%.2fs> - %s" % (scenarios_ran, total_scenarios, fixture.ellapsed(), scenario.title))
+        prg.update(current_progress, "[%s] Scenario %d of %d <%.2fs> - %s" % (scenario.status[0], scenarios_ran, total_scenarios, fixture.ellapsed(), scenario.title))
 
 def main(arguments=sys.argv[1:]):
     """ Main function - parses args and runs action """
