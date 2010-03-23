@@ -58,6 +58,9 @@ def test_story_runner_returns_a_result_with_a_Fixture():
     context.browser_driver = Mock()
     context.browser_driver.expects(once()).start_test(eq("http://localhost"))
     context.browser_driver.expects(once()).stop_test()
+    context.on_before_action = None
+    context.on_action_successful = None
+    context.on_action_error = None
 
     result = runner.run_stories(settings, fixture, context=context)
 
@@ -76,6 +79,9 @@ def test_story_runner_returns_a_result_with_the_original_Fixture():
     context.browser_driver = Mock()
     context.browser_driver.expects(once()).start_test(eq("http://localhost"))
     context.browser_driver.expects(once()).stop_test()
+    context.on_before_action = None
+    context.on_action_successful = None
+    context.on_action_error = None
 
     result = runner.run_stories(settings, fixture, context=context)
 
