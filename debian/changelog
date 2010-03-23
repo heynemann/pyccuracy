@@ -1,3 +1,9 @@
+python-pyccuracy (1.2.12) lenny; urgency=low
+
+  * Fixed story runner showing actions that have not been run yet.
+
+ -- Bernardo Heynemann <heynemann@gmail.com>  Tue, 23 Mar 2010 14:39:00 -0300
+
 python-pyccuracy (1.2.11) lenny; urgency=low
 
   * Minor fixes over 1.2.10.
