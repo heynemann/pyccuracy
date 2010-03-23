@@ -1,3 +1,9 @@
+python-pyccuracy (1.2.11) lenny; urgency=low
+
+  * Minor fixes over 1.2.10.
+
+ -- Bernardo Heynemann <heynemann@gmail.com>  Tue, 23 Mar 2010 12:00:00 -0300
+
 python-pyccuracy (1.2.10) lenny; urgency=low
 
   * New verbosity (4) fixed. Now the action displays before 
