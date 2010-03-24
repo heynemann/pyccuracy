@@ -1,3 +1,9 @@
+python-pyccuracy (1.2.14) lenny; urgency=low
+
+  * Fixed parallel story runner.
+
+ -- Bernardo Heynemann <heynemann@gmail.com>  Wed, 24 Mar 2010 17:54:00 -0300
+
 python-pyccuracy (1.2.13) lenny; urgency=low
 
   * Minor fixes over 1.2.12.
