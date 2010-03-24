@@ -92,22 +92,22 @@ class Action(StatusItem, TimedItem):
         self.kwargs = kwargs
 
     def execute(self, context):
-        if context.on_before_action:
-            context.on_before_action(context, self, self.args, self.kwargs)
+        if context.settings.on_before_action:
+            context.settings.on_before_action(context, self, self.args, self.kwargs)
         try:
             self.execute_function(context, *self.args, **self.kwargs)
-            if context.on_action_successful:
-                context.on_action_successful(context, self, self.args, self.kwargs)
+            if context.settings.on_action_successful:
+                context.settings.on_action_successful(context, self, self.args, self.kwargs)
         except ActionNotFoundError:
             raise
         except ActionFailedError, err:
-            if context.on_action_error:
-                context.on_action_error(context, self, self.args, self.kwargs, err)
+            if context.settings.on_action_error:
+                context.settings.on_action_error(context, self, self.args, self.kwargs, err)
             self.mark_as_failed(err)
             return False
         except Exception, err:
-            if context.on_action_error:
-                context.on_action_error(context, self, self.args, self.kwargs, err)
+            if context.settings.on_action_error:
+                context.settings.on_action_error(context, self, self.args, self.kwargs, err)
             self.mark_as_failed(ValueError("Error executing action %s - %s" % (self.execute_function, traceback.format_exc(err))))
             return False
 
