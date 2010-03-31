@@ -125,11 +125,13 @@ ${NORMAL}
         if not results:
             return
         ctrl = TerminalController()
+        print ctrl.render("${NORMAL}")
         print ctrl.render(results.summary_for(language))
         print "\n"
 
     def print_invalid_action(self, language, err):
         ctrl = TerminalController()
+        print ctrl.render("${NORMAL}")
         template_text = TemplateLoader(language).load("invalid_scenario")
         template = Template(template_text)
 

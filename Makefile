@@ -97,8 +97,8 @@ acceptance:
 	@echo "Starting tests..."
 	@echo "================="
 
-	@PYTHONPATH=`pwd`/pyccuracy/:$$PYTHONPATH python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "*en-us.acc" -l en-us -v 0
-	@PYTHONPATH=`pwd`/pyccuracy/:$$PYTHONPATH python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "*pt-br.acc" -l pt-br -v 0
+	@PYTHONPATH=`pwd`/pyccuracy/:$$PYTHONPATH python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "*en-us.acc" -l en-us -v 3
+	@PYTHONPATH=`pwd`/pyccuracy/:$$PYTHONPATH python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "*pt-br.acc" -l pt-br -v 3
 	@-make selenium_down
 
 dist: clean
@@ -118,5 +118,6 @@ docs:
 
 deb:
 	mv .git /tmp/pyccuracy_git
-	python -c 'import os;os.system("debuild")'
+	python -c 'import os;os.system("debuild -tc")'
 	mv /tmp/pyccuracy_git .git
+	mv ../python-pyccuracy_*.deb ./releases

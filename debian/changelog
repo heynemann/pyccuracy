@@ -1,3 +1,46 @@
+python-pyccuracy (1.2.14) lenny; urgency=low
+
+  * Fixed parallel story runner.
+
+ -- Bernardo Heynemann <heynemann@gmail.com>  Wed, 24 Mar 2010 17:54:00 -0300
+
+python-pyccuracy (1.2.13) lenny; urgency=low
+
+  * Minor fixes over 1.2.12.
+
+ -- Bernardo Heynemann <heynemann@gmail.com>  Tue, 23 Mar 2010 14:54:00 -0300
+
+python-pyccuracy (1.2.12) lenny; urgency=low
+
+  * Fixed story runner showing actions that have not been run yet.
+
+ -- Bernardo Heynemann <heynemann@gmail.com>  Tue, 23 Mar 2010 14:39:00 -0300
+
+python-pyccuracy (1.2.11) lenny; urgency=low
+
+  * Minor fixes over 1.2.10.
+
+ -- Bernardo Heynemann <heynemann@gmail.com>  Tue, 23 Mar 2010 12:00:00 -0300
+
+python-pyccuracy (1.2.10) lenny; urgency=low
+
+  * New verbosity (4) fixed. Now the action displays before 
+    it runs as white and after as green or red.
+
+ -- Bernardo Heynemann <heynemann@gmail.com>  Tue, 23 Mar 2010 11:22:00 -0300
+
+python-pyccuracy (1.2.9) lenny; urgency=low
+
+  * New verbosity (4) added for real-time visualization of what Pyccuracy is doing.
+
+ -- Bernardo Heynemann <heynemann@gmail.com>  Mon, 22 Mar 2010 22:01:00 -0300
+
+python-pyccuracy (1.2.8) lenny; urgency=low
+
+  * New upstream release.
+
+ -- Gabriel Falcão Gonçalves de Moura <gabriel@nacaolivre.org>  Tue, 15 Dec 2009 18:57:05 -0200
+
 python-pyccuracy (1.2.7) lenny; urgency=low
 
   * New upstream release.

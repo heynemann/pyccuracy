@@ -10,9 +10,5 @@ include /usr/share/cdbs/1/class/python-distutils.mk
 build/python-pyccuracy::
 	rm -rf docs/_build/html/_sources/
 
-binary-post-install/python-pyccuracy::
-	test -f debian/python-pyccuracy/usr/bin/pyccuracy_console.py && mv -f debian/python-pyccuracy/usr/bin/pyccuracy_console.py debian/python-pyccuracy/usr/bin/pyccuracy_console
-	perl -pi -e 's|^#!/usr/bin/env python.*$$|#!/usr/bin/python|' debian/python-pyccuracy/usr/bin/pyccuracy_console
-
 clean::
 	rm -rf docs/_build/*

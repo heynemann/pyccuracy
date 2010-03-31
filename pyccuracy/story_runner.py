@@ -83,19 +83,7 @@ class StoryRunner(object):
             context.browser_driver.stop_test()
 
     def execute_action(self, context, action):
-        try:
-            action.execute_function(context, *action.args, **action.kwargs)
-        except ActionNotFoundError:
-            raise
-        except ActionFailedError, err:
-            action.mark_as_failed(err)
-            return False
-        except Exception, err:
-            action.mark_as_failed(ValueError("Error executing action %s - %s" % (action.execute_function, traceback.format_exc(err))))
-            return False
-
-        action.mark_as_successful()
-        return True
+        return action.execute(context)
 
     def create_context_for(self, settings):
         return Context(settings)
