@@ -28,9 +28,9 @@ from pyccuracy.drivers.core.xpath_element_selector import *
 class WebDriverDriver(BaseDriver):
     backend = 'webdriver'
     
-    def __init__(self, context, selenium=None):
+    def __init__(self, context, webdriver=None):
         self.context = context
-        self.selenium = selenium
+        self.webdriver = webdriver
     
     def start_test(self, url=None):
         self.webdriver = WebDriver()
@@ -47,7 +47,7 @@ class WebDriverDriver(BaseDriver):
         self.webdriver.get(url)
     
     def wait_for_page(self, timeout=10000):
-        # Does not make sense for WebDriver.
+        # Does not make sense for WebDriver because it always wait for page to load.
         pass
     
     def click_element(self, element_selector):
@@ -55,8 +55,50 @@ class WebDriverDriver(BaseDriver):
     
     def get_title(self):
         return self.webdriver.get_title()
-	
-	#TODO
+    
+    def check_css_style_is_visible(self, style):
+        styles = style.split(';')
+        for each_style in [s for s in styles if s != '']:
+            name, value = each_style.split(':')
+            name = name.strip().lower()
+            value = value.strip().lower()
+            if (name == 'visibility' and value == 'hidden') or (name == 'display' and value == 'none'):
+                return False
+        return True
+    
+    # TODO: REALLY poor performance, there must be a better way to do that hacking WebDriver
+    def is_element_visible_by_css(self, element):
+        style = ''
+        try:
+            style = element.get_attribute('style')
+        except ErrorInResponseException, e:
+            # if there was an error, assume that there's no style and continue
+            pass
+        
+        parent = None
+        has_parent = True
+        
+        while has_parent:
+            try:
+                parent = element.find_element_by_xpath('..')
+            except ErrorInResponseException, e:
+                # if there was an error, assume that there's no parent anymore and return
+                has_parent = False
+                # returns when there is no more parents
+                return self.check_css_style_is_visible(style)
+            
+            try:
+                style = '%s;%s' % (style, parent.get_attribute('style'))
+                # returns when finds out that it's not visible
+                if not self.check_css_style_is_visible(style):
+                    return False
+            except ErrorInResponseException, e:
+                # if there was an error, assume that there's no style and continue
+                pass
+            
+            # next
+            element = parent
+
     def is_element_visible(self, element_selector):
         try:
             element = self.webdriver.find_element_by_xpath(element_selector)
@@ -67,9 +109,7 @@ class WebDriverDriver(BaseDriver):
         except ElementNotVisibleException, e:
             return False
 
-#        visible = self.exec_js('argument[0].style.visibility != "hidden" && argument[0].style.display != "none"', element)
-#        return visible == 'true'
-        return True
+        return self.is_element_visible_by_css(element)
     
     def is_element_enabled(self, element_selector):
         return self.webdriver.find_element_by_xpath(element_selector).is_enabled()
@@ -99,16 +139,15 @@ class WebDriverDriver(BaseDriver):
         return False
     
     def get_element_text(self, element_selector):
-        return self.webdriver.find_element_by_xpath(element_selector).get_text()
+        return self.webdriver.find_element_by_xpath(element_selector).get_value()
     
     def get_element_markup(self, element_selector):
         elem = self.webdriver.find_element_by_xpath(element_selector)
         return self.exec_js('argument[0].innerHTML', elem)
     
     def drag_element(self, from_element_selector, to_element_selector):
-        # self.selenium.drag_and_drop_to_object(from_element_selector, to_element_selector)
-        raise NotImplementedError('Unfortunately Webdriver does not support drag-n-drop yet. \
-								   If you really need it, you will have to use Selenium driver.')
+        raise NotImplementedError('Unfortunately Webdriver does not support drag-n-drop yet. ' + \
+								   'If you really need it, you will have to use Selenium driver.')
     
     def mouseover_element(self, element_selector):
         elem = self.webdriver.find_element_by_xpath(element_selector)
@@ -131,15 +170,14 @@ class WebDriverDriver(BaseDriver):
     
     def get_selected_index(self, element_selector):
         elem = self.webdriver.find_element_by_xpath(element_selector)
-        return self.exec_js('argument[0].selectedIndex;' % index, elem)
+        return self.exec_js('argument[0].selectedIndex;', elem)
     
     def get_selected_value(self, element_selector):
-        elem = self.webdriver.find_element_by_xpath(element_selector)
-        return self.exec_js('argument[0].options[argument[0].selectedIndex].value;' % index, elem)
+        return self.webdriver.find_element_by_xpath(element_selector).get_value()
     
     def get_selected_text(self, element_selector):
         elem = self.webdriver.find_element_by_xpath(element_selector)
-        return self.exec_js('argument[0].options[argument[0].selectedIndex].innerText;' % index, elem)
+        return self.exec_js('argument[0].options[argument[0].selectedIndex].innerText;', elem)
     
     def select_option_by_index(self, element_selector, index):
         elem = self.webdriver.find_element_by_xpath(element_selector)
@@ -149,13 +187,13 @@ class WebDriverDriver(BaseDriver):
         elem = self.webdriver.find_element_by_xpath(element_selector)
         for index, option in enumerate(elem.find_elements_by_xpath('option')):
             if option.get_value() == value:
-                self.select_option_by_index(index)
+                self.select_option_by_index(element_selector, index)
     
     def select_option_by_text(self, element_selector, text):
         elem = self.webdriver.find_element_by_xpath(element_selector)
         for index, option in enumerate(elem.find_elements_by_xpath('option')):
             if option.get_text() == text:
-                self.select_option_by_index(index)
+                self.select_option_by_index(element_selector, index)
     
     def is_element_empty(self, element_selector):
         current_text = self.webdriver.find_element_by_xpath(element_selector).get_value()

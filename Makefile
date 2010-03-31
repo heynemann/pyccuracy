@@ -30,6 +30,7 @@ all: prepare_build compile test report_success
 test: prepare_build compile run_unit run_functional acceptance report_success
 unit: prepare_build compile run_unit report_success
 functional: prepare_build compile run_functional report_success
+acceptance: acceptance_selenium acceptance_webdriver
 prepare_build: clean create_build_dir
 clean: remove_build_dir remove_dist_dir
 	@find . -name '*.pyc' -delete
@@ -90,16 +91,22 @@ wait:
 	@echo "========================="
 	@sleep ${wait_time}
 
-acceptance:
+acceptance_selenium:
 	@make selenium_up
 	@make wait
-	@echo "================="
-	@echo "Starting tests..."
-	@echo "================="
-
-	@PYTHONPATH=`pwd`/pyccuracy/:$$PYTHONPATH python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "*en-us.acc" -l en-us -v 3
-	@PYTHONPATH=`pwd`/pyccuracy/:$$PYTHONPATH python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "*pt-br.acc" -l pt-br -v 3
+	@echo "=========================="
+	@echo "Starting Selenium tests..."
+	@echo "=========================="
+	@PYTHONPATH=`pwd`/pyccuracy/:$$PYTHONPATH python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "*en-us.acc" -l en-us -v 1
+	@PYTHONPATH=`pwd`/pyccuracy/:$$PYTHONPATH python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "*pt-br.acc" -l pt-br -v 1
 	@-make selenium_down
+
+acceptance_webdriver:	
+	@echo "==========================="
+	@echo "Starting WebDriver tests..."
+	@echo "==========================="
+	@PYTHONPATH=`pwd`/pyccuracy/:$$PYTHONPATH python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "*en-us.acc" -l en-us -v 1 -e "webdriver"
+	@PYTHONPATH=`pwd`/pyccuracy/:$$PYTHONPATH python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "*pt-br.acc" -l pt-br -v 1 -e "webdriver"
 
 dist: clean
 	@echo "Running a build..."
