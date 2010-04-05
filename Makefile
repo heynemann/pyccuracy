@@ -15,6 +15,8 @@ compile_log_file=${build_dir}/compile.log
 unit_log_file=${build_dir}/unit.log
 functional_log_file=${build_dir}/functional.log
 
+browser="firefox"
+
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
 	@echo "  all         to run a complete build"
@@ -97,8 +99,8 @@ acceptance:
 	@echo "Starting tests..."
 	@echo "================="
 
-	@PYTHONPATH=`pwd`/pyccuracy/:$$PYTHONPATH python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "*en-us.acc" -l en-us -v 3
-	@PYTHONPATH=`pwd`/pyccuracy/:$$PYTHONPATH python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "*pt-br.acc" -l pt-br -v 3
+	@PYTHONPATH=`pwd`/pyccuracy/:$$PYTHONPATH python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "*en-us.acc" -l en-us -v 3 -b ${browser}
+	@PYTHONPATH=`pwd`/pyccuracy/:$$PYTHONPATH python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "*pt-br.acc" -l pt-br -v 3 -b ${browser}
 	@-make selenium_down
 
 dist: clean
