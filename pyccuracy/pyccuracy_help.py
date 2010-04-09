@@ -1,5 +1,5 @@
-import sys
 import optparse
+
 from help import LanguageViewer
 
 def show_terms(term, language):
