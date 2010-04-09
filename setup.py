@@ -55,6 +55,7 @@ setup(
     entry_points = {
         'console_scripts': [
             'pyccuracy_console = pyccuracy.pyccuracy_console:console',
+            'pyccuracy_help = pyccuracy.pyccuracy_help:console',
         ],
     },
 

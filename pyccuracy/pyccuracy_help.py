@@ -1,4 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import optparse
+import sys
 
 from help import LanguageViewer
 
@@ -10,7 +13,7 @@ def show_terms(term, language):
         print '%-35s = %s' % (name, value)
     print '\n----- Found %d results for "%s" -----\n' % (len(actions), term if term is not '' else '*')
 
-if __name__ == '__main__':
+def main(arguments=sys.argv[1:]):
     info = '''
 --------------------------------------------------------------------------------------
 Use %prog to get quick assistance on the expressions available for Pyccuracy.
@@ -34,3 +37,9 @@ $ %prog --language pt-br --term textboxes
     options, args = parser.parse_args()
 
     show_terms(options.term, options.language)
+
+def console():
+    sys.exit(main(sys.argv[1:]))
+
+if __name__ == "__main__":
+    console()
