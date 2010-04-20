@@ -1,0 +1,21 @@
+h1. Pyccuracy
+
+Good quality and bug-free software is always a hard constraint to respect in software development projects. Talking specifically about "acceptance tests":http://en.wikipedia.org/wiki/Acceptance_testing, the tools to help you develop them are sometimes hard to use and the test scripts can become very difficult to maintain. Writing tests can be a cumbersome, tedious and slow task and sometimes the cost of automating those tests can be so high that you will end up doing manual testing.
+ 
+"Pyccuracy":http://pyccuracy.org is a "Behaviour-Driven-Development-style":http://behaviour-driven.org tool written in Python that aims to make it easier to write automated acceptance tests. It improves the readability of those tests by using a structured natural language - and a simple mechanism to extend this language - so that both developers and customers can collaborate and understand what the tests do.
+
+Pyccuracy was initially just an abstraction layer for "Selenium":http://seleniumhq.org to facilitate web applications testing, but it is evolving to a mechanism that could use many "Browser Drivers".
+
+h2. Usage help
+
+For usage help, please install the latest version of Pyccuracy and execute the *pyccuracy_help* command line tool to get quick assistance on the expressions available.
+
+Our "website":http://pyccuracy.org would be the second resource for help, but is not very up-to-date (sorry, we will work on that soon).
+
+h2. Get in touch with the team!
+
+  * "Bernardo Heynemann":http://github.com/heynemann ("@heynemann":http://twitter.com/heynemann)
+  * "Claudio Figueiredo":http://github.com/jcfigueiredo ("@jcfigueiredo":http://twitter.com/jcfigueiredo)
+  * "Gabriel Falcão":http://github.com/gabrielfalcao ("@gabrielfalcao":http://twitter.com/gabrielfalcao)
+  * "Guilherme Chapiewski":http://github.com/guilhermechapiewski ("@gchapiewski":http://twitter.com/gchapiewski)
+  
