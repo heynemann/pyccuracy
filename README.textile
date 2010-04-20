@@ -12,10 +12,15 @@ For usage help, please install the latest version of Pyccuracy and execute the *
 
 Our "website":http://pyccuracy.org would be the second resource for help, but is not very up-to-date (sorry, we will work on that soon).
 
-h2. Get in touch with the team!
+h2. Mailing list
+
+Join the "Pyccuracy mailing list at Google Groups":http://groups.google.com/group/pyccuracy to discuss and get support from the community and team.
+
+h2. Get in touch with the team
+
+If you have further questions, please contact the team:
 
   * "Bernardo Heynemann":http://github.com/heynemann ("@heynemann":http://twitter.com/heynemann)
   * "Claudio Figueiredo":http://github.com/jcfigueiredo ("@jcfigueiredo":http://twitter.com/jcfigueiredo)
   * "Gabriel Falcão":http://github.com/gabrielfalcao ("@gabrielfalcao":http://twitter.com/gabrielfalcao)
   * "Guilherme Chapiewski":http://github.com/guilhermechapiewski ("@gchapiewski":http://twitter.com/gchapiewski)
-  
