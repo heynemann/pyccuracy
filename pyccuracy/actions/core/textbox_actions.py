@@ -66,10 +66,12 @@ class TextboxTypeSlowlyAction(ActionBase):
     regex = LanguageItem("textbox_type_keys_regex")
 
     def execute(self, context, textbox_name, text):
+        # Needed to work on Safari/Mac OS - Selenium bug?
+        # I observed that it's only possible to type_keys after type_text once.
+        TextboxTypeAction().execute(context, textbox_name, text)
+        
+        # now typyng slowly...
         textbox_key = self.resolve_element_key(context, Page.Textbox, textbox_name)
-
-        error_message = context.language.format("element_is_visible_failure", "textbox", textbox_name)
-        self.assert_element_is_visible(context, textbox_key, error_message)
         context.browser_driver.type_keys(textbox_key, text)
 
 class TextboxCleanAction(ActionBase):
