@@ -19,3 +19,4 @@ python-build-stamp*
 *report.html
 .coverage
 Pyccuracy.egg-info
+actions_reference.textile

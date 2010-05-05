@@ -19,7 +19,7 @@ browser="firefox"
 pattern="*"
 
 help:
-	@echo "Please use \`make <target>' where <target> is one of"
+	@echo "Please use 'make <target>' where <target> is one of"
 	@echo "  all         to run a complete build"
 	@echo "  clean       to clear the build dir"
 	@echo "  compile     to compile all python files"
@@ -115,9 +115,9 @@ upload: clean
 	@echo "Build finished successfully and uploaded!"
 
 docs:
-	@$(MAKE) -C ./docs -f Makefile clean
-	@$(MAKE) -C ./docs -f Makefile html
-	tar -cf ./docs/current_docs.tar ./docs/build/html/*
+	@python pyccuracy/actions/core/__init__.py > actions_reference.textile
+	@echo -e "\nFile 'actions_reference.textile' was generated.\n"
+	@echo -e "Don't forget to update http://wiki.github.com/heynemann/pyccuracy/actions-reference.\n"
 
 deb:
 	mv .git /tmp/pyccuracy_git

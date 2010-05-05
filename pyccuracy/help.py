@@ -32,12 +32,12 @@ class LanguageViewer(object):
                 splitted_left_operand = left.split('_')
                 if splitted_left_operand[-1] == 'regex' and splitted_left_operand[0] in self.ACTIONS:
                     action_name = '_'.join(splitted_left_operand[:-1])
-                    new_right_value = self._make_it_readable(right)
+                    new_right_value = self.make_it_readable(right)
                     self.actions[action_name] = new_right_value
 
         language_file.close()
 
-    def _make_it_readable(self, value):
+    def make_it_readable(self, value):
         value = value.replace('(?P<url>[\\"]([\w:/._-]+)[\\"]|([\w\s_.-]+))$', '[page|"url"]') #replace urls
         value = re.sub(r'\(\?\P\<([\w\s]*)\>\<([\w\s]*)\>\)', r'[\1|\2]', value)
         value = re.sub(r'\(\?\P\<([\w\s]*)\>\[\^\"\]\+\)', r'\1', value)
