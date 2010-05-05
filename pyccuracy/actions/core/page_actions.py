@@ -12,6 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+'''Page actions are actions that have a specific impact in the browser, like navigating to a different page.
+
+This is a *very important* category of actions, since almost any single test relies on navigating to a given page.'''
+
 import time
 
 from pyccuracy.page import PageRegistry, Page
