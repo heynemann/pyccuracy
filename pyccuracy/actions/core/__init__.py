@@ -16,6 +16,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+'''h1. Pyccuracy Built-In Actions
+
+Pyccuracy comes with a set of actions that allow the user to control the browser in the most usual ways, like clicking a link or checking if a textbox contains a given text.
+
+If you want to create your own actions you can learn more about it at the [[Creating custom Actions]] page.
+
+Pyccuracy's actions are divided in categories according to the element they relate to: element, checkbox, image, link, page, radio, select and textbox.
+
+If you are not sure about the action you are looking for we *ALWAYS* advise you to look in the [[Element Actions]] page, because that's where most of the fun is.
+
+We'll list in the pages linked below the syntax for each action in all the languages that come baked-in with Pyccuracy.'''
+
 from os.path import dirname, abspath, join, split
 from glob import glob
 import codecs
