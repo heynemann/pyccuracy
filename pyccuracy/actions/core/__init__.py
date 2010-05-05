@@ -37,7 +37,8 @@ base_path = abspath(dirname(__file__))
 pattern = join(base_path, "*.py")
 __all__ = [split(x)[1][:-3] for x in glob(pattern)]
 
-def generate_textile_docs_en_us():
+def generate_textile_docs():
+    # loading modules only here when they are needed
     from pyccuracy.actions import core as core_actions, ActionBase, MetaActionBase
     from pyccuracy.languages import LanguageGetter
     from pyccuracy.help import LanguageViewer
@@ -49,11 +50,15 @@ def generate_textile_docs_en_us():
     language_enus = LanguageGetter("en-us")
     language_ptbr = LanguageGetter("pt-br")
     
-    for module in [module for module in core_actions.__dict__.values() if str(type(module)) == "<type 'module'>" and "_actions" in str(module.__name__)]:
+    custom_action_modules = [module for module in core_actions.__dict__.values() if str(type(module)) == "<type 'module'>" and "_actions" in str(module.__name__)]
+    for module in custom_action_modules:
         print "h1. %s" % module.__name__.replace('pyccuracy.actions.core.', '').replace('_', ' ').capitalize()
+        print
         print module.__doc__
+        print
         
-        for action in [action for action in module.__dict__.values() if type(action) == MetaActionBase and action != ActionBase]:
+        module_actions = [action for action in module.__dict__.values() if type(action) == MetaActionBase and action != ActionBase]
+        for action in module_actions:
             print "h2. %s" % viewer.make_it_readable(language_enus.get(action.regex)).replace("(And )", "")
             print
             print "*Regex (en-us):* <pre><code>%s</code></pre>" % language_enus.get(action.regex)
@@ -69,5 +74,5 @@ def generate_textile_docs_en_us():
             print
     
 if __name__ == "__main__":
-    generate_textile_docs_en_us()
+    generate_textile_docs()
     
