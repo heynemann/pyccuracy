@@ -19,7 +19,20 @@ from pyccuracy.actions import ActionBase
 from pyccuracy.languages import LanguageItem
 
 class PageGoToAction(ActionBase):
-    '''Navigates to a page or url.'''
+    '''h3. Example
+
+And I go to My Custom Page
+And I go to "http://www.google.com"
+
+h3. Description
+
+This action tells Pyccuracy that the current browser driver ([[Creating a custom Browser Driver]]) should navigate to the URL that's registered in the specified page. Other than that, it also changes that current page in Pyccuracy's context to the specified one. This means that Pyccuracy will start using the registered elements and url in the specified page. 
+
+For more information on creating custom pages check the [[Creating custom Pages]] page.
+
+If you specify an url directly, Pyccuracy sets the current page to None and you can't use registered elements. That might make sense for some scenarios, but is the least preferred way of using this action.
+
+This action also issues automatically a wait for page to load action after navigating. This is important to make sure that the following actions work with a properly loaded page.'''
     regex = LanguageItem('page_go_to_regex')
 
     def execute(self, context, url):
@@ -41,7 +54,17 @@ class PageGoToAction(ActionBase):
                     context.current_page.register()
 
 class PageAmInAction(ActionBase):
-    '''Changes the current page without actually navigating to it.'''
+    '''h3. Example
+
+And I am in My Custom Page
+
+h3. Description
+
+This action tells Pyccuracy that it should change the current page (as far as registered elements and url go) to a given page.
+
+The same rule for direct urls of Go to Page applies to this action.
+
+Other than that, this action does not do anything. The main purpose of this action is responding to some client event or redirect that might have changed the current page without our direct action (like submitting a form that redirects us to a different page).'''
     regex = LanguageItem("page_am_in_regex")
 
     def execute(self, context, url):
@@ -60,15 +83,29 @@ class PageAmInAction(ActionBase):
             raise self.failed(context.language.format("page_am_in_failure", url))
 
 class PageSeeTitleAction(ActionBase):
-    '''Verifies that the current page's title matches the specified one. Raises otherwise.'''
-    regex = LanguageItem('page_see_title_regex')
+    '''h3. Example
+
+And I see "whatever" title
+
+h3. Description
+
+This action asserts that the currently loaded page's title (Browser title) is the specified one. '''
+    regex = LanguageItem("page_see_title_regex")
 
     def execute(self, context, title):
-        expected_title = context.browser_driver.get_title()
-        if (title != expected_title):
-            raise self.failed(context.language.format("page_see_title_failure", title, expected_title))
+        actual_title = context.browser_driver.get_title()
+        if (actual_title != title):
+            msg = context.language.format("page_see_title_failure", actual_title, title)
+            raise self.failed(msg)
 
 class PageCheckContainsMarkupAction(ActionBase):
+    '''h3. Example
+
+And I see that current page contains "&lt;p&gt;expected markup&lt;/p&gt;"
+
+h3. Description
+
+This action asserts that the currently loaded page's mark-up contains the given mark-up.'''
     regex = LanguageItem("page_check_contains_markup_regex")
 
     def execute(self, context, expected_markup):
@@ -79,6 +116,13 @@ class PageCheckContainsMarkupAction(ActionBase):
             raise self.failed(msg)
 
 class PageCheckDoesNotContainMarkupAction(ActionBase):
+    '''h3. Example
+
+And I see that current page does not contain "&lt;p&gt;expected markup&lt;/p&gt;"
+
+h3. Description
+
+This action asserts that the currently loaded page's mark-up *does not* contain the given mark-up.'''
     regex = LanguageItem("page_check_does_not_contain_markup_regex")
 
     def execute(self, context, expected_markup):
@@ -88,16 +132,15 @@ class PageCheckDoesNotContainMarkupAction(ActionBase):
             msg = context.language.format("page_check_does_not_contain_markup_failure", expected_markup)
             raise self.failed(msg)
 
-class PageSeeTitleAction(ActionBase):
-    regex = LanguageItem("page_see_title_regex")
-
-    def execute(self, context, title):
-        actual_title = context.browser_driver.get_title()
-        if (actual_title != title):
-            msg = context.language.format("page_see_title_failure", actual_title, title)
-            raise self.failed(msg)
-
 class PageWaitForPageToLoadAction(ActionBase):
+    '''h3. Examples
+
+And I wait for the page to load
+And I wait for the page to load for 5 seconds
+
+h3. Description
+
+This action instructs the browser driver to wait for a given number of seconds for the page to load. If it times out, the test fails.'''
     regex = LanguageItem("page_wait_for_page_to_load_regex")
 
     def execute(self, context, timeout):
@@ -112,6 +155,15 @@ class PageWaitForPageToLoadAction(ActionBase):
             context.browser_driver.wait_for_page()
 
 class PageWaitForSecondsAction(ActionBase):
+    '''h3. Example
+
+And I wait for 5 seconds
+And I wait for 1 second
+And I wait for 3.4 seconds
+
+h3. Description
+
+This action is just a proxy to Python's time.sleep function. It just hangs for a given number of seconds.'''
     regex = LanguageItem("page_wait_for_seconds_regex")
 
     def execute(self, context, timeout):
