@@ -4,7 +4,7 @@ h1. Pyccuracy
 
 h2. Help
 
-Please check "our documentation":http://wiki.github.com/heynemann/pyccuracy/. For quick usage help use the *pyccuracy_help* command line tool.
+Please check "our documentation":http://pyccuracy.org/. For quick usage help use the *pyccuracy_help* command line tool.
 
 h2. Mailing list
 
