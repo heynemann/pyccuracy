@@ -23,11 +23,11 @@ from pyccuracy.languages import LanguageItem
 class ImageHasSrcOfAction(ActionBase):
     '''h3. Example
 
-      * And I see "logo" image has src of "images/logo.png"
+  * And I see "logo" image has src of "images/logo.png"
 
-    h3. Description
+h3. Description
 
-    This action asserts that an image has the given src attribute.'''
+This action asserts that an image has the given src attribute.'''
     regex = LanguageItem("image_has_src_regex")
 
     def execute(self, context, image_name, src):
@@ -44,11 +44,11 @@ class ImageHasSrcOfAction(ActionBase):
 class ImageDoesNotHaveSrcOfAction(ActionBase):
     '''h3. Example
 
-      * And I see "logo" image does not have src of "images/logo.png"
+  * And I see "logo" image does not have src of "images/logo.png"
 
-    h3. Description
+h3. Description
 
-    This action asserts that an image does not have the given src attribute.'''
+This action asserts that an image does not have the given src attribute.'''
     regex = LanguageItem("image_does_not_have_src_regex")
 
     def execute(self, context, image_name, src):
