@@ -53,3 +53,20 @@ def test_should_not_allow_registering_two_elements_with_same_name():
         assert False, "Should not get here."
     except ElementAlreadyRegisteredError, e:
         pass
+
+def test_should_allow_registering_two_elements_with_same_name_in_different_pages():
+    class GloboPortal(Page):
+        url = 'http://globo.com'
+        def register(self):
+            self.register_element('my div', u"//div[1]")
+
+    class YahooPortal(Page):
+        url = 'http://yahoo.com'
+        def register(self):
+            self.register_element('my div', u"//div[1]")
+
+    try:
+        g = GloboPortal()
+        y = YahooPortal()
+    except ElementAlreadyRegisteredError, e:
+        assert False, "Should not get here."
