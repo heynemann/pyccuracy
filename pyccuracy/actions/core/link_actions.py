@@ -21,6 +21,13 @@ from pyccuracy.actions import ActionBase
 from pyccuracy.languages import LanguageItem
 
 class LinkHasHrefOfAction(ActionBase):
+    '''h3. Example
+
+  * And I see "logout" link has "/app/logout" href
+
+h3. Description
+
+This action asserts that a link has the given href attribute.'''
     regex = LanguageItem("link_has_href_regex")
 
     def execute(self, context, link_name, href):
