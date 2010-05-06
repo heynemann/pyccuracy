@@ -12,16 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-'''
-Element actions can be used for any registered element - more about registering elements at [[Creating custom Pages]].
-
-The majority of Pyccuracy's actions are in this category, like clicking elements or verifying that they contain a given style.
+u'''
+Element actions can be used for any registered element (more about registering elements at "[[Creating custom Pages]]" section). The majority of Pyccuracy's actions are in this category, like clicking elements or verifying that they contain a given style.
 
 Whenever you see element_name, it means the name of the registered element or the attribute "name" or "id" of the given element.
 
 Whenever you see [element_type|element_selector] what this means is that you have to use one of the following:
 
-en-us:
+h3. en-us:
   * button
   * radio button
   * div 
@@ -35,7 +33,7 @@ en-us:
   * li
   * element (only use this if none of the above apply)
 
-pt-br:
+h3. pt-br:
   * botão 
   * radio 
   * div 
@@ -142,8 +140,8 @@ This action instructs the browser driver to click the given element. If the "and
 class ElementIsVisibleAction(ActionBase):
     '''h3. Examples
 
-And I see "some" button
-And I see "other" checkbox
+  * And I see "some" button
+  * And I see "other" checkbox
 
 h3. Description
 
@@ -159,8 +157,8 @@ This action asserts that the given element is visible.'''
 class ElementIsNotVisibleAction(ActionBase):
     '''h3. Examples
 
-And I do not see "some" button
-And I do not see "other" checkbox
+  * And I do not see "some" button
+  * And I do not see "other" checkbox
 
 h3. Description
 
@@ -176,8 +174,8 @@ This action asserts that the given element is not visible.'''
 class ElementIsEnabledAction(ActionBase):
     '''h3. Examples
 
-And I see "some" button is enabled
-And I see "other" textbox is enabled
+  * And I see "some" button is enabled
+  * And I see "other" textbox is enabled
 
 h3. Description
 
@@ -197,8 +195,8 @@ This action asserts that the given element is enabled.'''
 class ElementIsDisabledAction(ActionBase):
     '''h3. Examples
 
-And I see "some" button is disabled
-And I see "other" textbox is disabled
+  * And I see "some" button is disabled
+  * And I see "other" textbox is disabled
 
 h3. Description
 
