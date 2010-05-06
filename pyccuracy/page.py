@@ -150,8 +150,8 @@ class Page(object):
         return self.registered_elements[element_key]
 
     def register_element(self, element_key, element_locator):
-        if self.registered_elements.has_key(element_key):
-            error_message = "The element with name '%s' is already registered (and its locator is '%s')." % (element_key, self.get_registered_element(element_key))
+        if self.registered_elements.has_key(element_key) and self.get_registered_element(element_key) != element_locator:
+            error_message = "You are trying to register an element with name '%s' in %s with locator '%s', but it is already registered with a different locator ('%s')." % (element_key, self.__class__, element_locator, self.get_registered_element(element_key))
             raise ElementAlreadyRegisteredError(error_message)
         self.registered_elements[element_key] = element_locator
 
