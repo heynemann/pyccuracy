@@ -6,11 +6,16 @@ Scenario 1 - Checking that we can type the text in the textboxes
 Given
     I go to "textbox_tests.htm"
 When
-    I slowly fill "txtSomething" textbox with "Monty Python"
-    And I slowly fill "txtSomething2" textbox with "Monty Python"
-    And I slowly fill "txtSomething3" textbox with "Monty Python"
-    And I slowly fill "txtSomethingElse" textbox with "Monty Python"
-    And I slowly fill "txtSomethingElse2" textbox with "Monty Python"
-    And I slowly fill "txtSomethingElse3" textbox with "Monty Python"
+    I slowly fill "txtSomething" textbox with "Monty Python 1"
+    And I slowly fill "txtSomething2" textbox with "Monty Python 2"
+    And I slowly fill "txtSomething3" textbox with "Monty Python 3"
+    And I slowly fill "txtSomethingElse" textbox with "Monty Python 4"
+    And I slowly fill "txtSomethingElse2" textbox with "Monty Python 5"
+    And I slowly fill "txtSomethingElse3" textbox with "Monty Python 6"
 Then
-    #The textboxes are filled
+    I see "txtSomething" textbox matches "Monty Python 1"
+    And I see "txtSomething2" textbox matches "Monty Python 2"
+    And I see "txtSomething3" textbox matches "Monty Python 3"
+    And I see "txtSomethingElse" textbox matches "Monty Python 4"
+    And I see "txtSomethingElse2" textbox matches "Monty Python 5"
+    And I see "txtSomethingElse3" textbox matches "Monty Python 6"

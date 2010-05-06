@@ -94,9 +94,10 @@ This action types the given text in the given textbox. The difference between "s
     regex = LanguageItem("textbox_type_keys_regex")
 
     def execute(self, context, textbox_name, text):
-        # Needed to work on Safari/Mac OS - Selenium bug?
-        # I observed that it's only possible to type_keys after type_text once.
-        TextboxTypeAction().execute(context, textbox_name, text)
+        if context.settings.browser_to_run == "safari":
+            # Needed to work on Safari/Mac OS - Selenium bug?
+            # I observed that it's only possible to type_keys after type_text once.
+            TextboxTypeAction().execute(context, textbox_name, text)
         
         # now typyng slowly...
         textbox_key = self.resolve_element_key(context, Page.Textbox, textbox_name)
