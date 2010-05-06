@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-'''
+u'''
 Element actions can be used for any registered element - more about registering elements at [[Creating custom Pages]].
 
 The majority of Pyccuracy's actions are in this category, like clicking elements or verifying that they contain a given style.
