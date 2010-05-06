@@ -59,29 +59,27 @@ def generate_textile_docs():
     
     custom_action_modules = [module for module in core_actions.__dict__.values() if str(type(module)) == "<type 'module'>" and "_actions" in str(module.__name__)]
     for module in custom_action_modules:
-        # inclue only documented modules
+        print "h1. %s" % module.__name__.replace('pyccuracy.actions.core.', '').replace('_', ' ').capitalize()
+        print
         if module.__doc__:
-            print "h1. %s" % module.__name__.replace('pyccuracy.actions.core.', '').replace('_', ' ').capitalize()
-            print
             print module.__doc__
             print
-        
-            module_actions = [action for action in module.__dict__.values() if type(action) == MetaActionBase and action != ActionBase]
-            for action in module_actions:
-                # include only documented actions
-                if action.__doc__:
-                    print "h2. %s" % viewer.make_it_readable(language_enus.get(action.regex)).replace("(And )", "")
-                    print
-                    print "h3. Syntax"
-                    print
-                    print "<pre><code># en-us\n%s\n \n# pt-br\n%s</code></pre>" % (viewer.make_it_readable(language_enus.get(action.regex)), viewer.make_it_readable(language_ptbr.get(action.regex)))
-                    print
-                    print "h3. Regex"    
-                    print
-                    print "<pre><code># en-us\n%s\n \n# pt-br\n%s</code></pre>" % (language_enus.get(action.regex), language_ptbr.get(action.regex))
-                    print
-                    print action.__doc__
-                    print
+    
+        module_actions = [action for action in module.__dict__.values() if type(action) == MetaActionBase and action != ActionBase]
+        for action in module_actions:
+            print "h2. %s" % viewer.make_it_readable(language_enus.get(action.regex)).replace("(And )", "")
+            print
+            print "h3. Syntax"
+            print
+            print "<pre><code># en-us\n%s\n \n# pt-br\n%s</code></pre>" % (viewer.make_it_readable(language_enus.get(action.regex)), viewer.make_it_readable(language_ptbr.get(action.regex)))
+            print
+            print "h3. Regex"    
+            print
+            print "<pre><code># en-us\n%s\n \n# pt-br\n%s</code></pre>" % (language_enus.get(action.regex), language_ptbr.get(action.regex))
+            print
+            if action.__doc__:
+                print action.__doc__
+                print
     
 if __name__ == "__main__":
     generate_textile_docs()
