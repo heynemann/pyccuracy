@@ -268,7 +268,7 @@ This action is really useful when you have some processing done (maybe AJAX) bef
 class ElementDragAction(ActionBase):
     '''h3. Example
 
-  * I drag the “from” div to the “target” div
+  * I drag the "from" div to the "target" div
 
 h3. Description
 
@@ -288,7 +288,7 @@ This action instructs the browser driver to drag the "from" element to the "targ
 class ElementContainsTextAction(ActionBase):
     '''h3. Example
 
-  * I see “username” textbox contains "polo"
+  * I see "username" textbox contains "polo"
 
 h3. Description
 
@@ -309,7 +309,7 @@ This action asserts that the text for the given element contains the specified o
 class ElementDoesNotContainTextAction(ActionBase):
     '''h3. Example
 
-  * I see “username” textbox does not contain "polo"
+  * I see "username" textbox does not contain "polo"
 
 h3. Description
 
@@ -330,7 +330,7 @@ This action asserts that the text for the given element does not contain the spe
 class ElementMatchesTextAction(ActionBase):
     '''h3. Example
 
-  * I see “username” textbox matches "polo"
+  * I see "username" textbox matches "polo"
 
 h3. Description
 
@@ -351,7 +351,7 @@ This action asserts that the text for the given element matches exactly the spec
 class ElementDoesNotMatchTextAction(ActionBase):
     '''h3. Example
 
-  * I see “username” textbox matches "polo"
+  * I see "username" textbox matches "polo"
 
 h3. Description
 
@@ -372,7 +372,7 @@ This action asserts that the text for the given element does not match exactly t
 class ElementContainsMarkupAction(ActionBase):
     '''h3. Example
 
-  * I see “username” textbox contains "&lt;p&gt;polo&lt;/p&gt;" markup
+  * I see "username" textbox contains "&lt;p&gt;polo&lt;/p&gt;" markup
 
 h3. Description
 
@@ -393,7 +393,7 @@ This action asserts that the markup for the given element contains the specified
 class ElementDoesNotContainMarkupAction(ActionBase):
     '''h3. Example
 
-  * I see “username” textbox does not contain "&lt;p&gt;polo&lt;/p&gt;" markup
+  * I see "username" textbox does not contain "&lt;p&gt;polo&lt;/p&gt;" markup
 
 h3. Description
 
@@ -414,7 +414,7 @@ This action asserts that the markup for the given element does not contain the s
 class ElementMatchesMarkupAction(ActionBase):
     '''h3. Example
 
-  * I see “username” textbox matches "&lt;p&gt;polo&lt;/p&gt;" markup
+  * I see "username" textbox matches "&lt;p&gt;polo&lt;/p&gt;" markup
 
 h3. Description
 
@@ -435,7 +435,7 @@ This action asserts that the markup for the given element matches exactly the sp
 class ElementDoesNotMatchMarkupAction(ActionBase):
     '''h3. Example
 
-  * I see “username” textbox does not match "&lt;p&gt;polo&lt;/p&gt;" markup
+  * I see "username" textbox does not match "&lt;p&gt;polo&lt;/p&gt;" markup
 
 h3. Description
 
