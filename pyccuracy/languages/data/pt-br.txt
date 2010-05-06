@@ -87,7 +87,6 @@ image_has_src_regex = ^(E )?[eE]u vejo que a imagem [\"](?P<image_name>.+)[\"] t
 image_does_not_have_src_regex = ^(E )?[eE]u vejo que a imagem [\"](?P<image_name>.+)[\"] não tem src de [\"](?P<src>.+)[\"]$
 
 link_has_href_regex = ^(E )?[eE]u vejo que o link [\"](?P<link_name>.+)[\"] tem href [\"](?P<href>.+)[\"]$
-link_has_text_regex = ^(E )?[eE]u vejo que o link [\"](?P<link_name>.+)[\"] tem texto [\"](?P<text>.+)[\"]$
 
 select_contains_option_with_text_regex = ^(E )?[eE]u vejo que a select [\"](?P<select_name>.+)[\"] contém uma opção com texto [\"](?P<text>.+)[\"]$
 select_does_not_contain_option_with_text_regex = ^(E )?[eE]u vejo que a select [\"](?P<select_name>.+)[\"] não contém uma opção com texto [\"](?P<text>.+)[\"]$
@@ -103,10 +102,6 @@ select_does_not_have_selected_text_regex = ^(E )?[eE]u vejo que o texto selecion
 
 textbox_type_regex = ^(E )?[eE]u preencho a caixa de texto [\"](?P<textbox_name>.+)[\"] com [\"](?P<text>.+)[\"]$
 textbox_type_keys_regex = ^(E )?[eE]u preencho lentamente a caixa de texto [\"](?P<textbox_name>.+)[\"] com [\"](?P<text>.+)[\"]$
-textbox_contains_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] contém [\"](.+)[\"]$
-textbox_does_not_contain_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] não contém [\"](.+)[\"]$
-textbox_matches_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] contém exatamente [\"](.+)[\"]$
-textbox_does_not_match_text_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](.+)[\"] não contém exatamente [\"](.+)[\"]$
 textbox_is_empty_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](?P<textbox_name>.+)[\"] está vazia$
 textbox_is_not_empty_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](?P<textbox_name>.+)[\"] não está vazia$
 textbox_clean_regex = ^(E )?[eE]u limpo a caixa de texto [\"](?P<textbox_name>.+)[\"]$
@@ -147,12 +142,10 @@ element_does_not_match_text_failure = O %s com nome ou id %s não deveria conter
 element_matches_markup_failure = O %s com nome ou id %s deveria conter exatamente o markup "%s", mas o seu markup atual é "%s".
 element_does_not_match_markup_failure = O %s com nome ou id %s não deveria conter exatamente o markup "%s", mas o seu markup atual é "%s".
 
-
 image_has_src_failure = A imagem com nome ou id %s deveria ter src de "%s", mas tem "%s".
 image_does_not_have_src_failure = A imagem com nome ou id %s não deveria ter src de "%s", mas tem "%s".
 
 link_has_href_failure = O link com nome ou id %s deveria ter href "%s", mas tem "%s".
-link_has_text_failure = O link com nome ou id %s deveria ter texto "%s", mas tem "%s".
 
 radio_button_more_than_one_element_returned_failure = Mais de um elemento foi retornado para o elemento de nome %s (resolvido para %s). %s elementos foram encontrados.
 radio_is_checked_failure = O radio button com nome ou id %s está desmarcado e deveria estar marcado.
@@ -170,10 +163,6 @@ select_option_by_index_failure = A opção da select %s com índice de %d não f
 select_option_by_value_failure = A opção da select %s com valor de "%s" não foi encontrada ou não pode ser selecionada.
 select_option_by_text_failure = A opção da select %s com texto de "%s" não foi encontrada ou não pode ser selecionada.
 
-textbox_contains_text_failure = A caixa de texto com nome ou id %s deveria conter "%s", mas o seu texto atual é "%s".
-textbox_does_not_contain_text_failure = A caixa de texto com nome ou id %s não deveria conter "%s", mas o seu texto atual é "%s".
-textbox_matches_text_failure = A caixa de texto com nome ou id %s deveria conter exatamente "%s", mas o seu texto atual é "%s".
-textbox_does_not_match_text_failure = A caixa de texto com nome ou id %s não deveria conter exatamente "%s", mas o seu texto atual é "%s".
 textbox_is_empty_failure = A caixa de texto com nome ou id %s não está vazia e deveria estar.
 textbox_is_not_empty_failure = A caixa de texto com nome ou id %s está vazia e não deveria estar.
 

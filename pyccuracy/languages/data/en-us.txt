@@ -87,7 +87,6 @@ image_has_src_regex = ^(And )?I see [\"](?P<image_name>.+)[\"] image has src of 
 image_does_not_have_src_regex = ^(And )?I see [\"](?P<image_name>.+)[\"] image does not have src of [\"](?P<src>.+)[\"]$
 
 link_has_href_regex = ^(And )?I see [\"](?P<link_name>.+)[\"] link has [\"](?P<href>.+)[\"] href$
-link_has_text_regex = ^(And )?I see [\"](?P<link_name>.+)[\"] link has [\"](?P<text>.+)[\"] text$
 
 select_contains_option_with_text_regex = ^(And )?I see [\"](?P<select_name>.+)[\"] select contains an option with text [\"](?P<text>.+)[\"]$
 select_does_not_contain_option_with_text_regex = ^(And )?I see [\"](?P<select_name>.+)[\"] select does not contain an option with text [\"](?P<text>.+)[\"]$
@@ -103,10 +102,6 @@ select_does_not_have_selected_text_regex = ^(And )?I see [\"](?P<select_name>.+)
 
 textbox_type_regex = ^(And )?I fill [\"](?P<textbox_name>.+)[\"] textbox with [\"](?P<text>.+)[\"]$
 textbox_type_keys_regex = ^(And )?I slowly fill [\"](?P<textbox_name>.+)[\"] textbox with [\"](?P<text>.+)[\"]$
-textbox_contains_text_regex = ^(And )?I see [\"](.+)[\"] textbox contains [\"](.+)[\"]$
-textbox_does_not_contain_text_regex = ^(And )?I see [\"](.+)[\"] textbox does not contain [\"](.+)[\"]$
-textbox_matches_text_regex = ^(And )?I see [\"](.+)[\"] textbox matches [\"](.+)[\"]$
-textbox_does_not_match_text_regex = ^(And )?I see [\"](.+)[\"] textbox does not match [\"](.+)[\"]$
 textbox_is_empty_regex = ^(And )?I see [\"](?P<textbox_name>.+)[\"] textbox is empty$
 textbox_is_not_empty_regex = ^(And )?I see [\"](?P<textbox_name>.+)[\"] textbox is not empty$
 textbox_clean_regex = ^(And )?I clean [\"](?P<textbox_name>.+)[\"] textbox$
@@ -152,7 +147,6 @@ image_has_src_failure = The image with name or id %s should have "%s" as src, bu
 image_does_not_have_src_failure = The image with name or id %s should not have "%s" as src, but has "%s".
 
 link_has_href_failure = The link with name or id %s should have "%s" as href, but has "%s".
-link_has_text_failure = The link with name or id %s should have "%s" as text, but has "%s".
 
 radio_button_more_than_one_element_returned_failure = More than one element was returned for the element with name %s (resolved to %s). %d elements were found.
 radio_is_checked_failure = The radio button with name or id %s is not selected and should be.
@@ -170,10 +164,6 @@ select_option_by_index_failure = The option in the select %s with index of %d wa
 select_option_by_value_failure = The option in the select %s with value of "%s" was not found or can't be selected.
 select_option_by_text_failure = The option in the select %s with text of "%s" was not found or can't be selected.
 
-textbox_contains_text_failure = The textbox with name or id %s should contain "%s", but it's current text is "%s".
-textbox_does_not_contain_text_failure = The textbox with name or id %s shouldn't contain "%s", but it's current text is "%s".
-textbox_matches_text_failure = The textbox with name or id %s should match "%s", but it's current text is "%s".
-textbox_does_not_match_text_failure = The textbox with name or id %s shouldn't match "%s", but it's current text is "%s".
 textbox_is_empty_failure = The textbox with name or id %s is not empty.
 textbox_is_not_empty_failure = The textbox with name or id %s is empty.
 
