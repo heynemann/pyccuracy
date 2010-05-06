@@ -21,6 +21,13 @@ from pyccuracy.actions import ActionBase
 from pyccuracy.languages import LanguageItem
 
 class CheckboxCheckAction(ActionBase):
+    '''h3. Example
+
+  * And I check the "book" checkbox
+
+h3. Description
+
+This action checks the given checkbox.'''
     regex = LanguageItem("checkbox_check_regex")
  
     def execute(self, context, checkbox_key):
@@ -32,6 +39,13 @@ class CheckboxCheckAction(ActionBase):
         context.browser_driver.checkbox_check(element_key)
 
 class CheckboxUncheckAction(ActionBase):
+    '''h3. Example
+
+  * And I uncheck the "book" checkbox
+
+h3. Description
+
+This action unchecks the given checkbox.'''
     regex = LanguageItem("checkbox_uncheck_regex")
  
     def execute(self, context, checkbox_key):
@@ -43,6 +57,13 @@ class CheckboxUncheckAction(ActionBase):
         context.browser_driver.checkbox_uncheck(element_key)
 
 class CheckboxIsCheckedAction(ActionBase):
+    '''h3. Example
+
+  * And I see the "book" checkbox is checked
+
+h3. Description
+
+This action asserts that the given checkbox is checked.'''
     regex = LanguageItem("checkbox_is_checked_regex")
 
     def execute(self, context, checkbox_key):
@@ -56,6 +77,13 @@ class CheckboxIsCheckedAction(ActionBase):
             raise self.failed(error_messsage)
 
 class CheckboxIsNotCheckedAction(ActionBase):
+    '''h3. Example
+
+  * And I see the "book" checkbox is not checked
+
+h3. Description
+
+This action asserts that the given checkbox is not checked.'''
     regex = LanguageItem("checkbox_is_not_checked_regex")
 
     def execute(self, context, checkbox_key):
@@ -67,5 +95,3 @@ class CheckboxIsNotCheckedAction(ActionBase):
         if context.browser_driver.checkbox_is_checked(element_key):
             error_messsage = context.language.format("checkbox_is_not_checked_failure", checkbox_key)
             raise self.failed(error_messsage)
-
-
