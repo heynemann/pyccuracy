@@ -21,7 +21,13 @@ from pyccuracy.actions import ActionBase
 from pyccuracy.languages import LanguageItem
 
 class TextboxIsEmptyAction(ActionBase):
+    '''h3. Example
 
+  * And I see "username" textbox is empty
+
+h3. Description
+
+This action asserts that the given textbox is empty.'''
     regex = LanguageItem("textbox_is_empty_regex")
 
     def execute(self, context, textbox_name):
@@ -38,6 +44,13 @@ class TextboxIsEmptyAction(ActionBase):
             raise self.failed(error_message)
 
 class TextboxIsNotEmptyAction(ActionBase):
+    '''h3. Example
+
+  * And I see "username" textbox is not empty
+
+h3. Description
+
+This action asserts that the given textbox is not empty.'''
     regex = LanguageItem("textbox_is_not_empty_regex")
 
     def execute(self, context, textbox_name):
@@ -54,6 +67,13 @@ class TextboxIsNotEmptyAction(ActionBase):
             raise self.failed(error_message)
 
 class TextboxTypeAction(ActionBase):
+    '''h3. Example
+
+  * And I fill "details" textbox with "text"
+
+h3. Description
+
+This action types the given text in the given textbox.'''
     regex = LanguageItem("textbox_type_regex")
 
     def execute(self, context, textbox_name, text):
@@ -64,6 +84,13 @@ class TextboxTypeAction(ActionBase):
         context.browser_driver.type_text(textbox_key, text)
 
 class TextboxTypeSlowlyAction(ActionBase):
+    '''h3. Example
+
+  * And I slowly fill "details" textbox with "text"
+
+h3. Description
+
+This action types the given text in the given textbox. The difference between "slowly" typing and the regular typing is that this action raises javascript "key" events (keyUp, keyDown, etc).'''
     regex = LanguageItem("textbox_type_keys_regex")
 
     def execute(self, context, textbox_name, text):
@@ -76,6 +103,13 @@ class TextboxTypeSlowlyAction(ActionBase):
         context.browser_driver.type_keys(textbox_key, text)
 
 class TextboxCleanAction(ActionBase):
+    '''h3. Example
+
+  * And I clean "details" textbox
+
+h3. Description
+
+This action cleans the given textbox (empties any text inside of it).'''
     regex = LanguageItem("textbox_clean_regex")
 
     def execute(self, context, textbox_name):
