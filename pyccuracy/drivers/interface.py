@@ -21,19 +21,29 @@ class DriverInterface(object):
     implemented by browser drivers"""
 
     def start_test(self, url=None):
+        '''This method is responsible for starting a test, whether this means opening a browser window, connecting to some remote server or anything else.
+        
+This method is called before any scenarios begin.'''
         raise NotImplementedError
 
     def stop_test(self):
+        '''This method is responsible for cleaning up after a test run. This method is calledo only once after all scenarios are run.'''
         raise NotImplementedError
 
     def resolve_element_key(self, context, element_type, element_key):
+        '''This method is responsible for transforming the element key for the given element type in something that the browser driver understands.
+        
+        i.e.:
+            resolve_element_key(context, 'some', 'textbox')
+            this method call would go into context, get the current page, verify the xpath or css selector for the specified element and then return it.
+        
+        You are free to implement this any way you'd like, though. One could implement this to return elements like:
+            element type.element name as css selector, so a div with name myDiv would return div.myDiv.
+'''
         raise NotImplementedError
 
     def get_xpath_count(self, xpath):
-        raise NotImplementedError
-
-    def get_class(self, name):
-        """gets the css class name"""
+        '''Returns the number of occurrences in the current document for the given xpath.'''        
         raise NotImplementedError
 
     def page_open(self, url):
@@ -124,9 +134,6 @@ class DriverInterface(object):
         raise NotImplementedError
 
     def drag_element(self, from_element_selector, to_element_selector):
-        raise NotImplementedError
-
-    def __get_attribute_value(self, element, attribute):
         raise NotImplementedError
 
     def get_select_options(self, select):
