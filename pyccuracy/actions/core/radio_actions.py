@@ -21,6 +21,13 @@ from pyccuracy.actions import ActionBase
 from pyccuracy.languages import LanguageItem
 
 class RadioCheckAction(ActionBase):
+    '''h3. Example
+
+  * And I check the "credit card" radio
+
+h3. Description
+
+This action marks the given radio button.'''
     regex = LanguageItem("radio_check_regex")
 
     def execute(self, context, radio_key):
@@ -32,6 +39,13 @@ class RadioCheckAction(ActionBase):
         context.browser_driver.radio_check(element_key)
 
 class RadioIsCheckedAction(ActionBase):
+    '''h3. Example
+
+  * And I see the "credit card" radio is checked
+
+h3. Description
+
+This action asserts that the given radio button is checked.'''
     regex = LanguageItem("radio_is_checked_regex")
 
     def execute(self, context, radio_key):
@@ -45,6 +59,13 @@ class RadioIsCheckedAction(ActionBase):
             raise self.failed(error_messsage)
 
 class RadioIsNotCheckedAction(ActionBase):
+    '''h3. Example
+
+  * And I see the "credit card" radio is not checked
+
+h3. Description
+
+This action asserts that the given radio button is not checked.'''
     regex = LanguageItem("radio_is_not_checked_regex")
 
     def execute(self, context, radio_key):
@@ -56,5 +77,3 @@ class RadioIsNotCheckedAction(ActionBase):
         if context.browser_driver.radio_is_checked(element_key):
             error_messsage = context.language.format("radio_is_not_checked_failure", radio_key)
             raise self.failed(error_messsage)
-
-
