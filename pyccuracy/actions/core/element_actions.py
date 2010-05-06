@@ -140,7 +140,7 @@ This action instructs the browser driver to click the given element. If the "and
                     raise
 
 class ElementIsVisibleAction(ActionBase):
-        '''h3. Example
+    '''h3. Example
 
 And I see "some" button
 And I see "other" checkbox
