@@ -68,19 +68,20 @@ def generate_textile_docs():
         
             module_actions = [action for action in module.__dict__.values() if type(action) == MetaActionBase and action != ActionBase]
             for action in module_actions:
-                print "h2. %s" % viewer.make_it_readable(language_enus.get(action.regex)).replace("(And )", "")
-                print
-                print "*Regex (en-us):* <pre><code>%s</code></pre>" % language_enus.get(action.regex)
-                print
-                print "*Regex (pt-br):* <pre><code>%s</code></pre>" % language_ptbr.get(action.regex)
-                print
-            
+                # include only documented actions
                 if action.__doc__:
+                    print "h2. %s" % viewer.make_it_readable(language_enus.get(action.regex)).replace("(And )", "")
+                    print
+                    print "h3. Syntax"
+                    print
+                    print "<pre><code># en-us\n%s\n \n# pt-br\n%s</code></pre>" % (viewer.make_it_readable(language_enus.get(action.regex)), viewer.make_it_readable(language_ptbr.get(action.regex)))
+                    print
+                    print "h3. Regex"    
+                    print
+                    print "<pre><code># en-us\n%s\n \n# pt-br\n%s</code></pre>" % (language_enus.get(action.regex), language_ptbr.get(action.regex))
+                    print
                     print action.__doc__
-                else:
-                    print "__No documentation for this action yet.__"
-            
-                print
+                    print
     
 if __name__ == "__main__":
     generate_textile_docs()

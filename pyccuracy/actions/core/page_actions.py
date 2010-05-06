@@ -23,10 +23,10 @@ from pyccuracy.actions import ActionBase
 from pyccuracy.languages import LanguageItem
 
 class PageGoToAction(ActionBase):
-    '''h3. Example
+    '''h3. Examples
 
-And I go to My Custom Page
-And I go to "http://www.google.com"
+  * And I go to My Custom Page
+  * And I go to "http://www.google.com"
 
 h3. Description
 
@@ -60,7 +60,7 @@ This action also issues automatically a wait for page to load action after navig
 class PageAmInAction(ActionBase):
     '''h3. Example
 
-And I am in My Custom Page
+  * And I am in My Custom Page
 
 h3. Description
 
@@ -89,7 +89,7 @@ Other than that, this action does not do anything. The main purpose of this acti
 class PageSeeTitleAction(ActionBase):
     '''h3. Example
 
-And I see "whatever" title
+  * And I see "whatever" title
 
 h3. Description
 
@@ -105,7 +105,7 @@ This action asserts that the currently loaded page's title (Browser title) is th
 class PageCheckContainsMarkupAction(ActionBase):
     '''h3. Example
 
-And I see that current page contains "&lt;p&gt;expected markup&lt;/p&gt;"
+  * And I see that current page contains "&lt;p&gt;expected markup&lt;/p&gt;"
 
 h3. Description
 
@@ -122,7 +122,7 @@ This action asserts that the currently loaded page's mark-up contains the given 
 class PageCheckDoesNotContainMarkupAction(ActionBase):
     '''h3. Example
 
-And I see that current page does not contain "&lt;p&gt;expected markup&lt;/p&gt;"
+  * And I see that current page does not contain "&lt;p&gt;expected markup&lt;/p&gt;"
 
 h3. Description
 
@@ -139,8 +139,8 @@ This action asserts that the currently loaded page's mark-up *does not* contain 
 class PageWaitForPageToLoadAction(ActionBase):
     '''h3. Examples
 
-And I wait for the page to load
-And I wait for the page to load for 5 seconds
+  * And I wait for the page to load
+  * And I wait for the page to load for 5 seconds
 
 h3. Description
 
@@ -159,11 +159,11 @@ This action instructs the browser driver to wait for a given number of seconds f
             context.browser_driver.wait_for_page()
 
 class PageWaitForSecondsAction(ActionBase):
-    '''h3. Example
+    '''h3. Examples
 
-And I wait for 5 seconds
-And I wait for 1 second
-And I wait for 3.4 seconds
+  * And I wait for 5 seconds
+  * And I wait for 1 second
+  * And I wait for 3.5 seconds
 
 h3. Description
 
