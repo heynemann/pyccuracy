@@ -16,7 +16,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-'''h1. Pyccuracy Built-In Actions
+'''<!-- automatic table of contents for H1 and H2 items -->
+<script src="http://gist.github.com/raw/391639/24a166b60b6e468ecd5b1f0d811032e78e34b65c/github_toc.js" type="text/javascript"></script>
+
+h1. Pyccuracy Built-In Actions
 
 Pyccuracy comes with a set of actions that allow the user to control the browser in the most usual ways, like clicking a link or checking if a textbox contains a given text.
 
