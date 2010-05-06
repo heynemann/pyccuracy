@@ -143,7 +143,8 @@ This method is called before any scenarios begin.'''
         raise NotImplementedError
 
     def mouseout_element(self, element_selector):
-        '''This method triggers the mouse out event for the specified element.'''        raise NotImplementedError
+        '''This method triggers the mouse out event for the specified element.'''
+        raise NotImplementedError
 
     def is_element_empty(self, element_selector):
         '''This method returns whether the specified element has no text.'''
