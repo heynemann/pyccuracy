@@ -50,28 +50,34 @@ def generate_textile_docs():
     language_enus = LanguageGetter("en-us")
     language_ptbr = LanguageGetter("pt-br")
     
+    # documentation intro
+    print __doc__
+    print
+    
     custom_action_modules = [module for module in core_actions.__dict__.values() if str(type(module)) == "<type 'module'>" and "_actions" in str(module.__name__)]
     for module in custom_action_modules:
-        print "h1. %s" % module.__name__.replace('pyccuracy.actions.core.', '').replace('_', ' ').capitalize()
-        print
-        print module.__doc__
-        print
+        # inclue only documented modules
+        if module.__doc__:
+            print "h1. %s" % module.__name__.replace('pyccuracy.actions.core.', '').replace('_', ' ').capitalize()
+            print
+            print module.__doc__
+            print
         
-        module_actions = [action for action in module.__dict__.values() if type(action) == MetaActionBase and action != ActionBase]
-        for action in module_actions:
-            print "h2. %s" % viewer.make_it_readable(language_enus.get(action.regex)).replace("(And )", "")
-            print
-            print "*Regex (en-us):* <pre><code>%s</code></pre>" % language_enus.get(action.regex)
-            print
-            print "*Regex (pt-br):* <pre><code>%s</code></pre>" % language_ptbr.get(action.regex)
-            print
+            module_actions = [action for action in module.__dict__.values() if type(action) == MetaActionBase and action != ActionBase]
+            for action in module_actions:
+                print "h2. %s" % viewer.make_it_readable(language_enus.get(action.regex)).replace("(And )", "")
+                print
+                print "*Regex (en-us):* <pre><code>%s</code></pre>" % language_enus.get(action.regex)
+                print
+                print "*Regex (pt-br):* <pre><code>%s</code></pre>" % language_ptbr.get(action.regex)
+                print
             
-            if action.__doc__:
-                print action.__doc__
-            else:
-                print "__No documentation for this action yet.__"
+                if action.__doc__:
+                    print action.__doc__
+                else:
+                    print "__No documentation for this action yet.__"
             
-            print
+                print
     
 if __name__ == "__main__":
     generate_textile_docs()
