@@ -21,6 +21,7 @@ from pyccuracy.actions import ActionBase
 from pyccuracy.languages import LanguageItem
 
 class TextboxIsEmptyAction(ActionBase):
+
     regex = LanguageItem("textbox_is_empty_regex")
 
     def execute(self, context, textbox_name):
