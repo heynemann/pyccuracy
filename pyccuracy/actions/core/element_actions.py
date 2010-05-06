@@ -64,7 +64,7 @@ def resolve_element_key(context, element_type, element_name, resolve_function):
     return resolve_function(context, element_category, element_name)
 
 class ElementDoesNotContainStyleAction(ActionBase):
-    '''h3. Example
+    '''h3. Examples
 
   * And I see "some" textbox does not have "width" style
   * And I see "other" button does not have "visible" style
@@ -88,7 +88,7 @@ This action asserts that the given element does not have the given style with an
             raise self.failed(error_message)
 
 class ElementContainsStyleAction(ActionBase):
-    '''h3. Example
+    '''h3. Examples
 
   * And I see "some" textbox has "width" style
   * And I see "other" button has "visible" style
@@ -112,7 +112,7 @@ This action asserts that the given element has the given style with any value.''
             raise self.failed(error_message)
 
 class ElementClickAction(ActionBase):
-    '''h3. Example
+    '''h3. Examples
 
   * And I click "some" button
   * And I click "other" checkbox and wait
@@ -140,7 +140,7 @@ This action instructs the browser driver to click the given element. If the "and
                     raise
 
 class ElementIsVisibleAction(ActionBase):
-        '''h3. Example
+    '''h3. Examples
 
 And I see "some" button
 And I see "other" checkbox
@@ -157,7 +157,7 @@ This action asserts that the given element is visible.'''
         self.assert_element_is_visible(context, element_key, error_message)
 
 class ElementIsNotVisibleAction(ActionBase):
-    '''h3. Example
+    '''h3. Examples
 
 And I do not see "some" button
 And I do not see "other" checkbox
@@ -174,7 +174,7 @@ This action asserts that the given element is not visible.'''
         self.assert_element_is_not_visible(context, element_key, error_message)
 
 class ElementIsEnabledAction(ActionBase):
-    '''h3. Example
+    '''h3. Examples
 
 And I see "some" button is enabled
 And I see "other" textbox is enabled
@@ -195,7 +195,7 @@ This action asserts that the given element is enabled.'''
             raise self.failed(error_message)
 
 class ElementIsDisabledAction(ActionBase):
-    '''h3. Example
+    '''h3. Examples
 
 And I see "some" button is disabled
 And I see "other" textbox is disabled
@@ -216,7 +216,7 @@ This action asserts that the given element is disabled.'''
             raise self.failed(error_message)
 
 class ElementWaitForPresenceAction(ActionBase):
-    '''h3. Example
+    '''h3. Examples
 
   * And I wait for "some" button element to be present
   * And I wait for "other" textbox element to be present for 5 seconds
@@ -241,7 +241,7 @@ This action is really useful when you have some processing done (maybe AJAX) bef
             raise self.failed(error_message)
 
 class ElementWaitForDisappearAction(ActionBase):
-    '''h3. Example
+    '''h3. Examples
 
   * And I wait for "some" button element to disappear
   * And I wait for "other" textbox element to disappear for 5 seconds
