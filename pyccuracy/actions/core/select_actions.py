@@ -25,6 +25,14 @@ def resolve_element_key(context, element_type, element_name, resolve_function):
     return resolve_function(context, element_category, element_name)
 
 class SelectOptionByValueAction(ActionBase):
+    '''h3. Example
+
+  * And I select the option with value of "1" in "sports" select
+
+h3. Description
+
+This action instructs the browser driver to select the option in the specified select that matches the specified value.'''
+
     regex = LanguageItem("select_option_by_value_regex")
 
     def execute(self, context, select_name, option_value):
@@ -40,6 +48,13 @@ class SelectOptionByValueAction(ActionBase):
             raise self.failed(error_message)
 
 class SelectHasSelectedValueAction(ActionBase):
+    '''h3. Example
+
+  * And I see "sports" select has selected value of "1"
+
+h3. Description
+
+This action asserts that the currently selected option in the specified select has the specified value.'''
     regex = LanguageItem("select_has_selected_value_regex")
 
     def execute(self, context, select_name, option_value):
@@ -54,6 +69,13 @@ class SelectHasSelectedValueAction(ActionBase):
             raise self.failed(error_message)
 
 class SelectOptionByIndexAction(ActionBase):
+    '''h3. Example
+
+  * And I select the option with index of 1 in "sports" select
+
+h3. Description
+
+This action instructs the browser driver to select the option in the specified select with the specified index.'''
     regex = LanguageItem("select_option_by_index_regex")
 
     def execute(self, context, select_name, index):
@@ -70,6 +92,13 @@ class SelectOptionByIndexAction(ActionBase):
             raise self.failed(error_message)
 
 class SelectHasSelectedIndexAction(ActionBase):
+    '''h3. Example
+
+  * And I see "sports" select has selected index of 1
+
+h3. Description
+
+This action asserts that the currently selected option in the specified select has the specified index.'''
     regex = LanguageItem("select_has_selected_index_regex")
 
     def execute(self, context, select_name, index):
@@ -84,6 +113,13 @@ class SelectHasSelectedIndexAction(ActionBase):
             raise self.failed(error_message)
 
 class SelectOptionByTextAction(ActionBase):
+    '''h3. Example
+
+  * And I select the option with text of "soccer" in "sports" select
+
+h3. Description
+
+This action instructs the browser driver to select the option in the specified select with the specified text.'''
     regex = LanguageItem("select_option_by_text_regex")
 
     def execute(self, context, select_name, text):
@@ -99,6 +135,13 @@ class SelectOptionByTextAction(ActionBase):
             raise self.failed(error_message)
 
 class SelectHasSelectedTextAction(ActionBase):
+    '''h3. Example
+
+  * And I see "sports" select has selected text of "soccer"
+
+h3. Description
+
+This action asserts that the currently selected option in the specified select has the specified text.'''
     regex = LanguageItem("select_has_selected_text_regex")
 
     def execute(self, context, select_name, text):
@@ -113,6 +156,13 @@ class SelectHasSelectedTextAction(ActionBase):
             raise self.failed(error_message)
 
 class SelectDoesNotHaveSelectedIndexAction(ActionBase):
+    '''h3. Example
+
+  * And I see "sports" select does not have selected index of 1
+
+h3. Description
+
+This action asserts that the currently selected option in the specified select does not have the specified index.'''
     regex = LanguageItem("select_does_not_have_selected_index_regex")
 
     def execute(self, context, select_name, index):
@@ -128,6 +178,13 @@ class SelectDoesNotHaveSelectedIndexAction(ActionBase):
             raise self.failed(error_message)
 
 class SelectDoesNotHaveSelectedValueAction(ActionBase):
+    '''h3. Example
+
+  * And I see "sports" select does not have selected value of "1"
+
+h3. Description
+
+This action asserts that the currently selected option in the specified select does not have the specified value.'''
     regex = LanguageItem("select_does_not_have_selected_value_regex")
 
     def execute(self, context, select_name, value):
@@ -143,6 +200,13 @@ class SelectDoesNotHaveSelectedValueAction(ActionBase):
             raise self.failed(error_message)
 
 class SelectDoesNotHaveSelectedTextAction(ActionBase):
+    '''h3. Example
+
+  * And I see "sports" select does not have selected text of "soccer"
+
+h3. Description
+
+This action asserts that the currently selected option in the specified select does not have the specified text.'''
     regex = LanguageItem("select_does_not_have_selected_text_regex")
 
     def execute(self, context, select_name, text):
@@ -158,6 +222,13 @@ class SelectDoesNotHaveSelectedTextAction(ActionBase):
             raise self.failed(error_message)
 
 class SelectContainsOptionWithTextAction(ActionBase):
+    '''h3. Example
+
+  * And I see "sports" select contains an option with text "soccer"
+
+h3. Description
+
+This action asserts that the specified select contains at least one option with the specified text.'''
     regex = LanguageItem("select_contains_option_with_text_regex")
 
     def execute(self, context, select_name, text):
@@ -176,6 +247,13 @@ class SelectContainsOptionWithTextAction(ActionBase):
             raise self.failed(error_message)
 
 class SelectDoesNotContainOptionWithTextAction(ActionBase):
+    '''h3. Example
+
+  * And I see "sports" select does not contain an option with text "soccer"
+
+h3. Description
+
+This action asserts that the specified select does not contain any options with the specified text.'''
     regex = LanguageItem("select_does_not_contain_option_with_text_regex")
 
     def execute(self, context, select_name, text):
@@ -192,4 +270,3 @@ class SelectDoesNotContainOptionWithTextAction(ActionBase):
         if found:
             error_message = context.language.format("select_does_not_contain_option_with_text_failure", select_name, text)
             raise self.failed(error_message)
-
