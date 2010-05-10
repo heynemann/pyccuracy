@@ -68,7 +68,7 @@ def test_pyccuracy_core_run_tests():
 
     runner_mock = Mock()
     parser_mock = Mock()
-
+    parser_mock.used_actions = []
     parser_mock.expects(once()).method('get_stories').will(return_value(suite_mock))
     runner_mock.expects(once()).method('run_stories').will(return_value(results_mock))
 
@@ -92,7 +92,7 @@ def test_pyccuracy_core_run_tests_works_when_None_Result_returned_from_story_run
 
     runner_mock = Mock()
     parser_mock = Mock()
-
+    parser_mock.used_actions = []
     parser_mock.expects(once()).method('get_stories').will(return_value(suite_mock))
     runner_mock.expects(once()).method('run_stories').will(return_value(None))
 
@@ -119,6 +119,7 @@ def test_pyccuracy_core_should_raise_TestFailedError_when_should_throw_is_true()
 
         runner_mock = Mock()
         parser_mock = Mock()
+        parser_mock.used_actions = []
 
         parser_mock.expects(once()).method('get_stories').will(return_value(suite_mock))
         runner_mock.expects(once()).method('run_stories').will(return_value(results_mock))
