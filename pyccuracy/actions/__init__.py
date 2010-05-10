@@ -133,3 +133,6 @@ class ActionBase(object):
         if self.is_element_visible(context, selector):
             raise self.failed(message + "(Resolved to Element %s)" % selector)
 
+    @classmethod
+    def all(cls):
+        return ACTIONS

@@ -23,6 +23,7 @@ from os.path import join, split, splitext
 from pyccuracy.airspeed import Template
 
 from pyccuracy import Page, ActionBase
+from pyccuracy.actions import MetaActionBase
 from pyccuracy.common import Settings, Context, locate, Status
 from pyccuracy.story_runner import *
 from pyccuracy.parsers import FileParser, ActionNotFoundError
@@ -78,6 +79,16 @@ class PyccuracyCore(object):
             else:
                 return None
 
+        if len(self.parser.used_actions) != len(ActionBase.all()):
+            unused_actions = []
+            for action in ActionBase.all():
+                if action.__class__.__name__ in ('ActionBase', 'MetaActionBase'):
+                    continue
+                if action not in self.parser.used_actions:
+                    unused_actions.append(action.__class__.__name__)
+            if unused_actions:
+                self.print_unused_actions_warning(unused_actions)
+
         if not fixture.stories:
             results = Result(fixture)
             self.print_results(context.settings.default_culture, results)
@@ -110,10 +121,23 @@ class PyccuracyCore(object):
             self.print_results(context.settings.default_culture, results)
             return results
 
+
+    def print_unused_actions_warning(self, unused_actions):
+        template = """${YELLOW}WARNING!
+------------
+The following actions are never used: 
+
+  *%s
+------------
+${NORMAL}
+"""
+        ctrl = TerminalController()
+        print ctrl.render(template % "\n  *".join(unused_actions))
+
     def print_lxml_import_error(self):
         template = """${RED}REPORT ERROR
 ------------
-Sorry, but you need to install lxml (python-lxml in aptitude)
+Sorry, but you need to install lxml (python-lxml in aptitude or easy_install lxml)
 before using the report feature in pyccuracy.
 If you do not need a report use the -R=false parameter.
 ${NORMAL}

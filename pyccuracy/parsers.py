@@ -42,6 +42,7 @@ class FileParser(object):
         self.file_object = file_object and file_object or FSO()
         self.action_registry = action_registry and action_registry or ActionRegistry
         self.language = language
+        self.used_actions = []
 
     def get_stories(self, settings):
         if not self.language:
@@ -113,6 +114,10 @@ class FileParser(object):
 
             if not action:
                 self.raise_action_not_found_for_line(line, current_scenario, story_file_path)
+            
+            if not action in self.used_actions:
+                self.used_actions.append(action)
+
             instance = action()
             if kwargs:
                 args = []
