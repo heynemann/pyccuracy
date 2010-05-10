@@ -82,10 +82,10 @@ class PyccuracyCore(object):
         if len(self.parser.used_actions) != len(ActionBase.all()):
             unused_actions = []
             for action in ActionBase.all():
-                if action.__class__.__name__ in ('ActionBase', 'MetaActionBase'):
+                if hasattr(action, '__builtin__') and action.__builtin__:
                     continue
                 if action not in self.parser.used_actions:
-                    unused_actions.append(action.__class__.__name__)
+                    unused_actions.append(action.__name__)
             if unused_actions:
                 self.print_unused_actions_warning(unused_actions)
 

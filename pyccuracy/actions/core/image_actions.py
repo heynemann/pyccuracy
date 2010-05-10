@@ -28,6 +28,7 @@ class ImageHasSrcOfAction(ActionBase):
 h3. Description
 
 This action asserts that an image has the given src attribute.'''
+    __builtin__ = True
     regex = LanguageItem("image_has_src_regex")
 
     def execute(self, context, image_name, src):
@@ -49,6 +50,7 @@ class ImageDoesNotHaveSrcOfAction(ActionBase):
 h3. Description
 
 This action asserts that an image does not have the given src attribute.'''
+    __builtin__ = True
     regex = LanguageItem("image_does_not_have_src_regex")
 
     def execute(self, context, image_name, src):

@@ -28,6 +28,7 @@ class CheckboxCheckAction(ActionBase):
 h3. Description
 
 This action checks the given checkbox.'''
+    __builtin__ = True
     regex = LanguageItem("checkbox_check_regex")
  
     def execute(self, context, checkbox_key):
@@ -46,6 +47,7 @@ class CheckboxUncheckAction(ActionBase):
 h3. Description
 
 This action unchecks the given checkbox.'''
+    __builtin__ = True
     regex = LanguageItem("checkbox_uncheck_regex")
  
     def execute(self, context, checkbox_key):
@@ -64,6 +66,7 @@ class CheckboxIsCheckedAction(ActionBase):
 h3. Description
 
 This action asserts that the given checkbox is checked.'''
+    __builtin__ = True
     regex = LanguageItem("checkbox_is_checked_regex")
 
     def execute(self, context, checkbox_key):
@@ -84,6 +87,7 @@ class CheckboxIsNotCheckedAction(ActionBase):
 h3. Description
 
 This action asserts that the given checkbox is not checked.'''
+    __builtin__ = True
     regex = LanguageItem("checkbox_is_not_checked_regex")
 
     def execute(self, context, checkbox_key):

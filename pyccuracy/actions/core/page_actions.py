@@ -37,6 +37,7 @@ For more information on creating custom pages check the [[Creating custom Pages]
 If you specify an url directly, Pyccuracy sets the current page to None and you can't use registered elements. That might make sense for some scenarios, but is the least preferred way of using this action.
 
 This action also issues automatically a wait for page to load action after navigating. This is important to make sure that the following actions work with a properly loaded page.'''
+    __builtin__ = True
     regex = LanguageItem('page_go_to_regex')
 
     def execute(self, context, url):
@@ -69,6 +70,7 @@ This action tells Pyccuracy that it should change the current page (as far as re
 The same rule for direct urls of Go to Page applies to this action.
 
 Other than that, this action does not do anything. The main purpose of this action is responding to some client event or redirect that might have changed the current page without our direct action (like submitting a form that redirects us to a different page).'''
+    __builtin__ = True
     regex = LanguageItem("page_am_in_regex")
 
     def execute(self, context, url):
@@ -94,6 +96,7 @@ class PageSeeTitleAction(ActionBase):
 h3. Description
 
 This action asserts that the currently loaded page's title (Browser title) is the specified one. '''
+    __builtin__ = True
     regex = LanguageItem("page_see_title_regex")
 
     def execute(self, context, title):
@@ -110,6 +113,7 @@ class PageCheckContainsMarkupAction(ActionBase):
 h3. Description
 
 This action asserts that the currently loaded page's mark-up contains the given mark-up.'''
+    __builtin__ = True
     regex = LanguageItem("page_check_contains_markup_regex")
 
     def execute(self, context, expected_markup):
@@ -127,6 +131,7 @@ class PageCheckDoesNotContainMarkupAction(ActionBase):
 h3. Description
 
 This action asserts that the currently loaded page's mark-up *does not* contain the given mark-up.'''
+    __builtin__ = True
     regex = LanguageItem("page_check_does_not_contain_markup_regex")
 
     def execute(self, context, expected_markup):
@@ -145,6 +150,7 @@ class PageWaitForPageToLoadAction(ActionBase):
 h3. Description
 
 This action instructs the browser driver to wait for a given number of seconds for the page to load. If it times out, the test fails.'''
+    __builtin__ = True
     regex = LanguageItem("page_wait_for_page_to_load_regex")
 
     def execute(self, context, timeout):
@@ -168,6 +174,7 @@ class PageWaitForSecondsAction(ActionBase):
 h3. Description
 
 This action is just a proxy to Python's time.sleep function. It just hangs for a given number of seconds.'''
+    __builtin__ = True
     regex = LanguageItem("page_wait_for_seconds_regex")
 
     def execute(self, context, timeout):

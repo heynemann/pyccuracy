@@ -70,6 +70,7 @@ class ElementDoesNotContainStyleAction(ActionBase):
 h3. Description
 
 This action asserts that the given element does not have the given style with any value.'''
+    __builtin__ = True
     regex = LanguageItem('element_does_not_contain_style_regex')
 
     def execute(self, context, element_type, element_name, style_name):
@@ -94,6 +95,7 @@ class ElementContainsStyleAction(ActionBase):
 h3. Description
 
 This action asserts that the given element has the given style with any value.'''
+    __builtin__ = True
     regex = LanguageItem('element_contains_style_regex')
 
     def execute(self, context, element_type, element_name, style_name):
@@ -118,6 +120,7 @@ class ElementClickAction(ActionBase):
 h3. Description
 
 This action instructs the browser driver to click the given element. If the "and wait" suffix is used, a "Wait for page to load" action is executed after this one.'''
+    __builtin__ = True
     regex = LanguageItem('element_click_regex')
 
     def execute(self, context, element_type, element_name, should_wait):
@@ -146,6 +149,7 @@ class ElementIsVisibleAction(ActionBase):
 h3. Description
 
 This action asserts that the given element is visible.'''
+    __builtin__ = True
     regex = LanguageItem('element_is_visible_regex')
 
     def execute(self, context, element_type, element_name):
@@ -163,6 +167,7 @@ class ElementIsNotVisibleAction(ActionBase):
 h3. Description
 
 This action asserts that the given element is not visible.'''
+    __builtin__ = True
     regex = LanguageItem('element_is_not_visible_regex')
 
     def execute(self, context, element_type, element_name):
@@ -180,6 +185,7 @@ class ElementIsEnabledAction(ActionBase):
 h3. Description
 
 This action asserts that the given element is enabled.'''
+    __builtin__ = True
     regex = LanguageItem('element_is_enabled_regex')
 
     def execute(self, context, element_type, element_name):
@@ -201,6 +207,7 @@ class ElementIsDisabledAction(ActionBase):
 h3. Description
 
 This action asserts that the given element is disabled.'''
+    __builtin__ = True
     regex = LanguageItem('element_is_disabled_regex')
 
     def execute(self, context, element_type, element_name):
@@ -225,6 +232,7 @@ Waits until a given element appears or times out.
 
 This action is really useful when you have some processing done (maybe AJAX) before an element is dynamically created.
 '''
+    __builtin__ = True
     regex = LanguageItem("element_wait_for_presence_regex")
 
     def execute(self, context, element_type, element_name, timeout):
@@ -250,6 +258,7 @@ Waits until a given element disappears (or is not visible already) or times out.
 
 This action is really useful when you have some processing done (maybe AJAX) before an element is dynamically removed or hidden.
     '''
+    __builtin__ = True
     regex = LanguageItem("element_wait_for_disappear_regex")
 
     def execute(self, context, element_type, element_name, timeout):
@@ -271,6 +280,7 @@ class ElementDragAction(ActionBase):
 h3. Description
 
 This action instructs the browser driver to drag the "from" element to the "target" element.'''
+    __builtin__ = True
     regex = LanguageItem("element_drag_drop_regex")
 
     def execute(self, context, from_element_type, from_element_name, to_element_type, to_element_name):
@@ -291,6 +301,7 @@ class ElementContainsTextAction(ActionBase):
 h3. Description
 
 This action asserts that the text for the given element contains the specified one.'''
+    __builtin__ = True
     regex = LanguageItem("element_contains_text_regex")
 
     def execute(self, context, element_type, element_name, text):
@@ -312,6 +323,7 @@ class ElementDoesNotContainTextAction(ActionBase):
 h3. Description
 
 This action asserts that the text for the given element does not contain the specified one.'''
+    __builtin__ = True
     regex = LanguageItem("element_does_not_contain_text_regex")
 
     def execute(self, context, element_type, element_name, text):
@@ -333,6 +345,7 @@ class ElementMatchesTextAction(ActionBase):
 h3. Description
 
 This action asserts that the text for the given element matches exactly the specified one.'''
+    __builtin__ = True
     regex = LanguageItem("element_matches_text_regex")
 
     def execute(self, context, element_type, element_name, text):
@@ -354,6 +367,7 @@ class ElementDoesNotMatchTextAction(ActionBase):
 h3. Description
 
 This action asserts that the text for the given element does not match exactly the specified one.'''
+    __builtin__ = True
     regex = LanguageItem("element_does_not_match_text_regex")
 
     def execute(self, context, element_type, element_name, text):
@@ -375,6 +389,7 @@ class ElementContainsMarkupAction(ActionBase):
 h3. Description
 
 This action asserts that the markup for the given element contains the specified one.'''
+    __builtin__ = True
     regex = LanguageItem("element_contains_markup_regex")
 
     def execute(self, context, element_type, element_name, markup):
@@ -396,6 +411,7 @@ class ElementDoesNotContainMarkupAction(ActionBase):
 h3. Description
 
 This action asserts that the markup for the given element does not contain the specified one.'''
+    __builtin__ = True
     regex = LanguageItem("element_does_not_contain_markup_regex")
 
     def execute(self, context, element_type, element_name, markup):
@@ -417,6 +433,7 @@ class ElementMatchesMarkupAction(ActionBase):
 h3. Description
 
 This action asserts that the markup for the given element matches exactly the specified one.'''
+    __builtin__ = True
     regex = LanguageItem("element_matches_markup_regex")
 
     def execute(self, context, element_type, element_name, markup):
@@ -438,6 +455,7 @@ class ElementDoesNotMatchMarkupAction(ActionBase):
 h3. Description
 
 This action asserts that the markup for the given element does not match exactly the specified one.'''
+    __builtin__ = True
     regex = LanguageItem("element_does_not_match_markup_regex")
 
     def execute(self, context, element_type, element_name, markup):
@@ -459,6 +477,7 @@ class ElementMouseoverAction(ActionBase):
 h3. Description
 
 This action instructs the browser driver to mouse over the specified element.'''
+    __builtin__ = True
     regex = LanguageItem("element_mouseover_regex")
 
     def execute(self, context, element_type, element_name):
@@ -476,6 +495,7 @@ class ElementMouseOutAction(ActionBase):
 h3. Description
 
 This action instructs the browser driver to remove mouse focus from the specified element.'''
+    __builtin__ = True
     regex = LanguageItem("element_mouseout_regex")
 
     def execute(self, context, element_type, element_name):

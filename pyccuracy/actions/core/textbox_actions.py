@@ -28,6 +28,7 @@ class TextboxIsEmptyAction(ActionBase):
 h3. Description
 
 This action asserts that the given textbox is empty.'''
+    __builtin__ = True
     regex = LanguageItem("textbox_is_empty_regex")
 
     def execute(self, context, textbox_name):
@@ -51,6 +52,7 @@ class TextboxIsNotEmptyAction(ActionBase):
 h3. Description
 
 This action asserts that the given textbox is not empty.'''
+    __builtin__ = True
     regex = LanguageItem("textbox_is_not_empty_regex")
 
     def execute(self, context, textbox_name):
@@ -74,6 +76,7 @@ class TextboxTypeAction(ActionBase):
 h3. Description
 
 This action types the given text in the given textbox.'''
+    __builtin__ = True
     regex = LanguageItem("textbox_type_regex")
 
     def execute(self, context, textbox_name, text):
@@ -91,6 +94,7 @@ class TextboxTypeSlowlyAction(ActionBase):
 h3. Description
 
 This action types the given text in the given textbox. The difference between "slowly" typing and the regular typing is that this action raises javascript "key" events (keyUp, keyDown, etc).'''
+    __builtin__ = True
     regex = LanguageItem("textbox_type_keys_regex")
 
     def execute(self, context, textbox_name, text):
@@ -111,6 +115,7 @@ class TextboxCleanAction(ActionBase):
 h3. Description
 
 This action cleans the given textbox (empties any text inside of it).'''
+    __builtin__ = True
     regex = LanguageItem("textbox_clean_regex")
 
     def execute(self, context, textbox_name):

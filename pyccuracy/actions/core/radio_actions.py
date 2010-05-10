@@ -28,6 +28,7 @@ class RadioCheckAction(ActionBase):
 h3. Description
 
 This action marks the given radio button.'''
+    __builtin__ = True
     regex = LanguageItem("radio_check_regex")
 
     def execute(self, context, radio_key):
@@ -46,6 +47,7 @@ class RadioIsCheckedAction(ActionBase):
 h3. Description
 
 This action asserts that the given radio button is checked.'''
+    __builtin__ = True
     regex = LanguageItem("radio_is_checked_regex")
 
     def execute(self, context, radio_key):
@@ -66,6 +68,7 @@ class RadioIsNotCheckedAction(ActionBase):
 h3. Description
 
 This action asserts that the given radio button is not checked.'''
+    __builtin__ = True
     regex = LanguageItem("radio_is_not_checked_regex")
 
     def execute(self, context, radio_key):

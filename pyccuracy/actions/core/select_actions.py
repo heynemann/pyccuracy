@@ -33,6 +33,7 @@ h3. Description
 
 This action instructs the browser driver to select the option in the specified select that matches the specified value.'''
 
+    __builtin__ = True
     regex = LanguageItem("select_option_by_value_regex")
 
     def execute(self, context, select_name, option_value):
@@ -55,6 +56,7 @@ class SelectHasSelectedValueAction(ActionBase):
 h3. Description
 
 This action asserts that the currently selected option in the specified select has the specified value.'''
+    __builtin__ = True
     regex = LanguageItem("select_has_selected_value_regex")
 
     def execute(self, context, select_name, option_value):
@@ -76,6 +78,7 @@ class SelectOptionByIndexAction(ActionBase):
 h3. Description
 
 This action instructs the browser driver to select the option in the specified select with the specified index.'''
+    __builtin__ = True
     regex = LanguageItem("select_option_by_index_regex")
 
     def execute(self, context, select_name, index):
@@ -99,6 +102,7 @@ class SelectHasSelectedIndexAction(ActionBase):
 h3. Description
 
 This action asserts that the currently selected option in the specified select has the specified index.'''
+    __builtin__ = True
     regex = LanguageItem("select_has_selected_index_regex")
 
     def execute(self, context, select_name, index):
@@ -120,6 +124,7 @@ class SelectOptionByTextAction(ActionBase):
 h3. Description
 
 This action instructs the browser driver to select the option in the specified select with the specified text.'''
+    __builtin__ = True
     regex = LanguageItem("select_option_by_text_regex")
 
     def execute(self, context, select_name, text):
@@ -142,6 +147,7 @@ class SelectHasSelectedTextAction(ActionBase):
 h3. Description
 
 This action asserts that the currently selected option in the specified select has the specified text.'''
+    __builtin__ = True
     regex = LanguageItem("select_has_selected_text_regex")
 
     def execute(self, context, select_name, text):
@@ -163,6 +169,7 @@ class SelectDoesNotHaveSelectedIndexAction(ActionBase):
 h3. Description
 
 This action asserts that the currently selected option in the specified select does not have the specified index.'''
+    __builtin__ = True
     regex = LanguageItem("select_does_not_have_selected_index_regex")
 
     def execute(self, context, select_name, index):
@@ -185,6 +192,7 @@ class SelectDoesNotHaveSelectedValueAction(ActionBase):
 h3. Description
 
 This action asserts that the currently selected option in the specified select does not have the specified value.'''
+    __builtin__ = True
     regex = LanguageItem("select_does_not_have_selected_value_regex")
 
     def execute(self, context, select_name, value):
@@ -207,6 +215,7 @@ class SelectDoesNotHaveSelectedTextAction(ActionBase):
 h3. Description
 
 This action asserts that the currently selected option in the specified select does not have the specified text.'''
+    __builtin__ = True
     regex = LanguageItem("select_does_not_have_selected_text_regex")
 
     def execute(self, context, select_name, text):
@@ -229,6 +238,7 @@ class SelectContainsOptionWithTextAction(ActionBase):
 h3. Description
 
 This action asserts that the specified select contains at least one option with the specified text.'''
+    __builtin__ = True
     regex = LanguageItem("select_contains_option_with_text_regex")
 
     def execute(self, context, select_name, text):
@@ -254,6 +264,7 @@ class SelectDoesNotContainOptionWithTextAction(ActionBase):
 h3. Description
 
 This action asserts that the specified select does not contain any options with the specified text.'''
+    __builtin__ = True
     regex = LanguageItem("select_does_not_contain_option_with_text_regex")
 
     def execute(self, context, select_name, text):
