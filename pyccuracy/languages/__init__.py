@@ -40,6 +40,7 @@ class LanguageGetter(Singleton):
                     'parameter, got %r(%r)'
             raise TypeError(error % (language.__class__, language))
 
+        self.key = language
         self.curdir = abspath(dirname(__file__))
         self.language_path = join(self.curdir, 'data', '%s.txt' % language)
         self.raw_data = None

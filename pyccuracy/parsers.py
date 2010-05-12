@@ -86,6 +86,7 @@ class FileParser(object):
         for line in scenario_lines:
             if self.is_scenario_starter_line(line):
                 current_scenario = self.parse_scenario_line(current_story, line, settings)
+                current_area = None
                 continue
 
             if self.is_keyword(line, "given"):
@@ -102,7 +103,10 @@ class FileParser(object):
                 if settings.scenarios_to_run:
                     continue
                 else:
-                    raise ValueError("No scenario line found before first action.")
+                    raise ValueError("NoScenario")
+
+            if not current_area:
+                raise ValueError("NoGivenWhenThen")
 
             add_method = getattr(current_scenario, "add_%s" % current_area)
 

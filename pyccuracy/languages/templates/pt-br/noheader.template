@@ -1,0 +1,9 @@
+${BG_RED}Arquivos com cabeçalho Inválido${NORMAL}
+-------------------------------
+Os arquivos nesta área estão aqui porque não continham o cabeçalho
+padrão do Pyccuracy (${CYAN}Como um/Eu quero/Para que${NORMAL}) ou
+não especificaram nenhum cenário válido (usando a sintaxe ${CYAN}Cenário # - Descrição${NORMAL}). É possível ainda que os cenários não contenham a sintaxe correta de "${CYAN}Dado que${NORMAL}", "${CYAN}Quando${NORMAL}" e "${CYAN}Então${NORMAL}".
+
+Será que você esqueceu de usar o parâmetro ${CYAN}-l <en-us, pt-br, etc>${NORMAL} (ou ${CYAN}--language=en-us${NORMAL})?
+
+#foreach ($story in $no_header_files)${RED}  $story${NORMAL}#end

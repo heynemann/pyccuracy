@@ -1,0 +1,9 @@
+${BG_RED}Files with Invalid Header${NORMAL}
+-------------------------
+The files in this area are here because they failed to provide 
+the default pyccuracy header (${CYAN}As a/I want to/So that${NORMAL}) or 
+didn't specify a valid scenario (using ${CYAN}Scenario # - Description${NORMAL} syntax). It's also possible that you have a scenario that does not use the "${CYAN}Given${NORMAL}", "${CYAN}When${NORMAL}", "${CYAN}Then${NORMAL}" syntax.
+
+Maybe you forgot to use the ${CYAN}-l <en-us, pt-br, etc>${NORMAL} switch (or ${CYAN}--language=en-us${NORMAL})?
+
+#foreach ($story in $no_header_files)${RED}  $story${NORMAL}#end

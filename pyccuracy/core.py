@@ -76,12 +76,17 @@ class PyccuracyCore(object):
 
         try:
             fixture = self.parser.get_stories(settings)
-
         except ActionNotFoundError, err:
             self.print_invalid_action(context.settings.default_culture, err)
             if settings.should_throw:
                 raise TestFailedError("The test failed!")
-
+            else:
+                return None
+        
+        if fixture.no_story_header:
+            self.print_no_story_header(fixture, context)
+            if settings.should_throw:
+                raise TestFailedError("The test failed!")
             else:
                 return None
 
@@ -129,6 +134,18 @@ class PyccuracyCore(object):
             results = Result(fixture)
             self.print_results(context.settings.default_culture, results)
             return results
+
+    def print_no_story_header(self, fixture, context):
+        val = { 
+                "has_no_header_files":True,
+                "no_header_files":fixture.no_story_header
+              }
+        template_loader = TemplateLoader(context.language.key)
+        template_string = template_loader.load('noheader')
+        template = Template(template_string)
+        msg = template.merge(val)
+        ctrl = TerminalController()
+        print ctrl.render(msg)
 
     def print_unused_elements_warning(self):
         unused_elements = []
