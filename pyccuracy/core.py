@@ -51,6 +51,12 @@ class PyccuracyCore(object):
         self.parser = parser or FileParser()
         self.runner = runner
         sys.path.insert(0, os.getcwd())
+        self.used_elements = {}
+
+    def got_element(self, page, element_key, resolved_key):
+        if page not in self.used_elements:
+            self.used_elements[page] = []
+        self.used_elements[page] = element_key
 
     def run_tests(self, context=None, fso=None, **kwargs):
         settings = Settings(kwargs)
@@ -95,11 +101,14 @@ class PyccuracyCore(object):
             return results
 
         try:
+            Page.subscribe_to_got_element(self.got_element)
+
             #running the tests
             results = self.runner.run_stories(settings=context.settings,
                                                fixture=fixture,
                                                context=context)
 
+            self.print_unused_elements_warning()
             self.print_results(context.settings.default_culture, results)
 
             if context.settings.write_report and results:
@@ -121,6 +130,35 @@ class PyccuracyCore(object):
             self.print_results(context.settings.default_culture, results)
             return results
 
+    def print_unused_elements_warning(self):
+        unused_elements = []
+        
+        for page_class in Page.all():
+            page = page_class()
+            if hasattr(page, "register"):
+                page.register()
+            if not page in self.used_elements:
+                unused_elements.extend(page.registered_elements.keys())
+            else:
+                for element in page.registered_elements.keys():
+                    element_key = '[%s] %s' % \
+                                (page.__class__.__name__, element)
+                                
+                    if element not in self.used_elements.values() and \
+                                element_key not in unused_elements:
+                        unused_elements.append(element_key)
+
+        if unused_elements:
+            template = """${YELLOW}WARNING!
+    ------------
+    The following elements are registered but are never used: 
+
+      *%s
+    ------------
+    ${NORMAL}
+    """
+            ctrl = TerminalController()
+            print ctrl.render(template % "\n  *".join(unused_elements))
 
     def print_unused_actions_warning(self, unused_actions):
         template = """${YELLOW}WARNING!

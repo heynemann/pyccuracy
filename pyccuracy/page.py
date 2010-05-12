@@ -23,6 +23,7 @@ from pyccuracy.common import Settings, URLChecker
 
 NAME_DICT = {}
 URL_DICT = {}
+ALL_PAGES = []
 
 class InvalidUrlError(Exception):
     pass
@@ -46,7 +47,8 @@ class MetaPage(type):
                 URL_DICT[url].insert(0, cls)
             else:
                 URL_DICT[url] = [cls]
-
+            
+            ALL_PAGES.append(cls)
 
         super(MetaPage, cls).__init__(name, bases, attrs)
 
@@ -124,8 +126,10 @@ class PageRegistry(object):
         return URL_DICT.get(url)
 
 class Page(object):
-    __metaclass__ = MetaPage
     '''Class that defines a page model.'''
+    __metaclass__ = MetaPage
+
+    got_element_event_handlers = []
 
     Button = "button"
     Checkbox = "checkbox"
@@ -144,10 +148,24 @@ class Page(object):
         if hasattr(self, "register"):
             self.register()
 
+    @classmethod
+    def all(cls):
+        return ALL_PAGES
+
+    @classmethod
+    def subscribe_to_got_element(cls, subscriber):
+        cls.got_element_event_handlers.append(subscriber)
+
+    def fire_got_element(self, element_key, resolved_key):
+        for subscriber in self.got_element_event_handlers:
+            subscriber(self, element_key, resolved_key)
+
     def get_registered_element(self, element_key):
         if not self.registered_elements.has_key(element_key):
             return None
-        return self.registered_elements[element_key]
+        resolved_key = self.registered_elements[element_key]
+        self.fire_got_element(element_key, resolved_key)
+        return resolved_key
 
     def register_element(self, element_key, element_locator):
         if self.registered_elements.has_key(element_key) and self.get_registered_element(element_key) != element_locator:
