@@ -17,3 +17,11 @@ Quando
 	Eu clico no link "lnkItWorks2" e espero
 Então
 	Eu vejo o título "It Works!"
+
+Cenário 3 - Clicando em um link pelo texto
+Dado que
+	Eu navego para "link_tests.htm"
+Quando
+	Eu clico no link "It Worked 2" e espero
+Então
+	Eu vejo o título "It Works!"

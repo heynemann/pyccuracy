@@ -17,3 +17,11 @@ When
 	I click "lnkItWorks2" link and wait
 Then
 	I see "It Works!" title
+
+Scenario 3 - Checking that we can click a link by text
+Given
+       I go to "link_tests.htm"
+When
+       I click "It Worked 2" link and wait
+Then
+       I see "It Works!" title

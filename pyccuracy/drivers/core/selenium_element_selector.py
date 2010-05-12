@@ -60,8 +60,8 @@ class SeleniumElementSelector(object):
         Returns a regular expression that matches link(a) tags with
         the specified argument as id or name.
         '''
-        return r"//a[(@name='%s' or @id='%s')]" % (element_name, element_name)
-
+        return r"//a[(@name='%s' or @id='%s' or contains(., '%s'))]" % \
+                            (element_name, element_name, element_name)
     @staticmethod
     def checkbox(element_name):
         '''
