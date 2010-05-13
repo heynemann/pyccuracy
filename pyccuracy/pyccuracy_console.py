@@ -37,19 +37,22 @@ prg = None
 scenarios_ran = 0
 ctrl = TerminalController()
 
-def position(level, message, offset=10):
+def position(level, message, offset=4):
     offset_message = (level * offset) * " "
     line = "%s%s" % (offset_message, message)
     return line
 
+def section_started_handler(section):
+    print ctrl.render("${YELLOW}%s${NORMAL}" % position(1, section))
+
 def before_action(context, action, args, kwarg):
-    print ctrl.render("${WHITE}%s" % position(1, action.description))
+    print ctrl.render("${WHITE}%s${NORMAL}" % position(2, action.description))
 
 def action_successful(context, action, args, kwarg):
-    print ctrl.render((ctrl.BOL + ctrl.UP + ctrl.CLEAR_EOL) * action.number_of_lines + "${GREEN}%s" % position(1, action.description))
+    print ctrl.render((ctrl.BOL + ctrl.UP + ctrl.CLEAR_EOL) * action.number_of_lines + "${GREEN}%s${NORMAL}" % position(2, action.description))
 
 def action_error(context, action, args, kwarg, error):
-    print ctrl.render((ctrl.BOL + ctrl.UP + ctrl.CLEAR_EOL) * action.number_of_lines + "${RED}%s" % position(1, action.description))
+    print ctrl.render((ctrl.BOL + ctrl.UP + ctrl.CLEAR_EOL) * action.number_of_lines + "${RED}%s${NORMAL}" % position(2, action.description))
 
 def scenario_started(fixture, scenario, scenario_index):
     global scenarios_ran
@@ -158,6 +161,7 @@ def main(arguments=sys.argv[1:]):
     on_action_error_handler = None
     on_scenario_started_handler = None
     on_scenario_completed_handler = update_progress
+    on_section_started = None
 
     if verbosity == 3:
         on_before_action_handler = before_action
@@ -165,6 +169,7 @@ def main(arguments=sys.argv[1:]):
         on_action_error_handler = action_error
         on_scenario_started_handler = scenario_started
         on_scenario_completed_handler = scenario_completed
+        on_section_started = section_started_handler
 
     result = pyc.run_tests(actions_dir=options.actions_dir,
                            custom_actions_dir=options.custom_actions_dir,
@@ -188,6 +193,7 @@ def main(arguments=sys.argv[1:]):
                            on_before_action=on_before_action_handler,
                            on_action_successful=on_action_successful_handler,
                            on_action_error=on_action_error_handler,
+                           on_section_started = on_section_started,
                            verbosity=int(options.verbosity))
 
     if not result or result.get_status() != "SUCCESSFUL":

@@ -157,6 +157,7 @@ class Settings(object):
         self.on_before_action = self.get_setting(settings, 'on_before_action', None)
         self.on_action_successful = self.get_setting(settings, 'on_action_successful', None)
         self.on_action_error = self.get_setting(settings, 'on_action_error', None)
+        self.on_section_started = self.get_setting(settings, 'on_section_started', None)
 
     def get_setting(self, settings, key, default):
         value = settings.get(key, None)

@@ -66,14 +66,39 @@ class StoryRunner(object):
                     scenario_index += 1
                     if not context:
                         context = self.create_context_for(settings)
-                    for action in scenario.givens + scenario.whens + scenario.thens:
+                    def execute_action(action):
                         try:
                             result = self.execute_action(context, action)
                             if not result:
-                                break
+                                return False
                         except ActionNotFoundError, error:
-                            action.mark_as_failed(ActionNotFoundError(error.line, scenario, scenario.story.identity))
+                            action.mark_as_failed(
+                                ActionNotFoundError(error.line, 
+                                                    scenario,
+                                                    scenario.story.identity))
+                            return False
+                        return True
+
+                    def on_section_started(section):
+                        if settings.on_section_started and\
+                        callable(settings.on_section_started):
+                            settings.on_section_started(section)
+                    
+                    on_section_started(context.language.get('given'))
+                    for action in scenario.givens:
+                        if not execute_action(action):
                             break
+
+                    on_section_started(context.language.get('when'))
+                    for action in scenario.whens:
+                        if not execute_action(action):
+                            break
+                    
+                    on_section_started(context.language.get('then'))
+                    for action in scenario.thens:
+                        if not execute_action(action):
+                            break
+                            
                     if settings.on_scenario_completed and callable(settings.on_scenario_completed):
                         settings.on_scenario_completed(fixture, scenario, scenario_index)
 
