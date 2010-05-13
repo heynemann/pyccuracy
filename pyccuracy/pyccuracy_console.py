@@ -134,7 +134,7 @@ def main(arguments=sys.argv[1:]):
     parser.add_option("-F", "--reportfile", dest="report_file_name", default="report.html", help="Report file. Defines the file name to write the report with [default: %default].")
 
     #verbosity
-    parser.add_option("-v", "--verbosity", dest="verbosity", default="2", help="Verbosity. 0 - does not show any output, 1 - shows text progress, 2 - shows animated progress bar, 3 - shows action by action [default: %default].")
+    parser.add_option("-v", "--verbosity", dest="verbosity", default="3", help="Verbosity. 0 - does not show any output, 1 - shows text progress, 2 - shows animated progress bar, 3 - shows action by action [default: %default].")
 
     options, args = parser.parse_args(arguments)
 

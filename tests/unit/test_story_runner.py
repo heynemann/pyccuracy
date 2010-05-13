@@ -62,6 +62,19 @@ def test_story_runner_returns_a_result_with_a_Fixture():
     context.settings.on_before_action = None
     context.settings.on_action_successful = None
     context.settings.on_action_error = None
+    context.language = Mock()
+    context.language \
+           .expects(once()) \
+           .get(eq('given')) \
+           .will(return_value('Given'))
+    context.language \
+           .expects(once()) \
+           .get(eq('when')) \
+           .will(return_value('When'))
+    context.language \
+           .expects(once()) \
+           .get(eq('then')) \
+           .will(return_value('Then'))
 
     result = runner.run_stories(settings, fixture, context=context)
 
@@ -84,6 +97,19 @@ def test_story_runner_returns_a_result_with_the_original_Fixture():
     context.settings.on_before_action = None
     context.settings.on_action_successful = None
     context.settings.on_action_error = None
+    context.language = Mock()
+    context.language \
+           .expects(once()) \
+           .get(eq('given')) \
+           .will(return_value('Given'))
+    context.language \
+           .expects(once()) \
+           .get(eq('when')) \
+           .will(return_value('When'))
+    context.language \
+           .expects(once()) \
+           .get(eq('then')) \
+           .will(return_value('Then'))
 
     result = runner.run_stories(settings, fixture, context=context)
 
@@ -128,6 +154,19 @@ def test_should_execute_scenarios_successfully():
     context.settings.on_before_action = None
     context.settings.on_action_successful = None
     context.settings.on_action_error = None
+    context.language = Mock()
+    context.language \
+           .expects(once()) \
+           .get(eq('given')) \
+           .will(return_value('Given'))
+    context.language \
+           .expects(once()) \
+           .get(eq('when')) \
+           .will(return_value('When'))
+    context.language \
+           .expects(once()) \
+           .get(eq('then')) \
+           .will(return_value('Then'))
 
     result = runner.run_stories(settings=settings, fixture=fixture, context=context)
 
@@ -153,6 +192,19 @@ def test_should_handle_action_errors_successfully():
     context.settings.on_before_action = None
     context.settings.on_action_successful = None
     context.settings.on_action_error = None
+    context.language = Mock()
+    context.language \
+           .expects(once()) \
+           .get(eq('given')) \
+           .will(return_value('Given'))
+    context.language \
+           .expects(once()) \
+           .get(eq('when')) \
+           .will(return_value('When'))
+    context.language \
+           .expects(once()) \
+           .get(eq('then')) \
+           .will(return_value('Then'))
 
     result = runner.run_stories(settings=settings, fixture=fixture, context=context)
 
@@ -178,6 +230,19 @@ def test_should_record_errors_correctly():
     context.settings.on_before_action = None
     context.settings.on_action_successful = None
     context.settings.on_action_error = None
+    context.language = Mock()
+    context.language \
+           .expects(once()) \
+           .get(eq('given')) \
+           .will(return_value('Given'))
+    context.language \
+           .expects(once()) \
+           .get(eq('when')) \
+           .will(return_value('When'))
+    context.language \
+           .expects(once()) \
+           .get(eq('then')) \
+           .will(return_value('Then'))
 
     result = runner.run_stories(settings=settings, fixture=fixture, context=context)
 
