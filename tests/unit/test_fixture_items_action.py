@@ -23,7 +23,7 @@ def some_action():
     return Action(scenario=scenario, description="Some Action", execute_function=lambda: None, args=["s"], kwargs={"a":"b"})
 
 def test_creating_an_action_returns_an_action():
-    action = Action(scenario=None, description=None, execute_function=None, args=None, kwargs=None)
+    action = Action(scenario=None, description="bla", execute_function=None, args=None, kwargs=None)
     assert isinstance(action, Action)
 
 def test_creating_an_action_keeps_description():
@@ -33,13 +33,13 @@ def test_creating_an_action_keeps_description():
 
 def test_creating_an_action_keeps_execute_function():
     func = lambda: None
-    action = Action(scenario=None, description=None, execute_function=func, args=None, kwargs=None)
+    action = Action(scenario=None, description="bla", execute_function=func, args=None, kwargs=None)
     assert action.execute_function == func, "Execute function should be %s but was %s" % (func, action.execute_function)
 
 def test_creating_an_action_keeps_args_and_kwargs():
     expected = ["a","b"]
     kwargs = {"a":"b"}
-    action = Action(scenario=None, description=None, execute_function=None, args=expected, kwargs=kwargs)
+    action = Action(scenario=None, description="bla", execute_function=None, args=expected, kwargs=kwargs)
     assert action.args == expected, "Args should be %s but was %s" % (expected, action.args)
     assert action.kwargs == kwargs, "KWArgs should be %s but was %s" % (kwargs, action.kwargs)
 

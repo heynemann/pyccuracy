@@ -1,0 +1,14 @@
+As a Pyccuracy User
+I want to test the table match action
+So that I can make sure Pyccuracy works
+
+Scenario 1 - Checking that we can match the contents of a table
+Given
+    I go to "table_tests.htm"
+When
+    #The Page is Loaded
+Then
+    I see "some" table as:
+        | Name | Age | Sex  |
+        | John | 28  | Male |
+        | Paul | 30  | Male | 

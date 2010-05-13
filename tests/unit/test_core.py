@@ -59,12 +59,15 @@ def make_context_and_fso_mocks():
 def test_pyccuracy_core_run_tests():
     context_mock, fso_mock = make_context_and_fso_mocks()
     context_mock.settings.write_report = False
+    context_mock.language = Mock()
+    context_mock.language.key = "pt-br"
 
     context_mock.browser_driver.expects(once()).method('start_test')
     context_mock.browser_driver.expects(once()).method('stop_test')
 
     results_mock = Mock()
     suite_mock = Mock()
+    suite_mock.no_story_header = []
 
     runner_mock = Mock()
     parser_mock = Mock()
@@ -74,6 +77,7 @@ def test_pyccuracy_core_run_tests():
 
     results_mock.expects(once()).summary_for(eq('en-us')).will(return_value('my results'))
     pc = PyccuracyCore(parser_mock, runner_mock)
+    
     assert pc.run_tests(should_throw=False, context=context_mock, fso=fso_mock) == results_mock
 
     parser_mock.verify()
@@ -87,8 +91,11 @@ def test_pyccuracy_core_run_tests_works_when_None_Result_returned_from_story_run
     context_mock, fso_mock = make_context_and_fso_mocks()
     context_mock.browser_driver.expects(once()).method('start_test')
     context_mock.browser_driver.expects(once()).method('stop_test')
+    context_mock.language = Mock()
+    context_mock.language.key = "pt-br"
 
     suite_mock = Mock()
+    suite_mock.no_story_header = []
 
     runner_mock = Mock()
     parser_mock = Mock()
@@ -113,9 +120,12 @@ def test_pyccuracy_core_should_raise_TestFailedError_when_should_throw_is_true()
 
         context_mock.browser_driver.expects(once()).method('start_test')
         context_mock.browser_driver.expects(once()).method('stop_test')
+        context_mock.language = Mock()
+        context_mock.language.key = "key"
 
         results_mock = Mock()
         suite_mock = Mock()
+        suite_mock.no_story_header = []
 
         runner_mock = Mock()
         parser_mock = Mock()

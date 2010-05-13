@@ -19,7 +19,7 @@ scenarios_ran_successfully = %d cenários tiveram sucesso (%.2f%%)
 scenarios_that_failed = %d cenários falharam (%.2f%%)
 
 #Supported elements
-supported_elements = botão|radio|div|link|checkbox|select|caixa de texto|imagem|elemento|parágrafo|ul|li
+supported_elements = botão|radio|div|link|checkbox|select|caixa de texto|imagem|elemento|parágrafo|ul|li|tabela
 botão_category = button
 checkbox_category = checkbox
 div_category = div
@@ -28,6 +28,7 @@ link_category = link
 page_category = page
 radio_category = radio_button
 select_category = select
+tabela_category = table
 caixa de texto_category = textbox
 parágrafo_category = paragraph
 ul_category = ul
@@ -106,6 +107,8 @@ textbox_is_empty_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](?P<textbox_n
 textbox_is_not_empty_regex = ^(E )?[eE]u vejo que a caixa de texto [\"](?P<textbox_name>.+)[\"] não está vazia$
 textbox_clean_regex = ^(E )?[eE]u limpo a caixa de texto [\"](?P<textbox_name>.+)[\"]$
 
+table_match_regex = ^(E )?[eE]u vejo a tabela [\"](?P<table_name>.+)[\"] como:$
+
 #Action Failure Messages
 page_go_to_failure = A url "%s" não é válida. Você esqueceu de usar o parâmetro -u (ou --url) ?
 page_am_in_failure = A url "%s" não foi registrada como página. Você esqueceu de incluir uma classe que herde de Page com esta url?
@@ -165,6 +168,8 @@ select_option_by_text_failure = A opção da select %s com texto de "%s" não fo
 
 textbox_is_empty_failure = A caixa de texto com nome ou id %s não está vazia e deveria estar.
 textbox_is_not_empty_failure = A caixa de texto com nome ou id %s está vazia e não deveria estar.
+
+table_invalid_data_failure = A tabela com nome ou id '%s' deveria ter a estrutura \n%s\n%s mas teve \n%s.
 
 timeout_failure = A ação de esperar a página carregar não foi executada com sucesso após um timeout de %d milisegundos.
 

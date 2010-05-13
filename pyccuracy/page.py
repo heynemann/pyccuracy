@@ -140,6 +140,7 @@ class Page(object):
     RadioButton = "radio_button"
     Select = "select"
     Textbox = "textbox"
+    Table = "table"
     Element = '*'
 
     def __init__(self):

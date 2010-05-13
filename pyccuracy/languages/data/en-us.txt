@@ -12,7 +12,7 @@ files_without_header = test files without the proper header
 story_status = Story Status
 
 #Supported elements
-supported_elements = button|radio button|div|link|checkbox|select|textbox|image|element|paragraph|ul|li
+supported_elements = button|radio button|div|link|checkbox|select|textbox|image|element|paragraph|ul|li|table
 button_category = button
 checkbox_category = checkbox
 div_category = div
@@ -22,6 +22,7 @@ page_category = page
 radio button_category = radio_button
 select_category = select
 textbox_category = textbox
+table_category = table
 paragraph_category = paragraph
 ul_category = ul
 li_category = li
@@ -106,6 +107,8 @@ textbox_is_empty_regex = ^(And )?I see [\"](?P<textbox_name>.+)[\"] textbox is e
 textbox_is_not_empty_regex = ^(And )?I see [\"](?P<textbox_name>.+)[\"] textbox is not empty$
 textbox_clean_regex = ^(And )?I clean [\"](?P<textbox_name>.+)[\"] textbox$
 
+table_match_regex = ^(And )?I see [\"](?P<table_name>.+)[\"] table as:$
+
 #Action Failure Messages
 page_go_to_failure = The url "%s" is not valid. Did you forget to use the -u (or --url) parameter ?
 page_am_in_failure = The url "%s" was not registered in any pages. Did you forget to include a class that inherits from Page with the given url?
@@ -166,6 +169,8 @@ select_option_by_text_failure = The option in the select %s with text of "%s" wa
 
 textbox_is_empty_failure = The textbox with name or id %s is not empty.
 textbox_is_not_empty_failure = The textbox with name or id %s is empty.
+
+table_invalid_data_failure = The table with name or id %s should have structure of \n%s\n%s but was \n%s.
 
 timeout_failure = The action wait for page to load timed out after waiting for %d ms.
 

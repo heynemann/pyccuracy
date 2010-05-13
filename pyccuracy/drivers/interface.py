@@ -165,3 +165,8 @@ This method is called before any scenarios begin.'''
     def get_select_options(self, select):
         '''This method returns a list of options for the given select.'''
         raise NotImplementedError
+    
+    def get_table_rows(self, table_key):
+        '''This method returns a list of rows for the given table.'''
+        raise NotImplementedError
+        

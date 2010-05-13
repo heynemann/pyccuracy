@@ -46,10 +46,10 @@ def before_action(context, action, args, kwarg):
     print ctrl.render("${WHITE}%s" % position(1, action.description))
 
 def action_successful(context, action, args, kwarg):
-    print ctrl.render(ctrl.BOL + ctrl.UP + ctrl.CLEAR_EOL + "${GREEN}%s" % position(1, action.description))
+    print ctrl.render((ctrl.BOL + ctrl.UP + ctrl.CLEAR_EOL) * action.number_of_lines + "${GREEN}%s" % position(1, action.description))
 
 def action_error(context, action, args, kwarg, error):
-    print ctrl.render(ctrl.BOL + ctrl.UP + ctrl.CLEAR_EOL + "${RED}%s" % position(1, action.description))
+    print ctrl.render((ctrl.BOL + ctrl.UP + ctrl.CLEAR_EOL) * action.number_of_lines + "${RED}%s" % position(1, action.description))
 
 def scenario_started(fixture, scenario, scenario_index):
     global scenarios_ran

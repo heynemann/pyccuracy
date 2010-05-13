@@ -26,6 +26,9 @@ from pyccuracy.common import locate
 from pyccuracy.fixture import Fixture
 from pyccuracy.fixture_items import Story, Action, Scenario
 
+class InvalidScenarioError(RuntimeError):
+    pass
+
 class FSO(object):
     '''Actual Filesystem'''
     def list_files(self, directories, pattern):
@@ -62,7 +65,7 @@ class FileParser(object):
                     fixture.append_no_story_header(story_file_path)
             except IOError, err:
                 fixture.append_invalid_test_file(story_file_path, err)
-            except ValueError, verr:
+            except InvalidScenarioError, verr:
                 fixture.append_no_story_header(story_file_path)
         return fixture
 
@@ -83,7 +86,12 @@ class FileParser(object):
         scenario_lines = story_lines[3:]
 
         current_scenario = None
-        for line in scenario_lines:
+        offset = 0
+        for line_index, line in enumerate(scenario_lines):
+            if offset > 0:
+                offset -= 1
+                continue
+            offset = 0
             if self.is_scenario_starter_line(line):
                 current_scenario = self.parse_scenario_line(current_story, line, settings)
                 current_area = None
@@ -103,10 +111,10 @@ class FileParser(object):
                 if settings.scenarios_to_run:
                     continue
                 else:
-                    raise ValueError("NoScenario")
+                    raise InvalidScenarioError("NoScenario")
 
             if not current_area:
-                raise ValueError("NoGivenWhenThen")
+                raise InvalidScenarioError("NoGivenWhenThen")
 
             add_method = getattr(current_scenario, "add_%s" % current_area)
 
@@ -115,6 +123,16 @@ class FileParser(object):
                 continue
 
             action, args, kwargs = self.action_registry.suitable_for(line, settings.default_culture)
+            
+            rows = []
+            parsed_rows = []
+            if line.strip(' ').endswith(':'):
+                if line_index >= len(scenario_lines):
+                    self.raise_action_not_found_for_line(line, current_scenario, story_file_path)
+                
+                offset, rows, parsed_rows = self.parse_rows(line_index, 
+                                                            line, 
+                                                            scenario_lines)
 
             if not action:
                 self.raise_action_not_found_for_line(line, current_scenario, story_file_path)
@@ -125,9 +143,66 @@ class FileParser(object):
             instance = action()
             if kwargs:
                 args = []
-            add_method(line, instance.execute, args, kwargs)
+            instance.number_of_rows = 1
+            
+            parsed_line = line
+            if parsed_rows:
+                kwargs['table'] = parsed_rows
+                
+                for row in rows:
+                    parsed_line = parsed_line + "\n%s%s" % ("  " * \
+                                (self.get_line_identation(line) + 4),\
+                                row)
+
+            add_method(parsed_line, instance.execute, args, kwargs)
 
         return (True, None, current_story)
+
+    def parse_rows(self, line_index, line, scenario_lines):
+        line_identation = self.get_line_identation(line)
+
+        offset = 1
+
+        next_line_index = line_index + offset
+        next_line = scenario_lines[next_line_index]
+        next_line_identation = self.get_line_identation(next_line)
+        
+        rows = []
+        parsed_rows = []
+        keys = None
+
+        while (next_line_identation > line_identation):
+            rows.append(next_line)
+            values = [cell.strip(' ') for cell 
+                                      in next_line.split('|') 
+                                      if cell.strip(' ')]
+            
+            if not keys:
+                keys = values
+            else:
+                row = {}
+                for cell_index, cell in enumerate(values):
+                    row[keys[cell_index]] = cell
+                parsed_rows.append(row)
+            
+            offset += 1
+            next_line_index = line_index + offset
+
+            if next_line_index == len(scenario_lines):
+                break
+
+            next_line = scenario_lines[next_line_index]
+            next_line_identation = self.get_line_identation(next_line)
+        
+        return offset - 1, rows, parsed_rows
+
+    def get_line_identation(self, line):
+        identation = 0
+        for character in line:
+            if character == ' ' or character == '\t':
+                identation += 1
+
+        return identation
 
     def assert_header(self, story_lines, culture):
         as_a = self.language.get('as_a')

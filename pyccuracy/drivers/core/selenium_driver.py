@@ -255,3 +255,21 @@ class SeleniumDriver(BaseDriver):
     def radio_uncheck(self, radio_selector):
         self.selenium.uncheck(radio_selector)
         
+    def get_table_rows(self, table_selector):
+        rows = []
+        row_count = int(self.get_xpath_count(table_selector + "/tbody/tr"))
+        
+        for row_index in range(row_count):
+            row = []
+            cell_count = int(self.get_xpath_count(table_selector + 
+                                                "/tbody/tr[%d]/td" % \
+                                                (row_index + 1)))
+            for cell_index in range(cell_count):
+                cell = self.selenium.get_table(table_selector + '.%d.%d' % (
+                                                row_index,
+                                                cell_index
+                                              ))
+                row.append(cell)
+            rows.append(row)
+
+        return rows

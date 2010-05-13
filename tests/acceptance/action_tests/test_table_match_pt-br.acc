@@ -1,0 +1,14 @@
+Como um usuário do Pyccuracy
+Eu quero testar a ação de ver texto de uma tabela
+Para garantir que o Pyccuracy funciona em outras línguas
+
+Cenário 1 - Garantindo que a tabela na página contém o conteúdo
+Dado que
+    Eu navego para "table_tests.htm"
+Quando
+    #A página está carregada
+Então
+    Eu vejo a tabela "some" como:
+        | Name | Age | Sex  |
+        | John | 28  | Male |
+        | Paul | 30  | Male | 

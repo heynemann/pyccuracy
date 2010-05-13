@@ -87,6 +87,7 @@ class Action(StatusItem, TimedItem):
 
         self.scenario = scenario
         self.description = description
+        self.number_of_lines = len(description.split('\n'))
         self.execute_function = execute_function
         self.args = args
         self.kwargs = kwargs
