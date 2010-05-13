@@ -440,7 +440,7 @@
   <xsl:template match="/report/footer">
     <tr>
       <td class="footer">
-        Pyccuracy - Version <xsl:value-of select ="@version"/> - <a href="http://www.stormwindproject.org">http://www.pyccuracy.org</a>
+        Pyccuracy - Version <xsl:value-of select ="@version"/> - <a href="http://www.pyccuracy.org">http://www.pyccuracy.org</a>
       </td>
     </tr>
   </xsl:template>
