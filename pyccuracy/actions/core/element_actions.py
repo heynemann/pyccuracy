@@ -31,6 +31,7 @@ h3. en-us:
   * paragraph 
   * ul 
   * li
+  * table
   * element (only use this if none of the above apply)
 
 h3. pt-br:
@@ -45,6 +46,7 @@ h3. pt-br:
   * parágrafo 
   * ul 
   * li
+  * tabela
   * elemento (só utilize este se nenhum dos outro se aplicar)
   '''
 
