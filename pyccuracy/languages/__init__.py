@@ -29,7 +29,7 @@ class Singleton(object):
     def __new__(cls, *args, **kw):
         key = cls.__name__, args, tuple(kw.values())
         if key not in cls.__SINGLETON_INSTANCES__.keys():
-            cls.__SINGLETON_INSTANCES__[key] = super(type, cls).__new__(cls, *args, **kw)
+            cls.__SINGLETON_INSTANCES__[key] = super(type, cls).__new__(cls)
  
         return cls.__SINGLETON_INSTANCES__[key]
 
