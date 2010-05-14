@@ -4,7 +4,7 @@ So that I can make sure Pyccuracy works
 
 Scenario 1 - Checking that we can match the contents of a table
 Given
-    I go to "table_tests.htm"
+    I go to "table_tests.htm?url=http%20%31%40blabla.com&other=whatever;other"
 When
     #The Page is Loaded
 Then

@@ -56,7 +56,9 @@ class LanguageGetter(Singleton):
             if '=' not in line:
                 continue
 
-            k, v = line.split('=')
+            values = line.split('=')
+            k = values[0]
+            v = "=".join(values[1:])
             self.data[k.strip()] = unicode(v.strip())
 
     def get(self, key):

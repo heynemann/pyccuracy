@@ -1,5 +1,7 @@
 from pyccuracy.help import LanguageViewer
 
+url_regex = r"(?P<url>[\"](([\w:/._-]|\=|\?|\&|\"|\;|\%)+)[\"]|([\w\s_.-]+))$"
+
 def test_get_action():
     viewer = LanguageViewer(language='en-us')
     action = viewer.get_actions('select_does_not_have_selected_value')
@@ -74,8 +76,8 @@ def test_make_regex_readable_for_pt_br():
     assert viewer.make_it_readable(r'^(E )?[eE]u seleciono o item com índice (?P<index>\d+) na select [\"](?P<select_name>.+)[\"]$')\
             == '(E )[eE]u seleciono o item com índice X na select "select_name"'
 
-    assert viewer.make_it_readable(r'^(E )?[eE]u estou n[oa] (?P<url>[\"]([\w:/._-]+)[\"]|([\w\s_.-]+))$')\
-            == '(E )[eE]u estou n[oa] [page|"url"]', "result was: %s" % viewer.make_it_readable(r'^(E )?[eE]u estou n[oa] (?P<url>[\"]([\w:/._-]+)[\"]|([\w\s_.-]+))$')
+    assert viewer.make_it_readable(r'^(E )?[eE]u estou n[oa] %s' % url_regex)\
+            == '(E )[eE]u estou n[oa] [page|"url"]', "result was: %s" % viewer.make_it_readable(r'^(E )?[eE]u estou n[oa] %s' % url_regex)
 
     assert viewer.make_it_readable(r'^(E )?[eE]u vejo que a radio [\"](?P<radio_key>.+)[\"] está marcada$')\
             == '(E )[eE]u vejo que a radio "radio_key" está marcada'
@@ -179,7 +181,7 @@ def test_make_regex_readable_for_pt_br():
     assert viewer.make_it_readable(r'^(E )?[eE]u clico n[oa] (?P<element_type><element selector>) [\"](?P<element_name>[^"]+)[\"](?P<should_wait> e espero)?$')\
             == '(E )[eE]u clico n[oa] [element_type|element selector] "element_name"( e espero)'
 
-    assert viewer.make_it_readable(r'^(E )?[eE]u navego para (?P<url>[\"]([\w:/._-]+)[\"]|([\w\s_.-]+))$')\
+    assert viewer.make_it_readable(r'^(E )?[eE]u navego para %s' % url_regex)\
             == '(E )[eE]u navego para [page|"url"]'
 
     assert viewer.make_it_readable(r'^(E )?[eE]u arrasto [oa] (?P<from_element_type><element selector>) [\"](?P<from_element_name>.+)[\"] para [oa] (?P<to_element_type><element selector>) [\"](?P<to_element_name>[^"]+)[\"]?$')\
@@ -251,7 +253,7 @@ def test_make_regex_readable_for_en_us():
     assert viewer.make_it_readable(r'^(And )?I select the option with index of (?P<index>\d+) in [\"](?P<select_name>.+)[\"] select$')\
             == '(And )I select the option with index of X in "select_name" select'
 
-    assert viewer.make_it_readable(r'^(And )?I am in the (?P<url>[\"]([\w:/._-]+)[\"]|([\w\s_.-]+))$')\
+    assert viewer.make_it_readable(r'^(And )?I am in the %s' % url_regex)\
             == '(And )I am in the [page|"url"]'
 
     assert viewer.make_it_readable(r'^(And )?I see the [\"](?P<radio_key>.+)[\"] radio is checked$')\
@@ -356,7 +358,7 @@ def test_make_regex_readable_for_en_us():
     assert viewer.make_it_readable(r'^(And )?I click [\"](?P<element_name>[^"]+)[\"] (?P<element_type><element selector>)(?P<should_wait> and wait)?$')\
             == '(And )I click "element_name" [element_type|element selector]( and wait)'
 
-    assert viewer.make_it_readable(r'^(And )?I go to (?P<url>[\"]([\w:/._-]+)[\"]|([\w\s_.-]+))$')\
+    assert viewer.make_it_readable(r'^(And )?I go to %s' % url_regex)\
             == '(And )I go to [page|"url"]'
 
     assert viewer.make_it_readable(r'^(And )?I drag the [\"](?P<from_element_name>.+)[\"] (?P<from_element_type><element selector>) to the [\"](?P<to_element_name>.+)[\"] (?P<to_element_type><element selector>)?$')\

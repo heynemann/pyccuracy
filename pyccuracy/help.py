@@ -26,9 +26,9 @@ class LanguageViewer(object):
         for line in language_file:
             line = line.strip()
             if not line.startswith('#') and '=' in line:
-                left, right = line.split('=')
-                left = left.strip()
-                right = right.strip()
+                values = line.split('=')
+                left = values[0].strip()
+                right = "=".join(values[1:]).strip()
                 splitted_left_operand = left.split('_')
                 if splitted_left_operand[-1] == 'regex' and splitted_left_operand[0] in self.ACTIONS:
                     action_name = '_'.join(splitted_left_operand[:-1])
@@ -38,7 +38,8 @@ class LanguageViewer(object):
         language_file.close()
 
     def make_it_readable(self, value):
-        value = value.replace('(?P<url>[\\"]([\w:/._-]+)[\\"]|([\w\s_.-]+))$', '[page|"url"]') #replace urls
+        url_regex = "(?P<url>[\\\"](([\w:/._-]|\=|\?|\&|\\\"|\;|\%)+)[\\\"]|([\w\s_.-]+))$"
+        value = value.replace(url_regex, '[page|"url"]') #replace urls
         value = re.sub(r'\(\?\P\<([\w\s]*)\>\<([\w\s]*)\>\)', r'[\1|\2]', value)
         value = re.sub(r'\(\?\P\<([\w\s]*)\>\[\^\"\]\+\)', r'\1', value)
         value = re.sub(r'\(\?\P\<([\w\s]*)\>\.\+\)', r'\1', value)
