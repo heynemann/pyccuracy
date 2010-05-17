@@ -170,7 +170,10 @@ class Settings(object):
 class Context(object):
     def __init__(self, settings):
         self.settings = settings
-        self.language = AVAILABLE_GETTERS[settings.default_culture]
+        if not settings.default_culture in AVAILABLE_GETTERS:
+            print "Invalid language %s. Available options are: %s. Defaulting to en-us." % (settings.default_culture, ", ".join(AVAILABLE_GETTERS.keys())) 
+            settings.default_culture = "en-us"
+            self.language = AVAILABLE_GETTERS[settings.default_culture]
         self.browser_driver = DriverRegistry.get(settings.browser_driver)(self)
         self.url = None
         self.current_page = None

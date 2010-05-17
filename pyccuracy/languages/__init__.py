@@ -22,7 +22,7 @@ from os.path import abspath, dirname, join
 
 from pyccuracy.errors import WrongArgumentsError
 
-AVAILABLE_LANGUAGES = [l.replace('.txt', '') for l in listdir(join(abspath(dirname(__file__)), 'data'))]
+AVAILABLE_LANGUAGES = [l.replace('.txt', '') for l in listdir(join(abspath(dirname(__file__)), 'data')) if l.endswith('txt')]
 
 class Singleton(object):
     __SINGLETON_INSTANCES__ = {}
