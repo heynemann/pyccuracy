@@ -33,7 +33,7 @@ from lxml import etree as ET
 from pyccuracy import Version
 
 def generate_report(file_path, test_result, language):
-    xslt = open(join(split(__file__)[0], "xslt/AccuracyReport.xslt"))
+    xslt = open(join(split(__file__)[0], "xslt/AccuracyReport_%s.xslt" % language.key))
     xslt_doc = etree.parse(xslt)
     transform = etree.XSLT(xslt_doc)
     doc = generate_xml(test_result, language)
