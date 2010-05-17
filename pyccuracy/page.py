@@ -18,7 +18,11 @@
 
 from os.path import abspath, exists
 from urlparse import urljoin
-from lxml import cssselect
+lxml_available = True
+try:
+    from lxml import cssselect
+except ImportError:
+    lxml_available = False
 from pyccuracy.common import Settings, URLChecker
 
 NAME_DICT = {}
@@ -175,6 +179,8 @@ class Page(object):
         self.registered_elements[element_key] = element_locator
 
     def quick_register(self, element_key, element_selector):
+        if not lxml_available:
+            raise RuntimeError("You can't use CSS selectors unless you install lxml. Installing it is pretty easy. Check our docs at http://www.pyccuracy.org to know more.")
         selector = cssselect.CSSSelector(element_selector)
         xpath = selector.path.replace("descendant-or-self::", "//")
         self.register_element(element_key, xpath)
