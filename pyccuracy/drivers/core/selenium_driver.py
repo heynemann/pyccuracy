@@ -19,7 +19,11 @@
 import time
 from traceback import format_exc
 
-from selenium import *
+selenium_available = True
+try:
+    from selenium import *
+except ImportError:
+    selenium_available = False
 
 from pyccuracy.drivers import BaseDriver, DriverError
 from selenium_element_selector import *
@@ -32,6 +36,9 @@ class SeleniumDriver(BaseDriver):
         self.selenium = selenium
 
     def start_test(self, url=None):
+        if not selenium_available:
+            raise RuntimeError('You *MUST* have selenium installed to use the selenium browser driver')
+
         if not url:
             url = self.context.settings.base_url
         self.start_selenium(url)
