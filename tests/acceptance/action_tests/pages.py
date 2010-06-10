@@ -15,3 +15,10 @@ class OtherPage(Page):
 
     def register(self):
         self.quick_register(u"text", "#divText3")
+
+class GoogleSearch(Page):
+    url = "http://www.google.com/"
+
+    def register(self):
+        self.register_element('query', '//input[@name="q"]')
+        self.register_element('search', '//input[@name="btnG"]')

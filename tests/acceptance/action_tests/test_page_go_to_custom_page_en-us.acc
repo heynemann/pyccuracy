@@ -1,0 +1,12 @@
+As a Pyccuracy User
+I want to test that I can navigate to a custom page
+So that I can make sure Pyccuracy works
+
+Scenario 1 - Checking that navigating to a custom page works
+Given
+    I go to Google Search
+When
+    I fill "query" textbox with "Hello World"
+    And I click "search" button
+Then
+    #google loads

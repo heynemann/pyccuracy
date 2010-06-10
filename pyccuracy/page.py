@@ -87,6 +87,8 @@ class PageRegistry(object):
                 return None
 
         klass_object = cls.get_by_name(url) or cls.get_by_url(url)
+        if klass_object:
+            url = klass_object.url
 
         url_pieces = []
 
