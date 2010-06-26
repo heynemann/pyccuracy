@@ -201,8 +201,5 @@ def main(arguments=sys.argv[1:]):
 
     return 0
 
-def console():
-    sys.exit(main(sys.argv[1:]))
-
 if __name__ == "__main__":
-    console()
+    sys.exit(main(sys.argv[1:]))
