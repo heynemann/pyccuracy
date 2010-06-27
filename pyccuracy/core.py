@@ -32,6 +32,7 @@ from pyccuracy.languages.templates import *
 from pyccuracy.drivers import DriverError
 from pyccuracy.result import Result
 from pyccuracy.colored_terminal import TerminalController
+from pyccuracy.hooks import Hooks
 
 class FSO(object):
     def add_to_import(self, path):
@@ -47,11 +48,12 @@ class FSO(object):
         __import__(filename)
 
 class PyccuracyCore(object):
-    def __init__(self, parser=None, runner=None):
+    def __init__(self, parser=None, runner=None, hooks=None):
         self.parser = parser or FileParser()
         self.runner = runner
         sys.path.insert(0, os.getcwd())
         self.used_elements = {}
+        self.hooks = hooks and hooks or Hooks
 
     def got_element(self, page, element_key, resolved_key):
         if page not in self.used_elements:
@@ -126,9 +128,11 @@ class PyccuracyCore(object):
                     path = join(context.settings.report_file_dir, context.settings.report_file_name)
                     report.generate_report(path, results, context.language)
 
+            self.hooks.execute_after_tests(results)
+            
             if settings.should_throw and results and results.get_status() == Status.Failed:
                 raise TestFailedError("The test failed!")
-
+            
             return results
         except KeyboardInterrupt:
             results = Result(fixture)
