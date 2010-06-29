@@ -201,5 +201,9 @@ def main(arguments=sys.argv[1:]):
 
     return 0
 
-if __name__ == "__main__":
+def console():
+    # used by easy_install command line script - do not remove
     sys.exit(main(sys.argv[1:]))
+
+if __name__ == "__main__":
+    console()

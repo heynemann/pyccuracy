@@ -280,3 +280,11 @@ class SeleniumDriver(BaseDriver):
             rows.append(row)
 
         return rows
+    
+    def __str__(self):
+        return self.__unicode__()
+    
+    def __unicode__(self):
+        return "SeleniumDriver at '%s:%s' using '%s' browser." % (self.context.settings.extra_args.get("selenium.server", "localhost"),
+                self.context.settings.extra_args.get("selenium.port", 4444),
+                self.context.settings.browser_to_run)
