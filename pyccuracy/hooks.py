@@ -6,12 +6,19 @@ class Hooks(object):
     @classmethod
     def execute_after_tests(cls, results):
         ctrl = TerminalController()
+        hooks_feedback = ctrl.render('${CYAN}')
+        
         for hook in HOOKS['after_tests']:
             try:
                 hook().execute(results)
-                print ctrl.render('[HOOKS] "%s" executed.' % hook)
+                hooks_feedback += ctrl.render('[HOOKS] AfterTestsHook "%s" executed.' % hook)
             except Exception, e:
                 raise HookError(e)
+        
+        hooks_feedback += ctrl.render('${NORMAL}')
+        hooks_feedback += "\n"
+        
+        print hooks_feedback
     
     @classmethod
     def reset(cls):
