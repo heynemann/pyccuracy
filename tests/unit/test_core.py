@@ -38,6 +38,7 @@ def make_context_and_fso_mocks():
     context_mock = Mock()
     context_mock.browser_driver = Mock()
     context_mock.settings = Mock()
+    context_mock.settings.hooks_dir = ["/hooks/dir/"]
     context_mock.settings.pages_dir = ["/pages/dir/"]
     context_mock.settings.custom_actions_dir = ["/custom/actions/dir/"]
     context_mock.settings.base_url = "http://localhost"
@@ -46,13 +47,16 @@ def make_context_and_fso_mocks():
     files = ["/some/weird/file.py"]
     actions  = ["/some/weird/action.py"]
     fso_mock = Mock()
+    fso_mock.expects(once()).add_to_import(eq(context_mock.settings.hooks_dir[0]))
     fso_mock.expects(once()).add_to_import(eq(context_mock.settings.pages_dir[0]))
     fso_mock.expects(once()).add_to_import(eq(context_mock.settings.custom_actions_dir[0]))
+    fso_mock.expects(once()).locate(eq(context_mock.settings.hooks_dir[0]), eq('*.py')).will(return_value(files))
     fso_mock.expects(once()).locate(eq(context_mock.settings.pages_dir[0]), eq('*.py')).will(return_value(files))
     fso_mock.expects(once()).locate(eq(context_mock.settings.custom_actions_dir[0]), eq('*.py')).will(return_value(files))
     fso_mock.expects(at_least_once()).method('import_file')
     fso_mock.expects(once()).remove_from_import(eq(context_mock.settings.custom_actions_dir[0]))
     fso_mock.expects(once()).remove_from_import(eq(context_mock.settings.pages_dir[0]))
+    fso_mock.expects(once()).remove_from_import(eq(context_mock.settings.hooks_dir[0]))
 
     return context_mock, fso_mock
 

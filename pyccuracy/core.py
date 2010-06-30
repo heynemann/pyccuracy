@@ -62,20 +62,22 @@ class PyccuracyCore(object):
 
     def run_tests(self, context=None, fso=None, **kwargs):
         settings = Settings(kwargs)
-
         if not context:
             context = Context(settings)
 
         if not self.runner:
             self.runner = context.settings.worker_threads == 1 and StoryRunner() or ParallelStoryRunner(settings.worker_threads)
 
+        for directory in context.settings.hooks_dir:
+            self.import_extra_content(directory, fso=fso)
+        
         for directory in context.settings.pages_dir:
             self.import_extra_content(directory, fso=fso)
 
         if context.settings.custom_actions_dir != context.settings.pages_dir:
             for directory in context.settings.custom_actions_dir:
                 self.import_extra_content(directory, fso=fso)
-
+        
         try:
             fixture = self.parser.get_stories(settings)
         except ActionNotFoundError, err:

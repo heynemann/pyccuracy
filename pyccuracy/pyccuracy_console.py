@@ -118,6 +118,7 @@ def main(arguments=sys.argv[1:]):
     parser.add_option("-a", "--actionsdir", action="append", dest="actions_dir", default=[], help="Actions directory. Defines where the Pyccuracy actions are. Chances are you don't need to change this parameter [default: %default].")
     parser.add_option("-A", "--customactionsdir", action="append", dest="custom_actions_dir", default=[], help="Custom Actions directory. Defines where the Pyccuracy custom actions are. If you don't change this parameter Pyccuracy will use the tests directory [default: %default].")
     parser.add_option("-P", "--pagesdir", action="append", dest="pages_dir", default=[], help="Pages directory. Defines where the Pyccuracy custom pages are. If you don't change this parameter Pyccuracy will use the tests directory [default: %default].")
+    parser.add_option("-H", "--hooksdir", action="append", dest="hooks_dir", default=[], help="Hooks directory. Defines where Pyccuracy hooks are. If you don't change this parameter Pyccuracy will use the tests directory [default: %default].")
     parser.add_option("-u", "--url", dest="url", default=None, help="Base URL. Defines a base url against which the tests will get executed. For more details check the documentation [default: %default].")
     parser.add_option("-b", "--browser", dest="browser_to_run", default="firefox", help="Browser to run. Browser driver will use it to run tests [default: %default].")
     parser.add_option("-w", "--workers", dest="workers", default=1, help="Workers to run in parallel [default: %default].")
@@ -174,6 +175,7 @@ def main(arguments=sys.argv[1:]):
     result = pyc.run_tests(actions_dir=options.actions_dir,
                            custom_actions_dir=options.custom_actions_dir,
                            pages_dir=options.pages_dir,
+                           hooks_dir=options.hooks_dir,
                            languages_dir=options.languages_dir,
                            file_pattern=options.pattern,
                            scenarios_to_run=options.scenarios_to_run,

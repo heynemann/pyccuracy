@@ -1,11 +1,15 @@
+from pyccuracy.colored_terminal import TerminalController
+
 HOOKS = {'after_tests':[]}
 
 class Hooks(object):
     @classmethod
     def execute_after_tests(cls, results):
+        ctrl = TerminalController()
         for hook in HOOKS['after_tests']:
             try:
                 hook().execute(results)
+                print ctrl.render('[HOOKS] "%s" executed.' % hook)
             except Exception, e:
                 raise HookError(e)
     

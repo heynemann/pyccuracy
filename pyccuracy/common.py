@@ -128,10 +128,15 @@ class Settings(object):
 
         self.actions_dir = self.get_setting(settings, "actions_dir", actions_dir)
         self.languages_dir = self.get_setting(settings, "languages_dir", languages_dir)
-
+        
+        self.hooks_dir = self.get_setting(settings, "hooks_dir", self.tests_dirs)
+        if not self.hooks_dir:
+            self.hooks_dir = self.tests_dirs
+        
         self.pages_dir = self.get_setting(settings, "pages_dir", self.tests_dirs)
         if not self.pages_dir:
             self.pages_dir = self.tests_dirs
+        
         self.custom_actions_dir = self.get_setting(settings, "custom_actions_dir", self.tests_dirs)
         if not self.custom_actions_dir:
             self.custom_actions_dir = self.tests_dirs
