@@ -19,3 +19,12 @@ When
     And I wait for the page to load for 10 seconds
 Then
     I see "It Works!" title
+
+Scenario 3 - Checking that after clicking an image we can wait for a really slow page to load
+Given
+    I go to "page_tests.htm"
+When
+    I click "imgSubmitSlow" image
+    And I wait for the page to load for 20 seconds
+Then
+    I see "It Works!" title

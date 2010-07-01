@@ -19,3 +19,12 @@ Quando
 	E eu espero a página ser carregada por 10 segundos
 Então
 	Eu vejo o título "It Works!"
+	
+Cenário 3 - Aguardando a página de resultados carregar por 20 segundos
+Dado que
+	Eu navego para "page_tests.htm"
+Quando
+	Eu clico na imagem "imgSubmitSlow"
+	E eu espero a página ser carregada por 20 segundos
+Então
+	Eu vejo o título "It Works!"
