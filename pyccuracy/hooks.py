@@ -11,7 +11,7 @@ class Hooks(object):
         for hook in HOOKS['after_tests']:
             try:
                 hook().execute(results)
-                hooks_feedback += ctrl.render('[HOOKS] AfterTestsHook "%s" executed.' % hook)
+                hooks_feedback += ctrl.render('[HOOKS] AfterTestsHook "%s" executed.\n' % hook)
             except Exception, e:
                 raise HookError(e)
         
