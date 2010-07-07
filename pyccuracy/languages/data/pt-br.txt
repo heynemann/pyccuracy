@@ -45,7 +45,7 @@ scenario_starter_regex = ^Cenário (\d+) - (.+)$
 page_go_to_regex = ^(E )?[eE]u navego para (?P<url>[\"](([\w:/._-]|\=|\?|\&|\"|\;|\%)+)[\"]|([\w\s_.-]+))$
 page_am_in_regex = ^(E )?[eE]u estou n[oa] (?P<url>[\"](([\w:/._-]|\=|\?|\&|\"|\;|\%)+)[\"]|([\w\s_.-]+))$
 page_see_title_regex = ^(E )?[eE]u vejo o título [\"](?P<title>.+)[\"]$
-page_wait_for_page_to_load_regex = ^(E )?[eE]u espero a página ser carregada(?P<timeout> por (\d+) segundos)?$
+page_wait_for_page_to_load_regex = ^(E )?[eE]u espero a página ser carregada( por (?P<timeout>\d+) segundos)?$
 page_wait_for_seconds_regex = ^(E )?[eE]u espero por (?P<timeout>\d+([.]\d+)?) segundo[s]?$
 page_check_contains_markup_regex = ^(E )?[eE]u vejo que a página atual contém [\"\'](?P<expected_markup>.+)[\'\"]$
 page_check_does_not_contain_markup_regex = ^(E )?[eE]u vejo que a página atual não contém [\"\'](?P<expected_markup>.+)[\'\"]$

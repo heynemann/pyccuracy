@@ -6,10 +6,22 @@
                 document.getElementById('divWaitForVisible').style.display = 'block';
                 document.getElementById('divWaitForInvisible').style.display = 'none';
             }
+			function connect_signals() {
+				document.getElementById('linkResultSlow').onclick = function() {
+				    load_page(this.href, 15000);
+					return false;
+				}
+			}
+			function load_page(page, timeout){
+				window.setTimeout(function() {
+					window.location.href = page;
+				}, timeout);
+			}
         </script>
     </head>
-    <body onload="window.setTimeout('show_elements()', 2000);">
+    <body onload="connect_signals(); window.setTimeout('show_elements()', 2000);">
         <a href="result_worked.htm"><img src="logo_pyccuracy.gif" name="imgSubmit" /></a>
+        <a id="linkResultSlow" href="result_worked.htm"><img src="logo_pyccuracy.gif" name="imgSubmitSlow" /></a>
         <div id="divWaitForVisible" style="display:none;">Div Wait For Visible</div>
         <div id="divWaitForInvisible" style="display:block;">Div Wait For Invisible</div>
         <div id="divText">Text</div>
