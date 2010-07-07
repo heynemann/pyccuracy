@@ -2,7 +2,7 @@ from pmock import *
 from nose.tools import raises
 from time import sleep
 
-from pyccuracy.hooks import HOOKS, Hooks, AfterTestsHook, HookError
+from pyccuracy.hooks import HOOKS, Hooks, AfterTestsHook
 
 @raises(NotImplementedError)
 def test_construction_fails_without_implementing_execute():
@@ -30,11 +30,11 @@ def test_will_execute_my_hook():
     result_mock.verify()
     Hooks.reset()
 
-@raises(HookError)
+@raises(RuntimeError)
 def test_user_exceptions_make_pyccuracy_raises_hook_error():
     class BrokenHook(AfterTestsHook):
         def execute(self, results):
-            raise Exception("user did stupid things")
+            raise RuntimeError("user did stupid things")
     
     Hooks.execute_after_tests(None)
     Hooks.reset()

@@ -9,11 +9,8 @@ class Hooks(object):
         hooks_feedback = ctrl.render('${CYAN}')
         
         for hook in HOOKS['after_tests']:
-            try:
-                hook().execute(results)
-                hooks_feedback += ctrl.render('[HOOKS] AfterTestsHook "%s" executed.\n' % hook)
-            except Exception, e:
-                raise HookError(e)
+            hook().execute(results)
+            hooks_feedback += ctrl.render('[HOOKS] AfterTestsHook "%s" executed.\n' % hook)
         
         hooks_feedback += ctrl.render('${NORMAL}')
         hooks_feedback += "\n"
@@ -38,13 +35,3 @@ class MetaHookBase(type):
 
 class AfterTestsHook(object):
     __metaclass__ = MetaHookBase
-
-class HookError(Exception):
-    def __init__(self, origin):
-        self.origin = origin
-
-    def __str__(self):
-        return unicode(self)
-    
-    def __unicode__(self):
-        return "HookError: %s" % (self.origin)
