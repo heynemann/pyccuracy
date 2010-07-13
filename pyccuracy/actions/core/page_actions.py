@@ -16,6 +16,7 @@
 
 This is a *very important* category of actions, since almost any single test relies on navigating to a given page.'''
 
+import re
 import time
 
 from pyccuracy.page import PageRegistry, Page
@@ -57,6 +58,47 @@ This action also issues automatically a wait for page to load action after navig
                 context.current_page = page()
                 if hasattr(context.current_page, "register"):
                     context.current_page.register()
+
+class PageGoToWithParametersAction(ActionBase):
+    '''h3. Examples
+
+  * And I go to Profile Page of user "name"
+  * And I go to Config Page for user "name"
+  * And I go to Search Page with query "apple", order "desc", page "10"
+
+h3. Description
+
+This action does the same thing as the "I go to [page]" but allows you to create variable URLs and pass parameters to be included in the URLs. You can pass as many parameters as you want using the "and" keyword (at least one parameter is required).
+
+For instance, the examples above will access pages with the following URLs (respectively):
+
+  * url = "/{user}"
+  * url = "/config/{user}"
+  * url = "/search.php?q={query}&order={order}&p={page}"
+
+Parameters will be automatically included in the URL when you call these pages. For more information on creating custom pages check the [[Creating custom Pages]] page.
+'''
+    __builtin__ = True
+    regex = LanguageItem('page_go_to_with_parameters_regex')
+
+    def execute(self, context, page, parameters):
+        pass
+    
+    def parse_parameters(self, context, parameters):
+        params = {}
+        pattern = re.compile(r'^(.+)\s\"(.+)\"$')
+        for item in [param.strip() for param in parameters.split(',')]:
+            match = pattern.match(item)
+            if not match:
+                raise self.failed(context.language.format("page_go_to_with_parameters_failure", parameters))
+            params[match.group(1)] = match.group(2)
+        return params
+    
+    def url_for(self, parameters):
+        resolved_url = self.url
+        for item in parameters.keys():
+            resolved_url = resolved_url.replace('{%s}' % item, parameters[item])
+        return resolved_url
 
 class PageAmInAction(ActionBase):
     '''h3. Example

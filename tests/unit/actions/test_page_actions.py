@@ -92,6 +92,55 @@ def test_page_go_to_action_raises_with_invalid_page():
 
 #End Go To Action
 
+#Go To With Parameters Action
+
+
+def test_page_go_to_with_parameters_action_raises_error_when_parameters_are_invalid():
+    action = PageGoToWithParametersAction()
+    context = FakeContext()
+    
+    context.language.expects(once()) \
+                    .format(eq('page_go_to_with_parameters_failure'), eq('Blah blahabla blah')) \
+                    .will(return_value('Error Message'))
+                    
+    assert_raises(ActionFailedError, action.parse_parameters, context, 'Blah blahabla blah')
+
+def test_page_go_to_with_parameters_action_parses_parameters():
+    action = PageGoToWithParametersAction()
+    context = FakeContext()
+    
+    params = action.parse_parameters(context, 'parameter1 "value1"')
+    assert params == { 'parameter1':'value1' }
+    
+    params = action.parse_parameters(context, 'query_string "?another+value=x%20y%20z"')
+    assert params == { 'query_string':'?another+value=x%20y%20z' }
+
+def test_page_go_to_with_parameters_action_parses_many_parameters():
+    action = PageGoToWithParametersAction()
+    context = FakeContext()
+
+    params = action.parse_parameters(context, 'parameter1 "value1", parameter2 "value2"')
+    assert params == { 'parameter1':'value1', 'parameter2':'value2' }
+
+    params = action.parse_parameters(context, 'query_string "?another+value=x%20y%20z", user "gchapiewski"')
+    assert params == { 'query_string':'?another+value=x%20y%20z', 'user':'gchapiewski' }
+    
+    params = action.parse_parameters(context, 'parameter1 "value1", parameter2 "value2", param3 "value3"')
+    assert params == { 'parameter1':'value1', 'parameter2':'value2', 'param3':'value3' }
+    
+def test_page_go_to_with_parameters_action_resolves_url_for_parameter():
+    action = PageGoToWithParametersAction()
+    action.url = '/user/{username}'
+    assert action.url_for({'username':'gchapiewski'}) == '/user/gchapiewski'
+
+def test_page_go_to_with_parameters_action_resolves_url_for_many_parameters():
+    action = PageGoToWithParametersAction()
+    action.url = '/search.php?q={query}&order={order}&p={page}'
+    params = {'query':'xpto', 'order':'desc', 'page':'10' }
+    assert action.url_for(params) == '/search.php?q=xpto&order=desc&p=10'
+    
+#End Go To With Parameters Action
+
 #Am In Action
 
 def test_page_am_in_action_calls_the_right_browser_driver_methods():

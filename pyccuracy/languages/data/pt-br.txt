@@ -43,6 +43,7 @@ scenario_starter_regex = ^Cenário (\d+) - (.+)$
 
 #Regular Expressions de Acoes
 page_go_to_regex = ^(E )?[eE]u navego para (?P<url>[\"](([\w:/._-]|\=|\?|\&|\"|\;|\%)+)[\"]|([\w\s_.-]+))$
+page_go_to_with_parameters_regex = ^(E )?[eE]u navego para (?P<page>([\w\s_.-]+)) (com|da|de|do|para){1} (?P<parameters>.*)$
 page_am_in_regex = ^(E )?[eE]u estou n[oa] (?P<url>[\"](([\w:/._-]|\=|\?|\&|\"|\;|\%)+)[\"]|([\w\s_.-]+))$
 page_see_title_regex = ^(E )?[eE]u vejo o título [\"](?P<title>.+)[\"]$
 page_wait_for_page_to_load_regex = ^(E )?[eE]u espero a página ser carregada( por (?P<timeout>\d+) segundos)?$
@@ -111,6 +112,7 @@ table_match_regex = ^(E )?[eE]u vejo a tabela [\"](?P<table_name>.+)[\"] como:$
 
 #Action Failure Messages
 page_go_to_failure = A url "%s" não é válida. Você esqueceu de usar o parâmetro -u (ou --url) ?
+page_go_to_with_parameters_failure = O parâmetro "%s" não é valido. Por favor use o formato "param 'valor' (e param2 'valor2' ...)".
 page_am_in_failure = A url "%s" não foi registrada como página. Você esqueceu de incluir uma classe que herde de Page com esta url?
 page_see_title_failure = O título da página (%s) não bate com o título esperado (%s)
 page_check_contains_markup_failure = A página atual não contém o markup "%s".

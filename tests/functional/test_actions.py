@@ -18,6 +18,7 @@
 
 from pyccuracy import ActionRegistry, ActionBase
 from pyccuracy.languages import LanguageItem
+from pyccuracy.actions.core.page_actions import *
 
 def test_get_suitable_action():
     Action, args, kw = ActionRegistry.suitable_for(u'I see "Welcome to Pyccuracy" title', 'en-us')
@@ -41,3 +42,51 @@ def test_action_registry_suitable_for_returns_type_on_match():
 
     Action, args, kwargs = ActionRegistry.suitable_for('I see "foo" title', 'en-us')
     assert isinstance(Action, type)
+
+# Action-specific tests
+
+def test_get_suitable_action_appropriately_for_page_actions_enus():
+    Action, args, kw = ActionRegistry.suitable_for(u'I go to My Page', 'en-us')
+    assert issubclass(Action, PageGoToAction)
+    assert kw['url'] == u'My Page'
+    
+    Action, args, kw = ActionRegistry.suitable_for(u'I go to My Page for parameter "value"', 'en-us')
+    assert issubclass(Action, PageGoToWithParametersAction)
+    assert kw['page'] == u'My Page'
+    assert kw['parameters'] == u'parameter "value"'
+
+    Action, args, kw = ActionRegistry.suitable_for(u'I go to My Page of parameter "value"', 'en-us')
+    assert issubclass(Action, PageGoToWithParametersAction)
+    assert kw['page'] == u'My Page'
+    assert kw['parameters'] == u'parameter "value"'
+    
+    Action, args, kw = ActionRegistry.suitable_for(u'I go to My Page with parameter1 "value1", parameter2 "value2"', 'en-us')
+    assert issubclass(Action, PageGoToWithParametersAction)
+    assert kw['page'] == u'My Page'
+    assert kw['parameters'] == u'parameter1 "value1", parameter2 "value2"'
+
+def test_get_suitable_action_appropriately_for_page_actions_ptbr():
+    # Reset action regexes (this is necessary because pyccuracy was not built
+    # to run 2 different languages in the same execution, then we do this to 
+    # allow appropriate testing)
+    PageGoToAction.regex = LanguageItem('page_go_to_regex')
+    PageGoToWithParametersAction.regex = LanguageItem('page_go_to_with_parameters_regex')
+    
+    Action, args, kw = ActionRegistry.suitable_for(u'Eu navego para Uma Pagina', 'pt-br')
+    assert issubclass(Action, PageGoToAction)
+    assert kw['url'] == u'Uma Pagina'
+
+    Action, args, kw = ActionRegistry.suitable_for(u'Eu navego para Pagina de Blog do usuario "nome"', 'pt-br')
+    assert issubclass(Action, PageGoToWithParametersAction)
+    assert kw['page'] == u'Pagina de Blog'
+    assert kw['parameters'] == u'usuario "nome"'
+
+    Action, args, kw = ActionRegistry.suitable_for(u'Eu navego para Pagina de Busca para query "palavra"', 'pt-br')
+    assert issubclass(Action, PageGoToWithParametersAction)
+    assert kw['page'] == u'Pagina de Busca'
+    assert kw['parameters'] == u'query "palavra"'
+
+    Action, args, kw = ActionRegistry.suitable_for(u'Eu navego para Pagina de Config com parameter1 "value1", parameter2 "value2"', 'pt-br')
+    assert issubclass(Action, PageGoToWithParametersAction)
+    assert kw['page'] == u'Pagina de Config'
+    assert kw['parameters'] == u'parameter1 "value1", parameter2 "value2"'

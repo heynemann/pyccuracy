@@ -43,6 +43,7 @@ scenario_starter_regex = ^Scenario (\d+) - (.+)$
 
 #Actions Regular Expressions
 page_go_to_regex = ^(And )?I go to (?P<url>[\"](([\w:/._-]|\=|\?|\&|\"|\;|\%)+)[\"]|([\w\s_.-]+))$
+page_go_to_with_parameters_regex = ^(And )?I go to (?P<page>([\w\s_.-]+)) (for|of|with){1} (?P<parameters>.*)$
 page_am_in_regex = ^(And )?I am in the (?P<url>[\"](([\w:/._-]|\=|\?|\&|\"|\;|\%)+)[\"]|([\w\s_.-]+))$
 page_see_title_regex = ^(And )?I see [\"](?P<title>.+)[\"] title$
 page_wait_for_page_to_load_regex = ^(And )?I wait for the page to load( for (?P<timeout>\d+) seconds)?$
@@ -111,6 +112,7 @@ table_match_regex = ^(And )?I see [\"](?P<table_name>.+)[\"] table as:$
 
 #Action Failure Messages
 page_go_to_failure = The url "%s" is not valid. Did you forget to use the -u (or --url) parameter ?
+page_go_to_with_parameters_failure = The parameter "%s" is not valid. Please use "param 'value' (and param2 'value2' ...)" format.
 page_am_in_failure = The url "%s" was not registered in any pages. Did you forget to include a class that inherits from Page with the given url?
 page_see_title_failure = The page title (%s) does not match the expected title (%s)
 page_check_contains_markup_failure = The current page does not contain "%s" markup.
