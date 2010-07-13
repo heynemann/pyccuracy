@@ -35,26 +35,40 @@ class ActionNotFoundError(Exception):
         return "Action Not Found: %s\nScenario: %s\nFilename: %s" % (self.line, self.scenario, self.filename)
 
 class ActionRegistry(object):
+    
+    @classmethod
+    def get_action_regex(cls, action, language, getter=None):
+        getter = getter or AVAILABLE_GETTERS[language]
+        regex = action.regex
+        
+        # prepare action regex to be used
+        if isinstance(regex, (basestring, LanguageItem)):
+            
+            # if it's still a language item, get the actual regex in language file
+            if isinstance(regex, LanguageItem):
+                regex = getter.get(regex)
+                if regex is None:
+                    raise LanguageDoesNotResolveError('The language "%s" does not resolve the string "%s"' % (language, action.regex))
+            
+            supported_elements = getter.get("supported_elements")
+            regex = regex.replace("<element selector>", supported_elements)
+            regex = re.compile(regex)
+            
+            # store the compiled regex
+            action.regex = regex
+        
+        return regex
+        
+    @classmethod
+    def matches(cls, action, line, language, getter=None):
+        ''' Checks if an Action can match a determined line. '''
+        regex = cls.get_action_regex(action, language, getter)
+        return regex.match(line)
+    
     @classmethod
     def suitable_for(cls, line, language, getter=None):
-        getter = getter or AVAILABLE_GETTERS[language]
-
         for Action in ACTIONS:
-            regex = Action.regex
-
-            if isinstance(regex, (basestring, LanguageItem)):
-                if isinstance(Action.regex, LanguageItem):
-                    regex = getter.get(Action.regex)
-                    if regex is None:
-                        raise LanguageDoesNotResolveError('The language "%s" does not resolve the string "%s"' % (language, Action.regex))
-
-                supported_elements = getter.get("supported_elements")
-                regex = regex.replace("<element selector>", supported_elements)
-
-                Action.regex = re.compile(regex)
-
-            matches = Action.regex.match(line)
-
+            matches = ActionRegistry.matches(Action, line, language, getter)
             if matches:
                 args = matches.groups()
                 kw = matches.groupdict()
