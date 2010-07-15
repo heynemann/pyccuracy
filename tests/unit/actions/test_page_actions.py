@@ -94,7 +94,6 @@ def test_page_go_to_action_raises_with_invalid_page():
 
 #Go To With Parameters Action
 
-
 def test_page_go_to_with_parameters_action_raises_error_when_parameters_are_invalid():
     action = PageGoToWithParametersAction()
     context = FakeContext()
@@ -130,14 +129,15 @@ def test_page_go_to_with_parameters_action_parses_many_parameters():
     
 def test_page_go_to_with_parameters_action_resolves_url_for_parameter():
     action = PageGoToWithParametersAction()
-    action.url = '/user/{username}'
-    assert action.url_for({'username':'gchapiewski'}) == '/user/gchapiewski'
+    url = '/user/<username>'
+    params = {'username':'gchapiewski'}
+    assert action.replace_url_paremeters(url, params) == '/user/gchapiewski'
 
 def test_page_go_to_with_parameters_action_resolves_url_for_many_parameters():
     action = PageGoToWithParametersAction()
-    action.url = '/search.php?q={query}&order={order}&p={page}'
+    url = '/search.php?q=<query>&order=<order>&p=<page>'
     params = {'query':'xpto', 'order':'desc', 'page':'10' }
-    assert action.url_for(params) == '/search.php?q=xpto&order=desc&p=10'
+    assert action.replace_url_paremeters(url, params) == '/search.php?q=xpto&order=desc&p=10'
     
 #End Go To With Parameters Action
 

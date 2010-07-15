@@ -43,7 +43,7 @@ scenario_starter_regex = ^Scenario (\d+) - (.+)$
 
 #Actions Regular Expressions
 page_go_to_regex = ^(And )?I go to (?P<url>[\"](([\w:/._-]|\=|\?|\&|\"|\;|\%)+)[\"]|([\w\s_.-]+))$
-page_go_to_with_parameters_regex = ^(And )?I go to (?P<page>([\w\s_.-]+)) (for|of|with){1} (?P<parameters>.*)$
+page_go_to_with_parameters_regex = ^(And )?I go to (?P<url>([\w\s_.-]+)) (for|of|with){1} (?P<parameters>.*)$
 page_am_in_regex = ^(And )?I am in the (?P<url>[\"](([\w:/._-]|\=|\?|\&|\"|\;|\%)+)[\"]|([\w\s_.-]+))$
 page_see_title_regex = ^(And )?I see [\"](?P<title>.+)[\"] title$
 page_wait_for_page_to_load_regex = ^(And )?I wait for the page to load( for (?P<timeout>\d+) seconds)?$

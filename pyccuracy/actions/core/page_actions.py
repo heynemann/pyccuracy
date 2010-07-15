@@ -42,8 +42,13 @@ This action also issues automatically a wait for page to load action after navig
     regex = LanguageItem('page_go_to_regex')
 
     def execute(self, context, url):
-        page, resolved_url = PageRegistry.resolve(context.settings, url.replace('"', ''), must_raise=False)
-
+        page, resolved_url = self.resolve_url(context, url)
+        self.go_to_page(context, url, page, resolved_url)
+    
+    def resolve_url(self, context, url):
+        return PageRegistry.resolve(context.settings, url.replace('"', ''), must_raise=False)
+    
+    def go_to_page(self, context, url, page, resolved_url):
         if not resolved_url or (not url.startswith('"') and not page):
             raise self.failed(context.language.format("page_go_to_failure", url))
 
@@ -59,7 +64,7 @@ This action also issues automatically a wait for page to load action after navig
                 if hasattr(context.current_page, "register"):
                     context.current_page.register()
 
-class PageGoToWithParametersAction(ActionBase):
+class PageGoToWithParametersAction(PageGoToAction):
     '''h3. Examples
 
   * And I go to Profile Page of user "name"
@@ -68,21 +73,24 @@ class PageGoToWithParametersAction(ActionBase):
 
 h3. Description
 
-This action does the same thing as the "I go to [page]" but allows you to create variable URLs and pass parameters to be included in the URLs. You can pass as many parameters as you want using the "and" keyword (at least one parameter is required).
+This action does the same thing as the "I go to [page]" but allows you to have variable URLs and pass parameters to be included in them. You can pass as many parameters as you want using commas.
 
 For instance, the examples above will access pages with the following URLs (respectively):
 
-  * url = "/{user}"
-  * url = "/config/{user}"
-  * url = "/search.php?q={query}&order={order}&p={page}"
+  * url = "/<user>"
+  * url = "/config/<user>"
+  * url = "/search.php?q=<query>&order=<order>&p=<page>"
 
 Parameters will be automatically included in the URL when you call these pages. For more information on creating custom pages check the [[Creating custom Pages]] page.
 '''
     __builtin__ = True
     regex = LanguageItem('page_go_to_with_parameters_regex')
 
-    def execute(self, context, page, parameters):
-        pass
+    def execute(self, context, url, parameters):
+        page, resolved_url = self.resolve_url(context, url)
+        params = self.parse_parameters(context, parameters)
+        resolved_url = self.replace_url_paremeters(resolved_url, params)
+        super(PageGoToWithParametersAction, self).go_to_page(context, url, page, resolved_url)
     
     def parse_parameters(self, context, parameters):
         params = {}
@@ -94,10 +102,10 @@ Parameters will be automatically included in the URL when you call these pages. 
             params[match.group(1)] = match.group(2)
         return params
     
-    def url_for(self, parameters):
-        resolved_url = self.url
+    def replace_url_paremeters(self, url, parameters):
+        resolved_url = url
         for item in parameters.keys():
-            resolved_url = resolved_url.replace('{%s}' % item, parameters[item])
+            resolved_url = resolved_url.replace('<%s>' % item, parameters[item])
         return resolved_url
 
 class PageAmInAction(ActionBase):

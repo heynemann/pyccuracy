@@ -52,17 +52,17 @@ def test_get_suitable_action_appropriately_for_page_actions_enus():
     
     Action, args, kw = ActionRegistry.suitable_for(u'I go to My Page for parameter "value"', 'en-us')
     assert issubclass(Action, PageGoToWithParametersAction)
-    assert kw['page'] == u'My Page'
+    assert kw['url'] == u'My Page'
     assert kw['parameters'] == u'parameter "value"'
 
     Action, args, kw = ActionRegistry.suitable_for(u'I go to My Page of parameter "value"', 'en-us')
     assert issubclass(Action, PageGoToWithParametersAction)
-    assert kw['page'] == u'My Page'
+    assert kw['url'] == u'My Page'
     assert kw['parameters'] == u'parameter "value"'
     
     Action, args, kw = ActionRegistry.suitable_for(u'I go to My Page with parameter1 "value1", parameter2 "value2"', 'en-us')
     assert issubclass(Action, PageGoToWithParametersAction)
-    assert kw['page'] == u'My Page'
+    assert kw['url'] == u'My Page'
     assert kw['parameters'] == u'parameter1 "value1", parameter2 "value2"'
 
 def test_get_suitable_action_appropriately_for_page_actions_ptbr():
@@ -78,15 +78,15 @@ def test_get_suitable_action_appropriately_for_page_actions_ptbr():
 
     Action, args, kw = ActionRegistry.suitable_for(u'Eu navego para Pagina de Blog do usuario "nome"', 'pt-br')
     assert issubclass(Action, PageGoToWithParametersAction)
-    assert kw['page'] == u'Pagina de Blog'
+    assert kw['url'] == u'Pagina de Blog'
     assert kw['parameters'] == u'usuario "nome"'
 
     Action, args, kw = ActionRegistry.suitable_for(u'Eu navego para Pagina de Busca para query "palavra"', 'pt-br')
     assert issubclass(Action, PageGoToWithParametersAction)
-    assert kw['page'] == u'Pagina de Busca'
+    assert kw['url'] == u'Pagina de Busca'
     assert kw['parameters'] == u'query "palavra"'
 
     Action, args, kw = ActionRegistry.suitable_for(u'Eu navego para Pagina de Config com parameter1 "value1", parameter2 "value2"', 'pt-br')
     assert issubclass(Action, PageGoToWithParametersAction)
-    assert kw['page'] == u'Pagina de Config'
+    assert kw['url'] == u'Pagina de Config'
     assert kw['parameters'] == u'parameter1 "value1", parameter2 "value2"'

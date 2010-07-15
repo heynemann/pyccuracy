@@ -22,3 +22,16 @@ class GoogleSearch(Page):
     def register(self):
         self.register_element('query', '//input[@name="q"]')
         self.register_element('search', '//input[@name="btnG"]')
+
+class YahooSearch(Page):
+    url = "http://search.yahoo.com/search?p=<query>"
+
+    def register(self):
+        self.register_element('search', '//input[@id="yschsp"]')
+
+class OtherYahooSearch(Page):
+    url = "http://search.yahoo.com/search?p=<query>&b=<offset>"
+
+    def register(self):
+        self.register_element('search', '//input[@id="yschsp"]')
+        self.register_element('page', '//div[@id="pg"]//strong')

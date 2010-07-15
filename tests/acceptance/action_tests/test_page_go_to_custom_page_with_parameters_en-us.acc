@@ -1,0 +1,20 @@
+As a Pyccuracy User
+I want to test that I can navigate to a custom page with parameters
+So that I can make sure Pyccuracy works
+
+Scenario 1 - Checking that navigating to a custom page with parameters works
+Given
+    I go to Yahoo Search for query "Hello World"
+When
+    #I wait for the page to load
+Then
+    I see "search" textbox contains "Hello World"
+
+Scenario 2 - Checking that navigating to a custom page with many parameters works
+Given
+    I go to Other Yahoo Search with query "LOL", offset "11"
+When
+    #I wait for the page to load
+Then
+    I see "search" textbox contains "LOL"
+    And I see "page" div matches "2"
