@@ -2,7 +2,7 @@ Como um usuário do Pyccuracy
 Eu quero testar a ação de navegar para uma página com parâmetros
 Para garantir que o Pyccuracy funciona
 
-Cenário 1 - Checking that navigating to a custom page with parameters works
+Cenário 1 - Verificando que navegar para uma página com parâmetros funciona
 Dado que
     Eu navego para Yahoo Search com query "Hello World"
 Quando
@@ -10,9 +10,9 @@ Quando
 Então
     Eu vejo que a caixa de texto "search" contém "Hello World"
 
-Cenário 2 - Checking that navigating to a custom page with many parameters works
+Cenário 2 - Verificando que navegar para uma página com diversos parâmetros funciona
 Dado que
-    Eu navego para Other Yahoo Search para query "LOL", offset "11"
+    Eu navego para Other Yahoo Search com query "LOL", offset "11"
 Quando
     #Eu espero a página carregar
 Então
