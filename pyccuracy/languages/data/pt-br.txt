@@ -43,7 +43,7 @@ scenario_starter_regex = ^Cenário (\d+) - (.+)$
 
 #Regular Expressions de Acoes
 page_go_to_regex = ^(E )?[eE]u navego para (?P<url>[\"](([\w:/._-]|\=|\?|\&|\"|\;|\%)+)[\"]|([\w\s_.-]+))$
-page_go_to_with_parameters_regex = ^(E )?[eE]u navego para (?P<url>([\w\s_.-]+)) (com|da|de|do|para){1} (?P<parameters>.*)$
+page_go_to_with_parameters_regex = ^(E )?[eE]u navego para (?P<url>([\w\s_.-]+)) (com|da|de|do|para){1} (?P<parameters>.+)$
 page_am_in_regex = ^(E )?[eE]u estou n[oa] (?P<url>[\"](([\w:/._-]|\=|\?|\&|\"|\;|\%)+)[\"]|([\w\s_.-]+))$
 page_see_title_regex = ^(E )?[eE]u vejo o título [\"](?P<title>.+)[\"]$
 page_wait_for_page_to_load_regex = ^(E )?[eE]u espero a página ser carregada( por (?P<timeout>\d+) segundos)?$

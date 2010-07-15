@@ -40,6 +40,8 @@ class LanguageViewer(object):
     def make_it_readable(self, value):
         url_regex = "(?P<url>[\\\"](([\w:/._-]|\=|\?|\&|\\\"|\;|\%)+)[\\\"]|([\w\s_.-]+))$"
         value = value.replace(url_regex, '[page|"url"]') #replace urls
+        value = value.replace('(?P<url>([\w\s_.-]+))', 'page')
+        value = value.replace('(?P<parameters>.+)', 'parameters')
         value = re.sub(r'\(\?\P\<([\w\s]*)\>\<([\w\s]*)\>\)', r'[\1|\2]', value)
         value = re.sub(r'\(\?\P\<([\w\s]*)\>\[\^\"\]\+\)', r'\1', value)
         value = re.sub(r'\(\?\P\<([\w\s]*)\>\.\+\)', r'\1', value)
@@ -53,6 +55,7 @@ class LanguageViewer(object):
         value = value.replace('[\\\"\\\']', '"').replace('[\\\'\\\"]', '"') #replace quotes
         value = value.replace('X([.]X)?', '[X|X.X]')
         value = value.replace('?', '').replace('$', '').replace('^', '')
+        value = value.replace('{1}', '')
         return value
 
     def get_actions(self, term):

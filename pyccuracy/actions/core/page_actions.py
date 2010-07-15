@@ -73,7 +73,7 @@ class PageGoToWithParametersAction(PageGoToAction):
 
 h3. Description
 
-This action does the same thing as the "I go to [page]" but allows you to have variable URLs and pass parameters to be included in them. You can pass as many parameters as you want using commas.
+This action does the same thing as the *"I go to [page]"* but allows you to have variable URLs and pass parameters to be included in them. You can pass as many parameters as you want using commas.
 
 For instance, the examples above will access pages with the following URLs (respectively):
 
