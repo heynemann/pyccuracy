@@ -77,9 +77,9 @@ This action does the same thing as the "I go to [page]" but allows you to have v
 
 For instance, the examples above will access pages with the following URLs (respectively):
 
-  * url = "/<user>"
-  * url = "/config/<user>"
-  * url = "/search.php?q=<query>&order=<order>&p=<page>"
+  * url = "/&lt;user&gt;"
+  * url = "/config/&lt;user&gt;"
+  * url = "/search.php?q=&lt;query&gt;&order=&lt;order&gt;&p=&lt;page&gt;"
 
 Parameters will be automatically included in the URL when you call these pages. For more information on creating custom pages check the [[Creating custom Pages]] page.
 '''
