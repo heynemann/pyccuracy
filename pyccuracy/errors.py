@@ -23,7 +23,7 @@ class TestFailedError(Exception):
     def __str__(self):
         return unicode(self.message)
 
-class ActionFailedError(Exception):
+class ActionFailedError(AssertionError):
     def __unicode__(self):
         return self.message
 

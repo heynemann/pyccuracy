@@ -101,7 +101,7 @@ class Action(StatusItem, TimedItem):
                 context.settings.on_action_successful(context, self, self.args, self.kwargs)
         except ActionNotFoundError:
             raise
-        except ActionFailedError, err:
+        except AssertionError, err:
             if context.settings.on_action_error:
                 context.settings.on_action_error(context, self, self.args, self.kwargs, err)
             self.mark_as_failed(err)

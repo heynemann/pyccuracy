@@ -251,3 +251,44 @@ def test_should_record_errors_correctly():
 
     context.verify()
     context.browser_driver.verify()
+
+def test_should_catch_assertion_error():
+    def action_failed_method(context, *args, **kwargs):
+        assert False, "bla"
+    settings = Settings()
+    runner = StoryRunner()
+    fixture = Fixture()
+    action = some_action()
+    fixture.append_story(action.scenario.story)
+    action.execute_function = action_failed_method
+
+    context = Mock()
+    context.browser_driver = Mock()
+    context.browser_driver.expects(once()).start_test(eq("http://localhost"))
+    context.browser_driver.expects(once()).stop_test()
+    context.settings = Mock()
+    context.settings.on_before_action = None
+    context.settings.on_action_successful = None
+    context.settings.on_action_error = None
+    context.language = Mock()
+    context.language \
+           .expects(once()) \
+           .get(eq('given')) \
+           .will(return_value('Given'))
+    context.language \
+           .expects(once()) \
+           .get(eq('when')) \
+           .will(return_value('When'))
+    context.language \
+           .expects(once()) \
+           .get(eq('then')) \
+           .will(return_value('Then'))
+
+    result = runner.run_stories(settings=settings, fixture=fixture, context=context)
+
+    assert isinstance(action.error, AssertionError)
+    assert action.error.message == "bla"
+
+    context.verify()
+    context.browser_driver.verify()
+
