@@ -112,6 +112,8 @@ class PyccuracyCore(object):
         try:
             Page.subscribe_to_got_element(self.got_element)
 
+            self.hooks.execute_before_tests()
+            
             #running the tests
             results = self.runner.run_stories(settings=context.settings,
                                                fixture=fixture,
