@@ -22,5 +22,5 @@ from pyccuracy.page import PageRegistry, Page
 from pyccuracy.drivers import DriverRegistry
 from pyccuracy.drivers.core import *
 
-Version = "1.2.35"
+Version = "1.2.36"
 Release = "Clarytin"
