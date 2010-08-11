@@ -4,33 +4,36 @@ HOOKS = {'after_tests':[], 'before_tests':[]}
 
 class Hooks(object):
     
+    #TODO: refactor - merge after & before methods
     @classmethod
     def execute_after_tests(cls, results):
-        ctrl = TerminalController()
-        hooks_feedback = ctrl.render('${CYAN}')
+        if len(HOOKS['after_tests']) > 0:
+            ctrl = TerminalController()
+            hooks_feedback = ctrl.render('${CYAN}')
 
-        for hook in HOOKS['after_tests']:
-            hook().execute(results)
-            hooks_feedback += ctrl.render('[HOOKS] AfterTestsHook "%s" executed.\n' % hook)
+            for hook in HOOKS['after_tests']:
+                hook().execute(results)
+                hooks_feedback += ctrl.render('[HOOKS] AfterTestsHook "%s" executed.\n' % hook)
 
-        hooks_feedback += ctrl.render('${NORMAL}')
-        hooks_feedback += "\n"
+            hooks_feedback += ctrl.render('${NORMAL}')
+            hooks_feedback += "\n"
 
-        print hooks_feedback
+            print hooks_feedback
 
     @classmethod
     def execute_before_tests(cls):
-        ctrl = TerminalController()
-        hooks_feedback = ctrl.render('${CYAN}')
+        if len(HOOKS['before_tests']) > 0:
+            ctrl = TerminalController()
+            hooks_feedback = ctrl.render('${CYAN}')
 
-        for hook in HOOKS['before_tests']:
-            hook().execute()
-            hooks_feedback += ctrl.render('[HOOKS] BeforeTestsHook "%s" executed.\n' % hook)
+            for hook in HOOKS['before_tests']:
+                hook().execute()
+                hooks_feedback += ctrl.render('[HOOKS] BeforeTestsHook "%s" executed.\n' % hook)
 
-        hooks_feedback += ctrl.render('${NORMAL}')
-        hooks_feedback += "\n"
+            hooks_feedback += ctrl.render('${NORMAL}')
+            hooks_feedback += "\n"
 
-        print hooks_feedback
+            print hooks_feedback
     
     @classmethod
     def reset(cls):
