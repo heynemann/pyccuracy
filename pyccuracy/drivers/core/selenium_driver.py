@@ -72,7 +72,7 @@ class SeleniumDriver(BaseDriver):
     def page_open(self, url):
         self.selenium.open(url)
 
-    def wait_for_page(self, timeout=10000):
+    def wait_for_page(self, timeout=30000):
         self.selenium.wait_for_page_to_load(timeout)
 
     def click_element(self, element_selector):
