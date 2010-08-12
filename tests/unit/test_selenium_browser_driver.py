@@ -102,7 +102,7 @@ def test_selenium_resolve_element_key_uses_SeleniumElementSelector_for_non_null_
 def test_selenium_driver_calls_proper_selenese_on_wait_for_page():
     context = Context(Settings())
     selenium_mock = Mock()
-    selenium_mock.expects(once()).wait_for_page_to_load(eq(10000))
+    selenium_mock.expects(once()).wait_for_page_to_load(eq(30000))
 
     driver = SeleniumDriver(context, selenium=selenium_mock)
 
