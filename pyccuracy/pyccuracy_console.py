@@ -136,6 +136,7 @@ def main(arguments=sys.argv[1:]):
 
     #verbosity
     parser.add_option("-v", "--verbosity", dest="verbosity", default="3", help="Verbosity. 0 - does not show any output, 1 - shows text progress, 2 - shows animated progress bar, 3 - shows action by action [default: %default].")
+    parser.add_option("--suppresswarnings", action="store_true", dest="suppress_warnings", default=False, help="Suppress Pyccuracy warnings [default: %default].")
 
     options, args = parser.parse_args(arguments)
 
@@ -195,8 +196,9 @@ def main(arguments=sys.argv[1:]):
                            on_before_action=on_before_action_handler,
                            on_action_successful=on_action_successful_handler,
                            on_action_error=on_action_error_handler,
-                           on_section_started = on_section_started,
-                           verbosity=int(options.verbosity))
+                           on_section_started=on_section_started,
+                           verbosity=int(options.verbosity),
+                           suppress_warnings=options.suppress_warnings)
 
     if not result or result.get_status() != "SUCCESSFUL":
         return 1
