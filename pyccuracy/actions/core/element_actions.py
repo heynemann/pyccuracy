@@ -133,8 +133,9 @@ This action instructs the browser driver to click the given element. If the "and
         context.browser_driver.click_element(element_key)
 
         if (should_wait):
+            timeout = 30000
             try:
-                context.browser_driver.wait_for_page()
+                context.browser_driver.wait_for_page(timeout=timeout)
             except Exception, error:
                 if str(error) == "Timed out after %dms" % timeout:
                     raise self.failed(context.language.format("timeout_failure", timeout))
