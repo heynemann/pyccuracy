@@ -163,6 +163,7 @@ class Settings(object):
         self.on_action_successful = self.get_setting(settings, 'on_action_successful', None)
         self.on_action_error = self.get_setting(settings, 'on_action_error', None)
         self.on_section_started = self.get_setting(settings, 'on_section_started', None)
+        self.suppress_warnings = self.get_setting(settings, "suppress_warnings", False)
 
     def get_setting(self, settings, key, default):
         value = settings.get(key, None)

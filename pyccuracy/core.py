@@ -101,7 +101,7 @@ class PyccuracyCore(object):
                     continue
                 if action not in self.parser.used_actions:
                     unused_actions.append(action.__name__)
-            if unused_actions:
+            if unused_actions and not settings.suppress_warnings:
                 self.print_unused_actions_warning(unused_actions)
 
         if not fixture.stories:
@@ -119,7 +119,9 @@ class PyccuracyCore(object):
                                                fixture=fixture,
                                                context=context)
 
-            self.print_unused_elements_warning()
+            if not settings.suppress_warnings:
+                self.print_unused_elements_warning()
+
             self.print_results(context.settings.default_culture, results)
 
             if context.settings.write_report and results:
