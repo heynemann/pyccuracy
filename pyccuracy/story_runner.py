@@ -84,20 +84,26 @@ class StoryRunner(object):
                         callable(settings.on_section_started):
                             settings.on_section_started(section)
                     
+                    failed = False
                     on_section_started(context.language.get('given'))
                     for action in scenario.givens:
                         if not execute_action(action):
+                            failed = True
                             break
 
-                    on_section_started(context.language.get('when'))
-                    for action in scenario.whens:
-                        if not execute_action(action):
-                            break
-                    
-                    on_section_started(context.language.get('then'))
-                    for action in scenario.thens:
-                        if not execute_action(action):
-                            break
+                    if not failed:
+                        on_section_started(context.language.get('when'))
+                        for action in scenario.whens:
+                            if not execute_action(action):
+                                failed = True
+                                break
+
+                    if not failed:                    
+                        on_section_started(context.language.get('then'))
+                        for action in scenario.thens:
+                            if not execute_action(action):
+                                failed = True
+                                break
                             
                     if settings.on_scenario_completed and callable(settings.on_scenario_completed):
                         settings.on_scenario_completed(fixture, scenario, scenario_index)
