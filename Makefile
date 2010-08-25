@@ -2,7 +2,6 @@
 SHELL := /bin/bash
 
 # Internal variables.
-file_version=0.6.3
 root_dir=.
 build_dir=${root_dir}/build
 src_dir=${root_dir}/pyccuracy
