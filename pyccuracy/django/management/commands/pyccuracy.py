@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from __future__ import absolute_import
+
 from os.path import abspath, dirname, join, exists
 import warnings
 from optparse import make_option
@@ -21,10 +23,12 @@ class Command(BaseCommand):
         make_option("-b", "--browser", dest=u"browser", default=u"firefox", help=u"Browser that will be used to run the tests."),
         make_option("-w", "--workers", dest=u"workers", default=1, help=u"Number of tests to be run in parallel."),
         make_option("-c", "--language", dest=u"language", default='en-us', help=u"Language to run the tests in. Defaults to 'en-us'."),
+        make_option("-a", "--app", dest=u"apps", default=None, help=u"Only run the specified apps - comma separated."),
     )
     
-    def locate_resource_dirs(self, complement, pattern="*.*", recursive=True):
+    def locate_resource_dirs(self, complement, pattern="*.*", recursive=True, apps=[]):
         dirs = []
+                
         for app in settings.INSTALLED_APPS:
             fromlist = ""
 
@@ -34,12 +38,15 @@ class Command(BaseCommand):
             if app.startswith('django'):
                 continue
 
+            if apps and not app in apps:
+                continue
+
             module = __import__(app, fromlist=fromlist)
             app_dir = abspath("/" + "/".join(module.__file__.split("/")[1:-1]))
 
             resource_dir = join(app_dir, complement)
 
-            if exists(resource_dir) and locate(resource_dir, pattern, recursive):
+            if exists(resource_dir) and locate(pattern, resource_dir, recursive):
                 dirs.append(resource_dir)
 
         return dirs
@@ -56,13 +63,17 @@ class Command(BaseCommand):
             selenium_host = "localhost"
             selenium_port = 4444
 
+        apps_to_look_for_tests = []
+        if options['apps']:
+            apps_to_look_for_tests = options['apps'].replace(' ', '').split(',')
+
         dir_template = "-d %s"
         action_template = "-A %s"
         page_template = "-P %s"
 
         pattern = options['pattern']
 
-        dirs = self.locate_resource_dirs("tests/acceptance", pattern)
+        dirs = self.locate_resource_dirs("tests/acceptance", pattern, apps=apps_to_look_for_tests)
 
         action_pages_dirs = self.locate_resource_dirs("tests/acceptance", "__init__.py")
         pages_templates = " ".join([page_template % dirname for dirname in action_pages_dirs])
