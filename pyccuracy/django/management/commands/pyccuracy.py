@@ -24,8 +24,9 @@ class Command(BaseCommand):
         make_option("-w", "--workers", dest=u"workers", default=1, help=u"Number of tests to be run in parallel."),
         make_option("-c", "--language", dest=u"language", default='en-us', help=u"Language to run the tests in. Defaults to 'en-us'."),
         make_option("-a", "--app", dest=u"apps", default=None, help=u"Only run the specified apps - comma separated."),
+        make_option("-n", "--supresswarning", action="store_true", dest=u"supress_warnings", default=False, help=u"Supress Pyccuracy warnings."),
     )
-    
+
     def locate_resource_dirs(self, complement, pattern="*.*", recursive=True, apps=[]):
         dirs = []
                 
@@ -52,6 +53,8 @@ class Command(BaseCommand):
         return dirs
 
     def handle(self, *args, **options):
+        warnings.filterwarnings('ignore', '.*',)
+
         if args:
             selenium_host_and_port = args[0].split(':')
             if len(selenium_host_and_port) > 1:
@@ -96,6 +99,9 @@ class Command(BaseCommand):
         pyccuracy_arguments.append(options["workers"])
         pyccuracy_arguments.append("-v")
         pyccuracy_arguments.append(options["loglevel"])
+
+        if options["supress_warnings"]:
+            pyccuracy_arguments.append("--suppresswarnings")
 
         if options["scenario"]:
             pyccuracy_arguments.append("-s")
