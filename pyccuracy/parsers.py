@@ -231,7 +231,7 @@ class FileParser(object):
 
     def parse_scenario_line(self, current_story, line, settings):
         scenario_keyword = self.language.get('scenario')
-        scenario_values = line.split(u'-')
+        scenario_values = line.split(u'-', 1)
         index = scenario_values[0].replace(scenario_keyword,"").strip()
         title = scenario_values[1].strip()
         current_scenario = None
