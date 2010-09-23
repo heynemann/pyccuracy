@@ -9,4 +9,6 @@ Quando
 	#A página termina de carregar
 Então
 	Eu vejo que o link "lnkGoogle" tem href "http://www.google.com"
+	Eu vejo que o link "lnkGoogle" contém no href "google"
 	E eu vejo que o link "lnkGoogle2" tem href "http://www.google.com"
+	E eu vejo que o link "lnkGoogle2" contém no href "google"
