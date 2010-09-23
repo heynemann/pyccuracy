@@ -97,12 +97,15 @@ class PageRegistry(object):
                 url_pieces.append(settings.base_url)
             else:
                 url_pieces.append(settings.tests_dirs[0]) #gotta think of a way to fix this
-
+        
         if klass_object:
             url_pieces.append(klass_object.url)
+            
+            if hasattr(klass_object, 'port') and url_pieces[0].startswith("http"):
+                url_pieces[0] = "%s:%d" % (url_pieces[0], klass_object.port)
         else:
             url_pieces.append(url)
-
+        
         # if use os.path.join here, will not work on windows
 
         fix = lambda x: x.replace('//', '/').replace('http:/', 'http://').replace('https:/', 'https://')
