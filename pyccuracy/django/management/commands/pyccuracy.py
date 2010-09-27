@@ -17,6 +17,7 @@ class Command(BaseCommand):
     help = "Runs pyccuracy tests for all apps (EXPERIMENTAL)"
     option_list = BaseCommand.option_list + (
         make_option("-s", "--scenario", dest=u"scenario", default=None, help=u"Number (index) for the scenario to be executed. Use commas for several scenarios. I.e.: -s 3,6,7 or --scenario=3,6,7."),
+        make_option("-t", "--testfolder", dest=u"testfolder", default="tests/acceptance", help=u"Directory to look for tests (starting from each app)."),
         make_option("-l", "--loglevel", dest=u"loglevel", default=1, help=u"Verbosity: 1, 2 ou 3."),
         make_option("-u", "--baseurl", dest=u"baseurl", default=u"http://localhost:8000", help=u"Base Url for acceptance tests. Defaults to http://localhost:8000."),
         make_option("-p", "--pattern", dest=u"pattern", default=u"*.acc", help=u"Pattern (wildcard) to be used to find acceptance tests."),
@@ -29,7 +30,7 @@ class Command(BaseCommand):
 
     def locate_resource_dirs(self, complement, pattern="*.*", recursive=True, apps=[]):
         dirs = []
-                
+
         for app in settings.INSTALLED_APPS:
             fromlist = ""
 
@@ -76,9 +77,11 @@ class Command(BaseCommand):
 
         pattern = options['pattern']
 
-        dirs = self.locate_resource_dirs("tests/acceptance", pattern, apps=apps_to_look_for_tests)
+        testfolder = options['testfolder']
 
-        action_pages_dirs = self.locate_resource_dirs("tests/acceptance", "__init__.py")
+        dirs = self.locate_resource_dirs(testfolder, pattern, apps=apps_to_look_for_tests)
+
+        action_pages_dirs = self.locate_resource_dirs(testfolder, "__init__.py")
         pages_templates = " ".join([page_template % dirname for dirname in action_pages_dirs])
         actions_templates = " ".join([action_template % dirname for dirname in action_pages_dirs])
 
