@@ -9,4 +9,6 @@ When
 	#The page finishes loading
 Then
 	I see "lnkGoogle" link has "http://www.google.com" href
+	I see "lnkGoogle" link contains "google" in href
 	And I see "lnkGoogle2" link has "http://www.google.com" href
+	And I see "lnkGoogle2" link contains "google" in href

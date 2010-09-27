@@ -88,7 +88,7 @@ element_does_not_match_markup_regex = ^(E )?[eE]u vejo que [oa] (?P<element_type
 image_has_src_regex = ^(E )?[eE]u vejo que a imagem [\"](?P<image_name>.+)[\"] tem src de [\"](?P<src>.+)[\"]$
 image_does_not_have_src_regex = ^(E )?[eE]u vejo que a imagem [\"](?P<image_name>.+)[\"] não tem src de [\"](?P<src>.+)[\"]$
 
-link_has_href_regex = ^(E )?[eE]u vejo que o link [\"](?P<link_name>.+)[\"] tem href [\"](?P<href>.+)[\"]$
+link_has_href_regex = ^(E )?[eE]u vejo que o link [\"](?P<link_name>.+)[\"] (tem|contém no) href [\"](?P<href>.+)[\"]$
 
 select_contains_option_with_text_regex = ^(E )?[eE]u vejo que a select [\"](?P<select_name>.+)[\"] contém uma opção com texto [\"](?P<text>.+)[\"]$
 select_does_not_contain_option_with_text_regex = ^(E )?[eE]u vejo que a select [\"](?P<select_name>.+)[\"] não contém uma opção com texto [\"](?P<text>.+)[\"]$
