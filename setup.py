@@ -12,10 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from setuptools import setup, find_packages
+import os
+from setuptools import setup
 from pyccuracy import Version
 
-#classifier should be changed to "Development Status :: 5 - Production/Stable" soon
+def find_packages():
+    ''' Pyccuracy`s own find_packages is being used to avoid setuptools` 
+        find_package - which contains a monkey patch that may cause crashes 
+        when installing in some operating systems.'''
+    modules = []
+    pycc_path = os.path.dirname(os.path.abspath(__file__)) + '/pyccuracy'
+    for root, dirs, files in os.walk(pycc_path):
+        modules.append(root.replace(pycc_path, 'pyccuracy').replace('/', '.'))
+    return modules
 
 setup(
     name = 'Pyccuracy',
@@ -27,7 +36,7 @@ setup(
     author_email = 'pyccuracy@googlegroups.com',
     url = 'http://www.pyccuracy.org',
     license = 'OSI',
-    classifiers = ['Development Status :: 4 - Beta',
+    classifiers = ['Development Status :: 5 - Production/Stable',
                    'Intended Audience :: Developers',
                    'License :: OSI Approved',
                    'Natural Language :: English',
