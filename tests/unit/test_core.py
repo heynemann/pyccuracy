@@ -15,13 +15,19 @@
 
 import os
 from os.path import join, abspath, dirname
-from pmock import *
+
+import fudge
 from nose.tools import *
 
 from pyccuracy.core import PyccuracyCore
 from pyccuracy.common import Settings, Status
 from pyccuracy.errors import TestFailedError
+from pyccuracy.result import Result
 
+class Object(object):
+    pass
+
+@fudge.with_fakes
 def test_pyccuracy_core_instantiation():
     class MyParser:
         pass
@@ -35,9 +41,9 @@ def test_pyccuracy_core_instantiation():
     assert isinstance(pc.runner, MyRunner)
 
 def make_context_and_fso_mocks():
-    context_mock = Mock()
-    context_mock.browser_driver = Mock()
-    context_mock.settings = Mock()
+    context_mock = Object()
+    context_mock.browser_driver = fudge.Fake('browser_driver')
+    context_mock.settings = Object()
     context_mock.settings.hooks_dir = ["/hooks/dir/"]
     context_mock.settings.pages_dir = ["/pages/dir/"]
     context_mock.settings.custom_actions_dir = ["/custom/actions/dir/"]
@@ -46,109 +52,90 @@ def make_context_and_fso_mocks():
 
     files = ["/some/weird/file.py"]
     actions  = ["/some/weird/action.py"]
-    fso_mock = Mock()
-    fso_mock.expects(once()).add_to_import(eq(context_mock.settings.hooks_dir[0]))
-    fso_mock.expects(once()).add_to_import(eq(context_mock.settings.pages_dir[0]))
-    fso_mock.expects(once()).add_to_import(eq(context_mock.settings.custom_actions_dir[0]))
-    fso_mock.expects(once()).locate(eq(context_mock.settings.hooks_dir[0]), eq('*.py')).will(return_value(files))
-    fso_mock.expects(once()).locate(eq(context_mock.settings.pages_dir[0]), eq('*.py')).will(return_value(files))
-    fso_mock.expects(once()).locate(eq(context_mock.settings.custom_actions_dir[0]), eq('*.py')).will(return_value(files))
-    fso_mock.expects(at_least_once()).method('import_file')
-    fso_mock.expects(once()).remove_from_import(eq(context_mock.settings.custom_actions_dir[0]))
-    fso_mock.expects(once()).remove_from_import(eq(context_mock.settings.pages_dir[0]))
-    fso_mock.expects(once()).remove_from_import(eq(context_mock.settings.hooks_dir[0]))
+    fso_mock = fudge.Fake('fso_mock')
+    
+    fso_mock.expects('add_to_import').with_args(context_mock.settings.hooks_dir[0])
+    fso_mock.expects('add_to_import').with_args(context_mock.settings.pages_dir[0])
+    fso_mock.expects('add_to_import').with_args(context_mock.settings.custom_actions_dir[0])
+    
+    fso_mock.expects('locate').with_args(context_mock.settings.hooks_dir[0], '*.py').returns(files)
+    fso_mock.expects('locate').with_args(context_mock.settings.pages_dir[0], '*.py').returns(files)
+    fso_mock.expects('locate').with_args(context_mock.settings.custom_actions_dir[0], '*.py').returns(files)
+    
+    fso_mock.expects('import_file')
+    
+    fso_mock.expects('remove_from_import').with_args(context_mock.settings.hooks_dir[0])
+    fso_mock.expects('remove_from_import').with_args(context_mock.settings.pages_dir[0])
+    fso_mock.expects('remove_from_import').with_args(context_mock.settings.custom_actions_dir[0])
 
     return context_mock, fso_mock
 
+@fudge.with_fakes
 def test_pyccuracy_core_run_tests():
     context_mock, fso_mock = make_context_and_fso_mocks()
     context_mock.settings.write_report = False
-    context_mock.language = Mock()
+    context_mock.language = Object()
     context_mock.language.key = "pt-br"
 
-    context_mock.browser_driver.expects(once()).method('start_test')
-    context_mock.browser_driver.expects(once()).method('stop_test')
+    results_mock = fudge.Fake('results_mock')
+    results_mock.expects('summary_for').with_args('en-us').returns('my results')
+    suite_mock = fudge.Fake('suite_mock').has_attr(no_story_header=[], stories=['some story'])
 
-    results_mock = Mock()
-    suite_mock = Mock()
-    suite_mock.no_story_header = []
-
-    runner_mock = Mock()
-    parser_mock = Mock()
-    parser_mock.used_actions = []
-    parser_mock.expects(once()).method('get_stories').will(return_value(suite_mock))
-    runner_mock.expects(once()).method('run_stories').will(return_value(results_mock))
-
-    results_mock.expects(once()).summary_for(eq('en-us')).will(return_value('my results'))
-    pc = PyccuracyCore(parser_mock, runner_mock)
+    runner_mock = fudge.Fake('runner_mock')
+    parser_mock = fudge.Fake('parser_mock').has_attr(used_actions=[])
+    parser_mock.expects('get_stories').returns(suite_mock)
+    runner_mock.expects('run_stories').returns(results_mock)
     
-    assert pc.run_tests(should_throw=False, context=context_mock, fso=fso_mock) == results_mock
+    def summary_for(self, language):
+        return 'my results'
+    
+    with fudge.patched_context(Result, 'summary_for', summary_for):
+        pc = PyccuracyCore(parser_mock, runner_mock)
+        
+        result = pc.run_tests(should_throw=False, context=context_mock, fso=fso_mock)
+        assert result.summary_for('en-us') == 'my results'
 
-    parser_mock.verify()
-    runner_mock.verify()
-    context_mock.verify()
-    results_mock.verify()
-    suite_mock.verify()
-    fso_mock.verify()
-
+@fudge.with_fakes
 def test_pyccuracy_core_run_tests_works_when_None_Result_returned_from_story_runner():
     context_mock, fso_mock = make_context_and_fso_mocks()
-    context_mock.browser_driver.expects(once()).method('start_test')
-    context_mock.browser_driver.expects(once()).method('stop_test')
-    context_mock.language = Mock()
+    context_mock.settings.write_report = False
+    
+    context_mock.language = Object()
     context_mock.language.key = "pt-br"
 
-    suite_mock = Mock()
-    suite_mock.no_story_header = []
+    suite_mock = fudge.Fake('suite_mock').has_attr(no_story_header=[], stories=['some story'])
 
-    runner_mock = Mock()
-    parser_mock = Mock()
-    parser_mock.used_actions = []
-    parser_mock.expects(once()).method('get_stories').will(return_value(suite_mock))
-    runner_mock.expects(once()).method('run_stories').will(return_value(None))
+    runner_mock = fudge.Fake('runner_mock')
+    parser_mock = fudge.Fake('parser_mock').has_attr(used_actions=[])
+    parser_mock.expects('get_stories').returns(suite_mock)
+    runner_mock.expects('run_stories').returns(None)
 
     pc = PyccuracyCore(parser_mock, runner_mock)
 
     assert pc.run_tests(should_throw=False, context=context_mock, fso=fso_mock) == None
 
-    parser_mock.verify()
-    runner_mock.verify()
-    context_mock.verify()
-    suite_mock.verify()
-    fso_mock.verify()
-
 def test_pyccuracy_core_should_raise_TestFailedError_when_should_throw_is_true():
+    @fudge.with_fakes
     def do_run_tests_should_throw():
         context_mock, fso_mock = make_context_and_fso_mocks()
         context_mock.settings.write_report = False
-
-        context_mock.browser_driver.expects(once()).method('start_test')
-        context_mock.browser_driver.expects(once()).method('stop_test')
-        context_mock.language = Mock()
+        
+        context_mock.language = Object()
         context_mock.language.key = "key"
 
-        results_mock = Mock()
-        suite_mock = Mock()
-        suite_mock.no_story_header = []
+        results_mock = fudge.Fake('results_mock')
+        results_mock.expects('summary_for').with_args('en-us').returns('')
+        results_mock.expects('get_status').returns(Status.Failed)
+        suite_mock = fudge.Fake('suite_mock').has_attr(no_story_header=[], stories=['some story'])
 
-        runner_mock = Mock()
-        parser_mock = Mock()
-        parser_mock.used_actions = []
+        runner_mock = fudge.Fake()
+        parser_mock = fudge.Fake('parser_mock').has_attr(used_actions=[])
 
-        parser_mock.expects(once()).method('get_stories').will(return_value(suite_mock))
-        runner_mock.expects(once()).method('run_stories').will(return_value(results_mock))
+        parser_mock.expects('get_stories').returns(suite_mock)
+        runner_mock.expects('run_stories').returns(results_mock)
 
-        results_mock.expects(once()).summary_for(eq('en-us')).will(return_value(''))
-        results_mock.expects(once()).get_status().will(return_value(Status.Failed))
         pc = PyccuracyCore(parser_mock, runner_mock)
         pc.run_tests(should_throw=True, context=context_mock, fso=fso_mock)
-
-        parser_mock.verify()
-        runner_mock.verify()
-        context_mock.verify()
-        results_mock.verify()
-        suite_mock.verify()
-        fso_mock.verify()
 
     assert_raises(TestFailedError, do_run_tests_should_throw)
 
