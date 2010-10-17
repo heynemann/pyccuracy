@@ -91,10 +91,7 @@ def test_pyccuracy_core_run_tests():
     parser_mock.expects('get_stories').returns(suite_mock)
     runner_mock.expects('run_stories').returns(results_mock)
     
-    def summary_for(self, language):
-        return 'my results'
-    
-    with fudge.patched_context(Result, 'summary_for', summary_for):
+    with fudge.patched_context(Result, 'summary_for', lambda: 'my results'):
         pc = PyccuracyCore(parser_mock, runner_mock)
         
         result = pc.run_tests(should_throw=False, context=context_mock, fso=fso_mock)
