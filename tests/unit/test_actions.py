@@ -16,12 +16,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from pmock import *
-from nose.tools import raises, set_trace
+import fudge
+from fudge.inspector import arg as fudge_arg
+from nose.tools import raises, set_trace, with_setup
 
 from pyccuracy import ActionBase, ActionRegistry
 from pyccuracy.languages import LanguageItem
 from pyccuracy.errors import LanguageDoesNotResolveError
+
+def teardown():
+    fudge.clear_expectations()
 
 def test_construction():
     class DoNothingAction(ActionBase):
@@ -72,17 +76,26 @@ def test_cannot_resolve_string():
     assert not DoSomethingAction.can_resolve('Not for me')
     assert not DoSomethingAction.can_resolve('Foo Bar')
 
+@with_setup(teardown=teardown)
+@fudge.with_fakes
 def test_action_registry_suitable_for_returns_my_action():
     class MyAction(ActionBase):
         regex = LanguageItem('foo_bar_regex')
         def execute(self, context, *args, **kw):
             pass
+    
+    verify_specific_regex = fudge.Fake('verify_specific_regex', expect_call=True)
+    
+    class LanguageMock(object):
+        
+        def get(self, regex):
+            if regex == 'foo_bar_regex':
+                verify_specific_regex()
+                return 'My regex .+'
+            return '^$'
 
-    language_getter_mock = Mock()
-    language_getter_mock.expects(at_least_once()).method('get').will(return_value('^$'))
-    language_getter_mock.expects(once()).get(eq(LanguageItem('foo_bar_regex'))).will(return_value('My regex .+'))
+    language_getter_mock = LanguageMock()
     Action, args, kwargs = ActionRegistry.suitable_for('My regex baz', 'en-us', getter=language_getter_mock)
-    language_getter_mock.verify()
     assert Action is MyAction
 
 def test_action_registry_suitable_for_returns_my_action_without_language_item():
