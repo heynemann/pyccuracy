@@ -17,7 +17,8 @@
 # limitations under the License.
 
 from re import compile as re_compile
-from pmock import *
+import fudge
+from nose.tools import with_setup
 
 from pyccuracy import Page
 from pyccuracy.common import Settings
@@ -28,33 +29,37 @@ from ..utils import assert_raises
 
 class FakeContext(object):
     settings = Settings(cur_dir='/')
-    browser_driver = Mock()
-    language = Mock()
+    browser_driver = fudge.Fake('browser_driver')
+    language = fudge.Fake('language')
     current_page = None
+
+def teardown():
+    fudge.clear_expectations()
 
 #Element Click Action
 
+@with_setup(teardown=teardown)
+@fudge.with_fakes
 def test_element_click_action_calls_the_right_browser_driver_methods():
     context = FakeContext()
 
-    context.browser_driver.expects(once()) \
-                          .resolve_element_key(same(context), eq("button"), eq("some")) \
-                          .will(return_value("btnSome"))
-    context.browser_driver.expects(once()) \
-                          .is_element_visible(eq("btnSome")) \
-                          .will(return_value(True))
-    context.browser_driver.expects(once()) \
-                          .click_element(eq("btnSome"))
+    context.browser_driver.expects('resolve_element_key') \
+                          .with_args(context, "button", "some") \
+                          .returns("btnSome") \
+                          .times_called(1)
+    context.browser_driver.expects('is_element_visible') \
+                          .with_args("btnSome") \
+                          .returns(True) \
+                          .times_called(1)
+    context.browser_driver.expects('click_element') \
+                          .with_args("btnSome") \
+                          .times_called(1)
 
-    context.language.expects(once()) \
-                    .format(eq("element_is_visible_failure"), eq("button"), eq("some")) \
-                    .will(return_value("button"))
-
-    context.language.expects(once()) \
-                    .get(eq("button_category")) \
-                    .will(return_value("button"))
+    context.language.expects('format') \
+                          .with_args("element_is_visible_failure", "button", "some") \
+                          .returns("button") \
+                          .times_called(1)
 
     action = ElementClickAction()
 
     action.execute(context, element_name="some", element_type="button", should_wait=None)
-    context.browser_driver.verify()
