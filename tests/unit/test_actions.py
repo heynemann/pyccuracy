@@ -24,6 +24,9 @@ from pyccuracy import ActionBase, ActionRegistry
 from pyccuracy.languages import LanguageItem
 from pyccuracy.errors import LanguageDoesNotResolveError
 
+class Object(object):
+    pass
+
 def teardown():
     fudge.clear_expectations()
 
@@ -98,17 +101,20 @@ def test_action_registry_suitable_for_returns_my_action():
     Action, args, kwargs = ActionRegistry.suitable_for('My regex baz', 'en-us', getter=language_getter_mock)
     assert Action is MyAction
 
+@with_setup(teardown=teardown)
+@fudge.with_fakes
 def test_action_registry_suitable_for_returns_my_action_without_language_item():
     class MyActionNoLanguage(ActionBase):
         regex = r'^I do (\w+)\s(\w+) so proudly$'
         def execute(self, context, *args, **kw):
             pass
 
-    language_getter_mock = Mock()
-    language_getter_mock.expects(at_least_once()).method('get').will(return_value('^$'))
+    language_getter_mock = fudge.Fake('language_getter_mock').expects('get').returns('^$')
     Action, args, kwargs = ActionRegistry.suitable_for('I do unit test so proudly', 'en-us', getter=language_getter_mock)
     assert Action is MyActionNoLanguage
 
+@with_setup(teardown=teardown)
+@fudge.with_fakes
 def test_action_registry_can_resolve_same_name_classes():
     class MyActionSameName(ActionBase):
         regex = r'I do (\w+) very well'
@@ -122,8 +128,7 @@ def test_action_registry_can_resolve_same_name_classes():
             pass
     Temp2 = MyActionSameName
 
-    language_getter_mock = Mock()
-    language_getter_mock.expects(at_least_once()).method('get').will(return_value('^$'))
+    language_getter_mock = fudge.Fake('language_getter_mock').expects('get').returns('^$')
 
     Action1, args1, kwargs1 = ActionRegistry.suitable_for('I do test very well', 'en-us', getter=language_getter_mock)
     Action2, args2, kwargs2 = ActionRegistry.suitable_for('I do test very bad', 'en-us', getter=language_getter_mock)
@@ -133,62 +138,76 @@ def test_action_registry_can_resolve_same_name_classes():
     assert Action2 is Temp2
     assert Action2 is MyActionSameName
 
+@with_setup(teardown=teardown)
+@fudge.with_fakes
 @raises(LanguageDoesNotResolveError)
 def test_action_registry_suitable_for_raises_when_language_getter_can_not_resolve():
     class MyActionLanguage(ActionBase):
         regex = LanguageItem('foo_bar_regex1')
         def execute(self, context, *args, **kw):
             pass
+    
+    verify_specific_regex = fudge.Fake('verify_specific_regex', expect_call=True)
+    
+    class LanguageMock(object):
+        
+        def get(self, regex):
+            if regex == 'foo_bar_regex1':
+                verify_specific_regex()
+                return None
+            return '^$'
 
-    language_getter_mock = Mock()
-    language_getter_mock.expects(at_least_once()).method('get').will(return_value('^$'))
-    language_getter_mock.expects(once()).get(eq(LanguageItem('foo_bar_regex1'))).will(return_value(None))
+    language_getter_mock = LanguageMock()
     Action, args, kwargs = ActionRegistry.suitable_for('Something blabla', 'en-us', getter=language_getter_mock)
 
-@raises(RuntimeError) # A action can not execute itself for infinite recursion reasons :)
+@with_setup(teardown=teardown)
+@fudge.with_fakes
+@raises(RuntimeError) # An action can not execute itself for infinite recursion reasons :)
 def test_execute_action_will_not_execute_itself():
-    class DoSomethingRecursiveAction(ActionBase):
+    class DoSomeRecursiveAction(ActionBase):
         regex = r'^(And )?I do "(?P<what>\w+)" stuff$'
         def execute(self, context, getter_mock, *args, **kwargs):
             self.execute_action('And I do "recursive" stuff', context, getter=getter_mock)
 
-    language_getter_mock = Mock()
-    language_getter_mock.expects(at_least_once()).method('get').will(return_value('^$'))
+    language_getter_mock = fudge.Fake('language_getter_mock').expects('get').returns('^$')
 
-    context_mock = Mock()
-    context_mock.settings = Mock()
+    context_mock = Object()
+    context_mock.settings = Object()
     context_mock.settings.default_culture = "en-us"
 
-    dosaction = DoSomethingRecursiveAction()
+    dosaction = DoSomeRecursiveAction()
     args = []
     kwargs = dict(what='nothing')
 
     dosaction.execute(context_mock, getter_mock=language_getter_mock, *args, **kwargs)
-    context_mock.verify()
 
+@with_setup(teardown=teardown)
+@fudge.with_fakes
 def test_action_base_can_resolve_elements_in_a_given_page():
     class DoOtherThingAction(ActionBase):
         regex="^Do other thing$"
         def execute(self, context, *args, **kwargs):
             self.element = self.resolve_element_key(context, "button", "Something")
 
-    context_mock = Mock()
-    context_mock.current_page = Mock()
-    context_mock.current_page.expects(once()).get_registered_element(eq("Something")).will(return_value("btnSomething"))
+    context_mock = Object()
+    context_mock.current_page = fudge.Fake('current_page').expects('get_registered_element')\
+                .with_args('Something').returns('btnSomething').times_called(1)
 
     action = DoOtherThingAction()
     action.execute(context_mock)
     assert action.element == "btnSomething"
 
+@with_setup(teardown=teardown)
+@fudge.with_fakes
 def test_action_base_can_resolve_elements_using_browser_driver():
     class DoOneMoreThingAction(ActionBase):
         regex="^Do other thing$"
         def execute(self, context, *args, **kwargs):
             self.element = self.resolve_element_key(context, "button", "Something")
 
-    context_mock = Mock()
-    context_mock.browser_driver = Mock()
-    context_mock.browser_driver.expects(once()).resolve_element_key(eq(context_mock), eq("button"), eq("Something")).will(return_value("btnSomething"))
+    context_mock = Object()
+    context_mock.browser_driver = fudge.Fake('browser_driver').expects('resolve_element_key')\
+                .with_args(context_mock, 'button', 'Something').returns('btnSomething').times_called(1)
     context_mock.current_page = None
 
     action = DoOneMoreThingAction()
