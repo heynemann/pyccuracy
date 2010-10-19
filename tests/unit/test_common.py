@@ -16,15 +16,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from pmock import *
+import fudge
 from pyccuracy.common import URLChecker
+from nose.tools import with_setup
 
+def teardown():
+    fudge.clear_expectations()
+
+@with_setup(teardown=teardown)
+@fudge.with_fakes
 def test_url_checker():
-    urlmock = Mock()
 
-    urlmock.expects(once()) \
-        .urlopen(eq("http://foo.bar.com")) \
-        .will(return_value(None))
+    urlmock = fudge.Fake('urlmock').expects('urlopen') \
+        .with_args("http://foo.bar.com") \
+        .returns(None)\
+        .times_called(1)
 
     checker = URLChecker(lib=urlmock)
     checker.set_url("http://foo.bar.com")
@@ -33,14 +39,15 @@ def test_url_checker():
     assert checker.is_valid()
     assert checker.exists()
 
-    urlmock.verify()
-
+@with_setup(teardown=teardown)
+@fudge.with_fakes
 def test_url_checker_with_port():
-    urlmock = Mock()
 
-    urlmock.expects(once()) \
-        .urlopen(eq("http://foo.bar.com:8080")) \
-        .will(return_value(None))
+    urlmock = fudge.Fake('urlmock')\
+            .expects('urlopen') \
+            .with_args("http://foo.bar.com:8080") \
+            .returns(None)\
+            .times_called(1)
 
     checker = URLChecker(lib=urlmock)
     checker.set_url("http://foo.bar.com:8080")
@@ -49,14 +56,14 @@ def test_url_checker_with_port():
     assert checker.is_valid()
     assert checker.exists()
 
-    urlmock.verify()
-
+@with_setup(teardown=teardown)
+@fudge.with_fakes
 def test_url_checker_with_port_with_sub_folder():
-    urlmock = Mock()
-
-    urlmock.expects(once()) \
-        .urlopen(eq("http://foo.bar.com:8080/login")) \
-        .will(return_value(None))
+    urlmock = fudge.Fake('urlmock')\
+            .expects('urlopen') \
+            .with_args("http://foo.bar.com:8080/login") \
+            .returns(None)\
+            .times_called(1)
 
     checker = URLChecker(lib=urlmock)
     checker.set_url("http://foo.bar.com:8080/login")
@@ -65,14 +72,14 @@ def test_url_checker_with_port_with_sub_folder():
     assert checker.is_valid()
     assert checker.exists()
 
-    urlmock.verify()
-
+@with_setup(teardown=teardown)
+@fudge.with_fakes
 def test_url_checker_with_port_with_sub_folder_in_localhost():
-    urlmock = Mock()
-
-    urlmock.expects(once()) \
-        .urlopen(eq("http://localhost:8080/login")) \
-        .will(return_value(None))
+    urlmock = fudge.Fake('urlmock')\
+            .expects('urlopen') \
+            .with_args("http://localhost:8080/login") \
+            .returns(None)\
+            .times_called(1)
 
     checker = URLChecker(lib=urlmock)
     checker.set_url("http://localhost:8080/login")
@@ -80,5 +87,3 @@ def test_url_checker_with_port_with_sub_folder_in_localhost():
     assert checker.url == "http://localhost:8080/login"
     assert checker.is_valid()
     assert checker.exists()
-
-    urlmock.verify()
