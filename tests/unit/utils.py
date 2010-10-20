@@ -34,6 +34,10 @@
 # invalid exception message.
 
 import sys
+from functools import wraps
+
+import fudge
+from nose.tools import with_setup
 
 def assert_raises(exception, callable, *args, **kwargs):
     if "exc_args" in kwargs:
@@ -73,4 +77,14 @@ def assert_raises(exception, callable, *args, **kwargs):
                   % (callsig, exception, exc_info[0])
     else:
         assert False, "%s did not raise %s" % (callsig, exception)
+
+def with_fudge(test_case):
+    
+    @wraps(test_case)
+    @with_setup(teardown=fudge.clear_expectations)
+    @fudge.with_fakes
+    def test_case_wrapper():
+        test_case()
+    
+    return test_case_wrapper
 

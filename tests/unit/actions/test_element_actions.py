@@ -18,14 +18,13 @@
 
 from re import compile as re_compile
 import fudge
-from nose.tools import with_setup
 
 from pyccuracy import Page
 from pyccuracy.common import Settings
 from pyccuracy.errors import ActionFailedError
 from pyccuracy.actions.core.element_actions import *
 
-from ..utils import assert_raises
+from ..utils import with_fudge
 
 class FakeContext(object):
     settings = Settings(cur_dir='/')
@@ -33,13 +32,9 @@ class FakeContext(object):
     language = fudge.Fake('language')
     current_page = None
 
-def teardown():
-    fudge.clear_expectations()
-
 #Element Click Action
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 def test_element_click_action_calls_the_right_browser_driver_methods():
     context = FakeContext()
 

@@ -23,15 +23,12 @@ from pyccuracy.core import PyccuracyCore
 from pyccuracy.common import Settings, Status
 from pyccuracy.errors import TestFailedError
 from pyccuracy.result import Result
+from utils import with_fudge
 
 class Object(object):
     pass
 
-def teardown():
-    fudge.clear_expectations()
-
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 def test_pyccuracy_core_instantiation():
     class MyParser:
         pass
@@ -74,8 +71,7 @@ def make_context_and_fso_mocks():
 
     return context_mock, fso_mock
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 def test_pyccuracy_core_run_tests():
     context_mock, fso_mock = make_context_and_fso_mocks()
     context_mock.settings.write_report = False
@@ -97,8 +93,7 @@ def test_pyccuracy_core_run_tests():
         result = pc.run_tests(should_throw=False, context=context_mock, fso=fso_mock)
         assert result.summary_for('en-us') == 'my results'
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 def test_pyccuracy_core_run_tests_works_when_None_Result_returned_from_story_runner():
     context_mock, fso_mock = make_context_and_fso_mocks()
     context_mock.settings.write_report = False
@@ -117,8 +112,7 @@ def test_pyccuracy_core_run_tests_works_when_None_Result_returned_from_story_run
 
     assert pc.run_tests(should_throw=False, context=context_mock, fso=fso_mock) == None
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 def test_pyccuracy_core_should_raise_TestFailedError_when_should_throw_is_true():
     def do_run_tests_should_throw():
         context_mock, fso_mock = make_context_and_fso_mocks()

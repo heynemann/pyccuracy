@@ -14,13 +14,13 @@
 # limitations under the License.
 
 import fudge
-from fudge.inspector import arg as fudge_arg
-from nose.tools import raises, with_setup
 
 from pyccuracy.common import Settings
 from pyccuracy.parsers import FileParser
 from pyccuracy.fixture import Fixture
 from pyccuracy.fixture_items import Story
+
+from utils import with_fudge
 
 class Object(object):
     pass
@@ -88,9 +88,6 @@ class DoYetAnotherThingAction:
     def execute(context, *args, **kwargs):
         pass
 
-def teardown():
-    fudge.clear_expectations()
-
 def assert_no_invalid_stories(fixture):
     if fixture.invalid_test_files:
         raise fixture.invalid_test_files[0][1]
@@ -106,8 +103,7 @@ def test_can_create_file_parser_with_mocked_filesystem():
 
     assert parser.file_object == filemock
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 def test_parsing_stories_returns_list():
     settings = Settings()
     filemock = fudge.Fake('filemock')
@@ -120,8 +116,7 @@ def test_parsing_stories_returns_list():
     fixture = parser.get_stories(settings=settings)
     assert isinstance(fixture, Fixture)
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 def test_parsing_folder_with_no_stories_returns_empty_list():
     settings = Settings()
     files = []
@@ -136,8 +131,7 @@ def test_parsing_folder_with_no_stories_returns_empty_list():
     fixture = parser.get_stories(settings=settings)
     assert len(fixture.stories) == 0
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 def test_parsing_files_with_empty_content_returns_invalid_files_list():
     settings = Settings()
     files = ["some path"]
@@ -175,8 +169,7 @@ def test_parsing_files_with_empty_content_returns_invalid_files_list():
     file_path = fixture.no_story_header[0]
     assert file_path == "some path"
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 def test_parsing_files_with_invalid_as_a_returns_invalid_files_list():
     settings = Settings()
     files = ["some path"]
@@ -216,8 +209,7 @@ So that I'm happy"""
     file_path = fixture.no_story_header[0]
     assert file_path == "some path"
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 def test_parsing_files_with_invalid_i_want_to_returns_invalid_files_list():
     settings = Settings()
     files = ["some path"]
@@ -257,8 +249,7 @@ So that I'm happy"""
     file_path = fixture.no_story_header[0]
     assert file_path == "some path"
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 def test_parsing_files_with_invalid_so_that_returns_invalid_files_list():
     settings = Settings()
     files = ["some path"]
@@ -298,8 +289,7 @@ So I'm happy"""
     file_path = fixture.no_story_header[0]
     assert file_path == "some path"
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 def test_parsing_files_with_proper_header_returns_parsed_scenario():
     settings = Settings()
     files = ["some path"]
@@ -337,8 +327,7 @@ So that I'm happy"""
     assert fixture.stories[0].i_want_to == "do something"
     assert fixture.stories[0].so_that == "I'm happy"
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 def test_is_scenario_starter_line():
     language_mock = fudge.Fake('language_mock')
     language_mock.expects('get') \
@@ -351,8 +340,7 @@ def test_is_scenario_starter_line():
     
     assert is_scenario_starter_line
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 def test_is_not_scenario_starter_line():
     language_mock = fudge.Fake('language_mock')
     language_mock.expects('get') \
@@ -365,8 +353,7 @@ def test_is_not_scenario_starter_line():
     
     assert not is_scenario_starter_line
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 def test_parse_scenario_line():
     story = Story(as_a="Someone", i_want_to="Do Something", so_that="I'm Happy", identity="some file")
 
@@ -386,8 +373,7 @@ def test_parse_scenario_line():
     assert scenario.index == "1", "Expected 1 actual %s" % scenario.index
     assert scenario.title == "Doing something"
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 def test_is_keyword():
     language_mock = fudge.Fake('language_mock')
     language_mock.expects('get') \
@@ -400,8 +386,7 @@ def test_is_keyword():
 
     assert is_keyword
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 def test_is_not_keyword():
     language_mock = fudge.Fake('language_mock')
     language_mock.expects('get') \
@@ -414,8 +399,7 @@ def test_is_not_keyword():
 
     assert not is_keyword
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 def test_parsing_files_with_proper_scenario_returns_parsed_scenario():
     settings = Settings()
     files = ["some path"]
@@ -462,8 +446,7 @@ Then
     assert fixture.stories[0].scenarios[0].whens[0].description == "I do something else"
     assert fixture.stories[0].scenarios[0].thens[0].description == "I do yet another thing"
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 def test_parsing_files_with_many_scenarios_returns_parsed_scenarios():
 
     settings = Settings()

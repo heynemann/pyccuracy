@@ -17,20 +17,22 @@
 # limitations under the License.
 
 from re import compile as re_compile
-from pmock import *
+import fudge
+from fudge.inspector import arg as fudge_arg
+from nose.tools import raises, with_setup
 
 from pyccuracy import Page
 from pyccuracy.common import Settings
 from pyccuracy.errors import ActionFailedError
 from pyccuracy.actions.core.page_actions import *
 
-from ..utils import assert_raises
+from ..utils import assert_raises, with_fudge
 
 class FakeContext(object):
     def __init__(self):
         self.settings = Settings(cur_dir='/')
-        self.browser_driver = Mock()
-        self.language = Mock()
+        self.browser_driver = fudge.Fake('browser_driver')
+        self.language = fudge.Fake('language')
         self.current_page = None
 
 #Go To Action

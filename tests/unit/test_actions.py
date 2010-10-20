@@ -18,17 +18,16 @@
 
 import fudge
 from fudge.inspector import arg as fudge_arg
-from nose.tools import raises, set_trace, with_setup
+from nose.tools import raises, set_trace
 
 from pyccuracy import ActionBase, ActionRegistry
 from pyccuracy.languages import LanguageItem
 from pyccuracy.errors import LanguageDoesNotResolveError
 
+from utils import with_fudge
+
 class Object(object):
     pass
-
-def teardown():
-    fudge.clear_expectations()
 
 def test_construction():
     class DoNothingAction(ActionBase):
@@ -79,8 +78,7 @@ def test_cannot_resolve_string():
     assert not DoSomethingAction.can_resolve('Not for me')
     assert not DoSomethingAction.can_resolve('Foo Bar')
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 def test_action_registry_suitable_for_returns_my_action():
     class MyAction(ActionBase):
         regex = LanguageItem('foo_bar_regex')
@@ -101,8 +99,7 @@ def test_action_registry_suitable_for_returns_my_action():
     Action, args, kwargs = ActionRegistry.suitable_for('My regex baz', 'en-us', getter=language_getter_mock)
     assert Action is MyAction
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 def test_action_registry_suitable_for_returns_my_action_without_language_item():
     class MyActionNoLanguage(ActionBase):
         regex = r'^I do (\w+)\s(\w+) so proudly$'
@@ -113,8 +110,7 @@ def test_action_registry_suitable_for_returns_my_action_without_language_item():
     Action, args, kwargs = ActionRegistry.suitable_for('I do unit test so proudly', 'en-us', getter=language_getter_mock)
     assert Action is MyActionNoLanguage
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 def test_action_registry_can_resolve_same_name_classes():
     class MyActionSameName(ActionBase):
         regex = r'I do (\w+) very well'
@@ -138,8 +134,7 @@ def test_action_registry_can_resolve_same_name_classes():
     assert Action2 is Temp2
     assert Action2 is MyActionSameName
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 @raises(LanguageDoesNotResolveError)
 def test_action_registry_suitable_for_raises_when_language_getter_can_not_resolve():
     class MyActionLanguage(ActionBase):
@@ -160,8 +155,7 @@ def test_action_registry_suitable_for_raises_when_language_getter_can_not_resolv
     language_getter_mock = LanguageMock()
     Action, args, kwargs = ActionRegistry.suitable_for('Something blabla', 'en-us', getter=language_getter_mock)
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 @raises(RuntimeError) # An action can not execute itself for infinite recursion reasons :)
 def test_execute_action_will_not_execute_itself():
     class DoSomeRecursiveAction(ActionBase):
@@ -181,8 +175,7 @@ def test_execute_action_will_not_execute_itself():
 
     dosaction.execute(context_mock, getter_mock=language_getter_mock, *args, **kwargs)
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 def test_action_base_can_resolve_elements_in_a_given_page():
     class DoOtherThingAction(ActionBase):
         regex="^Do other thing$"
@@ -197,8 +190,7 @@ def test_action_base_can_resolve_elements_in_a_given_page():
     action.execute(context_mock)
     assert action.element == "btnSomething"
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 def test_action_base_can_resolve_elements_using_browser_driver():
     class DoOneMoreThingAction(ActionBase):
         regex="^Do other thing$"

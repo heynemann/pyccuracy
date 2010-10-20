@@ -17,14 +17,12 @@
 # limitations under the License.
 
 import fudge
-from pyccuracy.common import URLChecker
 from nose.tools import with_setup
 
-def teardown():
-    fudge.clear_expectations()
+from pyccuracy.common import URLChecker
+from utils import with_fudge
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 def test_url_checker():
 
     urlmock = fudge.Fake('urlmock').expects('urlopen') \
@@ -39,8 +37,7 @@ def test_url_checker():
     assert checker.is_valid()
     assert checker.exists()
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 def test_url_checker_with_port():
 
     urlmock = fudge.Fake('urlmock')\
@@ -56,8 +53,7 @@ def test_url_checker_with_port():
     assert checker.is_valid()
     assert checker.exists()
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 def test_url_checker_with_port_with_sub_folder():
     urlmock = fudge.Fake('urlmock')\
             .expects('urlopen') \
@@ -72,8 +68,7 @@ def test_url_checker_with_port_with_sub_folder():
     assert checker.is_valid()
     assert checker.exists()
 
-@with_setup(teardown=teardown)
-@fudge.with_fakes
+@with_fudge
 def test_url_checker_with_port_with_sub_folder_in_localhost():
     urlmock = fudge.Fake('urlmock')\
             .expects('urlopen') \
