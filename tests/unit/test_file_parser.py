@@ -24,6 +24,69 @@ from pyccuracy.fixture_items import Story
 
 class Object(object):
     pass
+    
+class LanguageMock(object):
+    
+    def __init__(self):
+        self.verifications = dict(
+            as_a=fudge.Fake('verify_as_a_keyword', \
+                            expect_call=True),
+            i_want_to=fudge.Fake('verify_i_want_to_keyword', \
+                                 expect_call=True),
+            so_that=fudge.Fake('verify_so_that_keyword', \
+                               expect_call=True),
+            scenario=fudge.Fake('verify_scenario_keyword', \
+                                expect_call=True),
+            given=fudge.Fake('verify_given_keyword', \
+                             expect_call=True),
+            when=fudge.Fake('verify_when_keyword', \
+                            expect_call=True),
+            then=fudge.Fake('verify_then_keyword', \
+                            expect_call=True)
+            )
+        self.terms = dict(
+            as_a='As a',
+            i_want_to='I want to',
+            so_that='So that',
+            scenario='Scenario',
+            given='Given',
+            when='When',
+            then='Then'
+            )
+    def get(self, regex):
+        self.verifications[regex]()
+        return self.terms[regex]
+
+class ActionRegistryMock(object):
+    
+    def __init__(self):
+        self.verifications = {
+            "I do something":
+            fudge.Fake('verify_i_do_something', expect_call=True),
+            "I do something else":
+            fudge.Fake('verify_i_do_something_else', expect_call=True),
+            "I do yet another thing":
+            fudge.Fake('verify_i_do_yet_another_thing', expect_call=True)
+            }
+        self.actions = {
+            "I do something": DoSomethingAction,
+            "I do something else": DoSomethingElseAction,
+            "I do yet another thing": DoYetAnotherThingAction
+            }
+    def suitable_for(self, action, language):
+        self.verifications[action]()
+        return self.actions[action], [], {}
+    
+class DoSomethingAction:
+    def execute(context, *args, **kwargs):
+        pass
+
+class DoSomethingElseAction:
+    def execute(context, *args, **kwargs):
+        pass
+class DoYetAnotherThingAction:
+    def execute(context, *args, **kwargs):
+        pass
 
 def teardown():
     fudge.clear_expectations()
@@ -351,18 +414,9 @@ def test_is_not_keyword():
 
     assert not is_keyword
 
+@with_setup(teardown=teardown)
+@fudge.with_fakes
 def test_parsing_files_with_proper_scenario_returns_parsed_scenario():
-    class DoSomethingAction:
-        def execute(context, *args, **kwargs):
-            pass
-
-    class DoSomethingElseAction:
-        def execute(context, *args, **kwargs):
-            pass
-    class DoYetAnotherThingAction:
-        def execute(context, *args, **kwargs):
-            pass
-
     settings = Settings()
     files = ["some path"]
     
@@ -378,47 +432,19 @@ When
 Then
     I do yet another thing"""
 
-    filemock = Mock()
-    filemock.expects(once()) \
-            .list_files(directories=same(settings.tests_dirs), pattern=same(settings.file_pattern)) \
-            .will(return_value(files))
-    filemock.expects(once()) \
-            .read_file(eq(files[0])) \
-            .will(return_value(story_text))
-
-    language_mock = Mock()
-    language_mock.expects(at_least_once()) \
-                 .get(eq("as_a")) \
-                 .will(return_value("As a"))
-    language_mock.expects(at_least_once()) \
-                 .get(eq("i_want_to")) \
-                 .will(return_value("I want to"))
-    language_mock.expects(at_least_once()) \
-                 .get(eq("so_that")) \
-                 .will(return_value("So that"))
-    language_mock.expects(at_least_once()) \
-                 .get(eq("given")) \
-                 .will(return_value("Given"))
-    language_mock.expects(at_least_once()) \
-                 .get(eq("when")) \
-                 .will(return_value("When"))
-    language_mock.expects(at_least_once()) \
-                 .get(eq("then")) \
-                 .will(return_value("Then"))
-    language_mock.expects(at_least_once()) \
-                 .get(eq("scenario")) \
-                 .will(return_value("Scenario"))
-
-    action_registry_mock = Mock()
-    action_registry_mock.expects(once()) \
-                        .suitable_for(eq("I do something"), eq('en-us')) \
-                        .will(return_value((DoSomethingAction, [], {})))
-    action_registry_mock.expects(once()) \
-                        .suitable_for(eq("I do something else"), eq('en-us')) \
-                        .will(return_value((DoSomethingElseAction, [], {})))
-    action_registry_mock.expects(once()) \
-                        .suitable_for(eq("I do yet another thing"), eq('en-us')) \
-                        .will(return_value((DoYetAnotherThingAction, [], {})))
+    filemock = fudge.Fake('filemock')
+    filemock.expects('list_files') \
+            .with_args(directories=settings.tests_dirs, \
+                       pattern=settings.file_pattern) \
+            .returns(files) \
+            .times_called(1)
+    filemock.expects('read_file') \
+            .with_args(files[0]) \
+            .returns(story_text) \
+            .times_called(1)
+    
+    language_mock = LanguageMock()
+    action_registry_mock = ActionRegistryMock()
 
     parser = FileParser(language=language_mock, file_object=filemock, action_registry=action_registry_mock)
 
@@ -436,23 +462,9 @@ Then
     assert fixture.stories[0].scenarios[0].whens[0].description == "I do something else"
     assert fixture.stories[0].scenarios[0].thens[0].description == "I do yet another thing"
 
-    language_mock.verify()
-    filemock.verify()
-    action_registry_mock.verify()
-
 @with_setup(teardown=teardown)
 @fudge.with_fakes
 def test_parsing_files_with_many_scenarios_returns_parsed_scenarios():
-    class DoSomethingAction:
-        def execute(context, *args, **kwargs):
-            pass
-
-    class DoSomethingElseAction:
-        def execute(context, *args, **kwargs):
-            pass
-    class DoYetAnotherThingAction:
-        def execute(context, *args, **kwargs):
-            pass
 
     settings = Settings()
     files = ["some path"]
@@ -479,70 +491,17 @@ Then
 
     filemock = fudge.Fake('filemock')
     filemock.expects('list_files') \
-            .with_args(directories=settings.tests_dirs, pattern=settings.file_pattern) \
+            .with_args(directories=settings.tests_dirs, \
+                       pattern=settings.file_pattern) \
             .returns(files) \
             .times_called(1)
     filemock.expects('read_file') \
             .with_args(files[0]) \
             .returns(story_text) \
             .times_called(1)
-
-    language_mock = fudge.Fake('language_mock')
-    language_mock.expects('get') \
-                 .with_args("as_a") \
-                 .returns("As a")
-    language_mock.expects('get') \
-                 .with_args("i_want_to") \
-                 .returns("I want to")
-    language_mock.expects('get') \
-                 .with_args("so_that") \
-                 .returns("So that")
     
-    class LanguageMock(object):
-        
-        def __init__(self):
-            self.verifications = dict(
-                scenario=fudge.Fake('verify_scenario_keyword', expect_call=True),
-                given=fudge.Fake('verify_given_keyword', expect_call=True),
-                when=fudge.Fake('verify_when_keyword', expect_call=True),
-                then=fudge.Fake('verify_then_keyword', expect_call=True)
-                )
-            self.words = dict(
-                scenario='Scenario',
-                given='',
-                when='',
-                then=''
-                )
-        def get(self, regex):
-            if regex == 'foo_bar_regex':
-                verify_specific_regex()
-                return 'My regex .+'
-            return '^$'
-    
-    keywords = dict(
-        scenario=fudge.Fake('verify_scenario_keyword', expect_call=True),
-        given=fudge.Fake('verify_given_keyword', expect_call=True),
-        when=fudge.Fake('verify_when_keyword', expect_call=True),
-        then=fudge.Fake('verify_then_keyword', expect_call=True)
-        )
-    
-    def verify_keyword(key):
-        keywords[key].call()
-    
-    language_mock.expects('get') \
-                 .with_args(fudge_arg.passes_test(verify_keyword)) \
-                 .returns("Scenario")
-
-    action_registry_mock = fudge.Fake('action_registry_mock')
-    action_registry_mock.expects('suitable_for') \
-                        .with_args("I do something", 'en-us') \
-                        .returns((DoSomethingAction, [], {}))
-    action_registry_mock.expects('suitable_for') \
-                        .with_args("I do something else", 'en-us') \
-                        .returns((DoSomethingElseAction, [], {}))
-    action_registry_mock.expects('suitable_for') \
-                        .with_args("I do yet another thing", 'en-us') \
-                        .returns((DoYetAnotherThingAction, [], {}))
+    language_mock = LanguageMock()
+    action_registry_mock = ActionRegistryMock()
 
     parser = FileParser(language=language_mock, file_object=filemock, action_registry=action_registry_mock)
 
