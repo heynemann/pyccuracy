@@ -17,44 +17,39 @@
 # limitations under the License.
 
 from re import compile as re_compile
-from pmock import *
+from mocker import Mocker
 
 from pyccuracy import Page
 from pyccuracy.common import Settings
 from pyccuracy.errors import ActionFailedError
 from pyccuracy.actions.core.element_actions import *
 
-from ..utils import assert_raises
-
-class FakeContext(object):
-    settings = Settings(cur_dir='/')
-    browser_driver = Mock()
-    language = Mock()
-    current_page = None
-
-#Element Click Action
+from ..utils import assert_raises, Object
 
 def test_element_click_action_calls_the_right_browser_driver_methods():
-    context = FakeContext()
-
-    context.browser_driver.expects(once()) \
-                          .resolve_element_key(same(context), eq("button"), eq("some")) \
-                          .will(return_value("btnSome"))
-    context.browser_driver.expects(once()) \
-                          .is_element_visible(eq("btnSome")) \
-                          .will(return_value(True))
-    context.browser_driver.expects(once()) \
-                          .click_element(eq("btnSome"))
-
-    context.language.expects(once()) \
-                    .format(eq("element_is_visible_failure"), eq("button"), eq("some")) \
-                    .will(return_value("button"))
-
-    context.language.expects(once()) \
-                    .get(eq("button_category")) \
-                    .will(return_value("button"))
+    mocker = Mocker()
+    
+    context = Object(
+        settings=Settings(cur_dir='/'),
+        browser_driver=mocker.mock(),
+        language=mocker.mock(),
+        current_page=None
+        )
+    
+    context.browser_driver.resolve_element_key(context, "button", "some")
+    mocker.result("btnSome")
+    context.browser_driver.is_element_visible("btnSome")
+    mocker.result(True)
+    context.browser_driver.click_element("btnSome")
+    
+    context.language.format("element_is_visible_failure", "button", "some")
+    mocker.result("button")
+    context.language.get("button_category")
+    mocker.result("button")
+    
+    mocker.replay()
 
     action = ElementClickAction()
 
     action.execute(context, element_name="some", element_type="button", should_wait=None)
-    context.browser_driver.verify()
+    mocker.verify()
