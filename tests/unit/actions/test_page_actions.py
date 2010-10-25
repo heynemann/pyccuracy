@@ -17,115 +17,142 @@
 # limitations under the License.
 
 from re import compile as re_compile
-from pmock import *
+from mocker import Mocker
 
 from pyccuracy import Page
 from pyccuracy.common import Settings
 from pyccuracy.errors import ActionFailedError
 from pyccuracy.actions.core.page_actions import *
 
-from ..utils import assert_raises
+from ..utils import assert_raises, Object
 
 class FakeContext(object):
-    def __init__(self):
+    def __init__(self, mocker):
         self.settings = Settings(cur_dir='/')
-        self.browser_driver = Mock()
-        self.language = Mock()
+        self.browser_driver = mocker.mock()
+        self.language = mocker.mock()
         self.current_page = None
 
 #Go To Action
 
 def test_page_go_to_action_calls_the_right_browser_driver_methods():
-    context = FakeContext()
+    mocker = Mocker()
+    
+    context = FakeContext(mocker)
+    
+    context.browser_driver.page_open("file:///some_url")
+    mocker.count(min=1, max=1)
+    context.browser_driver.wait_for_page()
+    mocker.count(min=1, max=1)
 
-    context.browser_driver.expects(once()) \
-                          .page_open(eq("file:///some_url"))
-    context.browser_driver.expects(once()) \
-                          .wait_for_page()
-
-    action = PageGoToAction()
-
-    action.execute(context, url='"some_url"')
-    context.browser_driver.verify()
+    with mocker:
+        action = PageGoToAction()
+    
+        action.execute(context, url='"some_url"')
 
 def test_page_go_to_action_sets_context_current_url():
-    context = FakeContext()
+    mocker = Mocker()
+    
+    context = FakeContext(mocker)
+    
+    context.browser_driver.page_open("file:///some_url")
+    mocker.count(min=1, max=1)
+    context.browser_driver.wait_for_page()
+    mocker.count(min=1, max=1)
 
-    context.browser_driver.expects(once()) \
-                          .page_open(eq("file:///some_url"))
-    context.browser_driver.expects(once()) \
-                          .wait_for_page()
+    with mocker:
+        action = PageGoToAction()
 
-    action = PageGoToAction()
-
-    action.execute(context, url='"some_url"')
-    context.browser_driver.verify()
+        action.execute(context, url='"some_url"')
 
     assert context.url == "file:///some_url"
 
 def test_page_go_to_action_sets_page_if_page_is_supplied():
     class SomePage(Page):
         url = "some"
+        
+    mocker = Mocker()
+    
+    context = FakeContext(mocker)
+    
+    context.browser_driver.page_open("file:///some")
+    mocker.count(min=1, max=1)
+    context.browser_driver.wait_for_page()
+    mocker.count(min=1, max=1)
 
-    context = FakeContext()
+    with mocker:
+        action = PageGoToAction()
 
-    context.browser_driver.expects(once()) \
-                          .page_open(eq("file:///some"))
-    context.browser_driver.expects(once()) \
-                          .wait_for_page()
-
-    action = PageGoToAction()
-
-    action.execute(context, url="Some Page")
-    context.browser_driver.verify()
+        action.execute(context, url="Some Page")
 
     assert isinstance(context.current_page, SomePage)
 
 def test_page_go_to_action_raises_with_invalid_page():
-    context = FakeContext()
-    context.language.expects(once()) \
-                    .format(eq("page_go_to_failure"), eq("http://www.google.com")) \
-                    .will(return_value("Error Message"))
+        
+    mocker = Mocker()
+    
+    context = FakeContext(mocker)
+    
+    context.language.format("page_go_to_failure", "http://www.google.com")
+    mocker.count(min=1, max=1)
+    mocker.result("Error Message")
 
-    action = PageGoToAction()
-    assert_raises(ActionFailedError, action.execute, context=context, url="http://www.google.com", exc_pattern=re_compile(r'^Error Message$'))
+    with mocker:
+        action = PageGoToAction()
+        assert_raises(ActionFailedError, action.execute, context=context, url="http://www.google.com", exc_pattern=re_compile(r'^Error Message$'))
 
 #End Go To Action
 
 #Go To With Parameters Action
 
 def test_page_go_to_with_parameters_action_raises_error_when_parameters_are_invalid():
-    action = PageGoToWithParametersAction()
-    context = FakeContext()
+        
+    mocker = Mocker()
     
-    context.language.expects(once()) \
-                    .format(eq('page_go_to_with_parameters_failure'), eq('Blah blahabla blah')) \
-                    .will(return_value('Error Message'))
+    action = PageGoToWithParametersAction()
+    
+    context = FakeContext(mocker)
+    
+    context.language.format('page_go_to_with_parameters_failure', 'Blah blahabla blah')
+    mocker.count(min=1, max=1)
+    mocker.result('Error Message')
+    
+    with mocker:
                     
-    assert_raises(ActionFailedError, action.parse_parameters, context, 'Blah blahabla blah')
+        assert_raises(ActionFailedError, action.parse_parameters, context, 'Blah blahabla blah')
 
 def test_page_go_to_with_parameters_action_parses_parameters():
+        
+    mocker = Mocker()
+    
     action = PageGoToWithParametersAction()
-    context = FakeContext()
     
-    params = action.parse_parameters(context, 'parameter1 "value1"')
-    assert params == { 'parameter1':'value1' }
+    context = FakeContext(mocker)
     
-    params = action.parse_parameters(context, 'query_string "?another+value=x%20y%20z"')
-    assert params == { 'query_string':'?another+value=x%20y%20z' }
+    with mocker:
+        params = action.parse_parameters(context, 'parameter1 "value1"')
+        assert params == { 'parameter1':'value1' }
+        
+        params = action.parse_parameters(context, 'query_string "?another+value=x%20y%20z"')
+        assert params == { 'query_string':'?another+value=x%20y%20z' }
 
 def test_page_go_to_with_parameters_action_parses_many_parameters():
-    action = PageGoToWithParametersAction()
-    context = FakeContext()
-
-    params = action.parse_parameters(context, 'parameter1 "value1", parameter2 "value2"')
-    assert params == { 'parameter1':'value1', 'parameter2':'value2' }
-
-    params = action.parse_parameters(context, 'query_string "?another+value=x%20y%20z", user "gchapiewski"')
-    assert params == { 'query_string':'?another+value=x%20y%20z', 'user':'gchapiewski' }
+        
+    mocker = Mocker()
     
-    params = action.parse_parameters(context, 'parameter1 "value1", parameter2 "value2", param3 "value3"')
-    assert params == { 'parameter1':'value1', 'parameter2':'value2', 'param3':'value3' }
+    action = PageGoToWithParametersAction()
+    
+    context = FakeContext(mocker)
+    
+    with mocker:
+        params = action.parse_parameters(context, 'parameter1 "value1", parameter2 "value2"')
+        assert params == { 'parameter1':'value1', 'parameter2':'value2' }
+    
+        params = action.parse_parameters(context, 'query_string "?another+value=x%20y%20z", user "gchapiewski"')
+        assert params == { 'query_string':'?another+value=x%20y%20z', 'user':'gchapiewski' }
+        
+        params = action.parse_parameters(context, 'parameter1 "value1", parameter2 "value2", param3 "value3"')
+        assert params == { 'parameter1':'value1', 'parameter2':'value2', 'param3':'value3' }
     
 def test_page_go_to_with_parameters_action_resolves_url_for_parameter():
     action = PageGoToWithParametersAction()
@@ -144,55 +171,70 @@ def test_page_go_to_with_parameters_action_resolves_url_for_many_parameters():
 #Am In Action
 
 def test_page_am_in_action_calls_the_right_browser_driver_methods():
+        
+    mocker = Mocker()
+    
     class SomePage(Page):
         url = "http://www.somepage.com"
 
-    context = FakeContext()
-    context.language.expects(once()) \
-                    .format(eq("page_am_in_failure"), eq("http://www.somepage.com")) \
-                    .will(return_value("Error Message"))
+    context = FakeContext(mocker)
 
-    action = PageAmInAction()
-
-    action.execute(context, url="http://www.somepage.com")
-    assert isinstance(context.current_page, SomePage)
-    assert context.url == "http://www.somepage.com"
+    with mocker:
+        action = PageAmInAction()
+    
+        action.execute(context, url="http://www.somepage.com")
+        assert isinstance(context.current_page, SomePage)
+        assert context.url == "http://www.somepage.com"
 
 def test_page_am_in_action_sets_page_if_page_is_supplied():
+        
+    mocker = Mocker()
+    
     class SomePage1(Page):
         url = "http://www.somepage.com"
 
-    context = FakeContext()
+    context = FakeContext(mocker)
 
-    action = PageAmInAction()
-
-    action.execute(context, url="Some Page 1")
-    assert isinstance(context.current_page, SomePage1)
-    assert context.url == "http://www.somepage.com"
+    with mocker:
+        action = PageAmInAction()
+    
+        action.execute(context, url="Some Page 1")
+        assert isinstance(context.current_page, SomePage1)
+        assert context.url == "http://www.somepage.com"
 
 def test_page_am_in_action_raises_if_no_page():
-    context = FakeContext()
-    context.language.expects(once()) \
-                    .format(eq("page_am_in_failure"), eq("http://www.google.com")) \
-                    .will(return_value("Error Message"))
-    action = PageAmInAction()
+        
+    mocker = Mocker()
 
-    assert_raises(ActionFailedError, action.execute, context=context, url="http://www.google.com", exc_pattern=re_compile(r'^Error Message$'))
+    context = FakeContext(mocker)
+    
+    context.language.format("page_am_in_failure", "http://www.google.com")
+    mocker.count(min=1, max=1)
+    mocker.result("Error Message")
+    
+    with mocker:
+        action = PageAmInAction()
+    
+        assert_raises(ActionFailedError, action.execute, context=context, url="http://www.google.com", exc_pattern=re_compile(r'^Error Message$'))
 
 #End Am In Action
 
 # Page See Title Action
 
 def test_page_see_title_action_calls_the_right_browser_driver_methods():
-    context = FakeContext()
-    context.browser_driver.expects(once()) \
-                          .get_title() \
-                          .will(return_value("some title"))
+        
+    mocker = Mocker()
 
-    action = PageSeeTitleAction()
+    context = FakeContext(mocker)
+    
+    context.browser_driver.get_title()
+    mocker.count(min=1, max=1)
+    mocker.result("some title")
+    
+    with mocker:
 
-    action.execute(context, title="some title")
-
-    context.browser_driver.verify()
+        action = PageSeeTitleAction()
+    
+        action.execute(context, title="some title")
 
 #End Page See Title Action
