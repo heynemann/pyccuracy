@@ -15,12 +15,14 @@
 
 import os
 from os.path import join, abspath, dirname
-from mocker import *
+from mocker import Mocker, ANY, ARGS, KWARGS
 from nose.tools import *
 
 from pyccuracy.core import PyccuracyCore
 from pyccuracy.common import Settings, Status
 from pyccuracy.errors import TestFailedError
+
+from utils import Object
 
 def test_pyccuracy_core_instantiation():
     class MyParser:
@@ -34,46 +36,73 @@ def test_pyccuracy_core_instantiation():
     assert isinstance(pc.parser, MyParser)
     assert isinstance(pc.runner, MyRunner)
 
-def make_context_and_fso_mocks():
-    mocker = Mocker()
-    context_mock = mocker.mock()
+def make_context_and_fso_mocks(mocker):
+    
+    print "starting context and fso"
+    
+    #context_mock = Object(
+        #browser_driver=mocker.mock(),
+        #settings=Object(
+            #hooks_dir=["/hooks/dir/"],
+            #pages_dir=["/pages/dir/"],
+            #custom_actions_dir=["/custom/actions/dir/"],
+            #base_url="http://localhost",
+            #default_culture="en-us"
+            #)
+        #)
+    
+    hooks_dir = ["/hooks/dir/"]
+    pages_dir = ["/pages/dir/"]
+    custom_actions_dir = ["/custom/actions/dir/"]
+    
+    context_mock = Object()
     context_mock.browser_driver = mocker.mock()
     context_mock.settings = mocker.mock()
-    context_mock.settings.hooks_dir = ["/hooks/dir/"]
-    context_mock.settings.pages_dir = ["/pages/dir/"]
-    context_mock.settings.custom_actions_dir = ["/custom/actions/dir/"]
-    context_mock.settings.base_url = "http://localhost"
-    context_mock.settings.default_culture = "en-us"
+    context_mock.settings.hooks_dir
+    mocker.result(hooks_dir)
+    context_mock.settings.pages_dir
+    mocker.result(pages_dir)
+    context_mock.settings.custom_actions_dir
+    mocker.result(custom_actions_dir)
+    context_mock.settings.base_url
+    mocker.result("http://localhost")
+    context_mock.settings.default_culture
+    mocker.result("en-us")
+    
+    def printer(*args):
+        for arg in args:
+            print arg,
 
     files = ["/some/weird/file.py"]
-    actions  = ["/some/weird/action.py"]
     fso_mock = mocker.mock()
-    fso_mock.add_to_import(context_mock.settings.hooks_dir[0])
-    fso_mock.add_to_import(context_mock.settings.pages_dir[0])
-    fso_mock.add_to_import(context_mock.settings.custom_actions_dir[0])
-    fso_mock.locate(context_mock.settings.hooks_dir[0], '*.py')
+    fso_mock.add_to_import(hooks_dir[0])
+    fso_mock.add_to_import(pages_dir[0])
+    fso_mock.add_to_import(custom_actions_dir[0])
+    fso_mock.locate(hooks_dir[0], '*.py')
     mocker.result(files)
-    fso_mock.locate(context_mock.settings.pages_dir[0], '*.py')
+    fso_mock.locate(pages_dir[0], '*.py')
     mocker.result(files)
-    fso_mock.locate(context_mock.settings.custom_actions_dir[0], '*.py')
+    fso_mock.locate(custom_actions_dir[0], '*.py')
     mocker.result(files)
-    fso_mock.import_file(ARGS, KWARGS)
-    fso_mock.count(1)
-    fso_mock.remove_from_import(context_mock.settings.custom_actions_dir[0])
-    fso_mock.remove_from_import(context_mock.settings.pages_dir[0])
-    fso_mock.remove_from_import(context_mock.settings.hooks_dir[0])
+    fso_mock.import_file(ANY)
+    mocker.call(printer)
+    fso_mock.remove_from_import(custom_actions_dir[0])
+    fso_mock.remove_from_import(pages_dir[0])
+    fso_mock.remove_from_import(hooks_dir[0])
+    
+    print "ending context and fso"
 
     return context_mock, fso_mock
 
 def test_pyccuracy_core_run_tests():
     mocker = Mocker()
-    context_mock, fso_mock = make_context_and_fso_mocks()
+    context_mock, fso_mock = make_context_and_fso_mocks(mocker)
     context_mock.settings.write_report = False
     context_mock.language = mocker.mock()
     context_mock.language.key = "pt-br"
 
-    context_mock.browser_driver.start_test(ARGS, KWARGS)
-    context_mock.browser_driver.stop_test(ARGS, KWARGS)
+    context_mock.browser_driver.start_test(ANY)
+    context_mock.browser_driver.stop_test(ANY)
 
     results_mock = mocker.mock()
     suite_mock = mocker.mock()
@@ -82,23 +111,20 @@ def test_pyccuracy_core_run_tests():
     runner_mock = mocker.mock()
     parser_mock = mocker.mock()
     parser_mock.used_actions = []
-    parser_mock.get_stories(ARGS, KWARGS)
+    parser_mock.get_stories(ANY)
     mocker.result(suite_mock)
-    parser_mock.run_stories(ARGS, KWARGS)
+    parser_mock.run_stories(ANY)
     mocker.result(suite_mock)
     
     results_mock.summary_for('en-us')
     mocker.result('my results')
     
-    mocker.replay()
+    with mocker:
+        pc = PyccuracyCore(parser_mock, runner_mock)
     
-    pc = PyccuracyCore(parser_mock, runner_mock)
-    
-    #TODO: falha
-    results = pc.run_tests(should_throw=False, context=context_mock, fso=fso_mock)
-    assert results == results_mock, results
-
-    mocker.verify()
+        #TODO: falha
+        results = pc.run_tests(should_throw=False, context=context_mock, fso=fso_mock)
+        assert results == results_mock, results
 
 def test_pyccuracy_core_run_tests_works_when_None_Result_returned_from_story_runner():
     mocker = Mocker()
