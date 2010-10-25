@@ -45,11 +45,11 @@ def test_element_click_action_calls_the_right_browser_driver_methods():
     context.language.format("element_is_visible_failure", "button", "some")
     mocker.result("button")
     context.language.get("button_category")
+    mocker.count(min=0, max=None)
     mocker.result("button")
     
-    mocker.replay()
+    with mocker:
 
-    action = ElementClickAction()
-
-    action.execute(context, element_name="some", element_type="button", should_wait=None)
-    mocker.verify()
+        action = ElementClickAction()
+    
+        action.execute(context, element_name="some", element_type="button", should_wait=None)
