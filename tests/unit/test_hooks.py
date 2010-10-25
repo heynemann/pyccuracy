@@ -1,6 +1,8 @@
-from pmock import *
-from nose.tools import raises
+
 from time import sleep
+
+from mocker import Mocker
+from nose.tools import raises
 
 from pyccuracy.hooks import *
 

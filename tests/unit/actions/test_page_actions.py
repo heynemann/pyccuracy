@@ -17,6 +17,7 @@
 # limitations under the License.
 
 from re import compile as re_compile
+
 from mocker import Mocker
 
 from pyccuracy import Page

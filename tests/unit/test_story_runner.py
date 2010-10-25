@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from pmock import *;
+from mocker import Mocker
 
 from pyccuracy.fixture import Fixture
 from pyccuracy.fixture_items import Story, Scenario, Action

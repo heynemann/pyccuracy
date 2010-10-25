@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from pmock import *
+from mocker import Mocker
 from nose.tools import raises
 
 from pyccuracy.common import Settings

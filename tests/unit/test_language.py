@@ -13,8 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import pmock
+from mocker import Mocker
 from nose.tools import raises, set_trace
+
 from pyccuracy.languages import LanguageGetter
 from pyccuracy.errors import WrongArgumentsError
 

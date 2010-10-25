@@ -1,3 +1,4 @@
+#-*- coding:utf-8 -*-
 from pyccuracy.help import LanguageViewer
 
 url_regex = r"(?P<url>[\"](([\w:/._-]|\=|\?|\&|\"|\;|\%)+)[\"]|([\w\s_.-]+))$"

@@ -15,7 +15,7 @@
 
 import re
 
-from pmock import *;
+from mocker import Mocker
 
 from pyccuracy.drivers.core.selenium_driver import SeleniumDriver
 from pyccuracy.drivers import DriverError

@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from pmock import *;
+from mocker import Mocker
 
 from pyccuracy.result import Result
 from pyccuracy.common import Settings, Status
