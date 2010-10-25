@@ -26,15 +26,17 @@ from pyccuracy.actions.core.element_actions import *
 
 from ..utils import assert_raises, Object
 
+class FakeContext(object):
+    def __init__(self, mocker):
+        self.settings = Settings(cur_dir='/')
+        self.browser_driver = mocker.mock()
+        self.language = mocker.mock()
+        self.current_page = None
+
 def test_element_click_action_calls_the_right_browser_driver_methods():
     mocker = Mocker()
     
-    context = Object(
-        settings=Settings(cur_dir='/'),
-        browser_driver=mocker.mock(),
-        language=mocker.mock(),
-        current_page=None
-        )
+    context = FakeContext(mocker)
     
     context.browser_driver.resolve_element_key(context, "button", "some")
     mocker.count(min=1, max=1)
