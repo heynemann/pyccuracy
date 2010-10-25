@@ -74,3 +74,9 @@ def assert_raises(exception, callable, *args, **kwargs):
     else:
         assert False, "%s did not raise %s" % (callsig, exception)
 
+class Object(object):
+    
+    def __init__(self, **properties):
+        
+        for key in properties:
+            self.__setattr__(key, properties[key])
