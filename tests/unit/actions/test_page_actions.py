@@ -37,6 +37,7 @@ class FakeContext(object):
 #Go To Action
 
 def test_page_go_to_action_calls_the_right_browser_driver_methods():
+    
     mocker = Mocker()
     
     context = FakeContext(mocker)
