@@ -21,65 +21,73 @@ from mocker import Mocker
 from pyccuracy.common import URLChecker
 
 def test_url_checker():
-    urlmock = Mock()
+    
+    mocker = Mocker()
+    
+    urlmock = mocker.mock()
 
-    urlmock.expects(once()) \
-        .urlopen(eq("http://foo.bar.com")) \
-        .will(return_value(None))
+    urlmock.urlopen("http://foo.bar.com")
+    mocker.count(min=1, max=1)
+    mocker.result(None)
 
-    checker = URLChecker(lib=urlmock)
-    checker.set_url("http://foo.bar.com")
-
-    assert checker.url == "http://foo.bar.com"
-    assert checker.is_valid()
-    assert checker.exists()
-
-    urlmock.verify()
+    with mocker:
+        checker = URLChecker(lib=urlmock)
+        checker.set_url("http://foo.bar.com")
+    
+        assert checker.url == "http://foo.bar.com"
+        assert checker.is_valid()
+        assert checker.exists()
 
 def test_url_checker_with_port():
-    urlmock = Mock()
+    
+    mocker = Mocker()
+    
+    urlmock = mocker.mock()
 
-    urlmock.expects(once()) \
-        .urlopen(eq("http://foo.bar.com:8080")) \
-        .will(return_value(None))
+    urlmock.urlopen("http://foo.bar.com:8080")
+    mocker.count(min=1, max=1)
+    mocker.result(None)
 
-    checker = URLChecker(lib=urlmock)
-    checker.set_url("http://foo.bar.com:8080")
-
-    assert checker.url == "http://foo.bar.com:8080"
-    assert checker.is_valid()
-    assert checker.exists()
-
-    urlmock.verify()
+    with mocker:
+        checker = URLChecker(lib=urlmock)
+        checker.set_url("http://foo.bar.com:8080")
+    
+        assert checker.url == "http://foo.bar.com:8080"
+        assert checker.is_valid()
+        assert checker.exists()
 
 def test_url_checker_with_port_with_sub_folder():
-    urlmock = Mock()
+    
+    mocker = Mocker()
+    
+    urlmock = mocker.mock()
 
-    urlmock.expects(once()) \
-        .urlopen(eq("http://foo.bar.com:8080/login")) \
-        .will(return_value(None))
+    urlmock.urlopen("http://foo.bar.com:8080/login")
+    mocker.count(min=1, max=1)
+    mocker.result(None)
 
-    checker = URLChecker(lib=urlmock)
-    checker.set_url("http://foo.bar.com:8080/login")
-
-    assert checker.url == "http://foo.bar.com:8080/login"
-    assert checker.is_valid()
-    assert checker.exists()
-
-    urlmock.verify()
+    with mocker:
+        checker = URLChecker(lib=urlmock)
+        checker.set_url("http://foo.bar.com:8080/login")
+    
+        assert checker.url == "http://foo.bar.com:8080/login"
+        assert checker.is_valid()
+        assert checker.exists()
 
 def test_url_checker_with_port_with_sub_folder_in_localhost():
-    urlmock = Mock()
+    
+    mocker = Mocker()
+    
+    urlmock = mocker.mock()
 
-    urlmock.expects(once()) \
-        .urlopen(eq("http://localhost:8080/login")) \
-        .will(return_value(None))
+    urlmock.urlopen("http://localhost:8080/login")
+    mocker.count(min=1, max=1)
+    mocker.result(None)
 
-    checker = URLChecker(lib=urlmock)
-    checker.set_url("http://localhost:8080/login")
-
-    assert checker.url == "http://localhost:8080/login"
-    assert checker.is_valid()
-    assert checker.exists()
-
-    urlmock.verify()
+    with mocker:
+        checker = URLChecker(lib=urlmock)
+        checker.set_url("http://localhost:8080/login")
+    
+        assert checker.url == "http://localhost:8080/login"
+        assert checker.is_valid()
+        assert checker.exists()
