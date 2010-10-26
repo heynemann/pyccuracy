@@ -1,7 +1,7 @@
 
 from time import sleep
 
-from mocker import Mocker
+from mocker import Mocker, ANY
 from nose.tools import raises
 
 from pyccuracy.hooks import *
@@ -35,29 +35,37 @@ def test_will_register_before_tests_hook():
     Hooks.reset()
 
 def test_will_execute_after_tests_hook():
-    mock = Mock()
-    mock.expects(once()).method('a_method')
     
-    class MyHook(AfterTestsHook):
-        def execute(self, result):
-            MyHook.mock.a_method()
+    mocker = Mocker()
     
-    MyHook.mock = mock
-    Hooks.execute_after_tests(None)
-    mock.verify()
+    mock = mocker.mock()
+    mock.a_method()
+    
+    with mocker:
+        class MyHook(AfterTestsHook):
+            def execute(self, result):
+                MyHook.mock.a_method()
+        
+        MyHook.mock = mock
+        Hooks.execute_after_tests(None)
+        
     Hooks.reset()
 
 def test_will_execute_before_tests_hook():
-    mock = Mock()
-    mock.expects(once()).method('a_method')
+    
+    mocker = Mocker()
+    
+    mock = mocker.mock()
+    mock.a_method()
 
-    class MyHook(BeforeTestsHook):
-        def execute(self):
-            MyHook.mock.a_method()
-
-    MyHook.mock = mock
-    Hooks.execute_before_tests()
-    mock.verify()
+    with mocker:
+        class MyHook(BeforeTestsHook):
+            def execute(self):
+                MyHook.mock.a_method()
+    
+        MyHook.mock = mock
+        Hooks.execute_before_tests()
+        
     Hooks.reset()
 
 @raises(RuntimeError)
