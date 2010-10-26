@@ -85,7 +85,6 @@ def test_action_registry_suitable_for_returns_my_action():
 
     language_getter_mock = mocker.mock()
     language_getter_mock.get(LanguageItem('foo_bar_regex'))
-    mocker.count(min=1, max=1)
     mocker.result('My regex .+')
     language_getter_mock.get(ANY)
     mocker.count(min=1, max=None)
@@ -156,7 +155,6 @@ def test_action_registry_suitable_for_raises_when_language_getter_can_not_resolv
 
     language_getter_mock = mocker.mock()
     language_getter_mock.get(LanguageItem('foo_bar_regex1'))
-    mocker.count(min=1, max=1)
     mocker.result(None)
     language_getter_mock.get(ANY)
     mocker.count(min=1, max=None)
@@ -206,7 +204,6 @@ def test_action_base_can_resolve_elements_in_a_given_page():
         current_page=mocker.mock()
         )
     context_mock.current_page.get_registered_element("Something")
-    mocker.count(min=1, max=1)
     mocker.result("btnSomething")
 
     with mocker:
@@ -228,7 +225,6 @@ def test_action_base_can_resolve_elements_using_browser_driver():
         current_page=None
         )
     context_mock.browser_driver.resolve_element_key(context_mock, "button", "Something")
-    mocker.count(min=1, max=1)
     mocker.result("btnSomething")
 
     with mocker:

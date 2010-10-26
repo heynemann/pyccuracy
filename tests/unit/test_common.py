@@ -27,7 +27,6 @@ def test_url_checker():
     urlmock = mocker.mock()
 
     urlmock.urlopen("http://foo.bar.com")
-    mocker.count(min=1, max=1)
     mocker.result(None)
 
     with mocker:
@@ -45,7 +44,6 @@ def test_url_checker_with_port():
     urlmock = mocker.mock()
 
     urlmock.urlopen("http://foo.bar.com:8080")
-    mocker.count(min=1, max=1)
     mocker.result(None)
 
     with mocker:
@@ -63,7 +61,6 @@ def test_url_checker_with_port_with_sub_folder():
     urlmock = mocker.mock()
 
     urlmock.urlopen("http://foo.bar.com:8080/login")
-    mocker.count(min=1, max=1)
     mocker.result(None)
 
     with mocker:
@@ -81,7 +78,6 @@ def test_url_checker_with_port_with_sub_folder_in_localhost():
     urlmock = mocker.mock()
 
     urlmock.urlopen("http://localhost:8080/login")
-    mocker.count(min=1, max=1)
     mocker.result(None)
 
     with mocker:
