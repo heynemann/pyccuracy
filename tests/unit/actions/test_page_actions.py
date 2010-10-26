@@ -43,9 +43,7 @@ def test_page_go_to_action_calls_the_right_browser_driver_methods():
     context = FakeContext(mocker)
     
     context.browser_driver.page_open("file:///some_url")
-    mocker.count(min=1, max=1)
     context.browser_driver.wait_for_page()
-    mocker.count(min=1, max=1)
 
     with mocker:
         action = PageGoToAction()
@@ -58,9 +56,7 @@ def test_page_go_to_action_sets_context_current_url():
     context = FakeContext(mocker)
     
     context.browser_driver.page_open("file:///some_url")
-    mocker.count(min=1, max=1)
     context.browser_driver.wait_for_page()
-    mocker.count(min=1, max=1)
 
     with mocker:
         action = PageGoToAction()
@@ -78,9 +74,7 @@ def test_page_go_to_action_sets_page_if_page_is_supplied():
     context = FakeContext(mocker)
     
     context.browser_driver.page_open("file:///some")
-    mocker.count(min=1, max=1)
     context.browser_driver.wait_for_page()
-    mocker.count(min=1, max=1)
 
     with mocker:
         action = PageGoToAction()
@@ -96,7 +90,6 @@ def test_page_go_to_action_raises_with_invalid_page():
     context = FakeContext(mocker)
     
     context.language.format("page_go_to_failure", "http://www.google.com")
-    mocker.count(min=1, max=1)
     mocker.result("Error Message")
 
     with mocker:
@@ -116,7 +109,6 @@ def test_page_go_to_with_parameters_action_raises_error_when_parameters_are_inva
     context = FakeContext(mocker)
     
     context.language.format('page_go_to_with_parameters_failure', 'Blah blahabla blah')
-    mocker.count(min=1, max=1)
     mocker.result('Error Message')
     
     with mocker:
@@ -211,7 +203,6 @@ def test_page_am_in_action_raises_if_no_page():
     context = FakeContext(mocker)
     
     context.language.format("page_am_in_failure", "http://www.google.com")
-    mocker.count(min=1, max=1)
     mocker.result("Error Message")
     
     with mocker:
@@ -230,7 +221,6 @@ def test_page_see_title_action_calls_the_right_browser_driver_methods():
     context = FakeContext(mocker)
     
     context.browser_driver.get_title()
-    mocker.count(min=1, max=1)
     mocker.result("some title")
     
     with mocker:

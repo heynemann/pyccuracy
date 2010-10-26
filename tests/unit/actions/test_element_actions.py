@@ -39,16 +39,12 @@ def test_element_click_action_calls_the_right_browser_driver_methods():
     context = FakeContext(mocker)
     
     context.browser_driver.resolve_element_key(context, "button", "some")
-    mocker.count(min=1, max=1)
     mocker.result("btnSome")
     context.browser_driver.is_element_visible("btnSome")
-    mocker.count(min=1, max=1)
     mocker.result(True)
     context.browser_driver.click_element("btnSome")
-    mocker.count(min=1, max=1)
     
     context.language.format("element_is_visible_failure", "button", "some")
-    mocker.count(min=1, max=1)
     mocker.result("button")
     context.language.get("button_category")
     mocker.count(min=0, max=None)
