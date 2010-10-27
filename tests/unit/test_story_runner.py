@@ -297,17 +297,11 @@ def test_should_catch_assertion_error():
     context.settings = mocker.mock()
     context.settings.on_before_action
     mocker.result(None)
-    context.settings.on_action_successful
-    mocker.result(None)
     context.settings.on_action_error
     mocker.result(None)
     context.language = mocker.mock()
     context.language.get('given')
     mocker.result('Given')
-    context.language.get('when')
-    mocker.result('When')
-    context.language.get('then')
-    mocker.result('Then')
 
     with mocker:
         result = runner.run_stories(settings=settings, fixture=fixture, context=context)
