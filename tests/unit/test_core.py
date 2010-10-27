@@ -98,6 +98,7 @@ def test_pyccuracy_core_run_tests():
     runner_mock = mocker.mock()
     parser_mock = mocker.mock()
     parser_mock.used_actions
+    mocker.count(min=1, max=None)
     mocker.result([])
     
     results_mock = mocker.mock()
@@ -133,6 +134,7 @@ def test_pyccuracy_core_run_tests_works_when_None_Result_returned_from_story_run
     runner_mock = mocker.mock()
     parser_mock = mocker.mock()
     parser_mock.used_actions
+    mocker.count(min=1, max=None)
     mocker.result([])
 
     parser_mock.get_stories(ANY)
@@ -173,6 +175,7 @@ def test_pyccuracy_core_should_raise_TestFailedError_when_should_throw_is_true()
         runner_mock = mocker.mock()
         parser_mock = mocker.mock()
         parser_mock.used_actions
+        mocker.count(min=1, max=None)
         mocker.result([])
     
         parser_mock.get_stories(ANY)
