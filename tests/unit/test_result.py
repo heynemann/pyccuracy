@@ -81,21 +81,28 @@ def test_empty_result_returns_unknown_status():
     assert result.get_status() == Status.Unknown
 
 def test_see_summary_for_fixture():
-    template_loader_mock = Mock()
-    template_loader_mock.expects(once()) \
-                        .load(eq("summary")) \
-                        .will(return_value(summary_template))
-    settings = Settings()
-    fixture = Fixture()
-    action = some_action()
-    fixture.append_story(action.scenario.story)
-    action.mark_as_successful()
-    result = Result(fixture=fixture, template_loader=template_loader_mock)
-
-    summary = result.summary_for(settings.default_culture)
-    assert summary is not None
+    
+    mocker = Mocker()
+    
+    template_loader_mock = mocker.mock()
+    template_loader_mock.load("summary")
+    mocker.result(summary_template)
+    
+    with mocker:
+        settings = Settings()
+        fixture = Fixture()
+        action = some_action()
+        fixture.append_story(action.scenario.story)
+        action.mark_as_successful()
+        result = Result(fixture=fixture, template_loader=template_loader_mock)
+    
+        summary = result.summary_for(settings.default_culture)
+        assert summary is not None
 
 def test_see_summary_for_fixture_returns_proper_string():
+    
+    mocker = Mocker()
+    
     expected = """================
 Test Run Summary
 ================
@@ -109,21 +116,25 @@ Failed Stories..........0/1 (0.00%)
 Successful Scenarios....1/1 (100.00%)
 Failed Scenarios........0/1 (0.00%)"""
 
-    template_loader_mock = Mock()
-    template_loader_mock.expects(once()) \
-                        .load(eq("summary")) \
-                        .will(return_value(summary_template))
-    settings = Settings()
-    fixture = Fixture()
-    action = some_action()
-    fixture.append_story(action.scenario.story)
-    action.mark_as_successful()
-    result = Result(fixture=fixture, template_loader=template_loader_mock)
-
-    summary = result.summary_for(settings.default_culture)
-    assert summary == expected
+    template_loader_mock = mocker.mock()
+    template_loader_mock.load("summary")
+    mocker.result(summary_template)
+    
+    with mocker:
+        settings = Settings()
+        fixture = Fixture()
+        action = some_action()
+        fixture.append_story(action.scenario.story)
+        action.mark_as_successful()
+        result = Result(fixture=fixture, template_loader=template_loader_mock)
+    
+        summary = result.summary_for(settings.default_culture)
+        assert summary == expected
 
 def test_see_summary_for_fixture_returns_proper_string_for_failed_tests():
+    
+    mocker = Mocker()
+    
     expected = """================
 Test Run Summary
 ================
@@ -137,21 +148,25 @@ Failed Stories..........1/1 (100.00%)
 Successful Scenarios....0/1 (0.00%)
 Failed Scenarios........1/1 (100.00%)"""
 
-    template_loader_mock = Mock()
-    template_loader_mock.expects(once()) \
-                        .load(eq("summary")) \
-                        .will(return_value(summary_template))
-    settings = Settings()
-    fixture = Fixture()
-    action = some_action()
-    fixture.append_story(action.scenario.story)
-    action.mark_as_failed()
-    result = Result(fixture=fixture, template_loader=template_loader_mock)
-
-    summary = result.summary_for(settings.default_culture)
-    assert summary == expected
+    template_loader_mock = mocker.mock()
+    template_loader_mock.load("summary")
+    mocker.result(summary_template)
+    
+    with mocker:
+        settings = Settings()
+        fixture = Fixture()
+        action = some_action()
+        fixture.append_story(action.scenario.story)
+        action.mark_as_failed()
+        result = Result(fixture=fixture, template_loader=template_loader_mock)
+    
+        summary = result.summary_for(settings.default_culture)
+        assert summary == expected
 
 def test_see_summary_for_fixture_returns_proper_string_for_no_tests():
+    
+    mocker = Mocker()
+    
     expected = """================
 Test Run Summary
 ================
@@ -165,18 +180,22 @@ Failed Stories..........0/0 (0.00%)
 Successful Scenarios....0/0 (0.00%)
 Failed Scenarios........0/0 (0.00%)"""
 
-    template_loader_mock = Mock()
-    template_loader_mock.expects(once()) \
-                        .load(eq("summary")) \
-                        .will(return_value(summary_template))
-    settings = Settings()
-    fixture = Fixture()
-    result = Result(fixture=fixture, template_loader=template_loader_mock)
-
-    summary = result.summary_for(settings.default_culture)
-    assert summary == expected
+    template_loader_mock = mocker.mock()
+    template_loader_mock.load("summary")
+    mocker.result(summary_template)
+    
+    with mocker:
+        settings = Settings()
+        fixture = Fixture()
+        result = Result(fixture=fixture, template_loader=template_loader_mock)
+    
+        summary = result.summary_for(settings.default_culture)
+        assert summary == expected
 
 def test_see_summary_for_fixture_returns_proper_failed_scenarios_string():
+    
+    mocker = Mocker()
+    
     expected = """================
 Test Run Summary
 ================
@@ -203,18 +222,19 @@ Scenario.......1 - Something
         Something happens - FAILED - Something very bad happened
 """
 
-    template_loader_mock = Mock()
-    template_loader_mock.expects(once()) \
-                        .load(eq("summary")) \
-                        .will(return_value(summary_template + summary_template_failed_stories))
-    settings = Settings()
-    fixture = Fixture()
-    result = Result(fixture=fixture, template_loader=template_loader_mock)
-    action = complete_scenario_with_then_action_returned()
-    fixture.append_story(action.scenario.story)
-    action.mark_as_failed("Something very bad happened")
-
-    summary = result.summary_for(settings.default_culture)
-
-    assert summary.strip() == expected.strip()
+    template_loader_mock = mocker.mock()
+    template_loader_mock.load("summary")
+    mocker.result(summary_template + summary_template_failed_stories)
+    
+    with mocker:
+        settings = Settings()
+        fixture = Fixture()
+        result = Result(fixture=fixture, template_loader=template_loader_mock)
+        action = complete_scenario_with_then_action_returned()
+        fixture.append_story(action.scenario.story)
+        action.mark_as_failed("Something very bad happened")
+    
+        summary = result.summary_for(settings.default_culture)
+    
+        assert summary.strip() == expected.strip()
 
