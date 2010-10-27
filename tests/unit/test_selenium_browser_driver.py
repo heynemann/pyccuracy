@@ -35,58 +35,75 @@ def test_selenium_driver_keeps_context():
     assert driver.context == context
 
 def test_selenium_driver_overrides_start_test_properly():
+    
+    mocker = Mocker()
+    
     context = Context(Settings())
-    selenium_mock = Mock()
-    selenium_mock.expects(once()).start()
+    selenium_mock = mocker.mock()
+    selenium_mock.start()
 
-    driver = SeleniumDriver(context, selenium=selenium_mock)
-
-    driver.start_test("http://localhost")
-    selenium_mock.verify()
+    with mocker:
+        driver = SeleniumDriver(context, selenium=selenium_mock)
+    
+        driver.start_test("http://localhost")
 
 def test_selenium_driver_overrides_start_test_properly_when_extra_args_specified():
+    
+    mocker = Mocker()
+    
     context = Context(Settings())
     context.settings.extra_args = {
                                     "selenium.server":"localhost",
                                     "selenium.port":4444
                                   }
-    selenium_mock = Mock()
-    selenium_mock.expects(once()).start()
+    selenium_mock = mocker.mock()
+    selenium_mock.start()
 
-    driver = SeleniumDriver(context, selenium=selenium_mock)
-
-    driver.start_test("http://localhost")
-    selenium_mock.verify()
+    with mocker:
+        driver = SeleniumDriver(context, selenium=selenium_mock)
+    
+        driver.start_test("http://localhost")
 
 def test_selenium_driver_raises_on_start_test_when_selenium_cant_start():
+    
+    mocker = Mocker()
+    
     context = Context(Settings())
-    selenium_mock = Mock()
-    selenium_mock.expects(once()).start().will(raise_exception(DriverError("invalid usage")))
+    selenium_mock = mocker.mock()
+    selenium_mock.start()
+    mocker.throw(DriverError("invalid usage"))
 
-    driver = SeleniumDriver(context, selenium=selenium_mock)
-
-    assert_raises(DriverError, driver.start_test, url="http://localhost", exc_pattern=re.compile(r"Error when starting selenium. Is it running ?"))
-    selenium_mock.verify()
+    with mocker:
+        driver = SeleniumDriver(context, selenium=selenium_mock)
+    
+        assert_raises(DriverError, driver.start_test, url="http://localhost", \
+                      exc_pattern=re.compile(r"Error when starting selenium. Is it running ?"))
 
 def test_selenium_driver_calls_proper_selenese_on_stop_test():
+    
+    mocker = Mocker()
+    
     context = Context(Settings())
-    selenium_mock = Mock()
-    selenium_mock.expects(once()).stop()
+    selenium_mock = mocker.mock()
+    selenium_mock.stop()
 
-    driver = SeleniumDriver(context, selenium=selenium_mock)
-
-    driver.stop_test()
-    selenium_mock.verify()
+    with mocker:
+        driver = SeleniumDriver(context, selenium=selenium_mock)
+    
+        driver.stop_test()
 
 def test_selenium_driver_overrides_page_open_properly():
+    
+    mocker = Mocker()
+    
     context = Context(Settings())
-    selenium_mock = Mock()
-    selenium_mock.expects(once()).open(eq("http://localhost"))
+    selenium_mock = mocker.mock()
+    selenium_mock.open("http://localhost")
 
-    driver = SeleniumDriver(context, selenium=selenium_mock)
-
-    driver.page_open("http://localhost")
-    selenium_mock.verify()
+    with mocker:
+        driver = SeleniumDriver(context, selenium=selenium_mock)
+    
+        driver.page_open("http://localhost")
 
 def test_selenium_resolve_element_key_returns_element_key_for_null_context():
     driver = SeleniumDriver(None)
@@ -100,95 +117,140 @@ def test_selenium_resolve_element_key_uses_SeleniumElementSelector_for_non_null_
     assert key == expected, "Expected %s, Actual: %s" % (expected, key)
 
 def test_selenium_driver_calls_proper_selenese_on_wait_for_page():
+    
+    mocker = Mocker()
+    
     context = Context(Settings())
-    selenium_mock = Mock()
-    selenium_mock.expects(once()).wait_for_page_to_load(eq(30000))
+    selenium_mock = mocker.mock()
+    selenium_mock.wait_for_page_to_load(30000)
 
-    driver = SeleniumDriver(context, selenium=selenium_mock)
-
-    driver.wait_for_page()
-    selenium_mock.verify()
+    with mocker:
+        driver = SeleniumDriver(context, selenium=selenium_mock)
+    
+        driver.wait_for_page()
 
 def test_selenium_driver_calls_proper_selenese_on_click_element():
+    
+    mocker = Mocker()
+    
     context = Context(Settings())
-    selenium_mock = Mock()
-    selenium_mock.expects(once()).click(eq("some"))
+    selenium_mock = mocker.mock()
+    selenium_mock.click("some")
 
-    driver = SeleniumDriver(context, selenium=selenium_mock)
-
-    driver.click_element("some")
-    selenium_mock.verify()
+    with mocker:
+        driver = SeleniumDriver(context, selenium=selenium_mock)
+    
+        driver.click_element("some")
 
 def test_selenium_driver_calls_proper_selenese_on_get_title():
+    
+    mocker = Mocker()
+    
     context = Context(Settings())
-    selenium_mock = Mock()
-    selenium_mock.expects(once()).get_title().will(return_value("Some title"))
+    selenium_mock = mocker.mock()
+    selenium_mock.get_title()
+    mocker.result("Some title")
 
-    driver = SeleniumDriver(context, selenium=selenium_mock)
-
-    title = driver.get_title()
-    assert title == "Some title"
-    selenium_mock.verify()
+    with mocker:
+        driver = SeleniumDriver(context, selenium=selenium_mock)
+    
+        title = driver.get_title()
+        assert title == "Some title"
     
 def test_selenium_driver_calls_get_eval():
+    
+    mocker = Mocker()
+    
     javascript = "some javascript"
     context = Context(Settings())
-    selenium_mock = Mock()
-    selenium_mock.expects(once()).get_eval(eq(javascript)).will(return_value("ok"))
+    selenium_mock = mocker.mock()
+    selenium_mock.get_eval(javascript)
+    mocker.result("ok")
     
-    driver = SeleniumDriver(context, selenium=selenium_mock)
-    
-    assert driver.exec_js(javascript) == "ok"
+    with mocker:
+        driver = SeleniumDriver(context, selenium=selenium_mock)
+        
+        assert driver.exec_js(javascript) == "ok"
 
 def test_selenium_driver_calls_type_keys():
+    
+    mocker = Mocker()
+    
     input_selector = "//some_xpath"
     text = "text to type"
     context = Context(Settings())
-    selenium_mock = Mock()
-    selenium_mock.expects(once()).type_keys(eq(input_selector), eq(text))
+    selenium_mock = mocker.mock()
+    selenium_mock.type_keys(input_selector, text)
     
-    driver = SeleniumDriver(context, selenium=selenium_mock)
-    driver.type_keys(input_selector, text)
-    selenium_mock.verify()
+    with mocker:
+        driver = SeleniumDriver(context, selenium=selenium_mock)
+        driver.type_keys(input_selector, text)
 
 def test_wait_for_presence():
+    
+    mocker = Mocker()
+    
     context = Context(Settings())
-    selenium_mock = Mock()
-    selenium_mock.expects(once()).is_element_present(eq('some element')).will(return_value(True))
-    selenium_mock.expects(once()).is_visible(eq('some element')).will(return_value(True))
+    selenium_mock = mocker.mock()
+    selenium_mock.is_element_present('some element')
+    mocker.result(True)
+    selenium_mock.is_visible('some element')
+    mocker.result(True)
 
-    driver = SeleniumDriver(context, selenium=selenium_mock)
-    driver.wait_for_element_present("some element", 1)
-    selenium_mock.verify()
+    with mocker:
+        driver = SeleniumDriver(context, selenium=selenium_mock)
+        driver.wait_for_element_present("some element", 1)
 
 def test_wait_for_presence_works_even_when_is_visible_raises():
+    
+    mocker = Mocker()
+    
     context = Context(Settings())
-    selenium_mock = Mock()
-    selenium_mock.expects(at_least_once()).is_element_present(eq('some element')).will(return_value(True))
-    selenium_mock.expects(once()).is_visible(eq('some element')).will(raise_exception(Exception("ERROR: Element some element not found"))).id("is_visible #1")
-    selenium_mock.expects(once()).is_visible(eq('some element')).will(return_value(True)).after("is_visible #1")
+    selenium_mock = mocker.mock()
+    selenium_mock.is_element_present('some element')
+    mocker.count(min=1, max=None)
+    mocker.result(True)
+    
+    with mocker.order():
+        selenium_mock.is_visible('some element')
+        mocker.throw(Exception("ERROR: Element some element not found"))
+        selenium_mock.is_visible('some element')
+        mocker.result(True)
 
-    driver = SeleniumDriver(context, selenium=selenium_mock)
-    driver.wait_for_element_present("some element", 1)
-    selenium_mock.verify()
+    with mocker:
+        driver = SeleniumDriver(context, selenium=selenium_mock)
+        driver.wait_for_element_present("some element", 1)
 
 def test_wait_for_disappear():
+    
+    mocker = Mocker()
+    
     context = Context(Settings())
-    selenium_mock = Mock()
-    selenium_mock.expects(once()).is_element_present(eq('some element')).will(return_value(True))
-    selenium_mock.expects(once()).is_visible(eq('some element')).will(return_value(False))
+    selenium_mock = mocker.mock()
+    selenium_mock.is_element_present('some element')
+    mocker.count(min=1, max=None)
+    mocker.result(True)
+    selenium_mock.is_visible('some element')
+    mocker.count(min=1, max=None)
+    mocker.result(True)
 
-    driver = SeleniumDriver(context, selenium=selenium_mock)
-    driver.wait_for_element_to_disappear("some element", 1)
-    selenium_mock.verify()
+    with mocker:
+        driver = SeleniumDriver(context, selenium=selenium_mock)
+        driver.wait_for_element_to_disappear("some element", 1)
 
 def test_wait_for_disappear_works_even_when_is_visible_raises():
+    
+    mocker = Mocker()
+    
     context = Context(Settings())
-    selenium_mock = Mock()
-    selenium_mock.expects(at_least_once()).is_element_present(eq('some element')).will(return_value(True))
-    selenium_mock.expects(once()).is_visible(eq('some element')).will(raise_exception(Exception("ERROR: Element some element not found")))
+    selenium_mock = mocker.mock()
+    selenium_mock.is_element_present('some element')
+    mocker.count(min=1, max=None)
+    mocker.result(True)
+    selenium_mock.is_visible('some element')
+    mocker.throw(Exception("ERROR: Element some element not found"))
 
-    driver = SeleniumDriver(context, selenium=selenium_mock)
-    driver.wait_for_element_to_disappear("some element", 1)
-    selenium_mock.verify()
+    with mocker:
+        driver = SeleniumDriver(context, selenium=selenium_mock)
+        driver.wait_for_element_to_disappear("some element", 1)
 
