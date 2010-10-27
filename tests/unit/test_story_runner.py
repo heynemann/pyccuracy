@@ -165,33 +165,28 @@ def test_should_execute_scenarios_successfully():
     fixture = Fixture()
     fixture.append_story(some_action().scenario.story)
 
-    context = mocker.mock()
+    context = Object()
     context.browser_driver = mocker.mock()
-    context.browser_driver.expects(once()).start_test(eq("http://localhost"))
-    context.browser_driver.expects(once()).stop_test()
+    context.browser_driver.start_test("http://localhost")
+    context.browser_driver.stop_test()
     context.settings = mocker.mock()
-    context.settings.on_before_action = None
-    context.settings.on_action_successful = None
-    context.settings.on_action_error = None
+    context.settings.on_before_action
+    mocker.result(None)
+    context.settings.on_action_successful
+    mocker.result(None)
+    
     context.language = mocker.mock()
-    context.language \
-           .expects(once()) \
-           .get(eq('given')) \
-           .will(return_value('Given'))
-    context.language \
-           .expects(once()) \
-           .get(eq('when')) \
-           .will(return_value('When'))
-    context.language \
-           .expects(once()) \
-           .get(eq('then')) \
-           .will(return_value('Then'))
+    context.language.get('given')
+    mocker.result('Given')
+    context.language.get('when')
+    mocker.result('When')
+    context.language.get('then')
+    mocker.result('Then')
 
-    result = runner.run_stories(settings=settings, fixture=fixture, context=context)
-
-    assert fixture.get_status() == Status.Successful
-    context.verify()
-    context.browser_driver.verify()
+    with mocker:
+        result = runner.run_stories(settings=settings, fixture=fixture, context=context)
+    
+        assert fixture.get_status() == Status.Successful
 
 def test_should_handle_action_errors_successfully():
     
