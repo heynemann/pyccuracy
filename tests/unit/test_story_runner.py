@@ -43,16 +43,14 @@ def test_story_runner_returns_a_result():
     settings = Settings()
     fixture = Fixture()
     runner = StoryRunner()
-    context = mocker.mock()
+    context = Object()
     context.browser_driver = mocker.mock()
-    context.browser_driver.expects(once()).start_test(eq("http://localhost"))
-    context.browser_driver.expects(once()).stop_test()
+    context.browser_driver.start_test("http://localhost")
+    context.browser_driver.stop_test()
 
-    result = runner.run_stories(settings, fixture, context=context)
-    assert result is not None
-
-    context.verify()
-    context.browser_driver.verify()
+    with mocker:
+        result = runner.run_stories(settings, fixture, context=context)
+        assert result is not None
 
 def test_story_runner_returns_a_result_with_a_Fixture():
     
@@ -64,33 +62,29 @@ def test_story_runner_returns_a_result_with_a_Fixture():
     fixture.append_story(action.scenario.story)
     runner = StoryRunner()
 
-    context = mocker.mock()
+    context = Object()
     context.browser_driver = mocker.mock()
-    context.browser_driver.expects(once()).start_test(eq("http://localhost"))
-    context.browser_driver.expects(once()).stop_test()
+    context.browser_driver.start_test("http://localhost")
+    context.browser_driver.stop_test()
     context.settings = mocker.mock()
-    context.settings.on_before_action = None
-    context.settings.on_action_successful = None
-    context.settings.on_action_error = None
+    context.settings.on_before_action
+    mocker.result(None)
+    context.settings.on_action_successful
+    mocker.result(None)
+    
     context.language = mocker.mock()
-    context.language \
-           .expects(once()) \
-           .get(eq('given')) \
-           .will(return_value('Given'))
-    context.language \
-           .expects(once()) \
-           .get(eq('when')) \
-           .will(return_value('When'))
-    context.language \
-           .expects(once()) \
-           .get(eq('then')) \
-           .will(return_value('Then'))
+    context.language.get('given')
+    mocker.result('Given')
+    context.language.get('when')
+    mocker.result('When')
+    context.language.get('then')
+    mocker.result('Then')
 
-    result = runner.run_stories(settings, fixture, context=context)
-
-    assert result.fixture is not None
-    context.verify()
-    context.browser_driver.verify()
+    with mocker:
+        result = runner.run_stories(settings, fixture, context=context)
+    
+        assert result.fixture is not None
+        assert isinstance(result.fixture, Fixture)
 
 def test_story_runner_returns_a_result_with_the_original_Fixture():
     
@@ -102,33 +96,28 @@ def test_story_runner_returns_a_result_with_the_original_Fixture():
     fixture.append_story(action.scenario.story)
     runner = StoryRunner()
 
-    context = mocker.mock()
+    context = Object()
     context.browser_driver = mocker.mock()
-    context.browser_driver.expects(once()).start_test(eq("http://localhost"))
-    context.browser_driver.expects(once()).stop_test()
+    context.browser_driver.start_test("http://localhost")
+    context.browser_driver.stop_test()
     context.settings = mocker.mock()
-    context.settings.on_before_action = None
-    context.settings.on_action_successful = None
-    context.settings.on_action_error = None
+    context.settings.on_before_action
+    mocker.result(None)
+    context.settings.on_action_successful
+    mocker.result(None)
+    
     context.language = mocker.mock()
-    context.language \
-           .expects(once()) \
-           .get(eq('given')) \
-           .will(return_value('Given'))
-    context.language \
-           .expects(once()) \
-           .get(eq('when')) \
-           .will(return_value('When'))
-    context.language \
-           .expects(once()) \
-           .get(eq('then')) \
-           .will(return_value('Then'))
+    context.language.get('given')
+    mocker.result('Given')
+    context.language.get('when')
+    mocker.result('When')
+    context.language.get('then')
+    mocker.result('Then')
 
-    result = runner.run_stories(settings, fixture, context=context)
-
-    assert result.fixture == fixture
-    context.verify()
-    context.browser_driver.verify()
+    with mocker:
+        result = runner.run_stories(settings, fixture, context=context)
+    
+        assert result.fixture == fixture
 
 def test_story_runner_returns_failed_story():
     
@@ -138,16 +127,15 @@ def test_story_runner_returns_failed_story():
     fixture = Fixture()
     runner = StoryRunner()
 
-    context = mocker.mock()
+    context = Object()
     context.browser_driver = mocker.mock()
-    context.browser_driver.expects(once()).start_test(eq("http://localhost"))
-    context.browser_driver.expects(once()).stop_test()
+    context.browser_driver.start_test("http://localhost")
+    context.browser_driver.stop_test()
 
-    result = runner.run_stories(settings, fixture, context=context)
-
-    assert result is not None
-    context.verify()
-    context.browser_driver.verify()
+    with mocker:
+        result = runner.run_stories(settings, fixture, context=context)
+    
+        assert result is not None
 
 def test_create_context_for_returns_context():
     settings = Settings()
@@ -201,33 +189,23 @@ def test_should_handle_action_errors_successfully():
     fixture.append_story(action.scenario.story)
     action.execute_function = action_failed_method
 
-    context = mocker.mock()
+    context = Object()
     context.browser_driver = mocker.mock()
-    context.browser_driver.expects(once()).start_test(eq("http://localhost"))
-    context.browser_driver.expects(once()).stop_test()
+    context.browser_driver.start_test("http://localhost")
+    context.browser_driver.stop_test()
     context.settings = mocker.mock()
-    context.settings.on_before_action = None
-    context.settings.on_action_successful = None
-    context.settings.on_action_error = None
+    context.settings.on_before_action
+    mocker.result(None)
+    context.settings.on_action_error
+    mocker.result(None)
     context.language = mocker.mock()
-    context.language \
-           .expects(once()) \
-           .get(eq('given')) \
-           .will(return_value('Given'))
-    context.language \
-           .expects(once()) \
-           .get(eq('when')) \
-           .will(return_value('When'))
-    context.language \
-           .expects(once()) \
-           .get(eq('then')) \
-           .will(return_value('Then'))
+    context.language.get('given')
+    mocker.result('Given')
 
-    result = runner.run_stories(settings=settings, fixture=fixture, context=context)
-
-    assert fixture.get_status() == Status.Failed
-    context.verify()
-    context.browser_driver.verify()
+    with mocker:
+        result = runner.run_stories(settings=settings, fixture=fixture, context=context)
+    
+        assert fixture.get_status() == Status.Failed
 
 def test_should_record_errors_correctly():
     
@@ -242,35 +220,25 @@ def test_should_record_errors_correctly():
     fixture.append_story(action.scenario.story)
     action.execute_function = action_failed_method
 
-    context = mocker.mock()
+    context = Object()
     context.browser_driver = mocker.mock()
-    context.browser_driver.expects(once()).start_test(eq("http://localhost"))
-    context.browser_driver.expects(once()).stop_test()
+    context.browser_driver.start_test("http://localhost")
+    context.browser_driver.stop_test()
     context.settings = mocker.mock()
-    context.settings.on_before_action = None
-    context.settings.on_action_successful = None
-    context.settings.on_action_error = None
+    context.settings.on_before_action
+    mocker.result(None)
+    context.settings.on_action_error
+    mocker.result(None)
+    
     context.language = mocker.mock()
-    context.language \
-           .expects(once()) \
-           .get(eq('given')) \
-           .will(return_value('Given'))
-    context.language \
-           .expects(once()) \
-           .get(eq('when')) \
-           .will(return_value('When'))
-    context.language \
-           .expects(once()) \
-           .get(eq('then')) \
-           .will(return_value('Then'))
+    context.language.get('given')
+    mocker.result('Given')
 
-    result = runner.run_stories(settings=settings, fixture=fixture, context=context)
-
-    assert isinstance(action.error, ActionFailedError)
-    assert action.error.message == "bla"
-
-    context.verify()
-    context.browser_driver.verify()
+    with mocker:
+        result = runner.run_stories(settings=settings, fixture=fixture, context=context)
+    
+        assert isinstance(action.error, ActionFailedError)
+        assert action.error.message == "bla"
 
 def test_should_catch_assertion_error():
     
