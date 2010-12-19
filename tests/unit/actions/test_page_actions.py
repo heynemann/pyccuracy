@@ -94,7 +94,8 @@ def test_page_go_to_action_raises_with_invalid_page():
 
     with mocker:
         action = PageGoToAction()
-        assert_raises(ActionFailedError, action.execute, context=context, url="http://www.google.com", exc_pattern=re_compile(r'^Error Message$'))
+        assert_raises(ActionFailedError, action.execute, context=context, url="http://www.google.com",
+                      exc_pattern=re_compile(r'^Error Message$'))
 
 #End Go To Action
 
@@ -208,7 +209,8 @@ def test_page_am_in_action_raises_if_no_page():
     with mocker:
         action = PageAmInAction()
     
-        assert_raises(ActionFailedError, action.execute, context=context, url="http://www.google.com", exc_pattern=re_compile(r'^Error Message$'))
+        assert_raises(ActionFailedError, action.execute, context=context, url="http://www.google.com",
+                      exc_pattern=re_compile(r'^Error Message$'))
 
 #End Am In Action
 
