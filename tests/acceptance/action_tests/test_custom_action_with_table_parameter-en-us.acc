@@ -1,0 +1,18 @@
+As a Pyccuracy User
+I want to test the custom action with table parameter
+So that I can make sure Pyccuracy works
+
+Scenario 1 - Checking that a table is correctly passed down
+Given
+    I have the following registered users:
+        | username | email   | password |
+        | admin    | a@dd.cc | aidimin  |
+    And I have the following products:
+        | name   | price |
+        | Apple  | 1.65  |
+        | Banana | 0.99  |
+    I go to "custom_action_with_table_parameter.html?url=http%20%31%40blabla.com&other=whatever;other"
+When
+    #The Page is Loaded
+Then
+    #The tables are loaded
