@@ -26,6 +26,8 @@ from pyccuracy.common import locate
 from pyccuracy.fixture import Fixture
 from pyccuracy.fixture_items import Story, Action, Scenario
 
+ident_re = re.compile(r'^(?P<ident>[ \t]*)')
+
 class InvalidScenarioError(RuntimeError):
     pass
 
@@ -71,7 +73,7 @@ class FileParser(object):
 
     def parse_story_file(self, story_file_path, settings):
         story_text = self.file_object.read_file(story_file_path)
-        story_lines = [line.strip() for line in story_text.splitlines() if line.strip() != ""]
+        story_lines = [line for line in story_text.splitlines() if line.strip() != ""]
 
         headers = self.assert_header(story_lines, settings.default_culture)
         if not headers:
@@ -118,21 +120,22 @@ class FileParser(object):
 
             add_method = getattr(current_scenario, "add_%s" % current_area)
 
-            if line.startswith("#"):
+            if line.strip().startswith("#"):
                 add_method(line, lambda context, *args, **kwargs: None, [], {})
                 continue
 
-            action, args, kwargs = self.action_registry.suitable_for(line, settings.default_culture)
+            action, args, kwargs = self.action_registry.suitable_for(line.strip(), settings.default_culture)
             
             rows = []
             parsed_rows = []
-            if line.strip(' ').endswith(':'):
+            if line.strip().endswith(':'):
                 if line_index >= len(scenario_lines):
                     self.raise_action_not_found_for_line(line, current_scenario, story_file_path)
                 
                 offset, rows, parsed_rows = self.parse_rows(line_index, 
                                                             line, 
                                                             scenario_lines)
+                args=[]
 
             if not action:
                 self.raise_action_not_found_for_line(line, current_scenario, story_file_path)
@@ -197,12 +200,8 @@ class FileParser(object):
         return offset - 1, rows, parsed_rows
 
     def get_line_identation(self, line):
-        identation = 0
-        for character in line:
-            if character == ' ' or character == '\t':
-                identation += 1
-
-        return identation
+        ident = ident_re.match(line).groupdict()['ident']
+        return len(ident)
 
     def assert_header(self, story_lines, culture):
         as_a = self.language.get('as_a')
