@@ -72,8 +72,11 @@ class SeleniumDriver(BaseDriver):
     def page_open(self, url):
         self.selenium.open(url)
 
-    def wait_for_page(self, timeout=30000):
-        self.selenium.wait_for_page_to_load(timeout)
+    def wait_for_page(self, timeout=5000):
+        try:
+            self.selenium.wait_for_page_to_load(timeout)
+        except Exception, e: # Selenium is not perceiving some loads, so ignore it
+            pass
 
     def click_element(self, element_selector):
         self.selenium.click(element_selector)
