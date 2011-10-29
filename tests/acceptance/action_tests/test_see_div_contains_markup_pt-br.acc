@@ -8,5 +8,5 @@ Dado que
 Quando
 	#A página termina de carregar
 Então
-	Eu vejo que o div "divContainsMarkup" contém "<p>some</p>"	
+	Eu vejo que o div "divContainsMarkup" contém "<p>some</p>"
 	E eu vejo que o div "divContainsMarkup" contém "markup"

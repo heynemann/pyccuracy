@@ -9,4 +9,4 @@ Quando
 	#A página termina de carregar
 Então
 	Eu vejo que a select "selDisabled" está desabilitada
-	
+
