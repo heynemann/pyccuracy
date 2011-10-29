@@ -24,7 +24,7 @@ python-pyccuracy (1.2.11) lenny; urgency=low
 
 python-pyccuracy (1.2.10) lenny; urgency=low
 
-  * New verbosity (4) fixed. Now the action displays before 
+  * New verbosity (4) fixed. Now the action displays before
     it runs as white and after as green or red.
 
  -- Bernardo Heynemann <heynemann@gmail.com>  Tue, 23 Mar 2010 11:22:00 -0300

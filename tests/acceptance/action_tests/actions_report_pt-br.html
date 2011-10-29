@@ -6,7 +6,7 @@
             <span class="date"></span>
 </title>
 <style>
-          
+
           .header
           {
           font-size: medium;
@@ -156,7 +156,7 @@
           border-left: solid 2px lightGreen;
           border-right: solid 2px lightGreen;
           }
-          
+
           .failedScenarios
           {
           padding-left: 12px;
@@ -168,21 +168,21 @@
           border-left: solid 2px #ffbbbb;
           border-right: solid 2px #ffbbbb;
           }
-          
+
           .scenarioTitle{
             font-weight:bold;
             color:darkgreen;
           }
-          
+
           .failedScenarioTitle{
             font-weight:bold;
             color:red;
           }
-          
+
         </style>
 <script type="text/javascript">
 
-          
+
           function lowerThan(value, comparison){
             return value <comparison;
           }
@@ -190,18 +190,18 @@
           function greaterThan(value, comparison){
             return value > comparison;
           }
-          
-          
+
+
             document.isCollapsed = true;
-            
+
             function getElementsByClass(node,searchClass,tag) {
                 var classElements = new Array();
                 var elements = node.getElementsByTagName(tag); // use "*" for all elements
-                
+
                 var pattern = new RegExp("\b" + searchClass + "\b");
                 for (i = 0, j = 0; lowerThan(i,elements.length); i++) {
                   var className = elements[i].className;
-                  
+
                   if (greaterThan(className.indexOf(searchClass), -1)) {
                     classElements[j] = elements[i];
                     j++;
@@ -209,7 +209,7 @@
                 }
                 return classElements;
             }
-          
+
             function toggleAll(){
               var elements = getElementsByClass(document, 'scenarios', 'div');
               toggleElements(elements);
@@ -217,14 +217,14 @@
               toggleElements(elements);
               document.isCollapsed = !document.isCollapsed;
             }
-            
+
             function toggleElements(elements){
               for (i=0; lowerThan(i, elements.length); i++){
                 var element = elements[i];
                 element.style.display = document.isCollapsed ? 'block' : 'none';
               }
             }
-            
+
             function toggle(divId){
               div = document.getElementById(divId);
               if (div!=null){
@@ -232,11 +232,11 @@
                   div.style.display = 'none';
                 }
                 else {
-                  div.style.display = 'block'; 
+                  div.style.display = 'block';
                 }
               }
             }
-          
+
         </script>
 </head>
 <body><table border="0" cellspacing="0" cellpadding="0" width="100%">
