@@ -11,4 +11,4 @@ Then
     I see "some" table as:
         | Name | Age | Sex  |
         | John | 28  | Male |
-        | Paul | 30  | Male | 
+        | Paul | 30  | Male |
