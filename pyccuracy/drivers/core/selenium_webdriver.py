@@ -54,6 +54,15 @@ class SeleniumWebdriver(BaseDriver):
         '''Closes browser window.'''
         self.webdriver.quit()
 
+    def _get_element(self, element_selector):
+        found_element = None
+        if element_selector.startswith('//'):
+            found_element = self.webdriver.find_element_by_xpath(element_selector)
+        else:
+            found_element = self.webdriver.find_element_by_css_selector(element_selector)
+
+        return found_element
+
     def resolve_element_key(self, context, element_type, element_key):
         '''This method is responsible for transforming the element key for the given element type in something that the browser driver understands.
 
@@ -70,28 +79,23 @@ class SeleniumWebdriver(BaseDriver):
         raise NotImplementedError
 
     def page_open(self, url):
-        '''This method navigates the browser to the given url.'''
-        raise NotImplementedError
+        self.webdriver.get(url)
 
     def clean_input(self, input_selector):
         '''This method wipes the text out of the given textbox'''
         raise NotImplementedError
 
     def type_text(self, input_selector, text):
-        '''This method types (enter it) the given text in the specified input'''
-        raise NotImplementedError
+        return self._get_element(input_selector).send_keys(text)
 
     def click_element(self, element_selector):
-        '''This method clicks in the given element'''
-        raise NotImplementedError
+        return self._get_element(element_selector).click()
 
     def is_element_visible(self, element_selector):
-        '''This method returns True if the element is visible. False otherwise.'''
-        raise NotImplementedError
+        return self._get_element(element_selector).is_displayed()
 
-    def wait_for_page(self, timeout=0):
-        '''This method waits until the page is loaded, or until it times out'''
-        raise NotImplementedError
+    def wait_for_page(self, timeout=30000):
+        pass
 
     def get_title(self):
         '''This method returns the title for the currently loaded document in the browser.'''
