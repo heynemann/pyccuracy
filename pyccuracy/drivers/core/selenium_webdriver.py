@@ -16,20 +16,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-selenium_available = True
-try:
-    from selenium import webdriver
-except ImportError:
-    selenium_available = False
+import time
+import re
 
-from pyccuracy.drivers import BaseDriver
+selenium_available = True
+# try:
+from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.select import Select
+from selenium.common.exceptions import NoSuchElementException
+# except ImportError:
+#     selenium_available = False
+
+from pyccuracy.drivers import BaseDriver, DriverError
+from selenium_element_selector import *
 
 class SeleniumWebdriver(BaseDriver):
     backend = 'webdriver'
 
     def __init__(self, context):
         self.webdriver = None
-        self.selenium = None
         self.context = context
         if not selenium_available:
             raise RuntimeError('You *MUST* have selenium version 2+ installed to use the selenium webdriver')
@@ -39,8 +46,12 @@ class SeleniumWebdriver(BaseDriver):
         host = self.context.settings.extra_args.get("selenium.server", "localhost")
         port = self.context.settings.extra_args.get("selenium.port", 4444)
         server_url = 'http://%s:%s/wd/hub' % (host, str(port))
+        browser_to_run = self.context.settings.browser_to_run
 
-        self.webdriver = webdriver.Remote(server_url, webdriver.DesiredCapabilities.FIREFOX)
+        if hasattr(webdriver.DesiredCapabilities, browser_to_run.upper()):
+            browser_to_run = getattr(webdriver.DesiredCapabilities, browser_to_run.upper())
+
+        self.webdriver = webdriver.Remote(server_url, browser_to_run)
 
 
     def start_test(self, url=None):
@@ -64,137 +75,200 @@ class SeleniumWebdriver(BaseDriver):
         return found_element
 
     def resolve_element_key(self, context, element_type, element_key):
-        '''This method is responsible for transforming the element key for the given element type in something that the browser driver understands.
-
-        i.e.:
-            resolve_element_key(context, 'some', 'textbox')
-            this method call would go into context, get the current page, verify the xpath or css selector for the specified element and then return it.
-
-        You are free to implement this any way you'd like, though. One could implement this to return elements like:
-            element type.element name as css selector, so a div with name myDiv would return div.myDiv.'''
-        raise NotImplementedError
-
-    def get_xpath_count(self, xpath):
-        '''Returns the number of occurrences in the current document for the given xpath.'''
-        raise NotImplementedError
+        return SeleniumElementSelector.element(element_type, element_key)
 
     def page_open(self, url):
         self.webdriver.get(url)
 
     def clean_input(self, input_selector):
-        '''This method wipes the text out of the given textbox'''
-        raise NotImplementedError
+        self._get_element(input_selector).clear()
 
     def type_text(self, input_selector, text):
         return self._get_element(input_selector).send_keys(text)
+
+    def type_keys(self, input_selector, text):
+        self.type_text(input_selector, text)
 
     def click_element(self, element_selector):
         return self._get_element(element_selector).click()
 
     def is_element_visible(self, element_selector):
-        return self._get_element(element_selector).is_displayed()
+        try:
+            return self._get_element(element_selector).is_displayed()
+        except NoSuchElementException:
+            return False
 
     def wait_for_page(self, timeout=30000):
         pass
+        # the new recomendation from selenium is to watch for an element only
+        # present with the new situation, all wait functions were dropped
 
     def get_title(self):
-        '''This method returns the title for the currently loaded document in the browser.'''
-        raise NotImplementedError
+        return self.webdriver.title
 
     def is_element_enabled(self, element):
-        '''This method returns whether the given element is enabled.'''
-        raise NotImplementedError
+        return self._get_element(element).is_enabled()
 
     def checkbox_is_checked(self, checkbox_selector):
-        '''This method returns whether the given checkbox is checked.'''
-        raise NotImplementedError
+        return self._get_element(checkbox_selector).is_selected()
 
     def checkbox_check(self, checkbox_selector):
-        '''This method checks the specified checkbox.'''
-        raise NotImplementedError
+        check = self._get_element(checkbox_selector)
+        if not check.is_selected():
+            check.click()
 
     def checkbox_uncheck(self, checkbox_selector):
-        '''This method unchecks the specified checkbox.'''
-        raise NotImplementedError
+        check = self._get_element(checkbox_selector)
+        if check.is_selected():
+            check.click()
+
+    def radio_is_checked(self, radio_selector):
+        return self.checkbox_is_checked(radio_selector)
+
+    def radio_check(self, radio_selector):
+        return self.checkbox_check(radio_selector)
+
+    def radio_uncheck(self, radio_selector):
+        return self.checkbox_uncheck(radio_selector)
+
+    def _get_select(self, select_selector):
+        return Select(self._get_element(select_selector))
 
     def get_selected_index(self, element_selector):
-        '''This method gets the selected index for the given select.'''
-        raise NotImplementedError
+        text = self.get_selected_text(element_selector)
+        options = self.get_select_options(element_selector)
+        return options.index(text)
 
     def get_selected_value(self, element_selector):
-        '''This methid gets the value for the currently selected option in the given select.'''
-        raise NotImplementedError
+        return self._get_select(element_selector).first_selected_option.get_attribute('value')
 
     def get_selected_text(self, element_selector):
-        '''This methid gets the text for the currently selected option in the given select.'''
-        raise NotImplementedError
-
-    def get_element_text(self, element_selector):
-        '''This method gets the text for the given element. This might mean different things for different element types (inner html for a div, value for a textbox, and so on).'''
-        raise NotImplementedError
-
-    def get_element_markup(self, element_selector):
-        '''This method gets the given element markup.'''
-        raise NotImplementedError
-
-    def get_html_source(self):
-        '''This method gets the whole source for the currently loaded document in the web browser.'''
-        raise NotImplementedError
-
-    def select_option_by_index(self, element_selector, index):
-        '''This method selects an option in the given select by it's index.'''
-        raise NotImplementedError
-
-    def select_option_by_value(self, element_selector, value):
-        '''This method selects the option that has the specified value in the given select.'''
-        raise NotImplementedError
-
-    def select_option_by_text(self, element_selector, text):
-        '''This method selects the option that has the specified text in the given select.'''
-        raise NotImplementedError
-
-    def get_link_href(self, link_selector):
-        '''This method returns the href attribute for the specified link.'''
-        raise NotImplementedError
-
-    def get_image_src(self, image_selector):
-        '''This method returns the src attribute for the specified image.'''
-        raise NotImplementedError
-
-    def get_link_text(self, link_selector):
-        '''This method gets the text for the specified link.'''
-        raise NotImplementedError
-
-    def mouseover_element(self, element_selector):
-        '''This method triggers the mouse over event for the specified element.'''
-        raise NotImplementedError
-
-    def mouseout_element(self, element_selector):
-        '''This method triggers the mouse out event for the specified element.'''
-        raise NotImplementedError
-
-    def is_element_empty(self, element_selector):
-        '''This method returns whether the specified element has no text.'''
-        raise NotImplementedError
-
-    def wait_for_element_present(self, element_selector, timeout):
-        '''This method waits for the given element to appear (become visible) or for the timeout. If it times out, the current scenario will fail.'''
-        raise NotImplementedError
-
-    def wait_for_element_to_disappear(self, element_selector, timeout):
-        '''This method waits for the given element to disappear (become hidden or already be hidden) or for the timeout. If it times out, the current scenario will fail.'''
-        raise NotImplementedError
-
-    def drag_element(self, from_element_selector, to_element_selector):
-        '''This method drags the from element to the to element.'''
-        raise NotImplementedError
+        return self._get_select(element_selector).first_selected_option.text
 
     def get_select_options(self, select):
-        '''This method returns a list of options for the given select.'''
-        raise NotImplementedError
+        return [x.text for x in self._get_select(select).options]
 
-    def get_table_rows(self, table_key):
-        '''This method returns a list of rows for the given table.'''
-        raise NotImplementedError
+    def get_element_text(self, element_selector):
+        element = self._get_element(element_selector)
+        tagname = element.get_attribute('tagName').lower()
+        if tagname == 'input' or tagname == 'textarea':
+            return element.get_attribute('value')
+        else:
+            return element.text
 
+    def get_class(self, element_selector):
+        return self._get_element(element_selector).get_attribute('className')
 
+    def get_element_markup(self, element_selector):
+        got = self._get_element(element_selector).get_attribute('innerHTML')
+        return got != "null" and got or ""
+
+    def get_html_source(self):
+        return self.webdriver.page_source
+
+    def select_option_by_index(self, element_selector, index):
+        try:
+            self._get_select(element_selector).select_by_index(index)
+        except:
+            return False
+        return True
+
+    def select_option_by_value(self, element_selector, value):
+        try:
+            self._get_select(element_selector).select_by_value(value)
+        except:
+            return False
+        return True
+
+    def select_option_by_text(self, element_selector, text):
+        try:
+            self._get_select(element_selector).select_by_visible_text(text)
+        except:
+            return False
+        return True
+
+    def get_link_href(self, link_selector):
+        return self._get_element(link_selector).get_attribute('href')
+
+    def get_image_src(self, image_selector):
+        full_src = self._get_element(image_selector).get_attribute('src')
+        # must return only filename
+        src = re.sub(r'.*/','', full_src)
+        return src
+
+    def get_link_text(self, link_selector):
+        return self._get_element(link_selector).text
+
+    def mouseover_element(self, element_selector):
+        chain = ActionChains(self.webdriver)
+        chain.move_to_element(self._get_element(element_selector))
+        chain.perform()
+
+    def mouseout_element(self, element_selector):
+        chain = ActionChains(self.webdriver)
+        chain.move_by_offset(-10000,-10000)
+        chain.perform()
+
+    def is_element_empty(self, element_selector):
+        return self.get_element_text(element_selector) == ""
+
+    def wait_for_element_present(self, element_selector, timeout):
+        elapsed = 0
+        interval = 0.5
+
+        while (elapsed < timeout):
+            elapsed += interval
+            try:
+                elem = self._get_element(element_selector)
+            except NoSuchElementException:
+                pass
+            if elem.is_displayed():
+                return True
+            time.sleep(interval)
+
+        return False
+
+    def wait_for_element_to_disappear(self, element_selector, timeout):
+        elapsed = 0
+        interval = 0.5
+
+        while (elapsed < timeout):
+            elapsed += interval
+            try:
+                elem = self._get_element(element_selector)
+            except NoSuchElementException:
+                return True
+            if not elem.is_displayed():
+                return True
+            time.sleep(interval)
+
+        return False
+
+    def drag_element(self, from_element_selector, to_element_selector):
+        chain = ActionChains(self.webdriver)
+        chain.drag_and_drop(self._get_element(from_element_selector),self._get_element(to_element_selector))
+        chain.perform()
+
+    def get_table_rows(self, table_selector):
+        table = self._get_element(table_selector)
+        rows = []
+        row_elems = table.find_elements_by_tag_name('tr')
+
+        for row_elem in row_elems:
+            row = []
+            cel_elems = row_elem.find_elements_by_tag_name('td')
+
+            for cell_elem in cel_elems:
+                row.append(cell_elem.text)
+
+            rows.append(row)
+
+        return rows
+
+    def __str__(self):
+        return self.__unicode__()
+
+    def __unicode__(self):
+        return "SeleniumWebdriver at '%s:%s' using '%s' browser." % (self.context.settings.extra_args.get("selenium.server", "localhost"),
+                self.context.settings.extra_args.get("selenium.port", 4444),
+                self.context.settings.browser_to_run)
