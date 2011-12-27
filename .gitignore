@@ -1,5 +1,6 @@
 *.*~
 *.pyc
+*.tap
 docs/build
 out.txt
 Makefile~
