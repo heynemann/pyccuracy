@@ -70,7 +70,7 @@ class SeleniumWebdriver(BaseDriver):
 
     def _get_element(self, element_selector):
         found_element = None
-        if element_selector.startswith('//'):
+        if element_selector.startswith('//') or element_selector.startswith('xpath')  :
             found_element = self.webdriver.find_element_by_xpath(element_selector)
         else:
             found_element = self.webdriver.find_element_by_css_selector(element_selector)
