@@ -65,6 +65,9 @@ class SeleniumWebdriver(BaseDriver):
         '''Closes browser window.'''
         self.webdriver.quit()
 
+    def exec_js(self, js):
+        return self.webdriver.execute_script(js)
+
     def _get_element(self, element_selector):
         found_element = None
         if element_selector.startswith('//'):
