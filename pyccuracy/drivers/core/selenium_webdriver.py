@@ -223,10 +223,10 @@ class SeleniumWebdriver(BaseDriver):
             elapsed += interval
             try:
                 elem = self._get_element(element_selector)
+                if elem.is_displayed():
+                    return True
             except NoSuchElementException:
                 pass
-            if elem.is_displayed():
-                return True
             time.sleep(interval)
 
         return False
