@@ -126,5 +126,5 @@ def test_parsing_files_with_many_scenarios_returns_parsed_scenarios():
 
     assert len(fixture.stories) == 1, "Expected 1, Actual: %d" % len(fixture.stories)
     assert len(fixture.stories[0].scenarios) == 2
-    assert fixture.stories[0].scenarios[1].whens[0].description == "#some custom comment"
+    assert "#some custom comment" in fixture.stories[0].scenarios[1].whens[0].description
 

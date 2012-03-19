@@ -397,9 +397,9 @@ Then
         assert len(fixture.stories[0].scenarios[0].whens) == 1
         assert len(fixture.stories[0].scenarios[0].thens) == 1
     
-        assert fixture.stories[0].scenarios[0].givens[0].description == "I do something"
-        assert fixture.stories[0].scenarios[0].whens[0].description == "I do something else"
-        assert fixture.stories[0].scenarios[0].thens[0].description == "I do yet another thing"
+        assert "I do something" in fixture.stories[0].scenarios[0].givens[0].description
+        assert "I do something else" in fixture.stories[0].scenarios[0].whens[0].description
+        assert "I do yet another thing" in fixture.stories[0].scenarios[0].thens[0].description
 
 def test_parsing_files_with_many_scenarios_returns_parsed_scenarios():
     
@@ -485,4 +485,4 @@ Then
     
         assert len(fixture.stories) == 1, "Expected 1, Actual: %d" % len(fixture.stories)
         assert len(fixture.stories[0].scenarios) == 2
-        assert fixture.stories[0].scenarios[1].whens[0].description == "#some custom comment"
+        assert "#some custom comment" in fixture.stories[0].scenarios[1].whens[0].description, "Expected \"#some custom comment\", Actual: \"%s\"" % fixture.stories[0].scenarios[1].whens[0].description
