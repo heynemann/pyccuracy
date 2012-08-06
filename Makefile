@@ -109,8 +109,8 @@ acceptance:
 	@echo "Running acceptance tests..."
 	@echo "==========================="
 
-	@PYTHONPATH=`pwd`/pyccuracy/:$$PYTHONPATH python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "${pattern}en-us.acc" -l en-us -v 3 -b ${browser}
-	@PYTHONPATH=`pwd`/pyccuracy/:$$PYTHONPATH python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "${pattern}pt-br.acc" -l pt-br -v 3 -b ${browser}
+	@PYTHONPATH=`pwd`/:$$PYTHONPATH python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "${pattern}en-us.acc" -l en-us -v 3 -b ${browser}
+	@PYTHONPATH=`pwd`/:$$PYTHONPATH python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "${pattern}pt-br.acc" -l pt-br -v 3 -b ${browser}
 	@-make selenium_down
 
 dist: clean
