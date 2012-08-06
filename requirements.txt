@@ -1,0 +1,5 @@
+# Requirements for development of this project
+lxml
+mocker
+nose
+selenium
