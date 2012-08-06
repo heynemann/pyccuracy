@@ -39,7 +39,9 @@ clean: remove_build_dir remove_dist_dir
 # action targets
 
 report_success:
+	@echo "================"
 	@echo "Build succeeded!"
+	@echo "================"
 
 remove_build_dir:
 	@rm -fr ${build_dir}
@@ -52,23 +54,31 @@ create_build_dir:
 	@mkdir -p ${build_dir}
 
 compile:
+	@echo "========================"
 	@echo "Compiling source code..."
+	@echo "========================"
 	@rm -f ${compile_log_file} >> /dev/null
 	@rm -f -r ${src_dir}/*.pyc >> /dev/null
 	@python -tt -m compileall ${src_dir} >> ${compile_log_file} 2>> ${compile_log_file}
 	@python -tt -m compileall ${unit_tests_dir} >> ${compile_log_file} 2>> ${compile_log_file}
 
 run_all_tests: compile
+	@echo "===================="
 	@echo "Running all tests..."
+	@echo "===================="
 	@nosetests -s --verbose --with-coverage --cover-package=pyccuracy
 
 run_unit: compile
+	@echo "====================="
 	@echo "Running unit tests..."
+	@echo "====================="
 	@rm -f ${unit_log_file} >> /dev/null
 	@nosetests -s --verbose --with-coverage --cover-package=pyccuracy ${unit_tests_dir}
 
 run_functional: compile
+	@echo "==========================="
 	@echo "Running functional tests..."
+	@echo "==========================="
 	@rm -f ${functional_log_file} >> /dev/null
 	@nosetests -s --verbose --with-coverage --cover-package=pyccuracy ${functional_tests_dir}
 
@@ -95,9 +105,9 @@ wait:
 acceptance:
 	@make selenium_up
 	@make wait
-	@echo "================="
-	@echo "Starting tests..."
-	@echo "================="
+	@echo "==========================="
+	@echo "Running acceptance tests..."
+	@echo "==========================="
 
 	@PYTHONPATH=`pwd`/pyccuracy/:$$PYTHONPATH python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "${pattern}en-us.acc" -l en-us -v 3 -b ${browser}
 	@PYTHONPATH=`pwd`/pyccuracy/:$$PYTHONPATH python pyccuracy/pyccuracy_console.py -d ${root_dir}/tests/acceptance/action_tests/ -p "${pattern}pt-br.acc" -l pt-br -v 3 -b ${browser}
