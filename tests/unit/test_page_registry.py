@@ -64,9 +64,9 @@ def test_page_registry_resolve_by_page_class_name_with_base_url_get_right_url():
     class MyPage(Page):
         url = 'blabla'
 
-    PageGot, url = PageRegistry.resolve(Settings({'base_url': 'http://pyccuracy.org'}), 'My Page', exists_func=fake_abs)
+    PageGot, url = PageRegistry.resolve(Settings({'base_url': 'https://github.com/heynemann/pyccuracy/wiki'}), 'My Page', exists_func=fake_abs)
     assert PageGot is MyPage, 'The page resolved by "My Page" should be a type class: MyPage. Got %r.' % PageGot
-    assert url == 'http://pyccuracy.org/blabla', 'The url must be http://pyccuracy.org concatenated with "/" and "blabla". Got "%s".' % url
+    assert url == 'https://github.com/heynemann/pyccuracy/wiki/blabla', 'The url must be https://github.com/heynemann/pyccuracy/wiki concatenated with "/" and "blabla". Got "%s".' % url
 
 def test_page_registry_resolve_by_page_class_name_with_base_url_get_right_url_without_slash():
     class MyPage(Page):
@@ -114,10 +114,10 @@ def test_page_registry_resolve_by_page_class_name_with_base_url_get_right_url_wi
     assert url == 'file:///home/blabla', 'The url must be "file:///home" concatenated with "/" and "blabla". Got "%s".' % url
 
 def test_page_registry_resolve_page_by_url_with_base_url():
-    PageGot, url = PageRegistry.resolve(Settings({'base_url': 'http://pyccuracy.org'}), 'my_url', exists_func=fake_abs)
+    PageGot, url = PageRegistry.resolve(Settings({'base_url': 'https://github.com/heynemann/pyccuracy/wiki'}), 'my_url', exists_func=fake_abs)
 
     assert PageGot is None, 'The page resolved by "my_url" should be a type class: MyPage. Got %r.' % PageGot
-    assert url == 'http://pyccuracy.org/my_url', 'The url must be "http://pyccuracy.org/my_url". Got "%s".' % url
+    assert url == 'https://github.com/heynemann/pyccuracy/wiki/my_url', 'The url must be "https://github.com/heynemann/pyccuracy/wiki/my_url". Got "%s".' % url
 
 def test_page_registry_resolve_page_by_url_without_base_url_with_slash():
     PageGot, url = PageRegistry.resolve(Settings(dict(tests_dir='/test/'), cur_dir='/test/'), 'my_url', exists_func=fake_abs)

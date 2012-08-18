@@ -126,7 +126,7 @@ upload: clean
 docs:
 	@python pyccuracy/actions/core/__init__.py > actions_reference.textile
 	@echo -e "\nFile 'actions_reference.textile' was generated.\n"
-	@echo -e "Don't forget to update http://pyccuracy.org/actions-reference.\n"
+	@echo -e "Don't forget to update https://github.com/heynemann/pyccuracy/wiki/Actions-Reference.\n"
 
 deb:
 	mv .git /tmp/pyccuracy_git
