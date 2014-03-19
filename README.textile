@@ -1,3 +1,7 @@
+h1. PYCCURACY IS LOOKING FOR A NEW MAINTAINER!
+
+If you wish to be the new maintainer leave a message in an issue.
+
 h1. Pyccuracy
 
 "Pyccuracy":https://github.com/heynemann/pyccuracy/wiki is a "Behaviour-Driven-Development-style":http://behaviour-driven.org tool written in Python that aims to make it easier to write automated acceptance tests. It improves the readability of those tests by using a structured natural language - and a simple mechanism to extend this language - so that both developers and customers can collaborate and understand what the tests do.
