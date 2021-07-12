@@ -95,11 +95,11 @@ This method is called before any scenarios begin.'''
         raise NotImplementedError
 
     def get_selected_value(self, element_selector):
-        '''This methid gets the value for the currently selected option in the given select.'''
+        '''This method gets the value for the currently selected option in the given select.'''
         raise NotImplementedError
 
     def get_selected_text(self, element_selector):
-        '''This methid gets the text for the currently selected option in the given select.'''
+        '''This method gets the text for the currently selected option in the given select.'''
         raise NotImplementedError
 
     def get_element_text(self, element_selector):

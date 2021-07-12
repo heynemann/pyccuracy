@@ -103,7 +103,7 @@ This action types the given text in the given textbox. The difference between "s
             # I observed that it's only possible to type_keys after type_text once.
             TextboxTypeAction().execute(context, textbox_name, text)
         
-        # now typyng slowly...
+        # now typing slowly...
         textbox_key = self.resolve_element_key(context, Page.Textbox, textbox_name)
         context.browser_driver.type_keys(textbox_key, text)
 

@@ -103,7 +103,7 @@ class SeleniumWebdriver(BaseDriver):
 
     def wait_for_page(self, timeout=30000):
         pass
-        # the new recomendation from selenium is to watch for an element only
+        # the new recommendation from selenium is to watch for an element only
         # present with the new situation, all wait functions were dropped
 
     def get_title(self):
