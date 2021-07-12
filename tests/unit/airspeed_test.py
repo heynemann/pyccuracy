@@ -479,7 +479,7 @@ $email
     # so it's correct behavior by definition; the real
     # question is whether using them w/o a comma is a legal variant
     # or not.  This should effect the above test; the following test
-    # should be legal by defintion
+    # should be legal by definition
 
     def test_define_and_use_macro_with_two_parameters_with_comma(self):
         template = airspeed.Template('#macro ( bold $value, $other)<strong>$value</strong>$other#end#bold ($text, $monkey)')
